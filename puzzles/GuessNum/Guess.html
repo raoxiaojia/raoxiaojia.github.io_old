@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>xr211</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+		<link rel="shortcut icon" href="../../favicon.ico?" />
+	</head>
+<body>
+
+<h1 class="major">Puzzle: Number Guessing</h1>
+<h2>Rules</h2>
+<p>A random integer in [0,29] will be generated at the beginning of each game.</p>
+<p>In one turn, you may guess any integer in [0,29]. If you guess the number correctly then the game ends; otherwise you will know if your guess was greater than or lower than the random number.</p>
+<p>After each of your guess, the random integer will be increased by a random predetermined constant increment in [0,29], with result mod 30. So now you have to guess the new number!</p>
+
+<h2>Challenge</h2>
+<h3>Level 1</h3>
+<p>Find a strategy that always succeeds within 42 steps.</p>
+<h3>Level 2</h3>
+<p>Find a strategy that always succeeds within 20 steps.</p>
+<h3>Level 3</h3>
+<p>Find a strategy that always succeeds within 13 steps.</p>
+
+<h3>Trial</h3>
+<p>Try the game and test your strategy here! If you've found a strategy for a certain level of challenge, you may briefly describe and send your solution <a href="index.html#contact">here</a>.</p>
+
+<button type="button" onclick="init()">Initialize</button>
+
+<p id="currentguess"></p>
+
+<button type="button" onclick="increase5()">+5</button> 
+<button type="button" onclick="increase1()">+1</button>
+<button type="button" onclick="decrease1()">-1</button>
+<button type="button" onclick="decrease5()">-5</button>
+<button type="button" onclick="respGuess()">Guess!</button>
+
+<p id="GuessHistory"></p>
+
+<script>
+var tops = 30;
+
+var curguess = 0;
+var stepcnt = 0;
+var x = Math.floor(Math.random()*tops);
+var startx = x;
+var inc = Math.floor(Math.random()*tops);
+var GuessHist = "";
+
+document.getElementById("currentguess").innerHTML = "Your guess: " + curguess;
+
+function init()
+{
+	curguess = 0;
+	stepcnt = 0;
+	x = Math.floor(Math.random()*tops);
+	startx = x;
+	inc = Math.floor(Math.random()*tops);
+	GuessHist = "";
+	document.getElementById("currentguess").innerHTML = "Your guess: " + curguess;
+	document.getElementById("GuessHistory").innerHTML = GuessHist;
+}
+
+function increase5()
+{
+	curguess += 5;
+	curguess %= tops;
+	document.getElementById("currentguess").innerHTML = "Your guess: " + curguess;
+}
+function increase1()
+{
+	curguess ++;
+	curguess %= tops;
+	document.getElementById("currentguess").innerHTML = "Your guess: " + curguess;
+}
+function decrease1()
+{
+	curguess += tops-1;
+	curguess %= tops;
+	document.getElementById("currentguess").innerHTML = "Your guess: " + curguess;
+}
+function decrease5()
+{
+	curguess += tops-5;
+	curguess %= tops;
+	document.getElementById("currentguess").innerHTML = "Your guess: " + curguess;
+}
+function respGuess()
+{
+	if (curguess == x)
+	{
+		stepcnt ++;
+		GuessHist = "Guess "+stepcnt+": "+curguess+", <span style=\"color:#00ffff\">correct!</span>"+ " Original="+startx+",increment="+inc+".<br>" + GuessHist;
+		window.alert("You got it! You used "+stepcnt+" guess(es).");
+	}
+	else
+	if (curguess < x)
+	{
+		stepcnt ++;
+		GuessHist = "Guess "+stepcnt+": "+curguess+", <span style=\"color:#00ff00\">too low</span><br>" + GuessHist;
+	}
+	else
+	if (curguess > x)
+	{
+		stepcnt ++;
+		GuessHist = "Guess "+stepcnt+": "+curguess+", <span style=\"color:#ff0000\">too high</span><br>" + GuessHist;
+	}
+	document.getElementById("GuessHistory").innerHTML=GuessHist;
+	x = (x+inc)%tops;
+}
+</script>
+
+</body>
+</html>

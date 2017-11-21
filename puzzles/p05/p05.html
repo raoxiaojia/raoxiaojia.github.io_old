@@ -1,0 +1,415 @@
+<html>
+<head>
+		<title>Roulette</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="shortcut icon" href="../../favicon.ico?" />
+		
+		<style>
+
+		body {
+			color: #cf9f1f;
+			font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+			background-image:url("bg.png");
+			background-repeat: repeat;
+		}
+		
+		h2
+		{
+			color: #77ffff;
+		}
+		
+		h3{
+			color: #77ff77;
+		}
+
+		</style>
+	</head>
+<body>
+
+<h1 class="major">Roulette</h1>
+
+<div id="entire">
+
+<h2>Rules</h2>
+<p>A new year starts. You are on your way to the first Part II Graph Theory supervision. Your supervisor is the renowned professor Prof Essor, who mentioned in his last email that the supervision would be held at St Graph's College. You didn't know Prof Essor in person, but all others who have had supervisions with him looked to be in ecstasy when they heard that you would be supervised by him as well. You looked composed despite that you've never heard of that college in your past two years at Cambridge.</p>
+<p>Now you are standing in front of the Great Gate of St Graph's College. You didn't actually know the exact venue of your supervision as Prof. Essor wrote in his email, 'check with the porter about the location of my room.' So you went straight into the porter's lodge. Luckily, there was a porter inside.</p>
+<p>'Excuse me, where is Professor Prof Essor's room? I have a supervision with him now.'</p>
+<p>'<i>Everywhere.</i>' The porter replied. 'Professor Essor likes to relocate to a new room everyday but unfortunately no other college could accommodate to this request -- so he just built a college by himself. As for his room today...' The porter reached to a book on the shelf and turned to page 20171008, then turned it around and pushed towards you. It reads:</p>
+<p>'...Students are lazy these days. No one came to supervision yesterday [...] and use excuses like they couldn't find my room [...] even my grandson could come up with some better excuses than that. [...] To change or not to change, that is not a problem. Let's check how many courts my college has ... and there are these many corridors among the courts... nice. I'll take the product of those.'</p>
+<p>When you looked up from the book, the porter's lodge disappeared! You looked back to seek more hints from other pages of the book, only to discover that the book has just vanished as well! You walked around and found several corridors towards other courts. After visiting a few courts, you found all the courts to be totally identical. You can't really mark any spot on the ground made of stone and the only thing you had was your supervision work, which you could put down and hope to find it again after you took some tour within the college.</p>
+<p>It's only a few minutes to your supervision. Anyway, you decided to find the number of courts and number of corridors first and see if taking the product of them will help you get out from there.</p>
+
+<h2>Challenge</h2>
+<p>Determine the number of courts and number of corridors by walking around the courts and using your supervision work as a signpost. There is at most one corridor between any two courts. At each stage, all you can see is the number of corridors there are from the current court, and whether your supervision work is lying somewhere on the ground of the current court. Each turn you could walk through a corridor to the next court. All corridors are the same, so the corridor that you entered this court will be labelled (temporarily) as corridor 1, and other corridors are labelled in the clockwise order. Note that the labelling could change if you entered the same court from a different corridor. If you have your supervision work with you, you could put them down at the centre of the court you are at; if you found your supervision work on the ground, you could pick them up.</p>
+<p>If we create a graph with vertices being the courts and edges being the corridors, it should be noted that that graph is not guaranteed to be planar because a lot of corridors are actually underground and form a very complicated pattern as a whole. The corridors are also not necessarily straight lines.</p>
+<p>In addition, running through corridors is tiring and costs 3 units of stamina for each time. Also, your supervision work is extremely heavy, so that running through a corridor while carrying your work costs 2 extra units of stamina. Your maximum stamina is 100 units and refills by 1 unit every second. You know from common sense that the number of courts in a college should (probably) be at most around 10, so you still think there is some possibility that you can find the supervision room on time.</p>
+<p>The time now is 13:50pm. Your supervision will start at 14:00pm.</p>
+
+<h3>Level 1</h3>
+<p>Find the number of courts and number of corridors before the start of your supervision.</p>
+<h3>Level 2</h3>
+<p>You haven't been exercising for some time; therefore your maximum stamina is only 30.</p>
+<h3>Level 3</h3>
+<p>In addition to no regular exercise which reduces your maximum stamina, you've also suffered from an injured ankle recently; as a result it takes one extra unit of stamina to run through a corridor (so 4/6 respectively now). </p>
+
+<p>Pick a level and start the challenge!</p>
+
+<button type="button" onclick="level1()" id="l1b">Level 1</button> 
+<button type="button" onclick="level2()" id="l2b">Level 2</button>
+<button type="button" onclick="level3()" id="l3b">Level 3</button>
+
+<br><br>
+
+<p id="debug">
+
+<p style="visibility:hidden" id="ansform">
+Number of Courts:
+<input type="number" name="Number of Courts" id = "ansv"><br>
+Number of Corridors:
+<input type="number" name="Number of Corridors" id = "anse"><br>
+<input type="checkbox" name="confirm" id="confirm" onclick="confirmed()">I have enough confidence in my answers.<br>
+<input type="button" value="Submit my answers!" onclick="submit()" id="submitbutton"><br>
+</p>
+
+<p id="timeleft" style="visibility:hidden;color:#ff0000"></p>
+<progress value="600" max="600" id="tlbar" style="visibility:hidden;color:#00ff00;height:25px;width:300px;"></progress>
+
+<p id="game" style="visibility:hidden">
+Run through corridor: <select id="cor">
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+</select>
+<button type="button" onclick="runcor()" id="runcor">Run!</button>
+<button type="button" onclick="putsign()" id="putsign">Put your supervision work down!</button>
+<button type="button" onclick="picksign()" id="picksign">Pick your supervision work up!</button>
+<br>
+Stamina: <progress value="100" max="100" id="stamina" style="color:#00ff00;height:15px;width:300px;background-color:#eee;border-radius:2px;box-shadow:0 2px 5px rgba(0,0,0,0.25) inset;"></progress>
+</p>
+
+</div>
+
+<div id="succeedsign" style="display:none">
+<p>As soon as you decided that you had known the room number of Prof. Essor, everything was back all of a sudden. The porter's lodge rose from the ground, and you found yourself standing in the centre of the plodge. You turned around and saw the porter again. "Time for supervision," said the porter assertively. "I'm glad you are here on time -- actually I think you are the first student that comes to my class this week. But where's your work?" "I'm sorry, I forgot to submit it but I've brought it with me..." You searched in your bag and handed your supervision work to the professor. "That's not an excuse. I wanted to take a careful look of each of the supervision work before the supervision to ensure the quality of my class. Leave your work here and come back here again tomorrow at the same time." The professor left the room.</p>
+</div>
+
+<div id="succeednosign" style="display:none">
+<p>As soon as you decided that you had known the room number of Prof. Essor, everything was back all of a sudden. The porter's lodge rose from the ground, and you found yourself standing in the centre of the plodge. You turned around and saw the porter again. "Time for supervision," said the porter assertively. "I'm glad you are here on time -- actually I think you are the first student that comes to my class this week. But where's your work?" "I'm sorry, I forgot to submit it but I've brought it with me..." You searched in your bag but found nothing. You then remembered that you've put down your work in the centre of some court but forgot to pick it up. You tried to explain this to the professor, who seemed to be furious. "So you threw your work away somewhere in the college and came to my class with nothing. At least that's a new excuse I've heard, I'll make sure that goes into my diary today." The professor walked away and left you alone in the room.</p>
+</div>
+
+<div id="tle" style="display:none">
+<p>The bell rang twice, and you saw the porter walked to you from a corridor slowly. "You are late," said the porter, "and I don't supervise late students. Be on time next time. I'll see you in two weeks." The porter turned around and walk away.</p>
+</div>
+
+<div id="wa" style="display:none">
+<p>As soon as you decided that you had known the room number of Prof. Essor, you found a room appear in front of you all of a sudden. You checked and it was the room you were looking for! On the door there was a mail slot, labelled 'insert your supervision work here'. You did that, but only to hear the sound of a paper shredder from behind the door.</p>
+</div>
+
+<div id="startagain" style="display:none">
+<a href="SGC.html">Start again!</a>
+</div>
+
+<h3>Game History</h3>
+<p id="gamehist" style="color:#ff0000"></p>
+
+<script>
+
+var maxstam = 100;
+var stam = 100;
+var cost1 = 3;
+var cost2 = 5;
+var maxvnum = 11;
+var minvnum = 6;
+
+var vnum = 0;
+
+var maxednumarr = [8,8,8,8,11,18,25,29,34,41,48,55,62];
+
+var ednum = 0;
+
+var realednum = 0;
+
+var g = new Array(12);
+
+var ga = new Array(12);
+
+var visited = new Array(12);
+
+var hist = [];
+
+var cur = 0;
+
+var last = 0;
+
+var sign = -1;
+
+var histstr = "";
+
+var timeleft = 600;
+
+var inhibit = 1;
+
+function level1()
+{
+	vnum = Math.floor(Math.random()*(maxvnum-minvnum+1))+minvnum;
+	ednum = maxednumarr[vnum] - Math.floor(Math.random()*vnum*2.5) + 1;
+	for (var i=0;i<12;i++)
+	{
+		g[i] = [];
+		ga[i] = new Array(12);
+		for (var j=0;j<12;j++)
+		{
+			ga[i][j] = 0;
+		}
+		visited[i] = 0;
+	}
+	var x = 0;
+	var y = 0;
+	for (var i=0;i<ednum;i++)
+	{
+		x = Math.floor(Math.random()*vnum);
+		y = Math.floor(Math.random()*vnum);
+		while (x == y) y = Math.floor(Math.random()*vnum);
+		if (ga[x][y] == 0)
+		{
+			g[x].push(y);
+			g[y].push(x);
+			ga[x][y] = 1;
+			ga[y][x] = 1;
+			realednum ++;
+		}
+	}
+	hist.push(0);
+	while (hist.length>0)
+	{
+		x = hist.pop();
+		if (visited[x]) continue;
+		visited[x] = 1;
+		for (var i=0;i<vnum;i++)
+		{
+			if (ga[x][i] == 1)
+			{
+				if (visited[i] == 0)
+				{
+					hist.push(i);
+				}
+			}
+		}
+	}
+	for (i=0;i<vnum;i++)
+	{
+		if (visited[i] == 1) continue;
+		x = Math.floor(Math.random()*vnum);
+		while (visited[x] == 0) x = Math.floor(Math.random()*vnum);
+		if (ga[x][i] == 1) continue;
+		ga[x][i] = 1;
+		ga[i][x] = 1;
+		g[i].push(x);
+		g[x].push(i);
+		visited[i] = 1;
+		realednum ++;
+	}
+	
+	for (i=0;i<vnum;i++)
+	{
+		g[i].sort(function(a,b){return 0.5-Math.random()});
+	}
+	
+	cur = Math.floor(Math.random()*vnum);
+	last = g[cur][0];
+
+	document.getElementById("l1b").style.visibility = "hidden";
+	document.getElementById("l2b").style.visibility = "hidden";
+	document.getElementById("l3b").style.visibility = "hidden";
+	
+	document.getElementById("game").style.visibility = "visible";
+	
+	histstr += "You entered a court with "+g[cur].length+" corridors";
+	if (cur == sign)
+	{
+		histstr += " and found your supervision work lying quietly on the ground.<br>";
+		document.getElementById("picksign").style.visibility = "visible";
+	}
+	else
+	{
+		histstr += ".<br>";
+		document.getElementById("picksign").style.visibility = "hidden";
+	}
+	document.getElementById("gamehist").innerHTML = histstr;
+	
+	if (sign == -1)
+	{
+		document.getElementById("putsign").style.visibility = "visible";
+	}
+	else
+	{
+		document.getElementById("putsign").style.visibility = "hidden";
+	}
+	timeleft = 600;
+	document.getElementById("timeleft").innerHTML = "Time until supervision: "+timeleft+" seconds";
+	document.getElementById("timeleft").style.visibility = "visible";
+	document.getElementById("tlbar").style.visibility = "visible";
+	document.getElementById("ansform").style.visibility = "visible";
+	document.getElementById("submitbutton").disabled = true;
+	inhibit = 0;
+}
+
+function level2()
+{
+	maxstam = 30;
+	stam = 30;
+	level1();
+}
+
+function level3()
+{
+	cost1 = 4;
+	cost2 = 6;
+	level2();
+}
+
+function runcor()
+{
+	if (sign == -1)
+	{
+		if (stam < cost2)
+		{
+			histstr = "You attempted to run through a corridor... but you were too tired to do so.<br>"+histstr;
+			document.getElementById("gamehist").innerHTML = histstr;
+			return 0;
+		}
+	}
+	else
+	{
+		if (stam < cost1)
+		{
+			histstr = "You attempted to run through a corridor... but you were too tired to do so.<br>"+histstr;
+			document.getElementById("gamehist").innerHTML = histstr;
+			return 0;
+		}
+	}
+	var dir = document.getElementById("cor").value;
+	if (dir > g[cur].length)
+	{
+		histstr = "You attempted to run towards corridor "+dir+" and bumped into the wall... There are only "+g[cur].length+" corridors in this court.<br>"+histstr;
+	}
+	else
+	{
+		var next = -1;
+		var tmpdir = dir;
+		var i;
+		for (i=0;i<g[cur].length;i++)
+		{
+			if (g[cur][i] == last) break;
+		}
+		next = g[cur][(i+parseInt(dir)-1)%g[cur].length];
+		histstr = "You ran through corridor "+tmpdir+" and entered a new court.<br>"+histstr;
+		last = cur;
+		cur = next;
+		var tmpstr = "You entered a court with "+g[cur].length+" corridors";
+		if (cur == sign)
+		{
+			tmpstr += " and found your supervision work lying quietly on the ground.<br>";
+			document.getElementById("picksign").style.visibility = "visible";
+		}
+		else
+		{
+			tmpstr += ".<br>";
+			document.getElementById("picksign").style.visibility = "hidden";
+		}
+		histstr = tmpstr + histstr;
+		if (sign == -1)
+		{
+			stam -= cost2;
+		}
+		else
+		{
+			stam -= cost1;
+		}
+	}
+	document.getElementById("stamina").value=stam;
+	document.getElementById("stamina").style.color="rgb("+Math.floor(255-stam*255/maxstam)+","+Math.floor(stam*255/maxstam)+","+0+")";
+	document.getElementById("gamehist").innerHTML = histstr;
+}
+
+function putsign()
+{
+	sign = cur;
+	histstr = "You put down your work. Hopefully you could find them later...<br>" + histstr;
+	document.getElementById("gamehist").innerHTML = histstr;
+	document.getElementById("picksign").style.visibility = "visible";
+	document.getElementById("putsign").style.visibility = "hidden";
+}
+
+function picksign()
+{
+	sign = -1;
+	histstr = "You picked your work up.<br>" + histstr;
+	document.getElementById("gamehist").innerHTML = histstr;
+	document.getElementById("picksign").style.visibility = "hidden";
+	document.getElementById("putsign").style.visibility = "visible";
+}
+
+function confirmed()
+{
+	if (document.getElementById("confirm").checked == true) document.getElementById("submitbutton").disabled = false;
+	else document.getElementById("submitbutton").disabled = true;
+}
+
+function submit()
+{
+	var correct = 1;
+	if (document.getElementById("ansv").value != vnum) correct = 0;
+	if (document.getElementById("anse").value != realednum) correct = 0;
+	document.getElementById("entire").style.display = "none";
+	if (correct == 0)
+	{
+		document.getElementById("wa").style.display = "block";
+	}
+	else
+	if (sign == -1)
+	{
+		document.getElementById("succeedsign").style.display = "block";
+	}
+	else
+	{
+		document.getElementById("succeednosign").style.display = "block";
+	}
+	document.getElementById("startagain").style.display = "block";
+	inhibit = 1;
+	scroll(0,0);
+}
+
+setInterval(function()
+{
+	if (inhibit == 1) return 0;
+	if (stam < maxstam) stam = stam + 1;
+	document.getElementById("stamina").value=stam;
+	document.getElementById("stamina").max=maxstam;
+	document.getElementById("stamina").style.color="rgb("+Math.floor(255-stam*255/maxstam)+","+Math.floor(stam*255/maxstam)+","+0+")";
+	timeleft --;
+	document.getElementById("tlbar").value=timeleft;
+	document.getElementById("tlbar").style.color="rgb("+Math.floor(255-timeleft*255/600)+","+Math.floor(timeleft*255/600)+","+0+")";
+	document.getElementById("timeleft").innerHTML = "Time until supervision: "+timeleft+" seconds";
+	if (timeleft == 0)
+	{
+		inhibit = 1;
+		document.getElementById("entire").style.display = "none";
+		document.getElementById("tle").style.display = "block";
+		document.getElementById("startagain").style.display = "block";
+		scroll(0,0);
+	}
+},1000);
+
+</script>
+
+</body>
+</html>

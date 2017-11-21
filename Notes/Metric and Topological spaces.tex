@@ -1,0 +1,703 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\begin{document}
+
+\title{Metric and Topological spaces}
+\date{Easter 2016}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+Suppose $\left(x_n\right)$ is a sequence of real numbers. $\left(x_n\right)$ converges to $x\in \R$ if for every $\varepsilon>0$, there exists some $N$ such that $|x_n-x|<\varepsilon$ whenever $n>N$. We know that a function $f:\R \to \R$ is \emph{continuous} if $\left(f\left(x_n\right)\right)\to f\left(x\right)$ whenever $\left(x_n\right) \to x$. But what does it mean for a sequence $\left(x_n\right)$ to converge if $x_n\in X \neq \R$?
+
+\begin{eg}
+Let
+\begin{equation*}
+\begin{aligned}
+X=\left\{A\in M_{n\times n} \left(\R\right) | A^T =A\right\}
+\end{aligned}
+\end{equation*}
+and let $f\left(A\right)$ be the largest eigenvalue of $A$. Is $f$ continuous?
+\end{eg}
+
+\begin{eg}
+Let
+\begin{equation*}
+\begin{aligned}
+&X=\left\{f:\left[0,1\right] \to \R | f  \text{ is continuous} \right\} \\
+&F\left(f\right) = f\left(\frac{1}{2}\right)
+\end{aligned}
+\end{equation*}
+\end{eg}
+Is $F$ continuous?
+
+\begin{thm} (Intermediate value theorem)\\
+If $f:\left[0,1\right]\to \R$ is continuous and $f\left(0\right)\left<0, f\left(1\right)\right>0$, then $\exists x \in \left[0,1\right]$ with $f\left(x\right)=0$.
+\end{thm}
+
+\begin{thm} (Maximum value theorem)\\
+If $f:\left[0,1\right] \to \R$ is continuous, then $\exists x \in \left[0,1\right]$ such that $f\left(x\right) \geq f\left(y\right)$ for all $y\in\left[0,1\right]$.
+\end{thm}
+
+These are both theorems about $\left[0,1\right]$. However, they might not be true if we change to another domain. For example, neither of these theorems hold for $\left[0,1\right] \cap \Q$.
+
+\begin{eg}
+Let
+\begin{equation*}
+\begin{aligned}
+f\left(x\right) = x^2-\frac{1}{2}
+\end{aligned}
+\end{equation*}
+Then $f\left(0\right)\left<0, f\left(1\right)\right>0$, but there is no $x\in\left[0,1\right] \cap \Q$ such that $f\left(x\right) = 0$.
+\end{eg}
+
+\newpage
+\section{Metric spaces}
+Suppose $\left(\mathbf{v}_n\right) = \left(\left(x_n,y_n\right)\right)$ is a sequence in $\R^2$. What should it mean for $\left(\mathbf{v}_n\right)$ to converge to $\mathbf{v} = \left(x,y\right)$?\\
+A natural thought would be that the sequence ocnverges to $\left(x,y\right)$ if $\left(x_n\right) \to x$ and $\left(y_n\right) \to y$. That is then equivalent to
+\begin{equation*}
+\begin{aligned}
+&\left(x_n-x\right)^2 + \left(y_n-y\right)^2 \to 0 \iff
+&|\mathbf{v}_n-\mathbf{v}| \to 0.
+\end{aligned}
+\end{equation*}
+
+\begin{defi} (Metric space)\\
+A \emph{metric space} is a pair $\left(X,d\right)$ where $X$ is a set and $d:X\times X \to \R$, called the \emph{metric}, or \emph{distance function}, that satisfies the following properties:
+\begin{equation*}
+\begin{aligned}
+&\bullet d\left(x,y\right) \geq 0 \forall x,y\in X;\\
+&\bullet d\left(x,y\right) = 0 \iff x=y;\\
+&\bullet d\left(x,y\right) = d\left(y,x\right);\\
+&\bullet d\left(x,z\right) \leq d\left(x,y\right) + d\left(y,z\right).
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{eg}(Euclidean metric)\\
+Let $X=\R^n$, $d\left(\mathbf{x},\mathbf{y}\right) = |\mathbf{x}-\mathbf{y}|$, where
+\begin{equation*}
+\begin{aligned}
+|\mathbf{v}| = \left(\sum_{i=1}^n v_i^2\right)^\frac{1}{2}
+\end{aligned}
+\end{equation*}
+is the \emph{Euclidean metric} on $\R^n$. Note that this satisfies the triangle inequality.
+\end{eg}
+
+\begin{eg} (Metric subspace)\\
+Suppose $\left(X,d_X\right)$ is a metric space and $Y\subset X$. Then $\left(Y,d_Y\right)$ is a metric space, where $d_Y\left(y_1,y_2\right) = d_X\left(y_1,y_2\right)$, i.e. $d_Y=d_X |_{Y\times Y}$.\\
+We say $\left(Y,d_Y\right)$ is a \emph{subspace} of $\left(X,d_X\right)$, or just say $Y$ is a subspace of $X$.
+\end{eg}
+
+\begin{eg}
+Consider
+\begin{equation*}
+\begin{aligned}
+\left\{A \in M_{n\times n} \left(\R\right) | A^T = A \right\} \subset \R^{n^2}.
+\end{aligned}
+\end{equation*} 
+\end{eg}
+
+\begin{defi} (Convergence)\\
+If $\left(X,d\right)$ is a metric space and $\left(x_n\right)$ is a sequence in $X$, we say $\left(x_n\right)$ converges to $x$ if for every $\varepsilon >0$ there exists $N$ such that $d\left(x_n,x\right) < \varepsilon$ whenever $n>N$.
+\end{defi}
+
+\begin{prop}
+Suppose $\left(x_n\right)$ is a sequence in a metric space $\left(X,d\right)$ that $\left(x_n\right) \to x$ and $\left(x_n\right) \to y$. Then $x=y$.
+\begin{proof}
+Given $\varepsilon>0$, pick $N_1,N_2$ with
+\begin{equation*}
+\begin{aligned}
+&n>N_1 \implies d\left(x_n,x\right) < \frac{\varepsilon}{2},\\
+&n>N_2 \implies d\left(x_n,y\right) < \frac{\varepsilon}{2}
+\end{aligned}
+\end{equation*}
+Then if $n>\max\left\{N_1,N_2\right\}$,
+\begin{equation*}
+\begin{aligned}
+0\leq d\left(x,y\right)\leq d\left(x,x_n\right) + d\left(x_n,y\right) = d\left(x,x_n\right) + d\left(y,x_n\right) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\end{aligned}
+\end{equation*}
+Since $\varepsilon$ is arbitrary, $d\left(x,y\right)=0$. So $x=y$.
+\end{proof}
+\end{prop}
+
+\begin{defi} (Continuity)\\
+If $\left(X,d_X\right)$ and $\left(Y,d_Y\right)$ are metric spaces, then $f:X\to Y$ is \emph{continuous} if $\left(f\left(x_n\right)\right) \to f\left(x\right)$ whenever $\left(x_n\right) \to x$.
+\end{defi}
+
+\begin{prop}
+If $\left(X,d_X\right), \left(Y,d_Y\right)$ and $\left(Z,d_Z\right)$ are metric spaces, and $f:X\to Y$ and $g:Y\to Z$ are both continuous, then $g \circ f:X\to Z$ is also continuous.
+\begin{proof}
+Suppose $\left(x_n\right) \to x$ in $X$. Since $f$ is continuous, 
+\begin{equation*}
+\begin{aligned}
+\left(f\left(x_n\right)\right) \to f\left(x\right)
+\end{aligned}
+\end{equation*}
+in $Y$. Since $g$ is also continuous,
+\begin{equation*}
+\begin{aligned}
+\left(g\left(f\left(x_n\right)\right)\right) \to g\left(f\left(x\right)\right)
+\end{aligned}
+\end{equation*}
+in $Z$, i.e.
+\begin{equation*}
+\begin{aligned}
+\left(g\circ f\left(x_n\right)\right) \to g\circ f\left(x\right).
+\end{aligned}
+\end{equation*}
+So $g\circ f$ is continuous.
+\end{proof}
+\end{prop}
+
+\begin{eg} (Discrete metric)\\
+Let $X$ be any set, and let
+\begin{equation*}
+\begin{aligned}
+d\left(x,y\right) = \left\{
+\begin{array}{ll}
+1 & x\neq y\\
+0 & x=y
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+This is a metric space.
+\end{eg}
+
+\begin{eg}
+Let $X=\R^2$, $\mathbf{x}=\left(x_1,x_2\right)$, $\mathbf{x}'=\left(x_1',x_2'\right)$, and
+\begin{equation*}
+\begin{aligned}
+d\left(\mathbf{x},\mathbf{x}'\right) = |x_1-x_1'| + |x_2-x_2'|.
+\end{aligned}
+\end{equation*}
+Triangle inequality follows by:
+\begin{equation*}
+\begin{aligned}
+d\left(x,z\right) &= |x_1-z_1| + |x_2-x_2| \\
+&\leq |x_1-y_1| + |y_1-z_1| + |x_2 - y_2| + |y_2 - z_2| \\
+&= d\left(x,y\right) + d\left(y,z\right).
+\end{aligned}
+\end{equation*}
+\end{eg}
+
+\begin{eg} (British Railway metric)\\
+Let $X=\R^2$, and
+\begin{equation*}
+\begin{aligned}
+d\left(\mathbf{x},\mathbf{y}\right) = \left\{
+\begin{array}{ll}
+|\mathbf{x}-\mathbf{y}| &  \mathbf{x}=k\mathbf{y}\\
+|\mathbf{x}| + |\mathbf{y}| & \text{ otherwise}
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+(Unless you, your destination and London are collinear, you always have to take a train to London first and transfer there.)
+\end{eg}
+
+\begin{defi}
+If $V$ is a real vector space, a \emph{norm} on $V$ is a map $||\cdot|| : V \to \R$ satisfying
+\begin{equation*}
+\begin{aligned}
+&\bullet ||\mathbf{v}|| \geq 0 \forall \mathbf{v}\in V;\\
+&\bullet ||\mathbf{v}|| = 0 \iff \mathbf{v}=\mathbf{0} \in V;\\
+&\bullet ||\lambda \mathbf{v}|| = |\lambda| ||\mathbf{v}||, \lambda \in \R, \mathbf{v} \in V;\\
+&\bullet ||\mathbf{v}+\mathbf{w}|| \leq ||\mathbf{v}|| + ||\mathbf{w}||.
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{eg}
+Let $V = \R^n$,
+\begin{equation*}
+\begin{aligned}
+||\mathbf{v}|| = \sum_{i=1}^n |v_i|
+\end{aligned}
+\end{equation*}
+(this is called the Manhattan norm).
+\end{eg}
+
+\begin{lemma}
+If $||\cdot||$ is a norm on $V$, then 
+\begin{equation*}
+\begin{aligned}
+d\left(\mathbf{x},\mathbf{y}\right) = ||\mathbf{x}-\mathbf{y}||
+\end{aligned}
+\end{equation*}
+defines a metric on $V$.
+\begin{proof}
+Firstly
+\begin{equation*}
+\begin{aligned}
+d\left(\mathbf{x},\mathbf{y}\right) = ||\mathbf{x}-\mathbf{y}|| \geq 0
+\end{aligned}
+\end{equation*}
+by our definition of norm. The second holds by
+\begin{equation*}
+\begin{aligned}
+d\left(\mathbf{x},\mathbf{y}\right) = 0 &\iff ||\mathbf{x}-\mathbf{y}|| = 0\\
+&\iff \mathbf{x}-\mathbf{y}=0\\
+&\iff \mathbf{x} = \mathbf{y}.
+\end{aligned}
+\end{equation*}
+For the third condition,
+\begin{equation*}
+\begin{aligned}
+d\left(\mathbf{y}-\mathbf{x}\right) &= ||\mathbf{y}-\mathbf{x}|| \\
+&= ||\left(-1\right)\left(\mathbf{x}-\mathbf{y}\right)||\\
+&= |-1| ||\mathbf{x}-\mathbf{y}||\\
+&= d\left(\mathbf{x},\mathbf{y}\right)
+\end{aligned}
+\end{equation*}
+Lastly
+\begin{equation*}
+\begin{aligned}
+d\left(\mathbf{x},\mathbf{y}\right) + d\left(\mathbf{y},\mathbf{z}\right) &= ||\mathbf{x}-\mathbf{y}|| + ||\mathbf{y}-\mathbf{z}||\\
+&\geq \mathbf{x}-\mathbf{z}\\
+&= d\left(\mathbf{x},\mathbf{z}\right)
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{lemma}
+
+The Manhattan metric on $\R^2$ is induced by the Manhattan norm (exercise).
+
+\begin{defi}
+Let $V$ be a real vector space. An \emph{inner product} on $V$ is a map $\left<\cdot, \cdot\right>: V\times V \to \R$, satisfying
+\begin{equation*}
+\begin{aligned}
+&\bullet \left<\mathbf{v},\mathbf{v}\right> \geq 0 \forall \mathbf{v}\in V;\\
+&\bullet \left<\mathbf{v},\mathbf{v}\right> = 0 \iff \mathbf{v}=\mathbf{0};\\
+&\bullet \left<\mathbf{v},\mathbf{w}\right> = \left<\mathbf{w},\mathbf{v}\right>;\\
+&\bullet \left<\mathbf{v},\mathbf{w_1}+\lambda \mathbf{w_2}\right> = \left<\mathbf{v},\mathbf{w_1}\right> + \lambda\left<\mathbf{v},\mathbf{w_2}\right>.
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+The standard inner product on $\R^n$ is given by
+\begin{equation*}
+\begin{aligned}
+\left<\mathbf{v},\mathbf{w}\right> = \mathbf{v}\cdot\mathbf{w}=\sum_{i=1}^n v_i w_i
+\end{aligned}
+\end{equation*}
+
+\begin{thm} (Cauchy-Schwartz inequality)\\
+If $\left<\cdot,\cdot\right>$ is an inner product on $V$, then
+\begin{equation*}
+\begin{aligned}
+\left<\mathbf{v},\mathbf{w}\right>^2 \leq \left<\mathbf{v},\mathbf{v}\right>\left<\mathbf{w},\mathbf{w}\right>.
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Consider $\left<\mathbf{v}+\lambda\mathbf{w},\mathbf{v}+\lambda\mathbf{w}\right>\geq 0$ by definition. So
+\begin{equation*}
+\begin{aligned}
+\left<\mathbf{v},\mathbf{v}\right> + 2\lambda\left<\mathbf{v},\mathbf{w}\right>+\lambda^2\left<\mathbf{w},\mathbf{w}\right> \geq 0
+\end{aligned}
+\end{equation*}
+Now if $ax^2 + bx + c\geq 0$ for all $x\in \R$, then $ax^2+bx+c=0$ has at most one real root. So $b^2-4ac \leq 0$.\\
+Now we've just seen $a\lambda^2+b\lambda+c\geq 0$ for all $\lambda\in\R$, where $a=\left<\mathbf{w},\mathbf{w}\right>$, $b=2\left<\mathbf{v},\mathbf{w}\right>$, $c=\left<\mathbf{v},\mathbf{v}\right>$. So
+\begin{equation*}
+\begin{aligned}
+4\left<\mathbf{v},\mathbf{w}\right>^2 \leq 4\left<\mathbf{w},\mathbf{w}\right>\left<\mathbf{v},\mathbf{v}\right>
+\end{aligned}
+\end{equation*}
+which is the desired result.
+\end{proof}
+\end{thm}
+
+\begin{coro}
+If $\left<,\right>$ is an inner product on $V$, then $||\mathbf{v}|| = \left(\left<\mathbf{v},\mathbf{v}\right>\right)^{\frac{1}{2}}$ is a norm on $V$.
+For the proof we just need to verify all the conditions again. Cauchy-Schwartz inequality is required for verifying the fourth condition.
+\end{coro}
+
+Another exercise: The norm on $\R^n$ induced by the standard inner product is Euclidean length:
+\begin{equation*}
+\begin{aligned}
+||\mathbf{v}|| = |\mathbf{v}| = \left(\sum_{i=1}^n v_i^2\right)^\frac{1}{2}
+\end{aligned}
+\end{equation*}
+The metric induced by the norm is the Euclidean norm.\\
+And another exercise: is the Manhattan norm induced by an inner product on $\R^n$?
+
+\begin{eg}
+Let $V=\R^n$.\\
+1) 
+\begin{equation*}
+\begin{aligned}
+||\mathbf{v}||_1=\sum_{i=1}^n |v_i|
+\end{aligned}
+\end{equation*}
+The Manhattan norm;\\
+2)
+\begin{equation*}
+\begin{aligned}
+||\mathbf{v}||_2 = \left(\sum_{i=1}^n v_i^2\right)^\frac{1}{2}
+\end{aligned}
+\end{equation*}
+The Euclidean norm;\\
+3)
+\begin{equation*}
+\begin{aligned}
+||\mathbf{v}||_\infty = \max_{1\leq i \leq n |v_i|}
+\end{aligned}
+\end{equation*}
+(In example sheet:
+\begin{equation*}
+\begin{aligned}
+||\mathbf{v}||_p = \left(\sum_{i=1}^n |v_i|^p \right)^\frac{1}{p}
+\end{aligned}
+\end{equation*}
+is a norm for all $1\leq p < \infty$.)
+\end{eg}
+
+\begin{eg}
+Let
+\begin{equation*}
+\begin{aligned}
+V=C\left[0,1\right] := \left\{ f:\left[0,1\right] \to \R | f \text{ is continuous} \right\}
+\end{aligned}
+\end{equation*}
+where
+\begin{equation*}
+\begin{aligned}
+&\left(\lambda f\right)\left(x\right) = \lambda f\left(x\right),\\
+&\left(f+g\right) \left(x\right) = f\left(x\right) + g\left(x\right)
+\end{aligned}
+\end{equation*}
+\end{eg}
+1)
+\begin{equation*}
+\begin{aligned}
+||f||_1 = \int_0^1 |f\left(x\right)| dx
+\end{aligned}
+\end{equation*}
+2)
+\begin{equation*}
+\begin{aligned}
+||f||_2 = \left(\int_0^1 f\left(x\right)^2\right)^\frac{1}{2} dx
+\end{aligned}
+\end{equation*}
+3)
+\begin{equation*}
+\begin{aligned}
+||f||_\infty = \max_{x \in \left[0,1\right]} |f\left(x\right)|
+\end{aligned}
+\end{equation*}
+This is usually called the 'sup norm'.\\
+How do we know that the first two norms satisfy the second condition, i.e. the norm is zero if and only if the function is zero? This is actually a standard result in analysis:
+
+\begin{lemma}
+Suppose $f\left[0,1\right]\to\R$ is continuous. If $f \not\cong 0$, then
+\begin{equation*}
+\begin{aligned}
+\int_0^1 |f\left(x\right)|>0
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Pick $x_0\in\left[0,1\right]$ with $f\left(x_0\right) \neq 0.$ Since $f$ is continuous, there exists $\delta > 0$ such that
+\begin{equation*}
+\begin{aligned}
+|f\left(x\right) - f\left(x_0\right)| < \frac{|f\left(x_0\right)|}{2}
+\end{aligned}
+\end{equation*}
+whenever $|x-x_0| < \delta$. Then for $|x-x_0|<\delta$, we have
+\begin{equation*}
+\begin{aligned}
+|f\left(x\right)| > |f\left(x_0\right)| - \frac{|f\left(x_0\right)|}{2} \geq \frac{|f\left(x_0\right)|}{2}
+\end{aligned}
+\end{equation*}
+So if we define
+\begin{equation*}
+\begin{aligned}
+g\left(x\right) = \left\{
+\begin{array}{ll}
+\frac{|f\left(x_0\right)|}{2} & |x-x_0| < \delta\\
+0 & \text{  otherwise}
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+Then $|f\left(x\right)| \geq g\left(x\right)$ for all $x\in\left[0,1\right]$.\\
+So
+\begin{equation*}
+\begin{aligned}
+\int_0^1 |f\left(x\right)| dx \geq \int_0^1 |g\left(x\right)| dx = 2\delta \frac{|f\left(x_0\right)|}{2} = \delta |f\left(x_0\right)|>0.
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{lemma}
+
+\begin{eg}
+\begin{equation*}
+\begin{aligned}
+f_n\left(x\right) = \left\{ 
+\begin{array}{ll}
+1-nx & x\in\left[0,\frac{1}{n}\right]\\
+0 & x\in\left[\frac{1}{n},1\right]
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+||f_n||_1 = \int_0^1 |f\left(x\right)| dx = \frac{1}{2}\left(\frac{1}{n}\right)\cdot 1 = \frac{1}{2n} \to 0
+\end{aligned}
+\end{equation*}
+as $n\to \infty$.\\
+So $\left(f_n\right) \to 0$ with respect to the metric induced by $|| \cdot ||_1$.\\
+On the other hand,
+\begin{equation*}
+\begin{aligned}
+||f_n||_\infty = 1
+\end{aligned}
+\end{equation*}
+regardless of $n$, since $f\left(0\right)=1$.\\
+This means that $\left(f_n\right)$ does not converge to 0 as $n\to \infty$ with respect to the metric induced by $||\cdot||_\infty$, i.e. the sup norm.
+\end{eg}
+
+Exercise: is it possible to find a sequence that converges with respect to $||\cdot||_1$ on $\R^2$, but not with respect to $||\cdot||_\infty$?
+
+\begin{eg} (The \emph{p-adic} norm)\\
+Let $p \in \N$ be a prime number. If $a \in \Z$, let $|a|_p = p^{-k}$, where $p^k | a$, but $p^{k+1} \nmid a$.\\
+So
+\begin{equation*}
+\begin{aligned}
+&|0|_p = 0,\\
+&|ab|_p = |a|_p |b|_p,\\
+&|a+b|_p \leq \max\left\{|a|_p, |b|_p\right\} \leq |a|_p + |b|_p
+\end{aligned}
+\end{equation*}
+
+If $r=\frac{a}{b} \in \Q$, define
+\begin{equation*}
+\begin{aligned}
+|r|_p  = \frac{|a|_p}{|b|_p}
+\end{aligned}
+\end{equation*}
+Then the \emph{p-adic metric} on $\Q$ is defined by
+\begin{equation*}
+\begin{aligned}
+d_p \left(r,s\right) = |r-s|_p
+\end{aligned}
+\end{equation*}
+\end{eg}
+
+Exercise: 1,2,4,8,16, ... $\to 0$ with respect to $d_2$.
+
+\newpage
+\section{Open and Closed Subsets}
+Let $\left(X,d\right)$ be a metric space.
+
+\begin{defi}
+If $x\in X$ and $r\in \R$ with $r>0$, let
+\begin{equation*}
+\begin{aligned}
+B_r\left(x\right) = \left\{ y\in X | d\left(x,y\right) < r \right\}
+\end{aligned}
+\end{equation*}
+is the \emph{open ball} of radius $r$ with centre $x$,
+\begin{equation*}
+\begin{aligned}
+\bar{B}_r \left(x\right) = \left\{y \in X | d\left(x,y\right) \leq r \right\}
+\end{aligned}
+\end{equation*}
+is the \emph{closed ball} of radius $r$ with centre $x$.
+\end{defi}
+
+\begin{eg}
+Let $X=\R$ with the usual metric. Then
+\begin{equation*}
+\begin{aligned}
+&B_r\left(a\right) = \left(a-r,a+r\right),\\
+&\bar{B}_r\left(a\right) = \left[a-r,a+r\right].
+\end{aligned}
+\end{equation*}
+These are just the open and closed interval respectively.
+\end{eg}
+
+\begin{eg}
+Let $X=\R^3$, with the Euclidean metric. Then
+\begin{equation*}
+\begin{aligned}
+\bar{B}_1\left(0\right) = \left\{ \mathbf{v}\in \R^3 | |\mathbf{v}| \leq 1\right\}
+\end{aligned}
+\end{equation*}
+which is a sphere with centre 0 and radius 1.
+\end{eg}
+
+\begin{eg}
+Let $X=\R^2$, with the metric induced by\\ 1) the Manhattan norm, $||\cdot ||_1$;\\
+2) the Euclidean norm, $||\cdot ||_2$;\\
+3) the sup norm, $||\cdot ||_\infty$.\\
+Now consider $\bar{B}_1\left(0\right)$. For the Manhattan norm, this is a square with with centre 0 and edges parallel to the axes(so with edge length 2); for the Euclidean norm this is a disc with centre 0 and radius 1; for the sup norm this is a square with centre 0 but edges making an angle of $\frac{\pi}{4}$ to the axes (so with edge length $\sqrt{2}$).
+\end{eg}
+
+\begin{eg}
+Let $X=\R^2$, $d$ is induced by an inner product $\left<,\right>$: if $\mathbf{v}=x\mathbf{e}_1+y\mathbf{e}_2$, then
+\begin{equation*}
+\begin{aligned}
+\left<\mathbf{v},\mathbf{v}\right> = ax^2 + 2bxy + cy^2
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+B_1\left(0\right) = \left\{\left(x,y\right) | ax^2+2bxy+cy^2 \leq 1\right\}
+\end{aligned}
+\end{equation*}
+where
+\begin{equation*}
+\begin{aligned}
+a=\left<\mathbf{e}_1,\mathbf{e}_1\right>,\\
+b=\left<\mathbf{e}_1,\mathbf{e}_2\right>,\\
+c=\left<\mathbf{e}_2,\mathbf{e}_2\right>.
+\end{aligned}
+\end{equation*}
+This is an ellipse.\\
+So we know that $||\cdot ||_\infty$, $||\cdot ||_1$ are not induced from an inner product on $\R^2$.
+\end{eg}
+
+\begin{notation}
+If $A\subset X$ is a subset, then $X\backslash A$, or $X-A$, is defined as
+\begin{equation*}
+\begin{aligned}
+X-A = \left\{x\in X | x\not\in A\right\}
+\end{aligned}
+\end{equation*}
+which is called the complement of $A$ (in $X$).
+\end{notation}
+
+\begin{defi} (Open and closed subset)\\
+If $A\subset X$, we say $A$ is an \emph{open subset} if for every $x\in A$, $\exists r>0$ such that $B_r\left(x\right) \subset A$.\\
+If $C\subset X$, we say $C$ is a \emph{closed subset} if $X-C$ is an open subset of $X$.
+\end{defi}
+
+\begin{prop}
+If $X$ is a metric space, then $B_r\left(x\right)$ is an open subset of $X$, and $\bar{B}_r\left(x\right)$ is a closed subset of $X$.
+\begin{proof}
+Suppose $b\in B_r\left(a\right)$. Then $d\left(a,b\right) < r$. So $r_0 = r-d\left(a,b\right)>0$. Now if $c\in B_{r_0}\left(b\right)$, then
+\begin{equation*}
+\begin{aligned}
+d\left(a,c\right) \leq d\left(a,b\right)+d\left(b,c\right)<d\left(a,b\right)+r_0=r
+\end{aligned}
+\end{equation*}
+So $c\in B_r\left(a\right)$. Thus $B_{r_0}\left(b\right) \subset B_r\left(a\right)$. So $B_r\left(a\right)$ is open.\\
+For the second part, we need to show that
+\begin{equation*}
+\begin{aligned}
+X-\bar{B}_r\left(a\right) = \left\{ x\in X | d\left(x,a\right)>r\right\}
+\end{aligned}
+\end{equation*}
+is open. The proof is analogous to the previous proof.
+\end{proof}
+\end{prop}
+
+\begin{rem}
+Note that $A\subset X$ may be \emph{neither} open nor closed. In fact if we take a random subset from a random metric space $X$, this is most likely the case. For example, consider $X=\R$ with the usual metric. then an obvious example is $\left[0,1\right)$,which is neither open nor closed; $\Q \subset \R$ is a more subtle example.
+\end{rem}
+
+\begin{rem}
+$A\subset X$ can also be \emph{both} open and closed. Consider
+\begin{equation*}
+\begin{aligned}
+X=\left[-1,1\right]-\left\{0\right\}
+\end{aligned}
+\end{equation*}
+as a subspace of $\R$. Then
+\begin{equation*}
+\begin{aligned}
+A=\left[-1,0\right)=B_1\left(-1\right) \subset X
+\end{aligned}
+\end{equation*}
+is open. On the other hand, this is also a closed ball, since it is also
+\begin{equation*}
+\begin{aligned}
+\bar{B}_{\frac{1}{2}} \left(-\frac{1}{2}\right) \subset X
+\end{aligned}
+\end{equation*}
+So $A$ is both closed and open in $X$.
+\end{rem}
+
+\begin{rem}
+Note that being open or closed is \emph{not} a property of a space, but a property of a subset of a space.\\
+We've seen that $\left[-1,0\right)$ is not a closed subset of $\R$, but it \emph{is} a closed subset of $\left[-1,1\right] - \left\{0\right\}$.
+\end{rem}
+
+\begin{defi}
+If $\left(X,d\right)$ is a metric space and $x\in X$, then $U$ is an \emph{open neighbourhood} of $x$ if $U\subset X$ is open and $x\in U$.
+\end{defi}
+
+\begin{prop}
+Suppose sequence $\left(x_n\right) \to x$ and $U$ is an open neighbourhood of $x$. Then there exists $N$ such that $x_n\in U$ for all $n>N$.
+\begin{proof}
+Since $U\subset X$ is open, $x\in U$, $\exists \varepsilon > 0$ with
+\begin{equation*}
+\begin{aligned}
+B_\varepsilon \left(x\right) \subset U.
+\end{aligned}
+\end{equation*}
+Since $\left(x_n\right) \to x$, $\exists N$ such that $d\left(x_n,x\right) < \varepsilon$ whenever $n>N$. This implies that
+\begin{equation*}
+\begin{aligned}
+x_n \in B_\varepsilon \left(x\right)
+\end{aligned}
+\end{equation*}
+whenever $n>N$. So $x_n\in U$ whenever $n>N$.
+\end{proof}
+\end{prop}
+
+\begin{defi} (Limit point)\\
+If $\left(X,d\right)$ is a metric space and $A \subset X$, we say $x\in X$ is a \emph{limit point} of $A$ if there is a sequence $\left(x_n\right) \to x$ with $x_n \in A$ for all $n$.
+\end{defi}
+
+\begin{eg}
+If $a\in A$, then $a$ is a limit point of $A$. We can just take a constant sequence with value $a$, which clearly converges to $a$.
+\end{eg}
+
+\begin{eg}
+Let $X = \R$ with the usual metric, $A=\left(0,1\right)$. Then
+\begin{equation*}
+\begin{aligned}
+\left(\frac{1}{n}\right) \to 0
+\end{aligned}
+\end{equation*}
+and $\frac{1}{n} \in A$ for all $n\geq 1$. So $0$ is a limit point of $A$.
+\end{eg}
+
+\begin{prop}
+Suppose $C\subset X$ is a closed subset and $x$ is a limit point of $C$. Then $x \in C$.
+\begin{proof}
+Suppose $\left(x_n\right) \to x$, where $x_n \in C$, but $x\not\in C$.\\
+Since $C$ is closed, $U=X-C$ is open. So
+\begin{equation*}
+\begin{aligned}
+x \not\in C \implies X \in U
+\end{aligned}
+\end{equation*}
+So $U$ is an open neighbourhood of $x$.\\
+Now $\left(x_n\right)$ converges to $x$ and $U$ is an open neighbourhood. So by the previous proposition, there exists an $N$ such that $x_n \in U$ for all $n>N$. But $x_n \in C$ for all $n$. Contradiction.
+\end{proof}
+\end{prop}
+
+\begin{thm}
+Suppose $f:\left(X,d_X\right) \to \left(Y,d_Y\right)$. Then the following conditions are equivalent:\\
+1) $f$ is continuous;\\
+2) $f^{-1}\left(U\right)$ is open in $X$ whenever $U$ is open in $Y$;\\
+3) $f^{-1}\left(C\right)$ is closed in $X$ whenever $U$ is closed in $Y$.
+\end{thm}
+
+
+\end{document}

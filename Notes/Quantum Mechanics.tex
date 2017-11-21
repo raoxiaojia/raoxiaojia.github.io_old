@@ -1,0 +1,1026 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\begin{document}
+
+\title{Quantum Mechanics}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Wave Functions and Operators}
+We introduce some of the mathematical structure of quantum mechanics (QM) by considering a particle in one dimension.
+
+\subsection{Wave Function and States}
+A classical point particle in one dimension has a position $x$ at each time. In QM a particle has a \emph{state} at each time given by a complex \emph{wave function} $\psi\left(x\right)$.
+
+\begin{post}
+A measurement of position gives a result $x$ with probability density $|\psi\left(x\right)|^2$, i.e.
+\begin{equation*}
+\begin{aligned}
+|\psi\left(x\right)|^2 \delta x
+\end{aligned}
+\end{equation*}
+will be the probability that particle is found between $x$ and $x+\delta x$, or
+\begin{equation*}
+\begin{aligned}
+\int_a^b |\psi\left(x\right)|^2 dx
+\end{aligned}
+\end{equation*}
+is the probability that the particle is found in the interval $a\leq x \leq b$.
+This obviously requires
+\begin{equation*}
+\begin{aligned}
+\int_{-\infty}^\infty |\psi\left(x\right)|^2 dx = 1
+\end{aligned}
+\end{equation*}
+We say $\psi$ is \emph{normalised} if it satisfies this condition.
+\end{post}
+
+\begin{eg} (Gaussian wave function) Let 
+\begin{equation*}
+\begin{aligned}
+\psi\left(x\right) = C e^{-\frac{\left(x-x_0\right)^2}{2\alpha}}
+\end{aligned}
+\end{equation*}
+For some real $\alpha > 0$.\\
+If $\alpha$ is small, $|\psi|^2$ will be sharply peaked around $x=x_0$.\\
+If $\alpha$ is large, $|\psi|^2$ is more spread out.
+
+Since $\psi$ needs to be normalised,
+\begin{equation*}
+\begin{aligned}
+\int_{-\infty}^\infty |\psi\left(x\right)|^2 dx &= |C|^2 \int_{-\infty}^\infty e^{-\frac{\left(x-x_0\right)^2}{\alpha}}dx\\
+&= |C|^2 \left(2\pi\right)^{1/2}\\
+&= 1
+\end{aligned}
+\end{equation*}
+So $\psi$ is normalised if 
+\begin{equation*}
+\begin{aligned}
+C=\left(\frac{1}{2\pi}\right)^{1/4}
+\end{aligned}
+\end{equation*}
+\end{eg}
+
+It is convenient to deal more generally with \emph{normalisable} wave functions that are \emph{not} identically zero, and satisfy
+\begin{equation*}
+\begin{aligned}
+\int_{-\infty}^\infty |\psi\left(x\right)|^2 dx < \infty
+\end{aligned}
+\end{equation*}
+In fact, $\psi\left(x\right)$ and $\phi\left(x\right) = \lambda \psi\left(x\right)$ contain the same physical information for any complex $\lambda \neq 0$.
+
+If $\psi\left(x\right)$ is normalisable, we can choose $\lambda$ to ensure $\psi\left(x\right)$ is normalised. Note also $\psi\left(x\right)$ and $e^{i\alpha} \psi\left(x\right)$ are physically equivalent for any real $\alpha$, and when $\psi$ is normalised,
+\begin{equation*}
+\begin{aligned}
+|\psi\left(x\right)|^2 = |e^{i\alpha} \psi\left(x\right)|^2
+\end{aligned}
+\end{equation*}
+i.e. they have the same probability distribution.
+
+In general we will consider normalisable wave functions $\psi,\phi,\chi,...$ that are \emph{smooth} (differentiable any number of times) except at isolated points (see examples below). Also, $\psi,\psi',... \to 0$ as $|x| \to \infty$.
+
+Given states $\psi_1\left(x\right)$ and $\psi_2\left(x\right)$ can form new state
+\begin{equation*}
+\begin{aligned}
+\psi\left(x\right) = \psi_1\left(x\right) + \psi_2\left(x\right)
+\end{aligned}
+\end{equation*}
+which is called superposition.
+
+\begin{eg}
+Take
+\begin{equation*}
+\begin{aligned}
+\psi\left(x\right) = B\left(e^{-\frac{x^2}{2\alpha}} + e^{-\frac{\left(x-x_0\right)^2}{2\alpha}}\right)
+\end{aligned}
+\end{equation*}
+i.e. the superposition of Gaussian wave function and itself at different positions.
+
+By drawing the image of $|\psi\left(x\right)|^2$ we can get the probability distribution for single particle, with appropriate choice of $B$.
+\end{eg}
+
+\subsection{Operators and Observables}
+A quantum state contains information about other physical quantities \emph{observables}, for example, momentum and energy, in addition to position. In QM, each observable is represented by an \emph{operator} acting on wave functions:\\
+Position:
+\begin{equation*}
+\begin{aligned}
+\hat{x} = x\\
+\left(\hat{x}\psi\right)\left(x\right) = x\psi\left(x\right)
+\end{aligned}
+\end{equation*}
+Momentum:
+\begin{equation*}
+\begin{aligned}
+\hat{p} = -i\hbar \frac{d}{dx}\\
+\left(\hat{p}\psi\right)\left(x\right) = -i\hbar \frac{d\psi}{dx} = -i\hbar \psi'\left(x\right)
+\end{aligned}
+\end{equation*}
+Energy, or \emph{Hamiltonian}, for a particle of mass $m$ moving at potential $V\left(x\right)$:
+\begin{equation*}
+\begin{aligned}
+H &= \frac{\hat{p}^2}{2m} + V\left(\hat{x}\right)\\
+&= -\frac{\hbar^2}{2m} \frac{d^2}{dx^2} + V\left(x\right)
+\end{aligned}
+\end{equation*}
+
+If an observable $Q$ is measured when the system is in a state $\psi$, we would like to know:\\
+(i) what results are possible;\\
+(ii) what is the probability for each result.
+
+\subsubsection{Expectation values}
+For any normalisable $\psi\left(x\right)$ and $\phi\left(x\right)$, define
+\begin{equation*}
+\begin{aligned}
+\left(\psi,\phi\right) = \int_{-\infty}^\infty \psi\left(x\right)^* \phi\left(x\right) dx
+\end{aligned}
+\end{equation*}
+
+For normalised $\psi\left(x\right)$, define the \emph{expectation value} of $Q$ (some operator) in this state to be
+\begin{equation*}
+\begin{aligned}
+\left<Q\right>_\psi = \left(\psi,Q\psi\right) = \int_{-\infty}^\infty \psi^* Q\psi dx
+\end{aligned}
+\end{equation*}
+
+Note for $Q=\hat{x}$,
+\begin{equation*}
+\begin{aligned}
+\left<\hat{x}\right>_\psi = \left(\psi,\hat{x}\psi\right)=\int_{-\infty}^\infty x|\psi\left(x\right)|^2 dx
+\end{aligned}
+\end{equation*}
+standard expression for mean or expectation of $x$, and for $Q=\hat{p}$,
+\begin{equation*}
+\begin{aligned}
+\left<\hat{p}\right>_\psi = \left(\psi,\hat{p}\psi\right) = \int_{-\infty}^\infty -i\hbar \psi^* \psi' dx
+\end{aligned}
+\end{equation*}
+
+\begin{post}
+For any observable, $\left<Q\right>_\psi$ is the mean result of measuring $Q$ when the system is in state $\psi$.
+\end{post}
+
+Now consider $\phi$ and $\psi$ (normalised) with
+\begin{equation*}
+\begin{aligned}
+\phi\left(x\right) = \psi\left(x\right) e^{ikx}
+\end{aligned}
+\end{equation*}
+for real $k$. Then $|\phi\left(x\right)|^2 = |\psi\left(x\right)|^2$. As a result, $\left<\hat{x}\right>_\phi = \left<\hat{x}\right>_\psi$, but
+\begin{equation*}
+\begin{aligned}
+\left<\hat{p}\right>_\phi &= \int_{-\infty}^\infty -i\hbar \phi^*\phi' dx\\
+&= \int_{-\infty}^\infty -i\hbar \psi^* \psi' + \int_{-\infty}^\infty \hbar
+k \psi^* \psi\\
+&= \left<\hat{p}\right>_\psi + \hbar k
+\end{aligned}
+\end{equation*}
+So additional factor of $e^{ikx}$ changes momentum by $hk$.
+
+\begin{eg}
+Let
+\begin{equation*}
+\begin{aligned}
+\psi = C e^{-\frac{x^2}{2\alpha}}
+\end{aligned}
+\end{equation*}
+as in the last subsection but with $x_0=0$.\\
+Then $\left<\hat{p}\right>_\psi = 0$,
+\begin{equation*}
+\begin{aligned}
+\phi = C e^{-\frac{x^2}{2\alpha}} e^{ikx}
+\end{aligned}
+\end{equation*}
+with $\left<\hat{p}\right>_\phi = \hbar k$.
+\end{eg}
+
+\subsubsection{Eigenvalues and Eigenstates}
+Consider an operator corresponding to an observable, $Q$, with
+\begin{equation*}
+\begin{aligned}
+Q \psi = q\psi
+\end{aligned}
+\end{equation*}
+for some number $q$. Then $\psi\left(x\right)$ is called an \emph{eigenfunction}, or \emph{eigenstate} of $Q$ with eigenvalue $q$.
+
+\begin{post}
+If $Q$ is measured when the system is in an eigenstate $\psi$, then the result is the eigenvalue $q$ with probability 1.
+\end{post}
+
+\begin{eg}
+$Q = \hat{x}$. This has no normalisable eigenfunctions, since if
+\begin{equation*}
+\begin{aligned}
+\hat{x} \psi\left(x\right) = x\psi\left(x\right) = q\psi\left(x\right)
+\end{aligned}
+\end{equation*}
+for some $q$, then $\psi\left(x\right) = 0$ for all $x\neq q$.
+\end{eg}
+
+\begin{eg}
+Set $Q = \hat{p} = -ih\frac{d}{dx}$, and $q=p$. Then $\psi = C e^{ikx}$ is an eigenfunction with $p = \hbar k$. However, this is not normalisable on the real line (we'll return to this later).
+\end{eg}
+
+\begin{eg}
+Set $Q=H$ with $V\left(x\right) = \frac{1}{2} kx^2$ with $k>0$, a harmonic oscillator, and $q = E$. Then the eigenvalue equation
+\begin{equation*}
+\begin{aligned}
+H \psi &= -\frac{\hbar^2}{2m} \psi'' + \frac{1}{2} kx^2 \psi = E\psi
+\end{aligned}
+\end{equation*}
+is satisfied by
+\begin{equation*}
+\begin{aligned}
+\psi = Ce^{-x^2/2\alpha}
+\end{aligned}
+\end{equation*}
+(where $C$ is chosen to normalise $\psi$) for $\alpha^2 = \hbar^2/km$ and $E = \frac{\hbar}{2} \sqrt{\frac{k}{m}}$.
+\end{eg}
+
+In general, the energy eigenvalue equation
+\begin{equation*}
+\begin{aligned}
+H_\psi = E_\psi
+\end{aligned}
+\end{equation*}
+or
+\begin{equation*}
+\begin{aligned}
+-\frac{\hbar}{2m} \frac{d^2 \psi}{dx^2} +V\left(x\right) \psi = E\psi\left(x\right)
+\end{aligned}
+\end{equation*}
+for particle in potential $V\left(x\right)$ is called the \emph{time-independent} \emph{Schr\"{o}dinger Equation}(SE). Solving this determines all states of definite energy.
+
+\subsubsection{Additional comments}
+\begin{rem}
+If $\psi$ is any normalised state, then $\left<\hat{p}\right>_\psi$ and $\left<H\right>_\psi$ are real. This follows from definitions using integration by parts, e.g.
+\begin{equation*}
+\begin{aligned}
+\left<\hat{p}\right>^* &= \left(\int_{-\infty}^\infty -i\hbar \psi^* \psi' dx\right)^* \\
+&= \left(\int_{-\infty}^\infty i\hbar \psi\left(\psi^*\right)' dx\right)\\
+&= i\hbar \left[\psi \psi^*\right]_{\infty}^\infty (=0) - i\hbar \int_{-\infty}^\infty \psi'\psi^* dx\\
+&= \left<\hat{p}\right>_\psi
+\end{aligned}
+\end{equation*}
+Similarly we can check
+\begin{equation*}
+\begin{aligned}
+\left<H\right>_\psi = \int_{-\infty}^\infty \left(-\frac{\hbar^2}{2m} \psi^* \psi'' + \psi^* V \psi\right) dx
+\end{aligned}
+\end{equation*}
+is real, integrate first term by parts twice after taking complex conjugate (assume V real).
+\end{rem}
+
+\begin{rem}
+Postulate 3 is consistent with Postulate 2 since
+\begin{equation*}
+\begin{aligned}
+&H\psi = E\psi\\
+\implies & \left<H\right>_\psi = \int_{-\infty}^\infty \psi^* H \psi dx = \int_{-\infty}^\infty E \psi^* \psi dx = E
+\end{aligned}
+\end{equation*}
+for $\psi$ normalised.
+\end{rem}
+
+\begin{rem}
+From the previous two remarks, the energy eigenvalue for a normalised eigenstate $\psi$ is always real.
+\end{rem}
+
+\subsection{Infinite well or particle in a box}
+
+Let
+\begin{equation*}
+\begin{aligned}
+V\left(x\right) = \left\{
+\begin{array}{ll}
+0 & |x| \leq a\\
+\infty & |x| > a
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+assume $\psi\left(\pm a\right) = 0$ and justify at end and $\psi\left(x\right) = 0$ for $|x|>a$.
+
+Consider SE for $-a\leq x \leq a$
+\begin{equation*}
+\begin{aligned}
+-\frac{\hbar^2}{2m} \psi'' = E\psi
+\end{aligned}
+\end{equation*}
+for $E>0$, set $E = \frac{\hbar^2 k^2}{2m}$ where $k>0$ so that SE becomes
+\begin{equation*}
+\begin{aligned}
+\psi'' + k^2 \psi = 0
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\psi = A \cos kx + B \sin kx
+\end{aligned}
+\end{equation*}
+But $A\cos ka \pm B \sin ka = 0$ from boundary condition. That implies either
+\begin{equation*}
+\begin{aligned}
+B=0,\ ka = \frac{n\pi}{2} \ n=1,3,...
+\end{aligned}
+\end{equation*}
+or
+\begin{equation*}
+\begin{aligned}
+A=0,\ ka = \frac{n\pi}{2} \ n=2,4,...
+\end{aligned}
+\end{equation*}
+
+Solutions:
+\begin{equation*}
+\begin{aligned}
+\psi_n\left(x\right) = \left(\frac{1}{a}\right)^{1/2} \left\{
+\begin{array}{ll}
+\cos \\
+\sin
+\end{array}
+\right\} \frac{n\pi}{2a}x \text{ for } n>0 \left\{
+\begin{array}{ll}
+\text{odd} \\
+\text{even}
+\end{array}
+\right\}
+\end{aligned}
+\end{equation*}
+energy eigenfunctions and discrete set of energy eigenvalues
+\begin{equation*}
+\begin{aligned}
+E_n = \frac{\hbar^2 \pi^2 n^2}{8ma^2}
+\end{aligned}
+\end{equation*}
+
+For $E<0$, set
+\begin{equation*}
+\begin{aligned}
+E= -\frac{\hbar^2 k^2}{2m}
+\end{aligned}
+\end{equation*}
+with $k>0$ so that SE becomes\begin{equation*}
+\begin{aligned}
+\psi'' - k^2 \psi = 0
+\end{aligned}
+\end{equation*}
+Solutions are
+\begin{equation*}
+\begin{aligned}
+\psi = A e^{kx} + B e^{-kx}
+\end{aligned}
+\end{equation*}
+and cannot satisfy boundary conditions, except by $A=B=0$.
+
+To justify boundary conditions, consider potential with $V\left(x\right) = U \gg E$ for $|x|>a$. Setting
+\begin{equation*}
+\begin{aligned}
+U-E = \frac{\hbar^2 k^2}{2m}
+\end{aligned}
+\end{equation*}
+and SE is
+\begin{equation*}
+\begin{aligned}
+\psi'' - k^2 \psi = 0
+\end{aligned}
+\end{equation*}
+for $|x|>a$. So for normalisable solutions, we need
+\begin{equation*}
+\begin{aligned}
+\psi = \left\{
+\begin{array}{ll}
+Ae^{-kx} & x>a\\
+Be^{+kx} & x<-a
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+Taking $U \to \infty$ with $E$ fixed, $k \to \infty$, and $\psi \to 0$ for $|x| > a$.
+
+\newpage
+
+\section{The Schr\"{o}dinger Equation}
+To continue our development of QM (in one dimension), we need to consider how things evolve in time.
+
+Classical dynamics of a particle can be specified by the potential $V\left(x\right)$ (Force $f\left(x\right) = -V'\left(x\right)$). Quantum dynamics is also specified by Hamiltonian
+\begin{equation*}
+\begin{aligned}
+H = \frac{\hat{p}^2}{2m} + V\left(\hat{x}\right)
+\end{aligned}
+\end{equation*}
+also determined by potential.
+
+Evolution of a quantum state in time is described by a $t$-dependent wave function $\Psi\left(x,t\right)$ which satisfies
+\begin{equation}\label{1}
+\begin{aligned}
+i\hbar \frac{\partial}{\partial t} \Psi = H \Psi
+\end{aligned}
+\end{equation}
+the \emph{time-dependent Schr\"{o}dinger Equation}.
+
+The operators $\hat{x}$ and $\hat{p}$ do not change in time, and \eqref{1} is
+\begin{equation*}
+\begin{aligned}
+i\hbar \frac{\partial \Psi}{\partial t} = -\frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} + V\left(x\right) \psi
+\end{aligned}
+\end{equation*}
+a PDE linear in $\Psi$ and first order in $t$, so specify $\Psi\left(x,0\right)$ and $\Psi\left(x,t\right)$ can be determined uniquely.
+
+\subsection{Stationary states}
+Consider a wave function of definite frequency:
+\begin{equation*}
+\begin{aligned}
+\Psi\left(x,t\right) = \psi\left(x\right) e^{-i\omega t}
+\end{aligned}
+\end{equation*}
+Substituting in \eqref{1} gives
+\begin{equation*}
+\begin{aligned}
+\psi \hbar \omega e^{-i\omega t} = \left(H\psi\right) e^{-i\omega t}
+\end{aligned}
+\end{equation*}
+This holds if and only if
+\begin{equation*}
+\begin{aligned}
+H \psi = E\psi
+\end{aligned}
+\end{equation*}
+with $E = \hbar \omega$.
+
+Alternatively, look for a separable solution
+\begin{equation*}
+\begin{aligned}
+\Psi\left(x,t\right) = f\left(t\right)\psi\left(x\right)
+\end{aligned}
+\end{equation*}
+and find
+\begin{equation*}
+\begin{aligned}
+\frac{1}{\psi} H \psi = \frac{i\hbar}{f}\dot{f} = E
+\end{aligned}
+\end{equation*}
+which is a separation constant. This implies $H\psi = E\psi$ and $f\left(t\right) = f\left(0\right) e^{-iEt/\hbar}$.
+
+A solution of this special form is called a \emph{stationary state}. Special properties of stationary states:\\
+(i)
+\begin{equation*}
+\begin{aligned}
+\left|\Psi \left(x,t\right)\right|^2 = \left|\psi\left(x\right)\right|^2
+\end{aligned}
+\end{equation*}
+So probability density does not change with time;\\
+(ii)
+\begin{equation*}
+\begin{aligned}
+\Psi\left(x,t\right) = \psi\left(x\right) e^{-iEt/\hbar}
+\end{aligned}
+\end{equation*}
+is the unique solution with $\Psi\left(x,0\right) = \psi\left(x\right)$ and $H\psi = E\psi$. Then $H\Psi = E\Psi$ implies that the measurement of energy gives result $E$ with certainty (probability 1) for all $t$.
+
+\begin{eg}
+Consider particle in a box in chapter 1.3: found energy eigenstates $\psi_n\left(s\right)$ $\left(\begin{array}{ll}\sin \\ \cos\end{array}\right)$ with
+\begin{equation*}
+\begin{aligned}
+E_n = \frac{\hbar^2 \pi^2}{8ma^2} n^2
+\end{aligned}
+\end{equation*}
+for $n=1,2,...$.\\
+Stationary state solutions of time dependent SE:
+\begin{equation*}
+\begin{aligned}
+\Psi_n\left(x,t\right) = \psi_n\left(x\right) e^{-iE_n t/\hbar}
+\end{aligned}
+\end{equation*}
+Note however $\psi_1+\psi_2$ is \emph{not} an energy eigenstate:
+\begin{equation*}
+\begin{aligned}
+H\left(\psi_1+\psi_2\right) = E_1\psi_1 E_2 \psi_2 \not\propto \psi_1+\psi_2
+\end{aligned}
+\end{equation*}
+\end{eg}
+
+\subsection{Conservation of Probability}
+The probability density
+\begin{equation*}
+\begin{aligned}
+P\left(x,t\right) = \left|\Psi\left(x,t\right)\right|^2
+\end{aligned}
+\end{equation*}
+obeys a conservation equation
+\begin{equation*}
+\begin{aligned}
+\frac{\partial P}{\partial t} = -\frac{\partial J}{\partial x}
+\end{aligned}
+\end{equation*}
+where
+\begin{equation*}
+\begin{aligned}
+J\left(x,t\right) = -\frac{i\hbar}{2m} \left(\Psi^* \Psi' - \left.\Psi'\right.^* \Psi\right)
+\end{aligned}
+\end{equation*}
+which is real (here $' = \frac{\partial}{\partial x}$), and is called the \emph{probability current}.
+
+This follows from time dependent SE
+\begin{equation*}
+\begin{aligned}
+i\hbar \frac{\partial\Psi}{\partial t} = -\frac{\hbar^2}{2m} \Psi'' + V\Psi
+\end{aligned}
+\end{equation*}
+and its conjugate
+\begin{equation*}
+\begin{aligned}
+-i\hbar \frac{\partial\Psi^*}{\partial t} = -\frac{\hbar^2}{2m} \left.\Psi^*\right.'' + V\Psi^*
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\frac{\partial P}{\partial t} &= \Psi^* \frac{\partial \Psi}{\partial t} + \frac{\partial \Psi^*}{\partial t} \Psi \\
+&= \Psi^* \frac{i\hbar}{2m} \Psi'' - \frac{i\hbar}{2m} \left.\Psi^*\right.'' \Psi
+\end{aligned}
+\end{equation*}
+Since the potential terms ($V$) cancel each other. That is equal to
+\begin{equation*}
+\begin{aligned}
+-\frac{\partial J}{\partial x}
+\end{aligned}
+\end{equation*}
+as claimed.
+
+The conservation equation implies
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt}\int_a^b P\left(x,t\right)dx &= \int_a^b + \frac{\partial P}{\partial t}\left(x,t\right)dx\\
+&=\int_a^b -\frac{\partial J}{\partial x} \left(x,t\right) dx\\
+&= -J\left(b,t\right) + J\left(a,t\right)
+\end{aligned}
+\end{equation*}
+
+Then boundary conditions $\Psi, J \to 0$ as $x \to \pm \infty$ (for fixed $t$) gives
+\begin{equation*}
+\begin{aligned}
+\int_{-\infty}^\infty \left|\Psi\left(x,t\right)\right|^2 dx
+\end{aligned}
+\end{equation*}
+which is independent of time.
+
+Hence $\Psi\left(x,0\right)$ normalised $\implies$ $\Psi\left(x,t\right)$ normalised for all $t\geq 0$.
+
+\subsection{Wave packets and particles}
+Any wave function that represents a particle localised in space (about some point, on some scale) is called a \emph{wave packet}.
+
+For example, consider Gaussian
+\begin{equation*}
+\begin{aligned}
+\psi\left(x\right) = A \frac{1}{\alpha^{1/2}} e^{-x^2/2\alpha}
+\end{aligned}
+\end{equation*}
+where $A = \left(\alpha/\pi\right)^{1/4}$.\\
+Wave packet localised around $x=0$ on length scale $\sqrt{\alpha}$.
+
+So the solution of time dependent SE with $V=0$ (free particle) and $\Psi\left(x,0\right) = \psi\left(x\right)$. Then
+\begin{equation*}
+\begin{aligned}
+\Psi\left(x,t\right) = A\frac{1}{\gamma\left(t\right)^{1/2}} e^{-x^2/2\gamma\left(t\right)}
+\end{aligned}
+\end{equation*}
+with
+\begin{equation*}
+\begin{aligned}
+\gamma\left(t\right) = \alpha + \frac{i\hbar t}{m}
+\end{aligned}
+\end{equation*}
+(see example sheet 1).
+
+Then the probability density is
+\begin{equation*}
+\begin{aligned}
+P_\Psi\left(x,t\right) &= \left|\Psi\left(x,t\right)\right|^2 \\
+&= \frac{|a|^2}{|\gamma\left(t\right)|} e^{-\alpha x^2/|\gamma\left(t\right)|^2}
+\end{aligned}
+\end{equation*}
+localised around $x=0$ but the length scale $|\gamma\left(t\right)/\sqrt{\alpha}$ spreads with $t$.
+
+However it's easy to check
+\begin{equation*}
+\begin{aligned}
+\left<\hat{x}\right>_\Psi = \left<\hat{p}\right>_\Psi = 0
+\end{aligned}
+\end{equation*}
+for all $t$.
+
+Previously noted $\phi\left(x\right) = \psi\left(x\right) e^{ikx}$ has expectation value $\hbar k$ for momentum. Solution to SE with $\Phi\left(x,0\right) = \phi \left(x\right)$ is
+\begin{equation*}
+\begin{aligned}
+\Phi\left(x,t\right) = \Psi\left(x-ut,t\right)e^{ikx}e^{-i\left(\hbar k^2/2m\right)t}
+\end{aligned}
+\end{equation*}
+with $mu = \hbar k$ (can be checked directly). We can also check
+\begin{equation*}
+\begin{aligned}
+\left<\hat{x}\right>_\Phi = ut
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+\left<\hat{p}\right>_\Phi = \hbar k
+\end{aligned}
+\end{equation*}
+
+Moreover,
+\begin{equation*}
+\begin{aligned}
+P_\Phi = \left|\Phi\left(x,t\right)\right|^2  = \left|\Psi\left(x-ut,t\right)\right|^2 = P_\Psi\left(x-ut,t\right)
+\end{aligned}
+\end{equation*}
+
+So $\Phi$ corresponds to the moving particle with $mu = \hbar k$ momentum.
+
+Gaussian wave function spreads out on time-scale $\tau \sim \frac{m\alpha}{\hbar}$.
+
+For example, consider an electron $m=m_e$ and $\sqrt{\alpha} = 10^{-12}$ meter. Then $ \tau \sim 10^{-20}$ sec.
+
+Now take $m=10^{-6}$ kg and $\alpha = 10^{-6}$ meter. Then $\tau \sim 10^{16}$ sec.
+
+\newpage
+
+\section{Bound States in One Dimension}
+
+A bound state for a particle of mass $m$ in a potential $V\left(x\right)$ is a normalisable energy eigenstate (or stationary state)
+\begin{equation*}
+\begin{aligned}
+H\psi = -\frac{\hbar^2}{2m} \psi'' + V\left(x\right) \psi = E\psi
+\end{aligned}
+\end{equation*}
+(time-independent SE). This corresponds to a bounded classical orbit.
+
+If $V\left(x\right) \to 0$ as $|x| \to \infty$, need $E < 0$ (see section 3.2 below).
+
+\subsection{Potential Well}
+Consider a potential well
+\begin{equation*}
+\begin{aligned}
+V\left(x\right) = \left\{ \begin{array}{ll}
+-U & |x|<a \\
+0 & |x| \geq a
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+Seek solutions of time-independent SE with $-U<E<0$:
+\begin{equation*}
+\begin{aligned}
+-\frac{\hbar^2}{2m}\psi'' = \left(E+U\right)\psi & &|x|<a\\
+-\frac{\hbar^2}{2m}\psi'' = E\psi & &|x|>n
+\end{aligned}
+\end{equation*}
+
+Set $U+E = \frac{\hbar^2 k^2}{2m}$ and $E=-\frac{\hbar^2\kappa^2}{2m}$ for $k,\kappa \in \R^+$. Then
+\begin{equation*}
+\begin{aligned}
+k^2 + \kappa^2 = \frac{2mU}{\hbar^2}
+\end{aligned}
+\end{equation*}
+Then SE becomes
+\begin{equation*}
+\begin{aligned}
+\psi'' + k^2 \psi = 0 & & |x|<a\\
+\psi'' - \kappa^2 \psi = 0 & & |x|>a
+\end{aligned}
+\end{equation*}
+Need $\psi,\psi'$ continuous but $\psi''$ discontinuous at $x = \pm a$.
+
+Consider \emph{even parity} solutions with $\psi\left(-x\right) = \psi\left(x\right)$:\begin{equation*}
+\begin{aligned}
+\psi = \left\{\begin{array}{ll}
+A\cos kx & |x|<a\\
+Be^{-\kappa x} & |x|>a
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+Matching $\psi$ and $\psi'$ at $x=a$ ($x=-a$ automatic for $\psi$ even):
+\begin{equation*}
+\begin{aligned}
+A\cos ka = Be^{-\kappa a}\\
+-Ak\sin ka = -B \kappa e^{-\kappa a}
+\end{aligned}
+\end{equation*}
+
+These give the same result for $A/B$ if and only if
+\begin{equation*}
+\begin{aligned}
+k\tan ka = \kappa
+\end{aligned}
+\end{equation*}
+To see when solutions exists, convenient to set
+\begin{equation*}
+\begin{aligned}
+\xi = ak, \eta = a\kappa
+\end{aligned}
+\end{equation*}
+which are dimensionless (and positive), and consider
+\begin{equation*}
+\begin{aligned}
+\eta = \xi \tan \xi,\\
+\xi^2 + \eta^2 = \frac{2ma^2}{\hbar^2} U
+\end{aligned}
+\end{equation*}
+
+For each point of intersection, we get one solution for $\xi,\eta$ or $k,\kappa$ and corresponding value of $E$.\\
+Hence there is exactly one solution for $\frac{2ma^2}{\hbar^2}U < \pi^2$.
+
+In general, there are $n$ solutions for $\left(n-1\right)^2 \pi^2 < \frac{2ma^2U}{h\hbar^2} < n^2\pi^2$.
+
+There are finite number of allowed energy eigenstates.
+
+\begin{tikzpicture}
+\draw (0,0) -- (1,0);
+\draw (1,0) -- (0,1);
+\draw (0.5,1) -- (0.25,-0.25);
+\draw (0,0) .. controls (1,0) and (0.5,1) .. (1,1);
+\draw (2,2) .. controls (1.65,-0.95) and (-0.3,3.4) .. (1,0);
+\end{tikzpicture}
+
+Note that now we have non-zero probability density $|\psi\left(x\right)|^2$ of measuring particle \emph{outside} classically allowed region $|x|<a$ (for $E<0$).
+
+We can consider \emph{odd parity} solutions $\psi\left(-x\right) = -\psi\left(x\right)$ similarly (see example sheet 1).
+
+\subsection{General Properties}
+
+\subsubsection{Bound state energies}
+Consider time-independent SE with $V\left(x\right) \to 0$ as $x \to \pm \infty$. For 2nd order ODE, there are 2 complex constants in general solution.\\
+But this is linear in $\psi$, so one complex constants corresponds to $\psi \to \lambda \psi$.
+
+Now
+\begin{equation*}
+\begin{aligned}
+-\frac{\hbar^2}{2m}\psi'' \sim E\psi
+\end{aligned}
+\end{equation*}
+as $x \to \pm \infty$. So
+\begin{equation*}
+\begin{aligned}
+\psi \sim A_\pm e^{ikx} + B_\pm e^{-ikx} & & E=\frac{\hbar^2 k^2}{2m} > 0\\
+\psi \sim A_\pm e^{\kappa x} + B_\pm e^{-\kappa x} & & E=-\frac{\hbar^2\kappa^2}{2m} < 0
+\end{aligned}
+\end{equation*}
+For $E>0$ there is no normalisable solution.
+
+For $E<0$ we have normalisable solution if
+\begin{equation*}
+\begin{aligned}
+\psi \sim \left\{ \begin{array}{ll}
+B_+ e^{-\kappa x} & x\to +\infty \  \left(A_+ = 0\right)\\
+A_- e^{\kappa x} & x \to -\infty \  \left(B_- = 0\right)
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+
+Only one complex constant left to choose, so specifying behaviour at both boundaries $\implies$ over-determined system, solutions exist for \emph{particular} values of $E$ $\implies$ bound state energies quantised.
+
+We may have several bound states:
+
+\begin{tikzpicture}
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+\draw (-2,-0.1) .. controls (-1.0,-0.15) and (-0.5,-1.0) .. (0,-1);
+\draw (2,-0.1) .. controls (1.0,-0.15) and (0.5,-1.0) .. (0,-1);
+\end{tikzpicture}
+
+or none:
+
+\begin{tikzpicture}
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+\draw (-2,0.1) .. controls (-1.0,0.15) and (-0.5,1.0) .. (0,1);
+\draw (2,0.1) .. controls (1.0,0.15) and (0.5,1.0) .. (0,1);
+\end{tikzpicture}
+
+Furthermore, if $V\left(x\right) \geq V_0$ (constant), then for $\psi$ normalisable,
+\begin{equation*}
+\begin{aligned}
+H\psi = E\psi \implies E &= \left<H\right>_\psi\\
+&=\int_{-\infty}^\infty \left(-\frac{\hbar^2}{2m} \psi^* \psi'' + V\left(x\right) |\psi\left(x\right)|^2\right) dx\\
+&= \int_{-\infty}^\infty \left(\frac{\hbar^2}{2m}|\psi'|^2 + V\left(x\right) |\psi|^2\right) dx\\
+&\geq 0+V_0
+\end{aligned}
+\end{equation*}
+(integration by parts). So $0>E>V_0$ for any bounded state.
+
+\newpage
+
+\section{Expectation and Uncertainty}
+\subsection{Hermitian Operators}
+Recall earlier definition
+\begin{equation*}
+\begin{aligned}
+\left(\phi,\psi\right) = \int_{-\infty}^\infty \phi\left(x\right)^* \psi\left(x\right) dx
+\end{aligned}
+\end{equation*}
+with properties
+\begin{equation*}
+\begin{aligned}
+\left(\psi,\alpha\psi\right)=\alpha\left(\phi,\psi\right) = \left(\alpha^*\phi,\psi\right)
+\end{aligned}
+\end{equation*}
+and similarly
+\begin{equation*}
+\begin{aligned}
+\left(\phi,\psi\right)^* = \left(\psi,\phi\right)
+\end{aligned}
+\end{equation*}
+
+Regarding this as an inner product on wave functions, define the \emph{norm} of $psi$, denoted $||\psi||$, by
+\begin{equation*}
+\begin{aligned}
+||\psi||^2 = \left(\psi,\psi\right) = \int_{-\infty}^\infty |\psi\left(x\right)|^2 dx
+\end{aligned}
+\end{equation*}
+which is real and positive, and $||\psi|| = 1$ is $\psi$ is normalised.
+
+An operator $Q$ is \emph{hermitian} if
+\begin{equation*}
+\begin{aligned}
+\left(\phi,Q\psi\right) = \left(Q\phi,\psi\right)
+\end{aligned}
+\end{equation*}
+for all normalisable $\psi,\phi$. This implies
+\begin{equation*}
+\begin{aligned}
+\left(\psi,Q\psi\right) = \left(Q\psi,\psi\right) = \left(\psi,Q\psi\right)^*\\
+\implies \left<Q\right>_\psi = \left<Q\right>_\psi^*
+\end{aligned}
+\end{equation*}
+
+The operators $\hat{x},\hat{p}$, and $H=\frac{\hat{p}^2}{2m} + V\left(\hat{x}\right)$ are hermitian (for $V$ real).
+
+Check:
+\begin{equation*}
+\begin{aligned}
+&\left(\phi,\hat{x}\psi\right) = \left(\hat{x}\phi,\psi\right)\\
+\iff & \int_{-\infty}^\infty \phi\left(x\right)^* \left(x\psi\left(x\right)\right)dx = \int_{-\infty}^\infty \left(x\phi\left(x\right)\right)^* \psi\left(x\right) dx
+\end{aligned}
+\end{equation*}
+which is true ($x$ is real).
+
+\begin{equation*}
+\begin{aligned}
+&\left(\phi,\hat{p}\psi\right) = \left(\hat{p}\phi,\psi\right)\\
+&\iff \int_{-\infty}^\infty \phi^* \left(-i\hbar \psi'\right) dx = \int_{-\infty}^\infty \left(-ih\phi'\right)^* \psi dx
+\end{aligned}
+\end{equation*}
+by parts and $\left[\phi^*\psi\right]_{-\infty}^\infty = 0$.
+
+To show $\left(\phi,H\psi\right) = \left(H\phi,\psi\right)$, check KE and PE terms separately:\\
+KE: $\left(\phi,\psi''\right) = -\left(\phi',\psi'\right) = \left(\phi'',\psi\right)$;\\
+PE: $\left(\phi,V\left(x\right)\psi\right) = \left(V\left(x\right)\phi,\psi\right)$ for $V$ real.
+
+(Later in chapter 6 we'll prove other general properties of hermitian operators, e.g. eigenvalues are real, eigenstates with distinct eigenvalues are orthogonal with respect to inner product.)
+
+\subsection{Ehrenfest's Theorem}
+
+Consider normalised $\Psi\left(x,t\right)$ satisfying SE
+\begin{equation*}
+\begin{aligned}
+i\hbar\dot{\Psi} = H\Psi = \left(\frac{\hat{p}^2}{2m} + V\left(\hat{x}\right)\right)\Psi = -\frac{\hbar^2}{2m}\Psi'' + V\left(x\right) \Psi
+\end{aligned}
+\end{equation*}
+The expectation values
+\begin{equation*}
+\begin{aligned}
+\left<\hat{x}\right>_\Psi = \left(\Psi,\hat{x}\Psi\right)
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+\left<\hat{p}\right>_\Psi = \left(\Psi,\hat{p}\Psi\right)
+\end{aligned}
+\end{equation*}
+depend on $t$ through $\Psi$. Ehrenfest's Theorem states
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt}\left<\hat{x}\right>_\Psi = \frac{1}{m} \left<\hat{p}\right>_\Psi
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt}\left<\hat{p}\right>_\Psi = -\left<V'\left(\hat{x}\right)\right>_\Psi
+\end{aligned}
+\end{equation*}
+which is the quantum counterparts to classical equations of motion (in first order form).
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt}\left<\hat{x}\right>_\Psi &= \left(\dot{\Psi},\hat{x}\Psi\right) + \left(\Psi,\hat{x}\dot{\Psi}\right)\\
+&= \left(\frac{1}{i\hbar} H \Psi, \hat{x}\Psi\right) + \left(\Psi,\hat{x}\frac{1}{i\hbar}H\Psi\right)
+\end{aligned}
+\end{equation*}
+
+Since $H$ is hermitian,
+\begin{equation*}
+\begin{aligned}
+&-\frac{1}{i\hbar}\left(H\Psi,\hat{x}\Psi\right) + \frac{1}{i\hbar}\left(\Psi,\hat{x}H\Psi\right)\\
+&= -\frac{1}{i\hbar}\left(\Psi,H\hat{x}\Psi\right)+\frac{1}{i\hbar}\left(\Psi,\hat{x}H\Psi\right)\\
+&= \frac{1}{i\hbar}\left(\Psi,\left(\hat{x}H-H\hat{x}\right)\Psi\right)
+\end{aligned}
+\end{equation*}
+But
+\begin{equation*}
+\begin{aligned}
+\left(\hat{x}H-H\hat{x}\right)\Psi &= \frac{-\hbar^2}{2m}\left(x\Psi'' - \left(x\Psi\right)''\right) + \left(xV-Vx\right)\Psi\\
+&= +\frac{\hbar^2}{2m}2\Psi'\\
+&= \frac{i\hbar}{m}\hat{p}\Psi
+\end{aligned}
+\end{equation*}
+as required.
+
+Similarly,
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt}\left<\hat{p}\right>_\Psi &= \left(\dot{\Psi},\hat{p}\Psi\right)+\left(\Psi,\hat{p}\dot{\Psi}\right)\\
+&= \left(\frac{1}{i\hbar}H\Psi,\hat{p}\Psi\right) + \left(\Psi,\hat{p}\frac{1}{i\hbar}H\Psi\right)\\
+&= \frac{1}{i\hbar}\left(\Psi,\left(\hat{p}H-H\hat{p}\right)\Psi\right)
+\end{aligned}
+\end{equation*}
+But
+\begin{equation*}
+\begin{aligned}
+\left(\hat{p}H-H\hat{p}\right)\Psi &= -i\hbar \left(-\frac{\hbar^2}{2m}\right)\left(\left(\Psi''\right)'-\left(\Psi'\right)''\right) (=0) - i\hbar\left(\left(V\Psi\right)'-V\Psi'\right)\\
+&= -i\hbar V'\left(x\right)\Psi
+\end{aligned}
+\end{equation*}
+as required.
+
+\subsection{The Uncertainty Principle}
+If $\psi$ is any normalised state (at fixed time) define the \emph{uncertainty} in position $\left(\Delta x\right)_\psi$ and momentum $\left(\Delta p\right)_\psi$ by
+\begin{equation*}
+\begin{aligned}
+\left(\Delta x\right)_\psi^2 = \left<\left(\hat{x}-\left<\hat{x}\right>-\psi\right)^2\right>_\psi \neq = \left<\hat{x}^2\right>_\psi - \left<\hat{x}\right>_\psi^2
+\end{aligned}
+\end{equation*}
+and the same formula for $\left(\Delta p\right)_\psi$.
+
+These quantify 'spread' of possible results of measurements.
+
+Heisenberg's Uncertainty Principle states
+\begin{equation*}
+\begin{aligned}
+\left(\Delta x\right)_\psi \left(\Delta p\right)_\psi \geq \frac{\hbar}{2}
+\end{aligned}
+\end{equation*}
+Interpretation: we can never reduce combined uncertainty in measurements of position and momentum below this threshold.
+
+Note: $X=\hat{x}-\alpha$ and $P=\hat{p}-\beta$ are both hermitian for any real $\alpha,\beta$.
+
+\begin{equation*}
+\begin{aligned}
+\left(\psi,X^2\psi\right) = \left(X\psi,X\psi\right) = ||X\psi||^2 \geq 0,\
+\left(\psi,P^2\psi\right) = \left(P\psi,P\psi\right) = ||P\psi||^2 \geq 0
+\end{aligned}
+\end{equation*}
+Choosing $\alpha = \left<\hat{x}\right>_\psi$ and $\beta = \left<\hat{p}\right>_\psi$, we deduce $\left(\Delta x\right)_\psi^2$ and $\left(\Delta p\right)_\psi^2$ are indeed real and positive, as required in our definition.
+
+\begin{eg}
+For Gaussian
+\begin{equation*}
+\begin{aligned}
+\psi\left(x\right) = \left(\frac{1}{\alpha\pi}\right)^\frac{1}{4} e^{-x^2/2\alpha}
+\end{aligned}
+\end{equation*}
+find
+\begin{equation*}
+\begin{aligned}
+\left<\hat{x}\right>_\psi = \left<\hat{p}\right>_\psi = 0
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+\left(\Delta x\right)_\psi^2 = \alpha/2,\left(\Delta p\right)_\psi^2 = \hbar^2 / 2\alpha
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\left(\Delta x\right)_\psi \left(\Delta p\right)_\psi = \frac{\hbar}{2}
+\end{aligned}
+\end{equation*}
+\end{eg}
+
+\end{proof}
+
+\end{document}

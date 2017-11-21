@@ -1,0 +1,164 @@
+<html>
+<head>
+		<title>xr211</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+		<link rel="shortcut icon" href="../../favicon.ico?" />
+	</head>
+<body>
+
+<h1 class="major">Puzzle: Imprisonment</h1>
+<h2>Rules</h2>
+<p>Your Director of Studies(DOS) decided to put you in prison after the 20<sup>th</sup> time you were absence from lectures. Alas, at least you don't have to attend any lectures in prison anyway. The DOS quickly noticed this and decided to offer you a chance to reclaim your freedom.</p>
+<p>He brought you into a room with four suspicious-looking switches and lamps which are switched on and labeled 1-4. "Listen," your DOS instructed, "each switch controls the lamp next to it. The configuration of the room next to this is almost the same, except that initially the four lamps are switched off. A mindless mathmo in that room changes the status of a random lamp at 12noon every day. You can also switch, on or off, at most one lamp in this room at 12noon every day. I'll come here at 3pm everyday; if the status of each lamp in the two rooms are the same, you will be released to attend your lectures."</p>
+<p>"That is cruel," you protested, "the best I can do is probably getting a 1/16 chance of being released every day, so I have to waste in average 16 days here! That's a total of 64 lectures missed..." You tried to lament as 'sincerely' as possible.</p>
+<p>"Fine." Your DOS concurred. "I haven't finished telling the rules anyway. At 3pm each day I'll also tell you how many pairs of lamps are in the same status. In addition, that mathmo is not so mindless after all. It always changes the status of the same switch for randomly two or three consecutive days, and then it changes the status of a different switch for randomly two or three consecutive days, and so on... So for example, 111221144222 is a valid switching sequence, but not 1111, 122211, or 112222. That should make it much easier..." Your DOS concluded and left.</p>
+
+<h2>Challenge</h2>
+<h3>Level 1</h3>
+<p>Find a strategy that always succeeds within finite number of days.</p>
+<h3>Level 2</h3>
+<p>Find a strategy that always succeeds within 30 days.</p>
+<h3>Level 3</h3>
+<p>Find a strategy that always succeeds within 15 days.</p>
+
+<h3>Trial</h3>
+<p>Try the game and test your strategy here! If you've found a strategy for a certain level of challenge, you may briefly describe and send your solution <a href="index.html#contact">here</a>.</p>
+
+<button type="button" onclick="init()">Initialize</button>
+
+<p id="currentguess"></p>
+
+<button type="button" onclick="switch1()">Switch 1</button> 
+<button type="button" onclick="switch2()">Switch 2</button>
+<button type="button" onclick="switch3()">Switch 3</button>
+<button type="button" onclick="switch4()">Switch 4</button>
+<button type="button" onclick="switch0()">No Action</button>
+
+<p id="GuessHistory"></p>
+
+<script>
+var stepcnt = 0;
+var ansseq = "";
+var GuessHist = "";
+
+var curswitch = 0;
+var rep = 0;
+
+var lampstr = ["<span style=\"color:#ff0000\">Off</span>","<span style=\"color:#00ff00\">On</span>"];
+
+var lamp1 = 1;
+var lamp2 = 1;
+var lamp3 = 1;
+var lamp4 = 1;
+
+var ans1 = 0;
+var ans2 = 0;
+var ans3 = 0;
+var ans4 = 0;
+
+init();
+
+function init()
+{
+	stepcnt = 0;
+	lamp1 = 1;
+	lamp2 = 1;
+	lamp3 = 1;
+	lamp4 = 1;
+	ans1 = 0;
+	ans2 = 0;
+	ans3 = 0;
+	ans4 = 0;
+	curswitch = Math.floor(Math.random()*4)+1;
+	rep = Math.floor(Math.random()*2)+2;
+	GuessHist = "";
+	ansseq = "";
+	document.getElementById("currentguess").innerHTML = "Current Status: " + lampstr[lamp1]+" "+lampstr[lamp2]+" "+lampstr[lamp3]+" "+lampstr[lamp4];
+	document.getElementById("GuessHistory").innerHTML = GuessHist;
+}
+
+$(document).ready(function()
+{
+	init();
+});
+
+function switch0()
+{
+	document.getElementById("currentguess").innerHTML = "Current Status: " + lampstr[lamp1]+" "+lampstr[lamp2]+" "+lampstr[lamp3]+" "+lampstr[lamp4];
+	respGuess();
+}
+function switch1()
+{
+	lamp1 = 1-lamp1;
+	document.getElementById("currentguess").innerHTML = "Current Status: " + lampstr[lamp1]+" "+lampstr[lamp2]+" "+lampstr[lamp3]+" "+lampstr[lamp4];
+	respGuess();
+}
+function switch2()
+{
+	lamp2 = 1-lamp2;
+	document.getElementById("currentguess").innerHTML = "Current Status: " + lampstr[lamp1]+" "+lampstr[lamp2]+" "+lampstr[lamp3]+" "+lampstr[lamp4];
+	respGuess();
+}
+function switch3()
+{
+	lamp3 = 1-lamp3;
+	document.getElementById("currentguess").innerHTML = "Current Status: " + lampstr[lamp1]+" "+lampstr[lamp2]+" "+lampstr[lamp3]+" "+lampstr[lamp4];
+	respGuess();
+}
+function switch4()
+{
+	lamp4 = 1-lamp4;
+	document.getElementById("currentguess").innerHTML = "Current Status: " + lampstr[lamp1]+" "+lampstr[lamp2]+" "+lampstr[lamp3]+" "+lampstr[lamp4];
+	respGuess();
+}
+function changeansstatus(x)
+{
+	if (x == 1) ans1 = 1-ans1;
+	if (x == 2) ans2 = 1-ans2;
+	if (x == 3) ans3 = 1-ans3;
+	if (x == 4) ans4 = 1-ans4;
+}
+
+function respGuess()
+{
+	stepcnt ++;
+	if (rep > 0)
+	{
+		changeansstatus(curswitch);
+		rep --;
+		ansseq += " "+curswitch;
+	}
+	else
+	{
+		var tmpcurswitch = Math.floor(Math.random()*4)+1;
+		while (tmpcurswitch == curswitch) {tmpcurswitch = Math.floor(Math.random()*4)+1;}
+		curswitch = tmpcurswitch;
+		rep = Math.floor(Math.random()*2)+2;
+		changeansstatus(curswitch);
+		rep --;
+		ansseq += " "+curswitch;
+	}
+	if ((lamp1 == ans1) && (lamp2 == ans2) && (lamp3 == ans3) && (lamp4 == ans4))
+	{
+		GuessHist = "Day "+stepcnt+": "+lampstr[lamp1]+" "+lampstr[lamp2]+" "+lampstr[lamp3]+" "+lampstr[lamp4] + ", <span style=\"color:#00ffff\">Released!</span><br>" + GuessHist;
+		GuessHist = "Sequence: " + ansseq + " <br>" + GuessHist;
+	}
+	else
+	{
+		var tmp = 0;
+		if (lamp1 == ans1) tmp++;
+		if (lamp2 == ans2) tmp++;
+		if (lamp3 == ans3) tmp++;
+		if (lamp4 == ans4) tmp++;
+		GuessHist = "Day "+stepcnt+": "+lampstr[lamp1]+" "+lampstr[lamp2]+" "+lampstr[lamp3]+" "+lampstr[lamp4] + ", " + tmp + " of the lamps are correct.<br>" + GuessHist;
+	}
+	document.getElementById("GuessHistory").innerHTML = GuessHist;
+}
+</script>
+
+</body>
+</html>

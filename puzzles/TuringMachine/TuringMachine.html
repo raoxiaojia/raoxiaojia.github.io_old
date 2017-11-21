@@ -1,0 +1,171 @@
+<html>
+<head>
+		<title>xr211</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="shortcut icon" href="../../favicon.ico?" />
+		
+		<style>
+
+		body {
+			color: #ffffff;
+			font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  background: -webkit-gradient(linear, left top, right top, from(#2F2727), color-stop(0.25, #1a82b7), color-stop(0.5, #2F2727), color-stop(0.75, #1a82b7), to(#2F2727));
+  background: -webkit-linear-gradient(left, #2F2727, #1a82b7, #2F2727, #1a82b7, #2F2727);
+  background: -moz-linear-gradient(left, #2F2727, #1a82b7, #2F2727, #1a82b7, #2F2727);
+  background: -ms-linear-gradient(left, #2F2727, #1a82b7, #2F2727, #1a82b7, #2F2727);
+  background: -o-linear-gradient(left, #2F2727, #1a82b7, #2F2727, #1a82b7, #2F2727);
+		}
+		
+		h2
+		{
+			color: #77ffff;
+		}
+		
+		h3{
+			color: #77ff77;
+		}
+
+		</style>
+	</head>
+<body>
+
+<h1 class="major">Turing Machine</h1>
+<h2>Rules</h2>
+<p>We are proud to release our next-generation product -- the Turing Machine. To better advertise it, we provide an online sample here and hope to sell some for profit.<sup>[1]</sup></p>
+<p>The production team is too lazy to provide a comprehensive version of user manual, but they mentioned briefly that the machine takes instructions of the format 'CS,TS,WS,NS,DR', with each token representing:</p>
+<p>CS (Current State): a non-negative integer, the current state of the machine;</p>
+<p>TS (Tape Symbol): the symbol on the cell of tape that the head of machine is on. Curretly only supporting single charcaters; </p>
+<p>WS (Write Symbol): the symbol that the head is going to print, currently only supporting single characters;</p>
+<p>NS (Next State): the next state that the state register will be set as. Must be a non-negative integer as well;</p>
+<p>DR (Direction): the direction that the head will move next. There are three possible values for it: 'L','R' and '=', which should be self-explanatory.</p>
+
+<p>[1] Note: Due to technical restrictions, we can now only produce a Turing Machine without its tape, its head and its state register. Price starts at $0. Currently 0 in stock.</p>
+
+<h2>Challenge</h2>
+<p>In each of the following 10 cases of 'UFO detected!', determine whether it is a UFD instead. It is guaranteed that a UFO is not a UFD. <br>You score +5 for each correctly repeled UFD and +15 for each correctly detected UFO. For each UFD that you thought was a UFO you score -15 due to waste of resources to rescue a UFD instead of a UFO, and for each UFO that you thought was a UFD you score -30 due to homicides of your alien friends. If you are unsure, you can choose 'Not Sure' and elicit help from your alien friends and that doesn't contribute to your score.</p>
+
+<h3>UFO detected!</h3>
+<p><img src="q1.png"></p>
+<input type="radio" name="q1" value="1"> UFD
+<input type="radio" name="q1" value="-1"> UFO
+<input type="radio" name="q1" value="0"> Not Sure
+
+<h3>UFO detected!</h3>
+<p><img src="q2.png"></p>
+<input type="radio" name="q2" value="1"> UFD
+<input type="radio" name="q2" value="-1"> UFO
+<input type="radio" name="q2" value="0"> Not Sure
+
+<h3>UFO detected!</h3>
+<p><img src="q3.png"></p>
+<input type="radio" name="q3" value="1"> UFD
+<input type="radio" name="q3" value="-1"> UFO
+<input type="radio" name="q3" value="0"> Not Sure
+
+<h3>UFO detected!</h3>
+<p><img src="q4.png"></p>
+<input type="radio" name="q4" value="1"> UFD
+<input type="radio" name="q4" value="-1"> UFO
+<input type="radio" name="q4" value="0"> Not Sure
+
+<h3>UFO detected!</h3>
+<p><img src="q5.png"></p>
+<input type="radio" name="q5" value="1"> UFD
+<input type="radio" name="q5" value="-1"> UFO
+<input type="radio" name="q5" value="0"> Not Sure
+
+<h3>UFO detected!</h3>
+<p><img src="q6.png"></p>
+<input type="radio" name="q6" value="1"> UFD
+<input type="radio" name="q6" value="-1"> UFO
+<input type="radio" name="q6" value="0"> Not Sure
+
+<h3>UFO detected!</h3>
+<p><img src="q7.png"></p>
+<input type="radio" name="q7" value="1"> UFD
+<input type="radio" name="q7" value="-1"> UFO
+<input type="radio" name="q7" value="0"> Not Sure
+
+<h3>UFO detected!</h3>
+<p><img src="q8.png"></p>
+<input type="radio" name="q8" value="1"> UFD
+<input type="radio" name="q8" value="-1"> UFO
+<input type="radio" name="q8" value="0"> Not Sure
+
+<h3>UFO detected!</h3>
+<p><img src="q9.png"></p>
+<input type="radio" name="q9" value="1"> UFD
+<input type="radio" name="q9" value="-1"> UFO
+<input type="radio" name="q9" value="0"> Not Sure
+
+<h3>UFO detected!</h3>
+<p><img src="q10.png"></p>
+<input type="radio" name="q10" value="1"> UFD
+<input type="radio" name="q10" value="-1"> UFO
+<input type="radio" name="q10" value="0"> Not Sure<br>
+
+<button type="button" onclick="submit()">Submit!</button><br>
+
+<h3>Your result</h3>
+<p id="report"></p>
+
+
+
+<script>
+var ans=[1,-1,1,-1,-1,1,-1,-1,1,1];
+var radname=["q1","q2","q3","q4","q5","q6","q7","q8","q9","q10"];
+
+
+function submit()
+{
+	var score = 0;
+	report = "";
+	for (var i=0;i<10;i++)
+	{
+		var radios = document.getElementsByName(radname[i]);
+		if (ans[i] == 1)
+		{
+			if (radios[0].checked)
+			{
+				score += 5;
+				report = report + "Case " + (i+1) + "<span style=\"color:#00ff00\">: UFD expeled!(+5)</span><br>";
+			}
+			else
+			if (radios[1].checked)
+			{
+				score -= 15;
+				report = report + "Case " + (i+1) + "<span style=\"color:#ff0000\">: Wasted time to rescue a UFD!(-15)</span><br>";
+			}
+			else
+			{
+				report = report + "Case " + (i+1) + "<span style=\"color:#ffffff\">: Didn't attempt.(0)</span><br>";
+			}
+		}
+		else
+		{
+			if (radios[0].checked)
+			{
+				score -= 30;
+				report = report + "Case " + (i+1) + "<span style=\"color:#ff0000\">: UFO missed!(-30)</span><br>";
+			}
+			else
+			if (radios[1].checked)
+			{
+				score += 15;
+				report = report + "Case " + (i+1) + "<span style=\"color:#00ff00\">: UFO rescued!(+15)</span><br>";
+			}
+			else
+			{
+				report = report + "Case " + (i+1) + "<span style=\"color:#ffffff\">: Didn't attempt.(0)</span><br>";
+			}
+		}
+	}
+	report = report + "Score = " + score;
+	document.getElementById("report").innerHTML = report;
+}
+
+</script>
+
+</body>
+</html>

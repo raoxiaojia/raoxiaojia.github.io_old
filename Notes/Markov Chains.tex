@@ -1,0 +1,593 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\begin{document}
+
+\title{Markov Chains}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Markov Chain}
+The notes taken during the first lecture was unfortunately lost.
+
+\begin{thm} (Extended Markov Property) Let $X$ be a Markov chain, and $n \geq 0$. Let $H$ be an event defined in terms of $X_0,...,X_{n-1}$ (the history), and let $F$ be an event defined in terms of $X_{n+1},X_{n+2},...$ (the future). Then
+\begin{equation*}
+\begin{aligned}
+\P \left(F|H,X_n = i\right) = \P \left(F|X_n = i\right)
+\end{aligned}
+\end{equation*}
+\end{thm}
+
+\newpage
+
+\section{Transition Probabilities}
+We've known that $p_{i,j}$ is the one-step transition probability, 
+\begin{equation*}
+\begin{aligned}
+\P\left(X_{n+1} = j|X_n = i\right) = \P\left(X_1 = j|X_0 = i\right)
+\end{aligned}
+\end{equation*}
+Now it's natural to discuss the $n$-step transition probabilities
+\begin{equation*}
+\begin{aligned}
+\P\left(X_n = j| X_0 = i\right) = p_{i,j}\left(n\right)
+\end{aligned}
+\end{equation*}
+
+\begin{thm} (Chapman-Kolmogorov Equations)
+\begin{equation*}
+\begin{aligned}
+p_{i,j}\left(m+n\right) = \sum_{k \in S} p_{i,k}\left(m\right)p_{k,j}\left(n\right)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+p_{i,j}\left(m+n\right) &= \sum_{k\in S} \P\left(X_{m+n} = j|X_m=k\right) \P\left(X_m=k\right)\\
+&= \sum_{k\in S} p_{k,j} \left(n\right) p_{i,k} \left(m\right)
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{thm}
+
+Now let $P\left(1\right) = P = p_{i,j}$, $P\left(n\right) = p_{i,j}\left(n\right)$. Then this is just matrix multiplication: $P\left(n\right) = P^n$. To find $P\left(n\right)$ we can diagonalize the matrix. (or matrix mult + qpower!)
+
+\begin{eg}
+Let $S=\left\{1,2\right\}$,
+\begin{equation*}
+\begin{aligned}
+P= \left(\begin{matrix}
+1-\alpha & \alpha\\
+\beta & 1-\beta
+\end{matrix}\right)
+\end{aligned}
+\end{equation*}
+ans assume that $0<\alpha,\beta<1$ (non-trivial).\\
+Then solve $|P-\kappa I|=0$, we get $\kappa = 1$ or $\kappa = 1-\alpha - \beta$. So
+\begin{equation*}
+\begin{aligned}
+P^n = U^{-1}\left(\begin{matrix}
+1^n & 0\\
+0 & \left(1-\alpha-\beta\right)^n
+\end{matrix}\right)U
+\end{aligned}
+\end{equation*}
+for some invertible $U$. Then
+\begin{equation*}
+\begin{aligned}
+p_{1,1}\left(n\right) = A \cdot 1^n + B\left(1-\alpha-\beta\right)^n
+\end{aligned}
+\end{equation*}
+for some $A,B$. We know that $p_{1,1}\left(1\right) = 1-\alpha$, $p_{1,1}\left(0\right) = 1$. Then we can solve for $A$ and $B$ and get
+\begin{equation*}
+\begin{aligned}
+A=\frac{\beta}{\alpha+\beta},B=\frac{\alpha}{\alpha+\beta}
+\end{aligned}
+\end{equation*}
+By symmetry we can get
+\begin{equation*}
+\begin{aligned}
+P^n = \frac{1}{\alpha+\beta} \left(\begin{matrix}
+\beta+\alpha\left(1-\alpha-\beta\right)^n & \alpha-\alpha\left(1-\alpha-\beta\right)^n\\
+\beta-\beta\left(1-\alpha-\beta\right)^n & \alpha+\beta\left(1-\alpha-\beta\right)^n
+\end{matrix}\right)
+\end{aligned}
+\end{equation*}
+
+Another method is to use difference equations:
+\begin{equation*}
+\begin{aligned}
+p_{1,1}\left(n+1\right) &= \P \left(X_{n+1} = 1|X_0=1\right)\\
+&= \P \left(X_{n+1} = 1|X_n = 1,X_0=1\right) \P\left(X_n=1|X_0=1\right) + \\&\P\left(X_{n+1}=1|X_n=2,X_0=1\right) \P\left(X_n = 2|X_0=1\right)\\
+&= \left(1-\alpha\right) P_{1,1}\left(n\right) + \beta p_{1,2}\left(n\right)
+\end{aligned}
+\end{equation*}
+which is a difference equation for the sequence for $\left(p_{1,1}\left(n\right)\right)$ (note $p_{1,2}\left(n\right) = 1-p_{1,1}\left(n\right)$) solved in the normal way, subject to boundary conditions.
+\end{eg}
+
+The distributions of a Markov chain is somewhat related to linear algebra. Let $\lambda$ be the initial distribution of $X_0$, i.e. $\lambda_i = \P \left(X_0 = i\right)$. Then
+\begin{equation*}
+\begin{aligned}
+\P\left(X_1=j\right) = \sum_i \lambda_i p_{i,j}
+\end{aligned}
+\end{equation*}
+So the distribution of $X_1$ is $\lambda P$, and similarly $X_n$ has distribution $\lambda P^n$.
+
+\newpage
+
+\section{Class Structure}
+We write "$i$ leads to $j$", or $i \to j$, if there exists $n \geq 0$ s.t. $p_{i,j}\left(n\right) > 0$. Write $i \leftrightarrow j$ if $i\to j$ and $j\to i$, and say that $i$ and $j$ \emph{communicate}.
+
+\begin{prop}
+$\leftrightarrow$ is an equivalence relation.
+\begin{proof}
+$\bullet$ $i \leftrightarrow i$ since $p_{i,i}\left(0\right) = 1 > 0$.\\
+$\bullet$ $i \leftrightarrow j \to j \leftrightarrow i$ is trivial.\\
+$\bullet$ If $i \leftrightarrow j$ and $j \leftrightarrow i$, in particular $i\to j$ and $j\to k$. Then there exists $m,k$ such that $p_{i,j}\left(m\right) > 0$ and $p_{j,k}\left(n\right) > 0$. Then
+\begin{equation*}
+\begin{aligned}
+p_{i,k}\left(m+n\right) \geq p_{i,j}\left(m\right) p_{j,k}\left(n\right) > 0
+\end{aligned}
+\end{equation*}
+By C-K equation (since each term in the sum is non-negative). So $i\to k$. Similarly $k\to i$. So $i \leftrightarrow k$.
+\end{proof}
+\end{prop}
+
+\begin{defi}
+Now $S$, the set of all states, has equivalence classes under $\leftrightarrow$. We call them \emph{communicating classes}, and define
+\begin{equation*}
+\begin{aligned}
+C_i = \left\{ j \in S: i \leftrightarrow j\right\}
+\end{aligned}
+\end{equation*}
+
+The space $S$, or the chain $X$, is called \emph{irreducible} if there exists a unique communicating class (which is $S$).
+
+$C \subset S$ is called \emph{closed} if
+\begin{equation*}
+\begin{aligned}
+i\in C, i\to j \implies j \to C
+\end{aligned}
+\end{equation*}
+if $\left\{i\right\}$ is closed, then $i$ is called \emph{absorbing}.
+\end{defi}
+
+\begin{prop}
+A set $C$ is closed if and only if $p_{i,j} = 0$ for all $i \in C, j \not\in C$.
+\begin{proof}
+Suppose the above condition does not hold. Then $\exists i \in C, j \not\in C$ with $p_{i,j} > 0$. But then $C$ is not closed by definition since $i \to j$.\\
+Now suppose the above condition hold. Let $i \in C,i \to j$. There exists several $k_0 = i, k_1,...,k_n = j$ such that
+\begin{equation*}
+\begin{aligned}
+p_{k_0,k_1} p_{k_1,k_2}...p_{k_{n-1},k_n} > 0
+\end{aligned}
+\end{equation*}
+which requires $i=k_0 \to k_1$, $k_1 \to k_2$, ... $k_{n-1} \to k_n=j$. Then $k_1 \in C, k_2 \in C,... k_n = j\in C$. So $C$ is closed.
+\end{proof}
+\end{prop}
+
+\begin{eg}
+Let $S = \left\{1,2,...,6\right\}$, and
+\begin{equation*}
+\begin{aligned}
+P = \left(
+\begin{matrix}
+\frac{1}{2} & \frac{1}{2} & 0 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0 & 0\\
+\frac{1}{3} & 0 & 0 & \frac{1}{3} & \frac{1}{3} & 0\\
+0 & 0 & 0 & \frac{1}{2} & \frac{1}{2} & 0\\
+0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 1 & 0
+\end{matrix}
+\right)
+\end{aligned}
+\end{equation*}
+Here $\left\{1,2,3\right\}$, $\left\{4\right\}$, $\left\{5,6\right\}$ are communicating classes.
+\end{eg}
+
+\newpage
+
+\section{Recurrence and Transience}
+We write $\P\left( \cdot | X_0 = i\right) = \P_i \left(\cdot\right)$, and similarly for expectation.
+
+\begin{defi}
+The \emph{first-passage time} of $j \in S$ is
+\begin{equation*}
+\begin{aligned}
+T_j = \inf\left\{n \geq 1: X_n = j\right\}
+\end{aligned}
+\end{equation*}
+
+The \emph{first-passage probabilities} are
+\begin{equation*}
+\begin{aligned}
+f_{i,j}\left(n\right) = \P_i \left(T_j=n\right)
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{defi}
+The state $i \in S$ is \emph{recurrent} (or \emph{persistent}) if $\P_i\left(T_i < \infty\right) = 1$, and \emph{transient} otherwise.
+\end{defi}
+
+\begin{thm}
+The state $i$ is recurrent if and only if
+\begin{equation*}
+\begin{aligned}
+\sum_n p_{ii}\left(n\right) \to \infty.
+\end{aligned}
+\end{equation*}
+\begin{proof}
+We have
+\begin{equation*}
+\begin{aligned}
+p_{ij}\left(n\right) = \P_i\left(x_n=j\right) &= \sum_m \P_i\left(x_n=j | T_j = m\right) \P_i\left(T_j=m\right)\\
+&= \sum_{m \leq n} \P_i \left(x_n = j|x_m=j\right) \P_i\left(T_j=m\right)\\
+&=\sum_{m=1}^n f_{i,j}\left(m\right) p_{jj}\left(n-m\right)
+\end{aligned}
+\end{equation*}
+(which looks like a \emph{convolution} of $f_{i,j}$ and $p_{jj}$).
+
+Now consider generating sequences
+\begin{equation*}
+\begin{aligned}
+F_{ij}\left(s\right) = \sum_{n=0}^\infty f_{ij}\left(n\right) s^n\\
+P_{ij}\left(s\right) = \sum_{n=0}^\infty p_{ij}\left(n\right) s^n
+\end{aligned}
+\end{equation*}
+with $f_{ij}\left(0\right)=0$,$p_{ij}\left(0\right) = \delta_{ij}$.
+
+Then
+\begin{equation*}
+\begin{aligned}
+\sum_{n\geq 1} p_{ij}\left(n\right)s^n = \sum_{n\geq 1} \sum_{m=1}^n f_{ij}\left(m\right)s^m p_{jj}\left(n-m\right)s^{n-m}
+\end{aligned}
+\end{equation*}
+So by reversing the order of the sums,
+\begin{equation*}
+\begin{aligned}
+P_{ij}\left(s\right) - \delta_{ij} = \sum_{m=0}^\infty f_{ij}\left(m\right) s^m \sum_{n=m}^\infty p_{jj}\left(n-m\right)s^{n-m} = F_{ij}\left(s\right)P_{jj}\left(s\right)
+\end{aligned}
+\end{equation*}
+So we've derived
+\begin{thm}
+$P_{ij}\left(s\right) = \delta_{ij} + F_{ij}\left(s\right)P_{jj}\left(s\right)$. ($1 < s \leq 1$, since we need the series to converge)\\
+When $i=j$,
+\begin{equation*}
+\begin{aligned}
+P_{ii}\left(s\right) = \frac{1}{1-F_{ii}\left(s\right)}
+\end{aligned}
+\end{equation*}
+if $0\leq s < 1$.\\
+Now let $s \to 1$, then
+\begin{equation*}
+\begin{aligned}
+F_{ii}\left(s\right) \to \sum_n f_{ii}\left(n\right) = \P_i\left(T_i < \infty\right),\\
+P_{ii}\left(s\right) \to \sum_n p_{ii}\left(n\right)
+\end{aligned}
+\end{equation*}
+Therefore $i$ is recurrent iff $F_{ij}\left(s\right) = 1$, i.e. $\sum_n p_{ii}\left(n\right) \to \infty$.
+\end{thm}
+\end{proof}
+\end{thm}
+
+\begin{thm}
+Let $C$ be a communicating class.\\
+(a) For $i,j \in C$, either both of them are recurrent, or both are transient (i.e. recurrence is a class property).\\
+(b) If $i\in C$ is recurrent, then $C$ is closed (i.e. a recurrent communicating class is closed).
+\begin{proof}
+(a) Let $i \leftrightarrow j$. Then
+\begin{equation*}
+\begin{aligned}
+p_{ii}\left(m+k+n\right) \geq p_{ij}\left(m\right)p_{jj}\left(k\right)p_{ji}\left(n\right)
+\end{aligned}
+\end{equation*}
+Pick $m$ s.t. $p_{ij}\left(m\right)>0$, and $n$ s.t. $p_{ji}\left(n\right)>0$. Then
+\begin{equation*}
+\begin{aligned}
+\sum_k p_{ii}\left(m+k+n\right) \geq \alpha\sum_k p_{jj}\left(k\right)
+\end{aligned}
+\end{equation*}
+for $\alpha > 0$.\\
+Then if $j$ is recurrent, then $\sum_k p_{jj}\left(k\right) \to \infty$, and hence $\sum_k p_{ii}\left(k\right) \to \infty$, i.e. $i$ is recurrent, and vice versa.
+
+(b) Suppose $C$ is not closed. So $\exists j \in C$, $k \not\in C$ with $p_{jk} > 0$.\\
+If $i$ is recurrent, so is $j$ by (a). Then
+\begin{equation*}
+\begin{aligned}
+1 - \P_j\left(T_j<\infty\right) = \P_j \left(\text{no return to } j\right) \geq p_{jk}
+\end{aligned}
+\end{equation*}
+Since $k \not\in C$. However that implies $p_{jk} \leq 1-1 = 0$. Contradiction.
+\end{proof}
+\end{thm}
+
+\begin{prop}
+Let $i,j\in S$. If $j$ is transient, then $p_{ij}\left(n\right) \to 0$ as $n \to \infty$.
+\begin{proof}
+$P_{ij}\left(s\right) = \delta_{ij} + F_{ij}\left(s\right) P_{jj}\left(s\right)$ for $-1 <s<1$.\\
+Now let $i \neq j$, and $s \to 1$. Then
+\begin{equation*}
+\begin{aligned}
+P_{ij}\left(1\right) = F_{ij}\left(1\right) P_{jj}\left(1\right)
+\end{aligned}
+\end{equation*}
+Since $j$ is transient, $F_{ij}\left(1\right) < \infty$ and $P_{jj}\left(1\right) < \infty$.\\
+So $P_{ij}\left(n\right) < \infty$, and hence $p_{ij}\left(n\right) \to 0$ as $n \to \infty$.\\
+The argument is similar when $i=j$.
+\end{proof}
+\end{prop}
+
+\begin{thm}
+If $S$ is finite, then there exists at least one recurrent state. Therefore, if the chain is irreducible, every state is recurrent.
+\begin{proof}
+Suppose otherwise, that every $j$ is transient. Then we have
+\begin{equation*}
+\begin{aligned}
+1 = \sum_{j \in S} p_{ij}\left(n\right) \to 0
+\end{aligned}
+\end{equation*}
+as $n \to \infty$. Contradiction.
+\end{proof}
+\end{thm}
+
+\newpage
+
+\section{Random walks on $\Z^d$ with $d \geq 1$}
+
+We consider random walks on
+\begin{equation*}
+\begin{aligned}
+\Z^d = \left\{\left(x_1,...,x_d\right):x_i \in \Z\right\}
+\end{aligned}
+\end{equation*}
+
+Define two points $x,y\in\Z^d$: $x = \left(x_1,...,x_d\right)$, $y=\left(y_1,...,y_d\right)$ to be \emph{adjacent} if 
+\begin{equation*}
+\begin{aligned}
+\sum_{i=1}^d \left|x_i-y_i\right| = 1
+\end{aligned}
+\end{equation*}
+
+The \emph{Random walk} on $\Z^d$ is a Markov chain with state space $\Z^d$; a walker lives at $X_n$ at time $n$, with
+\begin{equation*}
+\begin{aligned}
+\P\left(X_{n+1}=y\right) | X_n = x,X_0 = x\left(0\right),...,X_{n-1} = x\left(n-1\right) = \left\{ \begin{array}{ll} 0 & x,y \text{ are not adjacent}\\
+\frac{1}{2d} & x,y \text{ are adjacent}
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+
+Clearly RW is irreducible and has an infinite state space.
+
+\begin{thm}
+The random walk is recurrent if $d = 1,2$, and transient if $d \geq 3$.
+\begin{proof}
+$\bullet$ $d=1$: $p_{0,0}\left(2n\right) = \left(\frac{1}{2}\right)^{2n} {2n \choose n} = \left(\frac{1}{2}\right)^{2n} \frac{2n!}{\left(n!\right)^2} \sim \frac{1}{\sqrt{\pi n}}$ by Stirling formula.\\
+Hence $\sum_n p_{0,0}\left(n\right) \to \infty$, i.e. $0$ is recurrent.
+
+$\bullet$ $d=2$: Suppose we walked $m$ steps towards L/R, and $n-m$ steps towards U/D.
+\begin{equation*}
+\begin{aligned}
+p_{0,0} \left(2n\right) &= \sum_{m=0}^n \left(\frac{1}{4}\right)^{2n} \frac{\left(2n\right)!}{m!m!\left(n-m\right)!\left(n-m\right)!}\\
+&= \left(\frac{1}{4}\right)^{2n} {2n \choose n} \sum_{m=0}^n {n \choose m}^2\\
+&= \left(\frac{1}{4}\right)^{2n} {2n \choose n}\\
+&\sim \frac{1}{\pi n}
+\end{aligned}
+\end{equation*}
+So $\left(0,0\right)$ is recurrent.
+
+$\bullet$ $d=3$ (and similarly $d \geq 3$):\\
+\begin{equation*}
+\begin{aligned}
+p_{0,0}\left(2n\right) &= \sum_{i+j+k=n} \left(\frac{1}{6}\right)^{2n} \frac{\left(2n\right)!}{\left(i!j!k!\right)^2}\\
+&\leq \left(\frac{1}{2}\right)^{2n} {2n \choose n} \sum_{i+j+k=n} \left(\frac{n!}{3^n i!j!k!}\right)^2\\
+&\leq \left(\frac{1}{2}\right)^{2n} {2n \choose n} M_n \sum_{i+j+k=n} \frac{n!}{3^n i!k!l!}
+\end{aligned}
+\end{equation*}
+where
+\begin{equation*}
+\begin{aligned}
+M_n=\max\left\{\frac{n!}{3^n i!j!k!} | i+j+k=n\right\}
+\end{aligned}
+\end{equation*}
+The sum in the last line is $1$, since each term in the sum is the probability of $n$ balls goes in to 3 boxes, with $i,j,k$ balls in each box.\\
+We see that $M_n$ is achieved when $i,j,k$ are 'as equal as possible. Then
+\begin{equation*}
+\begin{aligned}
+p_{0,0}\left(2n\right) &\leq \left(\frac{1}{2}\right)^2n {2n \choose n} \frac{n!}{3^n \left(\lfloor n/3\rfloor !\right)^3}\\
+&\sim \frac{c}{n^{3/2}}
+\end{aligned}
+\end{equation*}
+But this sum now converges. So $\left(0,0,0\right)$ is transient.
+\end{proof}
+\end{thm}
+
+\newpage
+
+\section{Hitting probabilities}
+
+\subsection{Gambler's Ruin}
+What is the hitting probability for gambler's ruin, $h_i = h_i^{\left\{0\right\}}$?
+
+$h_0=1$, $h_i = ph_{i+1} + qh_{i-1}$ for $i \geq 1$.
+
+Then guess a solution $h_i = \theta^i$, so $\theta = q/p,1$. So the general solution is
+\begin{equation*}
+\begin{aligned}
+h_i = A+B\left(q/p\right)^i
+\end{aligned}
+\end{equation*}
+for all $i$.
+
+Since $h_0=1$, $A+B=1$.
+
+If $p<q$: since the $h_i$ are probability, $B=0$, $A=1$. So $h_i = 1-\left(q/p\right)^i$ for all $i$.
+
+If $p>q$, since$h_i \geq 0$ for all $i$, we have $A \geq 0$. By minimality of $\left(h_i\right)$, $A=0$. So $h_i = \left(q/p\right)^i$.
+
+When $p=q$: by the above arguments, $h_i \equiv 1$.
+
+Extension: let $p_i = 1-q_i \in \left(0,1\right)$.
+
+So $h_0=1$, $\left(p_i+q_i\right)h_i = p_i h_{i+1} + q_i h_{i-1}$. $p_i\left(h_{i+1} - h_i\right) = q_i \left(h_i-h_{i-1}\right)$.
+
+Let $u_i = h_{i-1} - h_i$. Then $p_i u_{i+1} = q_i u_i$. So $u_{i+1} = \left(q_i/p_i\right)u_i$.
+
+Therefore $u_{i+1}\gamma_i u_1$, where
+\begin{equation*}
+\begin{aligned}
+\gamma_i = \frac{q_1 q_2...q_i}{p_1 p_2 ... p_i}
+\end{aligned}
+\end{equation*}
+for $i \geq 1$, and $\gamma_0 = 1$. Then
+\begin{equation*}
+\begin{aligned}
+u_1+u_2+...+u_i = \left(h_0-h_i\right)\\
+h_i = 1-\left(u_1+...+u_i\right)=1-u_1\left(\gamma_0+\gamma_1+...+\gamma_{i-1}\right)
+\end{aligned}
+\end{equation*}
+
+Let $S = \sum_{i=0}^\infty \gamma_i$. If $S=\infty$, since $h_1\geq 0$ we have $u_1 = 0$, and hence $h_i \equiv 1$.
+
+If $S < \infty$, $u_1$ is maximised when $1-u_1 S = 0$, i.e. $u_1 = 1/S$.
+
+\newpage
+
+\section{Stopping times}
+
+Consider Markov chain $X$.
+
+\begin{defi}
+A random variable $T$ taking values in $\left\{0,1,2,...,\right\}\cup\left\{\infty\right\}$ is a \emph{stopping time} (for $X$) if for $n\geq 0$, the event $\left\{T=n\right\}$ is given 'in terms of' $X_0$, $X_1$,...,$X_n$ only.
+\end{defi}
+
+Hitting times are stopping times: $\left\{H^A = n\right\} = \left\{X_n \in A \right\} \cap \left(\cap_{0\leq m< n} \left\{x_m \not\in A\right\}\right)$.
+
+$H^A+1$ is a stopping times is a stopping time, $H^A-1$ is not in general a stopping time.
+
+\begin{defi} (Strong Markov Property) Let $X$ be a Markov chain with transition matrix $P$, and let $T$ be a stopping time for $X$. Given $T<\infty$ and $X_T = i$, then $Y=\left(X_T,X_{T+1},...\right)$ is a Markov chain with transition matrix $P$ and initial state $Y_0 = i$, and $Y$ is independent of $\left(X_0,...,X_{T-1}\right)$.
+\end{defi}
+
+\begin{eg}
+Consider a random walk with an absorbing wall at $0$,with probability $p$ going right and $q=1-p$ going left. Assume particle starts at $1$, and let $H$ be the hitting time of $0$. What is the mass function and mean of $H$?
+
+Let
+\begin{equation*}
+\begin{aligned}
+G\left(s\right) = \E_1\left(s^H\right) = \sum_{n=0}^\infty s^n \P_1\left(H=n\right)
+\end{aligned}
+\end{equation*}
+if $|s|<1$.
+
+By assuming $|s|<1$ (and using Abel's lemma when needed) we include the possibility $\P_1\left(H=\infty\right)>0$. Then
+\begin{equation*}
+\begin{aligned}
+G\left(s\right) &= \E_1\left(s^H\right)\\
+&= \E_1\left(s^H | X_1=2\right)p + \E_1\left(s^H | X_1 = 0\right)q\\
+&= p\E_1\left(s^{1+H_1+H_0}\right)+qs\\
+&= psG\left(s\right)^2(=\E_1\left(s^{H_1}\right)\E_1\left(s^{H_2}\right)) + qs
+\end{aligned}
+\end{equation*}
+where $H_i$ is the time to go from $i+1$ to $i$.
+
+So
+\begin{equation*}
+\begin{aligned}
+G\left(s\right) = \frac{1 \pm \sqrt{1-4pqs^2}}{2ps}
+\end{aligned}
+\end{equation*}
+for $|s|<1$.
+
+Since $G$ is continuous, the $\pm$ sign is the same for all $s$. Since $G$ has to remain regular at $s=0$, the $\pm$ sign has to be $-$ for all $s$. So
+\begin{equation*}
+\begin{aligned}
+G\left(s\right) = \frac{1-\sqrt{1-4pqs^2}}{2ps}
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\P_1\left(H=2k-1\right)=\frac{\left(2k-2\right)!}{k!\left(k-1\right)!} \frac{\left(pq\right)^k}{p}
+\end{aligned}
+\end{equation*}
+where $k \geq 1$.
+
+We can also get
+\begin{equation*}
+\begin{aligned}
+P\left(H<\infty\right) &= \lim_{s \to 1} G\left(s\right)\\
+&= \frac{1-\sqrt{1-4pq}}{2p}\\
+&= \frac{1-|q-p|}{2p}\\
+&= \left\{\begin{array}{ll}
+1 & p\leq q\\
+q/p & p>q
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+
+Now let $p\leq q$. We want to find $\E_1\left(H\right)$. Differentiate $G$,
+
+\begin{equation*}
+\begin{aligned}
+G'=pG^2+2psGG'+q\\
+\implies G'\left(s\right) = \frac{pG^2+q}{1-2psG}
+\end{aligned}
+\end{equation*}
+
+Take the limit $s \to 1$,
+\begin{equation*}
+\begin{aligned}
+G'\left(s\right) \to \left\{ \begin{array}{ll}
+\infty & p=q\\
+\frac{1}{q-p} & p<q
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+
+\end{eg}
+
+\newpage
+
+\section{Classification of states}
+
+\begin{defi}
+(a) The \emph{mean recurrence time} of $i\in S$ is 
+\begin{equation*}
+\begin{aligned}
+\mu_i &= \E_i\left(T_i\right)\\
+&=\left\{\begin{array}{ll}
+\infty & i \text{ is transient}\\
+\sum_{n\geq 1} n f_{i,i}\left(n\right) & i \text{ is recurrent}
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+
+(b) We call $i$ \emph{null} if $\mu_i = \infty$, and \emph{non-null} or \emph{positive} if $\mu_i < \infty$.
+
+(c) The \emph{period} $d_i$ of $i \in S$ is $d_i = \gcd\left\{ n \geq 1 : p_{i,i} \left(n\right) > 0\right\}$.\\
+We call $i$ \emph{aperiodic} if $d_i = 1$.
+
+(d) A state $i \in S$ ie \emph{ergodic} if it is aperiodic and non-null recurrent.
+\end{defi}
+
+\begin{thm}
+If $i \leftrightarrow j$ then\\
+(a) they have the same period;\\
+(b) if one is recurrent, so is the other;\\
+(c) if one is positive recurrent, so is the other;\\
+(d) if one is ergodic, so is the other.
+\end{thm}
+
+\end{document}

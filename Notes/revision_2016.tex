@@ -1,0 +1,225 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\begin{document}
+
+\title{Revision Questions}
+\date{Easter 2016}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+There are many tripos questions which are far more than enough for anyone who is keen to practice. These questions are, however, usually targeted at the fundamental ideas, and can be used as a check list when you think you have finished revision on a course.
+
+\newpage
+
+\section{Groups}
+
+\newpage
+
+\section{Vector Calculus}
+
+\subsection{Problem 1}
+Explain what is meant by saying that $f$ is a \emph{scalar field}.\\
+Let $f$ be a scalar field, $\mathbf{a}$ be a point in the space where $f$ is defined. Show that the direction in which $f$ is increasing at the greatest rate is the direction of $\nabla f$ at that point.\\
+Let a surface $S$ be defined by $f=c$ where $c$ is a constant, and let $\mathbf{b}$ be a point on the surface. Show that $\nabla f$ at $\mathbf{b}$ is normal to the surface.
+
+\subsection{Problem 2}
+Deduce the relationship between the basis vectors $\mathbf{e}_r,\mathbf{e}_\varphi,\mathbf{e}_\theta$ of the spherical polar coordinate system and $\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z$ of the Cartesian coordinate system.\\
+Let $S$ be a surface of sphere of radius $a$. Show that the scalar area element is given by
+\begin{equation*}
+\begin{aligned}
+dS = a^2 \sin\theta d\theta d\varphi.
+\end{aligned}
+\end{equation*}
+
+\subsection{Problem 3}
+State what is the \emph{curl} of a vector field $\mathbf{F}$ in 3 dimensions.\\
+State Green's theorem.\\
+State Stoke's theorem.\\
+Prove that Green's theorem and Stoke's theorem are equivalent.
+
+\subsection{Problem 4}
+Let $\mathbf{F}$ be a vector field in $\R^3$. Show that the following three statements are equivalent to each other:\\
+i) $\mathbf{F}=\nabla f$ for some scalar field $f$;\\
+ii) $\int_C \mathbf{F}\cdot d\mathbf{r}$ is independent of $C$ for fixed endpoints and orientation;\\
+iii) $\nabla\times\mathbf{F}=0$.
+
+\subsection{Problem 5}
+Let $C$ be a curve in $\R^n$. State what is meant by a \emph{parameterisation} of it.\\
+Explain why
+\begin{equation*}
+\begin{aligned}
+\mathbf{r}:[0,4\pi) \to \R^2
+\end{aligned}
+\end{equation*}
+with
+\begin{equation*}
+\begin{aligned}
+\theta \to \left(\cos\theta,\sin\theta\right)
+\end{aligned}
+\end{equation*}
+is \emph{not} a parameterisation of the unit circle centred at the origin.\\
+State what is the \emph{arclength} of $C$.\\
+Show that the arclength of $C$ is not changed under different parameterisations.
+
+\subsection{Problem 6}
+Let $f$ be a scalar field and $\mathbf{F}$ be a vector field in $\R^3$.\\
+Consider $f\left(\mathbf{r}\left(u,v,w\right)\right)$ in an orthogonal curvilinear coordinate system. Show that 
+\begin{equation*}
+\begin{aligned}
+\nabla f = \frac{1}{h_u} \frac{\partial f}{\partial u} \mathbf{e}_u + \frac{1}{h_v} \frac{\partial f}{\partial v} \mathbf{e}_v + \frac{1}{h_w} \frac{\partial f}{\partial w} \mathbf{e}_w
+\end{aligned}
+\end{equation*}
+where $h_u, h_v, h_w$ satisfy
+\begin{equation*}
+\begin{aligned}
+\frac{\partial \mathbf{r}}{\partial u} = h_u \mathbf{e}_u, \frac{\partial \mathbf{r}}{\partial v} = h_v \mathbf{e}_v, \frac{\partial \mathbf{r}}{\partial w} = h_w \mathbf{e}_w.
+\end{aligned}
+\end{equation*}
+(non-examinable?)\\
+Deduce the formula of $\nabla f$, $\nabla \cdot \mathbf{F}$, $\nabla \times \mathbf{F}$ in cylindrical polar coordinates.\\
+Deduce the formula of $\nabla f$, $\nabla \cdot \mathbf{F}$, $\nabla \times \mathbf{F}$ in spherical polar coordinates.
+
+\subsection{Problem 7}
+State Gauss' Law of gravitation.\\
+Assuming mass is distributed with spherical symmetry, deduce Newton's law of gravitation for point masses from Gauss' Law of gravitation.\\
+Deduce that
+\begin{equation*}
+\begin{aligned}
+\nabla\cdot \mathbf{g} = -4\pi G \rho.
+\end{aligned}
+\end{equation*}
+Deduce that
+\begin{equation*}
+\begin{aligned}
+\nabla^2 \mathbf{F} = \nabla\left(\nabla\cdot\mathbf{F}\right) - \nabla \times \left(\nabla\times\mathbf{F}\right).
+\end{aligned}
+\end{equation*}
+Hence a gravitational potential $\varphi$ can be chosen such that
+\begin{equation*}
+\begin{aligned}
+\nabla^2 \varphi = 4\pi G\rho
+\end{aligned}
+\end{equation*}
+with $-\nabla \varphi = \mathbf{g}$.
+
+\subsection{Problem 8}
+Describe what is a \emph{Dirichlet condition} and what is a \emph{Neumann condition}.\\
+State and prove the Uniqueness theorem.\\
+Prove Green's First and Second identities:
+\begin{equation*}
+\begin{aligned}
+\int_S \left(u\nabla v\right) \cdot dS = \int_V \left(\nabla u\right) \cdot\left(\nabla v\right) dV + \int_V u\nabla^2 v dV,\\
+\int_S \left(u\nabla v - v\nabla u\right) \cdot d\mathbf{S} = \int_V \left(u\nabla^2 v - v\nabla^2 u \right) dV.
+\end{aligned}
+\end{equation*}
+
+\subsection{Problem 9}
+Explain what is a \emph{harmonic function}.\\
+State and prove the mean value property for harmonic functions.\\
+If $\varphi$ is a harmonic function in a region $V$, show that it can't take a minimum or maximum at an interior point of $V$.
+
+\subsection{Problem 10}
+State the Maxwell's equations.\\
+Show that
+\begin{equation*}
+\begin{aligned}
+\frac{\partial \rho}{\partial t}+ \nabla \cdot \mathbf{j} = 0.
+\end{aligned}
+\end{equation*}
+
+\subsection{Problem 11}
+Explain what is a \emph{tensor}. Explain what is the \emph{rank} of a tensor.\\
+State the \emph{tensor transformation rule}.\\
+Let $\mathbf{u},\mathbf{v},...,\mathbf{w}$ be n vectors. Explain why
+\begin{equation*}
+\begin{aligned}
+T_{ij...k} = u_i v_j ... w_k
+\end{aligned}
+\end{equation*}
+is a rank $n$ tensor.
+
+In the following problems, the tensors are 
+by default Cartesian tensors.
+
+\subsection{Problem 12}
+Define the \emph{tensor product}, and show that the tensor product of two tensors is still a tensor.\\
+Explain what is meant by saying that a tensor is \emph{antisymmetric} in some two indices.
+
+\subsection{Problem 13}
+Show that a rank $n$ tensor is equivalent to a multilinear map from $n$ vectors to $\R$.
+
+\subsection{Problem 14}
+State and prove the quotient rule of tensors. Prove that its converse is also true.
+
+\subsection{Problem 15}
+Explain what is a \emph{tensor field}.\\
+Let $T_{ij...k}$ be a rank $n$ tensor. Show that
+\begin{equation*}
+\begin{aligned}
+\frac{\partial}{\partial x_p} T_{ij...k}
+\end{aligned}
+\end{equation*}
+is a rank $n+1$ tensor.
+
+\subsection{Problem 16}
+State and prove the divergence theorem for tensors.
+
+\newpage
+
+\section{Differential Equation}
+
+\newpage
+
+\section{Probability}
+
+\newpage
+
+\section{Vectors and Matrices}
+
+\newpage
+
+\section{Analysis}
+
+\newpage
+
+\section{Numbers and Sets}
+
+\newpage
+
+\section{Dynamics and Relativity}
+
+\subsection{Problem 1}
+Define \emph{central force}.\\
+State the formula of \emph{angular momentum}. Prove that it is conserved by a central force.
+
+\subsection{Problem 2}
+Define \emph{gravitational potential energy} and \emph{gravitational potential}.\\
+For a planet with radius $R$ and mass $M$, find its escape velocity.
+
+\subsection{Problem 3}
+State the formula for the force experienced by a particle with charge $q$ and velocity $\mathbf{v}$ in an electric field $\mathbf{E}$ and magnetic field $\mathbf{B}$.\\
+Show that, for time independent electric field and magnetic field, the energy
+\begin{equation*}
+\begin{aligned}
+E=\frac{1}{2}m|\mathbf{v}|^2 + q \phi_e
+\end{aligned}
+\end{equation*}
+is conserved.
+
+\subsection{Problem 4}
+
+
+
+
+\newpage
+
+\end{document}

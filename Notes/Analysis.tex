@@ -1,0 +1,2308 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\begin{document}
+
+\title{Analysis}
+\date{Lent 2016}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Differentiation}
+\begin{thm}(IFT)
+Assume $I$ is an open interval, $f:I\to \R$ is differentiable on $I$, $f'\left(x\right)\neq 0 \forall x\in I$. Then $J=f\left(I\right)$ is an open interval, $f$ is strictly monotonic, and hence bijection $I\to J$. Moreover, $f^{-1}:J\to I$ is differentiable, and
+\begin{equation*}
+\left(f^{-1}\right)'\left(y\right)=\frac{1}{f'\left(f^{-1}\left(y\right)\right)}.
+\end{equation*}
+\begin{proof}
+\underline{$f$ is injective}: if $x<y$ and $f\left(x\right)=f\left(y\right)$. Then by Rolle's theorem ($f$ differentiable and hence continuous on $I$),$\exists c\in \left(x,y\right)$s.t. $f'\left(c\right)=0$. Contradiction.\\
+\underline{$f$ is strictly monotonic}: $\forall x<y$ in $I$, either $f\left(x\right)<f\left(y\right)$ or $f\left(x\right)>f\left(y\right)$. We next show that $\forall a<b<c$ in $I$ either $f\left(a\right)<f\left(b\right)<f\left(c\right)$ or $f\left(a\right)>f\left(b\right)>f\left(c\right)$. If not then $\exists a<b<c$ in $I$ s.t.\\
+either $f\left(a\right)<f\left(b\right), f\left(b\right)>f\left(c\right)$\\
+or $f\left(a\right)>f\left(b\right), f\left(b\right)<f\left(c\right)$.\\
+In the first case, fix $w$ s.t. $\max\left(f\left(a\right),f\left(c\right)\right)<w<f\left(b\right)$. Then $f\left(a\right)<w<f\left(b\right)$ so by IVT, $\exists x\in \left(a,b\right)$ s.t. $f\left(x\right)=w$, and $f\left(b\right)>w>f\left(c\right)$ so by IVT $\exists y\in \left(b,c\right)$ s.t. $f\left(y\right)=w$. Contradicts with injectivity.\\
+The other case is similar (apply the first case to $\left(-f\right)$).\\
+Fix $a<b$ in $I$. We show that if $f\left(a\right)<f\left(b\right)$ then $f$ is strictly increasing on $I$. The case $f\left(a\right)>f\left(b\right)$ will be similar and then $f$ is strictly decreasing on $I$.\\
+Let $x\in I$. If $x<a$ then considering the triple $x<a<b$ we obtain $f\left(x\right)<f\left(a\right)$. If $a<x$ then\\
+either $x<b$ and considering $a<x<b$, get $f\left(a\right)<f\left(x\right)$\\
+or $x>b$ and considering $a<b<x$, get $f\left(a\right)<f\left(x\right)$\\
+or $x=b$ and then $f\left(a\right)<f\left(b\right)=f\left(x\right)$.\\
+So far we have $\forall x<y$ in $I$ if $x=a$ or $y=a$ then $f\left(x\right)<f\left(y\right)$.\\
+For arbitrary $x<y$ in $I$ with $a\neq x$ and $a \neq y$ we have 3 cases: $a<x<y$,$x<a<y$,$x<y<a$, applying the previous claim we get $f\left(x\right)<f\left(y\right)$.\\
+\underline{$J$ is an interval}: Let $x<y<z$ in $\R$ s.t. $x,z\in J$. We have $a,b\in I$ s.t. $x=f\left(a\right)$,$z=f\left(b\right)$. So by IVT, $\exists c$ between $a,b$ s.t. $f\left(c\right)=y$, so $y\in J$.\\
+\underline{$J$ is an open interval}: Given $y\in J$,$\exists b\in I$ s.t. $f\left(b\right)=y$.\\
+$I$ is an open interval, so $\exists a,c\in I$,$a<b<c$.\\
+Then either $f\left(a\right)<f\left(b\right)<f\left(c\right)$ or $f\left(a\right)>f\left(b\right)>f\left(c\right)$.\\
+So $y$ is not an endpoint of $J$.\\
+
+Now $f:I\to J$ is a strictly monotonic bijection, so $f^{-1}:J\to I$ is continuous by Theorem 3.6.\\
+\underline{$f^{-1}$ differentiable}: Let $y\in J$. We consider
+\begin{equation*}
+\frac{f^{-1}\left(y+k\right)-f^{-1}\left(y\right)}{k} \text{ as } k\to 0.
+\end{equation*}
+For given $k$, let $h=f^{-1}\left(y+k\right)-f^{-1}\left(y\right)$ and let $x=f^{-1}\left(y\right)$.\\
+Then $f^{-1}\left(y+k\right)=h+f^{-1}\left(y\right)=x+h$,\\
+$k=f\left(x+h\right)-f\left(x\right)$,
+\begin{equation*}
+\begin{aligned}
+\frac{f^{-1}\left(y+k\right)-f^{-1}\left(y\right)}{k}&=\frac{h}{f\left(x+h\right)-f\left(x\right)}\\
+&=\frac{1}{\frac{f\left(x+h\right)-f\left(x\right)}{h}}
+\end{aligned}
+\end{equation*}
+Here $h=h\left(k\right)$ depends on $k$, $h\left(k\right) \neq 0$ if $k\neq 0$ and $h\left(k\right) \to 0$ as $k \to 0$ since $f^{-1}$ is continuous.\\
+So
+\begin{equation*}
+\frac{f^{-1}\left(y+k\right)-f^{-1}\left(y\right)}{k} \to \frac{1}{f'\left(x\right)} = \frac{1}{f'\left(f^{-1}\left(y\right)\right)}.
+\end{equation*}
+\end{proof}
+\end{thm}
+
+\begin{eg}
+Fix $n\in \N$, consider $f:\left(0,\infty\right)\to\R$,$f\left(x\right)=x^n$.\\
+$f$ is strictly increasing, onto $\left(0,\infty\right)$, differentiable, $f'\left(x\right)=nx^{n-1}$.\\
+We have $f^{-1}:\left(0,\infty\right)\to\left(0,\infty\right)$,$f^{-1}\left(x\right)=x^{\frac{1}{n}}$(definition).\\
+The extra information from IFT is that $f^{-1}$ is differentiable, and
+\begin{equation*}
+\begin{aligned}
+\left(f^{-1}\right)'\left(y\right)&=\frac{1}{f'\left(f^{-1}\left(y\right)\right)}\\
+&=\frac{1}{n\left(y^{\frac{1}{n}}\right)^{n-1}}\\
+&=\frac{1}{n} y^{\frac{1}{n}-1}.
+\end{aligned}
+\end{equation*}
+\end{eg}
+For $\alpha=\frac{p}{q}$, $p,q\in\N$, $x^\alpha = \left(x^{\frac{1}{q}}\right)^p$ is differentiable by Chain Rule:\\
+$\frac{d}{dx}\left(x^\alpha\right)=p\left(x^\frac{1}{q}\right)^{p-1}\cdot\frac{1}{q}x^{\frac{1}{q}-1}=\alpha x^{\alpha-1}$.\\
+For $\alpha\in\Q$,$\alpha<0$,$x^\alpha = \frac{1}{x^{-\alpha}}$ is differentiable, and\\
+$\frac{d}{dx}\left(x^\alpha\right)=-\frac{1}{\left(x^{-\alpha}\right)^2}\cdot\left(-\alpha\right)x^{-\alpha-1}=\alpha x^{\alpha-1}$.\\
+Need $exp$, $log$ for $\alpha \in \R$.\\
+
+\subsection{Complex differentiation}
+Given $f:\C\to\C$, $a\in\C$, we say $f$ is complex differentiable at $a$ if 
+\begin{equation*}
+\begin{aligned}
+\lim_{h\to 0} \frac{f(\left(a+h\right)-f\left(a\right)}{h}
+\end{aligned}
+\end{equation*}
+exists and we denote the limit by $f'\left(a\right)$ and call it the \emph{derivative of $f$ at $a$}.\\
+Say $f$ is \emph{complex differentiable} on $\C$ (or \emph{holomorphic}) if it's complex differentiable at every $a\in\C$.\\
+$f$ is complex differentiable at $a$ $\iff$ $\exists \lambda\in\C$ $f\left(a+\right)=f\left(a\right)+\lambda h+\epsilon\left(h\right)\cdot h$, where $\epsilon\left(h\right)\to 0$ as $h\to 0$. Then $\lambda = f'\left(a\right)$.\\
+
+\begin{prop}
+$f$ is complex differentiable at $a$ $\implies$ $f$ is continuous at $a$.
+\end{prop}
+Property 2, Theorem 3 also hold.\\
+
+For $z\in\C$, $\sum_{n=0}^\infty \frac{z^n}{n!}$ converges absolutely and hence converges.\\
+For $z=0$ ok, for $z\neq 0$ we use the ratio test:
+\begin{equation*}
+\frac{|\frac{z^{n+1}}{\left(n+1\right)!}|}{|\frac{z^n}{n!}|}=\frac{|z|}{n+1}\to 0 \text{ as } n\to \infty.
+\end{equation*}
+
+We define the \emph{exponential function} $\exp :\C\to\C$ by $\exp\left(z\right)=\sum_{n=0}^\infty \frac{z^n}{n!}$.\\
+
+\begin{thm} (Properties of $\exp$)\\
+1) $\exp\left(z+n\right)=\exp\left(z\right)\exp\left(w\right)$ $\forall z,w\in\C$;\\
+2) $\exp\left(0\right)=1$,$\exp\left(z\right)\neq 0 \forall z\in\C$;\\
+3) $\overline{\exp\left(z\right)}=\exp\left(\overline{z}\right)$;\\
+4) $\exp\left(x\right)\in\R \forall x\in\R$;\\
+5) $\exp\left(ix\right)\in T=\left\{z\in\C | |z|=1\right\} \forall x\in\R$;\\
+6) $\exp$ is complex differentiable at $0$, $\exp'\left(0\right)=1$;\\
+7) $\exp$ is holomorphic, and $\exp'\left(z\right) = \exp\left(z\right)$.\\
+\begin{proof}
+1) Let $a_{k}=\frac{z^n}{n'}$,$b_{n}=\frac{w^n}{n!}$,$c_{n}=\frac{\left(z+w\right)^n}{n!}$ for $n\geq 0$.\\
+$c_{n} = \frac{1}{n!}\sum_{j=0}^n {n \choose j} z^j w^{n-j} = \sum_{j=0}^n \frac{1}{j!\left(n-j\right)!}z^j w^{n-j} = \sum_{j+k=n} a_{j} b_{j}$.\\
+\begin{equation*}
+\begin{aligned}
+|\sum_{n=0}^N c_{n} - \left(\sum_{n=0}^N a_{n}\right)\left(\sum_{n=0}^N b_{n}\right)|\\
+&= |\sum_{n=0}^N \sum_{j+k=n} a_{j} b_{k} - \sum_{j,k=0}^N a_{j} b_{k}|\\
+&= |\sum_{j,k=0,j+k>N}^N a_{j} b_{k}|\\
+&\leq \sum_{j,k=0,j+k>N}^N |a_{j}||b_{k}|\\
+&\leq \sum_{j,k=0,j>\frac{N}{2} \text{ or } k>\frac{N}{2}}^N |a_{j}| |b_{k}|\\
+&\leq \sum_{\frac{N}{2}<j\leq N} |a_{j}| \cdot \sum_{k=0}^N |b_{k}| + \sum_{\frac{N}{2}<k\leq N} |b_{k}| \cdot \sum_{j=0}^N |a_{j}|\\
+&\to 0 \text{ as } N\to\infty.
+\end{aligned}
+\end{equation*}
+So $\sum_{n=0}^\infty c_{n} = \left(\sum_{n=0}^\infty a_{n}\right)\left(\sum_{n=0}^\infty b_{n}\right)$.\\
+
+2) $\exp\left(0\right)$ by definition.\\
+$1=\exp\left(0\right)=\exp\left(z+\left(-z\right)\right)=\exp\left(z\right)\exp\left(-z\right)$.\\
+So $\exp\left(z\right)\neq 0 \forall z\in \C$.\\
+
+3) $\overline{\exp\left(z\right)}=\exp\left(\overline{z}\right) \forall z\in \C$.\\
+\begin{equation*}
+\begin{aligned}
+\overline{\exp\left(z\right)}&=\left(\lim_{N\to\infty} \sum_{n=0}^N \frac{z^n}{n!}\right)\\
+&=\lim_{N\to\infty} \overline{\left(\sum_{n=0}^N \frac{z^n}{n!}\right)}\\
+&=\lim_{N\to\infty} \sum_{n=0}^N \frac{\left(\overline{z}\right)^n}{n!}\\
+&=\exp\left(\overline{z}\right).
+\end{aligned}
+\end{equation*}
+
+4) $\exp\left(x\right)\in\R \forall x\in\R$ and $\exp\left(ix\right)\in T \forall x\in\R$.\\
+$\overline{\exp\left(x\right)} = \exp\left(\overline{x}\right)=\exp\left(x\right)$, so $\exp\left(x\right)\in\R$.\\
+\begin{equation*}
+\begin{aligned}
+|\exp\left(ix\right)|^2 &= \exp\left(ix\right)\\
+\overline{\exp\left(ix\right)}\\
+&=\exp\left(ix\right)\exp\left(-ix\right)\\
+&=\exp\left(0\right)\\
+&=1.
+\end{aligned}
+\end{equation*}
+
+5) $\exp'\left(0\right)=1$.\\
+\begin{equation*}
+\begin{aligned}
+\exp\left(h\right)&=\sum_{n=0}^\infty \frac{h^n}{n!}\\
+&= 1+h+\sum_{n=2}^\infty \frac{h^n}{n!}\\
+&= \exp\left(0\right)+h+h\sum_{n=2}^\infty \frac{h^{n-1}}{n!}.
+\end{aligned}
+\end{equation*}
+Define $\epsilon\left(h\right) = \sum_{n=2}^\infty \frac{h^{n-1}}{n!}$. Need $\epsilon\left(h\right)\to 0$ as $h\to 0$.\\
+We have
+\begin{equation*}
+\begin{aligned}
+|\epsilon\left(h\right)|&\leq \sum_{n=2}^\infty |\frac{h^{n-1}}{n!}\\
+&= \sum_{n=2}^\infty \frac{|h|^{n-1}}{n!}\\
+&\leq \sum_{n=2}^\infty |h|^{n-1} \text{  assume }|h| \leq 1\\
+&=\frac{|h|}{1-|h|}
+\end{aligned}
+\end{equation*}
+So $\epsilon\left(h\right)\to 0$ as $h\to 0$. Done.\\
+
+6) $\exp: \C\to\C$ is holomorphic.\\
+\begin{equation*}
+\begin{aligned}
+\frac{\exp\left(z+h\right)-\exp\left(z\right)}{h}\\
+&= \frac{\exp\left(z\right)\cdot\exp\left(h\right)-\exp\left(z\right)}{h}\\
+&=\exp\left(z\right)\frac{\exp\left(h\right)-\exp\left(0\right)}{h}\\
+&\to \exp\left(z\right)
+\end{aligned}
+\end{equation*}
+as $h\to 0$.\\
+So $\exp'\left(z\right) = \exp\left(z\right)$.
+\end{proof}
+\end{thm}
+
+By 4) we have a real function $\exp:\R\to\R$.\\
+
+\begin{thm}
+$\exp:\R\to\R$ is a strictly increasing, differentiable bijection of $\R$ onto $\R^+$;\\
+For $x\geq 0$, $\exp\left(x\right)\geq 1+x$ so $\exp\left(x\right)\to\infty$ as $x\to\infty$;\\
+For $x\leq 0$, $\exp\left(x\right)=\frac{1}{\exp\left(-x\right)}\to 0$ as $x\to -\infty$.\\
+\begin{proof}
+For $x\geq 0$, $\exp\left(x\right)=\sum_{n=0}^\infty \frac{x^n}{n!} \geq 1+x > 0$.
+So for $x \leq 0$,
+\begin{equation*}
+\begin{aligned}
+1&=\exp\left(x+\left(-x\right)\right)\\
+&= \exp\left(x\right)\exp\left(-x\right)
+\end{aligned}
+\end{equation*}
+So $\exp\left(x\right) = \frac{1}{\exp\left(-x\right)} > 0$\\
+since $\exp'\left(x\right)=\exp\left(x\right)>0 \forall x\in\R$.
+\end{proof}
+\end{thm}
+
+By Corollary 6, $\exp:\R\to\R^+$ is strictly increasing.\\
+Given $y\in\R^+$, choose $n\in\N$ s.t. $n>y>\frac{1}{n}$. So $\exp\left(n\right)\geq 1+n > y$, and $\exp\left(-n\right)=\frac{1}{\exp\left(n\right)}\leq \frac{1}{1+n}<\frac{1}{n}<y$.\\
+By IVT, $\exists x\in\left(-n,n\right)$, $\exp\left(x\right) = y$.\\
+Finally, $\exp\left(x\right)\geq 1+x\to\infty$ as $x\to\infty$ for $x\geq 0$.\\
+For $x\leq 0$, $\exp\left(x\right) = \frac{1}{\exp\left(-x\right)}\to 0$ as $x\to -\infty$.\\
+
+We define the \emph{logarithm} to be the function $\log:\R^+\to\R$ that is the inverse of $\exp:\R\to\R^+$.
+
+\begin{thm}
+$\log:\R^+\to\R$ is a strictly increasing, differentiable bijection. For $y>0$, $\log'\left(y\right)=\frac{1}{y}$, $\log1=0$,$\log\left(xy\right)=\log x+\log y \forall x,y>0$, $\log x\to\infty$ as $x\to\infty$, $\log x\to\infty$ as $x\to 0$.\\
+\begin{proof}
+If $0<x<y$ and $\log x\geq \log y$ then\\
+$x=\exp\left(\log x\right)\geq \exp\left(\log y\right) = y$, contradiction.\\
+Since $\exp'\left(x\right)=\exp\left(x\right)\neq 0 \forall x\in\R$, by IFT, $\log$ is differentiable, and\\
+\begin{equation*}
+\begin{aligned}
+\log'\left(y\right)=\frac{1}{\exp\left(\log y\right)}=\frac{1}{y}.
+\end{aligned}
+\end{equation*}
+$\log 1=0$ since $1=\exp\left(0\right)$.\\
+$\exp\left(\log x+\log y\right) = \exp\left(\log x\right)\exp\left(\log y\right)=xy$;\\
+Apply log:\\
+$\log x+\log y = \log \left(xy\right)$.\\
+Since $\log$, $\exp$, are strictly increasing, $\log x>c \iff x>\exp c$, $\log x<c \iff x<\exp c$.\\
+So it follows immediately that\\
+$\log x\to\infty$ as $x\to\infty$,\\
+$\log x\to -\infty$ as $x\to 0^+$.
+\end{proof}
+\end{thm}
+
+\begin{defi}
+Define for $x>0$, $\alpha\in\R$
+\begin{equation*}
+\begin{aligned}
+x^\alpha = \exp\left(\alpha \log x\right).
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{thm}
+$\bullet$ 1) for $\alpha \in \Q$, $x^\alpha$ agrees with the previous definition.\\
+$\bullet$ 2) for $\alpha > 0$, $x\to x^\alpha$ is a strictly increasing differentiable bijection: $\R^+\to\R^+$;\\
+for $\alpha < 0$, $x\to x^\alpha$ is a strictly decreasing differentiable bijection: $\R^+\to\R^+$;
+$\forall \alpha$, $f\left(x\right)=x^\alpha$, $f'\left(x\right)=\alpha x^{\alpha-1}$;\\
+
+$\forall x,y>0, \forall \alpha,\beta\in\R$:\\
+$\bullet$ 3) $\left(xy\right)^\alpha = x^\alpha y^\alpha$,\\
+$x^{\alpha+\beta} = x^\alpha x^\beta$,
+$\left(x^\alpha\right)^\beta = x^{\alpha\beta}$;\\
+$\bullet$ 4) $\frac{x^\alpha}{\exp\left(x\right)} \to 0$ as $x\to \infty \forall x\in\R$,\\
+$\frac{\log x}{x^\alpha} \to 0$ as $x\to\infty \forall x>0$.
+\begin{proof}
+1)
+\begin{equation*}
+\begin{aligned}
+x^n&=\exp\left(n\log x\right)\\
+&= \exp\left(\log x+\log x+...+\log x\right) \text{ n times}\\
+&= \exp\left(\log x\right)\exp\left(\log x\right)...\exp\left(\log x\right) \text{ n times}\\
+&= x\cdot x\cdot...\cdot x \text{ n times}
+\end{aligned}
+\end{equation*}
+which is the old definition of $x^n$.\\
+\begin{equation*}
+\begin{aligned}
+\left(x^\frac{1}{n}\right)^n &= \left(\exp\left(\frac{1}{n}\log x\right)\right)^n\\
+&= \exp\left(\frac{1}{n}\log x\right)\cdot\exp\left(\frac{1}{n}\log x\right)\cdot...\cdot\exp\left(\frac{1}{n}\log x\right) \text{ n times}\\
+&= \exp\left(\log x\right)\\
+&= x.
+\end{aligned}
+\end{equation*}
+So the new $x^\frac{1}{n}$ is the unique $y>0$ such that $y^n=x$, also same as the old definition.\\
+So now for $\alpha\in\Q^+$, it follows that the two definitions coincide.\\
+For $\alpha\in\Q^-$,
+\begin{equation*}
+\begin{aligned}
+x^\alpha &= \exp\left(\alpha \log x\right)\\
+&= \exp\left(-\left(-\alpha\right)\log x\right)\\
+&= \frac{1}{\exp\left(-\alpha \log x\right)}\\
+&= \frac{1}{x^{-\alpha}}
+\end{aligned}
+\end{equation*}
+also the old definition.\\
+
+2) Immediate from properties of $\log$ and $\exp$.\\
+e.g. for $f\left(x\right)=x^\alpha = \exp\left(\alpha \log x\right)$, by chain rule, \\
+\begin{equation*}
+\begin{aligned}
+f'\left(x\right)&=\exp\left(\alpha \log x\right)\alpha \frac{1}{x}\\
+&=\alpha \frac{\exp\left(\alpha \log x\right)}{\exp\left(\log x\right)}\\
+&= \alpha \exp\left(\alpha \log x-\log x\right)\\
+&=\alpha \exp\left(\left(\alpha-1\right)\log x\right)\\
+=\alpha x^{\alpha-1}.
+\end{aligned}
+\end{equation*}
+
+3) also immediate from properties of $\log$ and $\exp$. (exercise)\\
+
+4) For $x>0$, $\exp\left(x\right)>\frac{x^n}{n!}$ for any $n\in\N$.\\
+Given $\alpha\in\R$, choose $n\in\N, n>\alpha$, then\\
+\begin{equation*}
+\begin{aligned}
+\frac{x^\alpha}{\exp\left(x\right)}&<\frac{x^\alpha}{x^{-n} n!}\\
+&=\left(n!\right) x^{\alpha - n}\\
+&=\left(n!\right)\exp\left(\left(\alpha - n\right)\log x\right) \to 0
+\end{aligned}
+\end{equation*}
+as $x\to\infty$.
+
+Now let $y=\log\left(x\alpha\right) = \alpha \log x \to \infty$ as $x \to \infty$, so $\frac{\log x}{x^\alpha}=\frac{1}{\alpha}\frac{y}{\exp\left(y\right)}\to 0$ as $x\to\infty$.
+\end{proof}
+\end{thm}
+
+We can define $x^\alpha = \exp\left(\alpha\log x\right)$ for $x\in\R, x>0$ and $\alpha\in\C$.\\
+Exercise: define $e=\lim_{n\to\infty} \left(1+\frac{1}{n}\right)^n$.\\
+Show that $e=\exp\left(1\right)$, $e^z=\exp\left(z\right)$.\\
+Need $e^z=e^w \iff z-w\in 2\pi\Z$ (what is $\pi$?)
+
+\subsection{Trigonometric and Hyperbolic functions}
+\begin{defi}
+Define functions $\sin,\cos,\sinh,\cosh:\C\to\C$:
+\begin{equation*}
+\begin{aligned}
+\sin z &= \frac{e^iz-e^-iz}{2i} = \sum_{n=0}^\infty \frac{\left(-1\right)^n z^{2n+1}}{\left(2n+1\right)!} = z-\frac{z^3}{6}+\frac{z^5}{120}-...\\
+\cos z &= \frac{e^iz+e^-iz}{2} = \sum_{n=0}^\infty \frac{\left(-1\right)^n z^{2n}}{\left(2n\right)!} = 1-\frac{z^2}{2}+\frac{z^4}{24}-...\\
+\sinh z &= \frac{e^z-e^-z}{2} = \sum_{n=0}^\infty \frac{z^{2n+1}}{\left(2n+1\right)!}\\
+\cosh z &= \frac{e^z+e^-z}{2} = \sum_{n=0}^\infty \frac{z^{2n}}{\left(2n\right)!}
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{prop} (Properties of trigonometric functions)\\
+1) If $f$ is any of these trigonometric functions, then $\overline{f\left(z\right)}>f\left(\overline{z}\right)$.\\
+Also $f\left(-z\right)=-f\left(z\right)$ for $f=\sin, \sinh$ (odd),\\
+$f\left(-z\right)=f\left(z\right)$ for $f=\cos,\cosh$ (even),\\
+$\sin\left(0\right) =\sinh\left(0\right) = 0$, $\cos\left(0\right) = \cosh \left(0\right) = 1$.\\
+
+2)
+\begin{equation*}
+\begin{aligned}
+\sin\left(z+w\right)&=\sin z\cos w + \cos z \sin w, \sin\left(2z\right)=2\sin z\cos z\\
+\cos\left(z+w\right)&=\cos z\cos w - \sin z \sin w, \cos\left(2z\right)=\cos^2 z-\sin^2 z\\
+\sinh \left(z+w\right)&=\sinh z\cosh w + \cosh z\sinh w, \sinh \left(2z\right)=2\sinh z\cosh z\\
+\cosh\left(z+w\right)&=\cosh z\cosh w + \sinh z\sinh w, \cosh\left(2z\right)=\cosh^2 z+\sinh^2 z.
+\end{aligned}
+\end{equation*}
+3)
+\begin{equation*}
+\begin{aligned}
+1&=\cos\left(0\right)=\cos^2 z+\sin^2 z\\
+1&=\cosh\left(0\right) = \cosh^2 z - \sinh^2 z
+\end{aligned}
+\end{equation*}
+4)
+\begin{equation*}
+\begin{aligned}
+e^{iz} &= \cos z + i\sin z\\
+e^z &= \cosh z + \sinh z
+\end{aligned}
+\end{equation*}
+5) All the four functions are complex differentiable, with
+\begin{equation*}
+\begin{aligned}
+\sin'z = \cos z, \cos'z = -\sin z, \sinh'z = \cosh z, \cosh' z= \sinh z.
+\end{aligned}
+\end{equation*}
+\begin{proof} Immediate from the previous theorem.
+\end{proof}
+\end{prop}
+
+This implies that $\sin x, \cos x \in \R$ for $x\in\R$.\\
+Since $\cos^2 x + \sin^2 x = 1$, we have $\cos x, \sin x \in [-1,1]$.\\
+Have functions $\sin,\cos: \R \to [-1,1]$\\
+\begin{equation*}
+\begin{aligned}
+\cos x &= \sum_{n=0}^\infty \left(-1\right)^n \frac{x^{2n}}{\left(2n\right)!} = 1-\frac{x^2}{2} + \frac{x^4}{24}+\left(-\frac{x^6}{6!}+\frac{x^8}{8!}\right) + \left(-\frac{-x^10}{10!} + \frac{x^12}{12!}\right)+...
+\end{aligned}
+\end{equation*}
+At $x=2$, each term in the brackets is negative.\\
+So 
+\begin{equation*}
+\begin{aligned}
+\cos\left(z\right) < 1-\frac{2^2}{2}+\frac{2^4}{4!} = 1-2+\frac{16}{84}<0
+\end{aligned}
+\end{equation*}
+Since $\cos \left(0\right)=1>0$ and $\cos$ is continuous, by IVT
+\begin{equation*}
+\begin{aligned}
+\exists z\in\left(0,2\right) s.t. \cos\left(z\right)=0.
+\end{aligned}
+\end{equation*}
+So $A=\left\{z\geq 0|\cos\left(z\right)=0\right\} \neq \phi$ is bounded below by 0, so $\inf A$ exists.\\
+
+\begin{defi}
+$\pi = 2\times \inf A$, i.e. $\frac{\pi}{2} = \inf A$.
+\end{defi}
+Claim:
+\begin{equation*}
+\begin{aligned}
+\cos\frac{\pi}{2} = 0
+\end{aligned}
+\end{equation*}
+and so $\frac{\pi}{2}\geq 0$, and it is the least positive zero of $\cos$.\\
+\begin{proof}
+$\forall n\in\N$, $\frac{\pi}{2}+\frac{1}{n} > \inf A$, so $\exists x_n \in A$ s.t. $\frac{\pi}{2} + \frac{1}{n} > x_n \geq \frac{\pi}{2}$.\\
+So $x_n \to \frac{\pi}{2}$ and have $\cos \left(x_n\right) \to \cos\frac{\pi}{2}$.($\cos$ is continuous). So $\cos\frac{\pi}{2} = 0$.\\
+$\cos\left(x\right)>0$ for $x\in\left(0,\frac{\pi}{2}\right)$. So $\sin'\left(x\right)=\cos x<0$ and hence $\sin$ is strictly increasing on $[0,\frac{\pi}{2}]$.
+\end{proof}
+So $\sin^2\frac{\pi}{2} = 1-\cos^2\frac{\pi}{2}=1$, so $\sin\frac{\pi}{2} = 1$.\\
+And $\sin x>0$ on $\left(0,\frac{\pi}{2}\right)$ and hence $\cos$ is strictly decreasing on $[0,\frac{\pi}{2}]$.\\
+$\sin\pi = 2\sin\frac{\pi}{2}\cos\frac{\pi}{2}=0$, $\cos\pi=\cos^2\frac{\pi}{2}-\sin^2\frac{\pi}{2}=-1$.\\
+$\sin\left(\pi-x\right)=\sin\pi\cos\left(-x\right)+\cos\pi\sin\left(-x\right)=\sin x$.\\
+$x\to\frac{\pi}{2}+x$, $\sin\left(\frac{\pi}{2}-x\right) =\sin\left(\frac{\pi}{2}+x\right)$;\\
+$x\to -x$, $\sin\left(\pi+x\right)=\sin\left(-x\right)=-\sin\left(x\right)=-\sin\left(\pi+x\right)$;\\
+$\sin\left(2\pi+x\right)=-\sin\left(-x\right)=\sin x$.\\
+So $\sin\left(2\pi n+x\right)=\sin x \forall x\in \R \forall n\in\Z$.\\
+$\sin\left(x+\frac{\pi}{2}\right)=\sin x\cos\frac{\pi}{2} + \cos x \sin \frac{\pi}{2} = \cos x \implies$ usual properties of $\cos$ (symmetry, periodicity).
+
+\begin{prop}
+For $z\in\C,e^z=1 \iff z\in2\pi i \Z$.\\
+So $e^z = e^w \iff z-w\in2\pi i\Z$.
+\begin{proof}
+If $z=2\pi in,n\in \Z$ then
+\begin{equation*}
+\begin{aligned}
+e^z &= e^{\left(2\pi n\right)}i\\
+&= \cos\left(2\pi n\right)+2\sin\left(2\pi n\right)\\
+&= \cos\left(0\right)+i\sin\left(0\right)\\
+&=1.
+\end{aligned}
+\end{equation*}
+Conversely, assume $e^z=1$ and write $z=x+iy$, $x,y\in\R$,
+\begin{equation*}
+\begin{aligned}
+1=e^z=e^x e^{iy}
+\end{aligned}
+\end{equation*}
+taking modulus,
+\begin{equation*}
+\begin{aligned}
+1=e^x
+\end{aligned}
+\end{equation*}
+So$x=0$.\\
+So $1=e^{iy}=\cos\left(y\right)+i\sin\left(y\right)$ and hence $\cos\left(y\right) = 1$.\\
+Since $\cos$ is strictly decreasing on $[0,\pi]$, we have
+\begin{equation*}
+\begin{aligned}
+\cos t = 1, t\in[0,\pi] \iff t=0
+\end{aligned}
+\end{equation*}
+Since $\cos$ is symmetric in $x=\pi$, for $t\in[0,2\pi)$,
+\begin{equation*}
+\begin{aligned}
+\cos t=1 \iff t=0
+\end{aligned}
+\end{equation*}
+Now choose $n\in\Z$ s.t. $y-2\pi n\in[0,2\pi)$.\\
+Then $\cos\left(y-2\pi n\right)=\cos\left(y\right)=1$ and so $y-2\pi n = 0$. Hence $z\in 2\pi i\Z$.
+\end{proof}
+\end{prop}
+
+For $x\in\R$,
+\begin{equation*}
+\begin{aligned}
+\sinh x&=\frac{e^x-e^{-x}}{2} \in \R, \sinh:\R\to\R\\
+\cosh x&=\frac{e^x+e^{-x}}{2} \in \R, \cosh:\R\to\R
+\end{aligned}
+\end{equation*}
+$\cosh x>0$, $\sinh'\left(x\right)=\cosh\left(x\right)$. So $\sinh$ is strictly increasing.\\
+$\cosh'\left(x\right)=\sinh\left(x\right) > 0$ for $x>0$.\\
+So $\cosh$ is strictly increasing on $[0,\infty)$.\\
+$\cosh x > \sinh x$, and\\
+\begin{equation*}
+\begin{aligned}
+\frac{\cosh x}{\sinh x} = \frac{1+e^{-2x}}{1-e^{-2x}} \to 1
+\end{aligned}
+\end{equation*}
+as $x\to\infty$.\\
+Define $\tan z = \frac{\sin z}{\cos z}$, $\tanh z = \frac{\sinh z}{\cosh z}$.
+
+\subsection{Derivative of higher orders}
+\begin{defi}
+Let $A\subset \R, f:A\to\R$ be a function.\\
+For $a\in A$, say $f$ is twice differentiable at $a$ if $f$ is defined and differentiable on some open interval $I$ containing $a$ ($I\subset A$), and $f':I\to \R$, $x\to f'\left(x\right)$ is differentiable at $a$.
+The second derivative of $f$ at $a$ is $\left(f'\right)'\left(a\right)$.\\
+We denote this by $f''\left(a\right)$ or $f^{\left(2\right)} \left(a\right)$ (also sometimes write $f^{\left(1\right)}$ for $f'$,$f^{\left(0\right)}$ for $f$).\\
+$f$ is twice differentiable on $A$ if $f$ is twice differentiable at every $a\in A$, then the second derivative of $f$ is the function $f'':A\to \R, x\to f''\left(x\right)$.\\
+In this case $\forall a\in A \exists r>0, \left(a-r,a+r\right)\subset A$.\\
+Typically $A=\R$ or some open interval or $\R \backslash \left\{0\right\}$.\\
+
+In general for $n\geq 2$, $f$ is $n$ times differentiable at $a$ if $f$ is $n-1$ times differentiable on some open interval $I$ containing $a$, and $f^{\left(n-1\right)}:I\to \R, x \to f^{\left(n-1\right)} \left(x\right)$ is differentiable at $a$. We write $f^{\left(n\right)}\left(a\right)$ for $\left(f^{\left(n-1\right)}\right)'\left(a\right)$ called the $n^{th}$ derivative of $f$ at $a$.\\
+$f$ is $n$ times differentiable on $A$ if $f$ is $n$ times differentiable at every $a\in A$. Then the $n^{th}$ derivative of $f$ on $A$ is the function: $f^{\left(n\right)}:A \to \R, x \to f^{\left(n\right)}\left(x\right)$.\\
+$f$ is infinitely differentiable on $A$ (or $C^\infty$) if $f$ is $n$ times differentiable on $A$ $\forall n\in \N$.\\
+$f$ is $n$ times continuously differentiable on $A$ (or $C^n$) if $f$ is $n$ times differentiable on $A$, and $f^{\left(n\right)}: A\to\R$ is continuous.
+\end{defi}
+
+\begin{eg}
+Let
+\begin{equation*}
+\begin{aligned}
+p\left(x\right) = a_0 + a_1 x + a_2 x^2 + ... + a_n x^n 
+\end{aligned}
+\end{equation*}
+be a polynomial. Then
+\begin{equation*}
+\begin{aligned}
+p'\left(x\right)=a_1 + 2a_2 x + 3a_3 x^2 + ... + n a_n x^{n-1}
+\end{aligned}
+\end{equation*}
+is also a polynomial. So by induction, $p$ is $C^\infty$.
+\end{eg}
+
+\begin{thm}
+Let $n\in \N$, $a\in \R$, let $f$ be $n$ times differentiable at $a$. Then $\exists \delta > 0$ and a function $R_n:\left(-\delta,\delta\right)\to\R$ s.t.
+\begin{equation}\label{eq:1}
+\begin{aligned}
+f\left(a+h\right)&=f\left(a\right)+f'\left(a\right)h + \frac{f''\left(a\right)}{2}h^2 + ... + \frac{f^{\left(n\right)}\left(a\right)}{n!} + R_n\left(h\right)
+\end{aligned}
+\end{equation}
+for all $h\in\left(-\delta,\delta\right)$, and $R_n\left(h\right) = o\left(h^n\right)$, i.e.
+\begin{equation*}
+\begin{aligned}
+\frac{R_n\left(h\right)}{h^n} \to 0
+\end{aligned}
+\end{equation*}
+as $h\to 0$.
+\begin{proof}
+By definition, $\exists \delta > 0$ s.t. $f$ is defined and is $n-1$ times differentiable on $\left(a-\delta,a+\delta\right)$, and
+\begin{equation*}
+\begin{aligned}
+f^{\left(n\right)}\left(a\right) &= \lim_{h\to 0} \frac{f^{\left(n-1\right)} \left(a+h\right)-f^{\left(n-1\right)} \left(a\right)}{h}.
+\end{aligned}
+\end{equation*}
+We define
+\begin{equation*}
+\begin{aligned}
+R_n\left(n\right) &= f\left(a+h\right)-\sum_{k=0}^n \frac{f^{\left(k\right)} \left(a\right)}{k!}h^k, |h| < \delta
+\end{aligned}
+\end{equation*}
+So (\ref{eq:1}) holds.\\
+$\bullet n=1:$
+\begin{equation*}
+\begin{aligned}
+\frac{R_1\left(h\right)}{h} = \frac{f\left(a+h\right)-f\left(a\right)}{h}-f'\left(a\right) \to 0
+\end{aligned}
+\end{equation*}
+$\bullet n\geq 2:$ $R_n\left(h\right)$ is ($n-1$) times differentiable, and
+\begin{equation*}
+\begin{aligned}
+R_n^{\left(k\right)}\left(h\right) &= f^{\left(k\right)}\left(a+h\right)\\
+&=\sum_{l=k}^n \frac{f^{\left(l\right)}\left(a\right)}{l!} l\left(l-1\right)...\left(l-k+1\right)h^{l-k},\\
+R_n^{\left(k\right)}\left(0\right) &= 0 \text{  }\forall k=0,1,...,n-1.
+\end{aligned}
+\end{equation*}
+Now let
+\begin{equation*}
+\begin{aligned}
+g\left(h\right)&=h^n,\\
+g^{\left(k\right)}\left(h\right)&=n\left(n-1\right)...\left(n-k+1\right)h^{n-k},\\
+g^{\left(k\right)}\left(0\right)&=0,\\
+g^{\left(k\right)}\left(h\right)&\neq 0 \text{  }\forall 0<|h|<\delta.
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+\frac{R_n^{\left(n-1\right)}\left(h\right)}{g^{\left(n-1\right)}\left(h\right)} &= \frac{f^{\left(n-1\right)}\left(a+h\right)-f^{\left(n-1\right)}\left(a\right)-hf^{\left(n\right)}\left(a\right)}{\left(n!\right)h}\\
+&= \left(\frac{1}{n!}\right) \left[\frac{f^{\left(n-1\right)}\left(a+h\right)-f^{\left(n-1\right)}\left(a\right)}{h}-f^{\left(n\right)}\left(a\right)\right] \to 0
+\end{aligned}
+\end{equation*}
+as $h\to 0$.\\
+So apply L' H$\hat{o}$pital's rule $\left(n-1\right)$ times, we obtain
+\begin{equation*}
+\begin{aligned}
+\frac{R_n\left(h\right)}{h^n}\to 0
+\end{aligned}
+\end{equation*}
+as $h\to 0$.
+\end{proof}
+\end{thm}
+
+Suppose $f$ is a $C^\infty$ function. Then the previous theorem applies for all $n$. So does
+\begin{equation*}
+\begin{aligned}
+f\left(a+h\right) &= \sum_{k=0}^n \frac{f^{\left(k\right)}\left(a\right)}{k!}h^k + R_n\left(h\right)\\
+\implies(?) f\left(a+h\right)&= \sum_{k=0}^\infty \frac{f^{\left(k\right)}\left(a\right)}{k!}h^k
+\end{aligned}
+\end{equation*}
+(called the \emph{Taylor series}) on $\left(-\delta,\delta\right)$ on some $\delta >0$?
+
+\begin{eg}
+$f=\exp:\R \to \R$.\\
+$f'=f$, so $f$ is $C^\infty$ and $f^{\left(n\right)} = f$ $\forall n$.\\
+Taylor series at 0:
+\begin{equation*}
+\begin{aligned}
+\sum_{k=0}^\infty \frac{1}{k!}h^k = \exp\left(h\right)
+\end{aligned}
+\end{equation*}
+for all $h\in\R$...
+\end{eg}
+
+In general the answer is NO!
+\begin{prob}
+$R_n$ depends on $n$. What if $R_n\left(h\right)=n^{n+1}h^{n+1}$?\\
+For all $n$, $\frac{R_n\left(h\right)}{h^n}\to 0$ as $h\to 0$.\\
+For fixed $h\neq 0$, $R_n\left(h\right) \not\to 0$ as $n\to \infty$.
+\end{prob}
+
+\begin{thm}(Taylor's theorem with the Lagrange remainder)\\
+Let $a\in\R$, $\delta>0$, $n\in\N$. Assume $f:\left(a-\delta,a+\delta\right)\to\R$ is $n$ times differentiable. Then $\forall h\in\left(-\delta,\delta\right)$, $\exists \theta\in\left(0,1\right)$ s.t.
+\begin{equation*}
+\begin{aligned}
+f\left(a+h\right) = f\left(a\right)+\sum_{k=1}^{n-1} \frac{f^{\left(k\right)}\left(a\right)}{k!}
+h^k + \frac{f^{\left(n\right)}\left(a+\theta h\right)}{n!}h^n.
+\end{aligned}
+\end{equation*}
+\begin{rem}
+$\bullet$ when $n=1$:
+\begin{equation*}
+\begin{aligned}
+&f\left(a+h\right) = f\left(a\right) + f'\left(a+\theta h\right)h,\\
+&\frac{f\left(a+h\right)-f\left(a\right)}{h} = f'\left(a+\theta h\right)
+\end{aligned}
+\end{equation*}
+while $a+\theta h$ is between $a$ and $a+h$. So this is MVT!\\
+$\bullet$ (\ref{eq:1}) says
+\begin{equation*}
+\begin{aligned}
+&f\left(a+h\right)=f\left(a\right)+\sum_{k=1}^n \frac{f^{\left(k\right)}\left(a\right)}{k!}h^k +R_n\left(h\right),\\
+&R_n\left(h\right)=\frac{h^n}{n!}\left(f^{\left(n\right)}\left(a+\theta h\right) - f^{\left(n\right)} \left(a\right)\right)
+\end{aligned}
+\end{equation*}
+This is not obviously $o\left(h^n\right)$.
+\end{rem}
+\begin{proof}
+For $n=1$ the theorem is just MVT.\\
+For $n \geq 2$, fix $h\in\left(-\delta,\delta\right)$, WLOG $h\neq 0$. Choose $A\in \R$ s.t.
+\begin{equation*}
+\begin{aligned}
+f\left(a+h\right) &= f\left(a\right)+\sum_{k=1}^{n-1} \frac{f^{\left(k\right)}\left(a\right)}{k!}h^k + \frac{A h^n}{n!}
+\end{aligned}
+\end{equation*}
+want to prove:
+\begin{equation*}
+\begin{aligned}
+A=f^{\left(n\right)} \left(a+\theta h\right)
+\end{aligned}
+\end{equation*}
+for some $\theta \in \left(0,1\right)$.\\
+Define
+\begin{equation*}
+\begin{aligned}
+g\left(t\right)&=f\left(t\right)+\sum_{k=1}^{n-1}\frac{f^{\left(k\right)}\left(t\right)}{k!}\left(a+h-t\right)^k + \frac{A}{n!}\left(a+h-t\right)^n
+\end{aligned}
+\end{equation*}
+For $t$ in the closed interval between $a$ and $a+b$.\\
+$g$ is continuous differentiable on the open interval between $a$ and $a+h$.\\
+Taylor expansion of $f$ about $t$:
+\begin{equation*}
+\begin{aligned}
+f\left(t+u\right)=f\left(t\right) = \sum_{k=1}^{n-1} \frac{f^{\left(k\right)} \left(t\right)}{k!} u^k + \text{  error}
+\end{aligned}
+\end{equation*}
+when $u=a+h-t$,
+\begin{equation*}
+\begin{aligned}
+f\left(a+h\right)=f\left(t\right) + \sum_{k=1}^{n-1} \frac{f^{\left(k\right)} \left(t\right)}{k!}\left(a+h-t\right)^k + \text{  error}
+\end{aligned}
+\end{equation*}
+Now
+\begin{equation*}
+\begin{aligned}
+g\left(a\right)=f\left(a+h\right),\\
+g\left(a+h\right)=f\left(a+h\right)
+\end{aligned}
+\end{equation*}
+By Rolle's theorem, $\exists \theta \in \left(0,1\right)$ s.t. $g'\left(a+\theta h\right)=0$.
+\begin{equation*}
+\begin{aligned}
+g'\left(t\right) &= f'\left(t\right) + \sum_{k=1}^{n-1} \left[-\frac{f^{\left(k\right)} \left(t\right)}{\left(k-1\right)!}\left(a+h-t\right)^{k-1} + \frac{f^{\left(k+1\right)}\left(t\right)}{k!}\left(a+h-t\right)^k\right] - A\frac{\left(a+h-t\right)^{n-1}}{\left(n-1\right)!}\\
+&= \frac{f^{\left(n\right)} \left(t\right)}{\left(n-1\right)!}\left(a+h-t\right)^{n-1} - A \frac{\left(a+h-t\right)^{n-1}}{\left(n-1\right)!}
+\end{aligned}
+\end{equation*}
+So $g'\left(a+\theta h\right) = 0$, which implies $A=f^{\left(n\right)} \left(a+\theta h\right)$.
+\end{proof}
+\end{thm}
+
+\begin{eg}
+Fix $\alpha \in \R$, $f:\left(-1,\infty\right)\to\R$.
+\begin{equation*}
+\begin{aligned}
+f\left(x\right) &= \left(1+x\right)^\alpha = \exp\left(\alpha \log\left(1+x\right)\right)\\
+f'\left(x\right) &= \alpha \left(1+x\right)^{\alpha-1}\\
+f''\left(x\right) &= \alpha\left(\alpha-1\right)\left(1+x\right)^{\alpha-2}\\
+f^{\left(n\right)}\left(x\right) &= \alpha\left(\alpha - 1\right)...\left(\alpha - n + 1\right)\left(1+x\right)^{\alpha-n}
+\end{aligned}
+\end{equation*}
+So $f$ is $C^\infty$ on $\left(-1,\infty\right)$ and its Taylor series at 0 is
+\begin{equation*}
+\begin{aligned}
+\sum_{n=0}^\infty {\alpha \choose n} x^n = 1+\alpha x + \frac{\alpha\left(\alpha-1\right)}{2}x^2+...
+\end{aligned}
+\end{equation*}
+This converges to $f\left(x\right)$ $\forall x\in\left(-1,1\right)$ (binomial theorem).
+\end{eg}
+\begin{rem}
+$\bullet$ $\alpha \in \Z, \alpha \geq 0$, then $\alpha^{\underline{n}} = 0 \forall n > \alpha$.(c.f. number and sets, falling power)\\
+So
+\begin{equation*}
+\begin{aligned}
+\sum_{n=0}^\infty {\alpha \choose n} x^n = \sum_{n=0}^\alpha {\alpha \choose n} x^n = \left(1+x\right)^n
+\end{aligned}
+\end{equation*}
+$\bullet$ $\alpha = -1$:
+\begin{equation*}
+\begin{aligned}
+\left(1+x\right)^{-1} = \frac{1}{1-\left(-x\right)} = \sum_{n=0}^\infty \left(-x\right)^n\\
+\alpha^{\underline{n}} = \left(-1\right)\left(-2\right)...\left(-n\right) = \left(-1\right)^n n!
+\end{aligned}
+\end{equation*}
+Proof for general $\alpha$ deferred until Chapter 6(integration).\\
+We an give a proof for $|x| < \frac{1}{2}$.
+From the previous theorem:
+\begin{equation*}
+\begin{aligned}
+f\left(x\right) = \sum_{k=0}^n {\alpha \choose k} x^k + {\alpha \choose n+1} \left(1+\theta_n x\right)^{n+1} x^{n+1}
+\end{aligned}
+\end{equation*}
+for some $\theta_n\in\left(0,1\right)$.
+\begin{equation*}
+\begin{aligned}
+|\frac{x^{n+1}}{\left(n+1\right)!}\alpha^{\underline{n+1}}\left(1+\theta_n x\right)^{\alpha-n-1}| \leq C\cdot n^m \left(2|x|\right)^n
+\end{aligned}
+\end{equation*}
+(for $m<\in \N, m>|\alpha|$)
+\begin{equation*}
+\begin{aligned}
+|\frac{x}{1+\theta_n x} \leq \frac{|x|}{1-|\theta_n x|}\leq 2|x|
+\end{aligned}
+\end{equation*}
+\end{rem}
+
+\newpage
+
+\section{Power series}
+\begin{defi}
+A series of the form
+\begin{equation*}
+\begin{aligned}
+\sum_{n=0}^\infty a_n \left(z-a\right)^n
+\end{aligned}
+\end{equation*}
+is a power series about $a$. Here $\left(a_n\right)_{n=0}^\infty$ is a complex sequence, $a,z\in\C$. Think of $a,\left(a_n\right)$ as fixed and $z$ as a variable.\\
+Consider
+\begin{equation*}
+\begin{aligned}
+D=\left\{z\in\C | \sum_{n=0}^\infty a_n \left(z-a\right)^n \text{  converges  } \right\}
+\end{aligned}
+\end{equation*}
+and define $f:D\to \C$,
+\begin{equation*}
+\begin{aligned}
+f\left(z\right)=\sum_{n=0}^\infty a_n \left(z-a\right)^n
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{eg}
+1) $\sum_{n=0}^\infty \frac{1}{n!}z^n$. $a_n = \frac{1}{n!}$, $a=0$.\\
+Here $D=\C$ and $f=\exp$.\\
+2) $\sum_{n=1}^\infty \frac{-1}{n}\left(1-z\right)^n$. $a=1$, $a_n = \frac{\left(-1\right)^{n-1}}{n}$, $a_0 = 0$ (note $\left(1-z\right)^n = \left(-1\right)^n \left(z-1\right)^n$).\\
+3) $\sum_{n=1}^\infty n^n z^n$. $a_n = n$, $n\geq 1$, $a_0 = 0$, $a=0$.\\
+D=$\left\{0\right\}$: given $z\neq 0$, $\exists N$ s.t. $|Nz|>1$. Then $\forall n\geq N$, $|\left(nz\right)^n| \geq 1$. So $\left(nz\right)^n \not\to 0$.
+\end{eg}
+
+\begin{notation}
+$D\left(a,r\right)=\left\{z\in\C||z-a|<r\right\}$  the open disc with centre $a$, radius $r$.\\
+$\bar{D}\left(a,r\right)=\left\{z\in\C||z-a|<r\right\}$  the closed disc with centre $a$, radius $r$.
+\end{notation}
+
+Note: $\left\{z|\sum a_n\left(z-a\right)^n \text{  converges  }\right\} = \left\{z|\sum a_n z^n \text{  converges  }\right\} + a$. So WLOG $a=0$.
+
+\begin{thm}
+Suppose $\sum_{n=0}^\infty a_n w^n$ converges. Then $\forall z\in\C$, if $|z| < |w|$, then $\sum_{n=0}^\infty a_n z^n$ converges absolutely.
+\begin{proof}
+Since $\sum a_n w^n$ converges, $a_n w^n \to 0$ as $n\to \infty$.\\
+So $\exists N \leq \N$, $\forall n \geq N$, $|a_n w^n| \leq 1$. Then $\forall n\geq \N$,
+\begin{equation*}
+\begin{aligned}
+|a_n z^n| = |a_n w^n \left(\frac{z}{w}\right)^n| \leq |\frac{z}{w}|^n
+\end{aligned}
+\end{equation*}
+This converges as $|\frac{z}{w}|<1$ (geometric series). So by comparison test, $\sum a_n z^n$ converges absolutely.
+\end{proof}
+\end{thm}
+
+\begin{conv}
+1) Let $\left[0,\infty\right] = \left[0,\infty\right) \cup \left\{ \infty\right\}$.\\
+Extend $\leq$ to $\left[0,\infty\right]$ by $x\leq \infty$ $\forall x\in\left[0,\infty\right]$, so $x<\infty$ $\forall x\in\left[0,\infty\right]$.\\
+2) So $|z|<\infty$ $\forall z<\C$, and $\not\exists z\in\C, |z|>\infty$. Write $D\left(a,\infty\right) = \C$ by convention.\\
+3) $A\subset\left[0,\infty\right)$, $a\neq \phi$. If $a$ is not bounded above then $\forall C \geq 0$, $\exists a\in A$ s.t. $a>C$. We define $\sup A = \infty$.
+\end{conv}
+
+\begin{thm}
+For power series
+\begin{equation*}
+\begin{aligned}
+\sum_{n=0}^\infty a_n\left(z-a\right)^n
+\end{aligned}
+\end{equation*}
+There exists a unique $R\in\left[0,\infty\right]$ s.t. $\forall z\in \C$, 
+\begin{equation*}
+\begin{aligned}
+&|z-a| < R \implies \sum_{n=0}^\infty a_n \left(z-a\right)^n \text{    converges absolutely},\\
+&|z-a| > R \implies \sum_{n=0}^\infty a_n \left(z-a\right)^n \text{    diverges.}
+\end{aligned}
+\end{equation*}
+\begin{proof}
+WLOG let $a=0$.\\
+$\bullet$ uniqueness: Suppose $R<S$ both work. Then fix $z\in\C$ with $R<|z|<S$.\\
+Definition of $R$ $\implies$ $\sum a_n z^n$ diverges;\\
+Definition of $S$ $\implies$ $\sum a_n z^n$ converges absolutely. Contradiction.\\
+$\bullet$ existence: Let
+\begin{equation*}
+\begin{aligned}
+A=\left\{|z| \mid \sum_{n=0}^\infty a_n z^n \text{   converges}\right\}
+\end{aligned}
+\end{equation*}
+$A\neq \phi$ as $0\in A$. Let $R=\sup A$ (recall that $\sup A=\infty$ when $A$ is not bounded above).\\
+Let $z\in\C$. If $|z|<R$, then $\exists w\in\C$ s.t. $|z|<|w|$ and $\sum_{n=0}^\infty a_n w^n$ converges. Hence by the previous theorem, $\sum_{n=0}^\infty a_n z^n$ converges absolutely.\\
+If $|z|>R$, then $|z| \in A$, so $\sum_{n=0}^\infty a_n z^n$ diverges.
+\end{proof}
+\end{thm}
+
+\begin{defi}
+$R$ is called the \emph{radius of convergence} of $\sum_{n=0}^\infty a_n \left(z-a\right)^n$.
+\end{defi}
+
+\begin{rem}
+This theorem says nothing about convergence or otherwise of the power series when $|z-a|=R$.\\
+\end{rem}
+
+\begin{eg}
+$\bullet$ 1)
+\begin{equation*}
+\begin{aligned}
+\sum_{n=0}^\infty z^n
+\end{aligned}
+\end{equation*}
+converges if $|z|<1$ (to $\frac{1}{1-z}$).\\
+When $|z| \geq 1$, then $|z^n|\geq 1$ $\forall n$, so $z^n \not\to 0$ and $\sum z^n$ is divergent.\\
+It follows that $R=1$.\\
+$\bullet$ 2)
+\begin{equation*}
+\begin{aligned}
+\sum_{n=1}^\infty \frac{z^n}{n}
+\end{aligned}
+\end{equation*}
+converges if $z=-1$ by the alternating series test. So $R\geq 1$.\\
+On the other hand, this diverges when $z=1$ (harmonic series). So $R\leq 1$.\\
+So $R=1$.\\
+(in fact the series converges $\forall z$ s.t. $|z|=1, z\neq 1$).\\
+$\bullet$ 3)
+\begin{equation*}
+\begin{aligned}
+\sum_{n=1}^\infty \frac{z^n}{n^2}
+\end{aligned}
+\end{equation*}
+Here
+\begin{equation*}
+\begin{aligned}
+|z|\leq 1 \implies |\frac{z^n}{n^2}|\leq\frac{1}{n^2}
+\end{aligned}
+\end{equation*}
+So by the comparison test, the series converges absolutely. So $R\geq 1$.\\
+When $|z|>1$ then $|\frac{z^n}{n^2}|=\frac{|z^n|}{n^2} \to \infty$ as $n\to\infty$. So the series diverges. So $R\leq 1$.\\
+So $R=1$ (the series converges absolutely for all $|z|=1$).
+\end{eg}
+
+\begin{thm}
+Assume
+\begin{equation*}
+\begin{aligned}
+\sum_{n=0}^\infty a_n \left(z-a\right)^n
+\end{aligned}
+\end{equation*}
+has radius of convergence $R>0$.\\
+Let $f: D\left(a,R\right) \to \C$ ($D\left(a,R\right)$ is the disc with centre $a$ and radius $R$) be defined by
+\begin{equation*}
+f\left(z\right) = \sum_{n=0}^\infty a_n \left(z-a\right)^n
+\begin{aligned}
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+\sum_{n=1}^\infty n a_n \left(z-a\right)^{n-1}
+\end{aligned}
+\end{equation*}
+also has radius of convergence $R$.\\
+Setting
+\begin{equation*}
+\begin{aligned}
+&g:D\left(a,R\right) \to \C,\\
+&g\left(z\right) = \sum_{n=1}^\infty n a_n \left(z-a\right)^{n-1}
+\end{aligned}
+\end{equation*}
+we have $f$ is complex differentiable on $D\left(a,R\right)$, and
+\begin{equation*}
+\begin{aligned}
+f'\left(z\right) = g\left(z\right) \forall z\in D\left(a,R\right).
+\end{aligned}
+\end{equation*}
+\begin{rem}
+So we can differentiate a power series term-by-term inside the radius of convergence. i.e.,
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dz}\sum_{n=0}^\infty = \sum_{n=0}^\infty \frac{d}{dz}
+\end{aligned}
+\end{equation*}
+But this is dangerous in general.
+\end{rem}
+\end{thm}
+
+\begin{coro}
+A power series is infinitely complex differentiable inside the radius of convergence.
+\end{coro}
+
+\begin{eg}(non-examinable)\\
+The previous theorem tells that $\exp$ is differentiable. We'll deduce that
+\begin{equation*}
+\begin{aligned}
+\exp\left(z+w\right) = \exp z \cdot \exp w
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Let
+\begin{equation*}
+\begin{aligned}
+f\left(z\right) = \exp\left(z\right)\cdot\exp\left(-z\right).
+\end{aligned}
+\end{equation*}
+So $f' \equiv 0$(?), i.e. $f \equiv 1$, so $\exp\left(-z\right) = \frac{1}{\exp\left(z\right)}$.\\
+Then fix $w$, $g\left(z\right) = \exp\left(z+w\right)\exp\left(-z\right)$. So $g' \equiv 0$, $g\equiv \exp w$.\\
+So $\forall z$,
+\begin{equation*}
+\begin{aligned}
+\exp\left(z+w\right)\exp\left(-z\right) = \exp w,\\
+\exp\left(z+w\right) = \exp\left(z\right) \exp\left(w\right)
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{eg}
+
+\begin{thm}(non-examinable)\\
+Suppose
+\begin{equation*}
+\begin{aligned}
+f: D\left(a,R\right) \to \C
+\end{aligned}
+\end{equation*}
+is complex differentiable. Then $\exists \left(a_n\right)_{n=0}^\infty$ in $\C$, s.t.
+\begin{equation*}
+\begin{aligned}
+f\left(z\right) = \sum_{n=0}^\infty a_n \left(z-a\right)^n \forall z\in D\left(a,R\right)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+WLOG let $a=0$. Fix $z\in D\left(0,R\right)$. Fix $\delta >0$ s.t. $|z|+\delta < R$ for $0<|h| < \delta$. Then
+\begin{equation}\label{eq:2}
+\begin{aligned}
+|\frac{f\left(z+h\right)-f\left(z\right)}{h} - g\left(z\right)| &= \sum_{n=1}^\infty |a_n| |\left[\frac{\left(z+h\right)^n-z^n}{h} - nz^{n-1}\right]|
+\end{aligned}
+\end{equation}
+Then look at the second term, i.e. (let $\delta = |h|$)
+\begin{equation*}
+\begin{aligned}
+|\frac{\left(z+h\right)^n-z^n-hnz^{n-1}}{h}| &\leq \sum_{k=2}^n {n \choose k} |z|^{n-k} \delta^{k}\frac{|h|}{\delta^2}\\
+&\leq \left(|z|+\delta\right)^n \frac{|h|}{\delta^2}
+\end{aligned}
+\end{equation*}
+So (\ref{eq:2}) is at most
+\begin{equation*}
+\begin{aligned}
+\left(\sum_{n=0}^\infty |a_n| \left(|z|+\delta\right)^n\right) \frac{|h|}{\delta^2}\to 0
+\end{aligned}
+\end{equation*}
+as $h\to 0$.
+\end{proof}
+\end{thm}
+
+\begin{coro}(non-examinable)\\
+If
+\begin{equation*}
+\begin{aligned}
+f: D\left(a,R\right) \to \C
+\end{aligned}
+\end{equation*}
+is complex differentiable, then it is infinitely complex differentiable (holomorphic).\\
+\begin{equation*}
+\begin{aligned}
+f^{\left(k\right)} \left(z\right) = \sum_{n=k}^\infty n\left(n-1\right)\left(n-2\right) ... \left(n-k+1\right) a_n \left(z-a\right)^{n-k}
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+f^{\left(k\right)} \left(a\right) = n! a_n
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+f\left(z\right) = \sum_{n=0}^\infty \frac{f^{\left(n\right)} \left(a\right)}{n!}\left(z-a\right)^n
+\end{aligned}
+\end{equation*}
+is the taylor series!
+\end{coro}
+
+\begin{coro}(non-examinable)\\
+Let
+\begin{equation*}
+\begin{aligned}
+f,g: D\left(a,R\right) \to \C
+\end{aligned}
+\end{equation*}
+be complex differentiable.\\
+Suppose $\exists \delta > 0\left(\delta < R\right)$ s.t.
+\begin{equation*}
+\begin{aligned}
+f \equiv g \text{  on  } D\left(a,\delta\right)
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+f \equiv g \text{  on  } D\left(a,R\right).
+\end{aligned}
+\end{equation*}
+\end{coro}
+
+\newpage
+\section{Integration}
+Suppose $\left[a,b\right]$ is a closed bounded interval with $a\leq b$, and
+\begin{equation*}
+\begin{aligned}
+f: \left[a,b\right] \to \R
+\end{aligned}
+\end{equation*}
+is a bounded function, i.e. $\exists C$ s.t. $|f\left(t\right)| \leq C$ $\forall t\in \left[a,b\right]$.\\
+
+A \emph{dissection of $\left[a,b\right]$} is a finite sequence
+\begin{equation*}
+\begin{aligned}
+\D: a=x_0 < x_1 < x_2 < ... < x_n = b
+\end{aligned}
+\end{equation*}
+The \emph{lower sum of $f$ w.r.t. $\D$} is
+\begin{equation*}
+\begin{aligned}
+\S_{\D} \left(f\right) = \sum_{k=1}^n \left(x_k - x_{k-1}\right) \inf f\left[x_{k-1},x_k\right] 
+\end{aligned}
+\end{equation*}
+The \emph{upper sum of $f$ w.r.t. $\D$} is
+\begin{equation*}
+\begin{aligned}
+S_{\D} \left(f\right) = \sum_{k=1}^n \left(x_k - x_{k-1}\right) \sup f\left[x_{k-1},x_k\right] 
+\end{aligned}
+\end{equation*}
+\begin{notation}
+For $A\subset \left[a,b\right]$,
+\begin{equation*}
+\begin{aligned}
+\sup_A f = \sup \left\{f\left(x\right)|x\in A\right\}
+\end{aligned}
+\end{equation*}
+\end{notation}
+
+Note that $\S_{\D}\left(f\right) \leq S_{\D}\left(f\right)$.
+\begin{defi}
+$\D'$ is a \emph{refinement} of $\D$ if it contains all the points in $\D$. Write $\D \leq \D'$.
+\end{defi}
+
+\begin{lemma}
+Let $f:\left[a,b\right]\to \R$ be a bounded function. Let $\D,\D'$ be dissections of $[a,b]$ with $\D \leq \D'$. Then
+\begin{equation*}
+\begin{aligned}
+\S_\D\left(f\right) \leq \S_{\D'}\left(f\right) \leq S_{\D'}\left(f\right) \leq S_\D\left(f\right).
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Say $\D: a=x_0 < x_1 < ... < x_n = b$.\\
+We may assume that $\D'$ has only one extra point $c$, then the rest can be done by induction.\\
+Choose $k$ s.t. $x_{k-1} < c < x_k$. Then
+\begin{equation*}
+\begin{aligned}
+\inf_{\left[x_{k-1},x_k\right]} f \cdot \left(x_k - x_{k-1}\right) &= \left(c-x_{k-1}\right) \cdot \inf_{\left[x_{k-1},x_k\right]} f + \left(x_k+c\right)\inf_{\left[x_{k-1},x_k\right]} f\\
+&\leq \left(c-x_{k-1}\right) \inf_{\left[x_{k-1},c\right]}  f + \left(x_k-c\right) \inf_{\left[c,x_k\right]} f
+\end{aligned}
+\end{equation*}
+We obtain
+\begin{equation*}
+\begin{aligned}
+\S_\D\left(f\right) \leq \S_{\D'} \left(f\right).
+\end{aligned}
+\end{equation*}
+Similarly,
+\begin{equation*}
+\begin{aligned}
+S_{\D'}\left(f\right) \leq S_\D \left(f\right)
+\end{aligned}
+\end{equation*}
+and we always have
+\begin{equation*}
+\begin{aligned}
+\S_{\D'} \left(f\right) \leq S_{\D'} \left(f\right)
+\end{aligned}
+\end{equation*}
+So done.
+\end{proof}
+\end{lemma}
+
+\begin{coro}
+If $\D_1$, $\D_2$ are two dissections of $\left[a,b\right]$, then
+\begin{equation*}
+\begin{aligned}
+\S_{\D_1}\left(f\right) \leq S_{\D_2} \left(f\right)
+\end{aligned}
+\end{equation*}
+Here $f$ is as in the previous lemma.
+\begin{proof}
+Let $D=\D_1 \cup \D_2$, the common refinement of $\D_1$ and $\D_2$, i.e. the union of the points of $\D_1$ and $\D_2$.\\
+By the previous lemma,
+\begin{equation*}
+\begin{aligned}
+\S_{\D_1}\left(f\right) \leq \S_{\D}\left(f\right) \leq S_{\D}\left(f\right) \leq S_{\D_2}\left(f\right).
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{coro}
+
+\begin{defi}
+Let $f:\left[a,b\right]\to \R$ be a bounded function.\\
+The \emph{upper (Riemann) integral} of $f$ on $\left[a,b\right]$ is
+\begin{equation*}
+\begin{aligned}
+\bar{\int_a^b} f = \inf_\D S_\D \left(f\right)
+\end{aligned}
+\end{equation*}
+i.e. (the inf taken over all dissections $\D$ of $\left[a,b\right]$.\\
+The \emph{lower (Riemann) integral} of $f$ on $\left[a,b\right]$ is
+\begin{equation*}
+\begin{aligned}
+\underline{\int_a^b} f = \sup_\D \S_\D\left(f\right)
+\end{aligned}
+\end{equation*}
+By the previous corollary, given a dissection $\D_1$, $\S_{\D_1} \left(f\right)$ is a lower bound of $\left\{S_\D \left(f\right)|\D \text{  any dissection of  }\left[a,b\right]\right\}$. So the upper integral exists and is at least $\S_{\D_1}\left(f\right)$.\\
+Since $\D_1$ was arbitrary, $\bar{\int_a^b} f$ is an upper bound of $\left\{\S_\D \left(f\right)|\D \text{  any dissection of  }\left[a,b\right]\right\}$. Hence $\underline{\int_a^b} f$ exists and
+\begin{equation*}
+\begin{aligned}
+\underline{\int_a^b} f \leq \bar{\int_a^b} f.
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{defi} (Integrability)\\
+Say $f$ is (Riemann) integrable on $\left[a,b\right]$ if it is bounded, and
+\begin{equation*}
+\begin{aligned}
+\underline{\int_a^b} f = \bar{\int_a^b} f
+\end{aligned}
+\end{equation*}
+We define the integral of $f$ on $\left[a,b\right]$ to be the common value of them, and denote it by
+\begin{equation*}
+\begin{aligned}
+\int_a^b f
+\end{aligned}
+\end{equation*}
+or
+\begin{equation*}
+\begin{aligned}
+\int_a^b f\left(t\right) dt.
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{prop}
+Suppose $f:\left[a,b\right]\to\R$ is integrable and let
+\begin{equation*}
+\begin{aligned}
+m=\inf_{\left[a,b\right]} f\\
+M=\sup_{\left[a,b\right]} f
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+m\left(b-a\right) \leq \int_a^b f \leq M\left(b-a\right)
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+|\int_a^b f| \leq \left(b-a\right) \sup_{\left[a,b\right]} |f|
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Consider $\D:a<b$. Then
+\begin{equation*}
+\begin{aligned}
+\S_\D \left(f\right) = m\left(b-a\right)\\
+S_\D\left(f\right) = M\left(b-a\right)
+\end{aligned}
+\end{equation*}
+In addition
+\begin{equation*}
+\begin{aligned}
+M&\leq \sup_{\left[a,b\right]} |f|\\
+m&\geq -\sup_{\left[a,b\right]} |f|
+\end{aligned}
+\end{equation*}
+So the result follows.
+\end{proof}
+\end{prop}
+
+\begin{eg}
+$\bullet$ 1) If $f\left(x\right)=c$ $\forall x\in \left[a,b\right]$ then $f$ is integrable, and
+\begin{equation*}
+\begin{aligned}
+\int_a^b f\left(t\right) dt = c\left(b-a\right)
+\end{aligned}
+\end{equation*}
+Note that $m=M=c$. Then
+\begin{equation*}
+\begin{aligned}
+c\left(b-a\right)=m\left(b-a\right) \leq \underline{\int_a^b}f\leq\bar{\int_a^b} f\leq M\left(b-a\right) = c\left(b-a\right)
+\end{aligned}
+\end{equation*}
+So the upper and lower integral are equal and the value is $c\left(b-a\right)$.
+\end{eg}
+
+$\bullet$ 2) $f:\left[0,1\right] \to \R$, $f\left(x\right) = x$.\\
+Consider
+\begin{equation*}
+\begin{aligned}
+\D_n: 0\leq\frac{1}{n}\leq\frac{2}{n}\leq...\leq\frac{n}{n}=1
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+\S_{\D_n}\left(f\right) = \sum_{k=1}^n \frac{1}{n}\frac{k-1}{n} = \frac{\left(n-1\right)n}{2n^2} = \frac{n-1}{2n} \to \frac{1}{2}
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\underline{\int_0^1} f \geq \sup_n \S_{\D_n}\left(f\right) = \frac{1}{2}
+\end{aligned}
+\end{equation*}
+Similarly,
+\begin{equation*}
+\begin{aligned}
+S_{\D_n}\left(f\right) = \sum_{k=1}^n \frac{1}{n}\frac{k}{n} = \frac{\left(n+1\right)n}{2n^2} = \frac{n+1}{2n}\to \frac{1}{2}
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\bar{\int_0^1}f \leq \inf_n S_{\D_n}\left(f\right) = \frac{1}{2}
+\end{aligned}
+\end{equation*}
+So it follows that $f$ is integrable and is equal to $\frac{1}{2}$.
+
+\begin{thm}
+A bounded function $f:\left[a,b\right]\to\R$ is integrable if and only if
+\begin{equation*}
+\begin{aligned}
+\forall \epsilon > 0 \exists \D \text{ s.t. } S_\D \left(f\right) - \S_\D\left(f\right) < \epsilon
+\end{aligned}
+\end{equation*}
+\begin{proof}
+$\bullet$ Forward: Since
+\begin{equation*}
+\begin{aligned}
+\int_a^b = \inf_\D S_\D \left(f\right) = \sup_\D \S_\D\left(f\right)
+\end{aligned}
+\end{equation*}
+we know that $\exists \D_1,\D_2$ with
+\begin{equation*}
+\begin{aligned}
+S_{\D_1}\left(f\right) < \int_a^b f+\frac{\epsilon}{2},\\
+\S_{\D_2}\left(f\right) > \int_a^b f-\frac{\epsilon}{2}.
+\end{aligned}
+\end{equation*}
+Set $\D = \D_1 \cup \D_2$. Then
+\begin{equation*}
+\begin{aligned}
+\int_a^b f-\frac{\epsilon}{2} < \S_{\D_2} \left(f\right) \leq \S_\D \left(f\right) \leq S_\D \left(f\right) \leq S_{\D_1}\left(f\right) < \int_a^b f + \frac{\epsilon}{2}
+\end{aligned}
+\end{equation*}
+
+$\bullet$ Backward: Suppose
+\begin{equation*}
+\begin{aligned}
+S_\D \left(f\right) - \S_\D \left(f\right) < \epsilon
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+\bar{\int_a^b}f \leq S_\D\left(f\right) < \S_\D \left(f\right) + \epsilon \leq \underline{\int_a^b}f+\epsilon
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\bar{\int_a^b}f \leq \underline{\int_a^b}f + \epsilon \forall \epsilon > 0
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation*}
+\begin{aligned}
+\bar{\int_a^b}f \leq \underline{\int_a^b}f
+\end{aligned}
+\end{equation*}
+So $f$ is integrable.
+\end{proof}
+\end{thm}
+
+\begin{coro}
+A bounded function $f:\left[a,b\right]\to\R$ is integrable if and only if there exists a sequence $\D_n$ of dissections s.t.
+\begin{equation*}
+\begin{aligned}
+S_{\D_n} \left(f\right) - \S_{\D_n} \left(f\right) \to 0
+\end{aligned}
+\end{equation*}
+as $n\to\infty$. Then both $\S_{\D_n}\left(f\right)$ and $S_{\D_n}\left(f\right)$ converge to $\int_a^b f$.\\
+Moreover, if
+\begin{equation*}
+\begin{aligned}
+\D_n: a = x_0^{\left(n\right)}<x_1^{\left(n\right)}<...<x_{m_n}^{\left(n\right)}=b
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+\xi_k^{\left(n\right)} \in \left[x_{k-1}^{\left(n\right)},x_k^{\left(n\right)}\right]
+\end{aligned}
+\end{equation*}
+For $k=1,2,...,m_n$. Then
+\begin{equation*}
+\begin{aligned}
+\sum_{k=1}^{m_n} f\left(\xi_k^{\left(n\right)}\right)\left(x_k^{\left(n\right)}-x_{k-1}^{\left(n\right)}\right) \to \int_a^b f
+\end{aligned}
+\end{equation*}
+as $n\to\infty$.
+\begin{proof}
+The first part is immediate from the previous theorem.\\
+For the second part,
+\begin{equation*}
+\begin{aligned}
+\int_a^b f &\leq S_{\D_n}\left(f\right)\\
+&= \S_{\D_n} \left(f\right) + \left(S_{\D_n} \left(f\right) - \S_{\D_n}\left(f\right)\right)\\
+&\leq \int_a^b f + \left(S_{\D_n} \left(f\right) - \S_{\D_n}\left(f\right)\right)
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation*}
+\begin{aligned}
+S_{\D_n}\left(f\right) \to \int_a^b f
+\end{aligned}
+\end{equation*}
+as $n\to \infty$. Then
+\begin{equation*}
+\begin{aligned}
+\S_{\D_n}\left(f\right) = S_{\D_n}\left(f\right) - \left(S_{\D_n}\left(f\right) - \S_{\D_n}\left(f\right)\right) \to \int_a^b f
+\end{aligned}
+\end{equation*}
+\end{proof}
+Together with
+\begin{equation*}
+\begin{aligned}
+\inf_{\left[x_{k-1}^{\left(n\right)},x_k^{\left(n\right)}\right]} f \leq f\left(\xi_k^{\left(n\right)} \right) \leq \sup_{\left[x_{k-1}^{\left(n\right)},x_k^{\left(n\right)}\right]} f
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation*}
+\begin{aligned}
+\S_{\D_n}\left(f\right) \leq \sum_{k=1}^{m_n} f\left(\xi_k^{\left(n\right)}\right) \left(x_k^{\left(n\right)} - x_{k-1}^{\left(n\right)}\right) \leq S_{\D_n} \left(f\right)
+\end{aligned}
+\end{equation*}
+\end{coro}
+
+\begin{rem}
+\emph{Darboux}: if $f$ is integrable and 
+\begin{equation*}
+\begin{aligned}
+\D_n : a=x_0^{\left(n\right)}<x_1^{\left(n\right)}<...<x_{m_n}^{\left(n\right)} = b
+\end{aligned}
+\end{equation*}
+is such that 
+\begin{equation*}
+\begin{aligned}
+|\D_n| = \max_{1\leq k \leq m_n} \left(x_k^{\left(n\right)} - x_{k-1}^{\left(n\right)}\right) \to 0
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+S_{\D_n} \left(f\right) - \S_{\D_n} \left(f\right) \to 0
+\end{aligned}
+\end{equation*}
+\end{rem}
+
+\begin{lemma}
+Let $f,g:\left[a,b\right] \to \R$ be bounded functions. Assume there exists $k\geq 0$ such that
+\begin{equation*}
+\begin{aligned}
+|f\left(x\right) - f\left(y\right)| \leq K|g\left(x\right) - g\left(y\right)| \forall x,y\in\left[a,b\right]
+\end{aligned}
+\end{equation*}
+Then if $g$ is integrable, then $f$ is also integrable.
+\begin{proof}
+Given $\epsilon>0$, there exists $\D$ such that
+\begin{equation*}
+\begin{aligned}
+S_\D \left(g\right) - \S_\D\left(g\right) < \epsilon
+\end{aligned}
+\end{equation*}
+Now let 
+\begin{equation*}
+\begin{aligned}
+\D: a=x_0 < x_1 < ... < x_n = b
+\end{aligned}
+\end{equation*}
+And let $I=\left[x_{k-1},x_k\right]$. Then
+\begin{equation*}
+\begin{aligned}
+\sup_I f - \inf_I f &= \sup_{x,y\in I} |f\left(x\right)-f\left(y\right)| \\
+&\leq K\sup_{x,y\in I} |g\left(x\right)-g\left(y\right)|\\
+&= K\left(\sup_I g - \inf_I g\right)
+\end{aligned}
+\end{equation*}
+Multiply by $|I| = x_k - x_{k-1}$ and sum over $k$,
+\begin{equation*}
+\begin{aligned}
+S_\D \left(f\right) - \S_\D \left(f\right) \leq K\left(S_\D\left(g\right) - \S_\D \left(g\right) \right) < k\epsilon
+\end{aligned}
+\end{equation*}
+As $\epsilon$ is arbitrary, $f$ is integrable.
+\end{proof}
+\end{lemma}
+
+\begin{thm}
+Let $f,g: \left[a,b\right] \to \R$ be integrable functions. Then\\
+1) $\lambda f + \mu g$ is integrable, and
+\begin{equation*}
+\begin{aligned}
+\int_a^b\left(\lambda f+\mu y\right) = \lambda \int_a^b f + \mu \int_a^b g
+\end{aligned}
+\end{equation*}
+2) If $f\leq g$, then 
+\begin{equation*}
+\begin{aligned}
+\int_a^b f \leq \int_a^b g
+\end{aligned}
+\end{equation*}
+3) $|f|$ is integrable, and
+\begin{equation*}
+\begin{aligned}
+|\int_a^b f | \leq \int_a^b |f|
+\end{aligned}
+\end{equation*}
+4) $\max\left(f,g\right)$, $\min\left(f,g\right)$ are integrable;\\
+5) $f \cdot g$ is integrable, and (Cauchy-Schwarz inequality)
+\begin{equation*}
+\begin{aligned}
+|\int_a^b fg | \leq \left(\int_a^b f^2 \right)^\frac{1}{2} \left(\int_a^b g^2 \right)^\frac{1}{2}
+\end{aligned}
+\end{equation*}
+\begin{proof}
+1) Enough to consider $f+g$, $\lambda f$ for $\lambda \geq 0$, and $-f$.\\
+We know from a previous corollary that there exists a sequence $\D_n$ of dissections of $\left[a,b\right]$ s.t. $S_{\D_n} \left(f\right)$, $\S_{\D_n} \left(f\right)$ both converge to $\int_a^b f$, and$S_{\D_n} \left(g\right)$, $\S_{\D_n} \left(g\right)$ both converge to $\int_a^b g$.\\
+For an interval $I\subset\left[a,b\right]$, we have
+\begin{equation*}
+\begin{aligned}
+&\sup_I \left(f+g\right) \leq \sup_I f + \sup_I g\\
+&\inf_I \left(f+g\right) \geq \inf_I f + \inf_I g\\
+&\S_{\D_n} \left(f\right) + \S_{\D_n} \left(g\right) \leq \S_{\D_n} \left(f+g\right) \leq S_{\D_n} \left(f+g\right) \leq S_{\D_n} \left(f\right) + S_{\D_n} \left(g\right)
+\end{aligned}
+\end{equation*}
+As $n\to \infty$, LHS and RHS both tend to $\int_a^b f + \int_a^b g$. So $f+g$ is integrable and
+\begin{equation*}
+\begin{aligned}
+\int_a^b \left(f+g\right) = \int_a^b f + \int_a^b g
+\end{aligned}
+\end{equation*}
+Also
+\begin{equation*}
+\begin{aligned}
+\sup_I \left(\lambda f\right) = \lambda \sup_I f\\
+\inf_I \left(\lambda f\right) = \lambda \inf_I f
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation*}
+\begin{aligned}
+S_{\D_n} \left(\lambda f\right) = \lambda S_{\D_n} \left(f\right) \to \lambda \int_a^b f\\
+\S_{\D_n} \left(\lambda f\right) = \lambda \S_{\D_n} \left(f\right) \to \lambda \int_a^b f
+\end{aligned}
+\end{equation*}
+By the previous corollary, $\lambda f$ is integrable and 
+\begin{equation*}
+\begin{aligned}
+\int_a^b \left(\lambda f\right) = \lambda \int_a^b f
+\end{aligned}
+\end{equation*}
+Finally,
+\begin{equation*}
+\begin{aligned}
+\sup_I \left(-f\right) = -\inf_I f,\\
+\inf_I \left(-f\right) = -\sup_I f
+\end{aligned}
+\end{equation*}
+We get
+\begin{equation*}
+\begin{aligned}
+S_{\D_n} \left(-f\right) = -\S_{\D_n} \left(f\right) \to -\int_a^b f,\\
+\S_{\D_n} \left(-f\right) = -S_{\D_n} \left(f\right) \to -\int_a^b f
+\end{aligned}
+\end{equation*}
+Hence $-f$ is integrable and
+\begin{equation*}
+\begin{aligned}
+\int_a^b \left(-f\right) = -\int_a^b f.
+\end{aligned}
+\end{equation*}
+2) If $f\leq g$ then $g-f\geq 0$. Hence
+\begin{equation*}
+\begin{aligned}
+\int_a^b g - \int_a^b f = \int_a^b \left(g-f\right) \geq \left(b-a\right) \inf_{\left[a,b\right]} \left(g-f\right) \geq 0
+\end{aligned}
+\end{equation*}
+3)Note that
+\begin{equation*}
+\begin{aligned}
+||f\left(x\right)| - f\left(y\right)|| \leq |f\left(x\right) - f\left(y\right) |
+\end{aligned}
+\end{equation*}
+for all $x,y\in\left[a,b\right]$. So by the previous lemma, together with the assumption that $f$ is integrable, we know that $|f|$ is integrable. Since
+\begin{equation*}
+\begin{aligned}
+f\leq |f|, -f \leq |f|,
+\end{aligned}
+\end{equation*}
+by 2) we know that
+\begin{equation*}
+\begin{aligned}
+\int_a^b f \leq \int_a^b |f|,\\
+-\int_a^b f = \int_a^b \left(-f\right) \leq \int_a^b |f|
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation*}
+\begin{aligned}
+|\int_a^b f| \leq \int_a^b |f|.
+\end{aligned}
+\end{equation*}
+4) Given $s,t\in \R$,
+\begin{equation*}
+\begin{aligned}
+\max\left(s,t\right) = \frac{s+t}{2} + \frac{|s-t|}{2}
+\end{aligned}
+\end{equation*}
+So if $h=\max\left(f,g\right)$, then for all $x\in\left[a,b\right]$,
+\begin{equation*}
+\begin{aligned}
+h\left(x\right) = \frac{f\left(x\right) + g\left(x\right)}{2} + \frac{|f\left(x\right) - g\left(x\right)|}{2}
+\end{aligned}
+\end{equation*}
+Hence $h$ is integrable by 1) and 3).\\
+($\min\left(f,g\right)$ can be proved similarly).\\
+5) Let
+\begin{equation*}
+\begin{aligned}
+M=\sup_{\left[a,b\right]} |f|
+\end{aligned}
+\end{equation*}
+This exists since $f$ must be bounded on $\left[a,b\right]$. Then for all $x,y\in\left[a,b\right]$,
+\begin{equation*}
+\begin{aligned}
+|f^2\left(x\right) - f^2\left(y\right)| = |f\left(x\right) - f\left(y\right)| \cdot |f\left(x\right) + f\left(y\right)| \leq 2M |f\left(x\right) - f\left(y\right)|
+\end{aligned}
+\end{equation*}
+So by the previous lemma, $f^2$ is integrable. Hence by 1),
+\begin{equation*}
+\begin{aligned}
+fg = \frac{1}{2}\left[\left(f+g\right)^2 - f^2 - g^2\right]
+\end{aligned}
+\end{equation*}
+is integrable.\\
+Next, we have
+\begin{equation*}
+\begin{aligned}
+0\leq \int_a^b \left(f-\lambda g\right)^2 = \int_a^b f^2 + \lambda ^2 \int_a^b g^2 - 2\lambda \int_a^b fg
+\end{aligned}
+\end{equation*}
+(using 2) and 1) respectively) for all $\lambda\in\R$.\\
+Now put
+\begin{equation*}
+\begin{aligned}
+\lambda = \frac{\int_a^b fg}{\int_a^b g^2}
+\end{aligned}
+\end{equation*}
+After \emph{some algebra}, we obtain the required inequality.
+\end{proof}
+\end{thm}
+
+\begin{prop}
+1) Assume $h:\left[a,b\right]\to\R$ satisfies that $h\left(x\right)=0$ for all but finitely many $x$. Then $h$ is integrable, and
+\begin{equation*}
+\begin{aligned}
+\int_a^b h = 0
+\end{aligned}
+\end{equation*}
+2) Assume $f:\left[a,b\right] \to \R$ is integrable, and $g\left(x\right) = f\left(x\right)$ for all but finitely many $x$. Then $g$ is integrable, and
+\begin{equation*}
+\begin{aligned}
+\int_a^b g = \int_a^b f
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Choose
+\begin{equation*}
+\begin{aligned}
+a=c_0 < c_1 < ... < c_n = b
+\end{aligned}
+\end{equation*}
+s.t. $h\left(x\right) = 0$ $\forall x\in \left[a,b\right]\backslash\left\{c_0,c_1,...,c_n\right\}$ (it is not necessary for all of $f\left(c_i\right)$ to be non-zero).\\
+If
+\begin{equation*}
+\begin{aligned}
+M=\max_{0\leq i \leq n} |h\left(c_i\right)|
+\end{aligned}
+\end{equation*}
+Then $|h\left(x\right)| \leq M$ $\forall x$, so $h$ is bounded.\\
+Fix $\delta > 0$ s.t.
+\begin{equation*}
+\begin{aligned}
+\delta < \frac{1}{2}\left(c_k - c_{k-1}\right)
+\end{aligned}
+\end{equation*}
+for all $1\leq k \leq n$.\\
+Now consider $\D: a,a+\delta, c_1-\delta, c_1+\delta, c_2-\delta, c_2+\delta,...,c_n-\delta,c_n=b$. We have
+\begin{equation*}
+\begin{aligned}
+\inf_{\left[c_{k-1}+\delta, c_k-\delta\right]} h = \sup_{\left[c_{k-1}+\delta, c_k-\delta\right]} h = 0
+\end{aligned}
+\end{equation*}
+for all $1\leq k \leq n$.\\
+If $I=\left[c_k - \delta, c_k + \delta\right]$ ($1\leq k \leq n-1$) or $I=\left[a,a+\delta\right]$ or $I=\left[b-\delta,b\right]$, we have
+\begin{equation*}
+\begin{aligned}
+\sup_I h \leq M\\
+\inf_I h \geq -M
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation*}
+\begin{aligned}
+\S_\D \left(h\right) \geq \left(n-1\right) 2\delta \left(-M\right) + 2\delta \left(-M\right) = -2Mn\delta,\\
+S_\D \left(h\right) \leq \left(n-1\right)2\delta M + 2\delta M = 2Mn \delta
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation*}
+\begin{aligned}
+-2Mn\delta \leq \underline{\int_a^b}h \leq \bar{\int_a^b} h \leq 2Mn\delta
+\end{aligned}
+\end{equation*}
+But $\delta$ is arbitrary. So $h$ is integrable and the integral is 0.\\
+2) $g=f+\left(g-f\right)$. By 1) $g-f$ is integrable, and
+\begin{equation*}
+\begin{aligned}
+\int_a^b \left(g-f\right) = 0
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\int_a^b g = \int_a^b f
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{prop}
+
+\begin{thm}
+Every continuous function is integrable.
+\begin{proof}
+Let $f:\left[a,b\right]\to \R$ be continuous. That means
+\begin{equation*}
+\begin{aligned}
+\forall x\in\left[a,b\right] \forall \epsilon < 0 \exists \delta > 0 \forall y \in \left[a,b\right] |y-x|<\delta \implies |f\left(y\right) - f\left(x\right)|<\epsilon
+\end{aligned}
+\end{equation*}
+We claim that
+\begin{equation*}
+\begin{aligned}
+\forall \epsilon < 0 \exists \delta > 0 \forall x,y\in\left[a,b\right] |y-x|<\delta \implies |f\left(y\right)-f\left(x\right)|<\epsilon
+\end{aligned}
+\end{equation*}
+(actually this is the definition of uniform convergence).\\
+Proof of claim: Suppose otherwise. Then
+\begin{equation*}
+\begin{aligned}
+\exists \epsilon > 0 \forall \delta > 0 \exists x,y\in\left[a,b\right] |y-x|<\delta, |f\left(y\right) - f\left(x\right)| \geq \epsilon
+\end{aligned}
+\end{equation*}
+In particular, 
+\begin{equation*}
+\begin{aligned}
+\forall n\in \N, \exists x_n, y_n \in \left[a,b\right] \text{  s.t.  } |x_n-y_n|<\frac{1}{n}, |f\left(x_n\right) - f\left(y_n\right) | \geq \epsilon
+\end{aligned}
+\end{equation*}
+Now $\left(x_n\right)$ is bounded. So by B-W theorem, $\exists k_1<k_2<k_3<...$ in $\N$ s.t. $\left(x_{k_n}\right)_{n=1}^\infty$ converges to some $x\in \R$.\\
+Since $a\leq x_{k_n} \leq b$ for all $n$, we have $x\in \left[a,b\right]$. Then since
+\begin{equation*}
+\begin{aligned}
+|y_{k_n}-x_{k_n} | < \frac{1}{k_n} \leq \frac{1}{n} \to 0
+\end{aligned}
+\end{equation*}
+as $n\to\infty$, so
+\begin{equation*}
+\begin{aligned}
+y_{k_n} = x_{k_n} + \left(y_{k_n}-x_{k_n}\right) \to x
+\end{aligned}
+\end{equation*}
+as $n\to \infty$.\\
+As $f$ is continuous, 
+\begin{equation*}
+\begin{aligned}
+\epsilon\leq|f\left(x_{k_n}\right) - f\left(y_{k_n}\right)| \to |f\left(x\right) - f\left(x\right)| = 0
+\end{aligned}
+\end{equation*}
+Contradiction.\\
+Now back to the main proof.\\
+Given $n\in \N$, choose $\delta_n > 0$ s.t.
+\begin{equation*}
+\begin{aligned}
+\forall x,y, |x-y|<\delta_n \implies |f\left(x\right) - f\left(y\right) | < \frac{1}{n}
+\end{aligned}
+\end{equation*}
+Then choose a dissection $\D_n$ s.t.
+\begin{equation*}
+\begin{aligned}
+|\D_n| < \delta_n\\
+(\text{  if  } \D: a=x_0<x_1<...<x_m = b, \text{  then  } |\D| = \max_{1\leq_k\leq m} \left(x_k-x_{k-1}\right) )
+\end{aligned}
+\end{equation*}
+If $I$ is an interval of $\D_n$ then 
+\begin{equation*}
+\begin{aligned}
+\sup_I f - \inf_I f \leq \frac{1}{n}
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation*}
+\begin{aligned}
+S_{\D_n}\left(f\right) - \S_{\D_n} \left(f\right) \leq \frac{1}{n}\left(b-a\right) \to 0
+\end{aligned}
+\end{equation*}
+as $n\to\infty$. So $f$ is integrable.
+\end{proof}
+\end{thm}
+
+\begin{thm}
+Monotonic functions are integrable.
+\begin{proof}
+Let $f:\left[a,b\right] \to \R$ be a monotonic function. WLOG let $f$ be increasing (otherwise look at $-f$).\\
+Let
+\begin{equation*}
+\begin{aligned}
+\D_n: a+\frac{k}{n}\left(b-a\right), 0\leq n (n\in \N)
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+S_{\D_n}\left(f\right) - \S_{\D_n} \left(f\right) &= \sum_{k=1}^n \frac{b-a}{n}\left(\sup_{\left[a+\frac{k-1}{n}\left(b-a\right),a+\frac{k}{n}\left(b-a\right)\right]} f - \inf_{\left[a+\frac{k-1}{n}\left(b-a\right),a+\frac{k}{n}\left(b-a\right)\right]}\right)\\
+&= \frac{b-a}{n}\sum_{k=1}^n \left(f\left(a+\frac{k}{n}\left(b-a\right)\right) - f\left(a+\frac{k-1}{n}\left(b-a\right)\right)\right)\\
+&= \frac{b-a}{n} \left(f\left(b\right) - f\left(a\right)\right) \to 0
+\end{aligned}
+\end{equation*}
+as $n \to \infty$. So $f$ is integrable by the previous corollary.
+\end{proof}
+\end{thm}
+
+(A note on the proof of the integral form of Cauchy-Schwarz inequality:
+\begin{equation*}
+\begin{aligned}
+0\leq \int_a^b \left(f-\lambda g\right)^2 = \int_a^b f^2 + \lambda^2 \int_a^b g^2 - s\lambda \int_a^b fg
+\end{aligned}
+\end{equation*}
+for all $\lambda \in \R$.\\
+Putting
+\begin{equation*}
+\begin{aligned}
+\lambda = \frac{\int_a^b fg}{\int_a^b g^2}
+\end{aligned}
+\end{equation*}
+yields the result, provided the denominator is not zero.\\
+If $\int_a^b g^2 = 0$, then we get
+\begin{equation*}
+\begin{aligned}
+2\lambda \int_a^b fg \leq \int_a^b f^2
+\end{aligned}
+\end{equation*}
+for all $\lambda \in \R$.\\
+Since $\lambda$ is arbitrary, this forces
+\begin{equation*}
+\begin{aligned}
+\int_a^b fg = 0
+\end{aligned}
+\end{equation*}
+so the result still holds.)
+
+\begin{thm}
+Let $a<b$, $f$ a bounded function on $\left[a,b\right]$.\\
+1) If $a<c<b$ and $f$ is integrable on $\left[a,c\right]$ and $\left[c,b\right]$, then it's integrable on $\left[a,b\right]$, and
+\begin{equation*}
+\begin{aligned}
+\int_a^b f = \int_a^c f + \int_c^b f
+\end{aligned}
+\end{equation*}
+2) If $f$ is integrable on $\left[a,b\right]$, then $f$ is integrable on $\left[c,d\right]$ whenever $a\leq c<d\leq b$.
+\begin{proof}
+1) There exists sequences $\D_n'$ and $\D_n''$ of dissections of $\left[a,c\right]$ and $\left[c,b\right]$ respectively, such that
+\begin{equation*}
+\begin{aligned}
+S_{D'_n} \left(f\right), \S_{\D'_n} \left(f\right) \to \int_a^c f\\
+S_{D''_n} \left(f\right), \S_{\D''_n} \left(f\right) \to \int_c^b f
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+\D_n = \D'_n \cup \D''_n
+\end{aligned}
+\end{equation*}
+is a dissection of $\left[a,b\right]$, and
+\begin{equation*}
+\begin{aligned}
+S_{\D_n} \left(f\right) = S_{\D'_n}\left(f\right) + S_{\D''_n} \left(f\right) \to \int_a^c f + \int_c^b f\\
+\S_{\D_n} \left(f\right) = \S_{\D'_n}\left(f\right) + \S_{\D''_n} \left(f\right) \to \int_a^c f + \int_c^b f
+\end{aligned}
+\end{equation*}
+So $f$ is integrable on $\left[a,b\right]$ and tends to the expected value.\\
+2) Given $\epsilon>0$, there is a dissection $\D$ of $\left[a,b\right]$ s.t.
+\begin{equation*}
+\begin{aligned}
+S_\D \left(f\right) - \S_\D \left(f\right) < \epsilon
+\end{aligned}
+\end{equation*}
+WLOG we may assume that $c,d$ are in $\D$ (otherwise add them into $\D$ which refines it, and will make the difference between the upper and lower integral even smaller).\\
+So
+\begin{equation*}
+\begin{aligned}
+\D:a=x_0<x_1<...<x_n = b, c= x_{j-1}, d=x_k
+\end{aligned}
+\end{equation*}
+for some $1\leq j \leq k \leq n$.\\
+Then
+\begin{equation*}
+\begin{aligned}
+D': x_{j-1} < x_j < ... < x_k
+\end{aligned}
+\end{equation*}
+is a dissection of $\left[c,d\right]$. Then
+\begin{equation*}
+\begin{aligned}
+S_{\D'} \left(f\right) - S_{D'} \left(f\right) &= \sum_{i=j}^k \left(x_i-x_{i-1}\right) \left(\sup_{\left[x_{i-1},x_i\right]} f - \inf_{\left[x_{i-1},x_i\right]} f\right)\\
+&\leq \sum_{i=1}^n \left(x_i-x_{i-1}\right) \left(\sup_{\left[x_{i-1},x_i\right]} f - \inf_{\left[x_{i-1},x_i\right]} f\right)\\
+&= S_\D \left(f\right) - \S_\D \left(f\right)\\
+&<\epsilon
+\end{aligned}
+\end{equation*}
+So $S$ is integrable on $\left[c,d\right]$.
+\end{proof}
+\end{thm}
+
+\begin{coro}
+Let $a,b,f$ be as in the previous theorem. Consider
+\begin{equation*}
+\begin{aligned}
+a=c_0 < c_1 < ... < c_k = b
+\end{aligned}
+\end{equation*}
+Then $f$ is integrable on $\left[a,b\right]$ if and only if $f$ is integrable on $\left[c_{j-1}, c_j\right]$, for all $1\leq j\leq k$, and then
+\begin{equation*}
+\begin{aligned}
+\int_a^b f = \sum_{j=1}^k \int_{c_{j-1}}^{c_j} f
+\end{aligned}
+\end{equation*}
+\end{coro}
+
+\begin{coro}
+Piecewise monotonic functions are integrable. $f:\left[a,b\right]\to \R$ is \emph{piecewise monotonic} if there exists $a=c_0 < c_1 < ... < c_k = b$ such that $f$ is monotonic on each $\left[c_{j-1},c_j\right]$.\\
+\begin{proof}
+By the theorem that monotonic functions are integrable, and the previous corollary.
+\end{proof}
+\end{coro}
+
+\begin{thm}
+If $a<b$, $f$ is a bounded function on $\left[a,b\right]$, continuous at all except finitely many points. Then $f$ is integrable.
+\begin{proof}
+Choose
+\begin{equation*}
+\begin{aligned}
+a=c_0 < c_1 < ... < c_k = b
+\end{aligned}
+\end{equation*}
+such that $f$ is continuous at $x$ if $x \not\in\left\{c_0, c_1, ..., c_k\right\}$.\\
+Let $M = \sup_{\left[a,b\right]} |f|$. Choose $\delta > 0$ such that $\delta < \frac{1}{2}\left(c_j - c_{j-1}\right)$ for all $j$ and $4M\delta k < \frac{\epsilon}{2}$.\\
+$f$ is continuous on $\left[c_{j-1}+\delta, c_j-\delta\right]$ for $1\leq j \leq k$. So it's integrable, so there exists a dissection $\D_j$ s.t.
+\begin{equation*}
+\begin{aligned}
+S_{\D_j} \left(f\right) - \S_{\D_j} \left(f\right) < \frac{\epsilon}{2k}
+\end{aligned}
+\end{equation*}
+Now consider
+\begin{equation*}
+\begin{aligned}
+\D = \bigcup_{j=1}^k \D_j \bigcup \left\{a,b\right\}
+\end{aligned}
+\end{equation*}
+which is a dissection of $\left[a,b\right]$. Then
+\begin{equation*}
+\begin{aligned}
+S_\D \left(f\right) - \S_\D\left(f\right) &= \sum_{j=1}^k \left(S_{\D_j} \left(f\right) - \S_{\D_j} \left(f\right)\right) + \text{  contributions from the small segments around  } c_j's\\
+&\leq k\cdot \frac{\epsilon}{2k} + 2\delta \cdot 2M \cdot \left(k-1\right) + \delta \cdot 2M \cdot 2\\
+&= \frac{\epsilon}{2} + 4M\delta k\\
+&< \epsilon
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{thm}
+
+\begin{eg} (a function that is not integrable)\\
+Let
+\begin{equation*}
+\begin{aligned}
+f\left(x\right) = \left\{
+\begin{array}{ll}
+0 & x\in \Q\\
+1 & x\not\in \Q
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+for any interval $I\subset \left[0,1\right]$ of positive length, we have
+\begin{equation*}
+\begin{aligned}
+\sup_I f = 1, \inf_I f = 0
+\end{aligned}
+\end{equation*}
+Then for all dissection $\D$, $S_\D\left(f\right)=1$, $\S_\D\left(f\right)=0$. So
+\begin{equation*}
+\begin{aligned}
+\bar{\int_0^1}f = 1 \neq 0 = \underline{\int_0^1} f
+\end{aligned}
+\end{equation*}
+So $f$ is not integrable.
+\end{eg}
+
+\begin{defi}
+Given $a<b$, $f$ integrable on $\left[a,b\right]$, we \emph{define}
+\begin{equation*}
+\begin{aligned}
+\int_b^a = -\int_a^b f
+\end{aligned}
+\end{equation*}
+So if $f$ is integrable on some closed, bounded interval containing $a,b,c$ (in any order), then
+\begin{equation*}
+\begin{aligned}
+\int_a^b f = \int_a^c f + \int_c^b f
+\end{aligned}
+\end{equation*}
+This comes from the theorem about integrals on union of intervals and this definitions (a few cases for signs).\\
+(eg if $c<b<a$ then
+\begin{equation*}
+\begin{aligned}
+\int_c^a f = \int_c^b f + \int_b^a f\\
+-\int_a^c f = \int_c^b f - \int_a^b f
+\end{aligned}
+\end{equation*}
+So consistent.)\\
+Note:
+\begin{equation*}
+\begin{aligned}
+|\int_a^b f| \leq |b-a| \sup_{\left[a,b\right]} |f|
+\end{aligned}
+\end{equation*}
+Since if $a<b$, this holds by proposition 3;\\
+if $b<a$ then
+\begin{equation*}
+\begin{aligned}
+|\int_a^b f| &= |-\int_b^a f| = |\int_b^a f|\\
+&\leq \left(a-b\right) \sup |f| = |b-a| \sup |f|.
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{defi} (indefinite integral)\\
+Suppose $a<b$, $f$ is integrable on $\left[a,b\right]$ and $c\in \left[a,b\right]$. The function
+\begin{equation*}
+\begin{aligned}
+F\left(x\right) = \int_c^x f\left(t\right)dt, x\in\left[a,b\right]
+\end{aligned}
+\end{equation*}
+is called \emph{\underline{an} indefinite integral of $f$ on $\left[a,b\right]$} (since this depends on c).\\
+Note:
+\begin{equation*}
+\begin{aligned}
+F\left(y\right) - F\left(x\right) = \int_x^y f\left(t\right) dt
+\end{aligned}
+\end{equation*}
+This does not depend on $c$.
+\end{defi}
+
+\begin{thm}
+If $a<b$, $f$ integrable on $\left[a,b\right]$, $F$ is an indefinite integral of $f$ on $\left[a,b\right]$, then $F$ is continuous. In fact, there exists some $k\geq 0$ such that
+\begin{equation*}
+\begin{aligned}
+|F\left(y\right) - F\left(x\right)| \leq k |y-x|
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Let $K=\sup_{\left[a,b\right]} |f|$. Then
+\begin{equation*}
+\begin{aligned}
+|F\left(y\right) - F\left(x\right)| &= |\int_x^y f\left(t\right) dt|\\
+&\leq |y-x| \cdot \sup_{\left[a,b\right]} |f|\\
+&=K|y-x|
+\end{aligned}
+\end{equation*}
+So the second part is done.\\
+Now given $x\in\left[a,b\right], \epsilon > 0$, letting $\delta = \frac{\epsilon}{k}$, we have
+\begin{equation*}
+\begin{aligned}
+\forall y\in\left[a,b\right], |y-x|<\delta \implies |F\left(y\right) - F\left(x\right)| < \epsilon.
+\end{aligned}
+\end{equation*}
+So $F$ is continuous.
+\end{proof}
+\end{thm}
+
+\begin{thm} (Fundamental theorem of Calculus)\\
+Let $a,b,f,F$ be as in the previous theorem. If $c\in\left[a,b\right]$ and $f$ is continuous at $c$, then $F$ is differentiable at $c$, and
+\begin{equation*}
+\begin{aligned}
+F'\left(c\right) = f\left(c\right)
+\end{aligned}
+\end{equation*}
+Note: if $c=a$,
+\begin{equation*}
+\begin{aligned}
+F'\left(a\right) = \lim_{h\to 0^+} \frac{F\left(a+h\right) - F\left(a\right)}{h}
+\end{aligned}
+\end{equation*}
+and if $c=b$,
+\begin{equation*}
+\begin{aligned}
+F'\left(b\right) = \lim_{h\to 0^-} \frac{F\left(b+h\right) - F\left(b\right)}{h}.
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Given $\epsilon>0$, there is a $\delta>0$ s.t. 
+\begin{equation*}
+\begin{aligned}
+\forall t\in\left[a,b\right] |t-c|<\delta \implies |f\left(t\right) - f\left(c\right)| < \epsilon
+\end{aligned}
+\end{equation*}
+Now we have
+\begin{equation*}
+\begin{aligned}
+|\frac{F\left(c+h\right)-F\left(c\right)}{h}-f\left(c\right)| &= |\frac{1}{h}\int_c^{c+h} f\left(t\right)dt-f\left(c\right)|\\
+&=|\frac{1}{h} \int_c^{c+h} \left(f\left(t\right)-f\left(c\right)\right) dt|\\
+&\leq \frac{1}{|h|}|h| \cdot \sup \left\{|f\left(t\right)-f\left(c\right)|: c \leq t \leq c+h\right\}\\
+&\leq \epsilon
+\end{aligned}
+\end{equation*}
+Whenever $0<|h|<\delta$ (provided $c+h\in\left[a,b\right]$).
+\end{proof}
+\end{thm}
+
+Let $a<b$, $f,F$ be functions on $\left[a,b\right]$. We say $F$ is an \emph{antiderivative of $f$ on $\left[a,b\right]$} if $F$ is differentiable on $\left[a,b\right]$ and $F'\left(x\right) = f\left(x\right)$ for all $x\in\left[a,b\right]$.
+
+\begin{coro}
+Let $a<b$, $f$ a continuous function on $\left[a,b\right]$. Then $f$ has an antiderivative $F$ on $\left[a,b\right]$. Moreover, if $G$ is any antiderivative of $f$ on $\left[a,b\right]$, then
+\begin{equation*}
+\begin{aligned}
+\int_a^b f\left(t\right)dt = G\left(b\right) - g\left(a\right)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+For the first part, just take $F$ to be an indefinite integral of $f$ on $\left[a,b\right]$.\\
+For the second part, we have
+\begin{equation*}
+\begin{aligned}
+\left(F-G\right)'\left(x\right) = F'\left(x\right) - G'\left(x\right) = f\left(x\right) - f\left(x\right) = 0
+\end{aligned}
+\end{equation*}
+for all $x$.\\
+So (by mean value theorem) $F-G$ is a constant. Hence
+\begin{equation*}
+\begin{aligned}
+G\left(b\right) - G\left(a\right) = F\left(b\right) - F\left(a\right) = \int_a^b f\left(t\right) dt
+\end{aligned}
+\end{equation*}
+by definition of indefinite integrals.
+\end{proof}
+\end{coro}
+
+\begin{rem}
+$\bullet$ this corollary shows that the differential equation
+\begin{equation*}
+\begin{aligned}
+\frac{dy}{dt}=f
+\end{aligned}
+\end{equation*}
+has a solution when $f$ is continuous, and it is unique up to a constant.\\
+So given $y_0\in \R$, the initial value problem
+\begin{equation*}
+\begin{aligned}
+\left\{\begin{array}{ll}
+\frac{dy}{dt}=f\\
+y\left(a\right) = y
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+has a unique solution.\\
+$\bullet$ this corollary provides a way for computing
+\begin{equation*}
+\begin{aligned}
+\int_a^b f\left(t\right) dt
+\end{aligned}
+\end{equation*}
+when $f$ is continuous.
+\end{rem}
+
+\begin{thm}
+Let $a<b$, $f$ integrable on $\left[a,b\right]$. Assume $f$ has an antiderivative $G$. Then
+\begin{equation*}
+\begin{aligned}
+\int_a^b f\left(t\right) dt = G\left(b\right) - G\left(a\right)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+By a previous corollary(5) we know that there exists a sequence $\D_n$ of dissections of $\left[a,b\right]$ such that $S_{\D_n} \left(f\right)$ and $\S_{\D_n} \left(f\right)$ both converge to $\int_a^b f\left(t\right) dt$.\\
+Say
+\begin{equation*}
+\begin{aligned}
+\D_n: a=x_0^{\left(n\right)} < x_1^{\left(n\right)} < ... < x_{m_n}^{\left(n\right)} = b
+\end{aligned}
+\end{equation*}
+for some $m_n \in \N$.\\
+Apply mean value theorem to $G$ on $\left[x_{k-1}^{\left(n\right)},x_k^{\left(n\right)}\right]$ we get, there exists $\xi_k^{\left(n\right)} \in \left(x_{k-1}^{\left(n\right)},x_k^{\left(n\right)}\right)$ such that
+\begin{equation*}
+\begin{aligned}
+\frac{G\left(x_k^{\left(n\right)}\right) - G \left(x_{k-1}^{\left(n\right)}\right)}{x_k^{\left(n\right)-x_{k-1}^{\left(n\right)}}}=G'\left(\xi_k^{\left(n\right)}\right) = f\left(\xi_k^{\left(n\right)}\right)
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\sum_{k=1}^{m_n} f\left(\xi_k^{\left(n\right)}\right) \left(x_k^{\left(n\right)}-x_{k-1}^{\left(n\right)}\right)
+=\sum_{k=1}^{m_n} \left(G\left(x_k^{\left(n\right)}\right) - G \left(x_{k-1}^{\left(n\right)}\right)\right) = G\left(b\right) - G\left(a\right)
+\end{aligned}
+\end{equation*}
+Then by corollary 5, $LHS \to \int_a^b f\left(t\right)dt$ as $n\to\infty$.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+Let $f,G$ be as in the previous theorem. Then
+\begin{equation*}
+\begin{aligned}
+\int_a^x f\left(t\right) dt = G\left(x\right) - G\left(a\right)
+\end{aligned}
+\end{equation*}
+for all $x\in\left[a,b\right]$.\\
+So any indefinite integral of $f$ must be differentiable.
+\end{rem}
+
+\begin{coro}
+Let $a<b$, $f,g$ be integrable functions on $\left[a,b\right]$. Assume $F,G$ are antiderivatives of $f,g$ respectively on $\left[a,b\right]$. (eg this happens if $f,g$ are continuous)\\
+Then
+\begin{equation*}
+\begin{aligned}
+\int_a^b fG = G\left(b\right) F\left(b\right) - G\left(a\right)F\left(a\right) - \int_a^b Fg
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Let
+\begin{equation*}
+\begin{aligned}
+H\left(x\right) = F\left(x\right)G\left(x\right)
+\end{aligned}
+\end{equation*}
+for $x\in\left[a,b\right]$. By product rule, $H$ is differentiable, and
+\begin{equation*}
+\begin{aligned}
+H'\left(x\right) = f\left(x\right)G\left(x\right) + F\left(x\right) g\left(x\right)
+\end{aligned}
+\end{equation*}
+RHS is integrable. Thus
+\begin{equation*}
+\begin{aligned}
+H\left(b\right)-H\left(a\right) = \int_a^b \left(fG+Fg\right)
+\end{aligned}
+\end{equation*}
+rearrange to get the desired result.
+\end{proof}
+\end{coro}
+
+\begin{coro} (Change of variable)\\
+Let $a<b$, $\varphi:\left[a,b\right] \to \R$ be continuously differentiable. Let $f$ be a continuous function on the closed bounded interval $\varphi\left(\left[a,b\right]\right)$. Then
+\begin{equation*}
+\begin{aligned}
+\int_{\varphi\left(a\right)}^{\varphi\left(b\right)} = \int_a^b f\left(\varphi\left(t\right)\right)\varphi'\left(t\right) dt
+\end{aligned}
+\end{equation*}
+
+\begin{rem}
+As $\varphi$ is continuous, there exists $c,d\in\left[a,b\right]$ such that $\varphi\left(c\right) \leq \varphi\left(x\right) \leq\varphi\left(d\right)$ for all $x\in\left[a,b\right]$. Then by IVT, 
+\begin{equation*}
+\begin{aligned}
+\varphi\left(\left[a,b\right]\right) = \left[\varphi\left(c\right),\varphi\left(d\right)\right]
+\end{aligned}
+\end{equation*}
+We do not assume that $\varphi\left(a\right)$, $\varphi\left(b\right)$ are the end points of this interval.
+\end{rem}
+\begin{proof}
+Let $F$ be an antiderivative of $f$ on $\varphi\left(\left[a,b\right]\right)$ (this exists by a previous corollary(17)). By chain rule,
+\begin{equation*}
+\begin{aligned}
+\left(F\circ\varphi\right)'\left(t\right) = F'\left(\varphi\left(t\right)\right)\varphi'\left(t\right) = f\left(\varphi\left(t\right)\right) \varphi'\left(t\right)
+\end{aligned}
+\end{equation*}
+ans is continuous. By corollary 17,
+\begin{equation*}
+\begin{aligned}
+\int_a^b f\left(\varphi\left(t\right)\right) \varphi'\left(t\right) dt = F\left(\varphi\left(b\right)\right) - F\left(\varphi\left(a\right)\right) = \int_{\varphi\left(a\right)}^{\varphi\left(b\right)} f\left(y\right) dy
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{coro}
+
+Note that this corollary remains true if $\varphi$ is differentiable, $\varphi'$ is integrable, $f$ is integrable, and $f$ has antiderivative.\\
+(need: $\varphi$ continuous, $f$ integrable $\implies$ $f\circ\varphi$ integrable).
+
+\begin{thm} (Taylor's theorem with the integral remainder)\\
+Assume $a,\delta \in \R$, $\delta>0$, $f:\left(a-\delta, a+\delta\right) \to \R$ is $n$ times continuously differentiable. Then for all $h\in\left(-\delta,\delta\right)$,
+\begin{equation*}
+\begin{aligned}
+f\left(a+h\right)=\sum_{k=0}^{n-1} \frac{f^{\left(k\right)} \left(a\right)}{k!} h^k + \frac{1}{\left(n-1\right)!}\int_0^h \left(h-t\right)^{n-1} f^{\left(n\right)} \left(a+t\right) dt
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Induction on $n$:\\
+$n=1$:
+\begin{equation*}
+\begin{aligned}
+RHS &= f\left(a\right) + \int_0^h f'\left(a+t\right) dt\\
+&= f\left(a\right) + f\left(a+h\right) - f\left(a\right)\\
+&= LHS.
+\end{aligned}
+\end{equation*}
+$n\geq 1$: assume result for $n$. Then
+\begin{equation*}
+\begin{aligned}
+&\frac{1}{n!}\int_0^h \left(h-t\right)^n f^{\left(n+1\right)} \left(a+t\right) dt\\
+&= \left[\frac{\left(h-t\right)^n}{n!}f^{\left(n\right)} \left(a+t\right)\right]_0^h + \frac{1}{n!} \int_0^h n\left(h-t\right)^{n-1} \cdot f^{\left(n\right)} \left(a+t\right) dt\\
+&= -\frac{h^n}{n!} f^{\left(n\right)} \left(a\right) + \frac{1}{\left(n-1\right)!} \int_0^h \left(h-t\right)^{n-1} f^{\left(n\right)} \left(a+t\right)dt\\
+&=-\frac{h^n}{n!} f^{\left(n\right)} \left(a\right) + \left(f\left(a+h\right) - \sum_{k=0}^{n-1} \frac{f^{\left(k\right)} \left(a\right)}{k!} h^k\right)
+\end{aligned}
+\end{equation*}
+rearrange to get the desired results.
+\end{proof}
+\end{thm}
+
+
+\end{document}

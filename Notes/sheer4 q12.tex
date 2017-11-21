@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\begin{document}
+Sheet 4 Q12\\
+$Y_1,Y_2,...,Y_n$ are independent normal random variables. Suppose $\left(a_1,a_2,...,a_n\right)$, $\left(b_1,b_2,...,b_n\right)$ s.t.
+\begin{equation*}
+\begin{aligned}
+\sum_i^n a_i b_i = 0
+\end{aligned}
+\end{equation*}
+Show that $\sum_i^n a_i Y_i$, $\sum_i^n b^i y^i$ are independent.\\
+Let
+\begin{equation*}
+\begin{aligned}
+A=\left(\begin{matrix}
+a_1 &a_2 &... &a_n\\
+b_1 &b_2 &... &b_n\\
+... &..  &... &..
+\end{matrix}\right)
+\end{aligned}
+\end{equation*}
+Choose another $n-2$ orthogonal rows. Then
+\begin{equation*}
+\begin{aligned}
+\sum = AA^T
+\end{aligned}
+\end{equation*}
+is diagonal, so $X=AY$ has independent components.\\
+So the two sums are independent.
+\end{document}

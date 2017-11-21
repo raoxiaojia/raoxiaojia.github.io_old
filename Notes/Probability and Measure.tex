@@ -1,0 +1,1928 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\begin{document}
+
+\title{Probability and Measure}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+Check James Norris notes; Terrence Tao; \emph{An introduction to measure theory}
+
+\newpage
+
+\section{Measure Theory}
+
+\subsection{History}
+
+What is a measure? It is a function $\R^d \to \R$ defined on subsets, which we would like it to satisfy the following properties:\\
+$\bullet$ Non-negativity: $m(E) \geq 0$ for all $E$;\\
+$\bullet$ Empty set: $m(\phi) = 0$;\\
+$\bullet$ Additivity: $m(E \cup F) = m(E)+m(F)$ for any two disjoint sets $E$ and $F$;
+$\bullet$ Normalization: $m([0,1]^d) = 1$;\\
+$\bullet$ Translation invariant: $m(E+x)=m(E)$ for all $E$ and all $x \in \R^d$.
+
+It is possible to construct pathological 'measures' satisfying those axioms and defined \emph{on all} subsets of $\R^d$, but they won't be 'nice'. When mathematicians construct such measures, they usually do so on a restricted class of subsets. Otherwise this may lead to contradictions (see below). In fact, if $d \geq 3$, we can show that there's no measure $m: \R^d \to [0,\infty]$ which is also rotation invariant, i.e. $m(gE) = m(E)$ for any Euclidean rotation $g$ in $\R^d$.
+
+Now consider Jordan Measure. First we define the measure of a box $B \subseteq \R^d$ with edges parallel to the axes to be the product of the lengths of its sides.
+
+\begin{defi}
+An elementary subset of $\R^d$ is a finite union of boxes.
+\end{defi}
+
+\begin{rem}
+Every elementary set can be written as a finite union of disjoint boxes. The family of elementary sets is stable under finite unions, finite intersections, and difference. Also, if we can write a set $E$ as disjoint union of boxes in two different ways, then the sum of their measures coincide. As a result, for $E=\cup B_i$ for disjoint $B_i$, it makes sense to define $m(E)$ as $\sum m(B_i)$.
+\end{rem}
+
+\begin{defi}
+A subset $E$ of $\R^d$ is \emph{Jordan measurable} if $\forall \varepsilon>0$, there exists elementary sets $A,B$ s.t. $A \subseteq E \subseteq B$ and $m(B\setminus A) < \varepsilon$.
+\end{defi}
+
+Note that if $E$ is Jordan measurable, then
+\begin{equation*}
+\begin{aligned}
+\inf \{ m(B) | E \subseteq B, B \text{ elementary} \} = \sup \{ m(A) | A \subseteq E, A \text{ elementary} \}
+\end{aligned}
+\end{equation*}
+We then define the Jordan measure of $E$ as this limit. It's an exercise to check that $m$ satisfies all the axioms spelled out earlier.
+
+We can draw a connection between Jordan measure and Riemann integral. Recall the definition of Riemann integrability: $f:[a,b]\to\R$, $a<b$ is Riemann integrable if  all its Riemann sums converge, i.e.$\exists I = I(f) \in \R s.t. \forall \varepsilon>0 \exists \delta > 0 \forall$ partition $P$ of $[a,b]$ of width $<\delta$, $|S(f,P)-I(f)|<\varepsilon$, where $S(f,P)$ is the Riemann sum of $f$ by $P$.
+
+Now we draw the link:
+
+\begin{prop}
+$f$ is Riemann integrable iff $E^+$ = $\{(x,t) \in \R^2, 0 \leq t \leq f(x)\}$ and $E^- = \{(x,t) \in \R^2, f(x) \leq t \leq 0\}$ are Jordan measurable.
+\end{prop}
+
+\subsection{Lebesgue Measure}
+
+\begin{eg}
+Consider the function $1_\Q (x)$, which is $1$ if $x$ is rational and $0$ otherwise. This is not Riemann integrable, and $\Q$ or even $\Q \cap [0,1]$ is not a Jordan measurable subset of $\R$.
+
+In fact, no dense countable subset of an interval in $\R$ is Jordan measurable.
+\end{eg}
+
+There is a problem if we try to define measure with limits of functions, because a pointwise limit of Riemann integrable functions is not always Riemann integrable. One such example is the set of functions $f_n = 1_{\frac{1}{n!}\Z \cap [0,1]}$, which is Riemann integrable, but as we've seen, the limit as $n \to \infty$, $1_\Q(x)$, is not.
+
+Lebesgue's idea is to remove the containment of $A$ by $E$, as well as to allow countable union of boxes to be elementary sets as well. We then reach the following definition:
+
+\begin{defi}
+A set $E \subseteq \R^d$ is called \emph{Lebesgue measurable} if $\forall \varepsilon>0$, there exists a countable family of boxes $(B_i)_{i \geq 1}$ such that $E \subseteq \bigcup_{i\geq 1} B_i$, and $m^*(\bigcup B_i \setminus E)<\varepsilon$. Here $m^*$ is the \emph{Lebesgue outer measure}, defined by: if $F \subset \R^d$, then
+\begin{equation*}
+\begin{aligned}
+m^*(F) = \inf\left\{\sum_{n \geq 1} m(B_n),F\subseteq \bigcup_{n\geq 1} B_n\right\}
+\end{aligned}
+\end{equation*}
+where $B_n$ are boxes. Note that here we allow countably many $B_n$ instead of just finitely many.
+\end{defi}
+
+Note that $m^*$ is defined for all subsets of $\R^d$ (least upper bound property of $\R$), but $m^*$ is not additive on all subsets of $\R^d$. If we let
+\begin{equation*}
+\begin{aligned}
+m^{*,J} (F) = \inf \left\{ \sum_i^N m(B_i), F \subseteq \bigcup_1^N B_i \right\}
+\end{aligned}
+\end{equation*}
+where $B_i$ are boxes (this is called the Jordan outer measure), then obviously $m^*(F) \leq m^{*,J}(F)$. The important part is that sometimes $m^*(F) < m^{*,J}(F)$: consider $F=\Q \cap [0,1]$. If we want to cover $F$ by finitely many intervals, we have to cover the whole $[0,1]$, so $m^{*,J}(F)=1$. However if we are allowed a countable family of boxes, then \underline{we have $m^*(F)=0$ (not very obvious -- why?)}.
+
+As an exercise, check that $m^*$ satisfies the following properties: $m^*(\phi)=0$, $m^*(E) \leq m^*(F)$ if $E \subseteq F$ (monotone), and $m^*(\bigcup_{i\geq 1} E_i) \leq \sum_{i \geq 1} m^* (E_i)$ (countable subadditivity), and $m^*$ is \emph{translation invariant}.
+
+Now we give an example to show why $m^*$ is not additive on all subsets of $\R^d$.
+
+\begin{eg} (Vitali's example)\\
+Let $E$ be a set of representatives of the cosets of the subgroup $(\Q,+) \subseteq (\R,+)$. WLOG we choose $E \subseteq [0,1]$ (to be clear, this means that $\forall x \in \R \exists! e\in E$ s.t. $x-e \in \Q$. So the family of sets $\{E+\omega\}$ for all $\omega \in \Q$ is a disjoint family of subsets of $\R$ (a partition).
+
+By translation invariance, $m^*(E+r)=m^*(E)$ for all $r \in \Q$.
+
+For any distinct $\omega_1,...,\omega_N \in \Q \cap [0,1]$, if $m^*$ were additive, then we have
+\begin{equation*}
+\begin{aligned}
+m^*(\bigcup_{i=1}^N \omega_i + E) = N m^*(E)
+\end{aligned}
+\end{equation*}
+but
+\begin{equation*}
+\begin{aligned}
+\bigcup_1^N \omega_i+E \subseteq [0,2]
+\end{aligned}
+\end{equation*}
+so we must have
+\begin{equation*}
+\begin{aligned}
+m^* (\bigcup \omega_i+E)\leq m^*([0,2]) \leq 2
+\end{aligned}
+\end{equation*}
+But $N$ is arbitrary. so we must have $m^*(E) = 0$. Lastly, since
+\begin{equation*}
+\begin{aligned}
+[0,1] \subseteq \bigcup_{\omega \in \Q} E+\omega
+\end{aligned}
+\end{equation*}
+by countable subadditivity and translation invariance we get
+\begin{equation*}
+\begin{aligned}
+m^*([0,1]) \leq \sum_{r \in \Q} m^*(E+r) = 0
+\end{aligned}
+\end{equation*}
+So $1 \leq 0$. Contradiction.
+\end{eg}
+
+\begin{rem}
+It is worth notice that this example requires the use of the axiom of choice to construct $E$ as there is no apparent way to choose the elements of $E$ explicitly. So a better version of conclusion of the above example should be that AC is not compatible with additivity of $m^*$.
+
+Next time we will define the Lebesgue measure of a Lebesgue measurable set $E$ as $m(E) := m^*(E)$, and we will show that $m$ is additive on Lebesgue measurable sets. We will also show that $m^*$ is indeed a measure.
+\end{rem}
+
+Now lets consider the \emph{middle thirds Cantor set}. It is a compact subset $C$ of $[0,1]$, defined by the following way: we start with $[0,1]$, and cut it into three equal disjoint parts, and remove the central part. We do the same recursively for each of the remaining parts, and in the limit we get a subset $C$ of $[0,1]$ and we call it the Cantor set. Also we denote $I_0=[0,1]$, $I_1=[0,\frac{1}{3}]\cup[\frac{2}{3},1]$, and so on.
+
+Note that we can express this 'infinite' process in another way: if we write the real numbers in $[0,1]$ in base-3 decimal expansion, then $C$ contains exactly those that do not have any $1$ on any digit of their decimal part.
+
+Now $I_n$ is a finite union of intervals, so it is an elementary set. We see that
+\begin{equation*}
+\begin{aligned}
+m(I_n) = 2^n \cdot \frac{1}{3^n}
+\end{aligned}
+\end{equation*}
+so $\lim_{n \to \infty} m(I_n) = 0$, i.e. $C$ is Jordan measurable with measure $0$.
+
+We know every Jordan measurable set is Lebesgue measurable (clear from definition).
+
+Aside: what is the outer measure of a Vitali set? Let $E$ be the Vitali set, i.e. the set of representatives of cosets of $(\Q,+)$ in $(\R,+$, $E \subseteq [0,1]$.
+
+We know $m^*(E)>0$ by the argument given above, but we could choose $E \subseteq [0,\frac{1}{n}]$ or $E \subseteq$ any interval. The answer is it depends on the choice of $E$, it must be $m^*(E)>0$ can be arbitrarily small.
+
+Recall last time where we defined the outer measure of an arbitrary subset $E \subseteq \R^d$,
+\begin{equation*}
+\begin{aligned}
+m^*(E) = \inf \left\{ \sum_{n \geq 1} m(B_n), E \subseteq \bigcup_n B_n\right\}
+\end{aligned}
+\end{equation*}
+for $B_i$ boxes in $\R^d$. It doesn't matter in this definition if we use close boxes or open boxes (because of $\inf$). We also defined Lebesgue measurable last time. Again we can take open boxes or close boxes for that definition as well.
+
+\begin{defi}
+A \emph{null} set $E \subset \R^d$ is a subset $E$ s.t. $m^*(E)=0$.
+\end{defi}
+
+\begin{rem}
+Every null set is Lebesgue measurable. (not obvious)
+\end{rem}
+
+Recall that the outer measure $m^*$ satisfies $m^*(\phi)=0$, $m^*(E)\leq m*(F)$ if $E \subseteq F$, and $m^*(\bigcup_n E_n) \leq \sum_n m^*(E_n)$.
+
+\begin{prop} (1)\\
+The family of Lebesgue measurable subsets of $\R^d$, $\mathcal{L}$, is stable under (a) countable unions, (b) complementation, and (c) countable intersections.
+\end{prop}
+
+\begin{prop}(2)
+Every closed or open subset of $\R^d$ is Lebesgue measurable.
+\end{prop}
+
+\begin{proof} (of (1))\\
+Obviously (c) follows from (a) and (b) because complement of intersection is the union of complements.
+
+We prove (a) first. Let $(E_n)_{n \geq 1}$ be a countable family in $\mathcal{L}$. Pick $\varepsilon>0$. By definition, $\exists C_n:=\cup_{i \geq 1} B^{(n)}_i$ where $B^{(n)}_i$ are boxes, s.t. $m^*(C_n \setminus E_n) < \frac{\varepsilon}{2^n}$.
+
+Now $\cup E_n \subset \cup C_n = \cup_{n,i} B^{(n)}_i$ is still a countable union of boxes, and
+\begin{equation*}
+\begin{aligned}
+m^*(\bigcup B^{(n)}_i \setminus \bigcup E_n) &\leq \sum_n m^*(C_m \setminus E_n)\\
+&\leq \sum_{n \geq 1} \frac{\varepsilon}{2^n} \leq \varepsilon
+\end{aligned}
+\end{equation*}
+This proves (a).
+
+Now let's prove (b). We start with $E \subset \mathcal{L}$. By definition, $\forall n$, $\exists C_n$ a countable union of boxes s.t. $E \subset C_n$ and $m^*(C_n \setminus E) \leq \frac{1}{n}$. Now $E \subseteq C_n$. Taking complements we get $C_n^c \subseteq E^c$ and $C_n \setminus E = E^c \setminus C_n^c$.
+
+We could take $C_n$ to be a union of open boxes. Then $C_n$ is open and $C_n^c$ is closed. Then by part (a), $C_n^c$ is closed. But
+\begin{equation*}
+\begin{aligned}
+\bigcup C_n^c \subseteq E^c
+\end{aligned}
+\end{equation*}
+and 
+\begin{equation*}
+\begin{aligned}
+m^*(E^c \setminus C_n^c) \leq m^*(E^c \setminus C_n^c) = m^* (C_n \setminus E) < \frac{1}{n}
+\end{aligned}
+\end{equation*}
+
+Hence $m^*(E^c \setminus \cup_n C_n^c) = 0$. So
+\begin{equation*}
+\begin{aligned}
+E^c = \cup_n C_n^c \cup E^c \setminus \cup_n C_n^c
+\end{aligned}
+\end{equation*}
+but both parts of the union are in $\mathcal{L}$. So by (a), $E^c \in \mathcal{L}$. This shows (b) by using prop (2).
+\end{proof}
+
+\begin{proof} (of (2))\\
+We first prove a lemma: Every open subset of $\R^d$ is a countable union of open boxes (i.e. $\R^d$ has a countable base). To show this we just consider all the boxes centred at rational points and with rational side lengths, which is a countable base.
+
+An immediate consequence is that open sets are measurable by prop (1a). Note that we can't use prop (1b) to prove the same for closed subsets because we used prop (2) in the proof of (1b).
+
+To show that closed subsets are also Lebesgue measurable, it's enough to show that compact subsets of $\R^d$ are Lebesgue measurable because compact is equivalent to closed and bounded in $\R^d$, and every closed subset $F \in \R^d$ is a countable union of compact subsets (to see this, consider the closed annuli centred at origin with radius integers). 
+
+Now let $F \subseteq \R^d$ be a compact subset. By definition of $m^*(F)$, for every $k \geq 1$, there exists a countable union of boxes $\bigcup B^{(k)}_n$ such that $F \subseteq \bigcup B^{(k)}_n$ and $m^*(F) + \frac{1}{2} k \geq \sum_n m(B^{(k)}_n)$ ($k$ is just $\varepsilon$ here). Note that up to subdividing each $B^{(k)}_n$ into a finite number of smaller boxes, we can assume that each $B^{(k)}_n$ has diameter $\leq \frac{1}{2^k}$. WLOG we assume that each boxes meets $F$ (otherwise we can just remove that box). This is then an open cover of $F$. Since $F$ is compact, there is a finite subcover, i.e. we can pick finitely many boxes from $B^{(k)}_n$ whose union still covers $F$.
+
+Now let $U_k = \bigcup_{n=1}^{N_k} B^{(k)}_n$, where $F \subseteq U_k$ for all $k$, and $F$ meets each box $B^{(k)}_n$. Then we must have $F = \bigcup_{k \geq 1} U_k$, because if $x \in \cup U_k$, $\forall k \exists x_k \in F$, that $x$ and $x_k$ lie in the same box $B^{(k)}_n$, so $||x-x_k||_\infty \leq \frac{1}{2^k}$ i.e. $x$ is a limit point of $F$; then by compactness of $F$ we know $x$ is in $F$.
+
+We need to show that $M^*(U_k \setminus F)$ tends to $0$ and we're done. We claim that if $A,B$ are two disjoint compact subsets of $\R^d$, then $m^*$ is additive on them. To prove that, we choose disjoint covers for them by open boxes (think of they are separated by some positive distance due to compactness -- see MT in IB).
+
+We apply above to $A=F$, $B=\bar{U}_k \setminus U_{k+1}$, and get
+\begin{equation*}
+\begin{aligned}
+m^*(F)+m^*(\bar{U}_k \setminus U_{k+1}) &\leq m^*(\bar{U}_k \setminus U_{k+1} \cup F)\\
+&\leq m^*(\bar{U}_k)\\
+&= m^*(U_k)\\
+&\leq m^*(F)+\frac{1}{2^k}
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+m^*(U_{k+1}\setminus U_k) \leq \frac{1}{2^k}
+\end{aligned}
+\end{equation*}
+Since $F=\bigcup_k U_k$, by countable subadditivity of $m^*$, we get
+\begin{equation*}
+\begin{aligned}
+m^*(U_k \setminus F) \leq \sum_{i \geq k} m^*(U_i \setminus U_{i+1}) \leq \sum_{i \geq k} \frac{1}{2^i} \leq \frac{1}{2^{k-1}} \to 0
+\end{aligned}
+\end{equation*}
+as $k \to \infty$.
+
+\end{proof}
+
+\begin{defi}
+Let $X$ be a set. A family $\mathcal{A}$ of subsets of $X$ is a \emph{$\sigma$-algebra} if it contains the empty set and is closed under countable union and complementation.
+\end{defi}
+
+The $\sigma$ here in the name stands for 'countable' in some sense. $\sigma$-algebras are a special type of \emph{Boolean algebras}. The difference between Boolean algebra and sigma algebra is that Boolean algebra allows countable unions in its definition.
+
+\begin{eg}
+$\bullet$ Let $B=\mathcal{P}(X)$, the power set of $X$. Then $B$ is a Boolean algebra.\\
+$\bullet$ $B=\{\phi,X\}$ is a trivial Boolean algebra.\\
+$\bullet$ Take a partition of $X$ into finitely many pieces $X=\cup_{i=1}^n P_i$. Take $B:=\{A \subset X \mid \exists I\subset \{1,...,\N\}, A= \cup_{i \in I} P_i\}$. Then $B$ is also a (finite) Boolean algebra.
+\end{eg}
+
+It should be quite obvious that every finite Boolean algebra is of the above form.
+
+\begin{defi}
+A \emph{measurable space} is a couple $(X,\mathcal{A})$ where $X$ is a set and $\mathcal{A}$ is a $\sigma$-algebra of subsets of $X$.
+\end{defi}
+
+\begin{defi}
+A \emph{measure} on $(X,\mathcal{A})$ is a function $\mu:\mathcal{A} \to [0,\infty]$ s.t. $\mu(\phi)=0$ and $\mu$ is countably additive.
+\end{defi}
+
+\begin{rem}
+Sometimes people call a set function a function from a Family of subsetes of $X$ to $[0,\infty]$ s.t. $\mu(\phi)=0$.
+\end{rem}
+
+\begin{defi}
+If $X$ is a set, $\mathcal{A}$ is a $\sigma$-algebra on $X$, $\mu$ is a measure on $\mathcal{A}$, then $(X,\mathcal{A},\mu)$ is called a \emph{measure space}.
+\end{defi}
+
+Last time we've shown that $(\R^d,\mathcal{L})$ is a measurable space.
+
+\begin{defi} (Lebesgue measure)\\
+If $E \in \mathcal{L}$ (the set of Lebesgue measurable sets), we define the Lebesgue measure of $E$ as
+\begin{equation*}
+\begin{aligned}
+m(E) = m^*(E)
+\end{aligned}
+\end{equation*}
+the outer measure of $E$ which we've previously defined. Recall that
+\begin{equation*}
+\begin{aligned}
+m^*(E) = \inf \left\{ \sum_{n \geq 1} m(B_n), E \subset \bigcup_n B_n\right\}
+\end{aligned}
+\end{equation*}
+for $B_n$ boxes.
+\end{defi}
+
+\begin{prop}
+$m$ is countably additive on $\mathcal{L}$. Hence, $(\R^d,\mathcal{L},m)$ is a measure space.
+\begin{proof}
+A special case is $2$ disjoint compact subsets $A,B \subseteq \R^d$. We've seen that (check) $m^*(A)+m^*(B)=m^*(A \cup B)$. Suppose now $\{E_n\}_n$ is a family of pairwise disjoint compact subsets of $\R^d$. Then
+\begin{equation*}
+\begin{aligned}
+m^*(\cup_1^N E_i) = \sum_1^N m^*(E_i)
+\end{aligned}
+\end{equation*}
+by iterating the special case. So
+\begin{equation*}
+\begin{aligned}
+\sum_{i=1}^N m^*(E_i) \leq m^*(\cup_1^\infty) E_i \leq \sum_{i \geq 1} m^*(E_i)
+\end{aligned}
+\end{equation*}
+by monotonicty of $m^*$ and countable subadditivity respectively. Now let $N$ tend to $\infty$ and we get
+\begin{equation*}
+\begin{aligned}
+\sum_{i=1}^\infty m^*(E_i) =  m^*(\cup_1^\infty E_i)
+\end{aligned}
+\end{equation*}
+
+Now let's only assume that the $E_n$'s are bounded sets.
+
+
+\begin{lemma}
+If $E$ is a Lebesgue measurable subset of $\R^d$, then $\forall \varepsilon>0$, there exists $U \subseteq \R^d$ an open set with $E \subseteq U$ and $m^*(U \setminus E) < \varepsilon$. Also, $\forall \varepsilon>0$, there exists $F \subseteq E$ closed set with $m^*(E \setminus F) < \varepsilon$. 
+\begin{proof}
+Note that the second assertion follows from the fist one applied to $E^c$. So let's prove the first one -- but this is just the definition of $E$ being Lebesgue measurable: $\forall \varepsilon \exists \cup B_n $s.t. $E \subseteq \cup B_n$ and $m^*(\cup B_n \setminus E) < \varepsilon$.
+
+Recall we could take the $B_n$ to be open boxes, then we just set $U= \cup_n B_n$.
+\end{proof}
+\end{lemma}
+
+Now back to the main proof. By (2) of the lemma, $\exists F_n \subset E_n$ which is closed, and $m^*(E_n \setminus F_n) < \frac{\varepsilon}{2^n}$. But $E_n$ is bounded by assumption, so $F_n$ is compact. $E_n$ is pairwise disjoint, so $F_n$ also is. Then
+\begin{equation*}
+\begin{aligned}
+m^*(E_n) \leq m^*(F_n)+m^*(E_n\setminus F_n)
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\sum_{n \geq 1} m^*(E_n) \leq \sum_n m^*(F_n) + \varepsilon\sum_{n \geq 1} \frac{1}{2^n} = m^*(\cup_n F_n) + \varepsilon \leq m^*(\cup E_n)+\varepsilon
+\end{aligned}
+\end{equation*}
+But $\varepsilon$ is arbitrary. So
+\begin{equation*}
+\begin{aligned}
+\sum_{n\geq 1} m^*(E_n) \leq m^*(\cup_1^\infty E_n)
+\end{aligned}
+\end{equation*}
+and equality follows, because the other inequality holds by countable subadditivity.
+
+For the general case we reduce to the bounded case. We're running short of time, but the idea is that $\R^d=\cup_{m\geq 1} A_m$ for $A_m$ compact. We then apply the previous case to the countable family $(A_m \cap E_n)_{n,m}$ and check that it works.
+
+\begin{prop}
+On $(\R^d,\mathcal{L})$, there is a unique measure $\mu$ which is translation invariant.
+\end{prop}
+
+The countable additivity here is crucial. There are lots of finitely additive measures which are translation invariant and unrelated to $m$, even more, there are such $\mu$ with $\mu(\R^d) <\infty$.
+
+We'll skip the proof of this now (though it's possible to prove this directly) -- we will see another proof later.
+\end{proof}
+\end{prop}
+
+Last week we show that $\mathcal{L}$ is a $\sigma$-algebra, and the restriction of the Lebesgue outer measure, $m$, to $\mathcal{L}$ is a measure.
+
+We've also shown that if $E \subseteq \R^d$ is Lebesgue measurable, then $\forall \varepsilon>0 \exists U$ open set, $E \subseteq U$ s.t. $m(U \setminus E) < \varepsilon$. Also, $\forall \varepsilon>0, \exists F$ closed set, $F \subset E$ s.t. $m(E\setminus F) < \varepsilon$.
+
+A consequence is that, for every Lebesgue measurable set, there exists a sequence $U_n$ of open sets, $U_{n+1}\subseteq U_n$, $E \subseteq U_n$ s.t. $m(\bigcap U_n \setminus E) = 0$. So $E = \bigcap_n u_n \setminus N$ where $N$ is a null set ($m(N)=0$).
+
+\begin{rem}
+A countable intersection of open sets is called a $G_\delta$-set.\\
+\end{rem}
+
+Dually, if $E \in \mathcal{L}$, $\exists F_n$ closed, $F_n \subseteq E$, s.t. $m(E \setminus \bigcup_n F_n) = 0$. So $E = \bigcup_n F_n \cup N$ where $N$ is a null set. As a result, every Lebesgue measurable set is the  countable union of a $F_\sigma$-set and a null set, where $F_\sigma$ means a countable union of closed sets.
+
+Recall that a Boolean algebra is a family of subsets of a set $X$, which is closed under (finite) intersection and complements and contains $\phi$ and $X$, and a $\sigma$-algebra is a boolean algebra which is also closed under countable union.
+
+\begin{rem}
+Every finite boolean algebra is a $\sigma$-algebra.
+\end{rem}
+
+\begin{eg}
+We have the trivial boolean algebra, $B=\{\phi,X\}$, the discrete boolean algebra $B = \mathcal{P}(X)$, which are both also $\sigma$-algebras. We also have the elementary boolean algebra, $B=\{$finite unions of boxes in $\R^d$, or complements of such$\}$.
+
+Here is a less trivial example: let $X$ be a topological space, $B=\{$finite unions of sets of the form $U \cap F\}$, where $U$ is open and $F$ is closed. This is called the boolean algebra of constructible subsets of $X$.
+
+Also we have the null algebra: $B = \{E \subseteq \R^d, m^*(E) =0$ or $m^*(E^c) =0 \}$.
+\end{eg}
+
+\begin{rem}
+The intersection of any number of boolean algebras on the same set $X$ is again a boolean algebra, and the same holds for $\sigma-$algebras (check).
+\end{rem}
+
+\begin{defi}
+If $\mathcal{F}$ is a family of subsets of $X$, the boolean algebra \emph{generated} by $\mathcal{F}$ is the intersection of all boolean algebras containing $\mathcal{F}$ (something like the minimum that contains it?).
+The same applies for $\sigma$-algebras: notation $\sigma(\mathcal{F})$ for the $\sigma$-algebra generated by $\mathcal{F}$.
+\end{defi}
+
+\begin{rem}
+The boolean algebra generated by a family $\mathcal{F}$ of subsets of $X$ is the family of sets of the form
+\begin{equation*}
+\begin{aligned}
+\bigcup_{finite} \bigcap_{finite} F \text{ or } F^c
+\end{aligned}
+\end{equation*}
+for $F \in \mathcal{F}$.
+\end{rem}
+
+Note: a finite intersection of a finite union of sets from a family $\mathcal{F}$ is always a finite union of finite intersections of sets from $\mathcal{F}$. \textbf{But this is no longer true if you change finite by countable}. For example,
+\begin{equation*}
+\begin{aligned}
+\bigcap_{i \in \N} \bigcup_{j \in \N} E_j^{(i)} = \bigcup_{i \to j_i,\N \to \N} \bigcap_{i \in \N} E_{ji}^{(i)}
+\end{aligned}
+\end{equation*}
+Note that there are uncountably many functions $\N \to \N$ (check Borel hierarchy), so LHS can't be equal to just interchanging the order of intersection and union.
+
+\begin{defi}
+The $\sigma$-algebra generated by the family of boxes in $\R^d$ is called the \emph{Borel $\sigma$-algebra}.
+\end{defi}
+
+\begin{rem}
+It is also the $\sigma$-algebra generated by all open subsets of $\R^d$ (also, by all closed subsets). This is because we've shown that every open set is a countable union of boxes).
+\end{rem}
+
+Elements of the Borel $\sigma$-algebra are called Borel set.
+
+\begin{rem}
+More generally, if $X$ is an arbitrary topological space, the Borel $\sigma$-algebra of $X$ is the $\sigma$-algebra generated by open subsets of $X$. We denote it by $\mathcal{B}(X)$.
+\end{rem}
+
+Note that we've shown that every open subset $E \subseteq \R^d$ is Lebesgue measurable. Hence, $\mathcal{B}(\R^d) \subseteq \mathcal{L}$. The question is, are they equal?
+
+The answer is no. One can show that $\Card \mathcal{B}(\R^d) = 2^\N$, but remember that every null set lies in $\mathcal{L}$, and the middle-thirds Cantor set $C$ is a null set $\subseteq \mathcal{L}$. We know $\Card C = \Card \{0,1\}^\N =2^{\Card \N}$, so $\Card \mathcal{P}(C) = 2^{2^{\Card C}}$. Also all subsets of $C$ are null, hence in $\mathcal{L}$. So $\Card \mathcal{L} > \Card \mathcal{B}$.
+
+Now let's talk about measures. Recall a measure $m(X,\mathcal{A})$, where $X$ is a set and $\mathcal{A}$ is a $\sigma$-algebra, is a map $\mu: \mathcal{A} \to [0,+\infty]$ which is $\sigma$-additive and that s.t. $\mu(\phi)=0$.
+
+Null sets of $(X,\mathcal{A},\mu)$ are subsets in $\mathcal{A}$ with $\mu$-measure $0$.
+
+The sub-null sets are the subsets of $X$ contained in a null set. Note that these sets might not be in $\mathcal{A}$.
+
+\begin{defi}
+The family $\mathcal{A}^*$ of subsets of $X$ of the form $A \cup N$ or $A \setminus N$, where $A \in \mathcal{A}$, and $N$ is a sub-null set (w.r.t. to the measure $\mu$) forms a $\sigma$-algebra, called the \emph{completion} of $\mathcal{A}$ w.r.t. $\mu$. If all subnull sets are in $\mathcal{A}$, $\mathcal{A}$ is called \emph{complete}.
+\end{defi}
+
+\begin{eg}
+The completion of the Borel $\sigma$-algebra $\mathcal{B}(\R^d)$ is $\mathcal{L}$.
+\end{eg}
+
+Basic application of measures on arbitrary measure space:
+\begin{prop}
+Let $(X,\mathcal{A},\mu)$ is a measure space. Then we have:\\
+$\bullet$ upwards monotone convergence for sets: if $E_1 \subseteq E_2 \subseteq ... \subseteq E_n \subseteq ...$ for $ E_n \in \mathcal{A}$, then $\lim_n \mu(E_n) = \sup \mu(E_n) = \mu(\bigcup_n E_n)$.\\
+$\bullet$ downwards monotone convergence: if $E_1 \supseteq E_2 \supseteq ... \supset E_n \supseteq ...$ for $E_n \in \mathcal{A}$, if $\mu(E_1) < \infty$ then $\lim_{n \to \infty} \mu(E_n) =\inf_n \mu(E_n) = \mu(\bigcap_n E_n)$.
+\begin{proof}
+This follows from countable additivity of $\mu$, say for $(b)$ we consider the disjoint union
+\begin{equation*}
+\begin{aligned}
+E_1 = \bigcup_{i \geq 1} E_i \setminus E_{i+1} \cup \bigcap_n E_n
+\end{aligned}
+\end{equation*}
+(I think the $\cup$ and $\cap$ here is messed up -- need to check) (Actually it looks correct)
+\end{proof}
+\end{prop}
+
+Today we'll discuss how to extend a measure on Boolean algebra to the $\sigma$-algebra it generates (recall $\sigma$-algebra requires countable additivity).
+
+To be able to extend a measure $\mu$ on a Boolean algebra $\mathcal{B}$ to $\sigma(\mathcal{B}$, $\mu$ has to satisfy the following property:\\
+$\bullet$ It has to be $\sigma$-additive, meaning if $B_n \in \mathcal{B}$ disjoint and $\cup B_n \in \mathcal{B}$ then $\mu(\cup B_n) = \sum_{n \geq 1} \mu(B_n)$.
+
+The theorem we are going to prove is that this is enough.
+
+\begin{defi}
+A measure $\mu$ on $X$ is called \emph{$\sigma$-finite} if $X$ is a countable union of subsets with finite $\mu$-measure.
+\end{defi}
+
+\begin{thm} (Caratheodory extension theorem)\\
+If $\mathcal{B}$ is a boolean algebra of subsets of $X$ and $\mu$ is a countably additive measure on $\mathcal{B}$, then $\mu$ extends to a measure on $\sigma(\mathcal{B})$, which is the $\sigma$-algebra generated by $\mathcal{B}$. Moreover, the extension is unique if $\mu$ is assumed $\sigma$-finite.
+\begin{proof}
+We first prove existence, then prove uniqueness.
+
+$\bullet$ Existence: We define for an arbitrary subset of $A \subseteq X$ the following quantity
+\begin{equation*}
+\begin{aligned}
+\mu^*(A) = \inf\left\{\sum_{n \geq 1} \mu(B_n),A \subseteq \bigcup_{n \geq 1} B_n \text{ and each } B_n \in B\right\}
+\end{aligned}
+\end{equation*}
+Note (check!!) that $\mu^*(\phi)$ is $0$, $\mu^*(A) \leq \mu^*(B)$ if $A \subseteq B$, and $\mu^*(\cup_{n \geq 1} A_n) \leq \sum_{n \geq 1} \mu^* (A_n)$ -- i.e. countable subadditivity. Note that $\mu^*$ must exist because there is at least one cover, namely $X$ itself (A set function with these 3 properties is called an \emph{outer-measure}). We introduce the following auxiliary definition:
+
+\begin{defi}
+A subset $E \subseteq X$ will be called $\mu^*$-measurable (or Caratheodory measurable w.r.t. $\mu^*$) if for every subset $A \subseteq X$ (does it need to be in $\mathcal{B}$?), $\mu^*(A) = \mu^*(A \cap E) + \mu^*(A \cap E^c)$.
+\end{defi}
+
+We claim that (Claim 1) the family $\mathcal{B}^*$ of $\mu^*$-measurable subsets is a $\sigma$-algebra, and $\mu^*$ is a measure on $\mathcal{B}^*$. Also, we claim that (Claim 2) $\mu^*(B) = \mu(B)$ for all $B \in \mathcal{B}$, and $\mathcal{B} \subseteq \mathcal{B}^*$ -- therefore we have proven existence.
+
+$\bullet$ Claim 1: we first subclaim that $\mathcal{B}^*$ is a Boolean algebra. It's clear that $\mathcal{B}^*$ is closed under complementation (by definition): $E \in \mathcal{B}^* \implies E^c \in \mathcal{B}^*$. Also $\mathcal{B}^*$ contains $\phi$ and $X$; it remains to show that $\mathcal{B}^*$ is closed under finite unions.
+
+Let $E,F \in \mathcal{B}^*$, and $A \subseteq X$ be an arbitrary subset. Now
+\begin{equation*}
+\begin{aligned}
+E \in \mathcal{B}^* \implies \mu^*(A\cap(E\cup F)) &= \mu^*(A\cap(E \cup F) \cap E) + \mu^*(A \cap (E \cup F) \cap E^c)\\
+&= \mu^*(A \cap E) + \mu^*(A \cap(F \setminus E))\\
+F \in \mathcal{B}^* \implies \mu^*(A \cap E^c) &= \mu^*(A \cap E^c \cap F) + \mu^*(A \cap E^c \cap F^c)\\
+&= \mu^*(A \cap (F \setminus E)) + \mu^*(A \cap (E \cup F)^c)
+\end{aligned}
+\end{equation*}
+add the two previous equalities we get
+\begin{equation*}
+\begin{aligned}
+\mu^*(A \cap (E \cup F)) + \mu^*(A \cap (E \cup F)^c) &= \mu^*(A \cap E)+\mu^*(A \cap E^c)\\
+&=\mu^* (A)
+\end{aligned}
+\end{equation*}
+So $E \cup F \in \mathcal{B}^*$, i.e. $\mathcal{B}^*$ is a boolean algebra.
+
+Now let's prove that $\mathcal{B}^*$ is a $\sigma$-algebra. Note (check!) that since $\mathcal{B}^*$ is a boolean algebra, it is enough to check that $\cup_n E_n \in \mathcal{B}^*$ for any coutnable pairwise disjoint family $(E_n)_n$ of subsets of $\mathcal{B}^*$. Let $A \subseteq X$ be an arbitrary subset, then
+\begin{equation*}
+\begin{aligned}
+E_1 \in \mathcal{B}^* &\implies \mu^*(A) = \mu^*(A \cap E_1)+\mu^*(A \cap E_1^c)\\
+E_2 \in \mathcal{B}^* &\implies \mu^*(A \cap E_1^c) = \mu^*(A\cap E_1^c\cap E_2) + \mu^*(A\cap E_1^c \cap E_2^c)
+\end{aligned}
+\end{equation*}
+Keep going this way, we get
+\begin{equation*}
+\begin{aligned}
+\mu^*(A \cap E_1^c \cap E_2^c \cap ... \cap E_n^c) = \mu^*(A \cap E_{n+1}) + \mu^*( A \cap E_1^c \cap ... \cap E_{n+1}^c)
+\end{aligned}
+\end{equation*}
+Then add these up, and we get for every integer $n$,
+\begin{equation*}
+\begin{aligned}
+\mu^*(A) = \sum_{n=1}^N \mu^*(A \cap E_n) + \mu^*(A \cap E_1^c \cap ... \cap E_N^c)
+\end{aligned}
+\end{equation*}
+In particular, $\mu^*(A) \geq \sum_{n=1}^N \mu^*(A \cap E_n) + \mu^*(A \cap (\bigcup_n E_n)^c)$. Now we can let $N \to \infty$ we get 
+\begin{equation*}
+\begin{aligned}
+\mu^*(A) \geq \sum_1^\infty \mu^*(A \cap E_n) + \mu^*(A \cap (\cup E_n)^c)
+\end{aligned}
+\end{equation*}
+However, 
+\begin{equation*}
+\begin{aligned}
+\mu^*(A) &\leq \mu^*(A \cap \bigcup E_n) + \mu^*(A \cap (\bigcup E_n)^c)\\
+&\leq \sum_{n=1}^\infty \mu^*(A \cap E_n) + \mu^*(A \cap (\bigcup E_n)^c)
+\end{aligned}
+\end{equation*}
+by countable subadditivity of $\mu^*$. Hence in fact $\mu^*(A) = \mu^*(A \cap \bigcup E_n) + \mu^*(A \cap (\bigcup E_n)^c)$, i.e. $\bigcup_n E_n \in \mathcal{B}^*$; on the other hand, from $\mu^*(A \cap \bigcup E_n) = \sum_{n=1}^\infty \mu^*(A \cap E_n)$ we get $\mu^*$ is countably additive on $\mathcal{B}^*$. This ends the proof for claim 1, i.e. Tthe family $\mathcal{B}^*$ of $\mu^*$-measurable subsets is a $\sigma$-algebra and $\mu^*$ is a measure on $\mathcal{B}^*$.
+
+$\bullet$ Claim 2: We need to show $B \in \mathcal{B}^*$ for all $B \in \mathcal{B}$. Pick an arbitrary $A \subseteq X$. We need to show that $\mu^*(A) = \mu^* (A \cap B) + \mu^*(A \cap B^c)$. It's clear by subadditivity of $\mu^*$ that LHS $\leq $RHS. To prove LHS $\geq$ RHS, by definition of $\mu^*$, $\forall \varepsilon>0$ $\exists B_n \in \mathcal{B}, A\subseteq \bigcup_{n=1}^\infty B_n$ s.t. $\mu^*(A)+\varepsilon\geq\sum_{n=1}^\infty \mu^*(B_n)$. We write
+\begin{equation*}
+\begin{aligned}
+A \cap B \subseteq \bigcup_n B_n \cap B \in \mathcal{B}
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+A \cap B^c \subseteq \bigcup_n B_n \cap B^c \in \mathcal{B}
+\end{aligned}
+\end{equation*}
+so we get
+\begin{equation*}
+\begin{aligned}
+\mu^*(A \cap B) &\leq \sum \mu(B_n \cap B)\\
+\mu^*(A \cap B^c) &\leq \sum \mu(B_n \cap B^c)
+\end{aligned}
+\end{equation*}
+But $\mu$ is additive on $\mathcal{B}$, so $\mu(B_n) = \mu(B_n \cap B) + \mu(B_n \cap B^c)$. So
+\begin{equation*}
+\begin{aligned}
+\mu^*(A \cap B) + \mu^*(A \cap B^c) &\leq \sum \mu(B_n \cap B) + \mu(B_n \cap B^c) = \sum \mu(B_n)\\
+&\leq \varepsilon+\mu^*(A)
+\end{aligned}
+\end{equation*}
+i.e. $B \in \mathcal{B}^*$. So $\mathcal{B} \subseteq \mathcal{B}^*$.
+
+It remains to show that $\mu^*(B) = \mu(B)$ if $B \in \mathcal{B}$. Again LHS $\leq$ RHS is clear (check) by definition of $\mu^*$, and conversely, $\forall \varepsilon>0$, $\exists B_n \in B$, $B \subseteq \bigcup B_n$ s.t. $\varepsilon+\mu^*(B) \geq \sum_n \mu(B_n)$. But
+\begin{equation*}
+\begin{aligned}
+\mu(B) &\leq \mu(\bigcup B_n) \leq \sum \mu(B_n)\\
+&\leq \mu^*(B) + \varepsilon
+\end{aligned}
+\end{equation*}
+
+So $\mu^*$ is a measure on $\sigma(\mathcal{B})=\mathcal{B}^*$, i.e. we've proven existence.
+
+$\bullet$ Proof of uniqueness: $\mu$ is $\sigma$-finite, i.e. $X=\bigcup_n E_n$ with $\mu(E) < \infty$. $\mu|_{E_n}$ is a finite measure on $E_n$, and so WLOG we may assume that $\mu(x) < \infty$.
+
+Let $\nu$ be a measure on $\sigma(\mathcal{B})$ extending $\mu$, i.e. $\nu(B) = \mu(B)$ $\forall B \in \mathcal{B}$. We need to show that $\nu(E) = \mu^*(E) \forall E \in \sigma(\mathcal{B})$. For this, consider $\nu^*$ defined as before with $(v,\sigma(\mathcal{B}))$ in place of $(\mu,\mathcal{B})$. We've proved that $\nu^* = \nu$ on $\sigma(\mathcal{B})$. On the other hand, $\nu^*(A) \leq \mu^*(A)$ $\forall A \subseteq X$ by definition of $\nu^*$ and $\mu^*$. So if $A \in \sigma(\mathcal{B})$ then $\nu(A) \leq \mu^*(A)$. Hence $\nu(A^c) \leq \mu^*(A^c)$. (????) But $\nu(A^c) = \nu(X) - \nu(A)$, $\mu^*(A^c) = \mu^*(X) -\mu^*(A)$, so $\nu(A) \geq \mu^*(A)$.
+
+\end{proof}
+\end{thm}
+
+Exercise: Recall that $\mathcal{B}^* = \{E \subseteq X, E$ is $\mu^*$-measurable $\}$ (recall that $\mu^*$-measurable means $\mu^*(A)+\mu^*(A \cap E) + \mu^*(A \cap E^c)) \forall A \subseteq X$).\\
+$\bullet$ Every subset in $\mathcal{B}^*$ is of the form $E = A \cup N$ where $A = \sigma(B)$ and $\mu^*(N)=0$. So in fact, $\mathcal{B}^*$ is the completion of $\sigma(\mathcal{B})$ wrt $\mu^*$.\\
+$\bullet$ When $\mathcal{B}=$ the elementary boolean algebra of $\R^d$ (= finite unions of boxes or complements of such), then $\sigma(\mathcal{B})$ = Borel $\sigma$-algebra,$\mathcal{B}^* = \mathcal{L}=\sigma$-algebra of Lebesgue measurable sets.
+
+\begin{rem}
+This means that the Caratheodory extension theorem gives an alternative way to construct the $\sigma$-algebra of Lebesgue measurable sets in $\R^d$, and the Lebesgue measure.
+\end{rem}
+
+There is a much stronger uniqueness theorem.
+
+\begin{thm}
+Suppose $(X,\mathcal{A})$ is a measurable space, and $\mu_1$ and $\mu_2$ are two finite measures on $(X,\mathcal{A})$ such that $\mu_1(X) = \mu_2(X)$. Suppose that $\mu_1(A) = \mu_2(A)$ $\forall A \in \mathcal{F}$, where $\mathcal{F}$ is a subfamily of $\mathcal{A}$ which generates $\mathcal{A}$ (i.e. $\sigma(\mathcal{F}) = \mathcal{A}$), and is stable under finite intersections. Then $\mu_1 = \mu_2$.
+\end{thm}
+
+\begin{lemma} (Dynkin's)\\
+Let $\mathcal{A}$ be a $\sigma$-algebra and $\mathcal{F}$ a family of subsets on $\mathcal{A}$, which generates $\mathcal{A}$ and is stable under finite intersections and contains $\phi$ (such $\mathcal{F}$ is sometimes called a $\pi$-system). Let $\mathcal{C}$ be a subfamily of $\mathcal{A}$, which contains $\mathcal{F}$, and is stable under complementation and countable disjoint unions. Then $\mathcal{C} = \mathcal{A}$.
+\end{lemma}
+
+Proof of uniqueness theorem via Dynkin's lemma: Observe that $\mathcal{C} = \{A \in \mathcal{A},\mu_1(A) =\mu_2(A)\}$. Then $\mathcal{C}$ satisfies the assumptions of Dynkin's lemma, and so $\mathcal{C} = \mathcal{A}$. So $\mu_1 = \mu_2$.
+
+\subsection{Measurable Functions}
+\begin{defi}
+$(X,\mathcal{A})$ measurable space, and $f:X \to \R$ is a real valued function. Say that $f$ is $\mathcal{A}$-measurable (or just measurable if it's clear which $\sigma$-algebra we are talking about) if $\forall t \in \R$, $\{x \in X, f(x)<t\} \in \mathcal{A}$. 
+\end{defi}
+
+\begin{rem}
+If $f$ is $\mathcal{A}$-measurable, then $f^{-1}(B) \in \mathcal{A}$ for all Borel subsets $B \subseteq \R$. Indeed $f^{-1}$ is 'functional' w.r.t. $\cup$, $\cap$ and complement. So $\{B \subseteq \R | f^{-1}(B) \in \mathcal{A}$ is a $\sigma$-algebra. If $f$ is measurable, by definition it contains $(-\infty,t)$ $\forall t$. So it contains all intervals, hence all Borel sets.
+\end{rem}
+
+Caveat: The pre-image under $f$ of a Lebesgue measurable subset of $\R$ (which is not Borel) may not be in $\mathcal{A}$. More generally, if $(X,\mathcal{A})$ and $(Y,\mathcal{B})$ are measurable spaces, then
+\begin{defi}
+$f:X \to Y$ is said to be measurable if $f^{-1}(B) \in \mathcal{A}$ for all $B \in \mathcal{B}$.
+\end{defi}
+
+\begin{rem}
+To check that $f:X \to Y$ is measurable, it is enough to check that $f^{-1}(B) \in \mathcal{A}$ for all $B \in \mathcal{F}$ = generating subfamily of $\mathcal{B}$.
+\end{rem}
+
+\begin{rem}
+Let $f:X \to Y$, $g:Y \to Z$, and we have $(X,\mathcal{A}),(Y,\mathcal{B}),(Z,\mathcal{C})$. If $f,g$ are measurable, so is $f \circ g: X \to Z$ (obvious).
+\end{rem}
+
+\begin{rem}
+$(X,\mathcal{A})$ a measurable space, $f:X \to \R^d$ is $\mathcal{A}$-measurable if and only if each coordinate function $f_i$, $i=1,...,d$ is $\mathcal{A}$-measurable, where $f=(f_1,...,f_d) \in \R^d$.
+\end{rem}
+
+\begin{prop}
+If $f,g$ are $\mathcal{A}$-measurable $X \to \R$ function, then so is $f_g$, $fg$, $d f$ for $d \in \R$. In particular, the set of $\mathcal{A}$-measurable functions on $X$ is a vector space stable under multiplication ($\R$-algebra).
+\begin{proof}
+Consider $X \to \R^2 \xrightarrow{s} \R$ by $x \to (f(x),g(x)) \to f(x)+g(x)$, where $s:\R^2 \to \R$ by $(x,y) \to x+y$. By previous remark, $F$ is measurable. But $s$ is measurable because $\{(x,y) \in \R^2, x+y < t\}$ is open and therefore Borel. Hence the composition $s \circ f$ is measurable.
+\end{proof}
+\end{prop}
+
+\begin{rem}
+Every continuous function $\R \to \R$ is measurable. Why? because $\{x,f(x) < t\}$ is open, hence Borel. 
+\end{rem}
+
+\begin{prop}
+If $(f_n)_n$ is a family of measurable functions $X \to \R$, then $\limsup_{n \to \infty} f_n$, $\liminf_{n\to \infty}f_n$, $\sup f_n$, $\in f_n$ are all $\mathcal{A}$-measurable.
+\begin{proof}
+Consider $\{x \in X; \liminf_n f_n < t\} = \bigcup_{k \geq 1} \bigcap_{m \geq 1} \bigcup_{n \geq m} \{x \in X, f_n(x) < t-1/k\}$. The others are similar (wtf). n
+\end{proof}
+\end{prop}
+
+\begin{rem}
+If $X = \bigcup_{i=1}^N P_i$ is a partition of $X$, and $\mathcal{A}$ is the atomic boolean algebra associated with this partition (i.e. subsets of $X$ belonging to $\mathcal{A}$ are the finite unions of $P_i$), then $f:X \to \R$ is $\mathcal{A}$-measurable iff $f$ is constant on each $P_i$ for $i=1,...,N$ iff $f = \sum_{i=1}^N a_i 1_{P_i}$ for $a_i \in \R$.
+\end{rem}
+
+The intuition is that $f$ is $\mathcal{A}$-measurable means that $f(x)$ depends only on which subsets from $\mathcal{A}$ $x$ belongs to.
+
+Remark: $E \in \mathcal{A}$ iff $1_E$ is $\mathcal{A}$-measurable, for every subset $E \subseteq X$.
+
+\begin{defi}
+If $X$ is a topological space, a Borel function on $X$ is a function which is $\\mathcal{B}(X)$-measurable, where $\mathcal{B}(X)$ is the Borel $\sigma$-algebra, i.e. the $\sigma$-algebra generated by the open sets.
+\end{defi}
+
+Caveat: if $f:X \to \R$ is $\mathcal{A}$-measurable, then $f^{-1}(B) \in \mathcal{A}$ for all Borel measurable subsets $B \subseteq \R$. But $f^{-1}(E)$ for $E$ Lebesgue measurable may not be in $A$.
+
+\begin{rem} (The devil's staircase)\\
+Consider a non-decreasing function $\phi:[0,1] \to [0,1]$ that is continuous, and $\phi(0) = 0$, $\phi(1) = 1$, and is constant on each component of $[0,1] \setminus C$, where $C$ is the middle-thirds Cantor set. We can show that $\phi$ converges uniformly to its pointwise limit.
+\end{rem}
+
+Exercise: show that there exists a continuous increasing bijection $\phi:[0,1] \to [0,1]$, $\phi(0) = 0$, $\phi(1) = 1$, and a subset $F\subseteq [0,1]$ of Lebesgue measure zero, such that $phi(F)$ has positive measure. (consider allowing a small positive slope on each component of the $[0,1] \setminus C$ in the above remark)
+
+Exercise: show that the above exercise gives rise to a counter example explaining the above Caveat.\\
+$\bullet$ hint: show that there exists $A \subseteq \phi(F)$ non Lebesue measurable. Set $f = \phi^{-1}$, $E = f(A)$.\\
+$\bullet$ hint: show that every subset of $\R$ of positive measure contains a non Lebesgue measurable subset (modify Vitali's construction in the first chapter).
+
+\subsection{Integration}
+Let $(X,\mathcal{A},\mu)$ be a measure space. We are going to define the integral $\mu(f) = \int_X f d\mu = \int_X f(x) d\mu(x)$ of a function $f$ w.r.t. $\mu$.
+
+First we define $\mu(f)$ when $f$ is a \emph{simple function}, i.e. a function of the form $f=\sum_{i=1}^N a_i 1_{E_i}$, a linear combination of indicator functions with each $E_i \in \mathcal{A}$. We define $\mu(f) := \sum_{i=1}^N a_i \mu(E_i)$.
+
+Check as an exercise, that this definition makes sense (it's independent of the representation of $f$).
+
+Now if $f:X \to \R$ has values in $[0,+\infty]$ and is $\mathcal{A}$-measurable, we define
+\begin{equation*}
+\begin{aligned}
+\mu(f) := \sup \{ \mu(g), g \text{ simple function}, g \leq f\}
+\end{aligned}
+\end{equation*}
+where by $g\leq f$ we mean that $g(x)\leq f(x)$ for all $x$.
+
+Finally, if $f:X \to \R$ is any $\mathcal{A}$-measurable function, then we set $f^+(x) := \max \{0,f(x)\}$ and $f^-:=(-f)^+$. Then clearly $f = f^+ - f^-$ and $|f| = f^+ + f^-$.
+
+\begin{defi}
+$f$ is $\mu$-integrable if $\mu(f^+) < \infty$ and $\mu(f^-) < \infty$, and if this is the case we define
+\begin{equation*}
+\begin{aligned}
+\mu(f) = \mu(f^+) - \mu(f^-)
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{thm} (Monotone convergence theorem)\\
+Let $(f_n)_n$ be a sequence of $\mathcal{A}$-measurable functions, such that for all $x \in X$, $0 \leq f_1(x) \leq f_2(x) \leq ... \leq f_n(x) \leq ...$. Let
+\begin{equation*}
+\begin{aligned}
+f(x) = \lim_{n \to \infty} f_n(x) \in [0,+\infty]
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+\mu(f_n) \xrightarrow{n \to \infty} \mu(f)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Clearly $\mu(f_n) \leq \mu(f)$ for all $n$. Also $\mu(f_n) \leq \mu(f_{n+1})$ for all $n$. For all $\varepsilon>0$, let $g$ be a simple function, $g \leq f$, and let $E_n =\{x \in X; f_n(x) \geq (1-\varepsilon)g(x)\}$. Note $E_n \in \mathcal{A}$, and $E_n \subseteq E_{n+1}$ and $X = \bigcup_{n \geq 1} E_n$. So we can apply the upwards monotone convergence for sets to the measure $m_g: E (\in \mathcal{A}) \to \mu(1_E \cdot g)$ (check that this is a measure on $(X,\mathcal{A}$. It's a product inside the bracket), and get $m_g(E_n) \uparrow m_g(X) = \mu(g)$ as $n \to +\infty$ (what's up arrow -- converge monotonically from below?). Now
+\begin{equation*}
+\begin{aligned}
+m_g(E_n) &= \int 1_{E_n} (x) \cdot g(x)  d\mu(x) \\
+&\leq \frac{1}{1-\varepsilon}\int f_n (x) d\mu(x)\\
+&= \frac{\mu(f_n)}{1-\varepsilon}
+\end{aligned}
+\end{equation*}
+So we get $\mu(g) \leq \frac{1}{1-\varepsilon} \liminf_n \mu(f_n) \leq \limsup_n \mu(f_n) \leq \mu(f)$.
+
+Now this holds for all $g$ simple and $0 \leq g \leq f$, so taking the sup over all such $g$, we get
+\begin{equation*}
+\begin{aligned}
+\mu(f) (1-\varepsilon) \leq \liminf \leq \limsup \leq \mu(f)
+\end{aligned}
+\end{equation*}
+(fill what's after liminf and limsup)\\
+This holds for all $\varepsilon>0$, so we've got
+\begin{equation*}
+\begin{aligned}
+\mu(f) = \liminf \mu(f_n) = \limsup \mu(f_n).
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{thm}
+
+\begin{coro}
+$f,g$ are $\mu$-integrable functions on $(X,\mathcal{A},\mu)$, then\\
+$\bullet$ for $a,b \in \R$, $\alpha f+\beta g$ is $\mu$-integrable, and $\mu(\alpha f+\beta g) = \alpha \mu(f) + \beta \mu(g)$;\\
+$\bullet$ if $f \geq 0$, then $\mu(f) \geq 0$;\\
+$\bullet$ if $f \geq 0$ and $\mu(f) = 0$, then $f=0$ $a.e.$.
+
+Here $a.e.$ means 'almost everywhere': a property $P(x)$ holds a.e. means that the set on which it doesn't hold is a (sub)-null set for $\mu$.
+\begin{proof}
+$\bullet$ We know the linearity for simple functions, so we will reduce to this case using the Monotone Convergence Theorem.
+
+First, writing $f=f^+-f^-$, $g=g^+-g^-$ where $f^+,f^-$ are as defined previously, we reduce to the case when both $f$ and $g$ are non-negative; finally every non-negative measurable function is a pointwise limit of simple functions: indeed let $f_n(x) := \min(\frac{1}{n^2}[n^2f(x)]))$, where the square bracket is the floor function. This function only takes finitely many values, and also $f_n(x) \leq f(x)$ $\forall n$ and $x$, and $\lim_{n \to \infty} f_n(x) = f(x)$. So now just apply the monotone convergence theorem to the sequence $(f_n)$.
+
+$\bullet$ Recall $\mu(f)$ was defined as $\sup\{\mu(g),0 \leq g \leq f, g \text{ simple} \}$. So it's clear that $f \geq 0 \implies \mu(f) \geq 0$.
+
+$\bullet$ Now if $f \geq 0$ and $\mu(f) = 0$, consider $E_n = \{x \in X,f_n(x) \geq \frac{1}{n}\}$. Note $E_n \in \mathcal{A}$, and $\bigcup_{n \geq 1} E_n \cup \{x \in X, f(x) = 0\} = X$. By countable subadditivity of $\mu$, it is enough to show that $\forall n$, $\mu(E_n) = 0$. But $\frac{1}{n} \cdot 1_{E_n} \leq f$, so $\frac{1}{n} \mu(E_n) \leq \mu(f)$. As $\mu(f) = 0$, we get $\mu(E_n) = 0$.
+\end{proof}
+\end{coro}
+
+\begin{rem}
+If $f$ and $g$ are measurable and integrable, and $f=g$ a.e., then $g$ is integrable and $\mu(f) = \mu(g)$. (check)
+\end{rem}
+
+\begin{thm} (Fatou's lemma)\\
+If $(f_n)_n$ is a sequence of measurable functions, $m(X,\mathcal{A},\mu)$ such that $f_n \geq 0$ $\forall n$, then
+\begin{equation*}
+\begin{aligned}
+\mu (\liminf_{n \to \infty} f_n) \leq \liminf_{n \to \infty} \mu(f_n)
+\end{aligned}
+\end{equation*}
+Note that this inequality can be strict. For example, in the following three types of 'moving bumps' examples:\\
+(a) $X = [0,+\infty)$ with Lebesgue measure, $f_n = 1_{[n,n+1]}$, then $\lim f_n =0 $ but $\mu(f_n)=1$ for all $n$.\\
+(b) Take $f_n = \frac{1}{n} 1_{[0,n]}$, then $\liminf f_n = 0$ but $\mu(f_n) = 1$ for all $n$ again.\\
+(c) Let $X=[0,1]$ with Lebesgue measure, and take $f_n = 1_{[\frac{1}{n},\frac{2}{n}]} \cdot n$. Again, $\lim f_n = 0$ but $\mu(f_n) = 1$.
+\begin{proof}
+(See an alternative proof that doesn't rely on monotone convergence theorem \href{https://en.wikipedia.org/wiki/Fatou\%27s_lemma#Proof}{here}).
+
+Let $g_n =\inf_{k \geq n} f_k$. Note $g_{n+1} \geq g_n \geq 0$, so $\mu(g_n) \xrightarrow{n \to \infty} \mu(g_\infty)$ where $g_\infty = \lim_{n \to \infty} g_n$; $g_n \leq f_n$, so $\mu(g_n) \leq \mu(f_n)$ i.e. $\lim \mu(g_n) \leq \liminf_n \mu(f_n)$. Therefore
+\begin{equation*}
+\begin{aligned}
+\mu(g_\infty) \leq \liminf_n \mu(f_n)
+\end{aligned}
+\end{equation*}
+But $g_\infty = \liminf_{n \to \infty} f_n$.
+\end{proof}
+\end{thm}
+
+\begin{thm} (Lebesgue's dominated convergence theorem)\\
+Let $(X,\mathcal{A},\mu)$ be a measure space. Let $(f_n)_n$ be a sequence of measurable functions on $X$. Assume that there exists a $\mu$-integrable functions $g$ such that $|f_n | \leq g$ for all $n$ ('dominated' by $g$). Also, assume further that $f_n(x)$ converges pointwise to $f(x)$ for all $x \in X$. Then we can interchange the order of integration and limit, i.e.
+\begin{equation*}
+\begin{aligned}
+\mu(\lim_{n \to \infty} f_n) = \lim_{n \to \infty} \mu (f_n)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Note $|f_n| \leq g \implies |f| \leq g$, where $f = \lim_{n \to \infty} f_n$. So $f$ is integrable, and $\mu(|f|) \leq \mu(g) < \infty$. Now observe that $g+f_n$ is non-negative. So apply Fatou's lemma to $(g+f_n)_n$, we get
+\begin{equation*}
+\begin{aligned}
+\mu(\liminf_{n \to \infty} g+f_n) \leq \liminf \mu(g+f_n)
+\end{aligned}
+\end{equation*}
+But also LHS = $\mu(g+f) \leq \mu(g) + \liminf_n \mu(f_n)$. Cancelling $\mu(g)$ we get $\mu(f) \leq \liminf \mu(f_n)$. Now do the same with $-f_n$ in place of $f_n$, we get $\mu(-f) \leq \liminf \mu(-f_n)$, i.e. $\mu(f) \geq \limsup \mu(f_n)$. So
+\begin{equation*}
+\begin{aligned}
+\mu(f) \leq \liminf \mu(f_n) \leq \limsup \mu(f_n) \leq \mu(f)
+\end{aligned}
+\end{equation*}
+Hence $\mu(f_n)$ converges to $\mu(f)$.
+\end{proof}
+\end{thm}
+
+\begin{coro} (exchange of $\sum$ and $\int$)\\
+$\bullet$ Let $(f_n)_{n \geq 1}$ be a sequence of measurable sets. Assume $f_n \geq 0$ for all $n$. Then $\mu(\sum_{n \geq 1} f_n) = \sum_{n \geq 1} \mu(f_n)$. \\
+$\bullet$ Let $(f_n)_{n \geq 1}$ for any sequence of measurable functions. Assume $\sum_{n \geq 1} |f_n|$ is $\mu-$integrable. Then we can exchange $\sum$ and $\int$, i.e.
+\begin{equation*}
+\begin{aligned}
+\mu(\sum_{n \geq 1} f_n) = \sum_{n \geq 1} \mu (f_n)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+$\bullet$ Just take $g_N = \sum_{n=1}^N f_n$, the partial sum, and apply the Monotone Convergence Theorem to $(g_N)_{N \geq 1}$. \\
+$\bullet$ Let $g=\sum_{n \geq 1} |f_n|$ and again $g_N = \sum_{n=1}^N f_n$. Then $\forall N$, $|g_N| \leq g$, $g$ is $\mu$-integrable by assumption. Then just apply the Lebesgue Dominated Convergence Theorem.
+\end{proof}
+\end{coro}
+
+\begin{coro} (exchange of $\frac{\partial}{\partial x}$ and $\int$)\\
+Let $(X,\mathcal{A},\mu)$ be a measure space, and let $f:I \times X \to \R: (t,x) \to f(t,x)$ where $I$ is an open interval in $\R$. Assume\\
+$\bullet$ $x \to f(t,x)$ is $\mu$-integrable $\forall t \in I$;\\
+$\bullet$ $t \to f(t,x)$ is differentiable $\forall x \in X$;\\
+$\bullet$ (domination) there exists a function $g:X \to \R$ s.t. $|f(t,x) \leq g(x)|$ for every $x\in X, t \in I$, and $g$ is $\mu$-integrable.
+
+Then $x \to \frac{\partial f}{\partial x} (t,x)$ is $\mu$-integrable $\forall t \in I$, $t \to \int_X f(t,x) d\mu$ is integrable, and 
+\begin{equation*}
+\begin{aligned}
+\frac{\partial}{\partial t} \left(\int_X f(t,x)d\mu(x)\right) = \int_X \frac{\partial f}{\partial t}(t,x) d\mu(x)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+This is a corollary of the Lebesgue Dominance Convergence Theorem.
+
+Let $h_n \in \R$, $h_n \xrightarrow{n \to \infty} 0$. Set $g_n(x) := \frac{f(t+h_n,x) - f(x)}{h_n}$. Then $g_n(x) \to \frac{\partial f}{\partial t}$ pointwise. But there exists $\theta_n \in [t,t+h_n]$ s.t. $g_n(x) = \frac{\partial f}{\partial t}(t,x)|_{t = \theta_n}$ by mean value theorem. So
+\begin{equation*}
+\begin{aligned}
+|g_n| \leq g
+\end{aligned}
+\end{equation*}
+and $g$ is integrable. So apply LDC Theorem.
+\end{proof}
+\end{coro}
+
+In the proof of the monotonic convergence theorem, we've used the fact that if $g$ is a simple function, then $A \in \mathcal{A} \to \mu (g 1_A)$ is a measure. Now this is \emph{clear} reducing to the case $g=1_B$ by linearity. And it also holds for all $g \geq 0$ measurable, but this is an exercise which may require the monotone convergence theorem.
+
+\begin{thm} (Egoroff Theorem)\\
+Let $(X,\mathcal{A},\mu)$ be a measure space. Assume $\mu(X) < \infty$, $(f_n)_{n \geq 1}$ a sequence of measurable facts which converges pointwise to $f=\lim f_n$. Then $\forall \varepsilon>0$ $\exists A \in \mathcal{A}$, $\mu(A) > \mu(X) -\varepsilon$ s.t. 
+\begin{equation*}
+\begin{aligned}
+\sup_{x \in A} |f_n(x) - f(x)| \xrightarrow{n \to \infty} 0
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Replacing $f_n$ by
+\begin{equation*}
+\begin{aligned}
+\sup_{k \geq n} |f_k(x) - f(x)|
+\end{aligned}
+\end{equation*}
+we may assume that $f=0$, $0 \leq f_{n+1} \leq f_n$. Then $f_n(x) \to 0$ for all $x \in X$, so $\forall k \exists n_k(x) \in \N$ s.t. $0 \leq f_{n_k}(x) \leq 1/k$.
+
+So $n_k(x) < \infty$ for all $x$. So $\bigcup_{1 \leq T \infty} \{x \in X, n_k(x) \leq T\} = X$ for every $k$. Hence $\mu\{x ; n_k \leq t\} \xrightarrow{T \to \infty} \mu(x)$ by monotone convergence theorem for sets.
+
+Let $T_k \in \N$ be such that $\mu\{x,n_k \leq T_k\} \geq \mu(X) - \frac{\varepsilon}{2^k}$. Take $A = \bigcap_{k \geq 1} \{x;n_k(x) \leq T_k\}$. By countable subadditivity of $\mu$ we get $\mu (X \setminus A) \leq \sum_{k \geq 1} \varepsilon/2^k \leq \varepsilon$. But we have $\sup_{x \in A} f_n(x) \xrightarrow{n \to \infty} 0$ because $\sup_A f_{T_k} \leq 1/k$ for all $k$, and $n \to \sup_A f_n$ is non-increasing.
+\end{proof}
+\end{thm}
+
+\begin{thm} (Fundamental theorem of calculus)\\
+$f:[a,b] \to \R$ is continuous, and let $F(x) = \int_{[a,x]} f d\mu$, where $\mu$ is a Lebesgue measure. Then $F$ is differentiable, and $F'(x) = f(x)$ for all $x$.
+
+\begin{proof}
+Same as for the Riemann integral. This is actually easier because we assumed continuity.
+
+Indeed $\frac{F(x+h)F(x)}{h} = \int_x^{x+h} \frac{f(t)}{h} dt$ but by continuity this converges to $f(x)$ as $h \to 0$.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+There is a much more powerful version of this theorem, namely: 
+\begin{thm}
+Let $f:[a,b] \to \R$ be a $\mu$-integrable function, and $\mu$ is a Lebesgue measure. Let $F(x) := \int_{[a,x]} fd\mu$. Then $F$ is differentiable almost everywhere w.r.t. $\mu$, and $F'(x) = f(x)$ $\mu-$almost everywhere.
+\end{thm}
+\end{rem}
+
+\begin{thm} (Lebesgue differentiation theorem)\\
+Let $f:\R^d \to \R$ be a Lebesgue integrable function. Then the following holds $\mu$-almost everywhere:
+\begin{equation*}
+\begin{aligned}
+\frac{1}{\mu(B(x,r))} \int_{B(x,r)} f d\mu \xrightarrow{r \to 0} f(x)
+\end{aligned}
+\end{equation*}
+where $B(x,r) = \{y \in \R^d, ||x-y|| < r\}$. The norm used here is not important.
+\end{thm}
+
+\begin{rem}
+$F'(x) = f(x)$ almost everywhere, but not everywhere. For example, take $f = 1_{[0,1]}$, then $F(x) = \min\{x,1\}$ if $x \geq 0$; this is not differentiable at $1$.
+
+We are also interested in the converse statement as well, but it fails in general. Namely, if $F:[a,b] \to \R$ is continuously and differentiable almost everywhere, then it's not always true that $F(x) - F(a) = \int_a^x F'(t) dt$. For example, take $F(x) = x^2 \sin(\frac{1}{x^2})$. $F'$ exists for all $x \in [0,1]$, but it's not Lebesgue integrable. Another example is the Devil's staircase which we've seen before: $F$ is a non-decreasing continuous function, but $F'(x) = 0$ for all $x \not \in C$ and $F$ is not differentiable on $C$, i.e. $F'(x)=0$ almost everywhere. However, $F(0) = 0$ and $F(1) = 1$.
+\end{rem}
+
+\begin{rem}
+However, if $F$ is Lipschitz, i.e. $\exists L > 0$ s.t. $|F(x) - F(y)| \leq L|x-y|$ $\forall x,y \in [a,b]$, then $F$ is a.e. differentiable (this is called the Rademacher differentiation theorem). Note that tour previous converse statement will hold for such $F$. Indeed, $F'(x) = \lim_{n \to \infty} F_n (x)$, $F_n(x) := n(F(x+\frac{1}{n}) - F(x))$. Then by Lipschitz condition we know $|F_n(x)| \leq L$ for all $x$. Then we can apply the LDC theorem to swap the limit and integral:
+\begin{equation*}
+\begin{aligned}
+\int_a^b F'(x) dx = \int_a^b \lim_n F_n(x) dx = \lim \int_a^b F_n(x) = F(b) - F(a).
+\end{aligned}
+\end{equation*}
+\end{rem}
+
+\begin{thm} (Change of variable formula)\\
+If $U,V \subseteq \R^d$ are open sets, and $\phi: U \to V$ is a $C^1$-diffeomorphism, then $f: V \to \R$ is Lebesgue measurable. Assume either $f \geq 0$ or $f$ integrable. Then
+\begin{equation*}
+\begin{aligned}
+\int_\mu f(\phi(x)) |J_\phi(x)| dx = \int_v f(y) dy
+\end{aligned}
+\end{equation*}
+where $dx$ and $dy$ are Lebesgue measure, and $J_\phi(x) = \det (d\phi(x))$, i.e. the Jacobian.
+\end{thm}
+
+\begin{rem}
+$\bullet$ We'll skip the proof (prove it for linear $\phi$, then approximate on small boxes around each point).\\
+$\bullet$ The theorem holds if $\phi$ is only assumed to be a Lipschitz homomorphism as well.\\
+$\bullet$ When $u=[a,b]$, this is basically the Fundamental theorem of calculus.\\
+$\bullet$ This shows that Lebesgue measure is invariant under linear affine maps $x \to Ax+b$, $b \in \R^d$, $A \in GL_d (\R)$ with determinant 1.
+\end{rem}
+
+\subsection{Product measures}
+
+\begin{defi} (Product $\sigma$-algebra)\\
+Let $(X,\mathcal{A})$ and $(Y,\mathcal{B})$ be measurable spaces. On $X \times Y$ we defined the product $\sigma$-algebra, denoted by $\mathcal{A} \otimes B$ to be the sigma algebra generated by all $A\times B \subseteq X \times Y$, with $A \in \mathcal{A}$, $B \in \mathcal{B}$.
+\end{defi}
+
+\begin{rem}
+The projection maps $\pi_X:X \times Y \to X$, $\pi_Y:X \times Y \to Y$ that maps $(x,y)$ to $x$ and $y$ respectively are measurable (preimage of measurable sets are measurable), when $X \times Y$ is endowed with $A \otimes B$. $A \times \mathcal{A}$, $\pi^{-1}_X = A \times Y$.\\
+In fact, $A \otimes B$ is the smallest $\sigma-$algebra on $X \times Y$ for which both projections are measurable.\\
+Consider $\mathcal{B}(\R^{d_1+d_2}) = \mathcal{B}(\R^{d_1}) \otimes \mathcal{B}(\R^{d_2})$. In fact, if $X$ and $Y$ are 2nd countable topological spaces,i.e. those which have a countable base, then $\mathcal{B}(X \times Y) = \mathcal{B}(X) \otimes \mathcal{B}(Y)$, where $\mathcal{B}(X)$ is the sigma algebra generated by open sets. However, this is wrong in general.
+\end{rem}
+
+\begin{lemma}
+If $E \subseteq X \times Y$ belongs to $\mathcal{A} \otimes \mathcal{B}$, then $\forall x \in X, E_x \in \mathcal{B}$, and $\forall y \in Y, E_y \in \mathcal{A}$, where $E_x = \{y \in Y, (x,y) \in E\}$, and $E_y = \{x \in X, (x,y) \in E\}$.
+\begin{proof}
+Let $\mathcal{C} := \{E \subseteq X \times Y s.t. E_x \in \mathcal{B}, E_y \in \mathcal{A} \forall x \in X, y \in Y\}$. Check that $\mathcal{C}$ is a $\sigma$-algebra. Also, $\mathcal{C}$ contains all subsets of the form $A \times B$ for $A \in \mathcal{A}, B \in \mathcal{B}$. So we get $\mathcal{C} \supseteq \mathcal{A} \otimes \mathcal{B}$.
+\end{proof}
+\end{lemma}
+
+Using this lemma, we can prove that (as an exercise) $\mathcal{L}(\R^{d_1}) \otimes \mathcal{L}(\R^{d_2}) \subsetneq \mathcal{L}(\R^{d_1+d_2})$, i.e. they are not equal.
+
+\begin{prop}
+Let $(X,\mathcal{A},\mu)$ and $(Y,\mathcal{B},\nu)$ be two $\sigma-$finite (i.e. a space can be written as a countable union of increasing subsets with finite measure) measure spaces. Then there is a unique measure on $(X \times Y, \mathcal{A} \otimes \mathcal{B})$ denoted by $\mu \otimes \nu$ s.t. $\mu \otimes \nu(A \times B) = \mu(A) \cdot \nu(B)$ for all $A \in \mathcal{A},B \in \mathcal{B}$. This is called the product measure.
+\begin{proof} (sketch)\\
+Let $\mathcal{B}_0$ be the boolean algebra generated by the product sets $A \times B$, $A \in \mathcal{A}$, $B \in \mathcal{B}$. Note $\mathcal{B}_0$ is made of disjoint finite unions of product sets. The equation given in the proposition defines a measure on $\mathcal{B}_0$, and one needs to check countable additivity and then we can apply the Caratheodory extension theorem to claim the existence and uniqueness of the extension to $\sigma(\mathcal{B}_0) =\mathcal{A} \otimes \mathcal{B}$.
+\end{proof}
+\end{prop}
+
+\begin{thm} (Tonnelli - Fubini theorem)\\
+Let $(X,\mathcal{A},\mu), (Y,\mathcal{B},\nu)$ be $\sigma$-finite measure spaces. Let $f$ be a $\mathcal{A}\otimes \mathcal{B}$-measurable function on $X \times Y$.\\
+$\bullet$ Assume $f \geq 0$. Then the functions $f_x(y) := \int_X f(x,y) d\mu(x)$, $f^y(X) := \int_Y f(x,y) d\nu(y)$ are measurable, w.r.t. $\mathcal{B}$ and $\mathcal{A}$ respectively, and $$\int_{X \times Y} f(x,y) d\mu \otimes \nu(x,y) = \int_Y f_x(y) d\nu(y) = \int_X f^y (x) d\mu (x) \ \ \    (**)$$
+$\bullet$ Now assume $f$ is $\mu \otimes \nu$-integrable. Then $f_x$ is $\nu$-integrable, $f^y$ is $\mu$-integrable, and (**) holds.
+\end{thm}
+
+\begin{rem}
+When $f = 1_E$, $E \in \mathcal{A} \otimes \mathcal{B}$, then $x \to \nu(E_x)$, $y \to \mu(E_y)$ are measurable functions, and $$\mu \otimes \nu(E) = \int_X \nu(E_x) d\mu = \int_Y \mu (E_y) d\nu$$
+\end{rem}
+
+\begin{rem}
+The theorem still holds if $f$ is only assumed measurable w.r.t. the completion $(\mathcal{A} \otimes \mathcal{B})^*$, i.e. its completion.
+\end{rem}
+
+\begin{proof} (of theorem, sketch)\\
+WLOG we assume that $\mu(x) < \infty$, $\nu(y) < \infty$ ($X = \bigcup E_n$, $\mu(E_n < \infty)$). Write $f$ as $f = \lim_n f_n$ pointwise limit of simple functions (e.g. $f(x) = \lim_{n \to \infty} \frac{1}{n^2} \min([n^2 f(x)],n))$, we reduce to prove the theorem for $f$ simple (using the monotone convergence theorem). By linearity, we can reduce tot he case when $f = 1_E$ for some $E \in \mathcal{A} \otimes \mathcal{B}$. So we're left to show
+\begin{equation*}
+\begin{aligned}
+\mu \otimes \nu(E) = \int_X \nu(E_x) d\mu = \int_Y \mu(E_y)d\nu \ \ \ (***)
+\end{aligned}
+\end{equation*}
+
+Now let $\mathcal{C} = \{E \in \mathcal{A} \otimes \mathcal{B}$ s.t. (***) holds $\}$. Then\\
+$\bullet$ $A \times B \in \mathcal{C}$ for all $A \in \mathcal{A},B \in \mathcal{B}$ by definition of $\mu \otimes \nu$,\\
+$\bullet$ $\mathcal{C}$ is stable under complement (because $\mu$, $\nu$ are finite),\\
+$\bullet$ $\mathcal{C}$ is stable under countable disjoint unions, and\\
+$\bullet$ $\mathcal{C}$ contains $\{A \times B, A \in \mathcal{A},B \in \mathcal{B}\}$ which is stable under intersections.
+
+So we may apply the Dynkin Lemma to $\mathcal{C}$ and conclude that $\mathcal{C} = \mathcal{A} \otimes \mathcal{B}$.
+
+For the second part where $f$ is only assumed to be integrable, we write $f=f^+ - f^-$ and apply the above to $f^+$ and $f^-$ separately.
+\end{proof}
+
+\begin{defi}
+If $X$ is a topological space and $\mu$ is Borel measure on $X$, then $\mu$ is called \emph{Radon} if $\mu(K) < \infty$ $\forall K$ compact subset of $X$.
+
+Let $C_c(x)$ be the space of compactly supported functions on $X$. Clearly every $f \in C_c(x)$ is $\mu$-integrable when $\mu$ is Radon.
+
+Indeed $\mu(|f|) \leq \sup_X |f| \cdot \mu (Supp f) < \infty$, where we define $Supp f = \{x \in X; f(x) \neq 0\}$ (support).
+
+So the map $T_\mu C_c(x) \to \R$ by $f \to \mu(f)$ is well defined and \emph{linear}. So $T_\mu$ is a linear functional, such that $f \geq 0 \implies T_\mu(f) \geq 0$. We say $T_\mu$ is positive.
+\end{defi}
+
+\begin{thm} (Riesz representation theorem)\\
+If $X$ is locally compact and second countable (has a countable base), then every positive functional on $C_c(x)$ is of the form $T_\mu$ for some (unique) Radon measure $\mu$ on $X$.
+\end{thm}
+
+\newpage
+
+\section{Probability and Measure}
+
+\subsection{Introduction}
+
+We usually say $\Omega$ is a universe of possible outcomes, or the sample space, which is presented as a set by us; and $\mathcal{F}$ is the family of events or observable events, which is presented as a boolean algebra; $\P$ is the probability of an event, which is now equivalent to a measure.
+
+We would like the continuity axiom to be satisfied: if $A_n \in \mathcal{F}$, $A_{n+1} \subseteq A_n$ s.t. $\bigcap_n A_n = \phi$, then $\P(A_n) \xrightarrow{n \to \infty} 0$.
+
+\begin{defi}
+Let $(X,\mathcal{A}$ be a measurable space. A measure $\mu$ on $X$ with $\mu(X) = 1$ is called a probability measure.
+\end{defi}
+
+\begin{defi}
+A measurable set $X \to \R$ is called a \emph{random variable}.
+\end{defi}
+
+\begin{defi}
+$(X,\mathcal{A},\mu)$ is called a \emph{probability space} when $\mu(X) = 1$.
+
+In a probability space we usually use $(\Omega,\mathcal{F},\P)$ as standard notation instead of $(X,\mathcal{A},\mu)$.
+\end{defi}
+
+\begin{defi}
+A random variable $X$ on $(\Omega,\mathcal{F},\P)$ determines a measure $\mu_X$ on $(\R,\mathcal{B}(\R))$ (where $\mathcal{B}$ denotes the Borel sets) given by $\mu_X(A) = \P(X \in A)$ for all $A \in \mathcal{B}(\R)$. We write
+\begin{equation*}
+\begin{aligned}
+\P(X \in A): = \P(\{\omega \in \Omega; X(\omega) \subset A\})
+\end{aligned}
+\end{equation*}
+This measure $\mu_X$ is called the \emph{distribution}, or the \emph{law} of $X$.
+
+Note $\mu_X$ is the image of $\P$ under $X: \Omega \to \R$.
+\end{defi}
+
+We write $X \sim \mu_X$ to mean $X$ is distributed according to $\mu_X$.
+
+\begin{defi}
+The function $F_X(x) := \P(X \leq x)$ ($ = \mu_X((-\infty,x])$) is called the \emph{distribution function} of $X$.
+\end{defi}
+
+We replace the integral sign $\int d\mu$ by the expectation sign $\E$, i.e. $\E(X) = \int_\Omega X d\P$, and if $A \in \mathcal{F}$, then $\E(1_A) = \P(A)$.
+
+\begin{eg}
+Toss a coin $N$ times. Let $X$ to be the number of heads, then $\P(X=k) = {N \choose k} \frac{1}{2^n}$; this is called the \emph{binomial distribution}. Now $\E(X) = \frac{N}{2} = \sum_1^N k\P(X=k) = \sum_1^n k{N \choose k}$; but it's also $\E(\sum_1^N 1_{\varepsilon_k = \text{ heads }}) = \frac{N}{2}$.
+\end{eg}
+
+Note that $F_X$ is no-decreasing, right continuous, and it determines $\mu_X$. Also, $\lim_{X \to -\infty} F = 0$, and $\lim_{X \to \infty} F = 1$ (*).
+
+\begin{thm}
+Conversely given a non-decreasing function $F:\R \to [0,1]$, which is right continuous and has the above property (*), there exists a unique probability measure $\mu$ on $(\R,\mathcal{B}(\R))$ such that $F = \mu((-\infty,x])$ for all $x \in \R$.
+\begin{proof} (sketch)\\
+Define $\mu$ on intervals $(a,b]$ as $\mu((a,b]) = F(b) - F(a)$. Extend it to finite union of intervals, and use Caratheodory extension theorem.
+
+\end{proof}
+\end{thm}
+
+\begin{defi}
+If $F_X(x)$ has the form $\int_{-\infty}^x f(y) dy$, where $dy$ is a Lebesgue measure, and $f \geq 0$ is Lebesgue integrable, then we say that $F_X$ or $X$, or $\mu_X$ has a \emph{density} w.r.t. Lebesgue measure, and $f$ is called a density function.
+\end{defi}
+
+\begin{eg}
+Consider a uniform distribution on $[0,1]$, $f(x) = 1_{[0,1]}$. We have $F(x) \int_{-\infty}^x f = 1-x$.
+\end{eg}
+
+\begin{eg}
+Consider an exponential distribution with rate $\lambda > 0$: $f_\lambda (x) = \lambda e^{-\lambda x} 1_{x \geq 0}$, $F(x) = 1_{x \geq 0} (1-e^{-x/\lambda})$.
+\end{eg}
+
+\begin{eg}
+For a normal distribution (Gaussian), denoted $N(\sigma^2,m)$, we have
+\begin{equation*}
+\begin{aligned}
+f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{(x-m)^2}{2\sigma^2}}
+\end{aligned}
+\end{equation*}
+\end{eg}
+
+Last time the lecture forgot to say that, $\mu$ is called the \emph{Lebesgue-Stieljes measure} associated to $F$.
+
+Now we'll define independence. Let $\Omega, \mathcal{F},\P)$ be a probability space.
+
+\begin{defi}
+A sequence of events $(A_n)_{n \geq 1}$ is said to be (mutually) independent if for all $I \subseteq \N$ and finite,
+\begin{equation*}
+\begin{aligned}
+\P(\bigcap_{i \in I} A_i) = \Pi_{i \in I} \P(A_i)
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{defi}
+A sequence of sub-$\sigma$-algebras $(\mathcal{A}_n)_{n \geq 1}$ of $\mathcal{F}$ is called \emph{independent} if for all $A_i \in \mathcal{A}_i$, $i \geq 1$, the family $(A_i)_{i \geq 1}$ is independent.
+\end{defi}
+
+\begin{defi}
+A sequence $(X_n)_{n \geq 1}$ of random variables is called (mutually) independent if the sequence $(\sigma(X_n))_{n \geq 1}$ is independent.
+\end{defi}
+
+Notation: If $X$ is a random variable, $\sigma(X):=X^{-1}(\mathcal{B}(\R)) = \sigma(\{\omega \in \Omega: X(\omega) \leq x\}_{x \in \R})$ is the smallest $\sigma$-algebra making $X$ measurable.
+
+\begin{eg}
+If $X$ takes only finitely many values $x_1,...,x_k$, then $\sigma(X)$ is a finite boolean algebra whose atoms are $\{\omega,X(\omega) = x_i\}$ for $i=1,...,k$.
+\end{eg}
+
+\begin{eg}
+Suppose $\Omega = \{Heads, Tails\}^2$, i.e. two independent tosses of a coin. Now $\P(X_1 = \varepsilon_1,X_2 = \varepsilon_2) = 1/4$ for all $\varepsilon_1,\varepsilon_2 \in \{H,T\}$.
+
+(missing 1 line)
+
+If $\mathcal{F} = $ discrete boolean algebra on $\Omega = 2^\Omega$. $\sigma(X_1) = \{\{H\} \times \{H,T\},\{T\}\times\{H,T\},\phi,\Omega\}$, $\sigma(X_2) = \{\{H,T\} \times \{H\},\{H,T\}\times\{T\},\phi,\Omega\}$ are two $\sigma$-algebra of events.
+\end{eg}
+
+\begin{lemma}
+Let $\mathcal{F}_i \subseteq \mathcal{A}_i$ be a subfamily of events which is stable under finite intersection, s.t. $\sigma(\mathcal{F}_i) = \mathcal{A}_i$. Then to check that $(\mathcal{A}_i)_{i \geq 1}$ forms an independent family, it is enough to check that $\P(\bigcap_{i \in I} A_i) = \prod_{i \in I} \P(A_i)$ holds for all finite $I \subseteq \N$, and all $A_i \in \mathcal{F}_i$.
+\end{lemma}
+
+\begin{eg}
+a) Suppose $(X_1,...,X_n)$ are $n$ random variables. Then they are independent iff for all $x_1,...,x_n \in \R$, $\P(\forall i=1,...,n, X_i \leq x_i) = \prod_{i=1}^n \P(X_i \leq x_i)$.
+
+Indeed, this is a special case of the lemma setting $\mathcal{F}_i = \{X_i^{-1} ((-\infty,x]),x \in \R\}$.
+
+b) If $X_1,...,X_n$ take only a finite set $E$ of values $(X_1,...,X_n)$ independent iff for all $e_1,...,e_n \in E$, $\P(\forall i, X_i = e_i) = \prod_{i=1}^n \P(X_i = e_i)$.
+\end{eg}
+
+\begin{proof} (of lemma)
+For two $\sigma$-sub algebra $\mathcal{A}_1$ and $\mathcal{A}_2$, let $A_2 \in \mathcal{A}_2$ be s.t. $\P(A \cap A_2) = \P(A) \P(A_2)$ (*) holds for all $A \in \mathcal{F}_1$. Look at the 2 measures $A \to \P(A \cap A_2)$ and $A \to \P(A) \P(A_2)$. The two measure coincide on $\mathcal{F}_1$, hence they coincide on $\mathcal{A}_1$ (by Dynkin's lemma). So (*) holds for all $A \in \mathcal{A}_1$. Now just reverse the roles of $\mathcal{A}_1$ and $\mathcal{A}_2$.
+\end{proof}
+
+\begin{eg}
+Let $\Omega =[0,1]$, $\P$ be a Lebesgue measure, $\mathcal{F} = \mathcal{B}(\R)$ be a Borel $\sigma$-algebra. Let $X_n(\omega)$ be the $n^{th}$ digit in the decimal expansion of $\omega \in [0,1]$ (we avoid ambiguity by disallowing ending with $9999...$, although it doesn't really matter). We claim that $(X_n)_{n \geq 1}$ is independent. Let $I_{\varepsilon_1...\varepsilon_n} = \{\omega \in \Omega,X_1(\omega) = \varepsilon_1,...,X_n(\omega) = \varepsilon_n\} = \{\omega \in [0,1] | [10^n \omega] = \varepsilon_1...\varepsilon_n\}$. We need to check that $\P(X_1(\omega) = \varepsilon_1, ..., X_n(\omega) = \varepsilon_n) = \prod_{i=1}^n \P(X_i(\omega) = \varepsilon_i)$, but it's clear because $\P(\omega \in I_{\varepsilon_1...\varepsilon_n}) = 1/10^n$ and RHS is $1/10^n$ as well.
+\end{eg}
+
+\begin{rem}
+If $f_1,...,f_n$ are Borel measurable functions $|R \to \R$ and $X_1,...,X_n$ are independent random variables, then so are $f_1(X_1),...,f_n(X_n)$. The reason is that $\sigma(f(X)) \subseteq \sigma(X)$.
+\end{rem}
+
+\begin{rem}
+Independence implies pairwise independence, but not conversely. Bernstein's example: Let $X,Y$ be two independent coin tosses, $X=1$ for heads, $X=0$ for tails and same for $Y$. Now set $Z = |X-Y|$. We can check that each pair among $X,Y,Z$ are independent, but clearly $Z$ cannot independently take value from $X$ and $Y$.
+\end{rem}
+
+\begin{prop}
+Let $X_1,...,X_n$ be $n$ random variables. $(X_1,...,X_n)$ are mutually independent if and only if $\mu_{X_1,...,X_n} = \mu_{X_1} \otimes ... \otimes \mu_{X_n}$ (product measures). Here $\mu_{(X_1,...,X_n)}$ is the \emph{law} or \emph{distribution} of $(X_1,...,X_n)$, sometimes also called the \emph{joint law} or \emph{joint distribution}.
+
+It's a probability measure on $(\R^n, \mathcal{B}(\R^n))$ defined by $\mu_{(X_1,...,X_n)}(A) = \P((X_1,...,X_n) \in A)$ for all $A \in \mathcal{B}(\R^n)$.
+\begin{proof}
+$\mu_{(X_1,..,X_n)} (\prod_{i=1}^n(-\infty,x_i)) = \P((X_1,...,X_n) \in \prod_1^n (-\infty,x_i]) = \P (\forall i, X_i \leq x_i)$. So independence if and only if $\forall x_i \in \R, \P(\forall i, X_i \leq x) = \prod_1^n \P(X_i \leq x_i)$, if and only if $\mu_{(X_1,...,X_n)} (\prod_1^n (-\infty,x_i]) = \prod\mu_{X_i} ((-\infty,x_i])$.
+\end{proof}
+\end{prop}
+
+Recall from last time, that $A,B$ events are called independent if $\P(A\cap B) = \P(A) \P(B)$.
+\begin{prop}
+Suppose $X$ and $Y$ are two independent random variables, and $X,Y$ are integrable ($\E(|X|) < \infty, \E(|Y|)<\infty)$. Then $XY$ is integrable, and $\E(XY) = \E(X) \E(Y)$ (*).\\
+Moreover, (*) holds also if $X$ and $Y$ are just assumed positive.
+\begin{proof}
+Recall that, $X,Y$ are independent iff the joint law $\mu_{(x,y)}$ is the product $\mu_x o\times \mu_y$, where $\mu_x,\mu_y$ are the law of $X$ and $Y$ respectively. So we can apply Fubini:
+\begin{equation*}
+\begin{aligned}
+\E(X) = \int_\R x d\mu_x, \E(Y) = \int_\R y d\mu_y, \E(XY) = \int_{\R \times \R} xy d\mu_{(x,y)}
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{prop}
+
+\begin{prop} (1st Borel-Cantelli lemma)\\
+Let $(\Omega,\mathcal{F}.\R)$ be a probability space. Let $(A_n)_{n \geq 1}$ be a sequence of events, and assume $\sum_{n \geq 1} \P(A_n) < \infty$. Then $\P(\limsup A_n) = 0$.
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+\limsup A_n := \bigcap_{m \geq 1} \bigcup_{n \geq m} A_n
+\end{aligned}
+\end{equation*}
+so $$\P(\limsup A_n) \leq \P(\bigcup_{n \geq m} A_n) \leq \sum_{n \geq m} \P(A_n) \xrightarrow{m \to +\infty} 0$$
+\end{proof}
+\end{prop}
+
+\begin{eg}
+Take $\Omega = [0,1]$, $\P$ be the Lebesgue measure, $\mathcal{F}$ be the Borel $\sigma$-algebra. Define a number $\alpha\in\R$ to be \emph{very-well-approximated (VWA)} if $\exists \varepsilon>0$ there are infinitely many integers $p,q$ s.t. $|\alpha-p/q| \leq \frac{1}{q^{2+\varepsilon}}$. We claim that almost every number is not VWA (this is an exercise; just apply Borel-Cantelli to the events $A_q =\{x \in [0,1], d(qx,\Z) < \frac{1}{q^{1+\varepsilon}}$).
+\end{eg}
+
+\begin{prop} (2nd Borel-Cantelli lemma, converse)\\
+Assume that the events $(A_n)_n$ are independent, and $\sum_{n \geq 1} \P(A_n) = +\infty$. Then $\P(\limsup A_n) = 1$.
+\begin{rem}
+Conclusion fails without the independence assumption. For example, $A_n = [0,\frac{1}{n}] \subseteq \Omega = [0,1]$, $\sigma \P(A_n) = +\infty$ but $\limsup A_n = \{0\}$.
+\end{rem}
+\begin{proof}
+$\limsup A_n = \bigcap_{m \geq 1} \bigcup_{n \geq m} A_m$, so $(\limsup A_n)^C = \bigcup_{m \geq 1} \bigcap_{n \geq m} A_m^C$. But for all $m$,
+\begin{equation*}
+\begin{aligned}
+\P(\bigcap_{n \geq m} A_m^C) &= \prod_{n \geq m} \P(A_n^C)\\&=  \prod_{n \geq m} (1-\P(A_n))\\
+&\leq \prod_{n \geq m} e^{-\P(A_n)}\\
+&= e^{-\sum_{n\geq m} \P(A_n)}\\
+&= e^{-\infty} = 0
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{prop}
+
+\begin{defi}
+A random process is an infinite family $(X_n)_{n \geq 1}$ and real random variable.
+\end{defi}
+
+Let $n$ be the time parameter, $\mathcal{F}_n$ (time filtration) be $\sigma(X_1,...,X_n)$ = smallest sub-$\sigma$-algebra of $\mathcal{F}$ which makes all $X_i,i \leq n$ measurable, so $\mathcal{F}_{n+1} \supseteq \mathcal{F}_n$.
+
+\begin{defi}
+The tail $\sigma$-algebra of $(X_n)_{n \geq 1}$ is defined as 
+\begin{equation*}
+\begin{aligned}
+\mathcal{T} = \bigcap_{n \geq 1} \sigma(X_n,X_{n+1},...)
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{eg}
+The following events belong to $\mathcal{T}$:
+\begin{equation*}
+\begin{aligned}
+\{\limsup X_n \geq T\} or \{\omega \in \Omega | (X_n(\omega))_{n \geq 1} \text{ converges}\}
+\end{aligned}
+\end{equation*}
+\end{eg}
+
+\begin{defi} (Kolmogorov 0-1 law)\\
+Suppose $(X_n)_{n \geq 1}$ is a sequence of independent random variable. Then the tail $\sigma$-algebra $\mathcal{T}$ is trivial, i.e. $\forall A \in \mathcal{T}$, $\P(A) \in \{0,1\}$.
+\begin{proof}
+Let $A \in \mathcal{T}$, let $B \in \sigma(X_1,...,X_n)$. Then $A$ and $B$ are independent, because $\sigma(X_1,...,X_n)$ and $\mathcal{T}$ are independent. So $\P(A \bigcap B) = \P(A) \cdot \P(B)$. Now the measures $B \to \P(A \bigcap B)$ and $B \to \P(A) \P(B)$ coincide on $\sigma(X_1,...,X_n)$ for all $n$; so they coincide on $\sigma(X_1,...,X_n,...)$. But $\mathcal{T} \subseteq \sigma(X_1,...,X_n,...)$. In particular, $\P(A \bigcap A) = \P(A) \P(A)$.
+\end{proof}
+\end{defi}
+
+\begin{eg}
+Take an iid sequence $(X_n)_{n \geq 1}$ of RV at $T \geq 0$, $\R(X_1<t) < 1$. Then as $\limsup X_n = +\infty$. Indeed, $\sum_{k=1}^n \P(X_k \geq T) = n \P(X_1 \geq T) = n(1-\P(X_1<T)) \xrightarrow{n \to \infty} \infty$, so the 2nd Borel-Cantelli lemma applies and $\P(\limsup A_n) = 1$.
+\end{eg}
+
+\begin{eg}
+Take $(\varepsilon_n)_{n \geq 1}$ be iid RV, with $\P(\varepsilon_1 = 1) = \P(\varepsilon_1 = -1) = 1/2$. Take $(a_n)_{n \geq 1}$ some sequence of real numbers. When does $\sum_{n \geq 1} \varepsilon_n a_n$ converge?
+
+The Kolmogorov 0-1 law tells us that this happens with probability $0$ or $1$ depending only on the sequence $(a_n)_{n \geq 1}$.
+\end{eg}
+
+\begin{thm} (Rademochan-Paley-Zygmund)\\
+$\sum \varepsilon_n a_n$ converges almost surely iff $\sum a_n^2 <\infty$.
+\end{thm}
+
+Let $\mu$ be a probability measure on $\R$. Can you find a probability space $(\Omega,\mathcal{F}.\P)$ and a RV $X$ s.t. $\mu$ is the law of $X$? Yes: $\Omega = \R$, $\mathcal{F}$ be the Borel sets, $\P = \mu$, and $X(\omega) = \omega$.
+
+\begin{defi}
+If $X$ is a RV, the $k$th moment of $X$ is, by definition, $\E(X^k)$ for $k \in \N$.
+\end{defi}
+
+Some additional basic terminologies: for $X$ a random variable, $\E(X)$ is called the \emph{mean},$\E((X-\E X)^2)$ is called the variance. We have $Var X = \E(X^2)-(\E X)^2$. Also if $X,Y$ are independent then $Var(X+Y) = Var X + Var Y$.
+
+\begin{thm} (Strong law of large numbers (under a 4th moment assumption))\\
+Let $(X_n)_{n \geq 1}$ be a sequence of independent and identically distributed (i.i.d.) random variables with common law $\mu$. Assume $\int_\R x^4 d\mu(x) < \infty$ ($\iff \E(|X_1|^4 < \infty$), then
+\begin{equation*}
+\begin{aligned}
+\frac{1}{n}\sum_{k=1}^n x_k \xrightarrow{a.s.} \E(X_1)
+\end{aligned}
+\end{equation*}
+\end{thm}
+
+\begin{eg}
+$\Omega = [0,1]$, $\P = \mathcal{L}$, $\omega = 0.\varepsilon_1 \varepsilon_2...\varepsilon_n ...$, $\varepsilon_i \in \{0,...,9\}$ decimal expansion of $\omega$.
+
+We observe that $(\varepsilon_n(\omega))_{n \geq 1}$ were independent and uniformly distributed in $\{0,1,...,9\}$. Set $X^{(i)}_n(\omega) = 1_{\{\varepsilon_n(\omega) = i\}}$. These are i.i.d. random variables and $|X^{(i)}_n| \leq 1$ ($\implies$ 4th moment $<\infty$). So the SSC applies that
+\begin{equation*}
+\begin{aligned}
+\frac{1}{n} \sum_{k=1}^n X^{(i)}_k = \frac{1}{n} \# \{k \leq n, \varepsilon_k(\omega) = i\} \to \E(X^{(i)}_1) = \frac{1}{10}
+\end{aligned}
+\end{equation*}
+for Lebesgue a.e., i.e. $\omega$ the proportion of each digit is the same (normal number).
+\end{eg}
+
+Cauchy Schwartz inequality: let $f,g$ be square integrable functions on $(X,\mathcal{A},\mu)$. Then $fg$ is integrable, and
+\begin{equation*}
+\begin{aligned}
+|\int fgd\mu| \leq \sqrt{\int f^2 d\mu} \sqrt{\int g^2 d\mu}
+\end{aligned}
+\end{equation*}
+In probabilistic terms, this means: if $X,Y$ are r.v. s.t. $\E(X^2) < \infty, \E(Y^2)<\infty$, then $\E(|XY|) \leq \sqrt{\E X^2 \cdot \E Y^2}$.
+\begin{proof}
+Look at $t \to \E((X+tY)^2) = \E X^2 + t^2 \E Y^2 + 2t \E(XY)$ which is non-negative for all $t$. Then consider discriminant.
+\end{proof}
+
+\begin{proof} (of SLL)\\
+wlog we may assume that $\E(X_1) = 0$, because replace $X_n$ by $X_n - \E(X_1)$. This is allowed because $\E((X_n-\E X_1)^4) < \infty$, indeed
+\begin{equation*}
+\begin{aligned}
+(X_n - \E X_1)^4 &= [(X_n - \E X_1)^2]^2\\
+&\leq (2X_n^2 + 2(\E X_1)^2)^2\\
+&\leq 8[X_n^4 + (\E X_1)^4]
+\end{aligned}
+\end{equation*}
+So we have $\E(X_n) = 0$ for all $n$. Now let $S_n = \frac{1}{n} (X_1 + ... + X_n)$. Then after some calculation we get
+\begin{equation*}
+\begin{aligned}
+\E(S_n^4) &= \frac{1}{n^4} (X_1^4+...+X_n^4 + 6\sum_{i<j} \E X_i^2 \cdot \E X_j^2)\\
+&= \frac{1}{n^4} \left(n \E(X_1^4) + 6 \frac{n(n-1)}{2} (\E(X_1^2))^2\right)\\
+&= O(\frac{1}{n^2})
+\end{aligned}
+\end{equation*}
+So we conclude that
+\begin{equation*}
+\begin{aligned}
+\sum_{n \geq 1} \E(S_n^4) = \E(\sum_{n \geq 1} S_n^4) < \infty
+\end{aligned}
+\end{equation*}
+So $\sum_{n \geq 1} S_n^4 < \infty$ a.s. $\implies \lim n\to \infty S_n = 0$ a.s..
+\end{proof}
+
+Now we discuss the types of convergence of r.v.'s:
+
+\begin{defi}
+A sequence of probability measures on $(\R^d,\mathcal{B}(\R^d))$ say $(\mu_n)_{n \geq 1}$ is said to \emph{converge weakly} to a measure $\mu$ on $(\R^d,\mathcal{B}(\R^d))$ if for all $f \in C_b (\R^d), \mu_n(f) \xrightarrow{n \to \infty} \mu(f)$.
+We denote $C_b(\R^d)$ = space of continuous and bounde real functions on $\R^d$.
+\end{defi}
+
+\begin{eg}
+We take $\mu_n = \delta_{x_n}$ a Dirac mass (delta functions) with $x_n \in \R^d$ with $x_n \to x \in \R^d$. Then clearly $\mu_n \to \delta_x$ weakly.
+\end{eg}
+
+\begin{eg}
+$\mu = N(0,\sigma_n^2$ (=centered gaussian with standard deviation $\sigma_n$). Assume $\sigma_n \to 0$, then $\mu_n \to \delta_0$ weakly.
+\end{eg}
+
+\begin{defi}
+A sequence of $\R^d$-valued random variables $(X_n)_{n \geq 1}$ is said to converge to $X$\\
+(a) almost surely (a.s.), if for $\P-$a.e $\omega$, $X_n(\omega) \xrightarrow{n \to \infty} X(\omega)$;\\
+(b) in probability (or in measure), if $\forall \varepsilon>0, \P(||X_n-X||>\varepsilon) \xrightarrow{n \to \infty} 0$;\\
+(c) in distribution, if $\mu_{X_n} \xrightarrow{n \to \infty} \mu_X$ weakly ($\mu_{X_n}$ is the law of $X_n$ on $\R^d$ = probability on $\R^d$).
+\end{defi}
+
+\begin{rem}
+We have (a) implies (b), (b) implies (c), but not the other way in general.\\
+(a) $\to$ (b): $\P(||X_n-X|| > \varepsilon) = \E(1_{||X_n-X|| > \varepsilon)} \xrightarrow{n \to \infty} 0$ by LDC.\\
+(b) $\to$ (c): Let $f \in C_b (\R^d)$. $f$ is uniformly continuous on compact subsets of $\R^d$.\\
+So $\forall \varepsilon>0$, $\exists \delta >0$ s.t. if $||x|| < 1/\varepsilon$, $||x-y|| < \delta$, then $|f(x) - f(y) | < \varepsilon$. So
+\begin{equation*}
+\begin{aligned}
+|\mu_n (f) - \mu(f)| &\leq |E(|f(X_n) - f(X)|\\
+&\leq \E\left(1_{||X_n-X||<\delta} 1_{||X||<1/\varepsilon} |f(X_n) -f(X)|\right) + 2||f||_\infty \P(||X_n-X||>\delta \text{ or } ||X||>1/\varepsilon)\\
+&\leq \varepsilon+2||f||_\infty [\P(||X_n-X||>\delta ) + \P(||X||>1/\varepsilon)]
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\limsup_n |\mu_n(f) - \mu(f)| \leq \varepsilon+2||f||_\infty \P(||X||>1/\varepsilon) \xrightarrow{\varepsilon \to 0} 0
+\end{aligned}
+\end{equation*}
+\end{rem}
+
+\begin{rem}
+When $d=1$, (c) is equivalent to saying that the distribution function $F_{\mu_n} (X) \to F_\mu(x)$ for all $x \in \R$ where $F(x)$ is continuous. (exercise). Here $F_\mu(x) := \mu((-\infty,x])$, $F_{\mu_n} (x) := \mu_n((-\infty,x])$. \\
+To see why continuity is useful, e.g. $\mu_n = \delta_{1/n} \to \delta_0 = \mu$, $F_{\mu_n} = 1_{x \geq \frac{1}{n}}$, $F_\mu = 1_{x \geq 0}$. $F_{\mu_n}(0) \not\to F_\mu(0)$.
+\end{rem}
+
+\begin{prop}
+If $(X_n)_{n \geq 1}$ converges in probability to $X$, then $\exists$ subsequence $(X_{n_k})_{k \geq 1}$ s.t. $X_{n_k} \xrightarrow{k \to \infty} X$ a.s..\\
+\begin{proof}
+for all $k$ we have $\P(||X_n - X|| > 1/k) \xrightarrow{n \to \infty} 0 \implies \exists n_k$ s.t. $\P(||X_n-X|| > 1/k) \leq \frac{1}{2^k}$. So $\sum \P(||X-n-X|| > 1/k) < \infty \implies \P(\limsup ||X_{n_k} - X|| > 1/k) = 0$ by Borel-Cantelli.
+\end{proof}
+\end{prop}
+
+Yet we introduce another type of convergence:
+
+\begin{defi} (convergence in mean, or $L^1$)\\
+A sequence of $\R^d$-valued integrable random variable $(X_n)_{n \geq 1}$ converges in $L^1$ or in mean towards an integrable r.v. $X$ if
+\begin{equation*}
+\begin{aligned}
+\E(||X_n-X||) \xrightarrow{n \to \infty} 0
+\end{aligned}
+\end{equation*}
+which we'll write $X_n \xrightarrow{L^1} X$.
+\end{defi}
+
+\begin{rem}
+$\bullet$ if $X_n \xrightarrow{L^1} X$ then $X_n \to X$ in probability. Indeed, for all $\varepsilon>0$,
+\begin{equation*}
+\begin{aligned}
+\varepsilon \P(||X_n-X|| > \varepsilon) \leq \E (||X_n - X|| 1_{||X_n-X||>\varepsilon}) \leq \E(||X_n-X||)
+\end{aligned}
+\end{equation*}
+$\bullet$ The markov inequality,
+\begin{equation*}
+\begin{aligned}
+\varepsilon\P(|X| \geq \varepsilon) \leq \E(|X|)
+\end{aligned}
+\end{equation*}
+and the Chebyshev inequality,
+\begin{equation*}
+\begin{aligned}
+\varepsilon^2 \P(|X-\E X| > \varepsilon) \leq Var X
+\end{aligned}
+\end{equation*}
+hold for any r.v. $X$ and for any $\varepsilon>0$.
+
+The converse does not hold in general (convergence in probability doesn't imply convergence in $L^1$: for example, take $\Omega = [0,1]$, $\P$=Lebesgue measure, $X_n = n 1_{[0,1/n]}$, but $\E (X_n = 1$ for all $n$.
+
+$\bullet$ If $\exists M \geq 0$ s.t. $||X_n || \leq M$ a.s. for all $n$, then the converse holds:
+\begin{equation*}
+\begin{aligned}
+\E(||X_n-X||) &= \E(||X_n-X|| 1_{||X_n-X||\leq \varepsilon}) + \E(||X_n-X|| 1_{||X_n-X||>\varepsilon})\\
+&\leq \varepsilon + 2M \P(||X_n-X||>\varepsilon)
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\limsup \E(||X_n-X||)\leq \varepsilon
+\end{aligned}
+\end{equation*}
+\end{rem}
+
+\begin{defi}
+A sequence of integrable random variables $(X_n)_{n \geq 1}$ is called uniformly integrable (or U.I.) if
+\begin{equation*}
+\begin{aligned}
+\sup_{n \geq 1} \E(||X_n|| 1_{||X_n||>M}) \xrightarrow{M \to \infty} 0
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{rem}
+If $X_n = X$ for all $n$, and $X$ is integrable, then $(X_n)_n$ is U.I.:
+\begin{equation*}
+\begin{aligned}
+\E(||X||1_{||X||\leq M}) \uparrow \E(||X||)
+\end{aligned}
+\end{equation*}
+as $M \to \infty$ by MCT, so
+\begin{equation*}
+\begin{aligned}
+\E(||X|| 1_{||X||> M}) \xrightarrow{M \to \infty} 0
+\end{aligned}
+\end{equation*}
+\end{rem}
+
+Suppose the $X_n$'s are dominated, i.e. there exists $Y$ integrable r.v. s.t. $||X_n||\leq Y$ for all $n$. Then $(X_n)_n$ are U.I.:
+\begin{equation*}
+\begin{aligned}
+\E(||X_n|| 1_{||X_n|| > M}) \leq \E(Y 1_{Y>M}) \xrightarrow{M \to \infty} 0
+\end{aligned}
+\end{equation*}
+
+If $X_n \xrightarrow{L^1} X$, then $(X_n)_n$ is U.I.:
+\begin{equation*}
+\begin{aligned}
+\E(||X_n||1_{||X_n||>M}) &\leq \E(||X_n-X|| 1_{||X_n||>M}) + \E(||X|| 1_{||X_n||>M})\\
+&\leq \E(||X_n-X||) + \E(||X||1_{||X||>M} 1_{||X_m||>M}) + \E(||X|| 1_{||X|| < M} 1_{||X_n||>M})\\
+&\leq \E(||X_n-X||) + \E(||X|| 1_{||X||>M}) + M\E(1_{||X_n|| \geq M})\\
+&\leq \E(||X_n-X||) + \varepsilon(M)
+\end{aligned}
+\end{equation*}
+So $M \P(||X||_n > M) \leq \E(||X_n||) \to \E(||X||)$ (?)
+
+\begin{thm}
+Let $(X_n)_{n \geq 1}$ be a sequence of integrable r.v.'s. Let $X$ be another random variable. $(X_n)_n$ is U.I. and converges in probability to $X$ $\iff$ $X$ is integrable and $X_n \xrightarrow{L^1} X$.
+\begin{proof}
+Suppose $(X_n)_n$ is UI and converges to $X$ in probability. Last time we've shown that $\exists (X_{n_k})_k$ of $X_{n_k} \xrightarrow{k \to \infty} X$ a.s., and
+\begin{equation*}
+\begin{aligned}
+\E(||X|| 1_{||X|| > M}) \leq \underbrace{\liminf_{k \to \infty} \E(||X_{n_k}|| 1_{||X_{n_k} > M})}_{\varepsilon(M)}
+\end{aligned}
+\end{equation*}
+by Fatou's lemma. So
+\begin{equation*}
+\begin{aligned}
+\E(||X||) = \E(||X|| 1_{||X||<M}) + \E(||X|| 1_{||X||\geq M}) \leq M+\varepsilon(M) < \infty
+\end{aligned}
+\end{equation*}
+so $X$ is integrable. Hence
+\begin{equation*}
+\begin{aligned}
+\E(||X_n-X||) &= \underbrace{\E(1_{||X_n-X||>\varepsilon} ||X_n - X||)}_{(*)} + \underbrace{\E(1_{||X_n-X||\leq \varepsilon} ||X_n-X||)}_{\leq \varepsilon}\\
+\end{aligned}
+\end{equation*}
+We have
+\begin{equation*}
+\begin{aligned}
+(*) &= \E(1_{||X_n-X|| > \varepsilon} (1_{||X_n||<M} 1_{||X|| < M} + 1_{||X_n|| \geq M} 1_{||X|| < M} + 1_{||X_n|| \geq M} 1_{||X||\geq M})||X_n-X||)\\
+&\leq 2M \P(||X_n-X|| > \varepsilon) + \E(1_{||X_n-X||>\varepsilon}(M+||X_n||)1_{||X_n||>M}) \\
+&+ \E(1_{||X_n-X||>\varepsilon} (M+||X|| ) 1_{||X||>M}) + \E(||X_n||1_{||X_n \geq M} + ||X|| 1_{||X|| > M})\\
+&\leq 4M \P(||X_n-X|| > \varepsilon) + 2 \underbrace{\E(||X_n|| 1_{||X_n|| > M}}_{\varepsilon(M)} + 2\underbrace{\E(||X|| 1_{||X|| > M})} _{\varepsilon(M)}
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\limsup \E(||X_n-X||) \leq 4\varepsilon(M)
+\end{aligned}
+\end{equation*}
+Let $M \to \infty$, $\varepsilon \to 0$.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+This theorem subsumes the Lebesgue Dominated Converged Theorem.
+
+If $\exists C>0$ and some $p>1$ s.t. $\E(||X_n||^p) \leq C$ for all $n$, then $(X_n)_n$ is UI:
+\begin{equation*}
+\begin{aligned}
+M^{p-1}\E(||X_n||1_{||X_n||>M}) \leq \E(||X_n||^p) \leq C
+\end{aligned}
+\end{equation*}
+\end{rem}
+
+---2017-11-13---
+
+\begin{proof} (of the theorem that we failed to proof last time)\\
+$\bullet$ Backward: need to show if $X_n \xrightarrow{L^1} X$ then $(X_n)_n$ is UI.
+
+\begin{rem}
+$(X_n)_n$ is UI iff $\limsup_{n\to\infty} \E(||X_n||1_{||X_n||>M}) \xrightarrow{M\to\infty} 0$. Reason is: for any finitely many $X_1,...,X_m$, $\E(||X_i||1_{||X_i||>M}) \xrightarrow{M \to \infty} 0$ for each $i=1,...,n$.
+\end{rem}
+
+\begin{equation*}
+\begin{aligned}
+\E(||X_n|| 1_{||X_n||>M}) &\leq \E(||X_n-X||)+\E(||X||1_{||X_n||>M})\\
+&\leq \E(||X_n-X||(+\E(||X||1_{||X_n||>M} (1_{||X||<M/2}+1_{||X||\geq M/2}))\\
+&\leq \E(||X_n-X||)+\E(||X||(1_{||X_n-X||>M/2}1_{||X||<M/2}+1_{||X||>M/2}))\\
+&\leq \E(||X_n-X||) (\to 0) + \frac{M}{2} \P(||X_n-X||>M/2) (\to 0) + \E(||X||1_{||X||>M/2})
+\end{aligned}
+\end{equation*}
+
+so
+\begin{equation*}
+\begin{aligned}
+\limsup \E(||X_n||1_{||X_n||>M}) \leq \E(||X||1_{||X||>M/2})\xrightarrow{M \to \infty} 0
+\end{aligned}
+\end{equation*}
+
+\end{proof}
+
+\begin{rem}
+$(X_n)_n$ is UI iff $\sup_n \E(||X_n||)<\infty$ and $\forall \varepsilon>0 \exists \delta>0 \forall $ event $A, \P(A) < \delta \implies \sup_n \E(||X_n||1_A)<\varepsilon$.
+\begin{proof}
+Forward: $\forall \varepsilon>0 \exists M_0(\varepsilon)$ $\forall M \geq M_0$, $\E(||X_n||1_{||X_n||>M})<\varepsilon$ by definition of UI.\\
+St $\delta = \varepsilon/M_0(\varepsilon)$, so
+\begin{equation*}
+\begin{aligned}
+\E(||X_n||1_A) &\leq \E(||X_n||1_A 1_{||X_n||>M_0}) + \E(||X_n||1_A 1_{||X_n||\leq M})\\
+&\leq \varepsilon+M_0 \P(A) \leq 2\varepsilon
+\end{aligned}
+\end{equation*}
+Backward: $M\P(||X_n||>M) \leq \E(||X_n||) \leq \sup_n \E(||X_n||)<\infty$ $\implies$ $\P(||X_n||\geq M) \xrightarrow{M \to \infty} 0$.
+\end{proof}
+\end{rem}
+
+We'll move on to $L^p$ spaces.
+
+\begin{prop} (Holder's inequality)\\
+Let $p,q \in [1,+\infty]$ s.t. $\frac{1}{p} + \frac{1}{q} = 1$, with the convention that $\frac{1}{\infty} = 0$. Let $f,g$ be measurable functions on a measurable space $(X,\mathcal{A},\mu)$. Then
+\begin{equation*}
+\begin{aligned}
+\int_X |fg| d\mu \leq p\sqrt{\int_X |f|^p d\mu} \cdot q\sqrt{\int_X |g|^q d\mu}
+\end{aligned}
+\end{equation*}
+with equality iff $\exists a,b \in \R$ not both $0$ s.t. $a|f|^p = b|g|^q$ $\mu$-a.e..
+\begin{proof}
+WLOT we can assume $p,q \in (1,\infty)$. Also we can assume that $\int |f|^p d\mu = 1 = \int |g|^q d\mu$ (up to changing $f$ and $g$ by a scalar).
+
+Young's inequality for products: $\forall a,b \geq 0$, $ab \leq \frac{1}{p} a^p + \frac{1}{q} b^q$ (this follows from convexity of $x \to -\log x$: $\log (ta^p + (1-t)b^q) \leq t\log a^p + (1-t) \log b^q)$, for $t \in [0,1]$. Then take $t=\frac{1}{p}$). Write $|f(x) g(x)| \leq \frac{1}{p} |f(x)|^p + \frac{1}{q} |g(x)|^q$, and integrate we get $\int|fg|d\mu \leq 1$.
+
+But $-\log$ is trictly conves, so equality holds only if we have equality a.e. that $|f(x)|^p = |g(x)|^q$.
+\end{proof}
+\end{prop}
+
+\begin{prop} (Minkowski inequality)\\
+Let $p \in [1,\infty]$, $f,g $ measurable on a measure space $(X,\mathcal{A},\mu)$. Then
+\begin{equation*}
+\begin{aligned}
+\sqrt[p]{\int|f+g|^p d\mu} \leq \sqrt[p]{\int|f|^p d\mu} + \sqrt[p]{\int|g|^p d\mu}
+\end{aligned}
+\end{equation*}
+\begin{proof}
+For $p=1$ this is obvious by linearity of $\int$. For $p>1$, apply Holder's to $|f| |f+g|^{p-1}$ and to $|g| |f+g|^{p-1}$, we get 
+\begin{equation*}
+\begin{aligned}
+\int |f+g|^p \leq \int(|f|+|g|) |f+g|^{p-1}\leq \left(\sqrt[p]{\int |f|^p}+\sqrt[p]{\int|g|^p}\right)\sqrt[q]{\int|f+g|^{q(p-1) (=p)}}
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{prop}
+
+We need to check that $\int|f+g|^p < \infty$. This follows from $|f+g|^p \leq (2\max |f|,|g|)^p = 2^p \max |f|^p,|g|^p \leq 2^p(|f|^p + |g|^p)$. So integrability of $|f|^p$ and $|g|^p$ implies the result.
+
+\begin{notation}
+Let $\mathcal{L}^p(X,\mathcal{A},\mu)$ be the set of functions that are $\mathcal{A}$-measurable of $X$ s.t. $\int_X |f|^p d\mu < \infty$. By the previous remark, this is a real vector space.
+\end{notation}
+
+\begin{defi}
+The $L^p$-norm of $f$ is defined by
+\begin{equation*}
+\begin{aligned}
+||f||_p = \sqrt[p]{\int|f|^p d\mu}
+\end{aligned}
+\end{equation*}
+for $1 \leq p < \infty$. The following holds:\\
+$\bullet$ $||\alpha f||_p = |\alpha| ||f||_p \forall \alpha \in \R$;\\
+$\bullet$ $||f+g||p \leq ||f||_p + ||g||_p$ (Minkowski' inequality implies subadditvity).
+\end{defi}
+
+\begin{rem}
+If $||f||_p =0 $, then $f=0$ $\mu$-a.e.. So $||\cdot||_p$ is only a pseudo-norm on $\mathcal{L}^p(X,\mathcal{A},\mu)$.
+\end{rem}
+
+Note: if $f_1 = f_2$ $\mu$-a.e., $g_1 = g_2$ $\mu$-a.e., then $f_1 + g_1 = f_2 + g_2$ $\mu$-a.e., $f_1 g_1 = f_2 g_2$ $\mu-$a.e.. So if we say that two functions $f,g$ on $(X,\mathcal{A},\mu)$ are equivalent, write $f \stackrel{\mu}{\sim} g $ if $f-g = 0$ $\mu$-a.e., then this is an equivalence relation compatible with $+$ and $\times$.
+
+\begin{defi}
+Let $L^p(X,\mathcal{A},\mu)$ be the set of equivalence classes of functions in $\mathcal{L}^p (X,\mathcal{A},\mu)$ (note that James Norris chose a different notaiton for this one). Define $||[f]||_p = ||f||_p$. This is a real vector space and $||[]||_p$ is a genuine norm on it, where $[f]$ if the equivalence class of $f$.
+\end{defi}
+
+\begin{defi}
+When $p =+\infty$, we define $||f||_\infty = \inf \{t \geq 0, |f(x) \leq t$ for $\mu$-a.e. $x\}$.
+
+Note that this depends on the measure, and is not just a simple maximum of $f$.
+\end{defi}
+
+\begin{prop} (completeness)
+$L^p(X,\mathcal{A},\mu)$, $p \in[1,\infty]$ is complete, i.e. every Cauchy sequence converges, iff If $(f_n)_{n \geq 1}$, $f_n \in \mathcal{L}^p(X,\mathcal{A},\mu)$ and $\forall \varepsilon \exists N ||f_n - f_m||_p < \varepsilon \forall n,m > N$, then $\exists f \in \mathcal{L}^p (x,\mathcal{A},\mu)$ s.t. $||f_n-f||_p \xrightarrow{n \to \infty} 0$.
+\begin{proof}
+Pick a subsequence $n_k$ s.t. $\sum_{k \geq 1} ||f_{n_{k+1}}-f_{n_k} || \leq \varepsilon$. 
+
+By Minkowski's inequality, $||\sum_{k=1}^K |f_{n_{k+1}} - f_{n_k}| ||_p \leq \varepsilon$ for all $K < \infty$. Let $K \to \infty$, so by MCT, it holds also for $K=\infty$. $\implies$ $\mu$-a.e. $\sum_1^\infty |f_{n_{k+1}}-f_{n_k}| (x) < \infty$ $\implies$ for $\mu$-a.e. $x$, $(f_{n_k}(x))_k$ converges (by completeness of $\R$), $\implies$ let $f(x)$ be the limit, outside the set of $x$'s, just let $f(x) = 0$. Finally, $||f_n-f||_p = |\lim_{k \to \infty} (f_n - f_{n_k})||_p \leq \liminf_{k \to \infty} ||f_n - f_{n_k}||_q$ by Fatou's lemma. But since $f_n$ is Cauchy, the above is $\leq \varepsilon$ if $n$ is large enough.
+\end{proof}
+\end{prop}
+
+Last time we defined a $\mathcal{L}^p(X,\mathcal{A},\mu)$ space for $p \in (1,\infty)$, as well as $\mathcal{L}^\infty$. If $\mathcal{L}^p$ is a complete normed vector space, we call it a \emph{Banach space}.
+
+\begin{rem} (approximation by simple functions)\\
+The vector space of simple functions of the form $\sum_{i=1}^N a_i 1_{A_i}$ where $a_i \in \R$, $A_i \in \mathcal{A}_i$ s.t. $\mu(A_i) < \infty$ \emph{is dense} in $L^p(X,\mathcal{A},\mu)$ for all $p \in [1,\infty]$. Namely, if $f \in L^p(X,\mathcal{A},\mu)$ then let $f = f^+ - f^-$ ($f^+_n = \max([n^2 f^+/n^2],n)$ is a simple function), and $f_n^+ \to f^+$, $f_n^- \to f^-$ a.e., and $|f_n| \leq 2|f|$. So when $p < \infty$ by DCT we get $||f_n-f||_p \xrightarrow{n \to \infty} 0$, and when $p=\infty$, $||f-f_n|| \leq \frac{1}{n^2}$.
+
+In particular, $L^\infty \cap L^p$ (which is simple finite) is dense in $L^p$.
+\end{rem}
+
+\begin{rem}
+If $X=\R^d$, $\mathcal{A}$ = Borel $\sigma$-salgebra, $\mu$ =Lebesgue measure, then $C_c(\R^d)$(continuous functions with compact support) and $C_c^\infty (\R^d)$ (smooth functions with compact support are dense in $L^p(\R^d, Leb)$ when $p \in [1,\infty)$. However, this is not true for $p=\infty$. For example, $||1_{[0,1]} - f||_\infty \geq 1/2$ if $f$ is continuous.
+
+Note that it's possible to have a smooth function with compact support: consider $f(x) = 0$ if $x \leq 0$ and $f(x) = e^{-1/2}$ if $x>0$, which is in $C^\infty(\R)$. Then let $f_2=f(x)f(1-x)$, and $\phi(x) = \int_{-\infty}^x f_2(u) du$ we get our desired function.
+
+For $I = [a,b]$, $\forall \varepsilon$, $\exists \psi_{I,\varepsilon} \in C^\infty(\R)$ with $1_{[a,b]} \leq \psi_{I,\varepsilon} \leq 1_{a-\varepsilon,b+\varepsilon]}$. In $\R^d$, $B=\prod_i^d [a_i,b_i]$ a box, $B_\varepsilon = \prod_1^d [a_i-\varepsilon,b_i+\varepsilon]$, define $\psi_{B,\varepsilon}(x) = \prod_1^d \psi_{[a_i,b_i],\varepsilon} (x_i)$ $x = (x_1,...,x_l$, and then $\psi_{B,\varepsilon} \in C_c^\infty (\R^d)$, $1_B \leq \psi_{B,\varepsilon} \leq 1_{B_\varepsilon}$.
+
+Now if $A$ is a bounded Borel set, there exists $K$ compact, $U$ open, $K \subseteq A \subseteq U$, $\mu(U\setminus K)<\varepsilon$. Using a cover of $K$ by boxes contained in $U$, we can build a function $\psi \in C_c^(\R^d)$ s.t. $1_K \leq \psi \leq 1_U$.
+\end{rem}
+
+\subsection{Hilbert spaces}
+
+A \emph{Hilbert space} is a vector space (over $\R$ or over $\C$), call it $H$, which is endowed with an \emph{inner product}, i.e. a map $H \times H \to \R or \C: (x,y) \to <x,y>$, s.t.\\ 
+$\bullet$ $<x,x> \in \R^+$, $<x,x> = 0 \implies x=0$;\\
+$\bullet$ $<x,y> = <y,x>$ for all $x,y \in H$, and\\
+$\bullet$ $<x+\lambda x',y> = <x,y> + \lambda<x',y>$ for all $\lambda \in \R \ ( or \C)$, and\\
+$\bullet$ $H$ is complete w.r.t. the norm $||x||_i = \sqrt{<x,x>}$.
+
+For example, $H = \R^d$ with $<x,y> = \sum_1^d x_iy_i$ or $H = \C^d$ with $<x,y> = \sum_1^d x_i \bar{y}_i$ are both Hilbert.
+
+Another example is, if $(X,\mathcal{A},\mu)$ is a measure space, $H = L^2 (X,\mathcal{A},\mu)$, and
+\begin{equation*}
+\begin{aligned}
+<f,g> =\int_X fg d\mu
+\end{aligned}
+\end{equation*}
+which is well defined by Cauchy-Schwartz. The $H$ is a real Hilbert space.
+
+\begin{lemma} (existence of orthogonal projection)\\
+Let $H$ be a Hilbert space, and let $V$ be a closed vector subspace. Then for all $x \in H$, $\exists! y \in V$ s.t. $d(x,V) = ||x-y||$ (here $d(x,V) = \inf \{||x-z||,z \in V\}$).
+\begin{proof}
+Pick a sequence $y_n \in V$ s.t. $||x-y_n|| \to d(x,V)$. Note that $||y_n - y_m|| \leq ||x-y_n|| + ||x-y_m||$. So $(y_n)_n$ is a Cauchy sequence. $H$ complete implies that $y_n \to y$ $\exists y \in H$, V closed implies $y \in V$ which shows the existence of $y$. To show uniqueness, if $y,y'$ both satisfy the requirements. Then $||x-\frac{y+y'}{2}||^2 + \frac{1}{4}||y-y'||^2 = \frac{1}{2}(||x-y||^2 = ||x-y'||^2$). So $||y-y'|| = 0$ as the first term in LHS and both terms in RHS are $d(x,V)^2$, i.e. $y = y'$.
+
+Oops, but $(y_n)_n$ is not a Cauchy sequence as $||x-y_n|| \not\to 0$. So this proof doesn't work.
+\end{proof}
+\end{lemma}
+
+\begin{rem}
+The parallelogram identity holds in any Hilbert space: $\forall a,b \in H$, $||a+b||^2 + ||a-b||^2 = 2(||a||^2+||b||^2$). This is because $||a+b||^2 = <a+b,a+b> = <a,>+<a,b>+<b,a>+<b,b>$, and evaluate similarly for $||a-b||^2$.
+\end{rem}
+
+\begin{proof} (Correct proof of the above lemma)\\
+To show that $(y_n)_n$ is a Cauchy sequence, we have to use the parallelogram identity
+\begin{equation*}
+\begin{aligned}
+||x-\frac{y_n+y_m}{2}||^2 + ||\frac{y_n-y_m}{2}||^2 = \frac{1}{2}(||x-y_n||^2 + ||x-y_m||^2)
+\end{aligned}
+\end{equation*}
+as both terms in RHS tend to $d(x,V)^2$, but the first term in LHS is at least $d(x,V)^2$.
+\end{proof}
+
+\begin{rem}
+This holds more generally if $V$ is a closed convex subset of $H$.
+\end{rem}
+
+Generalize (Hohn-Banach Lemma?) If $V$ is a closed convex set and $x \not\in V$, then there exists a linear form $l$ on $H$ bounde and $\exists c \in \R$ s.t. $l(x) > c$ and $l(y) < c$ for all $y \in V$. 
+
+\begin{coro}
+Every closed subspace has an orthogonal complement, namely if $V \subseteq H$ is a closed vector subspace, then $H = V \oplus V^\perp$, where we write $V^\perp = \{x \in H, <x,y> = 0 \forall y \in V\}$. Note that $V^\perp$ is a closed subspace: $x_n \to x$, $<x_n,y> =0 \implies <x,y> = 0$.
+\begin{proof}
+$V \cap V^\perp = \{0\}$ because $<x,x> = 0 \implies x=0$. $H=V+V^\perp$ because $x-y \in V^\perp$ if $y$ is the projection of $x$ to $V$ given by the lemma: this is because for all $z \in V$, $||x-y-z||^2 \geq ||x-y||^2$ since $z+y \in V$, i.e. $<x-y-z,x-y-z> \geq ||x-y||^2$, but LHS = $||x-y||^2+||z||^2+2Re<x-y,z>$. So $\forall z \in V$, $||z||^2 + 2Re<x-y,z> \geq 0$. $\forall t > 0$, $t^2||z||^2+2tRe<x-y,z> \geq 0$, $t||z||^2 + 2Re<x-y,z> \geq 0$. When $t \to 0$, $Re<X-y,z> \geq 0 \forall z \in V$. Now $z \to -z$ gives $Re<x-y,z>=0$, $z \to oz$ gives $im<X-y,z> = 0$, so $<x-y,z> = 0$, i.e. $x-y \in V^\perp$.
+\end{proof}
+\end{coro}
+
+Let $E$ be a Bamach space (=complete normed vector space), $E^* = $dual of $E:=\{$ bounded functionals on $E\} = \{l:E \to \C$ linear, $\sup_{||x|| \leq 1} |l(x)| < \infty\}$. Then $E^*$ is also a Banach space (completeness follows that of $\C$), with norm $||l|| = \sup_{||x||\leq 1} |l(x)|$.
+
+\begin{prop} (Riesz representation theorem)
+If $E = \mathcal{H}$ is a Hilbert space, then $\mathcal{H}$ is self-dual, i.e. $\mathcal{H} \cong \mathcal{H}^*$, namely the map $\mathcal{H} \to \mathcal{H}^*$ by $y \to (l_y:x \to <x,y>)$ is an isomorphism, i.e. $\forall l \in \mathcal{H}^*, \exists y \in \mathcal{H}$ s.t. $l(x) = <x,y>$.
+\begin{proof}
+Let $V=\ker l$, $V$ is closed because $l$ is bounded. So by previous corollary $\mathcal{H} = V \oplus V^\perp = \ker l \oplus (\ker l)^\perp$. Now pick $x_0 \in (\ker l)^\perp$ s.t. $l(x_0) = 1$. Clearly $x_0$ is unique because if $l(x_1) = 1$ then $l(x_0-x_1) =0$, $x_0-x_1 \in (\ker l)^\perp \cap \ker l = 0$. Now $l(y) - <y,\frac{x_0}{||x_0||^2}>$ must vanish on $\ker l$ and $(\ker l)^\perp$, so is zero everywhere. So $l(y) = <y,\frac{x_0}{||x_0||^2}$.
+\end{proof}
+\end{prop}
+
+\begin{prop} (Jensen's inequality)
+Let $\Omega \subseteq \R^d$ be a convex set. Let $\phi : \Omega \to \R$ be a convex (continuous) function. Let $X$ be an integrable $\R$-valued random variable s.t. $X \in \Omega$ a.s.. Then $\E(\phi(x)) \geq \phi(\E,X)$.
+\begin{rem}
+$\Omega$ convex means: for all $x,y \in \Omega$, $tx + (1-t)y \in \Omega$ $\forall t \in [0,1]$; $\phi$ convex means $\phi(tx+(1-t)y) \leq t \phi(x) + (1-t) \phi(y)$ $\forall t \in [0,1]$.
+\end{rem}
+\begin{proof} (sketch)\\
+We first show $\E X \in \Omega$: use the geometric Hahn-Banach separation theorem: if $x \in \Omega$, then there exists $l$ affine linear form ($l(x) = \sum a_i x_i + c$, $l(x) > 0$, $l(z) < 0$ $\forall z \not\in \Omega$. If $\E X \not\in \Omega$ then $l(\E X) < 0$, but $\E l(X) \geq 0$, impossible.
+
+Then let $\mathcal{F}$ be the set of affine linear forms $l$ s.t. $\phi(x) \geq l(x)$ for all $x \in \Omega$. Then we claim that $\phi(x) = \sup_{l \in \mathcal{F}} l(x)$ for all $x \in \Omega$ ($\phi$ continuous). To prove that we use the geometric Hahn-Banach separation theorem and apply it to $\Omega_\phi = \{(x,y),y \geq \phi(x) \}$ which is a convex set.
+
+Proof of Jensen's inequality: pick $l \in \mathcal{F}$ s.t. $l (\E X) = \phi(\E X)$, which is also equal to $\E(l(x)) \leq E \phi(X)$ because $l \in \mathcal{F}$.
+\end{proof}
+\end{prop}
+
+\begin{rem}
+If $\phi$ is convex on $\Omega$ then $\phi$ is continuous at every point in the interior (exercise).\\
+Using this remark and an induction on $d$, one can remove the continuity assumption on $\phi$.
+\end{rem}
+
+\begin{eg}
+$\bullet$ $\phi = -\log x$ on $(0,+\infty)$ is convex. So if $X$ is a real valued r.v., $X > 0$ a.s., then $\E (\log X) \leq \log (\E X)$.\\
+$\bullet$ $x \to x^\alpha$, $\alpha \geq 1$ is convex. $\E(|X|^\alpha) \geq \E(|X|)^\alpha$. In particular, if $q \geq p$, then $\E(|X|^p)^{1/p} \leq \E(|X|^q)^{1/q}$. Hence $L^q (\Omega,\mathcal{A},\P) \subseteq L^p (\Omega,\mathcal{A},\P)$.
+\end{eg}
+
+Careful: in infinite measure e.g $\Omega = \R$, $\mu = $Lebesgue, then there is no inclusion relation between $L^p$ and $L^q$.
+
+\subsection{Conditional Expectation}
+Let $(\Omega,\mathcal{F},\mathcal{P})$ be a probability space, let $\mathcal{G} \subseteq \mathcal{F}$ be a sub-$\sigma$-algebra.
+
+\begin{prop}
+$\forall A \in \mathcal{F}$, $\exists$ a unique $\mathcal{G}$-measurable R.V. denoted by $\P(A \mid \mathcal{G})$ s.t. 
+\begin{equation*}
+\begin{aligned}
+\forall B \in \mathcal{G} \P(B \cap A) = \E(1_B \P(A \mid \mathcal{G}))
+\end{aligned}
+\end{equation*}
+and this is called the conditional probability of $A$ w.r.t. $\mathcal{G}$.
+
+We also say $\P(A \mid \mathcal{G})$ is the "probability of $A$ knowing $\mathcal{G}$".
+\end{prop}
+
+\begin{eg}
+Let $\mathcal{G} = \{B,B^c,\phi,\Omega\}$. Then
+\begin{equation*}
+\begin{aligned}
+\P(A \mid \mathcal{G})_{(\omega)} = \left\{
+\begin{array}{ll}
+\P(A \cap B) / \P(B) & \omega \in B\\
+\P(A \cap B^c) / \P(B^c) & \Omega \in B^c
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+Notation: $\P(A \mid B) = \frac{\P(A \cap B)}{\P(B)}$.
+
+If $A$ is independent of $\mathcal{G}$, then $\P(A \mid \mathcal{G})(\omega) = \P(A)$.
+\begin{proof}
+$L^2(\Omega,\mathcal{G},\P)$ is a closed subspace of $L^2(\Omega,\mathcal{F},\P)$. Also they are Hilbert spaces, so $\exists Y \in L^2 (\Omega,\mathcal{G},\P)$ s.t. $1_A - Y \perp L^2 (\Omega,\mathcal{G},\P)$, because $L^2(\mathcal{F}) = L^2 (\mathcal{G}) \oplus L^2(\mathcal{G})^\perp$. But this means $\E(1_B (1_A-Y)) = 0$ $\forall B \in \mathcal{G}$, i.e. $\P(B \cap A) = \E(1_A Y)$ so we showed existence.
+
+For uniqueness, suppose $Y,Y'$ ($\mathcal{G}$-measures) satisfy $\E (1_B Y) = \E(1_B Y')$ $\forall is \in \mathcal{G}$. But then $\E(1_B(Y-Y')) = 0$, so $Y=Y'$ a.s..
+\end{proof}
+\end{eg}
+
+More generally,
+\begin{prop}
+Let $X$ be an integrable r.v. on $L^1(\Omega,\mathcal{F},\P)$ and $\mathcal{G}$ a sub-$\sigma$-algebra. Then there exists a unique $\mathcal{G}$-measurable r.v. $Y$ s.t. $\E(1_B X) = \E(1_B Y)$ $\forall B \in \mathcal{G}$.
+\begin{rem}
+$Y$ is denoted by $\E(X\mid\mathcal{G})$ and is called the conditional expectation of $X$ w.r.t. $\mathcal{G}$. If $X = 1_A$, then $Y = \P(A\mid\mathcal{G})$.
+\end{rem}
+\end{prop}
+
+\subsection{Convolutions}
+\begin{defi}
+If $f$, $g$ are functions in $L^1(\R^d)$, we define the convolution of $f$ and $g$ by 
+\begin{equation*}
+\begin{aligned}
+f*g(x) = \int_{\R^d} f(x-y) g(y) dy
+\end{aligned}
+\end{equation*}
+whee $dy$ is a Lebesgue measure.
+\begin{rem}
+This shows that $f*g \in L^1(\R^d)$ and $||f*g||_1 \leq ||f||_1||g||_1$.
+
+We say $L^1(\R^d)$ is a Banach algebra: Banach space with a product satisfying the above inequality.
+
+Note it is commutative: $f*g = g*f$.
+\end{rem}
+\end{defi}
+
+\begin{defi}
+More generally, one can define the convolution of two measures on $\R^d$.
+
+If $\mu,\nu$ are probability measures, then we define $\mu*\nu$ to be the image of $\mu \otimes \nu$ on $\R^d \times \R^d$ to $\R^d$ under the addition map $a: \R^d \times \R^d \to \R^d$ by $(x,y) \to x+y$. $\mu*\nu = a_*(\mu\otimes \nu)$, $A \subseteq \R^d$, $\mu*\nu(A) = \mu \otimes \nu *a^{-1} (A)) = \mu\otimes \nu\{(x,y):x+y \in A\} = \int 1_A (x+y) d\mu(x) d\nu(y)$. We have $\mu*\nu(A) = \int \mu(A-y) d\nu(y) = \int \nu(A-x) d\mu(x)$.
+\end{defi}
+
+\begin{rem}
+This is consistent with the previous definition: $d\mu = fdx$, $f\nu = gdx$, $f,t \in L^1(\R^d)$, then $d(\mu * \nu) = f*g dx$.
+
+If $X,Y$ are independent $\R^d$-valued random variables with law $\mu_x$ and $\mu_y$ respectively, then $X+Y$ has law $\mu_x * \mu_y$.
+\end{rem}
+
+\begin{lemma} (continuity of translation on $L^p$)\\
+If $p \in [1,\infty)$, and if $f \in L^p (\R^d)$, then $||\tau_h (f) - f||_p \to 0$ as $h \to 0$, where $\tau_h (f) (x) := f(x+h)$.
+\begin{proof}
+Step 1: Assume $f \in C_c(\R^d)$. Then it's clear by dominated convergence because $\tau_h(f) \to f$ pointwise as $h \to 0$.
+
+Step 2: General case. Approximate $f$ by a function $g \in C_c(\R^d)$, i.e. $\forall \varepsilon \exists$ such a $g$ s.t. $||f-g||_p < \varepsilon$. Then $||\tau_h f-f||_p \leq ||\tau_j f - \tau_h g||_p + ||\tau_h g - g||_p + ||g-f||_p \leq 2\varepsilon + ||\tau_h g-g||_p$.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (gaussian approximation)\\
+If $p \in [1,\infty)$, and if $f \in L^p(\R^d)$, then $||f*g_\tau - f||_p \xrightarrow{\sigma \to 0} 0$, where $g_\sigma$ is the density of a gaussian $N(0,\sigma^2)$,
+\begin{equation*}
+\begin{aligned}
+g_\sigma(x) = (\frac{1}{\sqrt{2\pi \sigma^2}})^d e^{0\frac{x_1^2+...+x_d^2}{2\sigma^2}}
+\end{aligned}
+\end{equation*}
+and $g_\sigma(x) dx$ =law of $\sigma(X_1,...,X_d)$, where $X_i$ is IID $N(0,1)$.
+
+\begin{rem}
+$f*g_r$ is $C^\infty$ (differentiation under integral sign).
+\end{rem}
+
+\begin{proof}
+$f*g_r(x) - f(x) = \E(f(x-\sigma\mathbf{X}) - f(x))$ where $\mathbf{X} = (X_1,...,X_d)$, $X_i$'s IID $N(0,1)$. By Jensen's inequality for $x \to x^p$,
+\begin{equation*}
+\begin{aligned}
+||f*g_\sigma-f||_p^p \leq \E(||f(x-\sigma\mathbf{X}) - f(x)||_p^p)
+\end{aligned}
+\end{equation*}
+then let $\sigma \to 0$ and use the previous lemma and Dominated Convergence.
+\end{proof}
+\end{lemma}
+
+\subsection{Fourier transform on $\R^d$}
+
+\begin{defi}
+If $f \in L^1(\R^d)$, we can define its Fourier transform by
+\begin{equation*}
+\begin{aligned}
+\hat{f}(u) = \int f(x) e^{i<u,x>} dx
+\end{aligned}
+\end{equation*}
+where $<u,x> = u_1x_1+...+u_dx_d$.
+\end{defi}
+
+\begin{rem}
+$|\hat{f}(u)| \leq ||f||_1$, so $\hat{f}$ is bounded;\\
+$\hat{f}(u)$ is continuous in $u$ (by Dominated Convergence).
+\end{rem}
+
+More generally,
+\begin{defi}
+If $\mu$ is a probability measure on $\R^d$, we can define $\hat{\mu}(u) = \int e^{i<u,x>} d\mu(x)$.
+\end{defi}
+
+\begin{eg}
+If $X$ is on $\R^d$-valued r.v. with law $\mu_x$, then $\hat{\mu}_X*u)$ is called the characteristic function of $X$.
+\end{eg}
+
+\begin{eg}
+$\bullet$ $X \equiv c \in \R^d$ a.s. constant, then $\mu_x = \delta_u$ the dirac mass, and $\hat{\mu}_X (u) = e^{i<u,c>}$.\\
+$\bullet$ $X = $a normalized gaussian $N(0,1)$, $\mu_x = g(x) dx$ where $g(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$. Then $\hat{\mu}_X(u) = e^{-u^2/2}$.
+
+In particular, $\hat{\mu}_X(u) = \hat{g}(u) = \sqrt{2\pi}g(u)$, i.e. this is fixed point of the fourier transform.
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+\hat{g}(u) = \int g(x) e^{iux} dx \int e^{-x^2/2} e^{iux} dx\\
+\frac{d}{du} \hat{g}(u) = \int g(x) ix e^{iux} dx
+\end{aligned}
+\end{equation*}
+but $-xg(x) = g'(x)$. Integrate by parts, the above is
+\begin{equation*}
+\begin{aligned}
+=-\int g'(x)ie^{iux} = u\int g(x) e^{iux}dx = u\hat{g}(u)
+\end{aligned}
+\end{equation*}
+$g'(u) = u\hat{g}$ so we solve this 1st order ODE and get $\hat{g}(u) = \hat{g}(0) e^{-u^2/2}$, so $\hat{g}(u) = e^{-u^2/2}$.
+\end{proof}
+\end{eg}
+
+\begin{thm} (Fourier Inversion Formula)\\
+If $f$ and $\hat{f}$ are in $L^1 (\R^d)$, then $f(x) = \frac{1}{(2\pi)^d} \hat{\hat{f}} (-x)$ a.e., meaning $f$ decomposes as a (continuous) linear combination of "characters", i.e. $\chi_u := x \to e^{i<u,x>}$. So
+\begin{equation*}
+\begin{aligned}
+f(x) = \frac{1}{(2\pi)^d} \int \hat{f}(u) e^{-iux} du
+\end{aligned}
+\end{equation*}
+\end{thm}
+
+
+\end{document}

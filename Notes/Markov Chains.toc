@@ -1,0 +1,9 @@
+\contentsline {section}{\numberline {1}Markov Chain}{3}{section.1}
+\contentsline {section}{\numberline {2}Transition Probabilities}{4}{section.2}
+\contentsline {section}{\numberline {3}Class Structure}{6}{section.3}
+\contentsline {section}{\numberline {4}Recurrence and Transience}{7}{section.4}
+\contentsline {section}{\numberline {5}Random walks on $\mathbb {Z}^d$ with $d \geq 1$}{10}{section.5}
+\contentsline {section}{\numberline {6}Hitting probabilities}{12}{section.6}
+\contentsline {subsection}{\numberline {6.1}Gambler's Ruin}{12}{subsection.6.1}
+\contentsline {section}{\numberline {7}Stopping times}{13}{section.7}
+\contentsline {section}{\numberline {8}Classification of states}{15}{section.8}

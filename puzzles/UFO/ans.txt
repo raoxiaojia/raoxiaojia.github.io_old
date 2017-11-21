@@ -1,0 +1,8 @@
+q1,q2 yes no
+q3 is ufd
+q4 is not: consider 15
+q5 and q6: see wikipedia.
+q7 = ring of entire functions, not ufd
+q8 = ring of continuous functions on [0,1], not UFD
+q9 = Laurent, yes
+q10 = yes

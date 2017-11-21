@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Numerical Analysis II}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{The Poisson equation}
+
+\begin{prob} 
+Solve
+\begin{equation*}
+\begin{aligned}
+\nabla^2 u = f & x \in \Omega\\
+u = \phi & x \in \partial\Omega
+\end{aligned}
+\end{equation*}
+here
+\begin{equation*}
+\begin{aligned}
+\nabla^2 u = \left(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} \right)u
+\end{aligned}
+\end{equation*}
+is the Laplace operator. The method is to impose on $\Omega$ a rectangular grid $\Omega_h$ with the spacing $h$, and replace $\grad^2 u$ by a difference scheme. We'll look for approximate $u|_{\Omega_h}$.
+\end{prob}
+
+\end{document}
