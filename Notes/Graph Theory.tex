@@ -1055,5 +1055,47 @@ as the negative term in $\exp$ dominates when $n \to \infty$.
 \end{proof}
 \end{thm}
 
+Properties of Expectation:\\
+We used:\\
+1. Lineartiy of expectation:\\
+$\E(\sum_{i=1}^n X_i) = \sum_{i=1}^n \E X_i$.
+
+e.g. we had $G$ bipartite, $n$ vertices in each class, each possible edge present independently with probability $p$; let $B$ be the number of $K_{t,t}$'s in $G$, we said $\E B = {n \choose t}^2 p^{t^2}$. Why?
+
+Let $H_1$,...,$H_N$ be the possible $K_{t,t}$'s ($N={n \choose t}^2$). Let $X_i=1$ if $H_i$ appears in $G$, and $0$ otherwise. So $\E X_i = p^{t^2}$. Then $B = \sum_{i=1}^N X_i$, so $\E B = \sum_{i=1}^N \E X_i = N \E X_i = {n \choose t}^2 p^{t^2}$ as desired.
+
+2. Markov's Inequality:\\
+If $X$ is a non-negative r.v. with finite mean and $\lambda>0$, then $$\P(X \geq \lambda) \leq \frac{\E X}{\lambda}$$ To prove that, we have $\lambda 1_{\{X\geq \lambda\} } \leq X$. Take expectations, we get $\lambda \P(X \geq \lambda) \leq \E X)$.
+
+3. Chebyshev's Inequality:\\
+Let $X$ be a r.v. with finite mean $\mu$ and finite variance $\sigma^2$. Then $\P(|X-\mu| \geq \varepsilon) \leq \frac{\sigma^2}{\varepsilon}$ for all $\varepsilon > 0$. To prove this, apply Markov to the r.v. $(X-\mu)^2$ with mean $\sigma^2$.
+
+\subsection{The Structure of Random Graphs}
+Given $n \geq 1$ and $p \in [0,1]$, the probability space $\mathcal{G}(n,p)$ consists of all graphs $G$ with vertex set $\{1,2,...,n\}$ where for $i,j \in [n]$ distinct, $P(ij \in E(G)) = p$, independently for different edges. What does a typical $G \in \mathcal{G}(n,p)$ look like? For example, does $G$ contains a triangle? Intuitively the answer should be usually yes if $p$ is 'large', and usually no if $p$ is 'small'. In fact, we have a 'sharp threshold' for the answer.
+
+First we consider an easier example: does $G$ contain an edge? Let $G \in \mathcal{G}(n,p)$ and let $X = e(G)$. Let $\mu = \E X = {n \choose 2} p = N_p$, where $N = {n \choose 2}$. By Markov, $\P(G$ has an edge$) = \P(X \geq 1) \leq \E X = N_p$. So if $\mu = N_p \to 0$ as $n \to \infty$, then $\P(G$ has an edge$) \to 0$, i.e. if $p = o(\frac{1}{N}) = o(n^{-2})$, then $\P(G$ has an edge$) \to 0$.
+
+What if $p$ is bigger, say $p = \omega(n^{-2})$, in which case $\mu = N_p \to \infty$? We nned to think about variance. What is $Var(X)$?\\
+Let $e_1,e_2,...,e_N$ be the possible edges of $G$ ($N = {n \choose 2}$), and let $X_i = 1$ if $e_i$ appears in $G$, and $0$ if not. Then $X = \sum_{i=1}^N X_i$. Now $\E X_i = p$, and $\E X_i^2 = p$, so $Var(X_i) = \E X_i^2 - (\E X_i)^2 = p-p^2$. The $X_i$'s are independent, so $Var(X) = \sum_{i=1}^N Var(X_i) = N(p-p^2) = \sigma^2$, say.
+
+By Chebyshev, $\P(X=0) \leq \P(|x-\mu| \geq \mu) \leq \frac{\sigma^2}{\mu^2} = \frac{N(p-p^2)}{(Np)^2} = \frac{1}{Np}-\frac{1}{N} = \frac{1}{\mu} - \frac{1}{N} \leq \frac{1}{\mu} \to 0$ as $n \to \infty$. So if $p = \omega(n^{-2})$, then $\P(X=0) \to 0$. So $\P(X \geq 1) \to 1$. In other words, $\P(G$ has an edge$) \to 1$.
+
+We have proved that $p=n^{-2}$ is a 'sharp threshold' for $G = \mathcal{G}(n,p)$ to have an edge, in the sense that:\\
+$\bullet$ If $p=o(n^{-2})$, then almost every $G \in \mathcal{G}(n,p)$ has no edge, whereas\\
+$\bullet$ If $p = \omega(n^{-2})$ then almost every $G \in \mathcal{G}(n,p)$ has an edge.
+
+Here we say 'almost every $G \in \mathcal{G}(n,p)$ has property $Q$' to mean $\P(G \in \mathcal{G}(n,p)$ has $Q) \to 1$ as $n \to \infty$. Note that the term 'almost every' has some different meaning in some other course.
+
+More generally, let $A_1,...,A_n$ be events, $X$ is the number of $A_i$ that occur. Then $X = \sum_{i=1}^n X_i$ where $X_i=1$ if $A_i$ occurs, and $0$ if not. So $\E X_i = \P(A_i)$. Hence by linearity of expectation, $\E X = \sum_{i=1}^n \P(A_i)$.
+
+We know $Var(X) = \E X^2 - (\E X)^2$. Now 
+\begin{equation*}
+\begin{aligned}
+\E X^2 &= \E [(\sum_{i=1}^n X_i)^2]\\&= \E[(\sum_{i=1}^n X_i) (\sum_{j=1}^n X_j)]\\&=\E \sum_{i=1}^n \sum_{j=1}^n X_i X_j\\&=\sum_{i=1}^n \sum_{j=1}^n \E(X_i X_j) \\&= \sum_{i=1}^n \sum_{j=1}^n \P(A_i \cap A_j)
+\end{aligned}
+\end{equation*}
+and $(\E X)^2 = (\sum_{i=1}^n \P(A_i))^2 = \sum_{i=1}^n \sum_{j=1}^n \P(A_i) \P(A_j)$. Hence $$Var(X) = \sum_{i=1}^n \sum_{j=1}^n (\P(A_i \cap A_j) - \P(A_i) \P(A_j))$$
+
+Note that, if $A_i,A_j$ are indepndent, then the term in the sum is $0$. So independent pairs do not contribute to this sum.
 
 \end{document}
