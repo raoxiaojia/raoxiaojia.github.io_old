@@ -1847,7 +1847,7 @@ Step 2: General case. Approximate $f$ by a function $g \in C_c(\R^d)$, i.e. $\fo
 If $p \in [1,\infty)$, and if $f \in L^p(\R^d)$, then $||f*g_\tau - f||_p \xrightarrow{\sigma \to 0} 0$, where $g_\sigma$ is the density of a gaussian $N(0,\sigma^2)$,
 \begin{equation*}
 \begin{aligned}
-g_\sigma(x) = (\frac{1}{\sqrt{2\pi \sigma^2}})^d e^{0\frac{x_1^2+...+x_d^2}{2\sigma^2}}
+g_\sigma(x) = (\frac{1}{\sqrt{2\pi \sigma^2}})^d e^{-\frac{x_1^2+...+x_d^2}{2\sigma^2}}
 \end{aligned}
 \end{equation*}
 and $g_\sigma(x) dx$ =law of $\sigma(X_1,...,X_d)$, where $X_i$ is IID $N(0,1)$.
@@ -2017,7 +2017,7 @@ The proof to this is not that important, instead the formula itself is much more
 \end{proof}
 \end{thm}
 
-Define for $f \in L^2 (\R^d)$, $\mathcal{F} f =\ lim_{n \to \infty} \mathcal{F} f_n$ in $L^2(\R^d)$ for some (or any) $f_n \in L^1 \cap L^2$, $f_n \xrightarrow{L^2} f$ as $n \to \infty$.
+Define for $f \in L^2 (\R^d)$, $\mathcal{F} f =\lim_{n \to \infty} \mathcal{F} f_n$ in $L^2(\R^d)$ for some (or any) $f_n \in L^1 \cap L^2$, $f_n \xrightarrow{L^2} f$ as $n \to \infty$.
 
 
 
