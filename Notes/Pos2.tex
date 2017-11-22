@@ -14,6 +14,50 @@
 
 \newpage
 
+In the previous lecture, we saw that for a bootstrap sample $(X_1^b,...,X_n^b)$ drawn from $\P_n( \mid X_1,...,X_n)$, we have $\sup_{t \in \R} | \P_n(\sqrt{n} (\bar{X}_n^b - \bar{X}_n) \leq t(X_1,...,X_n) - \Phi(t) | \xrightarrow{a.s.} 0$ as $n \to \infty$, where $\Phi(t) = \P(Z \leq t)$, $Z \sim N(0,\sigma^2)$.
+
+\begin{rem}
+As in the B.vM theorem, this theorem can be used to show that $\P(\mu \in \mathcal{C}_n) \to 1-\alpha$ when $n \to \infty$.
+\end{rem}
+
+Idea: For fiexd $(X_i)_{i \geq 1}$, $\P_n(\mid X_1,...,X_N)$ is a sequence of distributions. Considering the $X_i$ as independent random variables drawn from $P$ allows us to make statements "with randomness". The idea is to fix a sequence $X_i$ (equivalent to fix $\omega$ in the original probability space) if we can show that $\sup_{t \in \R} |\P_n(...\mid X_1,...,X_n) - F(t)| \to 0$ "for almost all $\omega"$, then we have almost sure convergence.
+
+\begin{lemma}
+If $A_n \sim f_n \xrightarrow{d} A \sim f$, and $F$ is continuous (c.d.f of $f$), then $\sup|F_n(t) - F(t)| \to 0$ as $n \to \infty$.
+\begin{proof}
+By continuity of $F$, there exists points $-\alpha_0 = x_0 < x_1 < ... < x_k = +\infty$ such that $F(x_i) = \frac{i}{k}$. Then for every $x \in [x_{i-1},x_i]$, $F_n(x) - F(x) \leq F_n(x_i) - F(x_{i-1}) = F_n(xi)-F(x_i) + \frac{1}{k}$, and $F_n(x) - F(x) \geq F_n(x_{i-1}) - F(x_i) = F_n(x_{i-1}) - F(x_{i-1}) - \frac{1}{k}$. For $k$ large enough, $\frac{1}{k} < \frac{\varepsilon}{2}$, for $n$ large enough (dependes on $k$), we have $\max_{0 \leq i \leq k} |F_n(x_i) - F(x_i)| < \varepsilon/2$ (pointwise convergence) (dependes on $k$), we have $$\max_{0 \leq i \leq k} |F_n(x_i) - F(x_i)| < \varepsilon/2$$ (pointwise convergence). As a consequence, $$\sup_{x \in \R} |F_n(x) - F(x)| \leq \max_{0 \leq i \leq k} |F_n(x_i) - F(x_i)| + \frac{1}{k}<\varepsilon$$
+\end{proof}
+\end{lemma}
+
+\begin{defi}
+The sequence $(Z_{n,i},i=1,...,n)_{n \geq 1}$ is a triangular array of i.i.d. random variables if:\\
+$\bullet$ For all $n \geq 1$, $(Z_{n,1},...,Z_{n,i},...,Z_{n,n})$ is a sequence of i.i.d. random variables;\\
+For example, $Z_{11} = (Z_{1,i})$,\\
+$Z_{21},Z_{22} = (Z_{2,i})$,\\
+...,\\
+$Z_{n,1},...,Z_{n,n} = (Z_{n,i})$.\\
+We need independence on each line, but not across the lines. We don't need even need the same distribution at each line.
+\end{defi}
+
+\begin{prop} (CLT for triangular arrays)\\
+Let $(Z_{n,i};i=1,...,n)$ be a triangular array of iid random variables, each with finite variance. We have $Var_{Q_n}(Z_{n,i}) = \sigma_n^2 \to \sigma_2$ as $n \to \infty$, each line consists of $n$ independent draws from $Q_n$. Then, under the following hypotheses (1-3), we have $$\sqrt{n} (\frac{1}{n} \sum_{i=1}^n Z_{n,i} - \E_{Q_n} [Z_{n,i}])\xrightarrow{d} N(0,\sigma^2)$$
+(1) $\forall \delta>0$, $n Q_n (|Z_{n,1}|>\sqrt{n}\delta) \to 0$ as $n \to \infty$;\\
+(2) $Var(Z_{n,1} 1\{|Z_{n,1}|\leq \sqrt{n}\}) \to \sigma^2$ as $n \to \infty$;\\
+(3) $\sqrt{n} \E [Z_{n,1} 1\{|Z_{n,1}| > \sqrt{n}\}] \to 0$ as $n \to \infty$.\\
+(The statement of these assumptions is not examinable.)
+\begin{proof} (of the main theorem)\\
+Fix $(X_i)_{i \geq 1}$ (equivalent to fix $\omega$ in the original probability space). Under $Q_n = \P_n(\cdot \mid X_1,...,X_n)$, $Z_{n,i} = X_i^{b(n)}$ (bootstrap on $n$ observations), $\E_n[Z_{n,i}] = \E_{\P_n} [X_i^{b(n)}] = \bar{X}_n$. Then, the $(X_i^{b(n)};i=1,...,n)_{n \geq 1}$ are a triangular array of i.i.d. variables. We have that $$Var_{\P_n}(X_i^{b(n)}) = \E_{\P_n} [X_i^{b(n)^2}] - (\E_{\P_n} [X_i^{b(n)}])^2 = \frac{1}{n}\sum_{i=1}^n X_i^2-(\frac{1}{n}\sum_{i=1}^n X_i)^2 = \sigma_n^2$$ by definition of $\P_n(\mid X_1,...,X_n)$. For almost all the $\omega$, or almost all infinite sequences, $\sigma_n^2 \to \sigma^2$, and hypotheses (1-3).\\
+$\bullet$ By the CLT for triangular arrays, we have that $$\sqrt{n} (\bar{X}_n^{b(n)} - \bar{X}_n) \xrightarrow{d} N(0,\sigma^2)$$ as $n \to \infty$ 'for almost all $\omega$'.\\
+$\bullet$ By lemma, $$\sup_{t \in \R} | \P_n (\sqrt{n} (\bar{X}_n^{b(n)} - \bar{X}_n) \leq t) - \Phi(t)| \geq 0$$ as $n \to \infty$ 'for almost all $\omega$', meaning that it $\xrightarrow{a.s.} 0$.
+\end{proof}
+\end{prop}
+
+\begin{rem}
+$\bullet$ This shows the validity of the bootstrap confidence interval for the mean.\\
+$\bullet$ In genral, this can be extended to estimation of $\theta$: Sampling from $\P_n$ as for the mean, and compute the bootstrap MLE $\hat{\theta}_n^b = \hat{\theta} (X_1^b,...,X_n^b)$ then using $\sqrt{n}(\hat{\theta}_n^b - \hat{\theta}_n)$ as a proxy for $\sqrt{n} (\hat{\theta}_n - \theta_0)$, we will have similar results that show that taking $R_n$ such that $$\P_n(||\hat{\theta}_n^b - \hat{\theta}_n|| \leq \frac{R_n}{\sqrt{n}} \mid X_1,...,X_n) = 1-\alpha$$ can be used to construct a valid confidence region.\\
+This approach is known as the non-parametric bootstrap.\\
+Another approach is to do the same thing with $X_1^b,...,X_n^b \sim \P_{\hat{\theta}_n}$, same types of results will hold.
+\end{rem}
 
 
 \end{document}
