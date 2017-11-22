@@ -1924,5 +1924,102 @@ f(x) = \frac{1}{(2\pi)^d} \int \hat{f}(u) e^{-iux} du
 \end{equation*}
 \end{thm}
 
+Last time we introduced:
+
+\begin{thm} (Fourier Inversion)\\
+Suppose $f \in L^1(\R^d)$, and assume $\hat{f} \in L^1(\R^d)$. Then $f(x) = \frac{1}{(2\pi)^d} \hat{\hat{f}}(-x) = \frac{1}{(2\pi)^d} \int \hat{f}(u) e^{-i<u,x>} du$.\\
+$<u,x> = u_1x_1+...+u_dx_d$.
+\end{thm}
+
+\begin{rem}
+The functions $x \to e^{i<u,x>}$ are continuous group homomorphisms from $\R^d$ to $\{z \in \C, |z| = 1\}$.\\
+Exercise: every continuous group homomorphism from $\R^d$ to $U$(the unit circle in complex plane) is of this form.
+\end{rem}
+
+\begin{rem}
+If $f,g \in L^1(\R^d)$ then $f*g = \int f(x-y) g(y) dy$ is s.t. $\hat{f*g} = \hat{f} \cdot \hat{g}$. To show this, we have
+
+\begin{equation*}
+\begin{aligned}
+\int f*g(x) e^{i<u,x>} dx &= \int\int f(x-y) g(y) e^{i<u,x>} dxdy\\
+&= \int\int f(z) g(y) e^{i<u,y+z>} dz\\
+&= \hat{f}(u) \hat{g}(u)
+\end{aligned}
+\end{equation*}
+In probabilistic terms, we view $X \sim \mu_X$, $y \sim \mu_Y$, then $\hat{\mu}_X(u) = \E(e^{i<u,x>})$, $\hat{\mu}_Y(u) =\ E(e^{i<u,y>}$. $X$ and $Y$ are independent, so $\E(e^{i<u,X+Y>})$ is the product of the two expectations. Then rewrite the expectations as fourier transforms.
+\end{rem}
+
+\begin{proof} (of Fourier Inversion)\\
+$\bullet$ First note that if it holds for $f \in C^1(\R)$, it also holds for $f_t: x \to f(t_x)$ for $t>0$ (i.e. dilation) by change of variables: $\hat{f}_t(u) = \int f(tx) e^{i<u,x>} dx = \frac{1}{t^d} \int f(tx) e^{i<u/t,x>} d(tx) = \frac{1}{t^d} \hat{f} (\frac{u}{t})$. So $\int \hat{f}_t(u) e^{-i<u,x>} du = \frac{1}{t^d} \int \hat{f} (\frac{u}{t}) e^{-i<u/t,x>} du = \int \hat{f} (U) e^{-i<u,tx>} du = (2\pi)^d f(tx) = (2\pi)^d f_t(x)$.\\
+$\bullet$ The inversion formula holds for $f=G$ a normalized Gaussian:
+\begin{equation*}
+\begin{aligned}
+G(x) = \frac{1}{(\sqrt{2\pi})^d} e^{-\frac{x_1^2+...+x_d^2}{2}} = g(x_1)...g(x_d)
+\end{aligned}
+\end{equation*}
+where $g(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$, $\hat{g}(u) = e^{-u^2/2}$ by last time. This is because
+\begin{equation*}
+\begin{aligned}
+\hat{G}(u) =\int G(x) e^{i<u,x>} dx &= \prod_1^d \int g(x_i) e^{-iu_ix_i} dx_i = \prod e^{-u_i^2}/2\\
+&= e^{-\frac{u_1^2+...+u_d^2}{2}} = (2\pi)^{d/2} G(u),\\
+\hat{\hat{G}}(x) = \int \hat{G}(u) e^{i<u,x>} du &= (2\pi)^{d/2} \int G(u) e^{i<u,x>} du = (2\pi)^{d/2} \hat{G}(x)\\
+&= (2\pi)^d G(x) = (2\pi)^d G(-x)
+\end{aligned}
+\end{equation*}
+
+by the previous steps, the formula holds for $G_\sigma \sim N(0,\sigma^2Id) \sim \sigma(X_1,...,X_d)$ where $G_\sigma(x) = \frac{e^{-\frac{x_1^2+...+x_d^2}{2\sigma^2}}}{(\sqrt{2\pi\sigma^2})^d)} = \frac{1}{\sigma^d}G(x/\sigma)$. Now $\hat{G}_\sigma(u) = \hat{G}(\sigma u) = e^{-\sigma \frac{(u_1^2+...+u_d^2)}{2}}$.
+
+Note that $\hat{G}_\sigma(u) \to 1$ as $\sigma \to 0$. Also $f*G_\sigma \xrightarrow{\sigma \to 0} f$, so $\hat{f} \hat{G}_\sigma \to \hat{f}$.
+
+$\bullet$ Special case: $f$ has the form $f = \phi*G_\sigma$ for some $\sigma >0$ for some $\phi \in C^1(\R^d)$. Then $\hat{f} = \hat{\phi} \cdot \hat{G}_\sigma$. So
+
+\begin{equation*}
+\begin{aligned}
+f(x) &= \phi*G_\sigma(x) = \int \phi(x-y) G_\sigma(y) dy\\
+&= \int \phi(x-y) \int \hat{G}_\sigma(u) e^{-i<u,y>} \frac{du}{(2\pi)^d}dy\\
+&= \int \int \phi(z) \hat{G}_\sigma(U) e^{-i<u,x-z>} \frac{dudz}{(2\pi)^d}\\
+&= \int \underbrace{\hat{\phi}(u) \hat{G}_\sigma(u)}_{\hat{\phi*G_\sigma} = \hat{f}} e^{-i<u,x>} \frac{du}{(2\pi)^d}
+\end{aligned}
+\end{equation*}
+
+$\bullet$ For the general case, when $f,\hat{f}$ are in $L^1$, let $f_\sigma = f*G_\sigma$. We apply the Fourier Inversion formula to $f_\sigma$. So
+
+\begin{equation*}
+\begin{aligned}
+f_\sigma(x) = \int \hat{f}_\sigma(u) e^{-i<u,x>} \frac{du}{(2\pi)^d} = \int \hat{f} (u) \hat{G}_\sigma(u) e^{-i<u,x>} \frac{du}{(2\pi)^d}
+\end{aligned}
+\end{equation*}
+However, the last term tends to $\int \hat{f}(u) e^{-i<u,x>} \frac{du}{(2\pi)^d}$ pointwise a.e. $x$ as $\sigma \to 0$ since $\bar{f} \in C^1$ by Dominated Convergence. Also, $f_\sigma(x)$ tends to $f$ as $\sigma \to 0$ by the gaussian approximation lemma. So we have, a.e., 
+\begin{equation*}
+\begin{aligned}
+f(x) = \int \hat{f} (u) e^{-i<u,x>} \frac{du}{(2\pi)^d}
+\end{aligned}
+\end{equation*}
+\end{proof}
+
+\begin{thm}
+(a) If $f \in L^1(\R^d) \cap L^2(\R^d)$, then $\hat{f} \in L^2(\R^d)$, and $||\hat{f}||_2 = (2\pi)^{d/2} ||f||_2$ (Plancherel formula).\\
+(b) Furthermore, if $f,g \in L^1 \cap L^2 (\R^d)$, then $<\hat{f},\hat{g}> = (2\pi)^d <f,g>$, where $<f,g> = \int_{\R^d} f \bar{g} dx$.\\
+(c) Finally, the map $\mathcal{F}: L^1\cap L^2 (\R^d) \to L^2(\R^d)$ by $f \to \frac{1}{(2\pi)^{d/2}} \hat{f}$ extends uniquely to a linear involutive isometry of $L^2(\R^d)$. Here, extends means to $L^2 \to L^2$, linear means $\mathcal{F} (f+\lambda g) = \mathcal{F} f + \lambda \mathcal{F} g$, involutive means $\mathcal{F} \circ \mathcal{F} = id_{L^2}$, and isometry means $||\mathcal{F} f||_2 = ||f||_2$, or $<\mathcal{F} f, \mathcal{F} g> = <f,g>$.
+\begin{proof}
+Proof of (a) and (b): First assume $f,\hat{f} \in L^1$. Then 
+\begin{equation*}
+\begin{aligned}
+||\hat{f}||_2^2 := \int \hat{f}(u) \bar{\hat{f}(u)}du =\int [\int f(x) e^{i<x,u>} dx] \bar{\hat{f}(u)}du
+\end{aligned}
+\end{equation*}
+but $(x,u) \to f(x) \bar{\hat{f}(U)}$ is in $L^1 (\R^d \times \R^d)$. So Fubini applies, and above is equal to $\int\int f(x) \overline{(\int \hat{f}(u) e^{-i<u,x>}du)} dx$. Apply Fourier inversion formula, this is equal to $\int f(x) \bar{f(x)} (2\pi)^d dx = (2\pi)^d ||f||_2^2$, and this is finite. So $\hat{f} \in L^2(\R^d)$ and $||\hat{f}||_2^2 =(2\pi)^d ||f||_2^2$.\\
+Similarly, if $f,g \in L^1 \cap L^2$, s.t. $\hat{f},\hat{g} \in C^1$, the same calculation will show that $<\hat{f},\hat{g}> = (2\pi)^d <f,g>$.\\
+Now assume only $f \in L^1 \cap L^2,$, and no assumption on $\hat{f}$ (general case). Then consider gaussian approximation $f_\sigma := f*G_\sigma$. Now $\hat{f}_\sigma=\hat{f}\hat{G}_\sigma \in L^1$. So (a) holds for $f_\sigma$, and $f_\sigma \xrightarrow{\sigma \to 0} f$ in $L^2$ by Gaussian approximation lemma, $\hat{f}_\sigma = \hat{f} \hat{G}_\sigma$, $\hat{G}_\sigma$ tends to 1 pointwise as $\sigma \to 0$ ($||\hat{f}_\sigma||_2^2 = (2\pi)^d ||f_\sigma||_2^2 ||\hat{f}||_2^2 = (2\pi)^f ||f||_2^2$).\\
+The proof to this is not that important, instead the formula itself is much more important.\\
+(b) is basically the same thing.\\
+(c) by (a) and (b), $||\mathcal{F} f||_2 = ||f||_2$ for all $f \in L^1 \cap L^2(\R^d)$. But $L_1 \cap L_2(\R^d)$ is dense in $L_2(\R^d)$, and the intersection contains $C_c(\R^d)$.
+\end{proof}
+\end{thm}
+
+Define for $f \in L^2 (\R^d)$, $\mathcal{F} f =\ lim_{n \to \infty} \mathcal{F} f_n$ in $L^2(\R^d)$ for some (or any) $f_n \in L^1 \cap L^2$, $f_n \xrightarrow{L^2} f$ as $n \to \infty$.
+
+
+
 
 \end{document}
