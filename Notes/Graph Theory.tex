@@ -1098,4 +1098,94 @@ and $(\E X)^2 = (\sum_{i=1}^n \P(A_i))^2 = \sum_{i=1}^n \sum_{j=1}^n \P(A_i) \P(
 
 Note that, if $A_i,A_j$ are indepndent, then the term in the sum is $0$. So independent pairs do not contribute to this sum.
 
+\begin{prop} (40)\\
+$p = 1/n$ is a sharp threshold for $G \in \mathcal{G}(n,p)$ to contain a triangle, in the similar sense as the above for an edge.
+\begin{proof}
+Let $G \in \mathcal{G}(n,p)$ and let $X$ be the number of triangles in $G$. Let $\mu = \E X$ and $\sigma^2 = Var(X)$. Then $\mu = {n \choose 3} p^3 \sim \frac{1}{6} (np)^3$. Also, $\sigma^2 = {n \choose 3} (p^3-p^6) + {n \choose 3} 3(n-3)(p^5-p^6) \leq n^3p^3 + n^4p^5$.
+
+Suppose first $p=o(\frac{1}{n})$, i.e. $np \to 0$. Then by Markov, $\P(X=0) = 1-\P(X \geq 1) \geq 1-\mu \to 1$ as $n \to \infty$. Suppose instead $p=\omega(\frac{1}{n})$ so $np \to \infty$. Then by Chebyshev, $$\frac{\sigma^2}{\mu^2} \leq \frac{1}{\mu^2} (n^3p^3+n^4p^5) \sim \frac{36}{n^6p^6} (n^3p^3+n^4p^5) = \frac{36}{(np)^3} + \frac{36}{n \cdot np} \to 0$$ as $n \to \infty$.
+\end{proof}
+\end{prop}
+
+Following the same idea we should be able to find this threshold for any fixed graph, the only problem is just that the variance calculation is much harder.
+
+Another question is, what is the clique number $\omega(G)$ for typical $G \in \mathcal{G}(n,p)$?
+
+\begin{thm} (41)\\
+There exists a function $d:\N \to \N$ such that a.e. $G \in \mathcal{G}(n,1/2)$ has $\omega(G) \in \{d-1,d,d+1\}$ (where $d=d(n)$).
+\begin{proof} (sketch)\\
+Let $G \in \mathcal{G}(n,1/2)$. Given $k$, let $X_k$ be the number of $K_k$'s in $G$. Then $\E X_k = {n \choose k} 2^{-{k \choose 2}} = g(k)$, say. We seek $d$ with $g(d) \approx 1$. If $1 \ll k \ll n$, then $g(k) \approx \frac{1}{k!} n^k 2^{-k^2/2}$ so $\log_2 g(k) \approx k\log_2 n - \log_2 k! - k^2/2$. We want $g(d) = 1$ so $\log_2 g(d) \approx 0$ so $d \approx 2 \log_2 n$. In fact, we can find $d \sim 2 \log_2 n$ s.t. $g(d) \geq 1$ and $g(d+1) < 1$.
+
+Suppose $k \sim 2\log_2 n$. Then 
+\begin{equation*}
+\begin{aligned}
+\frac{g(k+1)}{g(k)} &= \frac{n!k!(n-k)!}{(k+1)!(n-k-1)!n!} 2^{{k\choose 2}-{{k+1}\choose 2}}\\
+&= \frac{n-k}{k+1}2^{-k} \\
+&\leq n2^{-k} \approx \frac{1}{n} \to 0
+\end{aligned}
+\end{equation*}
+as $n \to \infty$. Thus $g(d+2) \to 0$ and $g(d-1) \to \infty$ as $n \to \infty$.
+
+We must show:\\
+1. $\P(X_{d+1} = 0) \to 1$ as $n \to \infty$, and\\
+2. $\P(X_{d-1} = 0) \to 0$ as $n \to \infty$.
+
+1.
+\begin{equation*}
+\begin{aligned}
+\P(X_{d+2} = 0) &= 1-\P(X_{d+2} \geq 1)\\
+&\geq 1-\E X_{d+2}\\
+&= 1-g(d+2) \to 1
+\end{aligned}
+\end{equation*}
+as $n \to \infty$ (by Markov).
+
+2. Let $\mu = \E X_{d-1}$ and $\sigma^2 = Var(X_{d-1})$. Note $\mu = g(d-1) \to \infty$. Now
+
+\begin{equation*}
+\begin{aligned}
+\sigma^2 = \sum_{i=2}^{d-1} {n \choose {d-1}} {{d-1} \choose i}{{n-(d-1)} \choose {(d-1)-i}}\left[2^{-(2{{d-1} \choose 2}-{i \choose 2})} - 2^{-2{{d-1} \choose 2}}\right]
+\end{aligned}
+\end{equation*}
+Hence
+
+\begin{equation*}
+\begin{aligned}
+\frac{\sigma^2}{\mu^2} \leq \sum_{i=2}^{d-1} \frac{{{d-1} \choose i} {{n-d+1} \choose {d-1-i}}}{{n \choose {d-1}}} 2^{{i \choose 2}} = \sum_{i=2}^{d-1} \Delta_i
+\end{aligned}
+\end{equation*}
+where $\Delta_i$ is the above summand.
+
+Now
+
+\begin{equation*}
+\begin{aligned}
+\Delta_{d-1} = \frac{1}{{n \choose {d-1}} 2^{-{{d-1} \choose 2}}} = \frac{1}{\mu} \to 0,\\
+\Delta_{d-2} &= \frac{(d-1)(n-d+1)}{{n \choose {d-1}} }2^{{d-2} \choose 2}\\
+&= \frac{(d-1)(n-d+1)}{{n \choose {d-1}} 2^{-{{d-1} \choose 2}} } 2^{-(d-2)} \\
+&\leq \frac{4nd 2^{-d}}{\mu}\\
+&\approx \frac{4n \cdot 2\log_2 n \cdot n^{-2}}{\mu} = \frac{8\log_2 n/n}{\mu} \to 0,\\
+\Delta_2 &= \frac{{{d-1}\choose 2} {{n-d+1} \choose {d-3}}}{{n \choose {d-1}}} \cdot 2\\
+&\leq \frac{2{{d-1} \choose 2} {n \choose {d-3}}}{ {n \choose {d-1}}}\\
+&= \frac{(d-1)(d-2)(d-1)(d-2)}{n(n-1)}\\
+&\sim \frac{d^4}{n^2} \sim \frac{16(\log_2 n)^4}{n^2} \to 0
+\end{aligned}
+\end{equation*}
+It can be shown that these three terms dominate: the contribution to the sum from $\Delta_3,...,\Delta_{d-3}$ is negligible. Thus $\frac{\sigma^2}{\mu^2} \to 0$.
+
+Now $\P(X_{d-1} = 0) \leq \P(|X_{d-1}-\mu| \geq \mu) \leq \frac{\sigma^2}{\mu^2} \to 0$ by Chebyshev.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+1. This also shows a.e. $G \in \mathcal{G}(n,1/2)$ has $\omega(G) \sim 2\log_2 n = \frac{2\log n}{\log 2}$.\\
+2. Same proof works to give same result for general $p$. Then
+\begin{equation*}
+\begin{aligned}
+\omega(G) \sim \frac{2\log n}{\log {\frac{1}{p}}}
+\end{aligned}
+\end{equation*}
+\end{rem}
+
+
 \end{document}
