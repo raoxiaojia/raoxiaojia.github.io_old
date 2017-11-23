@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  21 NOV 2017 10:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  23 NOV 2017 09:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -821,7 +821,7 @@ LaTeX Warning: No \author given.
 \openout5 = `"Galois Theory.toc"'.
 
 
-[2] [3] [4] <image/GT_01.png, id=148, 722.7pt x 406.51875pt>
+[2] [3] [4] <image/GT_01.png, id=160, 722.7pt x 406.51875pt>
 File: image/GT_01.png Graphic file (type png)
 
 <use image/GT_01.png>
@@ -942,7 +942,7 @@ Overfull \hbox (139.7154pt too wide) has occurred while \output is active
 ON BY RADICALS \OT1/cmr/m/n/10 31
  []
 
-[31] <image/GT_02.png, id=268, 722.7pt x 406.51875pt>
+[31] <image/GT_02.png, id=280, 722.7pt x 406.51875pt>
 File: image/GT_02.png Graphic file (type png)
  <use image/GT_02.png>
 Package pdftex.def Info: image/GT_02.png used on input line 1021.
@@ -1004,23 +1004,23 @@ Overfull \hbox (139.7154pt too wide) has occurred while \output is active
 ON BY RADICALS \OT1/cmr/m/n/10 38
  []
 
-[38]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1228.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1228.
+[38] [39] [40]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1290.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1290.
  (./Galois Theory.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1228.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1228.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1290.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1290.
 
 Package rerunfilecheck Info: File `"Galois Theory".out' has not changed.
-(rerunfilecheck)             Checksum: F85A3CFF95B494F87536BCED62BA10AF;1301.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1228.
+(rerunfilecheck)             Checksum: 6C364D2A1FDAA48E268788DAD6C5312A;1418.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1290.
  ) 
 Here is how much of TeX's memory you used:
- 27383 strings out of 494910
- 646316 string characters out of 6179835
- 889624 words of memory out of 5000000
- 30060 multiletter control sequences out of 15000+600000
- 16131 words of font info for 103 fonts, out of 8000000 for 9000
+ 27392 strings out of 494910
+ 646402 string characters out of 6179835
+ 888624 words of memory out of 5000000
+ 30061 multiletter control sequences out of 15000+600000
+ 16347 words of font info for 105 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,13n,77p,1312b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -1040,10 +1040,10 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Galois Theory.pdf" (38 pages, 443009 bytes).
+Output written on "Galois Theory.pdf" (40 pages, 455403 bytes).
 PDF statistics:
- 374 PDF objects out of 1000 (max. 8388607)
- 310 compressed objects within 4 object streams
- 58 named destinations out of 1000 (max. 500000)
- 15527 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 395 PDF objects out of 1000 (max. 8388607)
+ 329 compressed objects within 4 object streams
+ 62 named destinations out of 1000 (max. 500000)
+ 15543 words of extra memory for PDF output out of 17280 (max. 10000000)
 

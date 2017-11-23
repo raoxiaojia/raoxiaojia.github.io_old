@@ -16,3 +16,5 @@
 \contentsline {subsection}{\numberline {4.3}Cubics}{32}{subsection.4.3}
 \contentsline {subsection}{\numberline {4.4}Quartics}{34}{subsection.4.4}
 \contentsline {subsection}{\numberline {4.5}Solubility by radicals}{35}{subsection.4.5}
+\contentsline {section}{\numberline {5}Final Thoguhts}{39}{section.5}
+\contentsline {subsection}{\numberline {5.1}Algebraic Closure}{39}{subsection.5.1}
