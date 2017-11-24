@@ -2008,7 +2008,7 @@ Proof of (a) and (b): First assume $f,\hat{f} \in L^1$. Then
 ||\hat{f}||_2^2 := \int \hat{f}(u) \overline{\hat{f}(u)}du =\int [\int f(x) e^{i<x,u>} dx] \overline{\hat{f}(u)}du
 \end{aligned}
 \end{equation*}
-but $(x,u) \to f(x) \bar{\hat{f}(U)}$ is in $L^1 (\R^d \times \R^d)$. So Fubini applies, and above is equal to $\int\int f(x) \overline{(\int \hat{f}(u) e^{-i<u,x>}du)} dx$. Apply Fourier inversion formula, this is equal to $\int f(x) \bar{f(x)} (2\pi)^d dx = (2\pi)^d ||f||_2^2$, and this is finite. So $\hat{f} \in L^2(\R^d)$ and $||\hat{f}||_2^2 =(2\pi)^d ||f||_2^2$.\\
+but $(x,u) \to f(x) \overline{\hat{f}(U)}$ is in $L^1 (\R^d \times \R^d)$. So Fubini applies, and above is equal to $\int\int f(x) \overline{(\int \hat{f}(u) e^{-i<u,x>}du)} dx$. Apply Fourier inversion formula, this is equal to $\int f(x) \bar{f(x)} (2\pi)^d dx = (2\pi)^d ||f||_2^2$, and this is finite. So $\hat{f} \in L^2(\R^d)$ and $||\hat{f}||_2^2 =(2\pi)^d ||f||_2^2$.\\
 Similarly, if $f,g \in L^1 \cap L^2$, s.t. $\hat{f},\hat{g} \in C^1$, the same calculation will show that $<\hat{f},\hat{g}> = (2\pi)^d <f,g>$.\\
 Now assume only $f \in L^1 \cap L^2,$, and no assumption on $\hat{f}$ (general case). Then consider gaussian approximation $f_\sigma := f*G_\sigma$. Now $\hat{f}_\sigma=\hat{f}\hat{G}_\sigma \in L^1$. So (a) holds for $f_\sigma$, and $f_\sigma \xrightarrow{\sigma \to 0} f$ in $L^2$ by Gaussian approximation lemma, $\hat{f}_\sigma = \hat{f} \hat{G}_\sigma$, $\hat{G}_\sigma$ tends to 1 pointwise as $\sigma \to 0$ ($||\hat{f}_\sigma||_2^2 = (2\pi)^d ||f_\sigma||_2^2 ||\hat{f}||_2^2 = (2\pi)^f ||f||_2^2$).\\
 The proof to this is not that important, instead the formula itself is much more important.\\
@@ -2019,7 +2019,132 @@ The proof to this is not that important, instead the formula itself is much more
 
 Define for $f \in L^2 (\R^d)$, $\mathcal{F} f =\lim_{n \to \infty} \mathcal{F} f_n$ in $L^2(\R^d)$ for some (or any) $f_n \in L^1 \cap L^2$, $f_n \xrightarrow{L^2} f$ as $n \to \infty$.
 
+Recall from last lecture that for $f \in L^1 (\R^d)$ we defined its fourier transform, and for $\mu$ a measure in the probability space $\R^d$ we defined its characteristic function $\hat{\mu}(u) = \int e^{i<u,x>} d\mu(x)$. (This looks different from the previous lecture, but I guess this is the correct version?)
 
+\begin{prop}
+If $\mu,\nu$ are measures on probability space $\R^d$, s.t. $\hat{\mu}(u) = \hat{nu}(u)$ $\forall u$, then $\mu = \nu$.
+\begin{proof}
+Use gaussian approximation: pick $\delta > 0$. Let $G_\delta(x) = (\frac{1}{\sqrt{2\pi\sigma^2}})^d e^{-||x||^2 / 2\sigma^2}$ be a gaussian, $G_\delta(x) dx \sim \delta \mathbf{N}$, where $\mathbf{N} = (N_1,...,N_n)$ are i.i.d. normalized gaussian $N(0,1)$. Consider $\mu * G_\delta$, note $\mu * G_\delta \in L^1(\R^d)$ (?) and $\widehat{\mu*G_\delta} = \hat{\mu} \hat{G_\delta} \in L^1(\R^d)$, because $|\hat{\mu}| \leq 1$, $\hat{G_\delta}(u) = e^{-\delta||u||^2/2}$. So we can apply the Fourier Inversion formula to $\mu*G_\delta$. Now let $g \in C_b(\R^d)$. Let $X$ be a r.v. on $\R^d$ with law $\mu$. Then
 
+\begin{equation*}
+\begin{aligned}
+\int g(x) d\mu(x) = \E(g(x)) = \lim_{\delta \to 0} \E(g(X+\delta \mathbf{N}))
+\end{aligned}
+\end{equation*}
+but $\E(g(X+\delta\mathbf{N})) = \int g(x) \mu * G_\delta(x) dx$. But $\mu*G_\delta$ is determined by $\hat{\mu}$ and $\sigma$ (by the Fourier inversion Formula). So $\E(g(X+\delta \mathbf{N}))$ is determined by $\hat{\mu}$ and $\sigma$. This ends the proof.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+If $\mu$ is a measure on the probability space $\R^d$ s.t. $\hat{\mu} (u) \in L^1 (\R^d)$, then $\mu$ has a density $f(x)$ w.rt. Lebesgue, i.e. $d\mu(x) = f(X) dx$ for $f \in L^1(\R^d)$. In particular, $\hat{\mu} = \hat{f}$.(??? ok fine)
+\begin{proof}
+Use Gaussian approximation. Let $f_\delta = \mu * G_\delta$ (i.e. $f(x) = \int G_\delta(x-y d\mu(y)$). So $f_\delta \in L^1$, $\hat{f}_\delta \in L^1$, so by Fourier inversion,
+\begin{equation*}
+\begin{aligned}
+f_\delta(x) = \frac{1}{(2\pi)^d} \int \hat{\mu}(x) \underbrace{\hat{G}_\delta (u)}_{=e^{-\delta||u||^2/2}} e^{-i<u,x>}du
+\end{aligned}
+\end{equation*}
+We see by Dominaged convergence (because $\hat{\mu} \in L^1$) that 
+\begin{equation*}
+\begin{aligned}
+f_\delta(x) \xrightarrow{\delta \to 0} \underbrace{\frac{1}{(2\pi)^d} \int \hat{\mu} (x) e^{-i<u,x>} du}_{:=f(x)}
+\end{aligned}
+\end{equation*}
+We need to show $d\mu = f(x)dx$. Pick $X$ r.v. $\sim \mu$. $\mathbf{N} = (N_1,...,N_d)$ i.d. $N(0,1)$, $g \in C_b (\R^d)$. Then
+\begin{equation*}
+\begin{aligned}
+\E(g(X)) &= \lim_{\sigma \to 0} \E(g(X+\delta\mathbf{N}))\\
+&= \lim_{\sigma \to 0} \int g(x) f_\sigma(x) dx\\
+&= \int g(x) f(x) dx
+\end{aligned}
+\end{equation*}
+by dominated convergence.
+\end{proof}
+\end{prop}
+
+Now we'll look at a very important theorem, which is apparently important looking at the length of its name:
+
+\begin{thm} (Levy's criterion for convergence of random variables \emph{in distribution})\\
+Let $(X_n)_n,X$ be $\R^d$-valued random variables. The following are equivalent:\\
+(i) $X_n \to X$ \emph{in distribution};\\
+(ii) $\widehat{\mu_{X_n}} \to \hat{\mu}_X (u)$ for all $u \in \R^d$.
+\begin{proof}
+(i) implies (ii) is obvious: $x \to e^{i<u,x>} \in C_b (\R^d)$(need to read again).\\
+(ii) implies (i): It's enough to check $\E (g(X_n)) \to \E(g(x))$ $\forall g \in C_c^\infty (\R^d)$ (see example sheet).\\
+Use Gaussian approximation, $\mu_{X_n} * G_\sigma \sim X_n + \sigma \mathbf{N}$. Then
+\begin{equation*}
+\begin{aligned}
+|\E(g(X_n)) - \E(g(X))| &\leq |\E(g(X_n) - g(X_n+\delta \mathbf{N}))| + |\E(g(X_n+\delta\mathbf{N}) -g(X+\delta \mathbf{N}))| + |\E(g(X+\delta\mathbf{N}) - g(X))|
+\end{aligned}
+\end{equation*}
+We consider the three terms in RHS separately:\\
+(1) 
+\begin{equation*}
+\begin{aligned}
+|g(x) - g(x+y)| \leq ||\nabla g||_\infty||y||
+\end{aligned}
+\end{equation*}
+uniformly on $x$. So the first term is at most $||\nabla g||_\infty \E(\sigma||\mathbf{N}||) = o_\sigma(1)$ when $\sigma \to 0$ (or just tend to 0).
+
+(2)
+Fix $\sigma > 0$. Then the second term equals
+\begin{equation*}
+\begin{aligned}
+\int g(x) (\mu_{X_n} *G_\sigma - \mu*G_\sigma)(x) dx \xrightarrow{n \to \infty} 0
+\end{aligned}
+\end{equation*}
+because $$\mu_{X_n} * G_\sigma(x) = \frac{1}{(2\pi)^d} \int \hat{\mu}_{X_n} (u) e^{-\sigma||u||^2/2} e^{i<u,x>}du$$ by dominated convergence, then $$\lim_{n \to \infty} \mu_{X_n}*G_\sigma (x) =\mu*G_\sigma(x)$$.
+
+(3) This tends to $0$ as $\sigma \to 0$ by Dominated convergence.
+\end{proof}
+\end{thm}
+
+Now we look at multivariate gaussian random variables.
+
+Recall that a 1-dimensional gaussian is a r.v. $X$ such that $d\mu_X(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx$, where $\mu$ is mean, $\sigma$ is the standard deviation: $\sigma^2 = Var x = \E([X-\E(x)]^2) = \E(X^2) - (\E(X))^2$. We denote this by $N(\mu,\sigma^2)$.
+
+\begin{defi}
+An $\R^d$-valued r.v. $X$ is a gaussian if $\forall u \in \R^d$, $<X,u> = u_1X_1+...+u_dX_d$ is a Gaussian r.v. (see IB statistics, or II Principle of Statistics).\\
+\end{defi}
+
+\begin{prop}
+A gaussian law is uniquely determined byits mean $\E(X) \in \R^d$, and its covariance matrix $(Cov(X_i,X_j))_{1 \leq i,j \leq d}$, where $Cov(X_i,X_j) =\E((X_i\E X_i)(X_j - \E X_j))$
+\begin{proof}
+$\hat{\mu}_X (tu) = \E (e^{i<u,X>}) = \hat{\mu}_{<X,u>}(t)$, so the law of $X$ is determined by the law of each $<X,u>$ for $u \in \R^d$, i.e. by $\E(<X,u>)$ and $Var<X,u>$. But:\\
+$\bullet$ $\E(<X,u>) = <\E X,u>$;\\
+$\bullet$ $Var<X,u> = \E((<X,u> - <\E X,u>)^2) = \sum_{i,j} \E((X_i-\E X_i) (X_j - \E X_j)) u_i u_j$.
+\end{proof}
+\end{prop}
+
+\begin{rem}
+The last calculation shows that $(Cov (X_i,X_j))_{i,j} := K)$ is a symmetric and non-negative matrix, i.e. ($\exists A$ s.t. $K =A^T A$).
+\end{rem}
+
+\begin{prop}
+if $X$ is an $\R^d$-valued gaussian r.v., then $\exists A \in M^d(\R)$, $b \in \R^d$, s.t. $X \sim A \mathbf{N}+b$ where $\mathbf{N} = (N_1,...,N_d)$ i.i.d. $N(0,1)$.
+\begin{proof}
+Note: $\E(A\mathbf{N}+b) = b$, $Cov (A\mathbf{N}+b) = Cov(A N) = A A^T$. This is because $Var<A\mathbf{N},u> = <u,Cov(A \mathbf{N})u>$, but LHS = $Var<\mathbf{N},A^t u> = Var(\sum(A^T u)_iN_i) = \sum [(A^T u)_i]^2 = ||A^t u||^2 = <A^t u, A^t u> = <u,AA^tu>$.
+\end{proof}
+\end{prop}
+
+\begin{defi}
+$X$ is called non-degenerate if $\det A \neq 0$. In this case, $X$ has density
+\begin{equation*}
+\begin{aligned}
+\frac{1}{(2\pi)^{d/2} (\det A)} e^{-\frac{1}{2} ||A^{01}(X-b)||^2}
+\end{aligned}
+\end{equation*}
+and $\hat{\mu}_X(u) = e^{i<u,b>} e^{-\frac{1}{2}<u,Ku>}$ where $K = A A^t = Cov(X) \in M_d (\R)$, and $b = \E(X)$.
+\end{defi}
+
+\begin{prop}
+If $X = (X_1,...,X_d)$ is a gaussian r.v., then the following are equivalent:\\
+(i) The $X_i's$ are independent;\\
+(ii) The $X_i$'s are pairwise independent;\\
+(iii) The covariance matrix of $X$ is a scalar matrix.
+\begin{proof}
+(i) implies (ii) implies (iii) is obvious. (iii) implies (i) follows from the previous proposition, which shows that $X \sim \sigma \mathbf{N} + b$.
+\end{proof}
+\end{prop}
 
 \end{document}
