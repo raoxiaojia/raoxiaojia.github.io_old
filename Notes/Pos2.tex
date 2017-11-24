@@ -59,5 +59,75 @@ This approach is known as the non-parametric bootstrap.\\
 Another approach is to do the same thing with $X_1^b,...,X_n^b \sim \P_{\hat{\theta}_n}$, same types of results will hold.
 \end{rem}
 
+Last lecutre on Monday. \emph{No} Lecture on Wednesday!
+
+\subsection{Monte-Carlo methods}
+In statistics, we often cannot explicityl compute expectation/integrals, which can be problematic when:\\
+$\bullet$ We want to obtain a posterior distribution;\\
+$\bullet$ We want to obtain a posterior mean;\\
+$\bullet$ We want to compute quantiles of a distribution.
+
+One of the ideas of Monte-Carlo methods is to replace explicitly computation by \emph{simulations}Last lecutre on Monday. \emph{No} Lecture on Wednesday!
+
+\subsection{Monte-Carlo methods}
+In statistics, we often cannot explicityl compute expectation/integrals, which can be problematic when:\\
+$\bullet$ We want to obtain a posterior distribution;\\
+$\bullet$ We want to obtain a posterior mean;\\
+$\bullet$ We want to compute quantiles of a distribution.
+
+One of the ideas of Monte-Carlo methods is to replace explicitly computation by \emph{simulations}. One of the first challenges is to draw from a given, general distribution.
+
+\begin{defi}
+A pseudorandom generator provides independent $U_i^{*} \sim Unif(0,1)$.
+\end{defi}
+
+\begin{rem}
+They are generated such that for all practical uses, $P(U_1^* \leq u_1,...,U_N^* \leq u_n) = \prod_{i=1}^N u_i$ (up to 'machine precision'). Here it can be thought of as a blackbox that outputs i.i.d. uniform numbers -- this can be used as a starting point to generate other variables.
+\end{rem}
+
+\begin{prop}
+The random variables $K_i = \sum_{k=1}^n k 1_{(\frac{k-1}{n},\frac{k}{n}]} (U_i^*)$ are i.i.d. uniform on $\{1,...,n\}$.
+\begin{proof}
+$K_i$ is clearly uniform on $\{1,...,n\}$, as each segment has length $\frac{1}{n}$. They are independent as functions of independent random variables $U_i^*$. 
+\end{proof}
+\end{prop}
+\begin{rem}
+Assigining other values to each of the intervals with uniform distribution on any set of size $n$. In particular, we can simulate bootstrap samples by writing $$X_i^b = \sum_{k=1}^n X_k 1_{(\frac{k-1}{n},\frac{k}{n}]} (U_i^*)$$ If the intervals are chosen with different lengths, we can generate any discrete distribution. For a general distribution with cdf $F$, we can generalize this idea.
+\end{rem}
+
+\begin{defi}
+For a general cdf $F$, we define the generalized inverse of $F$ as $$F^-(u) = \inf \{x: u \leq F(x)\}$$
+\end{defi}
+
+\begin{rem}
+For a fixed value $t \in \R$, the function $F$ gives $F(t) \in [0,1]$ a probability $\P(X \leq t)$. For a fixed value $u \in [0,1]$, the function $F$ gives $t = F^- (u)$ such that approximately $\P(X \leq t) = u$.
+\end{rem}
+
+\begin{prop}
+$X = F^-(u)$ for $U \sim Unif (0,1)$ has a distribution cdf $F$.
+\begin{proof} (Example sheet)\\
+$\P(X \leq t) = \P(F^-(U) \leq t) = ... = F(t)$, and use that $\P(U \leq z) = z$ for $z \in (0,10$.
+\end{proof}
+\end{prop}
+Conclusion (of the first part): If $F$ is known, explicit, we can generated $(X_1^*,...,X_N^*) = (F^-(U_1^*),...,F^-(U_N^*))$ that are i.i.d., each with cdf $F$. If we want to compute $\E_{X \sim f} [g(X)]$, we can approximate it by $\frac{1}{N} \sum_{i=1}^N g(X_i^*)$, and use the fact that $\frac{1}{N} \sum_{i=1}^N g(X_i^*) \xrightarrow{a.s.} \E[g(X)]$ by the LLN.
+
+In certain situations, the distributino might be complex, and $F$, $F^-$ are not explicit. For example, $N(\mu,\sigma^2)$ can be solved by looking up in a table, but $\Pi (\cdot \mid X)$ can involve complicated integrals (the density) which make computation of $F_\Pi$ impossible.
+
+There are several ways to tackle this and approximately sample from distributions.
+
+(1) Importance sampling: Let $F$ have density $f$, and random variables i.i.d. $X_i^* \sim h$.
+
+\begin{prop}
+$\E_h \left[\frac{g(x)}{h(x)} f(x)\right] = \E_f [g(x)]$.
+\begin{proof}
+The above is equal to $$ \int_\chi \frac{g(x)}{h(x)} f(x) \cdot h(x) dx = \int_\chi g(x) f(x) dx$$ As a consequence, $$\frac{1}{N} \sum_{i=1}^n \frac{g(X_i^*)}{h(X_i^*)} f(X_i^*) \xrightarrow{a.s.} \E_{X \sim f} [g(X)]$$.
+\end{proof}
+\end{prop}
+
+(2) Accept/Reject algorithm. As in (1), but $f \leq M\cdot h$ for some constant $M$.\\
+Step 1: generate $X \sim h$ and $U \sim U(0,1)$.\\
+Step 2: $Y=X$ if $U \leq \frac{f(X)}{M\cdot h(X)}$, otherwise return to step 1. Then $Y \sim f$ (example sheet).
+
+For multivariate problems where conditional distributions are aesy to compute but not joint distributions, we can then use the \emph{Gribbs samples}: In the bivariate case $(X,Y)$, start at the same $X = x_0$, and $Y_1 \sim f_{Y|X}(\cdot |x_0)$, and $X_1 \sim f_{X|Y}(\cdot |y_1)$, etc., $Y_t \sim f_{Y|X}(\cdot | X_{t-1})$, $X_t \sim f_{X|Y}(\cdot | Y_t)$. The sequences $(X_t,Y_t)$,$(X_t)$,$(Y_t)$ are all Markov chains, with invariant distribution $f$, $f_{X|Y}$, $f_{Y|X}$. And we can use the ergodic theorem to approximate expectations $$\frac{1}{N} g(X_t,Y_t) \to \E_{(X,Y) \sim f} [g(X,Y)]$$ This can be used in particular in the case $Q(x,\theta) = f(x,\theta) \pi (\theta)$.
 
 \end{document}
