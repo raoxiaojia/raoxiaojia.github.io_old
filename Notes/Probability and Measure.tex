@@ -2005,7 +2005,7 @@ f(x) = \int \hat{f} (u) e^{-i<u,x>} \frac{du}{(2\pi)^d}
 Proof of (a) and (b): First assume $f,\hat{f} \in L^1$. Then 
 \begin{equation*}
 \begin{aligned}
-||\hat{f}||_2^2 := \int \hat{f}(u) \bar{\hat{f}(u)}du =\int [\int f(x) e^{i<x,u>} dx] \bar{\hat{f}(u)}du
+||\hat{f}||_2^2 := \int \hat{f}(u) \overline{\hat{f}(u)}du =\int [\int f(x) e^{i<x,u>} dx] \overline{\hat{f}(u)}du
 \end{aligned}
 \end{equation*}
 but $(x,u) \to f(x) \bar{\hat{f}(U)}$ is in $L^1 (\R^d \times \R^d)$. So Fubini applies, and above is equal to $\int\int f(x) \overline{(\int \hat{f}(u) e^{-i<u,x>}du)} dx$. Apply Fourier inversion formula, this is equal to $\int f(x) \bar{f(x)} (2\pi)^d dx = (2\pi)^d ||f||_2^2$, and this is finite. So $\hat{f} \in L^2(\R^d)$ and $||\hat{f}||_2^2 =(2\pi)^d ||f||_2^2$.\\
