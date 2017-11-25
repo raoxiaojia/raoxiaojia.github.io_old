@@ -1187,5 +1187,37 @@ Now $\P(X_{d-1} = 0) \leq \P(|X_{d-1}-\mu| \geq \mu) \leq \frac{\sigma^2}{\mu^2}
 \end{equation*}
 \end{rem}
 
+\begin{coro} (42)\\
+a.e. $G \in \mathcal{G}(n,p)$ has $\chi(G) \leq (1+o(1)) \frac{n\log{1/q}}{2\log n}$, where $q = 1-p$.
+\begin{proof}
+Let $G \in \mathcal{G}(n,p)$. Then $\bar{G} \in \mathcal{G}(n,q)$. So by theorem 41, with probability tending to 1 as $n \to \infty$, we have $\omega(\bar{G}) \sim {2\log n}{\log (1/q)}$. So $\alpha(G) \sim \frac{2\log n}{\log (1/q)}$, so $\chi(G) \geq \frac{|G|}{\alpha(G)} \sim \frac{n\log (1/q)}{2\log n}$.
+\end{proof}
+\end{coro}
+
+\newpage
+
+\section{Algebraic methods}
+Let $G$ be a connected graph, $u,v \in G$. The distance from $u$ to $v$ is $d(u,v)$, the length of the shortest path from $u$ to $v$. The diameter of $G$ is $\max_{u,v \in G} d(u,v)$.
+
+Graphs with diameter 1 are just $K_n$.
+
+For diameter 2 we have many more possibilities. Question: How many vertices can a graph of diameter $2$ have if say $\Delta(G) = k$? If we fix $x \in G$, then $V(G) = \{x\} \cup \Gamma(x) \cap \Gamma(\Gamma(x))$. So $|G| \leq 1 + k + k^2-k = k^2+1$. Can we actually achieve this?
+
+\begin{defi}
+A \emph{Moore graph} is a graph $G$ s.t. for some $k$, $|G| = k^2+1$, $\Delta(G) = k$, diameter of $G$ is 2. 
+\end{defi}
+
+For which $k$ can we find a Moore graph?
+
+In general, if $u,v \in G$ are distinct ($G$ Moore), if $u \sim v$ then $u,v$ have no common neighbours, i.e. no triangles; if $u \not\sim v$, then $u,v$ has exactly one common neighbour, so no 4-cycles.
+
+
+
+
+
+
+
+
+
 
 \end{document}
