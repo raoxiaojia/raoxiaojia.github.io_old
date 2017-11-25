@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  25 NOV 2017 10:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  25 NOV 2017 11:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -821,7 +821,7 @@ LaTeX Warning: No \author given.
 \openout5 = `"Galois Theory.toc"'.
 
 
-[2] [3] [4] <image/GT_01.png, id=160, 722.7pt x 406.51875pt>
+[2] [3] [4] <image/GT_01.png, id=167, 722.7pt x 406.51875pt>
 File: image/GT_01.png Graphic file (type png)
 
 <use image/GT_01.png>
@@ -942,7 +942,7 @@ Overfull \hbox (139.7154pt too wide) has occurred while \output is active
 ON BY RADICALS \OT1/cmr/m/n/10 31
  []
 
-[31] <image/GT_02.png, id=280, 722.7pt x 406.51875pt>
+[31] <image/GT_02.png, id=286, 722.7pt x 406.51875pt>
 File: image/GT_02.png Graphic file (type png)
  <use image/GT_02.png>
 Package pdftex.def Info: image/GT_02.png used on input line 1021.
@@ -1011,22 +1011,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 1327.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1327.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1327.
 
-
-
-Package rerunfilecheck Warning: File `"Galois Theory".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"Galois Theory".out':
-(rerunfilecheck)             Before: 6C364D2A1FDAA48E268788DAD6C5312A;1418
-(rerunfilecheck)             After:  685DD811B636F938F6890423A57147E6;1510.
+Package rerunfilecheck Info: File `"Galois Theory".out' has not changed.
+(rerunfilecheck)             Checksum: 685DD811B636F938F6890423A57147E6;1510.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1327.
  ) 
 Here is how much of TeX's memory you used:
- 27394 strings out of 494910
- 646423 string characters out of 6179835
- 888624 words of memory out of 5000000
- 30061 multiletter control sequences out of 15000+600000
+ 27395 strings out of 494910
+ 646439 string characters out of 6179835
+ 889624 words of memory out of 5000000
+ 30062 multiletter control sequences out of 15000+600000
  16347 words of font info for 105 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,13n,77p,1312b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1047,10 +1040,10 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Galois Theory.pdf" (41 pages, 463154 bytes).
+Output written on "Galois Theory.pdf" (41 pages, 463318 bytes).
 PDF statistics:
- 400 PDF objects out of 1000 (max. 8388607)
- 333 compressed objects within 4 object streams
+ 405 PDF objects out of 1000 (max. 8388607)
+ 338 compressed objects within 4 object streams
  64 named destinations out of 1000 (max. 500000)
- 15543 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 15551 words of extra memory for PDF output out of 17280 (max. 10000000)
 
