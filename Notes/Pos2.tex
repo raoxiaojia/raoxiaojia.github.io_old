@@ -130,4 +130,74 @@ Step 2: $Y=X$ if $U \leq \frac{f(X)}{M\cdot h(X)}$, otherwise return to step 1. 
 
 For multivariate problems where conditional distributions are aesy to compute but not joint distributions, we can then use the \emph{Gribbs samples}: In the bivariate case $(X,Y)$, start at the same $X = x_0$, and $Y_1 \sim f_{Y|X}(\cdot |x_0)$, and $X_1 \sim f_{X|Y}(\cdot |y_1)$, etc., $Y_t \sim f_{Y|X}(\cdot | X_{t-1})$, $X_t \sim f_{X|Y}(\cdot | Y_t)$. The sequences $(X_t,Y_t)$,$(X_t)$,$(Y_t)$ are all Markov chains, with invariant distribution $f$, $f_{X|Y}$, $f_{Y|X}$. And we can use the ergodic theorem to approximate expectations $$\frac{1}{N} g(X_t,Y_t) \to \E_{(X,Y) \sim f} [g(X,Y)]$$ This can be used in particular in the case $Q(x,\theta) = f(x,\theta) \pi (\theta)$.
 
+Important: Last lecutre today, no lecutre on Wednesday!!
+
+\subsection{Nonparametric statistics}
+Consider observing $X_1,...,X_n \sim P$ i.i.d. with the distribution $P$ having cdf on $\R$: $F(t) = \P(X \leq t)$ for all $t \in \R$. Here we want to estimate directly the function $F$, without a parametric assumption: we cannot "estimate $\theta$ to estimate $F_\theta$".
+
+\begin{rem}
+We note that
+\begin{equation*}
+\begin{aligned}
+F(t) = \P(X \leq t) = \E_p [1_{[-\infty,t]}(x)]
+\end{aligned}
+\end{equation*}
+(or $\int_\R 1_{[-\infty,t]} (x) d\P(x)$) if the distribution is continuous.
+
+For all $t \in \R$, the real number $F(t)$ is the expectation of the random variable $1_{[-\infty,t]}(X) \in \{0,1\}$ of which we observe $n$ i.i.d. draws.
+\end{rem}
+
+\begin{defi}
+The \emph{empirical distribution function} is defined as $$F_n(t) = \frac{1}{n} \sum_{i=1}^n 1_{[-\infty,t]}(X_i)$$
+\end{defi}
+
+\begin{rem}
+If we are interested in the value of the c.d.f., for some fixed $t$, $F_n(t)$ is a consistent estimator of $F(t)$ by Law of large numbers, and we can control the rate of estimation by limiting distribution of $\sqrt{n} (F_n(t) - F(t))$ (CLT gives $N(0,F(t) (1-F(t)))$). This is just a Bernoulli model.\\
+Because we are interested in the overall (all of $\R$) behaviour of $F_n$, and see $F_n$ as the estimator of a function, we have to understand it s dependency structure.
+\end{rem}
+
+\begin{thm} (Glivenko-Cantelli theorem)\\
+We have, as $n \to \infty$, that $$\sup_{t \in \R} |F_n(t) - F(t)| \xrightarrow{a.s.} 0$$
+\begin{proof}
+If $f$ is continuous in $t$, writing $q(X_i,t) = 1_{[-\infty,t]]}(X_i)$, we have $\E_p [q(X,t)] = F(t)$ and the uniform law of large numbers applies directly: $$\sup_{t \in \R} \left| \underbrace{\frac{1}{n} \sum_{i=1}^n q(X_i,t)}_{F_n(t)} - \underbrace{\E_p [q(X,t)]}_{F(t)}\right| \xrightarrow{a.s.} 0$$ The case where $F$ is not continuous can be handled as well and the result holds by using that $F$ is non-decreasing and cutting $[0,1]$ into smaller intervals of size $\leq \varepsilon$.
+\end{proof}
+\end{thm}
+
+\begin{thm} (Donskin-Kolmogorov-Doob theorem)\\
+As $n \to \infty$, the random function $\sqrt{n}(F_n-F)$ converges $\sqrt{n} (F_n-F) \xrightarrow{"d"} \mathcal{G}_F$ "in distribution over the space of functions". Here $\mathcal{G}_F$ is a random function from $\R$ to $\R$ such that $\mathcal{G}_F(t)$ is normally distributed $N(0,F(t)(1-F(t)))$, and $Cov(\mathcal{G}_F(s), \mathcal{G}_F(t)) = F(s) (1-F(t))$ for $s \leq t$.
+
+Construction of $\mathcal{G}_F$:\\
+Informal definition: A Brownian motion, a Wiener process is defined as\\
+$\bullet$ $W_j = 0$ a.s.;\\
+$\bullet$ $t \to W_t $ is continuous a.s.;\\
+$\bullet$ For $s \leq t$, $W_t - W_s$ is independent of $(W_{s'})_{s' \leq s}$ and has distribution $N(0,t-s)$.
+
+The Brownian bridge is "tied to $0$ at $0$ and $1$", and defined as $B_t = W_t - tW_1$.
+
+The variance of $B_t=t(1-t)$ and $Cov(B_s,B_t) = s(1-t)$ for $s \leq t$. Taking $\mathcal{G}_F (t) = B_{F(t)}$ gives a construction of this process.
+
+\begin{rem}
+If $U_1,...,U_n \stackrel{i.i.d.}{\sim} U[0,1]$, then $F(t) = t$ and $\sqrt{n}(F_n-F)$ will converge directly to a Brownian bridge.
+\end{rem}
+\end{thm}
+
+\begin{thm} (Kolmogorov-Smirnov theorem)\\
+$\sqrt{n} ||F_n - F||_\infty \xrightarrow{d} ||B||_\infty$, where $||B||_\infty = \sup_{t \in (0,1)} |B_t|$.
+\begin{proof}
+$||\mathcal{G}_F||_\infty = \sup_{t \in \R} |B_{F(t)}| = \sup_{t \in (0,1)} |B_t|$.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+$||B||_\infty$ doesn't depend on $F$, there are tables so it can be used in many inference tasks.\\
+(1) Non-parametric hypothesis testing: we have $H_0:F = F_0$, or $H_1: F \neq F_0$. Then $\sqrt{n} ||F_n - F_0||_\infty \xrightarrow{d} ||B||_\infty$.\\
+(2) Confidence bands for $F$: we can define $C_n(x)$ for all $x$ in $\R$ around $F_n(x)$, and study $\P(F(x) \in C_n(x) \forall x \in \R) \to $\\
+Other application of non-parametric statistics:\\
+(1) Regression, wher $y_i = f(X_i) + \varepsilon_i$; unknown function $f$.\\
+(2) Density estimation: $X_i \sim P$ have density $f$. In many applications $\E|\hat{f}_n - f| \gg \frac{1}{\sqrt{n}}$.
+\end{rem}
+
+---end of lecture notes---
+
+
 \end{document}
