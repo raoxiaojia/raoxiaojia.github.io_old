@@ -2,6 +2,8 @@
 
 \input{temp}
 
+\usepackage{mathrsfs}
+
 \begin{document}
 
 \title{Probability and Measure}
@@ -2146,5 +2148,86 @@ If $X = (X_1,...,X_d)$ is a gaussian r.v., then the following are equivalent:\\
 (i) implies (ii) implies (iii) is obvious. (iii) implies (i) follows from the previous proposition, which shows that $X \sim \sigma \mathbf{N} + b$.
 \end{proof}
 \end{prop}
+
+Recall last time that we have Levy's criterion for convergence in distribution.
+
+\begin{thm} (Central Limit Theorem)\\
+Let $(X_n)_{n \geq 1}$ be i.i.d. $\R^d$-valued random variables, with finite second moment. then $$Y_n := \frac{X_1+X_2+...+X_n - n\E(X_1)}{\sqrt{n}} \xrightarrow{d} N(0,K)$$ where $N(0,K)$ is the central multi-variate gaussian with covariance matrix $K$, i.e. $K = Cov(X_i)$.
+\begin{proof}
+By the Levy's condition, $Y_n \xrightarrow{d} Y \iff <Y_n,u> \xrightarrow{d} <Y,u>$ $\forall u \in \R^d$. Therefore wlog we may assume $d=1$. Furthermore, looking at $X_n - \E X_1$ instead of $X_n$, wlog we may assume $\E X_1 = 0$. Also we may look at $\frac{1}{\sigma} X_1$ instead of $X_n$ ($\sigma^2 = \E X_1^2$) so wlog we may assume $\E (X_1^2) = 1$.
+
+So $\E(X_1) = 0$, $\E(X_1^2) = 1$. We need to show that $$\frac{X_1+...+X_n}{\sqrt{n}} \xrightarrow{d} N(0,1)$$ by Levy's criterion we need to show $\E(e^{iu\frac{X_1+...+X_n}{\sqrt{n}}} ) \to \hat{g}(u)$ where $g(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$. By independence,
+\begin{equation*}
+\begin{aligned}
+\E(e^{i\frac{u}{\sqrt{n}} (X_1+...+X_n)}) = \prod_{i=1}^n \E(e^{i \frac{u}{\sqrt{n}}X}) = [\E(e^{i \frac{u}{\sqrt{n}}X})]^n = [\hat{\mu}_{X_1} \frac{u}{\sqrt{n}}]^n
+\end{aligned}
+\end{equation*}
+We taylor expand $u \to \hat{u}_{X_1}(u)$ near 0. Since $\E(X_1)^2 < \infty$, we mayifferentiate twice $\hat{u}_{X_1}(u)$ w.r.t. $u$. So $\hat{u}_{X_1}$ is $C^2$. Now the taylor expansion gives $$\hat{u}_{X_1}(u) = \hat{u}_{X_1} (0) + u \hat{u}_{X_1}' (0) + \frac{1}{2} u^2 \hat{u} x_1''(0) + o(u^2)$$ so $\hat{u}_{X_1}(u) = 1-\frac{u^2}{2} + o(u^2)$.
+
+So $$[\hat{\mu}_{X_1} \frac{u}{\sqrt{n}}]^n = [1-\frac{u^2}{2n} + o(1/n)]^n \xrightarrow{n \to \infty} e^{-u^2/2}$$for each $u \in \R$. But $\hat{g}(u) = e^{-u^2/2}$.
+\end{proof}
+\end{thm}
+
+\subsection{Ergodic Theory}
+Let $(X,\mathcal{A},\mu)$ be a measure space, and $T:X \to X$ a measurable map.
+
+\begin{defi}
+$\mu$ is presented by $T$, or $T$ is $\mu$-presenting, if $\mu(T^{-1}A) = \mu(A)$ $\forall A \in \mathcal{A}$. Equivalently, $T * \mu = \mu$.
+\end{defi}
+
+\begin{defi}
+A measurable function $f:X \to \R$ is called $T$-invariant if $f \circ T = f$.
+\end{defi}
+
+\begin{defi}
+A set $A \in \mathcal{A}$ is called $T$ invariant if $T^{-1}A = A$.
+\end{defi}
+
+\begin{defi}
+$\mathscr{S} = \{A \subset \mathcal{A}, T^{-1}A = A\}$ is a sub-$\sigma$-alegbra of $\mathcal{A}$ called the \emph{invariant subalgebra}.
+\end{defi}
+
+Exercise: $f$ is $T$-invariant $\iff$ $f$ is measurable w.r.t. $\mathscr{S}$.
+
+\begin{defi}
+$T$ is \emph{ergodic} w.r.t. $\mu$ (or equivalently, $\mu$ is $T$-ergodic)) if $\forall A \in \mathscr{S}$, $\mu(A) = 0$ or $\mu(A^c) =0$.
+\end{defi}
+
+Exercise: when $X$ is a finite space, $\mathcal{A}$ = discrete boolean algebra of all subsets of $X$, $\mu$ = counting measure ($\mu(A) = \# A$, let $T:X \to X$ be a map, then $T$ is $\mu$-preserving iff $T$ is bijective, and $T$ is ergodic iff $\forall x,y \exists n \geq 1$ $T^n x = y$.
+
+\begin{eg}
+(1) $X =\R^n / \Z^n$, $\mathcal{A}$ = Borel, $\mu$ = Lebesgue. $T=T_a:x \to x+a$, $a \in X$. It's an exercise to show that $T_a$ is ergodic iff $(1,a_1,...,a_n)$ is LI over $\Q$. For example, when $n=1$ $T_a$ is ergodic iff $a \not\in \Q$.\\
+(2) $X =\R / \Z$. $T(x) = 2x - [2x]$. Then $T$ is ergodic.\\
+(3) $X =\R / \Z$, $T$ = the tent map, i.e. a piecewise-linear function that is 0 at $0$ and $1$, and 1 at $1/2$. Then $T$ is ergodic. In fact, it's possible to show that the tent map and example (2) is conjugate, i.e. if one if ergodic, so is the other one. This map is famous in Dynamical Systems.
+\end{eg}
+
+\begin{eg} (Canonical model)\\
+Let $(X_n)_{n \geq 1}$ be a sequence of real random variables on a probability space $(\Omega, \mathcal{F},\P)$. Let $X =\R^\N$, $\mathcal{A} = \sigma$(coordinate maps $(x_n)_{n \geq 1}$), $x_n: \R^\N \to \R$ by $(\omega_i)_{i \geq 1} \to \omega_k$(?). Let $Y:\Omega \to \R^\N$ by $\omega \to (X_n(\omega))_{n \geq 1}$ (sample path map). Let $\mu = Y_* \P$, a probability measure on $(X,\mathcal{A})$, then $(X,\mathcal{A},\mu)$ is a probability space. Let $T\R^\N \to \R^\N$ by $(x_i)_{i \geq 1} \to (x_{i+1})_{i \geq 1}$ is called the \emph{Shift}.
+\end{eg}
+
+\begin{rem}
+$T$ preserves $|mu$ $\iff$ $\forall n,k \geq 1$, $(X_{n+1},...,X_{n+k}) = (X_1,...,X_k)$ in distribution.
+\end{rem}
+
+\begin{defi}
+A random process with this property is called a \emph{stationary process}.
+\end{defi}
+
+\begin{eg}
+If $(X_n)_{n \geq 1}$ are i.i.d. then the process is staitonary and $T_* \mu = \mu$.
+\end{eg}
+
+\begin{defi}
+When the $(X_n)_{n \geq 1}$ are i.i.d., the measure space $(X,\mathcal{A},\mu)$ together with $T$ is called a \emph{Bernoulli shift}.
+\end{defi}
+
+Note: $\mathscr{S} =\{A \in \mathcal{A}, T^{-1} A = A\}$ satisfies $Y^{-1}(\mathscr{S}) \subseteq \mathscr{T}$ = Total $\sigma$-algebra. ($\mathscr{T} = \cap_n \sigma(X_n,X_{n+1},...)$)
+
+\begin{proof}
+Pick $A \in \mathcal{A}$, $Y^{-1} A =\{\omega; (X_n(\omega))_{n \geq 1} \in A\}$, if $T^{-1}A = A$, it is also equal to $\{\omega; (X_{n+1}(\omega))_{n \geq 1} \in A\} = ... = \{\omega | (X_{n-k} (\omega)) n \geq 1 \in A\}$ for all $k \geq 1$. So $Y^{-1} A \in \sigma(X_k,X_{k+1},...) \forall k$, so $Y^{-1}A \in \mathscr{T}$.
+
+Consequence: when the $(X_n)_{n \geq 1}$ are i.i.d., $\mathscr{T}$ is trivial (i.e. $\P(A) = 0$ or 1 $\forall A \in \mathscr{T}$). Therefore $\forall A \in \mathscr{S}$, $\mu(A) = \P(Y^{-1}A = 0$ or 1. So the shift $T$ is ergodic on $(X=\R^\N,\mathcal{A},\mu = Y_*\P)$.
+\end{proof}
+
 
 \end{document}

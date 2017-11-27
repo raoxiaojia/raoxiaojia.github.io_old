@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  26 NOV 2017 10:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  27 NOV 2017 11:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -709,23 +709,27 @@ de.tex
 File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
 )))
 Package hyperref Info: Option `colorlinks' set `true' on input line 34.
-) (./Probability and Measure.aux)
+) (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup6
+)
+(./Probability and Measure.aux)
 \openout1 = `"Probability and Measure.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -756,7 +760,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box41
-Package hyperref Info: Link coloring ON on input line 5.
+Package hyperref Info: Link coloring ON on input line 7.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -766,15 +770,15 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count149
 )
-LaTeX Info: Redefining \ref on input line 5.
-LaTeX Info: Redefining \pageref on input line 5.
-LaTeX Info: Redefining \nameref on input line 5.
+LaTeX Info: Redefining \ref on input line 7.
+LaTeX Info: Redefining \pageref on input line 7.
+LaTeX Info: Redefining \nameref on input line 7.
 
 (./Probability and Measure.out) (./Probability and Measure.out)
 \@outlinefile=\write4
 \openout4 = `"Probability and Measure.out"'.
 
-LaTeX Info: Redefining \microtypecontext on input line 5.
+LaTeX Info: Redefining \microtypecontext on input line 7.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -794,22 +798,27 @@ ABD: EveryShipout initializing macros
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
 your preamble.
- on input line 5.
+ on input line 7.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 10.
+LaTeX Font Info:    Try loading font information for U+msa on input line 12.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 10.
+LaTeX Font Info:    Try loading font information for U+msb on input line 12.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 12.
+
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Warning: No \author given.
@@ -822,7 +831,7 @@ LaTeX Warning: No \author given.
 \openout5 = `"Probability and Measure.toc"'.
 
  [2] [3] [4] [5] [6] [7] [8] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 383--384
+Underfull \hbox (badness 10000) in paragraph at lines 385--386
 
  []
 
@@ -830,10 +839,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 383--384
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1072.
+(amsmath)                 on input line 1074.
 
 [26] [27]
-Overfull \hbox (22.03354pt too wide) in paragraph at lines 1172--1174
+Overfull \hbox (22.03354pt too wide) in paragraph at lines 1174--1176
 []\OT1/cmr/m/n/10 (-20) It's a prob-a-bil-ity mea-sure on $(\U/msb/m/n/10 R[]\O
 ML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 B\OT1/cmr/m/n/10 (-20) (\U/msb/m/n/10 R[]\OT1
 /cmr/m/n/10 (-20) ))$ de-fined by $\OML/cmm/m/it/10 ^^V[]\OT1/cmr/m/n/10 (-20) 
@@ -842,7 +851,7 @@ ML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 B\OT1/cmr/m/n/10 (-20) (\U/msb/m/n/10 R[]\OT1
  []
 
 
-Overfull \hbox (1.82057pt too wide) in paragraph at lines 1174--1175
+Overfull \hbox (1.82057pt too wide) in paragraph at lines 1176--1177
 []$\OML/cmm/m/it/10 ^^V[]\OT1/cmr/m/n/10 (-20) ([][](\OMS/cmsy/m/n/10 ^^@1\OML/
 cmm/m/it/10 ; x[]\OT1/cmr/m/n/10 (-20) )) = \U/msb/m/n/10 P\OT1/cmr/m/n/10 (-20
 ) ((\OML/cmm/m/it/10 X[]; :::; X[]\OT1/cmr/m/n/10 (-20) ) \OMS/cmsy/m/n/10 2 []
@@ -852,7 +861,7 @@ m/m/it/10 i; X[] \OMS/cmsy/m/n/10 ^^T
  []
 
 [28] [29] [30] [31]
-Overfull \hbox (25.65158pt too wide) in paragraph at lines 1340--1342
+Overfull \hbox (25.65158pt too wide) in paragraph at lines 1342--1344
 \OT1/cmr/m/n/10 (-20) said to \OT1/cmr/m/it/10 (-20) con-verge weakly \OT1/cmr/
 m/n/10 (-20) to a mea-sure $\OML/cmm/m/it/10 ^^V$ \OT1/cmr/m/n/10 (-20) on $(\U
 /msb/m/n/10 R[]\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 B\OT1/cmr/m/n/10 (-20) (\U/m
@@ -863,37 +872,37 @@ m/n/10 (-20) )\OML/cmm/m/it/10 ; ^^V[]\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 f
  []
 
 
-Overfull \hbox (93.22763pt too wide) detected at line 1370
+Overfull \hbox (93.22763pt too wide) detected at line 1372
 [] []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1385--1387
+Underfull \hbox (badness 10000) in paragraph at lines 1387--1389
 
  []
 
 [32]
-Overfull \hbox (62.01175pt too wide) detected at line 1480
+Overfull \hbox (62.01175pt too wide) detected at line 1482
 [] []
  []
 
 [33]
-Overfull \hbox (58.86826pt too wide) detected at line 1512
+Overfull \hbox (58.86826pt too wide) detected at line 1514
 [] []
  []
 
 [34]
-Overfull \hbox (72.28969pt too wide) detected at line 1550
+Overfull \hbox (72.28969pt too wide) detected at line 1552
 [] []
  []
 
 [35]
-Overfull \hbox (23.58041pt too wide) detected at line 1608
+Overfull \hbox (23.58041pt too wide) detected at line 1610
 [] []
  []
 
 
-Overfull \hbox (8.92499pt too wide) in paragraph at lines 1612--1613
+Overfull \hbox (8.92499pt too wide) in paragraph at lines 1614--1615
 []\OT1/cmr/m/n/10 (-20) We need to check that $[] \OMS/cmsy/m/n/10 j\OML/cmm/m/
 it/10 f \OT1/cmr/m/n/10 (-20) + \OML/cmm/m/it/10 g\OMS/cmsy/m/n/10 j[] \OML/cmm
 /m/it/10 < \OMS/cmsy/m/n/10 1$\OT1/cmr/m/n/10 (-20) . This fol-lows from $\OMS/
@@ -906,18 +915,18 @@ OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 (-20) )[] =
 [36] [37] [38] [39] [40] [41]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1870.
+(hyperref)                removing `math shift' on input line 1872.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 1870.
+(hyperref)                removing `superscript' on input line 1872.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1870.
+(hyperref)                removing `math shift' on input line 1872.
 
 
-Overfull \hbox (16.75421pt too wide) in paragraph at lines 1889--1890
+Overfull \hbox (16.75421pt too wide) in paragraph at lines 1891--1892
 []\OT1/cmr/bx/n/10 Definition. []\OT1/cmr/m/n/10 (-20) If $\OML/cmm/m/it/10 ^^V
 $ \OT1/cmr/m/n/10 (-20) is a prob-a-bil-ity mea-sure on $\U/msb/m/n/10 R[]$\OT1
 /cmr/m/n/10 (-20) , we can de-fine $[](\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (-20) 
@@ -926,7 +935,7 @@ r/m/n/10 (-20) )$.
  []
 
 [42]
-Overfull \hbox (21.5577pt too wide) in paragraph at lines 1952--1955
+Overfull \hbox (21.5577pt too wide) in paragraph at lines 1954--1957
 [] [] \OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 tx\OT1/cmr/m/n/
 10 (-20) )\OML/cmm/m/it/10 e[]d\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 tx\OT1/c
 mr/m/n/10 (-20) ) = [][]([])$. So $[] [](\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (-20
@@ -935,7 +944,7 @@ e[]du \OT1/cmr/m/n/10 (-20) =
  []
 
 [43]
-Overfull \hbox (2.81161pt too wide) in paragraph at lines 2001--2005
+Overfull \hbox (2.81161pt too wide) in paragraph at lines 2003--2007
 []\OT1/cmr/bx/n/10 Theorem. []\OT1/cmr/m/n/10 (-20) (a) If $\OML/cmm/m/it/10 f 
 \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 (-20) (\U/msb/m/n/10 R[]
 \OT1/cmr/m/n/10 (-20) ) \OMS/cmsy/m/n/10 \ \OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 
@@ -947,19 +956,19 @@ OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 (-20) (\U/msb/m/n/10 R[]\OT1/cmr/m/n/10 (-20
  []
 
 [44]
-Overfull \hbox (0.8632pt too wide) in paragraph at lines 2027--2028
+Overfull \hbox (0.8632pt too wide) in paragraph at lines 2029--2030
 []\OT1/cmr/m/n/10 (-20) Use gaus-sian ap-prox-i-ma-tion: pick $\OML/cmm/m/it/10
  ^^N > \OT1/cmr/m/n/10 (-20) 0$. Let $\OML/cmm/m/it/10 G[]\OT1/cmr/m/n/10 (-20)
  (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (-20) ) = ([])[]\OML/cmm/m/it/10 e[]$
  []
 
 [45]
-Overfull \hbox (146.39746pt too wide) detected at line 2079
+Overfull \hbox (146.39746pt too wide) detected at line 2081
 [] []
  []
 
 
-Overfull \hbox (18.1613pt too wide) in paragraph at lines 2104--2105
+Overfull \hbox (18.1613pt too wide) in paragraph at lines 2106--2107
 []\OT1/cmr/m/n/10 (-20) Recall that a 1-dimensional gaus-sian is a r.v. $\OML/c
 mm/m/it/10 X$ \OT1/cmr/m/n/10 (-20) such that $\OML/cmm/m/it/10 d^^V[]\OT1/cmr/
 m/n/10 (-20) (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (-20) ) = []\OML/cmm/m/it/10 e[
@@ -967,28 +976,28 @@ m/n/10 (-20) (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (-20) ) = []\OML/cmm/m/it/10 e[
  []
 
 [46]
-Underfull \hbox (badness 10000) in paragraph at lines 2107--2108
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2110
 
  []
 
-[47]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2150.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2150.
+[47] [48] [49]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2233.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2233.
  (./Probability and Measure.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2150.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2150.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2233.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2233.
 
 Package rerunfilecheck Info: File `"Probability and Measure".out' has not chang
 ed.
-(rerunfilecheck)             Checksum: B69EC9FE9B85F0863EFC2B7F78D7688C;754.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2150.
+(rerunfilecheck)             Checksum: FCEB33CA0E51B9AD5810CC5B80B88924;818.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2233.
  ) 
 Here is how much of TeX's memory you used:
- 27369 strings out of 494910
- 646233 string characters out of 6179835
+ 27411 strings out of 494910
+ 647017 string characters out of 6179835
  889634 words of memory out of 5000000
- 30049 multiletter control sequences out of 15000+600000
- 16536 words of font info for 103 fonts, out of 8000000 for 9000
+ 30073 multiletter control sequences out of 15000+600000
+ 17741 words of font info for 111 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,17n,77p,843b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -1009,11 +1018,12 @@ live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Probability and Measure.pdf" (47 pages, 446793 bytes).
+/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/rsfs/rsfs10.pfb>
+Output written on "Probability and Measure.pdf" (49 pages, 460355 bytes).
 PDF statistics:
- 381 PDF objects out of 1000 (max. 8388607)
- 308 compressed objects within 4 object streams
- 61 named destinations out of 1000 (max. 500000)
- 16493 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 400 PDF objects out of 1000 (max. 8388607)
+ 324 compressed objects within 4 object streams
+ 64 named destinations out of 1000 (max. 500000)
+ 16501 words of extra memory for PDF output out of 17280 (max. 10000000)
 
