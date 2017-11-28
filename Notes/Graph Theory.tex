@@ -1211,13 +1211,68 @@ For which $k$ can we find a Moore graph?
 
 In general, if $u,v \in G$ are distinct ($G$ Moore), if $u \sim v$ then $u,v$ have no common neighbours, i.e. no triangles; if $u \not\sim v$, then $u,v$ has exactly one common neighbour, so no 4-cycles.
 
+\subsection{The Chromatic Polynomial}
+Suppose $G$ is a $k$-colourable graph. How many $k$-colourings does $G$ have?
 
+\begin{eg}
+$G = K_n$, $k < n$: $0;$ $k \geq n$: $k(k-1)...(k-n+1)$.
 
+$G$ a tree: can repeatedly remove leaves until we get down to a single vertex. Reverse this order and do greedy: $k(k-1)^{|G|-1}$.
+\end{eg}
 
+Write $f_G(k)$ for the number of $k$-colourings of $G$.
 
+\begin{defi}
+Let $G$ be a graph and $e=uv \in E(G)$. The \emph{contraction} of $G$ over $e$ is the graph $G/e$ formed from $G$ by deleting vertices $u,v$, adding a new vertex $e^*$ with $\Gamma(e^*) = \Gamma(u)  \cup \Gamma(v)$.
+\end{defi}
 
+\begin{thm} (43, cut-fuse relation)\\
+Let $G$ be a graph, $e \in E(G)$, $k \geq 1$. Then $f_G(k) = f_{G-e}(k) - f_{G/e}(k)$.
+\begin{proof}
+Let $e=uv$. Let $c$ be a $k$-colouring of $G-e$. If $c(u) \neq c(v)$ then $c$ is a $k$-colouring of $G$, and every $k$-colouring of $G$ arises uniquely like this. If $c(u) = c(v)$, then $c$ yields a $k$-colouring of $G/e$, and every $k$-colouring of $G/e$ arises uniquely like this.
+\end{proof}
+\end{thm}
 
+\begin{coro}
+Let $G$ be a graph. Then $f_G$ is a polynomial.
+\begin{proof}
+Induction on $e(G)$. if $e(G) = 0$ we have $f_G(k) = k^{|G|}$. If $e(G) > 0$, pick $e \in E(G)$. Then $f_{G-e},f_{G/e}$ are polynomials by induction hypothesis, and hence $f_G$ as their sum is a polynomial.
+\end{proof}
+\end{coro}
 
+In light of this, we call $f_G$ the \emph{chromatic polynomial} of $G$.
+
+The original motivation is to study the four-colour theorem. We can rephrase the 4CT as If $G$ is planar, then $f_G(4) \neq 0$. The idea is to do something algebraic to prove this. The aim was to prove if $G$ is planr and $\alpha$ is a root of $f_G$ then $\alpha<4$. Unfortunately, no one managed to do this. However, $f_G$ carries some information about $G$. For example:
+
+\begin{coro}
+If $|G| = n$, $e(G) = m$, then $f_G(X) = X^n-mX^{n-1}+...$, i.e. the top two coefficients depend completely on $|G|$ and $e(G)$.
+\begin{proof}
+Induction on $e(G)$. When $e(G) = 0$, clearly $f(X) = X^n$. When $e(G) > 0$, pick $e \in E(G)$. Then $f_G(X) = f_{G-e}(X) - f_{G/e}(X) = X^n - (m-1)X^{n-1}+... - X^{n-1}-...$. So done.
+\end{proof}
+\end{coro}
+
+\subsection{Eigenvalues}
+\begin{defi}
+Let $G$ be a graph with $V(G) = \{1,2,...,n\}$. The \emph{adjacency matrix of $G$} is the $n \times n$ matrix $A$ where $A_{ij}=1$ if $i \sim j$, and is $0$ otherwise.
+\end{defi}
+
+Note that the adjacency matrix is always real symmetric. Also it has 0 on its diagonal. Now what is $A^2$? We have $(A^2)_{ij} = A_{ik}A_{kj} = |\Gamma(i) \cap \Gamma(j)|$, the number of common neighbours of $i,j$. In particular, $(A^2)_{ii} = d(i)$. So $\tr(A^2) = 2e(G)$. More generally, $(A^l)_{ij}$ is the number of ways to walk from $i$ to $j$ in $l$ steps. We define a \emph{walk} of length $l$ from $u$ to $v$ to be a sequence $u=u_0...u_l = v$ of (not necessarily distinct) vertices with $u_{i-1} \sim u_i$ for $1 \leq i \leq l$. So we can say $(A^l)_{ij}$ is the number of walks of length $l$ from $i$ to $j$.
+
+If $G$ is a graph, the \emph{eigenvalues} of $G$ are the eigenvalues of its adjacency matrix $A$.
+
+Note that change of labelling of vertices is effectively a reordering of basis, which doesn't affect eigenvalues. Also, $A$ is real symmetric, so the eigenvalues are real, $A$ is diagonalizable, and we have a orthonormal basis of eigenvectors.
+
+Sometimes it's easy to spot eigenvalues/eigenvectors.
+
+\begin{eg}
+if $G=K_n$, then $(1,1,...,1)^T$ is an eigenvector with eigenvalue $n-1$. Also $A+I$ is rank $1$ so nullity $n-1$, so $-1$ is an eigenvalue with multiplicity $n-1$.
+\end{eg}
+
+\begin{eg}
+If $G=C_4$, then $A$ has rank 2 so nullity 2. So $0$ is an eigenvalue with multiplicity 2. Also we note that 2 is an eigenvalue with eigenvector $(1,1,1,1)$, and $-2$ is an eigenvalue with eigenvector $(1,-1,1,-1)$.
+\end{eg}
+
+Let $A$ have orthonormal basis $e_1,...,e_n$ of eigenvectors with eigenvalues $\lambda_1 \geq \lambda-2 \geq ... \geq \lambda_n$. Given $x \in \R^n$, we can write $x = \sum_{i=1}^n x_i e_i$, where $\sum_{i=1}^n x_i^2 = ||x||^2$. If we let $A$ act on this, we get $Ax = \sum_{i=1}^n \lambda_i x_i e_i$, so $Ax \cdot x = \sum_{i=1}^n \lambda_i x_i^2$. Hence $\lambda_1 = \max{||x||=1} Ax \cdot x$, and $\lambda_n = \min{||x||=1} Ax \cdot x$.
 
 
 \end{document}
