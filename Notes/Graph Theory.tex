@@ -1278,7 +1278,43 @@ Let $A$ have orthonormal basis $e_1,...,e_n$ of eigenvectors with eigenvalues $\
 Let $G$ be a graph, $\Delta(G) = G$, $\lambda$ an eigenvalue of $G$. Then $|\lambda| \leq \Delta$. Moreover, if $G$ is connected, then $\Delta$ is an eigenvalue $\iff$ $G$ is $\Delta$-regular, in this case, $\Delta$ has multiplicity 1 and eigenvector $(1,1,...,1)^T$.
 \begin{proof}
 Let $A$ be the adjacency matrix and $x$ an eigenvector with eigenvalue $\lambda$. Let $i$ be s..t $|x_i|$ is maximal. WLOG $x_i = 1$ and $\forall j$, $|x_j| \leq 1$. Then $$|\lambda| = |\lambda x_i| = |(Ax)_i)| = |\sum_{j=1}^n A_{ij}x_j| = |\sum_{j \in \Gamma(i)}x_j| \leq \sum_{j \in \Gamma(i)} |x_j| \leq d(i) \leq \Delta$$
+Assume now $G$ is connected. We first show backward: if $G$ is $\Delta$-regular, then clearly $(1,1,...,1)^T$ is eigenvector, with eigenvalue $\Delta$.\\
+To show forward, suppose $\Delta$ is an eigenvalue. Then taking $\lambda = \Delta$ in previous: $$\Delta = (Ax)_i = \sum_{j \in \Gamma(i)} x_j$$ Hence $d(i) = \Delta$ and $\forall j \in \Gamma(i), x_j = 1$. Repeat: $\forall j \in \Gamma(i)$ we jave $d(j) = \Delta$ and $\forall k \in \Gamma(j), x_k = 1$. Continuing, as $G$ connected, $\forall k$ we have $d(k) = \Delta$ and $x_k=1$. So $G$ is $\Delta$-regular.
 \end{proof}
 \end{thm}
+
+\subsection{Strongly Regular Graphs}
+
+Let $k,b \geq 1$ and $a \geq 0$. A graph $G$ is $(k,a,b)$-strongly-regular if $G$ is $k$-regular and, for all $x,y \in G$ with $x \neq y$,\\
+$\bullet$ $x \sim y \implies |\Gamma(x) \cap \Gamma(y)| = a$,\\
+$\bullet$ $x \not\sim y \implies |\Gamma(x) \cap \Gamma(y)| = b$.
+
+Note that a strongly regular graph is connected. Indeed, it has diamater $\leq 2$.
+
+A Moore graph is $(k,0,1$-s-r. Conversely, suppoer $G$ is $(k,0,1)$-s-r with $k \geq 2$. Then $\Delta(G) = k$, $G$ has diameter 2. Pick $x \in G$. Then $$|G| = |\{x\}| + |\Gamma(x)| + |\Gamma(\Gamma(x)) \setminus \{x\} |=1+k+k^2-k = k^2+1$$ so $G$ is a Moore Graph.
+
+Let $G$ be $(k,a,b)$-s-r. Let $A$ be the adjacency matrix of $G$. Let $|G| = n$. By theorem 46, $k$ is an eigenvalue of multiplicity 1 with eigenvector $(1,1,...,1)^T = v$. What about other eigenvalues? Let $\lambda \neq k$ be an eigenvalue with eigenvector $x$. Now
+\begin{equation*}
+\begin{aligned}
+(A^2)_{ij} = \left\{ \begin{array}{ll}
+k & i = j\\
+a & i \sim j\\
+b & i \neq j, i \not\sim j
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+
+So $A^2 =kI+aA+b(J-I-A)$, where $J$ is a matrix with every entry 1. Applying this to $x$, noting that $x \perp v$ (since we have an orthonormal eigenbasis) giving $Jx=0$, we get $\lambda^2 x = kx + a\lambda x - bx - b\lambda x$. Also $x \neq 0$, so cancel $x$ and we get $$\lambda^2+(b-a)\lambda +(b-k) = 0$$ So the remaining eigenvalues are $\lambda = \frac{(a-b) \pm \sqrt{(b-a)^2-4(b-k)}}{2}$ with multiplicities $r,s$ for $+$ and $-$ respectively. Now $A$ is diagonalizable so $r+s+1=n$ (1), and $\tr(A) = 0$ so $\lambda r + \mu s + k = 0$ (2). Take $\lambda \times$ (1) - (2), we get $(\lambda - \mu) s = \lambda(n-1)+k$. We have $\lambda - \mu = \sqrt{(b-a)^2-4(b-k)}$, so $s = \frac{1}{2} \left[(n-1)+\frac{(a-b)(n-1)+2k}{\sqrt{(b-a)^2 - 4(b-k)}}\right]$, and so $r = \frac{1}{2} \left[(n-1)-\frac{(a-b)(n-1)+2k}{\sqrt{(b-a)^2 - 4(b-k)}}\right]$. Hence we have proved:
+
+\begin{thm} (47, Rationality condition)\\
+Let $G$ be $(k,a,b)$-s-r. Then $\frac{1}{2} \left[(n-1) \pm \frac{(a-b)(n-1)+2k}{\sqrt{(b-a)^2 - 4(b-k)}}\right] \in \Z$ as they are multiplicites.
+\end{thm}
+
+\begin{eg}
+Consider Moore graphs again: we have $a=0$, $b=1$, $n=k^2+1$. So we need $\frac{1}{2}\left[k^2 \pm \frac{2k-k^2}{\sqrt{4k-3}} \right] \in \Z$ as a neccesary condition for the corresponding Moore graph to exist. There are two possibilities: either $2k-k^2=0$, i.e. $k=2$, or we need $k-3 = u^2$ for some $u \in \N$ with $u|2k-k^2$. Then $k=\frac{u^2+3}{4}$ and $k^2-2k = ut$ for some $t \in \Z$. Hence $(\frac{u^2+3}{4})^2 - 2(\frac{u^2+3}{4}) = ut$. So $u^4 - 6u^2+9-8u^2-24 = 16ut$, so $u^4-2u^2-16ut-15=0$. Hence $u | 15$. So $u=1,3,5,15$. Hence $k=1,3,7,57$. Can we actually find these? $k=1$ doesn't work as it's not diameter 2. We've previously seen that for $k=2$ we have $C_5$, and for $k=3$ we have the Petersen graph. $k=7$? $n=50$, and it is in fact possible to construct that graph. $k=57$? $n$ is too large, and this question is still open.
+\end{eg}
+
+---end of course---
 
 \end{document}
