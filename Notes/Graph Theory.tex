@@ -1233,7 +1233,7 @@ Let $e=uv$. Let $c$ be a $k$-colouring of $G-e$. If $c(u) \neq c(v)$ then $c$ is
 \end{proof}
 \end{thm}
 
-\begin{coro}
+\begin{coro} (44)\\
 Let $G$ be a graph. Then $f_G$ is a polynomial.
 \begin{proof}
 Induction on $e(G)$. if $e(G) = 0$ we have $f_G(k) = k^{|G|}$. If $e(G) > 0$, pick $e \in E(G)$. Then $f_{G-e},f_{G/e}$ are polynomials by induction hypothesis, and hence $f_G$ as their sum is a polynomial.
@@ -1244,7 +1244,7 @@ In light of this, we call $f_G$ the \emph{chromatic polynomial} of $G$.
 
 The original motivation is to study the four-colour theorem. We can rephrase the 4CT as If $G$ is planar, then $f_G(4) \neq 0$. The idea is to do something algebraic to prove this. The aim was to prove if $G$ is planr and $\alpha$ is a root of $f_G$ then $\alpha<4$. Unfortunately, no one managed to do this. However, $f_G$ carries some information about $G$. For example:
 
-\begin{coro}
+\begin{coro} (45)\\
 If $|G| = n$, $e(G) = m$, then $f_G(X) = X^n-mX^{n-1}+...$, i.e. the top two coefficients depend completely on $|G|$ and $e(G)$.
 \begin{proof}
 Induction on $e(G)$. When $e(G) = 0$, clearly $f(X) = X^n$. When $e(G) > 0$, pick $e \in E(G)$. Then $f_G(X) = f_{G-e}(X) - f_{G/e}(X) = X^n - (m-1)X^{n-1}+... - X^{n-1}-...$. So done.
@@ -1274,5 +1274,11 @@ If $G=C_4$, then $A$ has rank 2 so nullity 2. So $0$ is an eigenvalue with multi
 
 Let $A$ have orthonormal basis $e_1,...,e_n$ of eigenvectors with eigenvalues $\lambda_1 \geq \lambda-2 \geq ... \geq \lambda_n$. Given $x \in \R^n$, we can write $x = \sum_{i=1}^n x_i e_i$, where $\sum_{i=1}^n x_i^2 = ||x||^2$. If we let $A$ act on this, we get $Ax = \sum_{i=1}^n \lambda_i x_i e_i$, so $Ax \cdot x = \sum_{i=1}^n \lambda_i x_i^2$. Hence $\lambda_1 = \max{||x||=1} Ax \cdot x$, and $\lambda_n = \min{||x||=1} Ax \cdot x$.
 
+\begin{thm} (46)\\
+Let $G$ be a graph, $\Delta(G) = G$, $\lambda$ an eigenvalue of $G$. Then $|\lambda| \leq \Delta$. Moreover, if $G$ is connected, then $\Delta$ is an eigenvalue $\iff$ $G$ is $\Delta$-regular, in this case, $\Delta$ has multiplicity 1 and eigenvector $(1,1,...,1)^T$.
+\begin{proof}
+Let $A$ be the adjacency matrix and $x$ an eigenvector with eigenvalue $\lambda$. Let $i$ be s..t $|x_i|$ is maximal. WLOG $x_i = 1$ and $\forall j$, $|x_j| \leq 1$. Then $$|\lambda| = |\lambda x_i| = |(Ax)_i)| = |\sum_{j=1}^n A_{ij}x_j| = |\sum_{j \in \Gamma(i)}x_j| \leq \sum_{j \in \Gamma(i)} |x_j| \leq d(i) \leq \Delta$$
+\end{proof}
+\end{thm}
 
 \end{document}
