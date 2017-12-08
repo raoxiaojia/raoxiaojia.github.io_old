@@ -825,7 +825,7 @@ Lower bounds:\\
 (a) If $K_k \subset G$ then $\chi(G) \geq k$.\\
 The clique number of $G$ is $\omega(G) = \max\{k:X_k \subset G\}$, then $\chi(G) \geq \omega(G)$. However, sometimes this bound is not good: we can find $G$ with $\omega(G) = 2$ and $\chi(G)$ arbitrarily large (example sheet 2).
 
-(b) Suppose we have a colouring of $G$. Let $W \subset V(G)$ be a colour class. Then $W$ is an independent set -- no edges with $W$. The \emph{independence number} of $G$ is $\alpha(G) = \max \{|W|:W \subset V(G), W \text{ independent} \}$. Then $\chi(G) \geq \frac{|G|}{W(G)}$. Sometimes this bound is not good either: for example, take $G = K_k \cup \bar{K}_k$. Then $\chi(G) = k$, but $\frac{|G}{\alpha(G)} = \frac{2k}{k+1} \approx 2$.
+(b) Suppose we have a colouring of $G$. Let $W \subset V(G)$ be a colour class. Then $W$ is an independent set -- no edges with $W$. The \emph{independence number} of $G$ is $\alpha(G) = \max \{|W|:W \subset V(G), W \text{ independent} \}$. Then $\chi(G) \geq \frac{|G|}{\alpha(G)}$. Sometimes this bound is not good either: for example, take $G = K_k \cup \bar{K}_k$. Then $\chi(G) = k$, but $\frac{|G|}{\alpha(G)} = \frac{2k}{k+1} \approx 2$.
 
 We also have a simple upper bound: list vertices in some order, colour each in turn using least colour not already used on its neighbours (Greedy algorithm). When we colour $v$, at most $d(v) \leq \Delta(G)$ colours unavailable. Thus $\chi(G) \leq \Delta(G) + 1$. (*)\\
 But e.g. if $G = K_{1,t}$, then $\chi(G) = 2,$ but $\Delta(G) = t$. We are interested in for which graphs $G$ is (*) achieved. If $G$ is complete, then $\chi(K_k) = k$, $\Delta(K_k) = k-1$; if $G$ is an odd cycle (say a 5-cycle) then $\chi(G) = 3$, $\Delta(G) = 2$. That's all of them.
