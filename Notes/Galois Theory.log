@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  30 DEC 2017 12:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  1 JAN 2018 17:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -828,16 +828,16 @@ File: image/GT_01.png Graphic file (type png)
 Package pdftex.def Info: image/GT_01.png used on input line 87.
 (pdftex.def)             Requested size: 289.07487pt x 162.60461pt.
  [5 <./image/GT_01.png>] [6] [7] [8] [9] [10] [11]
-[12] [13] [14] [15]
-Overfull \hbox (21.56105pt too wide) in paragraph at lines 471--472
+[12] [13] [14] [15] [16] [17]
+Overfull \hbox (21.56105pt too wide) in paragraph at lines 529--530
 \OT1/cmr/m/n/10 (-20) vector space ba-sis $1\OML/cmm/m/it/10 ; ; []; :::; []
 $ \OT1/cmr/m/n/10 (-20) of $\OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (-20) (\OML/cmm/m
 /it/10 \OT1/cmr/m/n/10 (-20) )$. So $1\OML/cmm/m/it/10 ; ; []; :::; []; ^^L
 []; ^^L[]; :::; ^^L[][]; :::$
  []
 
-[16] [17]
-Overfull \hbox (1.64622pt too wide) in paragraph at lines 579--580
+[18] [19]
+Overfull \hbox (1.64622pt too wide) in paragraph at lines 637--638
 []\OT1/cmr/m/n/10 (-20) Conversely, sup-pose $\OML/cmm/m/it/10 M$ \OT1/cmr/m/n/
 10 (-20) is a split-ting field for $\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (-20) (\O
 ML/cmm/m/it/10 t\OT1/cmr/m/n/10 (-20) )$ over $\OML/cmm/m/it/10 K$\OT1/cmr/m/n/
@@ -846,13 +846,13 @@ OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 ^^L[]; :::; ^^L[]\OT1/cmr/m/n/10 (-20) )
 $
  []
 
-[18] [19] [20]
-Overfull \hbox (13.51459pt too wide) in paragraph at lines 633--633
+[20] [21]
+Overfull \hbox (13.51459pt too wide) in paragraph at lines 691--691
 []\OT1/cmr/bx/n/14.4 Fundamental The-o-rem of Ga-lois The-ory, Artin's
  []
 
 
-Overfull \hbox (1.46451pt too wide) in paragraph at lines 663--664
+Overfull \hbox (1.46451pt too wide) in paragraph at lines 721--722
 []\OT1/cmr/bx/n/10 Example. []$\U/msb/m/n/10 Q \OMS/cmsy/m/n/10 ^^T \U/msb/m/n/
 10 Q\OT1/cmr/m/n/10 (-20) ([]\OML/cmm/m/it/10 ; !\OT1/cmr/m/n/10 (-20) )$. The 
 in-ter-me-di-ate sub-fields are $\U/msb/m/n/10 Q\OT1/cmr/m/n/10 (-20) (\OML/cmm
@@ -862,12 +862,6 @@ in-ter-me-di-ate sub-fields are $\U/msb/m/n/10 Q\OT1/cmr/m/n/10 (-20) (\OML/cmm
  []
 
 
-Overfull \hbox (343.32028pt too wide) has occurred while \output is active
-\OT1/cmr/m/sl/10 3 FUNDAMENTAL THEOREM OF GALOIS THEORY, ARTIN'S THEOREM, AND G
-ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 21
- []
-
-[21]
 Overfull \hbox (343.32028pt too wide) has occurred while \output is active
 \OT1/cmr/m/sl/10 3 FUNDAMENTAL THEOREM OF GALOIS THEORY, ARTIN'S THEOREM, AND G
 ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 22
@@ -880,7 +874,13 @@ ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 23
  []
 
 [23]
-Overfull \hbox (26.46191pt too wide) in paragraph at lines 760--762
+Overfull \hbox (343.32028pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 3 FUNDAMENTAL THEOREM OF GALOIS THEORY, ARTIN'S THEOREM, AND G
+ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 24
+ []
+
+[24]
+Overfull \hbox (26.46191pt too wide) in paragraph at lines 818--820
 \OT1/cmr/m/n/10 (-20) Then the dis-crim-i-nant $\OML/cmm/m/it/10 D \OT1/cmr/m/n
 /10 (-20) = \OML/cmm/m/it/10 D\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 f\OT1/cmr
 /m/n/10 (-20) )$ of $\OML/cmm/m/it/10 f$ \OT1/cmr/m/n/10 (-20) is $^^A[] = [][]
@@ -890,12 +890,6 @@ Overfull \hbox (26.46191pt too wide) in paragraph at lines 760--762
  []
 
 
-Overfull \hbox (343.32028pt too wide) has occurred while \output is active
-\OT1/cmr/m/sl/10 3 FUNDAMENTAL THEOREM OF GALOIS THEORY, ARTIN'S THEOREM, AND G
-ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 24
- []
-
-[24]
 Overfull \hbox (343.32028pt too wide) has occurred while \output is active
 \OT1/cmr/m/sl/10 3 FUNDAMENTAL THEOREM OF GALOIS THEORY, ARTIN'S THEOREM, AND G
 ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 25
@@ -914,17 +908,17 @@ ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 27
  []
 
 [27]
-Overfull \hbox (5.35464pt too wide) in paragraph at lines 857--857
+Overfull \hbox (343.32028pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 3 FUNDAMENTAL THEOREM OF GALOIS THEORY, ARTIN'S THEOREM, AND G
+ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 28
+ []
+
+[28]
+Overfull \hbox (5.35464pt too wide) in paragraph at lines 915--915
 []\OT1/cmr/bx/n/14.4 Cyclotomic and Kum-mer ex-ten-sions, cu-bis and
  []
 
 
-Overfull \hbox (139.7154pt too wide) has occurred while \output is active
-\OT1/cmr/m/sl/10 4 CYCLOTOMIC AND KUMMER EXTENSIONS, CUBIS AND QUARTICS, SOLUTI
-ON BY RADICALS \OT1/cmr/m/n/10 28
- []
-
-[28]
 Overfull \hbox (139.7154pt too wide) has occurred while \output is active
 \OT1/cmr/m/sl/10 4 CYCLOTOMIC AND KUMMER EXTENSIONS, CUBIS AND QUARTICS, SOLUTI
 ON BY RADICALS \OT1/cmr/m/n/10 29
@@ -942,30 +936,36 @@ Overfull \hbox (139.7154pt too wide) has occurred while \output is active
 ON BY RADICALS \OT1/cmr/m/n/10 31
  []
 
-[31] <image/GT_02.png, id=293, 722.7pt x 406.51875pt>
+[31]
+Overfull \hbox (139.7154pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 4 CYCLOTOMIC AND KUMMER EXTENSIONS, CUBIS AND QUARTICS, SOLUTI
+ON BY RADICALS \OT1/cmr/m/n/10 32
+ []
+
+[32] <image/GT_02.png, id=297, 722.7pt x 406.51875pt>
 File: image/GT_02.png Graphic file (type png)
  <use image/GT_02.png>
-Package pdftex.def Info: image/GT_02.png used on input line 1021.
+Package pdftex.def Info: image/GT_02.png used on input line 1079.
 (pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
 
-Overfull \hbox (16.3491pt too wide) in paragraph at lines 1021--1022
+Overfull \hbox (16.3491pt too wide) in paragraph at lines 1079--1080
 [][] 
  []
 
 
 Overfull \hbox (139.7154pt too wide) has occurred while \output is active
 \OT1/cmr/m/sl/10 4 CYCLOTOMIC AND KUMMER EXTENSIONS, CUBIS AND QUARTICS, SOLUTI
-ON BY RADICALS \OT1/cmr/m/n/10 32
- []
-
-[32]
-Overfull \hbox (139.7154pt too wide) has occurred while \output is active
-\OT1/cmr/m/sl/10 4 CYCLOTOMIC AND KUMMER EXTENSIONS, CUBIS AND QUARTICS, SOLUTI
 ON BY RADICALS \OT1/cmr/m/n/10 33
  []
 
-[33 <./image/GT_02.png>]
-Overfull \hbox (22.46516pt too wide) in paragraph at lines 1078--1079
+[33]
+Overfull \hbox (139.7154pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 4 CYCLOTOMIC AND KUMMER EXTENSIONS, CUBIS AND QUARTICS, SOLUTI
+ON BY RADICALS \OT1/cmr/m/n/10 34
+ []
+
+[34 <./image/GT_02.png>]
+Overfull \hbox (22.46516pt too wide) in paragraph at lines 1136--1137
 \OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 x[]; y[]; z[]\OT1/cmr
 /m/n/10 (-20) )$. Now ob-serve that $[](\OML/cmm/m/it/10 L=K\OT1/cmr/m/n/10 (-2
 0) (\OML/cmm/m/it/10 x[]; y[]; z[]\OT1/cmr/m/n/10 (-20) )) = [](\OML/cmm/m/it/1
@@ -975,12 +975,6 @@ mm/m/it/10 =K\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 x[]; y[]; z[]\OT1/cmr/m/n/
  []
 
 
-Overfull \hbox (139.7154pt too wide) has occurred while \output is active
-\OT1/cmr/m/sl/10 4 CYCLOTOMIC AND KUMMER EXTENSIONS, CUBIS AND QUARTICS, SOLUTI
-ON BY RADICALS \OT1/cmr/m/n/10 34
- []
-
-[34]
 Overfull \hbox (139.7154pt too wide) has occurred while \output is active
 \OT1/cmr/m/sl/10 4 CYCLOTOMIC AND KUMMER EXTENSIONS, CUBIS AND QUARTICS, SOLUTI
 ON BY RADICALS \OT1/cmr/m/n/10 35
@@ -1004,8 +998,14 @@ Overfull \hbox (139.7154pt too wide) has occurred while \output is active
 ON BY RADICALS \OT1/cmr/m/n/10 38
  []
 
-[38] [39] [40]
-Overfull \hbox (8.65463pt too wide) in paragraph at lines 1328--1330
+[38]
+Overfull \hbox (139.7154pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 4 CYCLOTOMIC AND KUMMER EXTENSIONS, CUBIS AND QUARTICS, SOLUTI
+ON BY RADICALS \OT1/cmr/m/n/10 39
+ []
+
+[39] [40] [41]
+Overfull \hbox (8.65463pt too wide) in paragraph at lines 1386--1388
 \OT1/cmr/m/n/10 (-20) Certainly the $\OML/cmm/m/it/10 s[]$ \OT1/cmr/m/n/10 (-20
 ) are fixed un-der $\OML/cmm/m/it/10 S[]$\OT1/cmr/m/n/10 (-20) . So $\OML/cmm/m
 /it/10 M[] \OT1/cmr/m/n/10 (-20) = \OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (-20) (\OM
@@ -1014,8 +1014,8 @@ m/m/it/10 M \OT1/cmr/m/n/10 (-20) = \OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (-20) (\O
 ML/cmm/m/it/10 X[]; :::; X[]\OT1/cmr/m/n/10 (-20) )[]$.
  []
 
-[41]
-Overfull \hbox (31.15639pt too wide) in paragraph at lines 1346--1348
+[42]
+Overfull \hbox (31.15639pt too wide) in paragraph at lines 1404--1406
 \OML/cmm/m/it/10 P$ \OT1/cmr/m/n/10 (-20) de-notes the poly-no-mial. So $\OML/c
 mm/m/it/10 ^^R\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (-20) (\
 OML/cmm/m/it/10 X[]; :::; X[]\OT1/cmr/m/n/10 (-20) ) \OMS/cmsy/m/n/10 ^^@ \OML/
@@ -1025,23 +1025,23 @@ cmm/m/it/10 P\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 s[]\OT1/cmr/m/n/10 (-20) (
 =
  []
 
-[42] [43]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1357.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1357.
+[43] [44]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1415.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1415.
  (./Galois Theory.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1357.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1357.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1415.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1415.
 
 Package rerunfilecheck Info: File `"Galois Theory".out' has not changed.
 (rerunfilecheck)             Checksum: ED881CCF86763040289AAB15807A07C6;1587.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1357.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1415.
  ) 
 Here is how much of TeX's memory you used:
- 27401 strings out of 494910
- 646499 string characters out of 6179835
+ 27404 strings out of 494910
+ 646524 string characters out of 6179835
  888624 words of memory out of 5000000
  30063 multiletter control sequences out of 15000+600000
- 16455 words of font info for 106 fonts, out of 8000000 for 9000
+ 16563 words of font info for 107 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,13n,77p,1502b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -1061,10 +1061,10 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Galois Theory.pdf" (43 pages, 470947 bytes).
+Output written on "Galois Theory.pdf" (44 pages, 477669 bytes).
 PDF statistics:
- 421 PDF objects out of 1000 (max. 8388607)
- 352 compressed objects within 4 object streams
- 67 named destinations out of 1000 (max. 500000)
+ 425 PDF objects out of 1000 (max. 8388607)
+ 355 compressed objects within 4 object streams
+ 68 named destinations out of 1000 (max. 500000)
  15559 words of extra memory for PDF output out of 17280 (max. 10000000)
 

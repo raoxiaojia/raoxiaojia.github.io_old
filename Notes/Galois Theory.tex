@@ -175,7 +175,7 @@ For every $\beta$ we have $\beta=g(\alpha)$ for some $g(t) \in K[t]$. Since $\be
 (ii) Let $n = \deg f_\alpha(t)$. We'll show that $\{1,\alpha,...,\alpha^{n-1}\}$ is a $K$-vector space basis of $K[\alpha]$.\\
 If $f_\alpha(t) = t^n + a_{n-1}t^{n-1}+...+a_0$ with $a_i \in K$, then $\alpha^n = -a_{n-1}\alpha^{n-1} -...-a_0$. This implies that $\alpha^n$ is a linear combination of $\{1,...,\alpha^{n-1}\}$.\\
 An easy induction shows that $\alpha^m$ for $m \geq n$ is likewise a linear combination of $\{1,\alpha,...,\alpha^{n-1}\}$. Thus the above set spans $K[\alpha]$.\\
-Suppose $\lambda_{n-1}\alpha^{n-1}+...+\lambda_0=0$. Let $g(t) = \lambda_{n-1}t^{n-1}+...+\lambda_0$. Since $g(\alpha)=0$, we have $g(t) \in I_\alpha = (f_\alpha(t))$. So $g(t) = 0$ or $f_\alpha(t) \mid g(t)$. The latter is not possible because $\deg f_\alpha(t) > \deg g(t) = n-1$. So $g(t)=0 in K[t]$, and all the $\lambda_i$ must then be zero.
+Suppose $\lambda_{n-1}\alpha^{n-1}+...+\lambda_0=0$. Let $g(t) = \lambda_{n-1}t^{n-1}+...+\lambda_0$. Since $g(\alpha)=0$, we have $g(t) \in I_\alpha = (f_\alpha(t))$. So $g(t) = 0$ or $f_\alpha(t) \mid g(t)$. The latter is not possible because $\deg f_\alpha(t) > \deg g(t) = n-1$. So $g(t)=0 \in K[t]$, and all the $\lambda_i$ must then be zero.
 \end{proof}
 \end{thm}
 
@@ -317,7 +317,7 @@ This is equivalent to saying that $L$ is a splitting field for $f$ over $K$ if a
 (1) $f(t) = t^3-2$ over $\Q$. $\Q(\sqrt[3]{2})$ is not a splitting field for $f$ over $\Q$, but $\Q(\sqrt[3]{2},\omega \sqrt[3]{2},\omega^2 \sqrt[3]{2})$ is a splitting field over $Q$, where $\omega$ is the primitive cube root of unity. Note that the above field is equal to $\Q(\sqrt[3]{2},\omega)$.\\
 Note that $\Q(\sqrt[3]{2})$ is degree $3$ over $\Q$, but $\Q(\omega)$ is only degree 2. Also $|\Q(\sqrt[3]{2},\omega):\Q(\omega)|\leq 3$ and $|\Q(\sqrt[3]{2},\omega) : \Q(\sqrt[3]{2})| \leq 2$. Then use the tower law and we get $2 \mid |\Q(\sqrt[3]{2},\omega):\Q|$, and $3$ also divides it. So $\Q(\sqrt[3]{2},\omega)$ must be at least degree 6. So the two previous inequalities actually have their equal signs hold.
 
-(2) $f(t) = (t^2-3)(t^3-1)$. Splitting field for $f$ over $\Q$ is $\Q(\sqrt{3},-\sqrt{3},\omega,\omega^2,1) = \Q(\sqrt{3},\omega) = \Q(\sqrt{3},i)$ since we know $\omega = \frac{-1+\sqrt{3}}{2}$.
+(2) $f(t) = (t^2-3)(t^3-1)$. Splitting field for $f$ over $\Q$ is $\Q(\sqrt{3},-\sqrt{3},\omega,\omega^2,1) = \Q(\sqrt{3},\omega) = \Q(\sqrt{3},i)$ since we know $\omega = \frac{-1+\sqrt{3}i}{2}$.
 
 (3) $t^2-3$ and $t^2-2t-2$ both have the same splitting field $\Q(\sqrt{3})$ over $\Q$.
 
@@ -398,7 +398,7 @@ D(f(t)g(t)) = f'(t)g(t)+f(t)g'(t)
 \end{equation*}
 and if $f(t) \neq 0$, then $f(t)$ has a repeated root in a splitting field if and only if $f(t)$ and $f'(t)$ have a common irreducible factor in $K[t]$.
 \begin{proof}
-(a) $D$ is a $K$-linear map and so we only need to checo for $f(t) = t^n$ and $g(t) = t^m$. (check)
+(a) $D$ is a $K$-linear map and so we only need to check for $f(t) = t^n$ and $g(t) = t^m$. (check)
 
 (b) Let $\alpha$ be a repeated root in a splitting field $L$. Then $f(t) = (t-\alpha)^2g(t)$ in $L[t]$, hence $f'(t) = (t-\alpha)^2 g'(t) + 2(t-\alpha)g(t)$ and so $f'(\alpha) = 0$. Therefore the minimal polynomial $f_\alpha(t)$ of $\alpha$ in $K[t]$ divides both $f(t)$ and $f'(t)$, and thus $f_\alpha(t)$ is a common irreducible factor of $f(t)$ and $f'(t)$. Conversely, let $h(t)$ be a common irreducible factor of $f(t)$ and $f'(t)$ in $K[t]$. Pick a root $\alpha$ in $L$ of $h(t)$, so $f(\alpha) = 0 = f'(\alpha)$. Thus $f(t) = (t-\alpha) g(t)$ in $L[t]$, and $f'(t) = (t-\alpha) g'(t) + g(t)$. Since $f'(\alpha) =0 $, we have $(t-\alpha) | f'(t)$, so $(t-\alpha)|g(t)$. Hence we have $(t-\alpha)^2 | f(t)$.
 \end{proof}
@@ -431,11 +431,69 @@ It's useful to have an alternative approach to separability of field extensions 
 \end{rem}
 
 \begin{lemma} (2.6)\\
-Let $M = K(\alpha)$ for $\alpha$ algebraic over $K$, and let $f_\alpha(t)$ be the minimal polynomial of $\alpha$ over $K$. For any field extension $K \leq L$, then the number of $K$-homomorphisms of $M$ to $L$ is equal to the number of distinct roots of $f_\alpha(t)$ in $L$. Thus this number $\leq \deg f_\alpha(t) = |K(\alpha):K| = |M:K|$.
+Let $M = K(\alpha)$ for $\alpha$ algebraic over $K$, and let $f_\alpha(t)$ be the minimal polynomial of $\alpha$ over $K$. For any field extension $K \leq L$, the number of $K$-homomorphisms of $M$ to $L$ is equal to the number of distinct roots of $f_\alpha(t)$ in $L$. Thus this number $\leq \deg f_\alpha(t) = |K(\alpha):K| = |M:K|$.
 \begin{proof}
 We saw in (1.21) that any $K$-homomorphism $M$ to $L$ is injective, $K(\alpha) \cong K[t]/(f_\alpha(t))$. For any root $\beta$ of $f_\alpha(t)$ in $L$, we can define a $K$-homomorphism $K[t]/(f_\alpha(t)) \to L$ that sends $t+(f_\alpha(t)) \to \beta$. Thus we get a $K$-homomorphism $M \to L$. Conversely, for any $K$-homomorphism $\phi:M \to L$, the image $\phi(\alpha)$ must satisfy $f_\alpha(\phi(\alpha)) = 0$. These processes are inverse to each other,
 \end{proof}
 \end{lemma}
+
+\begin{coro}(2.7)\\
+In (2.6), the number of $K$-homomorphisms $K(\alpha) \to L$ $= \deg f_\alpha(t)$ if and only if $L$ is large enough, i.e. $L$ contains a splitting field for $f_\alpha(t)$ and $\alpha$ is separable over $K$.
+\end{coro}
+
+\begin{lemma}(2.8)\\
+Let $K \leq M$ be a field extension and $M_1 = M(\alpha_1)$ where $\alpha_1$ is algebraic over $M$. Let $f(t)$ be the minimal polynomial of $\alpha$ over $M$ and let $K \leq L$. Let $\phi:M \to L$ be a $K$-homomorphism. Then there is a 1-1 correspondence between the extensions $\phi_1:M_1 \to L$ of $\phi$ and the roots of $\phi(f(t))$ in $L$.
+
+Note that (2.6) is a special case $M=K$ and $\phi$=inclusion of $K$ in $L$.
+\begin{proof}
+$f(t)$ is irreducible in $M[t]$ implies that $\phi(f(t))$ is irreducible in $\phi(M)[t]$. Any extension $\phi_1:M_1 \to L$ of $\phi$ produces a root $\phi_1(\alpha_1)$ of $\phi(f(t))$. Conevrsely, given a root $\gamma$ of $\phi(f(t))$ in $L$, we have $M_1 = M(\alpha_1) \cong M[t] / (f(t)) \cong \phi(M)[t]/\phi(f(t)) \cong \phi(M)(\gamma) \leq L$ Thus we get an extension $\phi_1$ of $\phi$ as required.
+\end{proof}
+\end{lemma}
+
+\begin{coro}(2.9)\\
+If $L$ is large enough, the number of $\phi_1$ which extend $\phi$ is equal to the number of distinct roots of $f(t)$ in $L$. This is equal to $|M_1:M|$ if and only if $\alpha$ is separable over $M$.
+\end{coro}
+
+\begin{coro}(2.10)\\
+Let $K \leq M \leq N$ be finite field extensions, $K \leq L$. Let $\phi:M \to L$ be a $K$-homomorphism. Then the number of extensions of $\phi$ to maps $\theta:N \to L$ $\leq |N:M|$. Moreover, such a $\theta$ exists if $L$ is large enough.
+\begin{proof}
+Pick $\alpha_1,...,\alpha_n$ so that $N=M(\alpha_1,...,\alpha_r)$ and set $M_i = M(\alpha_1,...,\alpha_i)$. Thus we've got $M \leq M_1 \leq M_2 \leq ... \leq M_n = N$. Consider extension to each $M_i$ and by tower law we get the required inequality. The last bit comes from the proof of (2.8), i.e. we need $L$ to contain the roots.
+\end{proof}
+\end{coro}
+
+\begin{rem}(2.11)\\
+The profo and (2.9) shows that number of extensions $\theta$ of $\phi$ is $|N:M|$ if and only if $L$ is large enough and $\alpha_i$ is separable over $M(\alpha,...,\alpha_{i-1})$ for each $i$.
+\end{rem}
+
+\begin{thm}(2.12)\\
+Let $K \leq N$ be a field extension with $|N:K| = n$ and $N=K(\alpha_1,...,\alpha_n)$, say. Then the following are equivalent:\\
+(1) $N$ is separable over $K$;\\
+(2) each $\alpha_i$ is separable over $K(\alpha_1,...,\alpha_{i-1})$;\\
+(3) if $K\leq L$ is large enough, there are exactly $n$ distinct $K$-homomorphisms $N \to L$.
+\begin{proof}
+(1) $\to$ (2): $N$ separable over $K$ $\implies$ $\alpha_i$ is separable over $K$. The minimal polynomial of $\alpha_i$ over $K(\alpha_1,...,\alpha_{i-1})$ divides minimal polynomial of $\alpha_i$ over $K$ (in $K(\alpha_1,...,\alpha_{i-1})[t]$). So if the latter has distinct roots in a splitting field then the former does. So $\alpha_i$ separable over $K$ $\implies$ $\alpha_i$ separable over $K(\alpha_1,...,\alpha_{i-1})$.
+
+(2) $\to$ (3) is (2.11).
+
+(3) $\to$ (1): Assume (3) is true but (1) is false. So $\exists \beta \in N$ that is not separable over $K$. So there are strictly less than $|K(\beta):K|$ $K$-homomorphisms $\phi:K(\beta) \to L$ by (2.7). By (2.10), $\phi$ extends to at most that number of extensions $\theta:N \to L$. So there are strictly less than $|:K(\beta)||K(\beta):K|$ $K-$homomorphisms $N \to L$. Contradiction.
+\end{proof}
+\end{thm}
+
+\begin{defi}(2.13)\\
+We say $M=K(\alpha_1,...,\alpha_r)$ is \emph{separably generated} by $\alpha_1,...,\alpha_r$ over $K$ if each $\alpha_i$ is separable over $K$.
+\end{defi}
+
+\begin{coro}(2.14)\\
+A finite extension is separable if and only if it is separably generated.
+\end{coro}
+
+\begin{lemma}(2.15)\\
+If $K \leq M \leq L$ are finite extensions. Then $M \leq L$, $K \leq M$ are both separable if and only if $K \leq L$ is separable. See example sheet.
+\end{lemma}
+
+\begin{eg}(2.16)\\
+Let $F$ be a finite field, $|F| = m$. The multiplicative group of order $n=m-1$ is cyclic. Take a generator $\alpha$, then $F = F_p(\alpha)$. The minimal polynomial of $\alpha$ divides $t^n-1$ since $\alpha^n=1$. We saw that this polynomial has distinct roots (all non-zero elements in $F$), so the minimal polynomial of $\alpha$ is separable. Hence $F=F_p(\alpha)$ is separable over $F_p$.
+\end{eg}
 
 (missing lecture 8)
 
