@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  1 JAN 2018 17:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  1 JAN 2018 19:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -829,7 +829,7 @@ Package pdftex.def Info: image/GT_01.png used on input line 87.
 (pdftex.def)             Requested size: 289.07487pt x 162.60461pt.
  [5 <./image/GT_01.png>] [6] [7] [8] [9] [10] [11]
 [12] [13] [14] [15] [16] [17]
-Overfull \hbox (21.56105pt too wide) in paragraph at lines 529--530
+Overfull \hbox (21.56105pt too wide) in paragraph at lines 527--528
 \OT1/cmr/m/n/10 (-20) vector space ba-sis $1\OML/cmm/m/it/10 ; ; []; :::; []
 $ \OT1/cmr/m/n/10 (-20) of $\OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (-20) (\OML/cmm/m
 /it/10 \OT1/cmr/m/n/10 (-20) )$. So $1\OML/cmm/m/it/10 ; ; []; :::; []; ^^L
@@ -837,7 +837,7 @@ $ \OT1/cmr/m/n/10 (-20) of $\OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (-20) (\OML/cmm/m
  []
 
 [18] [19]
-Overfull \hbox (1.64622pt too wide) in paragraph at lines 637--638
+Overfull \hbox (1.64622pt too wide) in paragraph at lines 635--636
 []\OT1/cmr/m/n/10 (-20) Conversely, sup-pose $\OML/cmm/m/it/10 M$ \OT1/cmr/m/n/
 10 (-20) is a split-ting field for $\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (-20) (\O
 ML/cmm/m/it/10 t\OT1/cmr/m/n/10 (-20) )$ over $\OML/cmm/m/it/10 K$\OT1/cmr/m/n/
@@ -847,12 +847,12 @@ $
  []
 
 [20] [21]
-Overfull \hbox (13.51459pt too wide) in paragraph at lines 691--691
+Overfull \hbox (13.51459pt too wide) in paragraph at lines 689--689
 []\OT1/cmr/bx/n/14.4 Fundamental The-o-rem of Ga-lois The-ory, Artin's
  []
 
 
-Overfull \hbox (1.46451pt too wide) in paragraph at lines 721--722
+Overfull \hbox (1.46451pt too wide) in paragraph at lines 719--720
 []\OT1/cmr/bx/n/10 Example. []$\U/msb/m/n/10 Q \OMS/cmsy/m/n/10 ^^T \U/msb/m/n/
 10 Q\OT1/cmr/m/n/10 (-20) ([]\OML/cmm/m/it/10 ; !\OT1/cmr/m/n/10 (-20) )$. The 
 in-ter-me-di-ate sub-fields are $\U/msb/m/n/10 Q\OT1/cmr/m/n/10 (-20) (\OML/cmm
@@ -880,7 +880,7 @@ ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 24
  []
 
 [24]
-Overfull \hbox (26.46191pt too wide) in paragraph at lines 818--820
+Overfull \hbox (26.46191pt too wide) in paragraph at lines 816--818
 \OT1/cmr/m/n/10 (-20) Then the dis-crim-i-nant $\OML/cmm/m/it/10 D \OT1/cmr/m/n
 /10 (-20) = \OML/cmm/m/it/10 D\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 f\OT1/cmr
 /m/n/10 (-20) )$ of $\OML/cmm/m/it/10 f$ \OT1/cmr/m/n/10 (-20) is $^^A[] = [][]
@@ -914,7 +914,7 @@ ALOIS THEORY OF POLYNOMIALS AND OF FINITE FIELDS \OT1/cmr/m/n/10 28
  []
 
 [28]
-Overfull \hbox (5.35464pt too wide) in paragraph at lines 915--915
+Overfull \hbox (5.35464pt too wide) in paragraph at lines 913--913
 []\OT1/cmr/bx/n/14.4 Cyclotomic and Kum-mer ex-ten-sions, cu-bis and
  []
 
@@ -945,10 +945,10 @@ ON BY RADICALS \OT1/cmr/m/n/10 32
 [32] <image/GT_02.png, id=297, 722.7pt x 406.51875pt>
 File: image/GT_02.png Graphic file (type png)
  <use image/GT_02.png>
-Package pdftex.def Info: image/GT_02.png used on input line 1079.
+Package pdftex.def Info: image/GT_02.png used on input line 1077.
 (pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
 
-Overfull \hbox (16.3491pt too wide) in paragraph at lines 1079--1080
+Overfull \hbox (16.3491pt too wide) in paragraph at lines 1077--1078
 [][] 
  []
 
@@ -965,7 +965,7 @@ ON BY RADICALS \OT1/cmr/m/n/10 34
  []
 
 [34 <./image/GT_02.png>]
-Overfull \hbox (22.46516pt too wide) in paragraph at lines 1136--1137
+Overfull \hbox (22.46516pt too wide) in paragraph at lines 1134--1135
 \OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 x[]; y[]; z[]\OT1/cmr
 /m/n/10 (-20) )$. Now ob-serve that $[](\OML/cmm/m/it/10 L=K\OT1/cmr/m/n/10 (-2
 0) (\OML/cmm/m/it/10 x[]; y[]; z[]\OT1/cmr/m/n/10 (-20) )) = [](\OML/cmm/m/it/1
@@ -1005,7 +1005,7 @@ ON BY RADICALS \OT1/cmr/m/n/10 39
  []
 
 [39] [40] [41]
-Overfull \hbox (8.65463pt too wide) in paragraph at lines 1386--1388
+Overfull \hbox (8.65463pt too wide) in paragraph at lines 1384--1386
 \OT1/cmr/m/n/10 (-20) Certainly the $\OML/cmm/m/it/10 s[]$ \OT1/cmr/m/n/10 (-20
 ) are fixed un-der $\OML/cmm/m/it/10 S[]$\OT1/cmr/m/n/10 (-20) . So $\OML/cmm/m
 /it/10 M[] \OT1/cmr/m/n/10 (-20) = \OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (-20) (\OM
@@ -1015,7 +1015,7 @@ ML/cmm/m/it/10 X[]; :::; X[]\OT1/cmr/m/n/10 (-20) )[]$.
  []
 
 [42]
-Overfull \hbox (31.15639pt too wide) in paragraph at lines 1404--1406
+Overfull \hbox (31.15639pt too wide) in paragraph at lines 1402--1404
 \OML/cmm/m/it/10 P$ \OT1/cmr/m/n/10 (-20) de-notes the poly-no-mial. So $\OML/c
 mm/m/it/10 ^^R\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (-20) (\
 OML/cmm/m/it/10 X[]; :::; X[]\OT1/cmr/m/n/10 (-20) ) \OMS/cmsy/m/n/10 ^^@ \OML/
@@ -1026,15 +1026,15 @@ cmm/m/it/10 P\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 s[]\OT1/cmr/m/n/10 (-20) (
  []
 
 [43] [44]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1415.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1415.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1413.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1413.
  (./Galois Theory.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1415.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1415.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1413.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1413.
 
 Package rerunfilecheck Info: File `"Galois Theory".out' has not changed.
 (rerunfilecheck)             Checksum: ED881CCF86763040289AAB15807A07C6;1587.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1415.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1413.
  ) 
 Here is how much of TeX's memory you used:
  27404 strings out of 494910
@@ -1061,7 +1061,7 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Galois Theory.pdf" (44 pages, 477669 bytes).
+Output written on "Galois Theory.pdf" (44 pages, 477643 bytes).
 PDF statistics:
  425 PDF objects out of 1000 (max. 8388607)
  355 compressed objects within 4 object streams
