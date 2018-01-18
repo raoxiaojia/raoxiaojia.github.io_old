@@ -20,7 +20,7 @@
 An investor needs a certain quantity of a share (or currency, good, etc), however, not right now ($t=0$) but at a later time ($t=1$). The price of the share $S(w)$ at time $t=1$ is random, but already today one has to make calculation with it so there is risk. For example, 500USD $\approx$ 370 GBP today. What about in one year?
 
 Possible solution: purchase a financial derivative such as:\\
-$\bullet$ forward contract: right and obligation to buy a share at time $t=1$ for a strike price $K$ specified at time $t=0$. Its value at time $t=1$ should be $H(w) = S(w) - K$ is positive if $S(w) > K$, and negative f $S(w) < K$;\\
+$\bullet$ forward contract: right and obligation to buy a share at time $t=1$ for a strike price $K$ specified at time $t=0$. Its value at time $t=1$ should be $H(w) = S(w) - K$ is positive if $S(w) > K$, and negative i	f $S(w) < K$;\\
 $\bullet$ call-option: the right, but no obligation, to do the same thing as above. Its value at $t=1$ should be $H(w) = (S(w)-K)^+$, i.e. $S(w)-K$ if that is positive, and 0 otherwise (no obligation to exercise the option).
 
 One question: what is the fair price for such a derivative?
@@ -40,7 +40,7 @@ The value of this portfolio at $t=1$: $\theta^0(1+r) + \theta^1 S(w) = V(w)$.
 
 Requirement: value of derivative = value of strategy, $H(w) = V(w)$ for all $w \in \Omega$.
 
-For example, for forward contract: $S(w)-K = V(w) = \theta^0(1+r)+\theta^1 S(w)$, we should choose $\theta^1 = 1,\theta^0=\frac{-K}{1+r}$, so $V_0 = \pi^1 - \frac{K}{1+r}$. The seller of $H$ has no risk if he uses this strategy.
+For example, for forward contract: $S(w)-K = V(w) = \theta^0(1+r)+\theta^1 S(w)$, we should choose $\theta^1 = 1,\theta^0=\frac{-K}{1+r}$, so $V_0 = \pi^1 - \frac{K}{1+r}$. The seller of $H$ has no risk if he uses this strategy(?).
 
 Even more, $\pi(H)=V_0$ is the unique fair price for the forward contract. Any other price $\tilde{\pi} \neq V_0$ would lead to \emph{arbitrage}: a riskless opportunity to make profit, which should be excluded). For example, if $\tilde{\pi} > V_0$, at $t=0$ sell forward for $\tilde{\pi}$ and buy the strategy for $V_0$. Then in $t=1$ deliver share and repay the loan. We gain a pure profit at $t=1$: $(\tilde{\pi}-V_0) (1+r)>0$, i.e. arbitrage.
 
@@ -50,7 +50,7 @@ Questions: how to characterize arbitrage-free market? How to determine fair pric
 
 \section{Utility and mean variance}
 
-The market is interaction of agents trading goods. Individual agents have preferences over different contingent(?) claims (=specified random payment). Agents' preferences are expressed by an expected utility representation. $Y$ is preferred to $X$ means $\E[U(X)] \leq \E[U(Y)]$ with utility function $U: \R \to [-\infty,\infty)$ which is non-decreasing. We assume $U$ to be concave.
+The market is interaction of agents trading goods. Individual agents have preferences over different contingent(?) claims (=specified random payment). Agents' preferences are expressed by an expected utility representation. $Y$ is preferred to $X$ means $\E[U(X)] \leq \E[U(Y)]$ with utility function $U: \R \to [-\infty,\infty)$ which is non-decreasing. We assume $U$ to be concave, in the sense that we expect agents to dislike risks.
 
 \begin{defi} 
 (1.1) A function $U:\R \to [-\infty,\infty)$ is \emph{concave} if $\forall p \in [0,1]$, $pU(x) + (1-p) U(y) \leq U(px+(1-p)y)$. Let $P(U) = \{x: U(x)>-\infty\}$.
