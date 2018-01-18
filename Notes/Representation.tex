@@ -1,0 +1,73 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Representation Theory}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+Representaiton theory is the theory of how \emph{groups} act as groups of linear transformations on \emph{vector spaces}. 
+
+Here the groups are either \emph{finite}, or \emph{compact topological groups} (infinite), for example, $SU(n)$ and $O(n)$. The vector spaces we conside are finite dimensional, and usually over $\C$. Actions are \emph{linear} (see below).
+
+Some books: James-Liebeck (CUP); Alperin-Bell (Springer); Charles Thomas, \emph{Representations of finite and Lie groups}; Onlne notes: SM, Teleman; P.Webb \emph{A course in finite group representation theory} (CUP); Charlie Curtis, \emph{Pioneers of representation theory} (history).
+
+\newpage
+
+\section{Group actions}
+
+Throughout this course, if not specified otherwise:
+$\bullet$ $F$ is a field, usually $\C$, $\R$ or $\Q$. When the field is one of these, we are discussing \emph{ordinary representation theory}. Sometimes $F=F_p$ or $\bar{F}_p$ (algebraic closure, see Galois Theory), in which case the theory is called \emph{modular representation theory};\\
+$\bullet$ $V$ is a vector space over $F$, always finite dimensional;\\
+$GL(V) =\{\theta : V \to V, \theta$ linear, invertible$\}$, i.e. $\det \theta \neq 0$.
+
+Recall from Linear Algebra:\\
+If $\dim_F V = n < \infty$, choose basis $e_1,...,e_n$ over $F$, so we can identify it with $F^n$. Then $\theta \in GL(V)$ corresponds to an $n \times n$ matrix $A_\theta = (a_{ij})$, where $\theta(e_j) = \sum_i a_{ij} e_i$. In fact, we have $A_\theta \in GL_n(F)$, the general linear group.
+
+(1.1) $GL(V) \cong GL_n(F)$ as groups by $\theta \to A_\theta$ ($A_{\theta_1 \theta_2} = A_{\theta_1} A_{\theta_2}$ and bijection).\\
+Choosing different basis gives different isomorphism to $GL_n(F)$, but:
+
+(1.2) Matrices $A_1,A_2$ represent the same element of $GL(V)$ w.r.t different bases iff they are conjugate (similar), i.e. $\exists X \in GL_n(F)$ s.t. $A_2 =XA_1 X^{-1}$.
+
+Recall that $\tr(A) = \sum_i a_{ii}$ where $A = (a_{ij})$, the \emph{trace} of $A$.
+
+(1.3) $\tr(XAX^{-1}) = \tr(A)$, hence we can define $\tr(\theta) = \tr(A_{\theta_1})$ independent of basis.
+
+(1.4) Let $\alpha \in GL(V)$ where $V$ in f.d. over $\C$, with $\alpha^m = \iota$ for some $m$ (here $\iota$ is the identity map). Then $\alpha$ is diagonalisable.
+
+Recall $EndV$ is the set of all ilnear maps $V \to V$, e.g. $End(F^n) =M_n(F)$ some $n \times n$ matrices.
+
+(1.5) \emph{Proposition.} Take $V$ f.d. over $\C$, $\alpha \in End(V)$. Then $\alpha$ is diagonalisable iff there exists a polynomial $f$ with distinct linear factors with $f(\alpha) = 0$. For example, in (1.4), where $\alpha^m = \iota$, we take $f = X^m - 1 = \prod_{j=0}^{m-1} (X-\omega^j)$ where $\omega = e^{2\pi i/m}$ is the ($m^{th}$) root of unity. In fact we have:
+
+(1.4)* A finite family of commuting separately diagonalisable automorphisms of a $\C$-vector space can be simultaneously diagonalised (useful in abelian groups).
+
+Recall from Group Theory:\\
+(1.6) The symmetric group, $S_n = Sym(X)$ on the set $X = \{1,...,n\}$ is the set of all permutations of $X$. $|S_n| = n!$. The alternating group $A_n$ on $X$ is the set of products of an even number of transpositions (2-cycles). $|A_n| = \frac{n!}{2}$.
+
+(1.7) Cyclic groups of order $m$: $C_m = <x:x^m = 1>$. For example, $(\Z/m\Z, +)$; also, the group of $m^{th}$ roots of unity in $\C$ (inside $GL_1(\C)$ = $\C^*$, the multiplicative group of $\C$). We also have the group of rotaitons, centre $O$ of regular $m-$gon in $\R^2$ (inside $GL_2(\R)$).
+
+(1.8) Dihedrap groups $D_{2m}$ of order $2m = <x,y: x^m = y^2 = 1, yxy^{-1} = x^{-1}>$. Think of this as the set of rotations and reflections preserving a regular $m$-gon.
+
+(1.9) Quaternino group, $Q_8 = <x,y|x^4 = 1, y^2 = x^2, yxy^{-1} = x^{-1}>$ of order $8$. For example, in $GL_2(\C)$, put $i={{i\ 0} \choose {0 \ i}}, j = {{0 \ 1} \choose {-1 \ 0}}, k = {{0 \ i} \choose {i \ 0}}$, then $Q_8 = \{\pm I_2, \pm i, \pm j, \pm k\}$.
+
+(1.10) The conjugacy class (ccls) of $g \in G$ is $\mathcal{C}_G(g) = \{xgx^{-1} : x \in G\}$. Then $|\mathcal{C}_G (g) | = |G:C_G(g)|$, where $C_G(g) = \{x \in G : xg = gx\}$, the centraliser of $g \in G$.
+
+(1.11) Let $G$ be a group, $X$ be a set. $G$ acts on $X$ if there exists a map $\cdot: G \times X \to X$ by $(g,x) \to g\cdot x$ for $g \in G$, $x \in X$, s.t. $1 \cdot x = x$ for all $x \in X$, $(gh) \cdot x = g \cdot (h\cdot x)$ for all $g,h \in G, x \in X$.
+
+(1.12) Given an action of $G$ on $X$, we obtain a homomorphism $\theta: G \to Sym(X)$, called the \emph{permutation representation} of $G$.
+\begin{proof}
+For $g \in G$, the function $\theta_g: X \to X$ by $x \to gx$ is a permutation on $X$, with inverse $\theta_{g^{-1}}$. Moreover, $\forall g_1,g_2 \in G$, $\theta_{g_1 g_2} = \theta_{g_1} \theta_{g_2}$ since $(g_1g_2) x = g_1(g_2 x)$ for $x \in X$.
+\end{proof}
+
+\end{document}
