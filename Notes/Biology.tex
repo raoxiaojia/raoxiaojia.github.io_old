@@ -16,6 +16,55 @@
 
 \newpage
 
+\section{Miscellaneous}
 
+Course notes online: Julia Gog(www.damtp.cam.ac.uk/research/dd/teaeching, 2013-2017), Peter Haynes(www.damtp.cam.ac.uk/user/phh/mathbio.html)
+
+Moodle page: Handwritten notes by lecture; Matlab/Python programming examples; solved exercises.
+
+This course involves 3 models: Deterministic temporal models (11 lectures), Stochastic temporal models (5 lectures), Deterministic spatio-temporal models (8 lectures).
+
+The focus of this course is biochemical reactions and population processes.
+
+(some introductory speech)
+
+\begin{eg} (1, Transient population)
+If we use $n(t)$ to denote the size of a population, we may want to model $\frac{dn}{dt} = f(n)$ by an ODE, or maybe if we have several components $\mathbf{n}(t)$ then we may want to model $\frac{d\mathbf{n}}{dt} = \mathbf{f}(\mathbf{n})$ which is a system of ODEs.
+
+Note that although $n$ should be an integer (discrete), when $n >> 1$ we may model it with continuous equations.
+\end{eg}
+
+\begin{eg} (2)
+$n \to \partial_t P(n,t) = W \cdot P(n,t)$, Markov processes. Here $P(n,t)$ is a probablity(?), $n$ being a state, and $W$ being the transition matrix.
+\end{eg}
+
+\begin{eg} (3)\\
+If we include spatial aspect, we may have $n(t)$ becoming $n(x,t)$. Now there might be 'diffusion': $\partial_t n(x,t) = f(n(x,t)) + D \nabla^2 (x,t)$ where $\nabla^2 = \frac{\partial^2}{\partial x^2}$; this is the reaction-diffusion equation.
+\end{eg}
+
+\newpage
+
+\section{Birth-death models}
+The general idea is that we have a population of size $n(t)$; per capita per unit time, we have births of rate $b$ and deaths of rate $d$. Then we can write $$n(t+\Delta t) = n(t) + bn\Delta t - dn \Delta t$$ So we have an ODE $$\frac{dn}{dt} = (b-d)n = rn$$ where $r = b-d$. This has an easy solution $n(t) = n_0 e^{rt}$, assuming $r$ is a constant. We see that if $r$ is positive then the population grows exponentially, and if $r$ is negative then the population decreases to 0 asymptotically.
+
+Now probably $b$ and $d$ are related to $n$ by $b(n) = bn$ and $d(n) = dn^2$ due to competition. Then we have $$\frac{dn}{dt} = bn-dn^2$$ which we can definitely rewrite as $$\frac{dn}{dt}=\alpha n(1-n)$$ by some change of variable on $n$. Now
+
+\begin{equation*}
+\begin{aligned}
+\frac{dn}{n(1-n)}&=\alpha dt\\
+\implies \frac{dn}{n} + \frac{dn}{1-n} &= \alpha dt\\
+\implies \ln n - \ln(1-n) &= \alpha t + c\\
+\implies n &= \frac{n_0 e^{\alpha t}}{(1-n_0) + n_0 e^{\alpha t}}
+\end{aligned}
+\end{equation*}
+where we are given that $t=0$, $n=n_0$. If $t \gg \frac{1}{\alpha}$, when $t \to \infty$ we have $n(t) \to 1$. Now we can investigate if the population size is stable, and if it has any fixed points.
+
+
+
+\begin{equation*}
+\begin{aligned}
+1
+\end{aligned}
+\end{equation*}
 
 \end{document}
