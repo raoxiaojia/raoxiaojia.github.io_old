@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  18 JAN 2018 13:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  18 JAN 2018 15:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -832,11 +832,11 @@ Package rerunfilecheck Info: File `"Number Fields".out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 92.
  ) 
 Here is how much of TeX's memory you used:
- 27224 strings out of 494910
- 644768 string characters out of 6179835
+ 27226 strings out of 494910
+ 644784 string characters out of 6179835
  886624 words of memory out of 5000000
  30030 multiletter control sequences out of 15000+600000
- 12925 words of font info for 62 fonts, out of 8000000 for 9000
+ 12976 words of font info for 63 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,6n,77p,827b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -852,7 +852,7 @@ amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Number Fields.pdf" (6 pages, 159783 bytes).
+Output written on "Number Fields.pdf" (6 pages, 159815 bytes).
 PDF statistics:
  114 PDF objects out of 1000 (max. 8388607)
  91 compressed objects within 1 object stream
