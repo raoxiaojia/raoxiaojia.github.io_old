@@ -28,7 +28,7 @@ Google lecture's name to find his homepage and example sheets or probably some n
 
 Suppose we have a Geiger counter. We model the "click process" as a family $\{N(t) : t \geq 0\}$, where $N(t)$ denotes the total number of ticks up to time $t$. Now note that $N(t) \in \{0,1,...\}$, $N(s) \leq N(t)$ if $s \leq t$, $N$ increases by unit jumps, and $N(0) = 0$. We also assert that $N$ is right-continuous, i.e. $\lim_{x \to t^+} N(x) = N(t)$.
 
-\begin{defi} (infinitesimal)\\
+\begin{defi} (infinitesimal definition)\\
 A \emph{Poisson process} with intensity $\lambda$ is a process $N=(N(t):t \geq 0)$ which takes values in $S = \{0,1,2,...\}$, s.t.:\\
 (a) $N(0) = 0$, $N(s) \leq N(t)$ if $s \leq t$;\\
 (b) 
@@ -42,14 +42,57 @@ o(h) & m>1\\
 \right.
 \end{aligned}
 \end{equation*}
-Recall that $g(h) = o(h)$ means that $\frac{g(h)}{h} \to 0$ as $h \to 0$.
+Recall that $g(h) = o(h)$ means that $\frac{g(h)}{h} \to 0$ as $h \to 0$;\\
+(c) if $s<t$, then $N(t)-N(s)$ is independent of all arrivals prior to $s$.
 \end{defi}
 
-
-
+\begin{thm}
+$N(t)$ has the Poisson distribution with parameter $\lambda t$.
+\begin{proof}
+Study $N(t+h)$ given $N(t)$. We have 
 \begin{equation*}
 \begin{aligned}
-1
+\P(N(t+h) =j) &= \sum_{i\leq j} \P(N(t+h) \\
+&= j|N(t) = i) \P(N(t) = i) \\
+&= (1-\lambda h) \P(N(t) = j) + \lambda h \P(N(t) = h-1) + o(h)
 \end{aligned}
 \end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+\frac{\P(N(t+h)=j) - \P(N(t) = j)}{h} = -\lambda \P(N(t) = j) + \lambda \P (N(t) = j-1) + \frac{o(h)}{h}
+\end{aligned}
+\end{equation*}
+write $p_n(t) = \P(N(t) = n)$, then let $h \to 0^+$ we get
+\begin{equation*}
+\begin{aligned}
+p'j(t) = -\lambda p_j(t) + \lambda p_{j-1}(t) & j \geq 1\\
+p'0_(t) = -\lambda p_0(t) &
+\end{aligned}
+\end{equation*}
+with boundary condition $p_0(0) = 1$.\\
+We solve $p_0$ to get $p_0(t) = e^{-\lambda(t)}$. Then we can use this to inductively solve $p_1,p_2,...$ to get the desired result.
+\end{proof}
+\end{thm}
+
+An alternative derivation from the differential equations:\\
+Let $G(s,t) = \sum_j s^j p_j(t)$. Now we take the set of differential equation, multiplying each one by $s^j$, then we get
+\begin{equation*}
+\begin{aligned}
+\frac{\partial G}{\partial t} = \lambda (s-1) G
+\end{aligned}
+\end{equation*}
+Then we have $$G(s,t) = A(s) e^{\lambda (s-1) t}$$ We also have $G(s,0)=1$ so we should be able to plug in a suitable value of $s$ to get the desired result (I probably missed that).
+
+
+
+
+
+\iffalse
+\begin{equation*}
+\begin{aligned}
+
+\end{aligned}
+\end{equation*}
+\fi
 \end{document}
