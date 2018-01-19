@@ -1,0 +1,55 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Applied Probability}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Miscellaneous}
+
+Some speech
+
+Google lecture's name to find his homepage and example sheets or probably some notice of a change of room
+
+\newpage
+
+\section{Poisson process}
+
+Suppose we have a Geiger counter. We model the "click process" as a family $\{N(t) : t \geq 0\}$, where $N(t)$ denotes the total number of ticks up to time $t$. Now note that $N(t) \in \{0,1,...\}$, $N(s) \leq N(t)$ if $s \leq t$, $N$ increases by unit jumps, and $N(0) = 0$. We also assert that $N$ is right-continuous, i.e. $\lim_{x \to t^+} N(x) = N(t)$.
+
+\begin{defi} (infinitesimal)\\
+A \emph{Poisson process} with intensity $\lambda$ is a process $N=(N(t):t \geq 0)$ which takes values in $S = \{0,1,2,...\}$, s.t.:\\
+(a) $N(0) = 0$, $N(s) \leq N(t)$ if $s \leq t$;\\
+(b) 
+\begin{equation*}
+\begin{aligned}
+\P(N(t+h)=n+m | N(t) = n) = \left\{\begin{array}{ll}
+\lambda h + o(h) & m=1\\
+o(h) & m>1\\
+1-\lambda h & m=0
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+Recall that $g(h) = o(h)$ means that $\frac{g(h)}{h} \to 0$ as $h \to 0$.
+\end{defi}
+
+
+
+\begin{equation*}
+\begin{aligned}
+1
+\end{aligned}
+\end{equation*}
+\end{document}
