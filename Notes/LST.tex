@@ -1,0 +1,43 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Logic and Set Theory}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Miscellaneous}
+
+Some introductory speech
+
+\newpage
+
+\section{Propositional logic}
+Let $P$ denote a set of \emph{primitive proposition}, unless otherwise stated, $P=\{p_1,p_2,...\}$.
+
+The \emph{language} or \emph{set of propositions} $L=L(P)$ is defined inductively by:\\
+1) $p \in L$ $\forall p \in P$;\\
+2) $\perp in L$, where $\perp$ is read as 'false';\\
+3) If $p,q \in L$, then $(p \implies q) \in L$. For example, $(p_1 \implies L)$, $((p_1 \implies p_2) \implies (p_1 \implies p_3))$.
+
+Note that at this point, each proposition is only a finite string of symbols from the alphabet $(,),\implies,\perp,p_1,p_2,...$ and do not really mean anything (until we define so).\\
+By \emph{inductively define}, we mean more precisely that we set $L_1 = P \cup \{\perp\}$, and $L_{n+1} = L_n \cup \{(p \implies q):p,q \in L_n\}$, and then put $L = L_1 \cup L_2 \cup ...$.
+
+Each proposition is built up \emph{uniquely} from 1) and 2) using 3). For example, $((p_1 \implies p_2) \implies (p_1 \implies p_3))$ came from $(p_1 \implies p_2)$ and $(p_1 \implies p_3)$. We often omit outer brackets or use different brackets for clarity.
+
+Now we can define some useful things:\\
+$\bullet$ $\neg p$(not $p$), as an abbreviation for $p \implies L$;\\
+$\bullet$ $p \vee q$ ($p$ or $q$, as an abbreviation for $(\neg p) \implies q$;\\
+$\bullet$ $p \wedge q$ ($p$ and $q$, as an abbreviation for $(p \implies (\neg q))$.
+
+\end{document}
