@@ -70,4 +70,136 @@ Recall from Group Theory:\\
 For $g \in G$, the function $\theta_g: X \to X$ by $x \to gx$ is a permutation on $X$, with inverse $\theta_{g^{-1}}$. Moreover, $\forall g_1,g_2 \in G$, $\theta_{g_1 g_2} = \theta_{g_1} \theta_{g_2}$ since $(g_1g_2) x = g_1(g_2 x)$ for $x \in X$.
 \end{proof}
 
+\newpage
+
+\section{Basic Definitions}
+\subsection{Representations}
+
+Let $G$ be finite, $F$ be a field, usually $\C$.
+\begin{defi} (2.1)\\
+Let $V$ be a f.d. vector space over $F$. A (linear, in some books) \emph{representation} of $G$ on $V$ is a group homomorphism 
+\begin{equation*}
+\begin{aligned}
+\rho = \rho_V: & G &\to GL(V)
+\end{aligned}
+\end{equation*}
+Write $\rho_g$ for the image $\rho_V(g)$; so for each $g \in G$, $\rho_g \in GL(V)$, and $\rho_{g_1 g_2} = \rho_{g_1} \rho_{g_2}$, and $(\rho_g)^{-1} = \rho_{g^{-1}}$.\\
+The \emph{dimension} (or \emph{degree}) of $\rho$ is $\dim_F V$.
+\end{defi}
+
+(2.2) Recall $\ker \rho \triangleleft G$ (kernel is a normal subgroup), and $G/\ker \rho \cong \rho(G) \leq GL(V)$ (1st isomorphism theorem). We say $\rho$ is \emph{faithful} if $\ker \rho = 1$.
+
+An alternative (and equivalent) approach is to observe that a representation of $G$ on $V$ is "the same as" a \emph{linear action} of $G$:
+
+\begin{defi} (2.3)\\
+$G$ \emph{acts linearly} on $V$ if there exists a \emph{linear action}
+\begin{equation*}
+\begin{aligned}
+G \times V &\to V\\
+(g,v) &\to gv
+\end{aligned}
+\end{equation*}
+By linear action we mean: (action) $(g_1 g_2) v = g_1(g_2 v)$, $1v=v$ $\forall g_1,g_2 \in G, v \in V$, and (linear) $g(v_1+v_2) = gv_1+gv_2$, $g(\lambda v) = \lambda gv$ $\forall g \in G, v_1,v_2 \in V, \lambda \in F$.\\
+Now if $G$ acts linearly on $V$, the map
+\begin{equation*}
+\begin{aligned}
+G &\to GL(V)\\
+g &\to \rho_g
+\end{aligned}
+\end{equation*}
+with $\rho_g:v \to gv$ is a representation of $G$. Conversely, given a representaiton $\rho: G \to GL(V)$, we have a linear action of $G$ on $V$ via $g \cdot v := \rho(g) v$ $\forall v \in V, g \in G$.
+\end{defi}
+
+(2.4) In (2.3) we also say that $V$ is a $G$-space or that $V$ is a $G$-module. In fact if we define the \emph{group algebra} $FG$, or $F[G]$, to be $\{ \sum \alpha_j g: \alpha_j \in F\}$ with natural addition and multiplication, then $V$ is actually a $FG$-module (in the sense from GRM).
+
+(2.5) $R$ is a \emph{matrix representation} of $G$ of degree $n$ if $R$ is a homomorphism $G \to GL_n (F)$. Given representation $\rho:G \to GL(V)$ with $\dim_F V=n$, fix basis $B$; we get matrix representation
+\begin{equation*}
+\begin{aligned}
+G &\to GL_n(F)\\
+g &\to [\rho(g)]_B
+\end{aligned}
+\end{equation*}
+Conversely, given matrix representation $R:G \to GL_n(F)$, we get representation
+\begin{equation*}
+\begin{aligned}
+\rho: G &\to GL(F^n)\\
+g &\to \rho_g
+\end{aligned}
+\end{equation*}
+via $\rho_g(v) = R_g v$ where $R_g$ is the matrix of $g$.
+
+\begin{eg} (2.6)\\
+Given any group $G$, take $V=F$ the 1-dimensional space, and 
+\begin{equation*}
+\begin{aligned}
+\rho:G &\to GL(F)\\
+g &\to (id: F \to F)
+\end{aligned}
+\end{equation*}
+is known as the trivial representation of $G$. So $\deg \rho = 1$ ($\dim_F F = 1$).
+\end{eg}
+
+\begin{eg} (2.7)\\
+Let $G=C_4 = <x:x^4=1>$. Let $n=2$, and $F=\C$. Note that any $R:x \to X$ will determine $x^j \to X^j$ as it is a homomorphism, and also we need $X^4 = I$. So we can take $X$ to be diagonal matrix -- any such with diagonal entries a root to $x^4=1$, i.e. $\{\pm 1,\pm i\}$, or if $X$ is not diagonal then it will be similar to a diagonal matrix by (1.4) ($X^4=I$).
+\end{eg}
+
+\subsection{Equivalent representations}
+
+\begin{defi} (2.8)\\
+Fix $G,F$. Let $V,V'$ be $F$-spaces, and $\rho:G \to GL(V)$, $\rho': G \to GL(V')$ which are representations of $G$. The linear map $\phi: V \to V'$ is a $G$-homomorphism if $$\phi\rho(g) = \rho'(g)\phi \forall g \in G (*)$$ We can understand this more by the following diagram:
+
+\includegraphics[scale=0.5]{image/Rep_01.png}
+
+We say $\phi$ \emph{intertwines} $\rho,\rho'$. Write $Hom_G(V,V')$ for the $F$-space of all these.\\
+$\phi$ is a $G$-isomorphism if it is also bijective; if such $\phi$ exists, $\rho,\rho'$ are isomorphic/equivalent representations. If $\phi$ is a $G$-isomorphism, we can write $(*)$ as $\rho' = \phi\rho\phi^{-1}$.
+\end{defi}
+
+\begin{lemma} (2.9)\\
+The relation "being isomorphic" is an equivalent relation on the set of all representations of $G$ (over $F$).
+\end{lemma}
+
+\begin{rem} (2.10)\\
+If $\rho,\rho'$ are isomorphic representations, they have the same dimension.
+
+The converse may be false: $C_4$ has four non-isomorphic 1-dimensional representations: if $\omega = e^{2\pi i/4}$ then they are $\rho_j(x^i) = \omega^{ij}$ ($0 \leq i \leq 3$).
+\end{rem}
+
+\begin{rem} (2.11)\\
+Given $G$, $V$ over $F$ of dimension $n$ and $\rho:G \to GL(V)$. Fix basi $B$ for $V$: we get a linear isomorphism 
+\begin{equation*}
+\begin{aligned}
+\phi:V &\to F^n\\
+v &\to [v]_B
+\end{aligned}
+\end{equation*}
+and we get a representation $\rho': G \to GL(F^n)$ isomorphic to $\rho$:
+
+\includegraphics[scale=0.5]{image/Rep_02.png}
+\end{rem}
+
+(2.12) In terms of matrix representaitons, we have
+\begin{equation*}
+\begin{aligned}
+R: G &\to GL_n(F),\\
+R':G &\to GL_n(F)
+\end{aligned}
+\end{equation*}
+are ($G$)-isomorphic or equivalent if there exists a nonsingular matrix $X \in GL_n(F)$ with $R'(g) = XR(g)X^{-1}$ $\forall g \in G$.
+
+In terms of linear $G$-actions, the actions of $G$ on $V$,$V'$ are $G$-isomorphic if there exists isomorphisms $\phi:V \to V'$ such that $g:\phi(v) = \phi(gv)$ $\forall v \in V,g \in G$.
+
+\subsection{Subrepresentations}
+\begin{defi} (2.13)\\
+Let $\rho:G \to GL(V)$ be a representation of $G$. We say $W \leq V$ is a $G$-subspace if it's a subspace and it is $\rho(G)$-invariant, i.e. $\rho_g(W) \leq W \forall g \in G$. Obviously $\{0\}$ and $V$ are $G$-subspaces, however.\\
+$\rho$ is \emph{irreducible/simple} representation if there are no proper $G$-subspaces.
+\end{defi}
+
+\iffalse
+\begin{equation*}
+\begin{aligned}
+
+\end{aligned}
+\end{equation*}
+\fi
+
 \end{document}
