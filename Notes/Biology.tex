@@ -61,10 +61,69 @@ where we are given that $t=0$, $n=n_0$. If $t \gg \frac{1}{\alpha}$, when $t \to
 
 
 
+Let's now define $\mathbf{n} = (n_1,...,n_p)$, i.e. $p$ populations, and $\frac{d\mathbf{n}}{dt} = \mathbf{f}(\mathbf{n})$. If $\mathbf{n}=\mathbf{n}^*$ is a fixed point, then $\frac{d\mathbf{n}}{dt} = 0$, i.e. $\mathbf{f}(\mathbf{n}) = 0$. Now if we apply a small perturbation $\mathbf{n} = \delta\mathbf{n}^* + \delta \mathbf{n}$, i.e.
+
 \begin{equation*}
 \begin{aligned}
-1
+\frac{d}{dt} \delta \mathbf{n} &= \mathbf{f} (\mathbf{n}^* + \delta \mathbf{n})\\
+a&= \mathbf{f} (\mathbf{n}^*) + \frac{\partial f_i}{\partial n_j} \delta_{nj} + \frac{1}{2} \frac{\partial^2 f_i} {\partial n_j \partial n_k} \delta_{n_j} \delta_{n_k}
 \end{aligned}
 \end{equation*}
+So $\frac{d}{dt} \delta \mathbf{n} = J \cdot \partial \mathbf{n}$, so $\delta n(t) = e^{J t} \cdot \delta n(0)$. If $\lambda_i$'s are the eigenvalues of $J$, we consider the real part of $\lambda_i$: if $Re(\lambda_i)<0$, then  if $p\geq 5$ we only have numerical solutions, if $3 \leq p \leq 5$ we have analytic solutions, and $p=2$ is an easy case (recall $p$ is the number of populations):
+
+$\bullet$ If $p=2$, $\mathbf{n} = (n_1,n_2)$, then 
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} \begin{pmatrix} \delta_{n_1} \\
+\delta_{n_2}
+\end{pmatrix} = \begin{pmatrix}
+\frac{\partial f_1}{\partial n_1} & \frac{\partial f_1}{\partial n_2}\\
+\frac{\partial f_2}{\partial n_1} & \frac{\partial f_2}{\partial n_2}
+\end{pmatrix} \cdot \begin{pmatrix}
+\delta_{n_1}\\
+\delta_{n_2}
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+Where the matrix is $J$. Now we have $\lambda_1\lambda_2 =\det J$ and $\lambda_1 + \lambda_2 = \tr J$. Determined by the signs of those two, we have different possible behaviours:
+
+\includegraphics[scale=0.7]{image/Bio_01.png}
+
+Now let's consider the spread of Dengue. There are several processes going on at the same time:
+
+(1) Mosquitos carry dengue;\\
+(2) Wolbachia infect mosquitos;\\
+(3) Infected mosquitos do not transmit dengue;\\
+(4) Wolbachia transmission only across generations.
+
+Question: will an intially infected population of mosquitos eventually spread over the entire population as $t \to \infty$?
+
+\includegraphics[scale=0.7]{image/Bio_02.png}
+
+\includegraphics[scale=0.7]{image/Bio_03.png}
+
+We always assume that there are enough males to fertilise the female eggs.
+
+Now consider $\frac{d}{dt}$ of $n_U$ and $n_I$ (uninfected and infected females). From the above tables we should be able to get (hopefully)
+
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_U = r n_U \frac{n_U}{n_U + n_I} - dn_U - \varepsilon (n_U+n_I) n_U\\
+\frac{d}{dt} n_I = \lambda r n_I \frac{n_U}{n_U + n_I} + \lambda r n_I \frac{n_I}{n_U + n_I} - \mu d n_I - \varepsilon (n_U+n_I) n_I \ (*)
+\end{aligned}
+\end{equation*}
+This is our model when $p=2$.
+
+We'll try to simplify these equations.
+
+\iffalse
+
+\begin{equation*}
+\begin{aligned}
+
+\end{aligned}
+\end{equation*}
+\fi
+
 
 \end{document}
