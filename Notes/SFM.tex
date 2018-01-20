@@ -49,6 +49,7 @@ Questions: how to characterize arbitrage-free market? How to determine fair pric
 \newpage
 
 \section{Utility and mean variance}
+\subsection{Utility function}
 
 The market is interaction of agents trading goods. Individual agents have preferences over different contingent(?) claims (=specified random payment). Agents' preferences are expressed by an expected utility representation. $Y$ is preferred to $X$ means $\E[U(X)] \leq \E[U(Y)]$ with utility function $U: \R \to [-\infty,\infty)$ which is non-decreasing. We assume $U$ to be concave, in the sense that we expect agents to dislike risks.
 
@@ -105,7 +106,7 @@ Let $U$ be concave. It's enough to show the above equation with $y_1 = x_2$ (the
 \begin{aligned}
 &\frac{U(z) - U(x)}{z-x} \geq \frac{U(y) - U(z)}{y-z} \forall x < z <y\\
 \iff &(y-x)U(z) \geq (z-x) U(y) + (y-z)U(x)\\
-\iff &\underbrace{(U(z)}_{\geq pU(y)+(1-p)U(x)} \geq \underbrace{\frac{z-x}{y-x}}_{=p \in [0,1]} U(y) + \underbrace{\frac{y-z}{y-x}}_{=1-p} U(x) \ (1.2)
+\iff &\underbrace{U(z)}_{\geq pU(y)+(1-p)U(x)} \geq \underbrace{\frac{z-x}{y-x}}_{=p \in [0,1]} U(y) + \underbrace{\frac{y-z}{y-x}}_{=1-p} U(x) \ (1.2)
 \end{aligned}
 \end{equation*}
 which holds by concavity.
