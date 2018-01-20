@@ -87,7 +87,7 @@ $\bullet$ If $p=2$, $\mathbf{n} = (n_1,n_2)$, then
 \end{equation*}
 Where the matrix is $J$. Now we have $\lambda_1\lambda_2 =\det J$ and $\lambda_1 + \lambda_2 = \tr J$. Determined by the signs of those two, we have different possible behaviours:
 
-\includegraphics[scale=0.7]{image/Bio_01.png}
+\includegraphics[scale=0.5]{image/Bio_01.png}
 
 Now let's consider the spread of Dengue. There are several processes going on at the same time:
 
@@ -100,7 +100,7 @@ Question: will an intially infected population of mosquitos eventually spread ov
 
 \includegraphics[scale=0.7]{image/Bio_02.png}
 
-\includegraphics[scale=0.7]{image/Bio_03.png}
+\includegraphics[scale=0.5]{image/Bio_03.png}
 
 We always assume that there are enough males to fertilise the female eggs.
 
@@ -114,7 +114,20 @@ Now consider $\frac{d}{dt}$ of $n_U$ and $n_I$ (uninfected and infected females)
 \end{equation*}
 This is our model when $p=2$.
 
-We'll try to simplify these equations.
+We'll try to simplify these equations. By rescaling the time as $t \to rt$, nd rescaling the population as $n \to \frac{\varepsilon}{r} n$, we get
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_U &= n_U \frac{n_U}{n_U + n_I} - \frac{d}{r} n_U - (n_U+n_I) n_U\\
+&= n_U\left[\frac{n_U}{n_U+n_I}] - \frac{d}{r} - (n_U+n_I)\right] \ (1)
+\end{aligned}
+\end{equation*}
+and the second equation becomes
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_I = n_I \left[\lambda - \mu \frac{d}{r} - (n_U+n_I)\right] \ (2)
+\end{aligned}
+\end{equation*}
+
 
 \iffalse
 
