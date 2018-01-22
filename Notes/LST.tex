@@ -117,7 +117,15 @@ For a notion of 'proof', we will need axioms and deduction rules. As axioms, we'
 
 Note: these are all tautologies. Sometimes we say they are 3 axiom-schemes, as all of these are infinite sets of axioms.
 
-As deduction rules,
+As deduction rules, we'll take just \emph{modus ponens}: from $p$, and $p\implies q$, we can deduce $q$.
+
+For $S \subset L$, $t \in L$, a \emph{proof} of $t$ from $S$ cosists of a finite sequence $t_1,...,t_n$ of propositions, with $t_n = t$, s.t. $\forall i$ the proposition $t_i$ is an axiom, or a member of $S$, or there exists $j,k < i$ with $t_j=(t_k \implies t_i)$.
+
+We say $s$ is the \emph{hypotheses} or \emph{premises} and $t$ is the \emph{conclusion}.
+
+If there exists a proof of $t$ from $S$, we say $S$ \emph{proves} or \emph{syntactically implies} $t$, written $s \vdash t$.
+
+If $\phi \vdash t$, we say $t$ is a \emph{theorem}, written $\vdash t$.
 
 \iffalse
 \begin{equation*}
