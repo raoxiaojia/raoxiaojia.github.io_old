@@ -78,11 +78,13 @@ We say $p$ is a \emph{tautology}, written $\vDash p$, if $v(p) = 1$ $\forall$ va
 (1) $p \implies (q \implies p)$: a true statement is implies by anything. We can verify this by:
 \begin{equation*}
 \begin{aligned}
-v(p)\ & v(q)\ & v(q \implies p)\ & v(p \implies (q \implies p))\\
+\begin{matrix}
+v(p) & v(q) & v(q \implies p) & v(p \implies (q \implies p))\\
 1 & 1 & 1 & 1\\
 1 & 0 & 1 & 1\\
 0 & 1 & 0 & 1\\
 0 & 0 & 1 & 1
+\end{matrix}
 \end{aligned}
 \end{equation*}
 
@@ -108,7 +110,14 @@ For $S \subset L$, $v$ is a model of $S$ if $v(s) = 1$ $\forall s \in S$. So $S 
 
 \section{Syntactic implication}
 
+For a notion of 'proof', we will need axioms and deduction rules. As axioms, we'll take:\\
+1. $p \implies (q \implies p)$ $\forall p,q \in L$;\\
+2. $[p\implies (q \implies r)] \implies [(p \implies q) \implies (p \implies r)]$ $\forall p,q,r \in L$;
+3. $(\neg\neg p) \implies p$ $\forall p \in L$.
 
+Note: these are all tautologies. Sometimes we say they are 3 axiom-schemes, as all of these are infinite sets of axioms.
+
+As deduction rules,
 
 \iffalse
 \begin{equation*}
