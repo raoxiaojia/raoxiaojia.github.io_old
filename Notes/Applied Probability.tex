@@ -66,8 +66,8 @@ So
 write $p_n(t) = \P(N(t) = n)$, then let $h \to 0^+$ we get
 \begin{equation*}
 \begin{aligned}
-p'j(t) = -\lambda p_j(t) + \lambda p_{j-1}(t) & j \geq 1\\
-p'0_(t) = -\lambda p_0(t) &
+p'_j(t) &= -\lambda p_j(t) + \lambda p_{j-1}(t) & j \geq 1\\
+p'_0(t) &= -\lambda p_0(t) &
 \end{aligned}
 \end{equation*}
 with boundary condition $p_0(0) = 1$.\\
@@ -84,8 +84,54 @@ Let $G(s,t) = \sum_j s^j p_j(t)$. Now we take the set of differential equation, 
 \end{equation*}
 Then we have $$G(s,t) = A(s) e^{\lambda (s-1) t}$$ We also have $G(s,0)=1$ so we should be able to plug in a suitable value of $s$ to get the desired result (I probably missed that).
 
+\begin{defi}(Holding/interarrival times)
+In a poisson process (pp) with parameter $\lambda$, let $N(t)$ denote the total number of "clicks". Define the arrival times $T_0 = 0$, $T_n = \inf \{t \geq 0: N(t) = n\}$, i.e. the first time $t$ that $N$ reaches $n$ (note right continuity of $N$). We also define the interarrival times $X_n = T_n - T_{n-1}$.
+\end{defi}
 
+\includegraphics[scale=0.5]{image/AP_01.png}
 
+\begin{thm}
+Suppose $X_1,X_2,...$ are known. Let $T_n = \sum_1^n x_i$, note $N(t) = \max\{n:T_n \leq t\}$. Then the random variables $X_1,X_2,...$ are independent and they have the exponential distribution with parameter $\lambda$ ($Exp(\lambda)$).
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+\P(X_1 > t) = \P(N(t) = 0) = e^{-\lambda t}
+\end{aligned}
+\end{equation*}
+So $X_1$ has $Exp(\lambda)$ distribution. Now consider $\P(X_2>t|X_1=t_1)$. This doesm't look to make much sense as $X_1$ has a continuous distribution so $\P(X_1=t_1) = 0$; however we could could consider the conditional densiy as $f_{X|Y} (x|y) =\frac{f_{X,Y}(x,y)}{f_Y(y)}$. Then $\P(X_2>t|X_1=t_1) = \P($ no arrivals in $(t_1,t_1+t)|X_1=t_1) = \P($ no arrivals in $(t_1,t_1+t)$ by independence. This is then equal to $\P($ no arrivals in $(0,t)) = \P(N(t)=0) = e^{-\lambda t}$. Then continue by induction.
+\end{proof}
+\end{thm}
+
+\begin{prop} (properties of a poisson process $N$)\\
+(a) $N$ has stationary independent increments, i.e.:\\
+(i) If $0<t_1<...<t_n$, then $N(t_1),N(t_2)-N(t_1),...,N(t_n)-N(t_{n-1})$ are independent;\\
+(ii) $N(s+t)-N(s) \xrightarrow{d} N(t)-N(0)$.\\
+Amongst processes which are right continuous, non-decreasing, has only jump discontinuities of size 1, (i) and (ii) are characteristics of the Poisson process, meaning that Poisson process is the only process that has those two properties.\\
+(b) Thinning:\\
+Suppose insects arrive as a poisson process with parameter $\lambda$. Each insect is a mosquito with probability $\alpha$, or a skeet with probability $1-\alpha$, and the occurences of the two insects are independent. Then\\
+(i) the mosquito-arrival process $F$ is a $PP(\alpha\lambda)$, 
+(ii) the skeet-arrival process is $S$ a $PP((1-\alpha)\lambda)$, and 
+(iii) these processes are independent.
+\begin{proof}
+(i) and (ii) are immediate by infinitestimal definition of a poisson process. For (iii), by independence we mean that $\P(F(t_1)=f_1,S(t_1)=s_1,...,F(t_n)=f_n,S(t_n)=s_n) = \P(F(t_1)=f_1,...,F(t_n)=f_n) \P(S(t_1)=s_1,...,S(t_n)=s_n)$ $\forall t_1,...,t_n,f_1,...,f_n,s_1,...,s_n)$.
+
+The simple case is 
+\begin{equation*}
+\begin{aligned}
+\P(F(t) = f, S(t) = s) &= \frac{(\lambda t)^{f+s} e^{-\lambda t}}{(f+s)!}{{f+s} \choose f} \alpha^f (1-\alpha)^s\\
+&= \frac{(\alpha\lambda t)^f}{f!} e^{-\alpha\lambda t} \frac{((1-\alpha) \lambda t)^s}{s!} e^{-(1-\alpha)\lambda t}\\
+&= \P(F(t) = f) \P(S(t) = s)
+\end{aligned}
+\end{equation*}
+\end{proof}
+(c) Superposition:\\
+$F$: Flies arrive as $PP(\lambda_1)$;\\
+$S$: Skeets arrive as $PP(\lambda_2)$, and these processes are independent. Then $N=F+S$ is a $PP(\lambda_1+\lambda_2$. This follows by infinitesimal construction of $PP$.\\
+(d) Given $N(t) = n$, write $\mathbf{T} = (T_1,...,T_n)$, $\mathbf{t} = (t_1,...,t_n)$, we have $f_{\mathbf{T}}(\mathbf{t} | N(t) = n) =\left(\frac{1}{t}\right)^n n! L(\mathbf{t})$, where $L(\mathbf{t})=1$ iff $t_1<t_2<...<t_n$.
+\begin{proof}
+Next time.
+\end{proof}
+\end{prop}
 
 
 \iffalse
