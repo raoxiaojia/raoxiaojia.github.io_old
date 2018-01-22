@@ -78,7 +78,7 @@ We say $p$ is a \emph{tautology}, written $\vDash p$, if $v(p) = 1$ $\forall$ va
 (1) $p \implies (q \implies p)$: a true statement is implies by anything. We can verify this by:
 \begin{equation*}
 \begin{aligned}
-v(p) & v(q) & v(q \implies p) & v(p \implies (q \implies p))\\
+v(p)\ & v(q)\ & v(q \implies p)\ & v(p \implies (q \implies p))\\
 1 & 1 & 1 & 1\\
 1 & 0 & 1 & 1\\
 0 & 1 & 0 & 1\\
@@ -103,6 +103,11 @@ If $v(t) = 1$ we say$t$ is true in $v$ or that $v$ is a model of $t$.
 
 For $S \subset L$, $v$ is a model of $S$ if $v(s) = 1$ $\forall s \in S$. So $S \vDash t$ says that every model of $S$ is a model of $t$. For example, in fact $\vDash t$ is the same as $\phi \vDash t$.
 \end{defi}
+
+\newpage
+
+\section{Syntactic implication}
+
 
 
 \iffalse
