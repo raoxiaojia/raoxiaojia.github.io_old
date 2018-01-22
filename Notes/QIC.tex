@@ -41,10 +41,95 @@ $\bullet$ Novel kinds of communicator, e.g. quantum teleportation, etc.
 
 However, building a quantum computer seems to be very difficult now, and is beyond human's capability at this point. In 2018 (this year) we expect to have a working quantum computer of size 50 qubits.
 
-Principles of Quantum Mechanics and Dual bra-ket notation.
+\newpage
 
-Bra \& ket vectors:
+\section{Principles of Quantum Mechanics, Dual bra-ket notation}
 
-Let $V$ be a finite dimensional complex vector space, with inner product. Vectors are written as $|v\rangle$ (rather than $\mathbf{v}$). This is called the \emph{ket vectors} or just \emph{kets}; often work in $2-$dimensional $V_2$ with chosen orthonormal basis $\{|0>,|1\rangle\}$ labelled by bit values $0,1$.
+\subsection{Bra and ket vectors}
+
+Let $V$ be a finite dimensional complex vector space, with inner product. Vectors are written as $|v\ket$ (rather than $\mathbf{v}$). This is called the \emph{ket vectors} or just \emph{kets}; often work in $2-$dimensional $V_2$ with chosen orthonormal basis $\{|0>,|1\ket\}$ labelled by bit values $0,1$; kets always written in components as column vectors, i.e.
+\begin{equation*}
+\begin{aligned}
+|v\ket = a|0\ket+b|1\ket = {a \choose b}, a,b \in \C
+\end{aligned}
+\end{equation*}
+We call the conjugate transpose, $|v\ket^+$ a \emph{bra vector}, written with "mirror image notation",$$\bra v| = |v\ket^+ = a^*\bra 0| + b^* \bra 1| = (a^* \ b^*)$$ so \emph{row vectors} in components.
+
+If $|w\ket$ = $c|0\ket + d|1\ket$ is another ket. Inner product of $|v\ket$ with $|w\ket$ written by juxtaposing $|v\ket^+$ with $|w\ket$,
+\begin{equation*}
+\begin{aligned}
+\bra v|w \ket = |v\ket^+ |w\ket = (a^* b^*) {c \choose d} = a^*c + b^* d
+\end{aligned}
+\end{equation*}
+which is the usual hermitian inner product on $\C^2$.
+
+cf common math notaiton for inner product, $\bra \mathbf{v},\mathbf{w}\ket$.
+
+$V \otimes W$ has dimension $mn$ with orthonormal basis $\{|e_i \ket \otimes |f_j \ket \}_{i,j}$. General ket on $V \otimes W$ is $$|\xi \ket = \sum c_{ij} |e_i \ket \otimes | f_j \ket$$
+
+We have a natural bilinear map $f:V \times W \to V \otimes W$. If $|\alpha \ket = \sum a_i | e_i \ket$, $|\beta \ket = \sum b_j |f_j \ket$, then 
+\begin{equation*}
+\begin{aligned}
+(|\alpha\ket, |\beta\ket) \xrightarrow{f} |\alpha \ket \otimes |\beta\ket &= (\sum a_i | a\ket ) \otimes (\sum b_j | f_j \ket )\\
+&= \sum_{i,j} a_i b_j | e_i \ket \otimes f_j\ket
+\end{aligned}
+\end{equation*}
+In components, $|\alpha\ket \sim a_i$'s, $|\beta \ket \sim b_j$'s, $|\alpha\ket \otimes |\beta \ket \sim a_ib_j$. Note that $\otimes$ is not commutative: in general $|\alpha\ket \otimes |\beta \ket \neq |\beta\ket \otimes |\alpha\ket$ even if $V=W$.
+
+We often omit the $\otimes$ symbol, i.e. we write $|\alpha\ket \otimes |\beta \ket$ as $|\alpha\ket |\beta\ket$.
+
+\subsection{Product vectors and entangled vectors}
+Any vector $|\xi\ket \in V \otimes W$ of form $|\xi\ket = |\alpha\ket |\beta\ket$ (for $|\alpha\ket \in V, |\beta\ket \in W$), called a \emph{product vector}.\\
+This is \emph{not} surjective; any $|\xi\ket \in V \otimes W$ that is \emph{not} a product vectors is called \emph{entangled}.
+
+We will mostly be concerned with tensor products of $V_2$ with itself, write $K$-fold tensor product as $\otimes^k V_2 = \underbrace{V_2 \otimes ... \otimes V_2}_{k \ times}$. This has dimension $2^k$, and orthonormal basis $|i_1 \ket \otimes ... \otimes i_k\ket$, $i_1,...,i_k = 0 \& 1$ labelled by $k$-bit strings. We often write $|i_1 \ket \otimes ... \otimes |i_k\ket$ as $|i_1 \ket |i_2 \ket ... |i_k \ket$ or $|i_1i_2...i_k\ket$, a $k$-bit substring.
+
+\begin{eg}
+$|v\ket = |00\ket + |11\ket \in V_2 \otimes V_2 = \otimes^* V_2$ is entangles. To see this, suppose $|v\ket = (a|0\ket + b|1\ket) (c|0\ket + d|1\ket)$ for some $a,b,c,d.$. Now $RHS = ac|00\ket+ad|01\ket+bc|10\ket+bd|11\ket$. Comparing coefficients with $|v\ket$, $ac=1,ad=0,bc=0,bd=1$ contradiction since we can get both $abcd=1$ and $abcd = 0$.
+\end{eg}
+
+We can show (sheet 1) that for any $|v\ket = \alpha|00\ket + \beta|01\ket + \gamma|10 \ket + \delta|11\ket = \sum c_{ij} |i\ket |j \ket$, where $c_{ij} = {{\alpha\ \beta} \choose {\gamma\ \delta}}$. $|v\ket$ is entangled iff $\alpha \delta - \beta \gamma \neq 0$. \\
+Note that this iff holds only in 2-dimensions.
+
+For general dimensions $V_n \otimes V_n$, any ket $\sum_{i,j=0}^{n-1} A_{ij} |i\ket |j\ket$ is product vector iff $[A_{ij}]$ matrix has rank 1, so $\det A = 0$ is necessary but \emph{not sufficient}.
+
+\subsection{Inner product on $V \otimes W$ }
+This is induced by the inner products on $V$ and $W$. For product vectors, inner product of $|\alpha_1\ket |\beta_1 \ket$ with $|\alpha_2\ket |\beta_2\ket$ is ('matching slots') 
+\begin{equation*}
+\begin{aligned}
+(\bra\beta_1|\bra\alpha_1|) (|\alpha_2\ket |\beta_2 \ket) = \bra \alpha_1 | \alpha_2 \ket \bra\beta_1|\beta_2\ket
+\end{aligned}
+\end{equation*}
+and extend by linearity to general vectors ($(AB)^+ = B^+ A^+$)(?).
+
+Note notation: The bra vector of $|\alpha\ket |\beta\ket$ is often written in reverse order $\bra \beta | \bra\alpha|$. It's always important to keep track of component spaces.
+
+Sometimes to be explained we label slots, eg write $|\alpha\ket_A |\beta\ket_B$ with bra ${}_A\bra\beta|{}_B\bra\alpha|$.
+ 
+Quantum principle (QM1) (physical staets): states of any (isolated) physical system $S$ are represented by unit vectors in a complex vector space $V$ with innter product.
+
+The simplest non-trivial case $V=V_2$, 2-dimensional: choose a pair of orthonormal vectors, label them with bit values.\\
+viz (?) $|0\ket$ and $|1\ket$, called \emph{computational basis} or \emph{standard basis}.
+
+General staet: $|\psi\ket = a|0\ket + b|1\ket$, $\bra\psi|\psi\ket = |a|^2+|b|^2 = 1$.
+
+We say $|\psi\ket$ is a \emph{superposition} of states $|0\ket$ and $|1\ket$, with \emph{amplitude} $a$ and $b$ respectively.
+
+Qubit: any quantum system with $2$-dimensional state space with a choice of orthonormal basis.
+
+Conjugate basis (or $X$-basis): given $0\ket$, $|1\ket$, we define $$|+\ket = \frac{1}{\sqrt{2}} (|0\ket+|1\ket)$$ and $$|-\ket = \frac{1}{\sqrt{2}}(|0\ket-|1\ket)$$
+
+(QM2) (composite systems)\\
+If systems $S_1$ has staet space $V_1$, $S_2$ has state space $V_2$, then joint system $S_1S_2$ has state space $V_1 \otimes V_2$.
+
+
+
+\iffalse
+\begin{equation*}
+\begin{aligned}
+
+\end{aligned}
+\end{equation*}
+\fi
 
 \end{document}
