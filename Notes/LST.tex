@@ -25,10 +25,12 @@ Some introductory speech
 \section{Propositional logic}
 Let $P$ denote a set of \emph{primitive proposition}, unless otherwise stated, $P=\{p_1,p_2,...\}$.
 
+\begin{defi}
 The \emph{language} or \emph{set of propositions} $L=L(P)$ is defined inductively by:\\
-1) $p \in L$ $\forall p \in P$;\\
-2) $\perp in L$, where $\perp$ is read as 'false';\\
-3) If $p,q \in L$, then $(p \implies q) \in L$. For example, $(p_1 \implies L)$, $((p_1 \implies p_2) \implies (p_1 \implies p_3))$.
+(1) $p \in L$ $\forall p \in P$;\\
+(2) $\perp \in L$, where $\perp$ is read as 'false';\\
+(3) If $p,q \in L$, then $(p \implies q) \in L$. For example, $(p_1 \implies L)$, $((p_1 \implies p_2) \implies (p_1 \implies p_3))$.
+\end{defi}
 
 Note that at this point, each proposition is only a finite string of symbols from the alphabet $(,),\implies,\perp,p_1,p_2,...$ and do not really mean anything (until we define so).\\
 By \emph{inductively define}, we mean more precisely that we set $L_1 = P \cup \{\perp\}$, and $L_{n+1} = L_n \cup \{(p \implies q):p,q \in L_n\}$, and then put $L = L_1 \cup L_2 \cup ...$.
@@ -40,7 +42,35 @@ $\bullet$ $\neg p$ (not $p$), as an abbreviation for $p \implies L$;\\
 $\bullet$ $p \vee q$ ($p$ or $q$), as an abbreviation for $(\neg p) \implies q$;\\
 $\bullet$ $p \wedge q$ ($p$ and $q$), as an abbreviation for $(p \implies (\neg q))$.
 
-Note that these definitions 'make sense' in the way that we expect them to.
+These definitions 'make sense' in the way that we expect them to.
+
+\begin{defi}
+A \emph{valuation} is a function $v:L \to \{0,1\}$ s.t.\\
+(1) $v(\perp) = 0$;
+(2) 
+\begin{equation*}
+\begin{aligned}
+v(p \implies q) = \left\{ \begin{array}{ll}
+0 & v(p) =1, v(q) = 0\\
+1 & else
+\end{array}
+\right. \forall p,q \in L
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{rem}
+On $\{0,1\}$, we could define a constant $\perp$ by $\perp = 0$, and an operation $\implies$ by $a \implies b = 0$ if $a=1, b=0$ and $1$ otherwise. Then a valuation is a function $L \to \{0,1\}$ that preserves the structure ($\perp$ and $\implies$), i.e. a homomorphism.
+\end{rem}
+
+
+\iffalse
+\begin{equation*}
+\begin{aligned}
+
+\end{aligned}
+\end{equation*}
+\fi
 
 
 \end{document}
