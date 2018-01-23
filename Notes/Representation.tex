@@ -177,7 +177,7 @@ and we get a representation $\rho': G \to GL(F^n)$ isomorphic to $\rho$:
 \includegraphics[scale=0.5]{image/Rep_02.png}
 \end{rem}
 
-(2.12) In terms of matrix representaitons, we have
+(2.12) In terms of matrix representations, we have
 \begin{equation*}
 \begin{aligned}
 R: G &\to GL_n(F),\\
@@ -193,6 +193,99 @@ In terms of linear $G$-actions, the actions of $G$ on $V$,$V'$ are $G$-isomorphi
 Let $\rho:G \to GL(V)$ be a representation of $G$. We say $W \leq V$ is a $G$-subspace if it's a subspace and it is $\rho(G)$-invariant, i.e. $\rho_g(W) \leq W \forall g \in G$. Obviously $\{0\}$ and $V$ are $G$-subspaces, however.\\
 $\rho$ is \emph{irreducible/simple} representation if there are no proper $G$-subspaces.
 \end{defi}
+
+\begin{eg} (2.14)\\
+Any $1$-dimensional representaiton of $G$ is irreducible, but not conversely, e.g. $D_8$ has $2$-dimensional $\C$-irreducible representation.
+\end{eg}
+
+(2.15) In definition (2.13), if $W$ is a $G$-subspace, then the corresponding map
+\begin{equation*}
+\begin{aligned}
+G &\to GL(W)\\
+g &\to \rho(g)|_W
+\end{aligned}
+\end{equation*}
+is a representation of $G$, a \emph{subrepresentaiton} of $\rho$.
+
+\begin{lemma} (2.16)\\
+In definition (2.13), given $\rho:G \to GL(V)$, if $W$ is a $G$-subspace of $V$ and if $B=\{v_1,...,v_n\}$ is a basis containing basis $B_1 = \{v_1,...,v_m\}$ of $W$ ($0<m<n$) then the matrix of $\rho(g)$ w.r.t. $B$ has block upper triangular form as the graph below, for each $g \in G$.
+\includegraphics[scale=0.5]{image/Rep_03.png}
+\end{lemma}
+
+\begin{eg} (2.17)\\
+(i) The irreducible representaitons of $C_4=\bra x:x^4=1\ket$ are all $1$-dimensional and four of these are $x\to i,x \to -1, x \to -i, x \to 1$. In general, $C_m=\bra x:x^m=1\ket$ has precisely $m$ irreducible complex representations, all of dimension 1. In fact, all complex irreducible representations of a finite abelian group are $1$-dimensional (use (1.4)* or see (4.4) below).\\
+(ii) $G=D_6$: any irreducible $C$-representation has dimension $\leq 2$.\\
+Let $\rho:G \to GL(V)$ be irreducible $G$-representation. Let $r,s$ be rotation and reflection in $D_6$ respectively. Let $V$ be eigenvector of $\rho(r)$. So $\rho(r) v = \lambda v$ for some $\lambda \neq 0$. Let $W=span\{v,\rho(s)v\} \leq V$. Since $\rho(s)\rho(s)v = v$ and $\rho(r)\rho(s) v = \rho(s)\rho(r)^{-1} v = \lambda^{-1} \rho(s) v$, both of which are in $W$; so $W$ is $G$-invariant, i.e. a $G$-subspace. Since $V$ is irreducible, $W=V$.
+\end{eg}
+
+\begin{defi} (2.18)\\
+We say at $\rho:G \to GL(V)$ is \emph{decomposable} if there are proper $G$-invariant subspaces $U,W$ with $V = U \oplus W$. Say $\rho$ is direct sum $\rho_U \oplus \rho_W$. If no such decomposition exists, we say that $\rho$ is \emph{indecomposable}.
+\end{defi}
+
+\begin{lemma} (2.19)\\
+Suppose $\rho:G \to GL(V)$ is decomposable with $G$-invariant decomposition $V=U \oplus W$. If $B$ is a basis $\{\underbrace{u_1,...,u_k}_{B_1}, \underbrace{w_1,...,w_l}_{B_2}\}$ of $V$ consisting of basis of $U$ and basis of $W$, then w.r.t. $B$, $\rho(g)_B$ is a block diagonal matrix $\forall g\in G$ as 
+\begin{equation*}
+\begin{aligned}
+\rho(g)_B = \begin{pmatrix}
+[\rho_W(g)]_{B_1} & 0\\
+0 & [\rho_W(g)]_{B_2}
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+\end{lemma}
+
+\begin{defi} (2.20)\\
+If $\rho:G \to GL(V)$, $\rho':G \to GL(V')$, the \emph{direct sum} of $\rho,\rho'$ is $$\rho \oplus \rho':G \to GL(V \oplus V')$$ where $\rho \oplus \rho'(g) (v_1+v_2) = \rho(g)v_1 + \rho'(g) v_2$, a \emph{block diagonal action}. For matrix representations $R:G \to GL_n(F)$, $R':G \to GL_{n'} (F)$, define $R \oplus R': G \to GL_{n+n'}(F)$:
+\begin{equation*}
+\begin{aligned}
+g \to \begin{pmatrix}
+R(g) & 0\\
+0 & R'(g)
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\newpage
+\section{Complete reducibility and Maschke's theorem}
+\begin{defi} (3.1)\\
+A representation $\rho:G \to GL(V)$ is \emph{completely reducible}, or \emph{semisimple}, if it is a direct sum of irreducible representations. Evidently, irreducible implies completely reducible (lol).
+\end{defi}
+
+\begin{rem} (3.2)\\
+(1) The converse is false;\\
+(2) See sheet 1 Q3: $\C$-representaiton of $\Z$ is not completely reducible and also representaiton of $C_p$ over $\F_p$ is not c.r..
+
+Fron now on, take $G$ finite and $\char F =0$.
+\end{rem}
+
+\begin{thm} (3.3)\\
+Every f.d. representation $V$ of a finite group over a field of char $0$ is completely reducible, i.e. $$V \cong V_1 \oplus ... \oplus V_r$$is a direct sum of representations, each $V_i$ irreducible.
+\end{thm}
+
+It is enough to prove:
+
+\begin{thm} (3.4 Maschke's theorem, 1899)\\
+Let $G$ be finite, $\rho:G \to GL(V)$ a f.d. representation, $char\ F = 0$. If $W$ is a $G$-subspace of $V$, then there exists a $G$-subspace $U$ of $V$ s.t. $V = W \oplus U$, a direct sum of $G$-subspaces.
+\begin{proof} (1)\\
+Let $W'$ be any \emph{vector subspace} complement of $W$ in $V$, i.e. $V=W \oplus W'$ as vector spaces, and $W \cap W'=0$. Let $q:V \to W$ be th projection of $V$ onto $W$ along $W'$ ($\ker q = W'$), i.e. if $v=w+w'$ then $q(v) = w$. Define $$\bar{q} : v \to \frac{1}{|G|} \sum_{g \in G} g q(g^{-1}v)$$the 'average' of $q$ over $G$. Note that in order for $\frac{1}{|G|}$ to exists, we need $char\ F = 0$. It still works if $char\ F \nmid |G|$.\\
+Claim (1): $\bar{q}:V \to W$: For $v \in V$, $g(q^{-1}v) \in W$ and $gW \let W$;\\
+Claim (2): $\bar{q}(w) = w$ for $w \in W$: $$\bar{q}(w) = \frac{1}{|G|} \sum_{g \in G} gq(g^{-1}w) = \frac{1}{|G|} \sum g(g^{-1}w) = \frac{1}{|G|} \sum w = w$$
+So these two claims imply that $\bar{q}$ projects $V$ onto $W$.\\
+Claim (3) If $h \in G$ then $h\bar{q}(v) = \bar{q}(hv)$ ($v \in V$):
+\begin{equation*}
+\begin{aligned}
+h\bar{q}(v) &= h\frac{1}{|G|} \sum_g g \cdot q(g^{-1} v)\\
+&= \frac{1}{|G|} \sum_g hgq(g^{-1} v)\\
+&= \frac{1}{|G|} \sum (hg) q((hg)^{-1} hv)\\
+&= \frac{1}{|G|} \sum_g gq(g^{-1}(hv))\\
+&= \bar{q}(hv\\
+&= \bar{q}(hv))
+\end{aligned}
+\end{equation*}
+We'll then show that the kernel of this map is $G$-invariant, so this gives a $G$-summand on Thursday.
+\end{proof}
+\end{thm}
 
 \iffalse
 \begin{equation*}

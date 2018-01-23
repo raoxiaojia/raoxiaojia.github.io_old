@@ -64,12 +64,12 @@ On $\{0,1\}$, we could define a constant $\perp$ by $\perp = 0$, and an operatio
 \end{rem}
 
 \begin{prop}
-(1) If $v,v'$ are valueations with $v(p) = v'(p)$ $\forall p \in P$, then $v=v'$ (on $L$).\\
+(1) If $v,v'$ are valuations with $v(p) = v'(p)$ $\forall p \in P$, then $v=v'$ (on $L$).\\
 (2) For any $w:P \to \{0,1\}$, there exists a valuation $v$ with $v(p) = w(p)$ $\forall p \in P$.\\
 In short, a valuation is defined by its value on $p$, and any values will do.
 \begin{proof}
 (1) We have $v(p)=v'(p)$ $\forall p \in L_1$. However, if $v(p) = v'(p)$ and $v(q) = v'(q)$ then $v(p \implies q) = v'(p \implies q)$, so $v=v'$ on $L_2$. Continue inductively we have $v=v'$ on $L_n \forall n$.\\
-(2) Set $v(p) = w(p)$ $\forall p \in P$ and $v(\perp) = 0$: this defines $v$ on $L_1$. Having defined $v$ on $L_n$, use the rules for valuaton to inductively define $v$ on $L_{n+1}$ so we can extend $v$ to $L$.
+(2) Set $v(p) = w(p)$ $\forall p \in P$ and $v(\perp) = 0$: this defines $v$ on $L_1$. Having defined $v$ on $L_n$, use the rules for valuation to inductively define $v$ on $L_{n+1}$ so we can extend $v$ to $L$.
 \end{proof}
 \end{prop}
 
@@ -96,12 +96,12 @@ Indeed, if not then we have some $v$ with $v(p\implies(q \implies r)) = 1$, $v(\
 \end{defi}
 
 \begin{defi}
-For $S \subset L$, $t \in L$, say $S$ \emph{entails} or \emph{semantically implies} $t$, written $S \vDash t$ if $v(s) = 1 \forall s \in S \implies v(t) = 1$, each valuation $v$.\\
+For $S \subset L$, $t \in L$, say $S$ \emph{entails} or \emph{semantically implies} $t$, written $S \vDash t$ if $v(s) = 1 \forall s \in S \implies v(t) = 1$, for each valuation $v$.\\
 ("Whenever all of $S$ is true, $t$ is true as well.")
 
 For example, $\{p \implies q, q \implies r\} \vDash (p \implies r)$. To prove this, suppose not: so we have $v$ with $v(p\implies q) = v(q\implies r) = 1$ but $v(p\implies r) = 0$. So $v(p) = 1$, $v(r) = 0$, so $v(q) = 0$, but then $v(p \implies q)$ = 0.
 
-If $v(t) = 1$ we say$t$ is true in $v$ or that $v$ is a model of $t$.
+If $v(t) = 1$ we say $t$ is true in $v$ or that $v$ is a model of $t$.
 
 For $S \subset L$, $v$ is a model of $S$ if $v(s) = 1$ $\forall s \in S$. So $S \vDash t$ says that every model of $S$ is a model of $t$. For example, in fact $\vDash t$ is the same as $\phi \vDash t$.
 \end{defi}
@@ -121,9 +121,9 @@ As deduction rules, we'll take just \emph{modus ponens}: from $p$, and $p\implie
 
 For $S \subset L$, $t \in L$, a \emph{proof} of $t$ from $S$ cosists of a finite sequence $t_1,...,t_n$ of propositions, with $t_n = t$, s.t. $\forall i$ the proposition $t_i$ is an axiom, or a member of $S$, or there exists $j,k < i$ with $t_j=(t_k \implies t_i)$.
 
-We say $s$ is the \emph{hypotheses} or \emph{premises} and $t$ is the \emph{conclusion}.
+We say $S$ is the \emph{hypotheses} or \emph{premises} and $t$ is the \emph{conclusion}.
 
-If there exists a proof of $t$ from $S$, we say $S$ \emph{proves} or \emph{syntactically implies} $t$, written $s \vdash t$.
+If there exists a proof of $t$ from $S$, we say $S$ \emph{proves} or \emph{syntactically implies} $t$, written $S \vdash t$.
 
 If $\phi \vdash t$, we say $t$ is a \emph{theorem}, written $\vdash t$.
 
