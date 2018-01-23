@@ -144,8 +144,9 @@ so that our differential equations become
 \end{equation*}
 which has fixed points $(0,0),(n^*_U,0),(0,n^*_I),(n^*_I(1-n^*_I-n^*_U),n^*_I(n^*_U-n^*_I))$. The first is unstable, the second two are stable and the last fixed point is a saddle. This is disappointing because we want a small infection to be spread out to the whole population, but in that case the second fixed point needs to be unstable.
 
-\subsection{Global analysis}
-We can plot the flow of the ode system,
+Global analysis:
+
+We can plot the flow of the ode system
 \begin{equation*}
 \begin{aligned}
 \frac{d}{dt} {n_U \choose n_I} = {{f_U(n_U,n_I)} \choose {f_I(n_U,n_I)}}
@@ -155,9 +156,43 @@ This is usually done by programming. We'll try to sketch the flow of this model:
 
 \includegraphics[scale=0.5]{image/Bio_04.png}
 
-Qualitative behaviour: we need a finite (large) $n_I(0)$.
+Qualitative behaviour: we need a finite (large) $n_I(0)$ (in order to converge to $(n^*_I,0)$).
 
 For quantitative part we can only do numerical integrations.
+
+Now we consider an epidemic model, where each individual may pass through three phases: susceptibles, infectives, recovered (compartment models -- same individual for different phases). We use $S(t),I(t),R(t)$ to denote the population of each of them. 
+
+\includegraphics[scale=0.5]{image/Bio_05.png}
+
+Now we want to know what is the rate of their change. We use biological datum, from which we know there is a per capita infection rate $\beta$, a recovery rate $\nu$, so in conclusion we have
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} S &= -\beta SI\\
+\frac{d}{dt} I &= \beta SI - \nu I\\
+\frac{d}{dt} R &= \nu 
+\end{aligned}
+\end{equation*}
+Also we expect the population to be closed, i.e. the total population should not change over time (unlike the previous model), so 
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt}(S+I+R) = 0
+\end{aligned}
+\end{equation*}
+Which is true. So it's sufficient to look at just two equations,
+\begin{equation*}
+\begin{aligned}
+\frac{dS}{dt} &= -\beta SI\\
+\frac{dI}{dt} &= \beta SI - \nu I
+\end{aligned}
+\end{equation*}
+What are the questions we want to ask? We may want to know:\\
+$\bullet$ When can you have an \emph{outbreak}, i.e. $\frac{dI}{dt}>0$;\\
+$\bullet$ What is the final size of the outbreak?\\
+$\bullet$ What vaccination strategy would work best?\\
+$\bullet$ Endemic $\implies I^*>0$, finite number of $I$ in steady state.
+
+For obvious reason we call this the "SIR model".
+
 
 \iffalse
 
