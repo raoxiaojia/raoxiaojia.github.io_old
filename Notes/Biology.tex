@@ -108,26 +108,56 @@ Now consider $\frac{d}{dt}$ of $n_U$ and $n_I$ (uninfected and infected females)
 
 \begin{equation*}
 \begin{aligned}
-\frac{d}{dt} n_U = r n_U \frac{n_U}{n_U + n_I} - dn_U - \varepsilon (n_U+n_I) n_U\\
-\frac{d}{dt} n_I = \lambda r n_I \frac{n_U}{n_U + n_I} + \lambda r n_I \frac{n_I}{n_U + n_I} - \mu d n_I - \varepsilon (n_U+n_I) n_I \ (*)
+\frac{d}{dt} n_U &= r n_U \frac{n_U}{n_U + n_I} - dn_U - \varepsilon (n_U+n_I) n_U\\
+\frac{d}{dt} n_I &= \lambda r n_I \frac{n_U}{n_U + n_I} + \lambda r n_I \frac{n_I}{n_U + n_I} - \mu d n_I - \varepsilon (n_U+n_I) n_I \ (*)
 \end{aligned}
 \end{equation*}
-This is our model when $p=2$.
+This is our model when $p=2$. The term with $\varepsilon$ is the death rate associated with competition.
 
-We'll try to simplify these equations. By rescaling the time as $t \to rt$, nd rescaling the population as $n \to \frac{\varepsilon}{r} n$, we get
+We'll try to simplify these equations. By rescaling the time as $t \to rt$, and rescaling the population as $n \to \frac{\varepsilon}{r} n$, we get (?)
 \begin{equation*}
 \begin{aligned}
 \frac{d}{dt} n_U &= n_U \frac{n_U}{n_U + n_I} - \frac{d}{r} n_U - (n_U+n_I) n_U\\
-&= n_U\left[\frac{n_U}{n_U+n_I}] - \frac{d}{r} - (n_U+n_I)\right] \ (1)
+&= n_U\left[\frac{n_U}{n_U+n_I} - \frac{d}{r} - (n_U+n_I)\right] \ (1)
 \end{aligned}
 \end{equation*}
-and the second equation becomes
+and the second equation becomes (???)
 \begin{equation*}
 \begin{aligned}
 \frac{d}{dt} n_I = n_I \left[\lambda - \mu \frac{d}{r} - (n_U+n_I)\right] \ (2)
 \end{aligned}
 \end{equation*}
 
+We'd like to see that the model has at least the fixed points $\mathbf{n}^* = (n^*_U,0)$ and $(0,n^*_I)$. The lecture then somehow defines
+\begin{equation*}
+\begin{aligned}
+n^*_I &= \lambda - \mu \frac{d}{r}\\
+n^*_U &= 1-\frac{d}{r}
+\end{aligned}
+\end{equation*}
+so that our differential equations become
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_U &= n_U \left[n^*_U - \frac{n_I}{n_U+n_I} - (n_U+n_I)\right]\\
+\frac{d}{dt} n_I &= n_I \left[n^*_ - (n_U+n_I)\right]
+\end{aligned}
+\end{equation*}
+which has fixed points $(0,0),(n^*_U,0),(0,n^*_I),(n^*_I(1-n^*_I-n^*_U),n^*_I(n^*_U-n^*_I))$. The first is unstable, the second two are stable and the last fixed point is a saddle. This is disappointing because we want a small infection to be spread out to the whole population, but in that case the second fixed point needs to be unstable.
+
+\subsection{Global analysis}
+We can plot the flow of the ode system,
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} {n_U \choose n_I} = {{f_U(n_U,n_I)} \choose {f_I(n_U,n_I)}}
+\end{aligned}
+\end{equation*}
+This is usually done by programming. We'll try to sketch the flow of this model:
+
+\includegraphics[scale=0.5]{image/Bio_04.png}
+
+Qualitative behaviour: we need a finite (large) $n_I(0)$.
+
+For quantitative part we can only do numerical integrations.
 
 \iffalse
 

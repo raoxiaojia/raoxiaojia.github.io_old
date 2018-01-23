@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  23 JAN 2018 11:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  23 JAN 2018 11:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Biology.tex
-(./Biology.tex
+**SFM_comment.tex
+(./SFM_comment.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 5 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -725,24 +725,25 @@ Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 ))
 Package hyperref Info: Option `colorlinks' set `true' on input line 38.
 )
-(./Biology.aux)
-\openout1 = `Biology.aux'.
+(./SFM_comment.aux)
+\openout1 = `SFM_comment.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
- (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count143
 \scratchdimen=\dimen190
@@ -771,7 +772,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box41
-Package hyperref Info: Link coloring ON on input line 7.
+Package hyperref Info: Link coloring ON on input line 5.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -781,15 +782,15 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count149
 )
-LaTeX Info: Redefining \ref on input line 7.
-LaTeX Info: Redefining \pageref on input line 7.
-LaTeX Info: Redefining \nameref on input line 7.
+LaTeX Info: Redefining \ref on input line 5.
+LaTeX Info: Redefining \pageref on input line 5.
+LaTeX Info: Redefining \nameref on input line 5.
 
-(./Biology.out) (./Biology.out)
+(./SFM_comment.out) (./SFM_comment.out)
 \@outlinefile=\write4
-\openout4 = `Biology.out'.
+\openout4 = `SFM_comment.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 7.
+LaTeX Info: Redefining \microtypecontext on input line 5.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -809,16 +810,16 @@ ABD: EveryShipout initializing macros
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
 your preamble.
- on input line 7.
+ on input line 5.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 12.
+LaTeX Font Info:    Try loading font information for U+msa on input line 10.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 12.
+LaTeX Font Info:    Try loading font information for U+msb on input line 10.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -831,95 +832,57 @@ LaTeX Warning: No \author given.
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Biology.toc)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./SFM_comment.toc)
 \tf@toc=\write5
-\openout5 = `Biology.toc'.
+\openout5 = `SFM_comment.toc'.
 
- [2]
-[3] [4] <image/Bio_01.png, id=57, 722.7pt x 406.51875pt>
-File: image/Bio_01.png Graphic file (type png)
 
-<use image/Bio_01.png>
-Package pdftex.def Info: image/Bio_01.png used on input line 90.
-(pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
-
-Overfull \hbox (16.3491pt too wide) in paragraph at lines 90--91
-[][] 
+[2]
+Overfull \hbox (25.88657pt too wide) in paragraph at lines 19--20
+\OT1/cmr/m/n/10 (-20) The last in-equal-ity proves $\OML/cmm/m/it/10 ^^Y[]\OT1/
+cmr/m/n/10 (-20) (\OML/cmm/m/it/10 Y\OT1/cmr/m/n/10 (-20) ) \OMS/cmsy/m/n/10 ^^
+U \OML/cmm/m/it/10 ^^Y[]\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 Y\OT1/cmr/m/n/1
+0 (-20) )$ be-cause $\U/msb/m/n/10 E\OT1/cmr/m/n/10 (-20) [\OML/cmm/m/it/10 U\O
+T1/cmr/m/n/10 (-20) ([](\OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 (-20) + \OML/cmm/m
+/it/10 X[]\OT1/cmr/m/n/10 (-20) )] \OMS/cmsy/m/n/10 ^^T [][] \U/msb/m/n/10 E\OT
+1/cmr/m/n/10 (-20) [\OML/cmm/m/it/10 U\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 X
+\OT1/cmr/m/n/10 (-20) )]$,
  []
 
-<image/Bio_02.png, id=58, 722.7pt x 406.51875pt>
-File: image/Bio_02.png Graphic file (type png)
- <use image/Bio_02.png>
-Package pdftex.def Info: image/Bio_02.png used on input line 101.
-(pdftex.def)             Requested size: 505.88655pt x 284.56117pt.
-
-Overfull \hbox (160.88655pt too wide) in paragraph at lines 101--102
-[][] 
- []
-
-[5 <./image/Bio_01.png>] <image/Bio_03.png, id=64, 722.7pt x 406.51875pt>
-File: image/Bio_03.png Graphic file (type png)
-
-<use image/Bio_03.png>
-Package pdftex.def Info: image/Bio_03.png used on input line 103.
-(pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
-
-Overfull \hbox (16.3491pt too wide) in paragraph at lines 103--104
-[][] 
- []
-
-[6 <./image/Bio_02.png> <./image/Bio_03.png>]
-
-Package amsmath Warning: Foreign command \atopwithdelims;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 151.
-
-<image/Bio_04.png, id=69, 722.7pt x 406.51875pt>
-File: image/Bio_04.png Graphic file (type png)
- <use image/Bio_04.png>
-Package pdftex.def Info: image/Bio_04.png used on input line 156.
-(pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
-
-Overfull \hbox (16.3491pt too wide) in paragraph at lines 156--157
-[][] 
- []
-
-[7] [8 <./image/Bio_04.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 172.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
- (./Biology.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 172.
-Package rerunfilecheck Info: File `Biology.out' has not changed.
-(rerunfilecheck)             Checksum: 99AFC834A58D1B6AF7A6BB3D18A5A693;165.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 172.
+[3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 33.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 33.
+ (./SFM_comment.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 33.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 33.
+Package rerunfilecheck Info: File `SFM_comment.out' has not changed.
+(rerunfilecheck)             Checksum: DE5FB23FABC170435FDBFD50ABB7C125;101.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 33.
  ) 
 Here is how much of TeX's memory you used:
- 27813 strings out of 494910
- 663974 string characters out of 6179835
- 885616 words of memory out of 5000000
- 30597 multiletter control sequences out of 15000+600000
- 13391 words of font info for 64 fonts, out of 8000000 for 9000
+ 27764 strings out of 494910
+ 663414 string characters out of 6179835
+ 878620 words of memory out of 5000000
+ 30576 multiletter control sequences out of 15000+600000
+ 12415 words of font info for 55 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 57i,13n,77p,742b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,6n,77p,746b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on Biology.pdf (8 pages, 324144 bytes).
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
+10.pfb>
+Output written on SFM_comment.pdf (3 pages, 106585 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
- 103 compressed objects within 2 object streams
- 13 named destinations out of 1000 (max. 500000)
- 13369 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 88 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
+ 7 named destinations out of 1000 (max. 500000)
+ 12317 words of extra memory for PDF output out of 14400 (max. 10000000)
 
