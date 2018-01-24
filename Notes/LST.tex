@@ -112,7 +112,7 @@ For $S \subset L$, $v$ is a model of $S$ if $v(s) = 1$ $\forall s \in S$. So $S 
 
 For a notion of 'proof', we will need axioms and deduction rules. As axioms, we'll take:\\
 1. $p \implies (q \implies p)$ $\forall p,q \in L$;\\
-2. $[p\implies (q \implies r)] \implies [(p \implies q) \implies (p \implies r)]$ $\forall p,q,r \in L$;
+2. $[p\implies (q \implies r)] \implies [(p \implies q) \implies (p \implies r)]$ $\forall p,q,r \in L$;\\
 3. $(\neg\neg p) \implies p$ $\forall p \in L$.
 
 Note: these are all tautologies. Sometimes we say they are 3 axiom-schemes, as all of these are infinite sets of axioms.
@@ -126,6 +126,61 @@ We say $S$ is the \emph{hypotheses} or \emph{premises} and $t$ is the \emph{conc
 If there exists a proof of $t$ from $S$, we say $S$ \emph{proves} or \emph{syntactically implies} $t$, written $S \vdash t$.
 
 If $\phi \vdash t$, we say $t$ is a \emph{theorem}, written $\vdash t$.
+
+\begin{eg}
+$\{p \implies q, q \implies r\} \vdash p \implies r$.\\
+we deduce by the following:\\
+(1) $[p \implies (q \implies r)] \implies [(p \implies q) \implies (p \implies r)]$; (axiom 2)\\
+(2) $q \implies r$; (hypothesis)\\
+(3) $(q \implies r) \implies (p \implies (q \implies r))$; (axiom 1)\\
+(4) $p \implies (q \implies r)$; (mp on 2,3)\\
+(5) $(p \implies q) \implies (p \implies r)$ (mp on 1,4);\\
+(6) $p \implies q$; (hypothesis)\\
+(7) $p \implies r$. (mp on 5,6)
+\end{eg}
+
+\begin{eg}
+Let's now try to prove $\vdash p \implies p$. Axiom 1 and 3 probably don't help so look at axiom 2; if we make $(p \implies q)$ and $p\implies (q \implies r)$ something that's a theorem, and make $p \implies r$ to be $p \implies p$ then we are done. So we need to take $p=p,q=(p \implies p), r=p$. Now:\\
+(1) $[p \implies ((p \implies p) \implies p)] \implies [( p \implies (p \implies p)) \implies (p \implies p)]$; (axiom 2)\\
+(2) $p \implies ((p \implies p) \implies p)$; (axiom 1)\\
+(3) $(p \implies (p \implies p)) \implies (p \implies p)$; (mp on 1,2)\\
+(4) $p \implies (p \implies p)$; (axiom 1)\\
+(5) $p \implies p$. (mp on 3,4)
+\end{eg}
+
+Proofs are made easier by:
+\begin{prop} (2, deduction theorem)\\
+Let $S \subset L$, $p,q \in L$. Then $S \vdash (p \implies q)$ if and only if $(S \cup \{p\}) \vdash q$.
+\begin{proof}
+Forward: given a proof of $p \implies q$ from $S$, add the lines $p$ (hypothesis), $q$ (mp) to optaion a proof of $q$ from $S\cup\{p\}$.\\
+Backward: if we have proof $t_1,...,t_n=q$ of $q$ from $S \cup \{p\}$. We'll show that $S \vdash (p \implies t_i) \forall i$, so $p \implies t_n=q$.\\
+If $t_i$ is an axiom, then we have $\vdash t_i \implies (p \implies t_i)$, so $\vdash p \implies t_i$;\\
+If $t_i \in S$, write down $t_i$, $t_i \implies (p \implies t_i)$, $p \implies t_i$ we get a proof of $p \implies t_i$ from $S$;\\
+If $t_i = p$: we know $\vdash (p \implies p)$, so done;\\
+If $t_i$ obtained by mp: in that case we have some earlier lines $t_j$ and $t_j \implies t_i$. By induction, we may assume $S \vdash (p \implies t_j)$ and $S \vdash (p \implies (t_j \implies t_i))$. Now we can write down $[p \implies (t_j \implies t_i)] \implies [(p \implies t_j) \implies (t_i)]$ by axiom 2, $p \implies (t_j \implies t_i)$, $p \implies t_j) \implies (p \implies t_i)$ (mp), $p \implies t_j$, $p \implies t_i$ (mp) to obtain $S \vdash (p \implies t_i)$.
+
+These are all of the cases. So $S \vdash (p \implies q)$.
+\end{proof}
+This is why we chose axiom 2 as we did -- to make this proof work.
+\end{prop}
+
+\begin{eg}
+To show $\{p \implies q, q \implies r\} \vdash (p \implies r)$, it's enough to show that $\{p \implies q, q \implies r, p\} \vdash r$, which is trivial by mp.
+\end{eg}
+
+Now, how are $\vdash$ and $\vDash$ related? We are going to prove the \emph{completeness theorem}: $S \vdash t \iff S \vDash t$.
+
+This ensures that our proofs are sound, in the sense that everything it can prove is not absurd ($S \vdash t$ then $S \vDash t$), and are adequate, i.e. our axioms are powerful enough to define every semantic consequence of $S$, which is not obvious ($S \vDash t$ then $S \vdash t$).
+
+\begin{prop} (3)\\
+Let $S \subset L$, $t \in L$. Then $S \vdash t \implies S \vDash t$.
+\begin{proof}
+Given a valuation $v$ with $v(s) =1$ $\forall s \in S$, we want $v(t) = 1$.\\
+We have $v(p) = 1$ $\forall p$ axiom as our axioms are all tautologies (proven earier); $v(p)=1$ $\forall p \in S$ by definition of $v$; also if $v(p) = 1$ and $v(p \implies q) = 1$, then also $v(q) = 1$ (by definition of $\implies$). So $v(p) = 1$ for each line $p$ of our proof of $t$ from $S$.
+\end{proof}
+\end{prop}
+
+We say $S \subset L$ consistent if $S \not\vdash \perp$. One special case of adequacy is: $S \vDash \perp \implies S \vdash \perp$, i.e. if $S$ has no model then $S$ inconsistent, i.e. if $S$ is consistent then $S$ has a model. This implies adequacy: given $S \vDash t$, we have $S \cup \{\neg t\} \vDash \perp$, so by our special case we have $S \cup \{\neg t\} \vdash \perp$, i.e. $S \vdash ((\neg t) \implies t)$ by deduction theorem, so $S \vdash \neg\neg t$. But $S \vdash ((\neg\neg t) \implies t)$ by axiom 3, so $S \vdash t$ (mp).
 
 \iffalse
 \begin{equation*}
