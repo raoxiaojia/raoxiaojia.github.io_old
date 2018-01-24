@@ -98,7 +98,7 @@ Suppose $X_1,X_2,...$ are known. Let $T_n = \sum_1^n x_i$, note $N(t) = \max\{n:
 \P(X_1 > t) = \P(N(t) = 0) = e^{-\lambda t}
 \end{aligned}
 \end{equation*}
-So $X_1$ has $Exp(\lambda)$ distribution. Now consider $\P(X_2>t|X_1=t_1)$. This doesm't look to make much sense as $X_1$ has a continuous distribution so $\P(X_1=t_1) = 0$; however we could could consider the conditional densiy as $f_{X|Y} (x|y) =\frac{f_{X,Y}(x,y)}{f_Y(y)}$. Then $\P(X_2>t|X_1=t_1) = \P($ no arrivals in $(t_1,t_1+t)|X_1=t_1) = \P($ no arrivals in $(t_1,t_1+t)$ by independence. This is then equal to $\P($ no arrivals in $(0,t)) = \P(N(t)=0) = e^{-\lambda t}$. Then continue by induction.
+So $X_1$ has $Exp(\lambda)$ distribution. Now consider $\P(X_2>t|X_1=t_1)$. This doesn't look to make much sense as $X_1$ has a continuous distribution so $\P(X_1=t_1) = 0$; however we could could consider the conditional densiy as $f_{X|Y} (x|y) =\frac{f_{X,Y}(x,y)}{f_Y(y)}$. Then $\P(X_2>t|X_1=t_1) = \P($ no arrivals in $(t_1,t_1+t)|X_1=t_1) = \P($ no arrivals in $(t_1,t_1+t)$ by independence. This is then equal to $\P($ no arrivals in $(0,t)) = \P(N(t)=0) = e^{-\lambda t}$. Then continue by induction.
 \end{proof}
 \end{thm}
 
@@ -126,12 +126,101 @@ The simple case is
 \end{proof}
 (c) Superposition:\\
 $F$: Flies arrive as $PP(\lambda_1)$;\\
-$S$: Skeets arrive as $PP(\lambda_2)$, and these processes are independent. Then $N=F+S$ is a $PP(\lambda_1+\lambda_2$. This follows by infinitesimal construction of $PP$.\\
+$S$: Skeets arrive as $PP(\lambda_2)$, and these processes are independent. Then $N=F+S$ is a $PP(\lambda_1+\lambda_2)$. This follows by infinitesimal construction of $PP$.\\
 (d) Given $N(t) = n$, write $\mathbf{T} = (T_1,...,T_n)$, $\mathbf{t} = (t_1,...,t_n)$, we have $f_{\mathbf{T}}(\mathbf{t} | N(t) = n) =\left(\frac{1}{t}\right)^n n! L(\mathbf{t})$, where $L(\mathbf{t})=1$ iff $t_1<t_2<...<t_n$.
 \begin{proof}
 Next time.
 \end{proof}
 \end{prop}
+
+Let's complete the proof left last lecture.
+
+\begin{thm}
+Conditional on $\{N(t) = n\}$, the times $T_1,...,T_n$ have joint pdf
+\begin{equation*}
+\begin{aligned}
+f_{ \mathbf{T} |N(t) = n} (\mathbf{t}) = \frac{n!}{t^n} L(\mathbf{t}) 1_{\{t_n \leq t\}}
+\end{aligned}
+\end{equation*}
+where $L(\mathbf{t}) = 1_{\{t_1 \leq t_2 \leq ... \leq t_n\}}$.
+\begin{proof}
+The interarrival times $X_1,X_2,...,X_n$ have joint pdf
+\begin{equation*}
+\begin{aligned}
+f_\mathbf{X}(\mathbf{x}) = \lambda^n \exp(-\lambda \sum_i^n x_i)
+\end{aligned}
+\end{equation*}
+by change of variables, we now have (noting $T_i = X_1+...+X_i$)
+\begin{equation*}
+\begin{aligned}
+f_\mathbf{T} (\mathbf{t}) = \lambda^n e^{-\lambda t_n} L(\mathbf{t})
+\end{aligned}
+\end{equation*}
+Now for $C \subseteq \R^n$, we have
+\begin{equation*}
+\begin{aligned}
+\P(T \in C | N(t) = n) &= \frac{\P(T \subseteq C, N(t) = n)}{\P(N(t) = n)}\\
+&= \frac{1}{\P(N(t)=n)} \int_C \P(N(t)\\
+&= n | \mathbf{T} = \mathbf{t} ) f_\mathbf{T} (\mathbf{t}) d \mathbf{t}\\
+&= \frac{1}{\P(N(t) = n)} \int_{t_n \leq t} e^{-\lambda (t-t_n)}\lambda^n e^{-\lambda t_n} L(\mathbf{t}) d\mathbf{t}
+\end{aligned}
+\end{equation*}
+the last equation is because we need ther to be no arrival between $t$ and $t_n$. Now the conditional pdf of $\mathbf{T}$ given $N(t) = n$ is
+\begin{equation*}
+\begin{aligned}
+\frac{1}{(\lambda t)^n e^{-\lambda t} / n!} e^{-\lambda (t-t_n)} \lambda^n e^{-\lambda t_n} L(\mathbf{t}) = \frac{n! L(\mathbf{t})}{t^n} 1_{\{t_n \leq t\}}
+\end{aligned}
+\end{equation*}
+I think somewhere in this proof we used $\P(X \in C) = \int_C g(u) du \iff f_X(u) = g(u)$, otherwise the lecture wouldn't have written this down on a separate board.
+\end{proof}
+\end{thm}
+
+\newpage
+
+\section{Continuous-time Markov chains}
+
+This is actually quite a complicated topic, so we are going to make a lot of assumptions to simplify it.
+
+Assume state space $S$ is countable, and we often take $S \subseteq \Z = \{ ...,-1,0,1,...\}$ (sometimes useful to assume $|S|<\infty$).
+
+\begin{defi}
+A process $X = \{X(t) : t \geq 0\}$ taking values in $S$ satisfies the \emph{Markov property} if:\\
+\begin{equation*}
+\begin{aligned}
+\P(X(t_n) = j| X(t_1) &= i_1,...,X(t_{n-1}) = i_{n-1}) \\
+&= \P(X(t_n) = j| X(t_{n-1}) = i_{n-1})
+\end{aligned}
+\end{equation*}
+for all $i_1,i_2,...,i_{n-1}, j \in S, t_1< t_2 < ... < t_n$.
+
+We have the transition probabilities $p_{i,j}(s,t) = \P(X(t) = j| X(s) = i)$. We, however, assume the process is homogeneous, i.e. $$p_{i,j}(s,t) = p_{i,j} (0,t-s) := p_{i,j}(t-s) \forall s,t,i,j$$so the transition probabilities only depend on the duration of time passed instead of the absolute time. We can then write this as a transition matrix
+\begin{equation*}
+\begin{aligned}
+(p_{i,j}(t))_{i,j \in S}=P_t
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{prop}
+The family $\{P_t: t \geq 0\}$ satisfies\\
+(a) $P_0 = I$;\\
+(b) $P_t$ is a \emph{stochastic} matrix, i.e. a non-negative matrix with row sum 1;\\
+(c) $P_{s+t} = P_s P_t$ for $s,t \geq 0$.
+\begin{proof} (of (c))\\
+$p_{i,j}(s+t) = \sum_{k \in S} p_{i,k}(s)p_{j,k}(t)$ by Markov Property which is just the component form of $P_{s+t} = P_s P_t$.\\
+$P_{s+t} = P_s P_t$ is sometimes called the \emph{semigroup property} ($s,t \geq 0$).\\
+$(P_t:t \geq 0)$ is called a \emph{stochastic semigroup}.
+\end{proof}
+\end{prop}
+
+General theory involves conditions of regulartity.
+
+We assume $X$ is a right-continuous jump process.
+
+
+
+
+
 
 
 \iffalse

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  22 JAN 2018 12:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  24 JAN 2018 12:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -838,7 +838,7 @@ LaTeX Warning: No \author given.
 \openout5 = `"Applied Probability.toc"'.
 
  [2] [3] [4]
-<image/AP_01.png, id=52, 722.7pt x 406.51875pt>
+<image/AP_01.png, id=58, 722.7pt x 406.51875pt>
 File: image/AP_01.png Graphic file (type png)
  <use image/AP_01.png>
 Package pdftex.def Info: image/AP_01.png used on input line 91.
@@ -854,22 +854,27 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 121.
 
-[6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 144.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 144.
+[6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
+
+ []
+
+[8]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 233.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 233.
  (./Applied Probability.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 144.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 144.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 233.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 233.
 Package rerunfilecheck Info: File `"Applied Probability".out' has not changed.
-(rerunfilecheck)             Checksum: E4456643D479CFB31848DA0425D30C5C;98.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 144.
+(rerunfilecheck)             Checksum: 6AECD212E36E625523522469324454B5;162.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 233.
  ) 
 Here is how much of TeX's memory you used:
- 27803 strings out of 494910
- 663902 string characters out of 6179835
+ 27813 strings out of 494910
+ 663976 string characters out of 6179835
  885630 words of memory out of 5000000
- 30584 multiletter control sequences out of 15000+600000
- 13805 words of font info for 68 fonts, out of 8000000 for 9000
+ 30585 multiletter control sequences out of 15000+600000
+ 13958 words of font info for 71 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,12n,77p,756b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -888,10 +893,10 @@ hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Applied Probability.pdf" (6 pages, 212315 bytes).
+Output written on "Applied Probability.pdf" (8 pages, 231160 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 14882 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 141 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
+ 13 named destinations out of 1000 (max. 500000)
+ 14890 words of extra memory for PDF output out of 17280 (max. 10000000)
 
