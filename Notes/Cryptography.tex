@@ -149,4 +149,72 @@ The entropy of $X$, $$H(X) = H(p_1,...,p_n) = -\sum_{i=1}^n p_i \log p_i$$ where
 (2) $H(X) \geq 0$.
 \end{rem}
 
+\begin{eg} (3)\\
+We toss a biased coin with $\P($heads$) = p$. Write $H(p) = H(p,1-p) = -p\log p - (1-p)\log(1-p)$. If $p=0$ or $1$, the outcome is certain and so entropy is $0$. Entropy is maximal where $p=1/2$ (check), a fair coin.
+
+Note the entropy can also be viewed as the expected value of the information of $X$, where information is given by $I(X=x) = -\log \P(X=x)$. For example, if a coin always lands heads, we gain on information from tossing the coin.\\
+This entropy is the average amount of information conveyed by a random variable $X$.
+\end{eg}
+
+\begin{lemma} (1.3, Gibbs' inequality)\\
+Let $p_1,...,p_n$ and $q_1,...,q_n$ be probability distributions. Then $-\sum p_i \log p_i \leq -\sum p_i \log q_i$, with equality iff $p_i = q_i$.
+\begin{proof}
+It supplies to prove the inequality with $\log$ replaced by $\ln$. Note $\ln x \leq x-1$ with equality iff $x=1$. Let $I = \{1 \leq i \leq n: p_i \neq 0\}$. Then $\ln \frac{q_i}{p_i} \leq \frac{q_i}{p_i}-1$ $\forall i \in I$. So $\sum_{i \in I} p_i \ln \frac{q_i}{p_i} \leq \sum q_i - \underbrace{\sum p_i}_{=1} \leq 0$. Rearranging we get $-\sum_{i \in I} p_i \ln p_i \leq -\sum_{i \in I} p_i \ln q_i$, so $-\sum_{i=1}^n p_i \ln p_i \leq -\sum_{i=1}^n p_i \ln q_i$. If equality holds then $\frac{q_i}{p_i} = 1$ $\forall i \in I$, so $\sum_{i \in I} q_i = 1$ $\implies p_i = q_i$ for $1 \leq i \leq n$.
+\end{proof}
+\end{lemma}
+
+\begin{coro}
+$H(p_1,...,p_n) \leq \log n$ with equality iff $p_1 = p_2 = ... = p_n =\frac{1}{n}$.
+\begin{proof}
+Take $q_1=q_2=...=q_n = \frac{1}{n}$ in previous lemma.
+\end{proof}
+\end{coro}
+
+Two alphabets $\Sigma_1,\Sigma_2$ with $|\Sigma_1| =m$, $|\Sigma_2| = a$ ($m \geq 2, a \geq 2$). We model the source as a sequence of random variables $X_1,X_2,...$ taking values in $\Sigma_1$.
+
+\begin{defi}
+A \emph{Bernoulli} or \emph{memoryless} source is a sequence of independently, identically distributed random variables, i.e. for each $\mu \in \Sigma_i$, the probability of $X_i = \mu$ is independent of $i$ and independent of all past and future symbols emitted. Thus $$\P(X_1=x_1,...,X_k = x_k) = \prod_{i=1}^k \P(X_i = x_i)$$
+
+Let $\Sigma_1 =\{\mu_1,...,\mu_n\}$, $p_i = \P(X =\mu_i)$ and assume $p_i > 0$. The \emph{expected word length} of a code $f:\Sigma_1 \to \Sigma^*_2$ with word lengths $s_1,...,s_m$ is $E(S) = \sum_{i=1}^m p_i s_i$.
+\end{defi}
+
+\begin{defi}
+A code $f:\Sigma_1 \to \Sigma^*_2$ is \emph{optimal} if it has the shortest possible expected word length among decipherable code.
+\end{defi}
+
+\begin{thm} (1.4, Shannon's Noiseless Coding theorem)\\
+The minimum expected word length of a decipherable code $f:\Sigma_1\to \Sigma^*_2$ satisfies $$\frac{H(x)}{\log a} \leq E(S) < \frac{H(X)}{\log a} + 1$$
+\begin{proof}
+The lower bound is given by combining Gibbs and Kraft inequalities. Let $q_i = \frac{a^{-s_i}}{c}$ where $c = \sum a^{-s_i} \leq 1$ by Kraft's inequality. Note $\sum q_i = 1$. Now 
+\begin{equation*}
+\begin{aligned}
+H(X) = -\sum p_i \log p_i &\leq -\sum_i p_i \log q_i \\
+&= \sum_i p_i (s_i \log a + \log c)\\
+&= (\sum_i p_i s_i) \log a + \log c\\
+&\leq E(s) \log a
+\end{aligned}
+\end{equation*}
+We get equality if and only if $p_i = a^{-s_i}$ for some integers $s_i$.
+
+For the upper bound, put $s_i = \lceil -\log_a p_i \rceil$. We have $\log_a p_i \leq s_i < -\log_a p_i +1$, so $a^{-s_i} \leq p_i \implies \sum a^{-s_i} \leq \sum p_i \leq 1$. So by theorem (1.), there exists a prefix-free code with word lengths $s_1,...,s_m$.
+
+Also,
+\begin{equation*}
+\begin{aligned}
+E(S) &= \sum p_i s_i\\
+&< \sum p_i (-\log_a p_i + 1)
+\end{aligned}
+\end{equation*}
+
+\end{proof}
+\end{thm}
+
+\iffalse
+\begin{equation*}
+\begin{aligned}
+
+\end{aligned}
+\end{equation*}
+\fi
+
 \end{document}
