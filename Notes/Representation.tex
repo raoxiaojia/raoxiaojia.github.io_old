@@ -256,7 +256,7 @@ A representation $\rho:G \to GL(V)$ is \emph{completely reducible}, or \emph{sem
 (1) The converse is false;\\
 (2) See sheet 1 Q3: $\C$-representaiton of $\Z$ is not completely reducible and also representaiton of $C_p$ over $\F_p$ is not c.r..
 
-Fron now on, take $G$ finite and $\char F =0$.
+Fron now on, take $G$ finite and $char\ F =0$.
 \end{rem}
 
 \begin{thm} (3.3)\\
@@ -269,7 +269,7 @@ It is enough to prove:
 Let $G$ be finite, $\rho:G \to GL(V)$ a f.d. representation, $char\ F = 0$. If $W$ is a $G$-subspace of $V$, then there exists a $G$-subspace $U$ of $V$ s.t. $V = W \oplus U$, a direct sum of $G$-subspaces.
 \begin{proof} (1)\\
 Let $W'$ be any \emph{vector subspace} complement of $W$ in $V$, i.e. $V=W \oplus W'$ as vector spaces, and $W \cap W'=0$. Let $q:V \to W$ be th projection of $V$ onto $W$ along $W'$ ($\ker q = W'$), i.e. if $v=w+w'$ then $q(v) = w$. Define $$\bar{q} : v \to \frac{1}{|G|} \sum_{g \in G} g q(g^{-1}v)$$the 'average' of $q$ over $G$. Note that in order for $\frac{1}{|G|}$ to exists, we need $char\ F = 0$. It still works if $char\ F \nmid |G|$.\\
-Claim (1): $\bar{q}:V \to W$: For $v \in V$, $g(q^{-1}v) \in W$ and $gW \let W$;\\
+Claim (1): $\bar{q}:V \to W$: For $v \in V$, $g(q^{-1}v) \in W$ and $gW \leq W$;\\
 Claim (2): $\bar{q}(w) = w$ for $w \in W$: $$\bar{q}(w) = \frac{1}{|G|} \sum_{g \in G} gq(g^{-1}w) = \frac{1}{|G|} \sum g(g^{-1}w) = \frac{1}{|G|} \sum w = w$$
 So these two claims imply that $\bar{q}$ projects $V$ onto $W$.\\
 Claim (3) If $h \in G$ then $h\bar{q}(v) = \bar{q}(hv)$ ($v \in V$):
