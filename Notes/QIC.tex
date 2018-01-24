@@ -93,7 +93,7 @@ Note that this iff holds only in 2-dimensions.
 
 For general dimensions $V_n \otimes V_n$, any ket $\sum_{i,j=0}^{n-1} A_{ij} |i\ket |j\ket$ is product vector iff $[A_{ij}]$ matrix has rank 1, so $\det A = 0$ is necessary but \emph{not sufficient}.
 
-\subsection{Inner product on $V \otimes W$ }
+\subsection{Inner product on $V \otimes W$}
 This is induced by the inner products on $V$ and $W$. For product vectors, inner product of $|\alpha_1\ket |\beta_1 \ket$ with $|\alpha_2\ket |\beta_2\ket$ is ('matching slots') 
 \begin{equation*}
 \begin{aligned}
@@ -121,7 +121,113 @@ Conjugate basis (or $X$-basis): given $0\ket$, $|1\ket$, we define $$|+\ket = \f
 (QM2) (composite systems)\\
 If systems $S_1$ has state space $V_1$, $S_2$ has state space $V_2$, then joint system $S_1S_2$ has state space $V_1 \otimes V_2$.
 
+\begin{eg}
+$n$ qubits have state space $V_2^{\oplus n}$ which has dimension $2^n$.\\
+$\bullet$ $n$ qubit state ($\psi$): called \emph{product state} if $|\psi \ket = |v_1 \ket |v_2 \ket... |v_n \ket$. It is entangled otherwise.\\
+$\bullet$ Computaitonal or standard basis: we write
+\begin{equation*}
+\begin{aligned}
+|i_1\ket |i_2\ket ... |i_n\ket := i_1i_2...i_n\ket
+\end{aligned}
+\end{equation*}
+where $i_1,...,i_n = 0,1$; here we have $2^n$ orthonormal states.
+\end{eg}
 
+Note (!) as number $n$ of qubits grows linearrly, full state description (eg amplitudes $|\psi\ket = \sum \bra i_1i_2...i_n | i_1i_2...i_n\ket$) grows exponentially. In contrast, in the classical case, state space of $S_1S_2$ is a \emph{Cartesian product}, so if $S$ needs $K$ parameters, then $\underbrace{SS...S}_{n \text{ times}}$ has only $nK$ parameters.
+
+\subsection{Diract notation on linear maps}
+Consider linear maps on $V_2$: suppose $|v\ket = a|0\ket + b|1\ket$, $|w\ket = c|0\ket + d|1\ket$. Then the \emph{ket-bra product} gives
+\begin{equation*}
+\begin{aligned}
+M = |v \times w| = {a \choose b}(c^* \ d^*) = {{ac^* \ ad^*} \choose {bc^* \ bc^*}} \ (*)
+\end{aligned}
+\end{equation*}
+a linear map on $V_2$ (for any $|x\ket = x_0 |0\ket + x_1 |1\ket$):
+\begin{equation*}
+\begin{aligned}
+M|x\ket = (|v\times w|) |x\ket = |v\ket (\bra w | x \ket) = {{ac^* \ ad^*} \choose {bc^* \ bd^*}} = {ac^*x_0+ad^*x_1 \choose bc^*x_0+bd^*x_1}
+\end{aligned}
+\end{equation*}
+this is a rank-1 map, with kernel being all $|x\ket$'s $\perp$ $|w\ket$, i.e. $\bra w | x\ket = 0$.
+
+For general linear map $A = {{a\ b} \choose {c\ d}}$, note first that the ket-bra products for $|0\ket \mid |1\ket$ basis vectors,
+\begin{equation*}
+\begin{aligned}
+|0 \times 0| &= {1 \choose 0}(1 0) = {{1\ 0} \choose {0\ 0}},\\
+|0 \times 1| &= {{0\ 1} \choose {0\ 0}},\\
+|1 \times 0| &= {{0\ 0} \choose {1\ 0}},\\
+|1 \times 1| &= {{0\ 0} \choose {0\ 1}},
+\end{aligned}
+\end{equation*}
+so $A = a|0\times 0| + b|0 \times 1| + c| 1 \times 0| + d| 1 \times 1|$.
+
+Note $\bra w | v \ket = \tr (|v \times w|)$ from (*) as cyclic property of trace.
+
+Projection operators:
+
+Important special case of ket-bra product (*) if when $|v\ket = |w\ket$, if $|v\ket$ normalised ($\bra v|v \ket = 1$), then $\Pi_v = |v \times v|$ is operator of projection into 1-dimensional subspace spanned by $|v\ket$. For example, we have
+\begin{equation*}
+\begin{aligned}
+\Pi_v \Pi_v = |v\times v||v \times v| = |v\ket\bra v|v\ket \bra v| = |v\times v| = \Pi_v
+\end{aligned}
+\end{equation*}
+Also we have $\Pi_v |a\ket = 0$("=$|v\ket\bra v|a\ket$") if $|a\ket \perp |v\ket$, i.e. $\bra v |a \ket =0$.
+
+More generally, if $E$ is any $d$-dimensional linear subspace of an $n$-dimensional $V$ and $\{|e_1 \ket,...,|e_d\ket\}$ any orthonormal basis of $E$, then $\Pi_E = |e_1 \times e_1 | + ... + |e_d \times e_d|$ is operator of projection into $E$. Note that being orthonormal means that $\bra e_i |e_j \ket = \delta_{ij}$.
+
+\subsection{Tensor products of maps}
+If $A = {{a\ b} \choose {c\ d}}$, $B = {{p\ q} \choose {r\ s}}$ are linear maps on $V_2$, then $A \otimes B: V_2 \otimes V_2 \to V_2 \otimes V_2$ defined by action on basis $|i\ket |j\ket$, $i,j=0,14$:
+\begin{equation*}
+\begin{aligned}
+|i\ket |j\ket \xrightarrow{A \otimes B} (A|i\ket) \otimes (B|j\ket)
+\end{aligned}
+\end{equation*}
+(on product states, $|v\ket|w\ket \to (A|v\ket)\otimes(B|w\ket)$).
+
+It's easy to check matrix of $A \otimes B$ is given by the block structure
+\begin{equation*}
+\begin{aligned}
+(A \otimes B) = {{aB \ bB} \choose {cB \ dB}}
+\end{aligned}
+\end{equation*}
+Important special cases are $I \otimes A$ and $A \otimes I$.
+
+(QM3) (Physical evolution of quantum systems)\\
+Any physical (finite time) evolution of a quantum system is represented by a \emph{unitary} operation on the state space.
+
+Recall: $U$ is unitary iff $U^{-1} = U^+$ iff $U$ maps an orthonormal basis to an orthonormal set of vectors iff the columns (rows) of the matrix of $U$ are an orthonormal set of vectors.
+
+Partial inner products for vectors in $V \otimes W$: Any ket $|v\ket \in V$ defines a linear map $V \otimes W \to W$ called "partial IP on $V$" defined on basis vectors $|e_i \ket \oplus |f_j\ket$:
+\begin{equation*}
+\begin{aligned}
+|e_j \ket |f_j \ket \to \bra v|e_i\ket |f_j\ket
+\end{aligned}
+\end{equation*}
+and extend by linearity. Similarly, for $|w\ket \in W$ we have a partial IP on $W$: $V \otimes W \to V$.
+
+\begin{eg}
+For $V = V_2 = W$, i.e. 2 qubits, we have
+\begin{equation*}
+\begin{aligned}
+|\xi\ket = a|00\ket+b|01\ket+c|10\ket+d|11\ket \in V\otimes V
+\end{aligned}
+\end{equation*}
+can form partial IP with $|0\ket$ on either slot. To keep track of "slots", when spaces are equal we will first label the slots $A$ and $B$: for $|\xi\ket = a|00\ket_{AB} + ...$, we label $|0\ket_A |0\ket_B$.\\
+Orthonormal relations $\bra i |j \ket = \delta_{ij}$ gives partial IP on $A$ slot,
+\begin{equation*}
+\begin{aligned}
+{}_A\bra 0|\xi\ket_{AB} &= a{}_A\bra 0|0 \ket_A |0\ket_B + ... + d {}_A\bra 0|1 \ket_a |1\ket_B\\
+&= a|0\ket_B + b|1\ket_B
+\end{aligned}
+\end{equation*}
+"pick out terms of $|\xi\ket_{AB}$ with $|0\ket$ in $A$-slot.\\
+Similarly
+\begin{equation*}
+\begin{aligned}
+{}_B\bra 0|\xi\ket_{AB} = a|0\ket_A {}_B\bra 0|0\ket_B + c|1\ket_A {}_B \bra 0|0 \ket_B
+\end{aligned}
+\end{equation*}
+\end{eg}
 
 \iffalse
 \begin{equation*}
