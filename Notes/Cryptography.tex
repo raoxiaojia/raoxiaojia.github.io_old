@@ -196,18 +196,42 @@ H(X) = -\sum p_i \log p_i &\leq -\sum_i p_i \log q_i \\
 \end{equation*}
 We get equality if and only if $p_i = a^{-s_i}$ for some integers $s_i$.
 
-For the upper bound, put $s_i = \lceil -\log_a p_i \rceil$. We have $\log_a p_i \leq s_i < -\log_a p_i +1$, so $a^{-s_i} \leq p_i \implies \sum a^{-s_i} \leq \sum p_i \leq 1$. So by theorem (1.), there exists a prefix-free code with word lengths $s_1,...,s_m$.
-
+For the upper bound, put $s_i = \lceil -\log_a p_i \rceil$. We have $\log_a p_i \leq s_i < -\log_a p_i +1$, so $a^{-s_i} \leq p_i \implies \sum a^{-s_i} \leq \sum p_i \leq 1$. So by theorem (1.), there exists a prefix-free code with word lengths $s_1,...,s_m$.\\
 Also,
 \begin{equation*}
 \begin{aligned}
 E(S) &= \sum p_i s_i\\
-&< \sum p_i (-\log_a p_i + 1)
+&< \sum p_i (-\log_a p_i + 1)\\
+&= \frac{H(X)}{\log a} + 1
 \end{aligned}
 \end{equation*}
-
 \end{proof}
 \end{thm}
+
+\begin{rem}
+The lower bound holds for all decipherable codes.
+\end{rem}
+
+Shannon-Fano Coding (as in Goldie $\&$ Pinch):\\
+This follows from the proof above. Set $s_i = \lceil -\log_a p_i\rceil$ and construct a prefix-free code with word lengths $s_1,...,s_m$ by taking the $s_i$ in increasing order ensuring that previous codewords are not prefixes. The Kraft inequality ensures there is enough room.
+
+\begin{eg}
+$\mu_1,...,\mu_5$ emitted with probabilities $0.4,0.2,0.2,0.1,0.1$. We try to construct Shannon-Famo code (with $a=2$, $\Sigma_2 = \{0,1\}$):
+\begin{equation*}
+\begin{aligned}
+\begin{matrix}
+p_i & \lceil -\log p_i\rceil & \text{code}\\
+0.4 & 2 & 00\\
+0.2 & 3 & 010\\
+0.2 & 3 & 100\\
+0.1 & 4 & 1100\\
+0.1 & 4 & 1110
+\end{matrix}
+\end{aligned}
+\end{equation*}
+The expected word length is $2 \times 0.4 + 3 \times 0.2 + 3 \times 0.2 + 4 \times 0.1 + 4 \times 0.1 = 2.8$.\\
+As a comparison, $H(X) \approx 2.12$, which is consistent with our previous inequality.
+\end{eg}
 
 \iffalse
 \begin{equation*}
