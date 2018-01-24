@@ -193,12 +193,7 @@ A process $X = \{X(t) : t \geq 0\}$ taking values in $S$ satisfies the \emph{Mar
 \end{equation*}
 for all $i_1,i_2,...,i_{n-1}, j \in S, t_1< t_2 < ... < t_n$.
 
-We have the transition probabilities $p_{i,j}(s,t) = \P(X(t) = j| X(s) = i)$. We, however, assume the process is homogeneous, i.e. $$p_{i,j}(s,t) = p_{i,j} (0,t-s) := p_{i,j}(t-s) \forall s,t,i,j$$so the transition probabilities only depend on the duration of time passed instead of the absolute time. We can then write this as a transition matrix
-\begin{equation*}
-\begin{aligned}
-(p_{i,j}(t))_{i,j \in S}=P_t
-\end{aligned}
-\end{equation*}
+We have the transition probabilities $p_{i,j}(s,t) = \P(X(t) = j| X(s) = i)$. We, however, assume the process is homogeneous, i.e. $$p_{i,j}(s,t) = p_{i,j} (0,t-s) := p_{i,j}(t-s) \forall s,t,i,j$$so the transition probabilities only depend on the duration of time passed instead of the absolute time. We can then write this as a transition matrix $(p_{i,j}(t))_{i,j \in S}=P_t$.
 \end{defi}
 
 \begin{prop}
@@ -213,7 +208,7 @@ $(P_t:t \geq 0)$ is called a \emph{stochastic semigroup}.
 \end{proof}
 \end{prop}
 
-General theory involves conditions of regulartity.
+General theory involves conditions of regularity.
 
 We assume $X$ is a right-continuous jump process.
 
