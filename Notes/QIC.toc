@@ -2,4 +2,4 @@
 \contentsline {section}{\numberline {1}Principles of Quantum Mechanics, Dual bra-ket notation}{4}{section.1}
 \contentsline {subsection}{\numberline {1.1}Bra and ket vectors}{4}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Product vectors and entangled vectors}{4}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Inner product on $V \otimes W$}{5}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.3}Inner product on $V \otimes W$ }{5}{subsection.1.3}

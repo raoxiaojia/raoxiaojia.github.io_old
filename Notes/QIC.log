@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  22 JAN 2018 11:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  24 JAN 2018 11:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -892,14 +892,14 @@ cmr/m/n/10 6
  []
 
 [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 134.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 134.
  (./QIC.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 134.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 134.
 Package rerunfilecheck Info: File `QIC.out' has not changed.
-(rerunfilecheck)             Checksum: FFDAC2A32672F397F5A372799B165ACF;360.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 135.
+(rerunfilecheck)             Checksum: D55F03AB1D9A1B23B288D8ADA5889369;361.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 134.
  ) 
 Here is how much of TeX's memory you used:
  27822 strings out of 494910
@@ -925,7 +925,7 @@ share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on QIC.pdf (6 pages, 196192 bytes).
+Output written on QIC.pdf (6 pages, 196402 bytes).
 PDF statistics:
  140 PDF objects out of 1000 (max. 8388607)
  113 compressed objects within 2 object streams
