@@ -193,7 +193,13 @@ $\bullet$ Endemic $\implies I^*>0$, finite number of $I$ in steady state.
 
 For obvious reason we call this the "SIR model".
 
-at $t=0$, $\frac{d}{dt}I = [\beta S(0) - \nu] \cdot I(0)$, so $\frac{\beta}{\mu}S(0) > 1 \implies \frac{\beta N}{\nu}>1 = \mathcal{R}_0$, the reproduction ratio, or the mean number of susceptibles infected per infective. We had $dS = -\beta SI dt$, $dI = (\beta SI - \nu I) dt$, so
+(Q1)\\
+at $t=0$, $\frac{d}{dt}I = [\beta S(0) - \nu] \cdot I(0)$, so $\frac{\beta}{\mu}S(0) > 1 \implies \frac{\beta N}{\nu}>1 = \mathcal{R}_0$, the reproduction ratio, or the mean number of susceptibles infected per infective. 
+
+(Q2)\\
+\includegraphics[scale=0.5]{image/Bio_06.png}
+\includegraphics[scale=0.5]{image/Bio_07.png}
+We had $dS = -\beta SI dt$, $dI = (\beta SI - \nu I) dt$, so
 \begin{equation*}
 \begin{aligned}
 \frac{dI}{dS} &= \frac{(\beta SI - \nu I)}{-\beta SI} = -1 + \frac{\nu}{\beta} \cdot \frac{1}{S}\\
@@ -211,6 +217,18 @@ Now $I(t)-I(0) = \frac{N}{\mathcal{R}_0} \ln \frac{S(t)}{S(0)} - (S(t)-S(0))$. A
 \begin{aligned}
 0 &= \frac{N}{\mathcal{R}_0} \ln \sigma - (\sigma N-N)\\
 \sigma - \frac{1}{\mathcal{R}_0} \ln \sigma &= 1
+\end{aligned}
+\end{equation*}
+We can rewrite the second equation as $\mathcal{R}_0 (\sigma-1) = \ln \sigma$. Clear $\sigma = 1$ is a solution, but we are not interested in that. For $\mathcal{R}_0 \gg 1$, $\sigma \approx e^{-\mathcal{R}_0}$.(by sketching curves below and analyze intersections?)
+\includegraphics[scale=0.5]{image/Bio_08.png}
+
+Insight: in any epidemic, only a fraction of the population is infected. Size of the epidemic = $(1-\sigma)N$.
+
+(Q3)\\
+Vaccination? We can use pre-vaccination, i.e. vaccinate in anticipation of an outbreak. Let $p$ be the fraction of the population being vaccinated. At $t=0$ we have
+\begin{equation*}
+\begin{aligned}
+S(0) \approx (1-p)N
 \end{aligned}
 \end{equation*}
 
