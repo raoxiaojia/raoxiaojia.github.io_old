@@ -228,9 +228,15 @@ Insight: in any epidemic, only a fraction of the population is infected. Size of
 Vaccination? We can use pre-vaccination, i.e. vaccinate in anticipation of an outbreak. Let $p$ be the fraction of the population being vaccinated. At $t=0$ we have
 \begin{equation*}
 \begin{aligned}
-S(0) \approx (1-p)N
+S(0) \approx (1-p)N\\
+\frac{\beta}{\nu} S(0) > 1 \implies \frac{\beta}{\nu} (1-p)N = (1-p)\mathcal{R_0} > 1
 \end{aligned}
 \end{equation*}
+so $p>1-\frac{1}{\mathcal{R}_0}$.
+\includegraphics[scale=0.5]{image/Bio_09.png}
+
+(Q4)\\
+Endemic: $I(t) \to I^* > 0$ as $t \to \infty$.
 
 \iffalse
 
