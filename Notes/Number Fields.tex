@@ -143,4 +143,119 @@ Let $f_\alpha(x) \in K[x]$ be the minimal polynomial of $\alpha$ over $K$. Obser
 \end{proof}
 \end{prop}
 
+Recall from last lecture, let $L$ be a number field, a complex embedding is a field homomorphism $\sigma:L \to \C$. The number of such embeddings is $[L:\Q$]. If $L = \Q(\alpha)$, and $f_\alpha(x) \in \Q[x]$ is the minimal polynomial, then there is a bijection $\{\sigma:L \to \C \} \leftrightarrow \{$ roots $\beta \in \C$ of $f_\alpha(x)\}$ by sending $\sigma \to \beta = \sigma(alpha)$.
+
+Notation: if $\sigma:L \to \C$ is a complex embedding, then $\bar{\sigma} : L \to \C$ is also a complex embedding, where $\bar{\sigma}(\alpha) = \overline{\sigma(\alpha)}$ (complex conjugation). If $\sigma = \bar{\sigma}$, then $\sigma(L) \subseteq \R$. Otherwise $\sigma \neq \bar{\sigma}$ and $\sigma(L) \not\subseteq \R$.
+
+We write $r$ for the number of complex embedding $\sigma$ such that $\sigma = \bar{\sigma}$, $s$ for the number of pairs of embeddings $\{\sigma,\bar{\sigma}\}$ where $\sigma \neq \bar{\sigma}$. Then $r+2s = [L:\Q]$.
+
+\begin{eg}
+Let $d \in \Z$ be square-free, $d \neq 0,1$. Let $\Q(\sqrt{d}) = \Q[x] / (x^2-d)$. If $d>0$, then $r=2,s=0$ (real quadratic field).\\
+If $d<0$, then $r=0,s=1$ (imaginary quadratic field).
+\end{eg}
+
+\begin{eg}
+Let $m \in \Z$ cube-free, $m \neq 0,1,-1$. Let $\Q(\sqrt[3]{m}) =\Q[x]/(x^3-m)$. Then $r=1,s=1$, since $x^3-m$ has one real and two complex roots.
+\end{eg}
+
+\begin{defi} (2.3)\\
+Let $L/K$ be an extension of number fields, and let $\alpha \in L$. Let $m_\alpha:L\to L$ be the $K$-linear map defined by $m_\alpha(\beta) = \alpha\beta$. Then we define
+\begin{equation*}
+\begin{aligned}
+\tr_{L/K}(\alpha) = \tr m_\alpha \in K\\
+N_{L/K}(\alpha) = \det m_\alpha \in K
+\end{aligned}
+\end{equation*}
+the trace and norm of $\alpha$ respectively.
+\end{defi}
+
+\begin{lemma} (2.4)\\
+If $L/K$ is an extension of number fields and $\alpha \in L$, then 
+\begin{equation*}
+\begin{aligned}
+\tr_{L/K}(\alpha) = [L:K(\alpha)] \tr_{K(\alpha)/K}(\alpha)\\
+N_{L/K}(\alpha) = N_{K(\alpha)/K} (\alpha)^{[L:K(\alpha)]}
+\end{aligned}
+\end{equation*}
+\begin{proof}
+There's an isomorphism $L \cong K(\alpha)^{[L:K(\alpha)]}$ of $K(\alpha)$-vector spaces(?).
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (2.5)\\
+Let $L/K$ be an extension of number fields and let $\alpha \in L$. Let $\sigma_0:K \to \C$ be a complex embedding, and let $\sigma_1,...,\sigma_n:L \to \C$ be the embeddings of $L$ extending $\sigma_0$.\\
+Then 
+\begin{equation*}
+\begin{aligned}
+\sigma_0(\tr_{L/K} (\alpha)) = \sigma_1(\alpha) + ... + \sigma_n(\alpha)\\
+\sigma_0(N_{L/K}(\alpha)) = \sigma_1(\alpha)...\sigma_n(\alpha).
+\end{aligned}
+\end{equation*}
+\begin{proof}
+WLOG let $L=K(\alpha)$. Let $f_\alpha(x) \in K[x]$ be the minimal polynomial of $\alpha$ over $K$. Then $$(\sigma_0 f_\alpha)(x) = (x-\sigma_1(\alpha))(x-\sigma_2(\alpha))...(x-\sigma_n(\alpha))$$
+If $f(\alpha) = x^n+a_1x^{n-1}+...+a_n$, then $\sigma_0(a_1) = -(\sigma_1(\alpha)+...+\sigma_n(\alpha))$, $\sigma_0(a_n) = (-1)^n \sigma_1(\alpha)...\sigma_n(\alpha)$.\\
+Let $g(x) \in K[x]$ be the characteristic polynomial of $m_\alpha$. If $g(x) = x^n+b_1x^{n-1}+...+b_n$, then $b_1 = -\tr m_\alpha = -\tr_{L/K}(\alpha)$, $b_n = (-1)^n \det m_\alpha = (-1)^n N_{L/K}(\alpha)$.By Cayley-Hamilton, $g(m_\alpha) = 0 \implies g(\alpha) = 0 \implies f_\alpha(x) = g(x)$.
+\end{proof}
+\end{lemma}
+
+\begin{coro} (2.6)\\
+If $\alpha \in \mathcal{O}_L$, then $\tr_{L/K}(\alpha)$, $N_{L/K}(\alpha) \in \mathcal{O}_K$.
+\begin{proof}
+If $\beta \in K$ then $\beta \in \mathcal{O}_K$ $\iff$ $\sigma_0(\beta) \in \mathcal{O}_\C$ (as $\forall f(x) \in \Z[x], f(\beta) = 0 \iff f(\sigma_0(\beta)) = 0$).\\
+By the lemma, $\sigma_0 \tr_{L/K} (\alpha) = \sigma_1(\alpha)+...+\sigma_n(\alpha)$. If $\alpha \in \mathcal{O}_L$, then $\sigma_1(\alpha),...,\sigma_n(\alpha) \in \mathcal{O}_\C \implies \sigma_1(\alpha)+...+\sigma_n(\alpha) \in \mathcal{O}_\C$ $\implies \sigma_0 \tr_{L/K}(\alpha) \in \mathcal{O}_\C$ $\implies \tr_{L/K}(\alpha) \in \mathcal{O}_K$.
+
+The same argument works for the norm.
+\end{proof}
+\end{coro}
+
+\begin{prop} (2.7)\\
+Let $d \in \Z$ be squarefree, $d \neq 0,1$, and let $L = \Q(\sqrt{\alpha})$. Then 
+\begin{equation*}
+\begin{aligned}
+\mathcal{O}_L = \left\{\begin{array}{ll}
+\Z[\sqrt{d}] & d \equiv 2,3 \pmod 4\\
+\Z[\frac{1+\sqrt{d}}{2} & d \equiv 1 \pmod 4
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+\begin{proof}
+If $\alpha \in L$, then $\alpha \in \mathcal{O}_L$ if and only if both trace and norm (over $L/\Q$) of $\alpha$ is in $\Z$. Why? Forward direction is the previous corollary; if $\alpha \in L$, then $f(\alpha) = 0$, where $f(x) = (x-\sigma_1(\alpha))(x-\sigma_2(\alpha)) = x^2 - \tr_{L/\Q}(\alpha)x+N_{L/\Q}(\alpha) \in \Q[x]$, where $\sigma_1,\sigma_2$ are complex embeddings of $L$. So backward holds too.
+
+Let $\alpha \in L$. Write $\alpha = \frac{u}{2} + \frac{v}{2}\sqrt{d}$ where $u,v \in \Q$. If $\alpha \in \mathcal{O}_L$, then $\tr_{L/\Q}(\alpha) = u \in \Z$, and $N_{L/\Q}(\alpha) = \frac{1}{4} (u+\sqrt{d} v) (u-\sqrt{d} v) = \frac{1}{4} (u^2-dv^2) \in \Z$ $\implies u^2-dv^2 \in 4\Z$ $\implies dv^2\in\Z$.\\
+Write $v=\frac{r}{s}$ where $r,s \in \Z, s \neq 0, (r,s) = 1$. Then we get $dr^2 \in s^2\Z$ $\implies s^2 | dr^2$.\\
+If $p$ is a prime and $p|s$ then $p^2|d$. But we assumed $d$ is square-free. So $s=1$, so $v \in \Z$.
+
+We've shown if $\alpha \in \mathcal{O}_L$, then $\alpha = \frac{u}{2} + \frac{v}{2}\sqrt{d}$ where $u,v \in \Z$ and $u^2 \equiv d^2 \pmod 4$.\\
+
+Case 1: $d \equiv 2,3 \pmod 4$. Then $u^2,v^2 \equiv 0,1 \pmod 4$. Considering the congruence $u^2\equiv dv^2 \pmod 4$ shows that both $u,v \in 2\Z$. Hence $\alpha \in \Z[\sqrt{d}] = \{a+b\sqrt{d} | a,b \in \Z\}$, and $\mathcal{O}_L = \Z[\sqrt{d}]$.
+
+Case 2: $d \equiv 1 \pmod 4$. Hence $u^2\equiv v^2 \pmod 4$, so $u \equiv v \pmod 2$. Hence $\mathcal{O}_L \subseteq \{\frac{u}{2}+\frac{v}{2}\sqrt{d} | u,v \in \Z, u \equiv 1 \pmod 2\} =\Z \oplus \Z(\frac{1+\sqrt{d}}{2})$. It remains to show that $\frac{1+\sqrt{d}}{2}$ is an algebraic integer.\\
+We have $\tr_{L/\Q}(\frac{1+\sqrt{d}}{2}) = 1$, $N_{L/\Q}(\frac{1+\sqrt{d}}{2}) = \frac{1-d}{4} \in \Z$.
+\end{proof}
+\end{prop}
+
+Recall that if $R$ is a ring, then a unit in $R$ is an element $u \in R$ such that there exists $v \in R$ such that $uv = 1$.
+
+The set $\R^* = \{u \in R | u $ is a unit$\}$ forms a group under multiplication.
+
+\begin{lemma} (2.8)\\
+If $L$ is a number field, then the units in $\mathcal{O}_L$ are $\mathcal{O}_L^* = \{\alpha \in \mathcal{O}_L| N_{L/\Q}(\alpha) = \pm 1\}$.
+\begin{proof}
+next time.
+\end{proof}
+\end{lemma}
+
+\begin{rem}
+We'll prove later in the course that $\mathcal{O}_L^*$ is a finite group $\iff$ either $L=\Q$ or $L$ is an imaginary quadratic field.
+\end{rem}
+
+\iffalse
+\begin{equation*}
+\begin{aligned}
+
+\end{aligned}
+\end{equation*}
+\fi
+
 \end{document}

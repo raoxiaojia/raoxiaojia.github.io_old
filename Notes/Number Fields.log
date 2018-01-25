@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  25 JAN 2018 12:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  25 JAN 2018 13:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -838,23 +838,40 @@ LaTeX Warning: No \author given.
 
 
 [2] [3] [4] [5] [6] [7] [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 146.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 146.
+Overfull \hbox (6.63168pt too wide) in paragraph at lines 204--206
+\OT1/cmr/m/n/10 (-20) By the lemma, $\OML/cmm/m/it/10 ^^[[] [][]\OT1/cmr/m/n/10
+ (-20) (\OML/cmm/m/it/10 \OT1/cmr/m/n/10 (-20) ) = \OML/cmm/m/it/10 ^^[[]\OT1/
+cmr/m/n/10 (-20) (\OML/cmm/m/it/10 \OT1/cmr/m/n/10 (-20) ) + \OML/cmm/m/it/10 
+::: \OT1/cmr/m/n/10 (-20) + \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (-20) (\OML/c
+mm/m/it/10 \OT1/cmr/m/n/10 (-20) )$. If $\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 2
+ O[]$\OT1/cmr/m/n/10 (-20) , then $\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (-20) 
+(\OML/cmm/m/it/10 \OT1/cmr/m/n/10 (-20) )\OML/cmm/m/it/10 ; :::; ^^[[]\OT1/cmr
+/m/n/10 (-20) (\OML/cmm/m/it/10 \OT1/cmr/m/n/10 (-20) ) \OMS/cmsy/m/n/10 2
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
+
+ []
+
+[10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 261.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 261.
  (./Number Fields.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 146.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 146.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 261.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 261.
 Package rerunfilecheck Info: File `"Number Fields".out' has not changed.
 (rerunfilecheck)             Checksum: 402F1D7A78F912F2E440A5364E4F940A;198.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 146.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 261.
  ) 
 Here is how much of TeX's memory you used:
- 27804 strings out of 494910
- 663752 string characters out of 6179835
+ 27812 strings out of 494910
+ 663809 string characters out of 6179835
  889624 words of memory out of 5000000
  30578 multiletter control sequences out of 15000+600000
- 13333 words of font info for 70 fonts, out of 8000000 for 9000
+ 13486 words of font info for 73 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 57i,8n,77p,1018b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,14n,77p,1018b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
@@ -864,16 +881,17 @@ t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-l10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Number Fields.pdf" (8 pages, 194961 bytes).
+s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on "Number Fields.pdf" (10 pages, 218307 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 112 compressed objects within 2 object streams
- 14 named destinations out of 1000 (max. 500000)
+ 152 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
+ 16 named destinations out of 1000 (max. 500000)
  13869 words of extra memory for PDF output out of 14400 (max. 10000000)
 
