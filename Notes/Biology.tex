@@ -236,7 +236,49 @@ so $p>1-\frac{1}{\mathcal{R}_0}$.
 \includegraphics[scale=0.5]{image/Bio_09.png}
 
 (Q4)\\
-Endemic: $I(t) \to I^* > 0$ as $t \to \infty$.
+Endemic: $I(t) \to I^* > 0$ as $t \to \infty$.\\
+Biological datum: suppose we have a finite rate of birth of $S$, and of death of $S,I,R$. Now
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} S = -\beta SI - \mu S + \mu N\\
+\frac{d}{dt} I = \beta SI - \nu I - \mu I\\
+\frac{d}{dt} R = \nu I - \mu R
+\end{aligned}
+\end{equation*}
+at $t=0$, $\mathcal{R} = \frac{\beta}{\nu+\mu}N$(??). So
+\begin{equation*}
+\begin{aligned}
+S^* &= \frac{\mu+\nu}{\beta} = \frac{N}{\mathcal{R}_0}\\
+I^* &= \frac{\mu(N-S^*)}{\beta S^*} = \frac{\mu}{\beta}(\mathcal{R}_0-1)
+\end{aligned}
+\end{equation*}
+We had a Jacobian (?)
+\begin{equation*}
+\begin{aligned}
+J=\begin{pmatrix}
+-\beta I - \mu & -\beta S\\
+\beta I & \beta S - \nu - \mu
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+so
+\begin{equation*}
+\begin{aligned}
+J^*=\begin{pmatrix}
+-\mu \mathcal{R}_0 & -(\mu+\nu)\\
+\beta(\mathcal{R}_0-1) & 0
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+$\lambda = -\frac{1}{2} \mu \mathcal{R}_0 \pm i\sqrt{\mu\nu(\mathcal{R}_0 - 1}$ (?). If we assume $\nu \gg \mu$, then rate of recovery $\gg$ rate of death, so we get a short lived disease.
+\includegraphics[scale=0.5]{image/Bio_10.png}
+\includegraphics[scale=0.5]{image/Bio_11.png}
+
+Time period is $T = \frac{2\pi}{\omega} = \frac{2\pi}{\sqrt{\mu\nu(R_0-1)}}$
+
+If $\mu \gg \nu$, for example, for Measles we have $\mu \sim \frac{1}{70}$ years, $\nu \sim \frac{1}{10}$ days, $\mathcal{R}_0 \sim 20$, so the period of oscillation $T \approx 2.18$ years. Then we have the following pattern.
+\includegraphics[scale=0.5]{image/Bio_12.png}
+
 
 \iffalse
 
