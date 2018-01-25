@@ -107,7 +107,7 @@ G &\to GL(V)\\
 g &\to \rho_g
 \end{aligned}
 \end{equation*}
-with $\rho_g:v \to gv$ is a representation of $G$. Conversely, given a representaiton $\rho: G \to GL(V)$, we have a linear action of $G$ on $V$ via $g \cdot v := \rho(g) v$ $\forall v \in V, g \in G$.
+with $\rho_g:v \to gv$ is a representation of $G$. Conversely, given a representation $\rho: G \to GL(V)$, we have a linear action of $G$ on $V$ via $g \cdot v := \rho(g) v$ $\forall v \in V, g \in G$.
 \end{defi}
 
 (2.4) In (2.3) we also say that $V$ is a $G$-space or that $V$ is a $G$-module. In fact if we define the \emph{group algebra} $FG$, or $F[G]$, to be $\{ \sum \alpha_j g: \alpha_j \in F\}$ with natural addition and multiplication, then $V$ is actually a $FG$-module (in the sense from GRM).
@@ -195,7 +195,7 @@ $\rho$ is \emph{irreducible/simple} representation if there are no proper $G$-su
 \end{defi}
 
 \begin{eg} (2.14)\\
-Any $1$-dimensional representaiton of $G$ is irreducible, but not conversely, e.g. $D_8$ has $2$-dimensional $\C$-irreducible representation.
+Any $1$-dimensional representation of $G$ is irreducible, but not conversely, e.g. $D_8$ has $2$-dimensional $\C$-irreducible representation.
 \end{eg}
 
 (2.15) In definition (2.13), if $W$ is a $G$-subspace, then the corresponding map
@@ -213,7 +213,7 @@ In definition (2.13), given $\rho:G \to GL(V)$, if $W$ is a $G$-subspace of $V$ 
 \end{lemma}
 
 \begin{eg} (2.17)\\
-(i) The irreducible representaitons of $C_4=\bra x:x^4=1\ket$ are all $1$-dimensional and four of these are $x\to i,x \to -1, x \to -i, x \to 1$. In general, $C_m=\bra x:x^m=1\ket$ has precisely $m$ irreducible complex representations, all of dimension 1. In fact, all complex irreducible representations of a finite abelian group are $1$-dimensional (use (1.4)* or see (4.4) below).\\
+(i) The irreducible representations of $C_4=\bra x:x^4=1\ket$ are all $1$-dimensional and four of these are $x\to i,x \to -1, x \to -i, x \to 1$. In general, $C_m=\bra x:x^m=1\ket$ has precisely $m$ irreducible complex representations, all of dimension 1. In fact, all complex irreducible representations of a finite abelian group are $1$-dimensional (use (1.4)* or see (4.4) below).\\
 (ii) $G=D_6$: any irreducible $C$-representation has dimension $\leq 2$.\\
 Let $\rho:G \to GL(V)$ be irreducible $G$-representation. Let $r,s$ be rotation and reflection in $D_6$ respectively. Let $V$ be eigenvector of $\rho(r)$. So $\rho(r) v = \lambda v$ for some $\lambda \neq 0$. Let $W=span\{v,\rho(s)v\} \leq V$. Since $\rho(s)\rho(s)v = v$ and $\rho(r)\rho(s) v = \rho(s)\rho(r)^{-1} v = \lambda^{-1} \rho(s) v$, both of which are in $W$; so $W$ is $G$-invariant, i.e. a $G$-subspace. Since $V$ is irreducible, $W=V$.
 \end{eg}
@@ -254,7 +254,7 @@ A representation $\rho:G \to GL(V)$ is \emph{completely reducible}, or \emph{sem
 
 \begin{rem} (3.2)\\
 (1) The converse is false;\\
-(2) See sheet 1 Q3: $\C$-representaiton of $\Z$ is not completely reducible and also representaiton of $C_p$ over $\F_p$ is not c.r..
+(2) See sheet 1 Q3: $\C$-representation of $\Z$ is not completely reducible and also representation of $C_p$ over $\F_p$ is not c.r..
 
 Fron now on, take $G$ finite and $char\ F =0$.
 \end{rem}
@@ -284,8 +284,91 @@ h\bar{q}(v) &= h\frac{1}{|G|} \sum_g g \cdot q(g^{-1} v)\\
 \end{aligned}
 \end{equation*}
 We'll then show that the kernel of this map is $G$-invariant, so this gives a $G$-summand on Thursday.
+
+Let's now show $\ker \bar{q}$ is $G$-invariant. If $v \in \ker \bar{q}$, then $h\bar{q}(v) = 0 = \bar{q}(hv)$, so $hv \in \ker \bar{q}$. Thus $V = im \bar{q} \oplus \ker \bar{q} = W \oplus \ker \bar{q}$ is a $G$-subspace decomposition.
+
+We can deduce (3.3) from (3.4) by induction on $\dim V$. If $\dim V = 0$ or $V$ is irreducible, then result is clear. Otherwise, $V$ has non-trivial $G$-invariant subspace, $W$. Then by (3.4), there exists $G$-invariant complement $U$ s.t. $V = U \oplus W$ as representations of $G$. But $\dim U, \dim W < \dim V$. So by induction they can be broken up into direct sum of irreducible subrepresentations.
+\end{proof}
+
+The second proof uses inner products, hence we need to take $F = \C$ and can be generalised to compact groups in section 15.\\
+Recall, for $V$ a $\C$-space, $\bra,\ket$ is a \emph{Hermitian inner product} if\\
+(a) $\bra w,v\ket =\overline{\bra v,w\ket}$ $\forall v,w$ (Hermitian);\\
+(b) linear in RHS (sesquilinear);\\
+(c) $\bra v,v\ket > 0$ iff $v \neq 0$ (positvie definite).
+
+Additionally, $\bra,\ket$ is \emph{G-invariant} if \\
+(d) $\bra gv,gw\ket = \bra v,w\ket$ $\forall v,w \in V, g \in G$.
+
+Note if $W$ is $G$-invariant subspace of $V$, with $G$-invariant inner product, then $W^\perp$ is also $G$-invariant, and $V \oplus W^\perp$. For all $v \in W^\perp$, $g \in G$, we have to show that $gv \in W^\perp$. But $v \in W^\perp \iff \bra v,w\ket = 0 \forall w \in W$. Thus by (d), $\bra gv,gw\ket = 0$ $\forall g \in G \forall w \in W$. Hence $\bra gv,w'\ket = 0$ $\forall w' \in W$. Since we can choose $w=g^{-1}w' \in W$ by $G$-invariance of $W$. Thus $gv \in W^\perp$ since $g$ was arbitrary.
+
+Hence if there is a $G$-invariant inner product on any $G$-space, we get another proof of Maschke's theorem:
+
+(3.4*) (Weyl's unitary trick)\\
+Let $\rho$ be a complex representaiton of the finite group $G$ on the $\C$-space $V$. Then there is a $G$-invariant Hermitian inner product on $V$.
+\begin{rem}
+Recall the \emph{unitary group} $U(V)$ on $V$: $\{f \in GL(V): (fu,fv) = (u,v) \forall u,v \in V\} = \{A \in GL_n(\C) : A \bar{A}^T = I\} (= U(n))$ by choosing orthonormal basis.\\
+Sheet 1 Q.12: any finite subgroup of $GL_n(\C)$ is conjugate to a subgroup of $U(n)$.
+\end{rem}
+
+\begin{proof} (2)\\
+There exist an inner product on $V$: take basis $e_1,...,e_n$ and define $(e_i,e_j) = \delta_{ij}$, extended sesquilinearly. Now
+\begin{equation*}
+\begin{aligned}
+\bra v,w\ket := \frac{1}{|G|} \sum_{g \in G} (gv,gw)
+\end{aligned}
+\end{equation*}
+we claim that $\bra,\ket$ is sesquilinear, positive definite and $G$-invariant: if $h \in G$, then
+\begin{equation*}
+\begin{aligned}
+\bra hv,hw\ket = \frac{1}{|G|} \sum_{g \in G} ((gh)v,(gh)w)\\
+&= \frac{1}{|G|} \sum_{g' \in G} (g'v, g'w)\\
+&= \bra v,w\ket
+\end{aligned}
+\end{equation*}
+for all $v,w \in V$.
 \end{proof}
 \end{thm}
+
+\begin{defi} (3.5, the regular representation)\\
+Recall \emph{group algebra} of $G$ is $F$-space $FG = span\{e_g:g \in G\}$. There is a linear $G$-action
+\begin{equation*}
+\begin{aligned}
+h \in G, h \sum_{g \in G} a_g e_g = \sum_{g \in G} a_g e_{hg} (=\sum_{g' \in G} a_{h^{-1} g'} e_{g'})
+\end{aligned}
+\end{equation*}
+$\rho_{reg}$ is the corresponding representation, the \emph{regular representation} of $G$. This is faithful of $\dim |G|$. $FG$ is the \emph{regular module}.
+\end{defi}
+
+\begin{prop}
+Let $\rho$ be an irreducible representaiton of $G$ over a field of characteristic 0. Then $\rho$ is isomorphic to a subrepresentation of $\rho_{reg}$.
+\begin{proof}
+Take $\rho: G \in GL(V)$ irreducible and let $0 \neq v \in V$. Let $\theta : FG \to V$ by $\sum a_g e_g \to \sum a_g gv$. Check this is a $G$-homomorphism. Now $V$ is irreducible so $im\theta = V$ (since $im\theta$ is a $G$-subspace).
+
+Also $\ker\theta$ is $G$-subspace of $FG$. Let $W$ be $G$-complement of $\ker \theta$ in $FG$ (Mashke), so that $W < FG$ is $G$-subspace and $FG = \ker\theta \oplus W$. Thus $W \cong FG/\ker \theta \cong(G-isomorphism) im\theta \cong V$.
+\end{proof}
+\end{prop}
+
+More generally,
+\begin{defi} (3.7)\\
+Let $F$ be a field. Let $G$ act on set $X$. Let $FX = span\{e_x:x \in X\}$ with $G$-action
+\begin{equation*}
+\begin{aligned}
+g(\sum a_x e_x) = \sum a_x e_{gx}
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+The representation $G \to GL(V)$ where $V=FX$ is the corresponding \emph{permutation representation}. See section 7.
+
+\newpage
+
+\section{Schur's lemma}
+It's really unfair that such an important result is only remembered by a lemma, so we shall call it a theorem.
+\begin{thm} (4.1, Schur)\\
+(a) Assume $V,W$ are irreducible $G$-spaces over field $F$. Then any $G$-homomorphism $\theta:V \to W$ is either $0$ or is an isomorphism.\\
+(b) Assume $F$ is algebraically closed, and let $V$ be an irreducible $G$-space. Then any $G$-endomorphism $V \to V$ is a scalar multiple of the identity map $\iota_V$.
+\end{thm}
+
 
 \iffalse
 \begin{equation*}
