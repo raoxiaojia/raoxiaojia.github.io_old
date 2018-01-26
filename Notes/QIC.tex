@@ -229,6 +229,40 @@ Similarly
 \end{equation*}
 \end{eg}
 
+(QM4) Quantum measurements and Born rule.\\
+Suppose we are given a single instance of a quantum state $|\psi\ket$ of physical system, state space $V$, dimension $n$. Let $\mathcal{B} = \{|e_1\ket,...,|e_n\ket \}$ be any orthonormal basis of $V$. We can measure $|\psi\ket$ relative to basis $\mathcal{B}$. Possible outcomes $j=1,2,...,n$, $Prob(j) = |\bra e_j |\psi \ket |^2 = |a_j|^2$ if $|\psi \ket = \sum_{j=1}^n a_j | e_j\ket$. If outcome $j$ is seen, then after the measurement state is no longer $|\psi\ket$, but it has been "collapse" to $\psi_j\ket = |e_j\ket$. So repeated measurement gives \emph{same} result $j$ with certainty.
+
+This is called a \emph{complete projective} (or von Neumann) measurement: "complete" refers to \emph{one}-dimensionality of orthogonal subspaces defined by $|e_j\ket$'s. 
+
+Incomplete projective measurements:\\
+Let $\{E_1,E_2,...,E_d\}$ be decomposition of $V$ into $d$ mutually orthogonal subspaces, so $V = E_1 \oplus ... \oplus E_d$. Let $\Pi_i$ be projection into $E_i$. Then the incomplete measurement of $|\psi\ket$ w.r.t. this orthogonal decomposition is the following quantum operation.
+
+The possible outcomes are $j=1,2,...,d$. Now $Prob(j)$ is the squared length of projection of $|\psi\ket$ into $E_j$, and is then equal to $\bra \psi | \Pi_j^+ \Pi_j | \psi \ket = \bra \psi | \Pi_j | \psi \ket$ since $\Pi_j^+ = \Pi_j$ and $\Pi_j\Pi_j = \Pi_j$ for any projection operator.
+
+The post-measurement staet is the projected ("collapsed") vector re-normalised $|\psi_j\ket = \Pi_j | \psi \ket/\sqrt{prob(j)}$.
+
+\begin{eg}
+Parity measuremnt:\\
+Parity of $2$-bit string $b_1b_2$ is the mod-2 sum $b_1 \oplus b_2$, i.e. the number of 1's mod 2.\\
+Parity measurement on $2$ qubits is the incomplete measurement relative to the orthogonal decomposition $E_0 = span\{|00\ket, |11\ket\}$, $E_1 = span \{|01\ket, |10\ket\}$.\\
+For $|\psi\ket = a|00\ket+b|01\ket+c|10\ket+d|11\ket$, we get outcome $0$ with probaility $|a|^2+|d|^2$, and post-measurement state would be $(a|00\ket + d|11\ket) / \sqrt{|a|^2+|d|^2}$.
+\end{eg}
+
+Measurement of "quantum observables" (as in most textbook):\\
+Quantum observable $\theta$ is Hermitian operator on $V$. So $\theta$ has real eigenvalues $\lambda_j, j=1,...,d$. Eigenspaces $\Lambda_j$ mutually orthogonal, $\dim(\Lambda_j) = $ multiplicity of $\lambda_j$, $V= \Lambda_1 \oplus ... \oplus \Lambda_d$.\\
+'Measurement of quantum observable $\theta$' is then just the (generally incomplete) measurement relative to this orthogonal decomposition, except outcomes now labelled by eigenvalues $\lambda_j$ (not just labels $j$).\\
+$\lambda_j$ values often have further physical significance (energy, spin etc), and have e.g. average value equal to $\sum_j \lambda_j prob(\lambda_j)$. But for purposes of providing information about $|\psi\ket$, choice of \emph{labelling} of outcomes is immaterial.
+
+Extended Born rule:\\
+special case of an incomplete measurement. Measuring a component part of a composite system.\\
+Suppose $|\psi\ket$ is state of composite system $S_1S_2$, with staet space $V \otimes W$.
+
+Let $\mathcal{B}_V = \{|e_1 \ket, ..., |e_n\ket\}$ be an orthonormal basi of $V$. $|\psi\ket$ can be uniquely expanded as $$|\psi\ket_{VW} = \sum_i |e_i \ket_V |\xi_i\ket_W$$ 
+where $|\xi_i\ket$'s generally neither normalised nor orthogonal. We have $\bra \psi|\psi \ket = \sum_i \bra \xi_i | \xi_i \ket = 1$. In fact (sinice $|G\ket$ orthonormal), we have $|\xi_i\ket_W =\bra e_i | \psi\ket_{VW}$. Now we can perform a measurement of $|\psi\ket $ relative to basis $\mathcal{B}_V$ of $V$. This is the incompplete measurement on $V \otimes W$ with outcomes $i=1,2,...,n$, and corresponding orthogonal subspaces $E_i = span(|e_i \ket \otimes |\xi \ket$; any $|xi\ket \in W$), $\dim (E_i) = \dim(W)$. Corresponding projectors are
+
+$\Pi_i = |e_i \times e_i| \otimes I_W$, so we get $prob(i) = \bra \xi_i | \xi_i\ket$. Post-measurement state for $i$ is $$|\psi_i \ket = |e_i \ket |\xi_i\ket / \sqrt{\bra \xi_i | \xi_i \ket}$$ 
+"just pick out terms of $|\psi\ket$ with $|e_i\ket$ in $V$-slot".
+
 \iffalse
 \begin{equation*}
 \begin{aligned}

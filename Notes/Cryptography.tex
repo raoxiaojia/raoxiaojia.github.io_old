@@ -233,6 +233,75 @@ The expected word length is $2 \times 0.4 + 3 \times 0.2 + 3 \times 0.2 + 4 \tim
 As a comparison, $H(X) \approx 2.12$, which is consistent with our previous inequality.
 \end{eg}
 
+\begin{defi} (Huffman coding)\\
+For simplicity we take $a=2$. Let $\Sigma_1 = \{\mu_1,...,\mu_m\}$, $p_i = \P(X=\mu_i)$. WLOG $p_1 \geq p_2 \geq ... \geq p_m$.  Huffman coding is defined inductively:\\
+If $m=2$, assign codewords $0$ and $1$;\\
+If $m>2$, find a Huffman coding in the case of meesages $\mu_1,\mu_2,...,\nu$ with probaiblities $p_1,p_2,...,p_{m-1}+p_m$; append $0$ (1 respectively) to the codeword for $\nu$ tove a codeword for $\mu_{m-1}$ ($\mu_m$ respectively).
+\end{defi}
+
+\begin{rem}
+(i) This construction gives a prefix-free code;\\
+(ii) We exercise some choice when some of the $p_i$ are equal. So Huffman codes are not unique.
+\end{rem}
+
+\begin{eg}
+We look at the previous example:
+
+\includegraphics[scale=0.6]{image/CC_03.png}
+
+So we get $\{1,01,000,0010,0011\}$ as the prefix-free code constructed. The expected word length is $2.$, which is better then the Shannon-Fano coding.
+\end{eg}
+
+\begin{thm} (1.5)\\
+Huffman coding is optimal.
+\end{thm}
+
+\begin{lemma} (1.6) \\
+Suppose $\mu_1,...,\mu_m \in \Sigma_1$ emitted with probabilities $p_1,...,p_m$. Let $f$ be an optimal prefix-free code with word lengths $s_1,...,s_m$. Then\\
+(i) if $p_i > p_j$, then $s_i \leq s_j$;\\
+(ii) there exists 2 codewords of maximal length which are equal up to the last digit.\\
+\begin{proof}
+(i) Otherwise, swap codewords $i$ and $j$ to reduce the expected word length.\\
+(ii) If not, then either there is only one codeword of maximal length, or any two codewords of maximal length differ before the last digit. In either case, delete the last digit of each codeword of maximal length. This maintains the prefix free condition, contradicting with $f$ being optimal.
+\end{proof}
+\end{lemma}
+
+\begin{proof} (of 1.5 ($a=2$))\\
+We show, by induction on $m$, that any Huffman code of size $m$ is optimal.\\
+$m=2$: codewords $0,1$ optimal;\\
+$m>2$: source $X_m$ emits $\mu_1,...,\mu_m$ with probabilities $p_1 \geq p_2 \geq ... \geq p_m$. Source $X_{m-1}$ emits $\mu_1,...,\mu_{m-2},\nu$. with probabilities $p_1,...,p_{m-2},p_{m-1}+p_m$. We construct a Huffman coding $f_{m-1}$ for $X_{m-1}$ and extend to a Huffman coding for $X_m$. Then the expected codeword length satisfies $E(S_m) = E(S_{m-1}) + p_{m-1} + p_m$. Let $f'_m$ be an optimal code for $X_m$, wlog $f'_m$ prefix free. Lemma (1.6) shows that shuffling codewords we may assume that the last two codewords of $f'_m$ are of maximal length and differ only in the last digit, say $y_0$ and $y'$ (for some string $y$). We define a code $f'_{m-1}$ for $X_{m-1}$ with $f'_{m-1}(\mu_i) = f'_m (\mu_i)$ $\forall 1 \leq i \leq m-2$, $f'_{m-1} (\nu) =y$. Then $f'_{m-1}$ is a prefix free code and the expected word length satisfies $$E(S'_m) = E(S'_{m-1}) + p_{m-1}+p_m$$
+By induction hypothesis, $f_{m-1}$ is optimal, so $E(S_{m-1}) \leq E(S'_{m-1}) \implies E(S_m) \leq E(S'_m)$, so $f_m$ is optimal.
+\end{proof}
+
+\begin{rem}
+Not all optimal codes are Huffman. For example, if $p=0.3,0.3,0.2,0.2$, we could use code $00,10,01,11$ which is not Huffman.\\
+Nevertheless, the previous result says if we have a prefix-free optimal code with word lengths $s_1,...,s_m$ associated with probabilities $p_1,...,p_m$, there exists a Huffman code with those word lengths.
+\end{rem}
+
+\begin{defi}
+The \emph{joint entropy} of $X$ and $Y$ is
+\begin{equation*}
+\begin{aligned}
+H(X,Y) = -\sum_{x \in \Sigma_1} \sum_{y \in \Sigma_2} P(X=x,Y=y) \log \P(X=x,Y=y)
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\begin{lemma}
+$H(X,Y) \leq H(X) + H(Y)$, with equality iff $X$ and $Y$ independent.
+\begin{proof}
+Let $\Sigma_1 = \{x_1,...,x_m\}$, $\Sigma_2 = \{y_1,..,y_n\}$ $p_{ij} = \P(X=x_,Y=y_j)$, $p_i = \P(X=x_i), q_j = \P(Y=y_j)$. Apply Gibbs inequality with $p_{ij}$ and $p_i q_j$ we get
+\begin{equation*}
+\begin{aligned}
+\sum p_{ij} \log (p_{ij}) & \leq -\sum p_{ij} \log (p_i q_j)\\
+&= -\sum_i \sum_j p_{ij} \log p_i - \sum\sum p_{ij} \log q_j\\
+= -\sum p_i \log p_i - \sum q_j \log q_j
+\end{aligned}
+\end{equation*}
+i.e. $H(x,y) \leq H(x) + H(Y)$. Equality holds iff $p_{ij} = p_i q_j$ $\forall i,j$ $\iff X,Y$ independent.
+\end{proof}
+\end{lemma}
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
