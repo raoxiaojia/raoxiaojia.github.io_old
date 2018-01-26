@@ -38,7 +38,7 @@ By \emph{inductively define}, we mean more precisely that we set $L_1 = P \cup \
 Each proposition is built up \emph{uniquely} from 1) and 2) using 3). For example, $((p_1 \implies p_2) \implies (p_1 \implies p_3))$ came from $(p_1 \implies p_2)$ and $(p_1 \implies p_3)$. We often omit outer brackets or use different brackets for clarity.
 
 Now we can define some useful things:\\
-$\bullet$ $\neg p$ (not $p$), as an abbreviation for $p \implies L$;\\
+$\bullet$ $\neg p$ (not $p$), as an abbreviation for $p \implies \perp$;\\
 $\bullet$ $p \vee q$ ($p$ or $q$), as an abbreviation for $(\neg p) \implies q$;\\
 $\bullet$ $p \wedge q$ ($p$ and $q$), as an abbreviation for $(p \implies (\neg q))$.
 
@@ -181,6 +181,53 @@ We have $v(p) = 1$ $\forall p$ axiom as our axioms are all tautologies (proven e
 \end{prop}
 
 We say $S \subset L$ consistent if $S \not\vdash \perp$. One special case of adequacy is: $S \vDash \perp \implies S \vdash \perp$, i.e. if $S$ has no model then $S$ inconsistent, i.e. if $S$ is consistent then $S$ has a model. This implies adequacy: given $S \vDash t$, we have $S \cup \{\neg t\} \vDash \perp$, so by our special case we have $S \cup \{\neg t\} \vdash \perp$, i.e. $S \vdash ((\neg t) \implies t)$ by deduction theorem, so $S \vdash \neg\neg t$. But $S \vdash ((\neg\neg t) \implies t)$ by axiom 3, so $S \vdash t$ (mp).
+
+\begin{thm} (4)\\
+Let $S \subset L$ be consistent, then $S$ has a model.\\
+The idea is that we would like to define valuation $v$ by $v(p) = 1 \iff p \in S$, or more sensibly, $v(p)=1 \iff S \vdash p$.\\
+But maybe $S \not \vdash p_3, S \not\vdash \neg p_3$, but a valuation maps half of $L$ to 1, so we want to 'grow' $S$ to contain one of $p$ or $\neg p$ for each $p \in L$, while keeping consistency.
+\begin{proof}
+Claim: for any consistent $S \subset L$, $p \in L$, $S \cup \{p\}$ or $S \cup \{\neg p\}$ consistent.
+\emph{Proof of claim.} If not, then $S \cup \{p\} \vdash \perp$ and $S \cup \{\neg p\} \vdash \perp$, then $S \vdash (p \implies \perp)$ (deduction theorem), i.e. $S \vdash \not p$, so $S \vdash \perp$ contradiction.
+
+Now $L$ is countable as each $L_n$ is countable, so we can list $L$ as $t_1,t_2,...$. Put $S_0 = S$; set $S_1 = s_0 \cup \{t_1\}$ or $s_0 \cup (\neg t_1\}$ so that $S_1$ is consistent. Then set $S_2 = S_1 \cup \{t_2\}$ or $S_1 \cup \{\neg t_2\}$ so that $S_2$ is consistent, and continue likewise. Set $\bar{S} = S_0 \cup S_1 \cup S_2 \cup ...$ Then $\bar{S} \supset S$, and $\bar{S}$ is consistent (as each $S_n$ is, and each proof is finite). $\forall p \in L$, we have either $p \in S$ or $(\neg p) \in S$. Also, $\bar{S}$ is \emph{deductively closed}, meaning that is $\bar{S} \vdash p$ then $p \in \bar{S}$: if $p \not\in \bar{S}$ then $(\neg p) \in \bar{S}$, so $\bar{S} \vdash p$, $\bar{S} \vdash (\not p)$ so $\bar{S} \vdash \perp$ contradiction.\\
+Define $v:L \to \{0,1\}$ by $p \to 1$ if $p \in \bar{S}$, $0$ otherwise. Then $v$ is a valuation: $v(\perp) = 0$ as $\perp \not\in \bar{S}$; for $v(p \implies q)$:\\
+If $v(p) = 1$, $v(q) = 0$: We have $p \in \bar{S}$, $q \not\in \bar{S}$, and want $v(p \implies q) = 0$, i.e. $(p \implies q \not\in \bar{S}$. But if $9p \implies q) \in \bar{S}$ then $\bar{S} \vdash q$ contradiction;\\
+If $v(q) = 1$: have $q \in \bar{S}$, and want $v(p \implies q) =1$, i.e. $(p \implies q) \int \bar{S}$. But $\vdash q \implies (p \implies q)$ so $\bar{S} \vdash (p \implies q)$;\\
+If $v(p) = 0$: have $p \not\in \bar{S}$, i.e. $(\neg p) \in \bar{S}$ and want $(p \implies q) \in \bar{S}$. So we need $(p \implies \perp) \vdash (p \implies q)$, i.e. $p \implies \perp,p \vdash q$ (deduction theorem). Thus it's enough to show that $\perp \vdash q$. But $(\neg\neg q) \implies q$, and $\vdash (\perp \implies (\neg\neg q))$ (axiom 3 and 1 -- to see the second one, write $\neg$ explicitly using $\implies$ and $\perp$), so $\vdash(\perp \implies q)$, i.e. $\perp\vdash q$.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+Sometimes this is called 'completeness theorem'. The proof used $P$ being countable to get $L$ countable; in fact, result still holds if $P$ is uncountable (see chapter 3).
+\end{rem}
+
+By remark before theorem 4, we have
+\begin{coro} (5, adequacy)\\
+Let $S \subset L$, $t \in L$. Then if $S \vDash t$ then $S \vdash t$.
+\end{coro}
+
+And hence,
+\begin{thm} (6, completeness theorem)\\
+Let $S \subset L$, $t \in L$. Then $S \vdash t \iff S \vDash t$.
+\end{thm}
+
+Some consequences:
+\begin{coro} (7, compactness theorem)\\
+Let $S \subset L$, $t \in L$ with $S \vDash t$. Then $\exists$ finite $S' \subset S$ with $S' \vDash t$.\\
+This is trivial if we replace $\vDash$ by $\vdash$ (as proofs are finite).
+\end{coro}
+
+Special case for $t=\perp$: If $S$ has no model then some finite $S' \subset S$ has no model. Equivalently,
+\begin{coro} (7', compactness theorem, equivalent form)\\
+Let $S \subset L$. If every finite subset of $S$ has a model then $S$ has a model.\\
+This \emph{isi} equivalent to corollary 7 because $S \vDash t$ $\iff S \cup \{\neg t\}$ has no model and $S' \vDash t \iff S' \cup (\neg t)$ has no model.
+\end{coro}
+
+\begin{coro} (8, decidability theorem)\\
+There is an algorithm to determine (in finite time) whether or not, for a given finite $S \subset L$ and $t \in L$, we have $S \vdash t$.\\
+This is highly non-obviuos; however it's trivial to decide if $S \vDash t$ just by drawing a truth table, and $\vDash \iff \vdash$.
+\end{coro}
 
 \iffalse
 \begin{equation*}
