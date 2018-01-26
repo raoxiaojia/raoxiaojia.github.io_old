@@ -212,11 +212,48 @@ General theory involves conditions of regularity.
 
 We assume $X$ is a right-continuous jump process.
 
+Holding times for general chains:
 
+Assume $X(t_0) = i$.\\
+Let $H=\inf\{t>t_0:X(t) \neq i\}$. We have $$\P(H>u+v|H>u) = \P(H>v) \ (*)$$ by Markov Property ($u,v \geq 0$).\\
+Let $G(u) = \P(H>u)$. By (*), we get $\frac{G(u+v)}{G(u)} = G(v)$, so $G(u+v) = G(u)G(v)$.\\
+We know $G(0) = 1$, and $G$ is non-increasing.\\
+Solution: $G(n) = G(1)G(n-1) = G(1)^n$ $\forall n \in \N$. Also $G(p/q)... G(p/q) =G(p) = G(1)^p$ so $G(p/q) = G(1)^{p/q}$, hence $G(u) = G(1)^u$ for $u \geq 0$. We deduce that $G(u) = e^{-\alpha u}$ for some $\alpha>0$.
 
+\begin{lemma}
+A random variable $X>0$ has an exponential distribution iff it has the \emph{lack of memory property}: $\P(X>u+v|X>u) = \P(X>v)$ $\forall u,v > 0$.
+\end{lemma}
 
+A MC s a combination of exponential-distribution holding times, and a transition matrix for the \emph{jump chain} $Y=(Y_n)$ given by $Y_0 =X(0)$, $Y_1 = X(T_1)$, where $T_1 = \inf\{t:X(t) \neq X(0)\}$, and $Y_n = X(T_n)$ where $T_{n+1} = \inf \{t > T_n: X(t) \neq X(T_n)\}$. $Y$ is a \emph{discrete-time Markov chain.}
 
+If in staet $i$, want $H$, we jump to state $j\neq i$ with probability $\frac{g_{ij}}{\alpha_i}$. Intensity of a jump is $\alpha_i$, and intensity of a jump to state $j$ is $g_{ij}$.\\
+Note a transition from $i$ to itself is not deemed to be a transition.
 
+We have $p_{ij} (h) = g_{ij} h + o(j)$ ($j \neq i$), $p_{ij}(h) = 1- \sum_{j \neq i} p_{ij}(h) = 1-h\sum_{j \neq i} g_{ij} + o(h) = 1-\alpha_i h + o(h) = 1+g_{ii} h + o(h)$, where we let $g_{ii} = -\alpha_i$. Now we let $G$ be the matrix $(g_{ij})$, with the off-diagonal terms the previous $g_{ij}$'s, but the diagonal terms $g_{ii}$ as defined just now (so as to make row sums 0). Now the off-diagonal terms are non-negative, and diagonal terms are non-positive. We call $G$ the \emph{generator} of the chain (otherwise known as the $Q$-matrix).
+
+Conclusion: $\frac{P_t - I}{t} \xrightarrow{t \to 0^+} G$.\\
+Questions of regularity: OK if $|S| < \infty$.
+
+(?)
+\begin{equation*}
+\begin{aligned}
+p_{ij}(t+h) &= \sum_k p_{ik}(t) p_{kj}(h)\\
+&= \sum_{k \neq j} p_{ik}(t) [g_{kj} h + o(h) + p_{ij}(t) (1+g_{jj} h + o(h))\\
+&= \sum_k p_{ik} (t) g_{kj}\\
+&= pP_t \cdot G
+\end{aligned}
+\end{equation*}
+this is the (Kolmogov) Forward Equation.
+
+$p_{ij}(t+h) = \sum_k p_{ik}(h) p_{kj}(t)$, so $P't = GP_t$, called the K-Backward equation.
+
+Interchange of limits requires justification -- it's OK if $|S| < \infty$.
+
+Now $P'_t = P_t G$, we can rewrite this as $f'=fg$, which gives $f(t) = A e^{gt}$. So the solution should be $P_t = P_0(=I)e^{tG}$ (i.e. $=\sum_{k=0}^\infty \frac{t^k}{k!} G^k$).
+
+In many cases, the solutoin to the forward and/or backward equation is the function $P=e^{tG}$.
+
+A mistake has been made! The definition for holding time is wrong. It should be $H=\inf\{ t-t_0: X(t) \neq X(t_0), t > t_0\}$.
 
 \iffalse
 \begin{equation*}
