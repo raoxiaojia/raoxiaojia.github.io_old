@@ -320,7 +320,7 @@ We see that $\frac{d}{dt} (E+C)=0$, and $\frac{d}{dt} (S+C+P)=0$. Therefore, $E+
 \begin{equation*}
 \begin{aligned}
 \frac{d}{dt} S = -k_1(e_0-C) S + k_2 C = -k_1e_0 S + (k_1S+k_2) C\\
-\frac{d}{dt} C = k_1(e_0-C)S - k_@C - k_3C = k_1 e_0 S - (k_1S+k_2+k_3) C
+\frac{d}{dt} C = k_1(e_0-C)S - k_2C - k_3C = k_1 e_0 S - (k_1S+k_2+k_3) C
 \end{aligned}
 \end{equation*}
 We use our old trick (?) of rescaling variables by $n_S = \frac{S}{s_0}$, $n_C = \frac{C}{e_0}$, then $n_S=1$ and $n_C=0$ at $t=0$. The equations become 
@@ -333,7 +333,7 @@ We use our old trick (?) of rescaling variables by $n_S = \frac{S}{s_0}$, $n_C =
 where $\mu = \frac{k_3}{k_1s_0}, \lambda = \frac{k_2+k_3}{k_1s_0}, \varepsilon = \frac{e_0}{s_0} \ll 1$.
 
 Steady state value of $n_C$ assuming $n_S$ is fixed:\\
-$n_C = \frac{n_S}{j_S+\mu}$ as $t \to \infty$. Plug them back into $n_S$ equation, get
+$n_C = \frac{n_S}{n_S+\mu}$ as $t \to \infty$. Plug them back into $n_S$ equation, get
 \begin{equation*}
 \begin{aligned}
 \frac{d}{dt} n_S = -n_S + (n_S+\mu-\lambda) \frac{n_S}{n_S+\mu}\\
