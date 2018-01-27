@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  25 JAN 2018 12:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  27 JAN 2018 12:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -836,7 +836,7 @@ LaTeX Warning: No \author given.
 \openout5 = `Biology.toc'.
 
  [2]
-[3] [4] <image/Bio_01.png, id=51, 722.7pt x 406.51875pt>
+[3] [4] <image/Bio_01.png, id=63, 722.7pt x 406.51875pt>
 File: image/Bio_01.png Graphic file (type png)
 
 <use image/Bio_01.png>
@@ -847,7 +847,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 90--91
 [][] 
  []
 
-<image/Bio_02.png, id=52, 722.7pt x 406.51875pt>
+<image/Bio_02.png, id=64, 722.7pt x 406.51875pt>
 File: image/Bio_02.png Graphic file (type png)
  <use image/Bio_02.png>
 Package pdftex.def Info: image/Bio_02.png used on input line 101.
@@ -857,7 +857,7 @@ Overfull \hbox (160.88655pt too wide) in paragraph at lines 101--102
 [][] 
  []
 
-[5 <./image/Bio_01.png>] <image/Bio_03.png, id=58, 722.7pt x 406.51875pt>
+[5 <./image/Bio_01.png>] <image/Bio_03.png, id=70, 722.7pt x 406.51875pt>
 File: image/Bio_03.png Graphic file (type png)
 
 <use image/Bio_03.png>
@@ -874,7 +874,7 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 152.
 
-<image/Bio_04.png, id=63, 722.7pt x 406.51875pt>
+<image/Bio_04.png, id=75, 722.7pt x 406.51875pt>
 File: image/Bio_04.png Graphic file (type png)
  <use image/Bio_04.png>
 Package pdftex.def Info: image/Bio_04.png used on input line 157.
@@ -884,7 +884,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 157--158
 [][] 
  []
 
-[7] <image/Bio_05.png, id=69, 722.7pt x 406.51875pt>
+[7] <image/Bio_05.png, id=81, 722.7pt x 406.51875pt>
 File: image/Bio_05.png Graphic file (type png)
  <use image/Bio_05.png>
 Package pdftex.def Info: image/Bio_05.png used on input line 165.
@@ -895,13 +895,13 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 165--166
  []
 
 [8 <./image/Bio_04.png> <./image/Bio_05.png>]
-<image/Bio_06.png, id=74, 722.7pt x 406.51875pt>
+<image/Bio_06.png, id=86, 722.7pt x 406.51875pt>
 File: image/Bio_06.png Graphic file (type png)
  <use image/Bio_06.png>
 Package pdftex.def Info: image/Bio_06.png used on input line 200.
 (pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
 
-<image/Bio_07.png, id=75, 722.7pt x 406.51875pt>
+<image/Bio_07.png, id=87, 722.7pt x 406.51875pt>
 File: image/Bio_07.png Graphic file (type png)
  <use image/Bio_07.png>
 Package pdftex.def Info: image/Bio_07.png used on input line 201.
@@ -916,7 +916,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 199--203
 []
  []
 
-[9 <./image/Bio_06.png>] <image/Bio_08.png, id=81, 722.7pt x 406.51875pt>
+[9 <./image/Bio_06.png>] <image/Bio_08.png, id=93, 722.7pt x 406.51875pt>
 File: image/Bio_08.png Graphic file (type png)
 
 <use image/Bio_08.png>
@@ -927,7 +927,7 @@ Overfull \hbox (150.80394pt too wide) in paragraph at lines 221--224
 \OT1/cmr/m/n/10 (-20) low and an-a-lyze in-ter-sec-tions?) [] 
  []
 
-[10 <./image/Bio_07.png>] <image/Bio_09.png, id=86, 722.7pt x 406.51875pt>
+[10 <./image/Bio_07.png>] <image/Bio_09.png, id=98, 722.7pt x 406.51875pt>
 File: image/Bio_09.png Graphic file (type png)
 
 <use image/Bio_09.png>
@@ -940,13 +940,13 @@ y/m/n/10 ^^@ []$\OT1/cmr/m/n/10 (-20) . []
  []
 
 [11 <./image/Bio_08.png> <./image/Bio_09.png>]
-<image/Bio_10.png, id=91, 722.7pt x 406.51875pt>
+<image/Bio_10.png, id=103, 722.7pt x 406.51875pt>
 File: image/Bio_10.png Graphic file (type png)
  <use image/Bio_10.png>
 Package pdftex.def Info: image/Bio_10.png used on input line 275.
 (pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
 
-<image/Bio_11.png, id=92, 722.7pt x 406.51875pt>
+<image/Bio_11.png, id=104, 722.7pt x 406.51875pt>
 File: image/Bio_11.png Graphic file (type png)
  <use image/Bio_11.png>
 Package pdftex.def Info: image/Bio_11.png used on input line 276.
@@ -961,7 +961,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 275--277
 [] 
  []
 
-[12 <./image/Bio_10.png>] <image/Bio_12.png, id=97, 722.7pt x 406.51875pt>
+[12 <./image/Bio_10.png>] <image/Bio_12.png, id=109, 722.7pt x 406.51875pt>
 File: image/Bio_12.png Graphic file (type png)
 
 <use image/Bio_12.png>
@@ -973,23 +973,45 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 282--283
  []
 
 [13 <./image/Bio_11.png> <./image/Bio_12.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 295.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 295.
+<image/Bio_13.png, id=115, 722.7pt x 406.51875pt>
+File: image/Bio_13.png Graphic file (type png)
+ <use image/Bio_13.png>
+Package pdftex.def Info: image/Bio_13.png used on input line 290.
+(pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
+
+Overfull \hbox (16.3491pt too wide) in paragraph at lines 290--291
+[][] 
+ []
+
+[14 <./image/Bio_13.png>] [15]
+<image/Bio_14.png, id=124, 722.7pt x 406.51875pt>
+File: image/Bio_14.png Graphic file (type png)
+ <use image/Bio_14.png>
+Package pdftex.def Info: image/Bio_14.png used on input line 378.
+(pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
+
+Overfull \hbox (16.3491pt too wide) in paragraph at lines 378--379
+[][] 
+ []
+
+[16 <./image/Bio_14.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 392.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 392.
  (./Biology.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 295.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 295.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 392.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 392.
 Package rerunfilecheck Info: File `Biology.out' has not changed.
-(rerunfilecheck)             Checksum: 99234C7189562AE961FF64B0F0302E71;101.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 295.
+(rerunfilecheck)             Checksum: B305169D889799A370C48B34E9E068C9;206.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 392.
  ) 
 Here is how much of TeX's memory you used:
- 27875 strings out of 494910
- 664872 string characters out of 6179835
+ 27896 strings out of 494910
+ 665149 string characters out of 6179835
  885616 words of memory out of 5000000
- 30628 multiletter control sequences out of 15000+600000
- 14003 words of font info for 73 fonts, out of 8000000 for 9000
+ 30638 multiletter control sequences out of 15000+600000
+ 14105 words of font info for 75 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 57i,13n,77p,742b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,77p,742b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texli
@@ -1005,10 +1027,10 @@ r5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Biology.pdf (13 pages, 541610 bytes).
+Output written on Biology.pdf (16 pages, 649669 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 116 compressed objects within 2 object streams
- 17 named destinations out of 1000 (max. 500000)
- 14937 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 188 PDF objects out of 1000 (max. 8388607)
+ 138 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
+ 14963 words of extra memory for PDF output out of 17280 (max. 10000000)
 

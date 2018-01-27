@@ -281,6 +281,103 @@ If $\mu \gg \nu$, for example, for Measles we have $\mu \sim \frac{1}{70}$ years
 
 \includegraphics[scale=0.5]{image/Bio_12.png}
 
+\newpage
+
+\section{Enzyme Kinetics}
+
+Enzyme is biological catalyst, which speeds up the process of reaction (substrate turning to product) without being consumed in the process.
+
+\includegraphics[scale=0.5]{image/Bio_13.png}
+
+Suppose we have the model
+\begin{equation*}
+\begin{aligned}
+\frac{dS}{dt} = -\bar{k}S & \text{ no enzyme}\\
+\frac{dS}{dt} = -kS & \text{ enzyme present}
+\end{aligned}
+\end{equation*}
+where $k \gg \bar{k}$.
+
+Hypothesis: (Michaelis-Menten, $\sim$1915)
+\begin{equation*}
+\begin{aligned}
+S + E \xrightarrow{k_1} C \text{ (complex)}\\
+C \xrightarrow{k_2} S+E\\
+C \xrightarrow{k_3} E+P
+\end{aligned}
+\end{equation*}
+Under this model, we have
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} S &= -k_1 ES + k_2C\\
+\frac{d}{dt} E &= -k_1 ES + k_2C + k_3 C\\
+\frac{d}{dt} C &= k_1 ES - k_2C - k_3 C\\
+\frac{d}{dt} P &= k_3 C
+\end{aligned}
+\end{equation*}
+
+We see that $\frac{d}{dt} (E+C)=0$, and $\frac{d}{dt} (S+C+P)=0$. Therefore, $E+C=e_0$ is constant and $S+C+P=s_0$ is constant. There are 4 equations and 2 constraints, so we can reduce the dimension of the equation. We will choose
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} S = -k_1(e_0-C) S + k_2 C = -k_1e_0 S + (k_1S+k_2) C\\
+\frac{d}{dt} C = k_1(e_0-C)S - k_@C - k_3C = k_1 e_0 S - (k_1S+k_2+k_3) C
+\end{aligned}
+\end{equation*}
+We use our old trick (?) of rescaling variables by $n_S = \frac{S}{s_0}$, $n_C = \frac{C}{e_0}$, then $n_S=1$ and $n_C=0$ at $t=0$. The equations become 
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_S = -n_S + (n_S + \mu-\lambda) n_C\\
+\varepsilon \frac{d}{dt} n_C = n_S - (n_S+\mu) n_C
+\end{aligned}
+\end{equation*}
+where $\mu = \frac{k_3}{k_1s_0}, \lambda = \frac{k_2+k_3}{k_1s_0}, \varepsilon = \frac{e_0}{s_0} \ll 1$.
+
+Steady state value of $n_C$ assuming $n_S$ is fixed:\\
+$n_C = \frac{n_S}{j_S+\mu}$ as $t \to \infty$. Plug them back into $n_S$ equation, get
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_S = -n_S + (n_S+\mu-\lambda) \frac{n_S}{n_S+\mu}\\
+\frac{d}{dt} n_S = -\frac{\lambda n_S}{n_S + \mu} \ (*)
+\end{aligned}
+\end{equation*}
+This is called the Michaelis-Menten equation.
+
+\section{Prey-predator system}
+Suppose we have rabbits with number $n_R$, and foxes with number $n_F$. Our biological datum is that if there is no predation then rabbits grow unboundedly, and foxes die (as they have nothing to eat). With predation, rabbits die at a rate $b$ per capita, and foxes reproduce at a rate $c$ per capita. We have
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_R = a \cdot n_R - b n_R n_F\\
+\frac{d}{dt} n_F = c n_R n_F - dn_F
+\end{aligned}
+\end{equation*}
+we write as
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_R = n_R (1-n_F)\\
+\frac{d}{dt} n_F = -\alpha n_F (1-n_R)
+\end{aligned}
+\end{equation*}
+This has fixed points $(0,0)$ and $(1,1)$, and has Jacobian
+\begin{equation*}
+\begin{aligned}
+\begin{pmatrix}
+1-n_F & -n_R\\
+\alpha n_F & -\alpha(1-n_R)
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+evaluate at the two fixed points, we see that $(0,0)$ is unstable (actually a saddle), and the $(1,1)$ fixed point has eigenvalue (of Jacobian) $\pm i\sqrt{\alpha}$. Since the real part is 0 we don't know (yet) whether it is stable or not. We have to solve the equations of motion:
+\begin{equation*}
+\begin{aligned}
+d n_R = n_R (1-n_F) dt\\
+d n_F = -\alpha n_F (1-n_R) dt
+\end{aligned}
+\end{equation*}
+so $\frac{d n_R}{dn_F} = \frac{n_R (1-n_F)}{-\alpha n_F(1-n_R)}$, i.e. $\alpha \frac{1-n_R}{n_R} dn_R = -\frac{1-n_F}{n_F} dn_F$ so $\alpha(\log n_R - n_R) = -(\log n_F - n_F) + c$. We get $H(n_R,n_F) = \alpha(n_R - n_R) + \log n_F - n_F = $constant, where $H(n_R,n_F)$ is the integral of motion. So we should observe the number $n_R$ and $n_F$ show a pattern of oscillation with some period $T$ which we wish to find.
+
+\includegraphics[scale=0.5]{image/Bio_14.png}
+
+
 
 \iffalse
 
