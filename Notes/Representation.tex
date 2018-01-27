@@ -365,10 +365,90 @@ The representation $G \to GL(V)$ where $V=FX$ is the corresponding \emph{permuta
 \section{Schur's lemma}
 It's really unfair that such an important result is only remembered by a lemma, so we shall call it a theorem.
 \begin{thm} (4.1, Schur)\\
-(a) Assume $V,W$ are irreducible $G$-spaces over field $F$. Then any $G$-homomorphism $\theta:V \to W$ is either $0$ or is an isomorphism.\\
-(b) Assume $F$ is algebraically closed, and let $V$ be an irreducible $G$-space. Then any $G$-endomorphism $V \to V$ is a scalar multiple of the identity map $\iota_V$.
+(a) Assume $V,W$ are irreducible $G$-spaces over field $F$. Then any $G$-homomorphism $\theta:V \to W$ is either $0$ or an isomorphism.\\
+(b) Assume $F$ is \emph{algebraically closed}, and let $V$ be an irreducible $G$-space. Then any $G$-endomorphism $V \to V$ is a scalar multiple of the identity map $\iota_V$.
+\begin{proof}
+(a) Let $\theta:V \to W$ be a $G$-homomorphism. Then $\ker$ $\theta$ is $G$ subspace of $V$ and, since $V$ is irreducible, we get $\ker\theta = 0$ or $\ker\theta = V$.\\
+And $im\theta$ is $G$-subspace of $W$, so as $W$ is irreducible, $im\theta$ is either $0$ or $W$. Hence, either $\theta=0$ or $\theta$ is injective and surjective, hence isomorphism.\\
+(b) Since $F$ is algebraically closed, $\theta$ has an eigenvalue, $\lambda$. Then $\theta-\lambda \iota$ is singular $G$-endomorphism of $V$, but it cannot be an isomorphism, so it is $0$ (by (a)). So $\theta = \lambda \iota_V$.
+\end{proof}
 \end{thm}
 
+Recall from (2.8), the $F$-space $Hom_G(V,W)$ of all $G$-homomorphisms $V \to W$. Write $End_G(V)$ for the $G$-endomorphisms of $V$.
+
+\begin{coro} (4.2)\\
+If $V,W$ are irreducible complex $G$-spaces, then
+\begin{equation*}
+\begin{aligned}
+\dim_\C Hom_G (V,W) = \left\{\begin{array}{ll}
+1 & \text{ if } V,W \text{ are } G- \text{ isomorphic}\\
+0 & \text{ otherwise}
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+\begin{proof}
+If $V,W$ are not $G$-isomorphic then the only $G$-homomorphism $V\to W$ is $0$ by (4.1). Assume $v \cong_G W$ and $\theta_1,\theta-2 \in Hom_G (V,W)$, both non-zero. Then $\theta_2$ is invertible by (4.1), and $\theta_2^{-1} \theta_1 \in End_G(V)$, and non-zero, so $\theta_2^{-1} \theta_1 = \lambda\iota_V$ for some $\lambda \in \C$. Hence $\theta_1 = \lambda\theta_2$.
+\end{proof}
+\end{coro}
+
+\begin{coro} (4.3)\\
+If finite group $G$ has a faithful complex irreducible representation, then $Z(G)$, the centre of the group, is cyclic.\\
+Note that the converse is false (Sheet 1, Q10).
+\begin{proof}
+Let $\rho:G \to GL(V)$ be faithful irreducible complex representaiton. Let $z \in Z(G)$, so $zg = gz$ $\forall g \in G$, hence the map $\phi_z: v \to zv$ ($v \in V$) is $G$-endomorphism of $V$, hence is multiplication by scalar $\mu_z$, say.\\
+By Schur's lemma, $zv = \mu_z v$ $\forall v$. Then the map 
+\begin{equation*}
+\begin{aligned}
+Z(G) &\to \C^* \ (\text{multiplicative group})\\
+z &\to u_z
+\end{aligned}
+\end{equation*}
+is a representation of $Z$ and is faithful, since $\rho$ is. Thus $Z(G)$ is isomorphic to some finite subgroup of $\C^*$, so is cyclic.
+\end{proof}
+\end{coro}
+
+Let's now consider representation of finite abelian groups.
+
+\begin{coro} (4.4)\\
+The irreducible $\C$-representaitons of a finite abelian group are all $1$-dimensional.
+\begin{proof}
+\emph{Either}: use (1.4)* to invoke simultaneous diagonalisation: if $v$ is an eigenvector for each $g \in G$, and if $V$ is irreducible, then $V=\bra v\ket$.\\
+\emph{Or}: Let $V$ be an irreducible $\C$-representation. For $g \in G$, the map
+\begin{equation*}
+\begin{aligned}
+\theta_g: &V &\to v\\
+&v &\to gv
+\end{aligned}
+\end{equation*}
+is a $G$-endomorphism of $V$, and as $V$ irreducible, $\theta_g = \lambda_g \iota_V$ for some $\lambda_g \in \C$. Thus $gv = \lambda_g v$ for any $g \in G$. Thus as $0 \neq V$ is irreducible, $V = \bra v\ket$, which is $1$-dimensional.
+\end{proof}
+\end{coro}
+
+\begin{rem}
+Schur's lemma fails over non-algebraically closed field, in particular, over $\R$. For example, let's consider the cyclic group $C_3$. It has 2 irreducible $\R$-representations, one of dimension 1 and one of dimension 2.\\
+Recall that every finite abelian group $G$ is isomorphic to a product of cyclic groups (see GRM). For example, $C_6 = C_2 \times C_3$. In fact, it can be written as a product of $C_{p^\alpha}$ for various primes $p$ and $\alpha \geq 1$, and the factors are uniquely determined up to reordering.
+\end{rem}
+
+\begin{prop} (4.5)\\
+The finite abelian group $G=C_{n_1} \times ... \times C_{n_r}$ has precisely $|G|$ irreducible $\C$-representations, as described below:
+\begin{proof}
+Write $G = \bra x_1\ket \times ... \bra x_r\ket$ where $|x_j| = n_j$. Suppose $\rho$ is irreducible, so by (4.4), it's $1$-dimensional: $\rho:G \to \C^*$.\\
+Let $\rho(1,...,x_j,...,1)$ (all $1$ apart from the $j^{th}$ entry) be $\lambda_j$. Then $\lambda_j^{n_j} = 1$, so $\lambda_j$ is a $n_j$-th root of unity. Now, the values $(\lambda_1,...,\lambda_r)$ determine $\rho$: $$\rho(x_1^{j_1}, ..., x_r^{j_r}) = \lambda_1^{j_1}...\lambda_r^{j_r}$$
+thus $\rho \leftrightarrow (\lambda_1,...,\lambda_r)$ with $\lambda_j^{n_j} =1 $ $\forall j$; we have $n_1...n_r$ such $r$-tuples, each giving $1$-dimensional representation.
+\end{proof}
+\end{prop}
+
+\begin{eg} (4.6)\\
+Consider $G=C_4 = \bra x\ket$. We could have $\rho_1(x) = 1,\rho_2(x) = i,\rho_3(x)=-1,\rho_4(x)=-i$.
+\end{eg}
+
+Warning: There is no "natural" 1-1 correspondence between the elements of $G$ and the representations of $G$ ($G$-finite abelian). If you choose an isomorphism $G \cong C_{a_1} \times ... \times C_{a_r}$, then we can identify the two sets (elements of groups and representations of $G$), but it depends on the choice of isomorphism.
+
+Isotypical decomposition:
+
+Recall any diagonalisable endomorphism $\alpha:V \to V$ gives eigenspace decomposition of $V \cong \oplus_\lambda V(\lambda)$, where $V(\lambda) = \{v:\alpha v = \lambda v\}$. This is \emph{caconical} (one of the three useless words: \emph{arbitrary}(anything), \emph{canonical}(only one choice), \emph{uniform}(you can choose, but it doesn't really matter)), in the sense that it depends on $\alpha$ alone (and nothing else).\\
+There is no canonical eigenbasis of $V$: must choose basis in each $V(\lambda)$.
 
 \iffalse
 \begin{equation*}
