@@ -229,6 +229,84 @@ There is an algorithm to determine (in finite time) whether or not, for a given 
 This is highly non-obviuos; however it's trivial to decide if $S \vDash t$ just by drawing a truth table, and $\vDash \iff \vdash$.
 \end{coro}
 
+\newpage
+
+\section{Well-Orderings and Ordinals}
+
+\begin{defi}
+A \emph{total order} or \emph{linear order} on a set $X$ is a relation $<$ on $X$, such that\\
+(1) Irreflexive: Not $x<x$ $\forall x \in X$;\\
+(2) Transitive: $x<y,y<z\implies x<z$ $\forall x,y,z \in X$;\\
+(3) Trichotomous: $x<y$ or $x=y$ or $y<x$ $\forall x,y \in X$.\\
+Note: two of (iii) cannot hold: if $x<y$, $y<x$ then $x<x$ by transitivity.\\
+Write $x \leq y$ if $x<y$ or $x=y$, and $y>x$ if $x<y$.
+
+We can also define total order in terms of $\leq$:\\
+(1) Reflexive: $x \leq x$ $\forall x \in X$;\\
+(2) Transitive: $x\leq y, y \leq z \implies x \in z$ $\forall x,y,z \in X$;\\
+(3) Antisymmetric: $x \leq y,y \leq x \implies x=y$ $\forall x,y \in X$;\\
+(4) 'Tri'chotomous (although it's only two): $x\leq y$ or $y \leq x$ $\forall x,y \in X$.
+\end{defi}
+
+\begin{eg}
+$\N,\Q,\R$ with the usual orders are all total orders.\\
+$\N^+$ the relation 'divides' is not a total order: for example we don't have any of $2|3,3|2$ or $2=3$.\\
+$\mathcal{P}(S)$ for some $S$ (with $|S|\geq 2$ to be rigorous), with $x \leq y$ if $x\subseteq y$ is not a total order for the same reason.
+\end{eg}
+
+A total order is a \emph{well-ordering} if every (non-empty) subset has a least element, i.e. $\forall S \subset X, S \neq \phi \implies \exists x \in S, x \leq y \forall y \in S$.
+
+\begin{eg}
+1.$\N$ with the usual $<$ is a well ordering.\\
+2.$\Z,\Q,\R$ with the usual $<$ are not well orderings.\\
+3.$\Q^+ \cup \{0\}$ with the usual $<$ is not a well ordering (e.g. $(0,\infty) \subset \Q^+\cup \{0\}$).\\
+4.The set $\{1-\frac{1}{n} : n=2,3,...\}$ as a subset of $\R$ with the usual ordering is a well ordering.
+5.The set $\{1-\frac{1}{n} : n=2,3,...\} \cup \{1\}$ as a subset of $\R$ with the usual ordering is a well ordering.
+6.The set $\{1-\frac{1}{n} : n=2,3,...\} \cup \{2-\frac{1}{n} : n=2,3,...\}$ (same assumption) is a well ordering.
+\end{eg}
+
+\begin{rem}
+$X$ is well-ordered iff there is no $x_1>x_2>x_3>...$ in $X$.\\
+Clearly if there is such a sequence then $S=\{x_1,x_2,...\}$ has no least element. Conversely, if $S \subset X$ has no least element, then for each element $x \in S$ there exists a $x' \in S$ with $x' < x$, so we can just pick $x,x',...$ inductively.
+\end{rem}
+
+\begin{defi}
+We say total orders $X,Y$ are \emph{isomorphic} if there exists a bijection $f:X \to Y$ that is order-preserving, i.e. $x<y \iff f(x) <f(y)$.\\
+For example, 1 and 4 above are isomorphic; 5 and 6 are isomorphic; 4 and 5 are not isomorphic (one has a greatest element, and the other doesn't).
+\end{defi}
+
+Here comes the first reason why well orderings are useful:
+\begin{prop} (1, Proof by induction)\\
+Let $X$ be well-ordered, and let $S \subset X$ be non-empty s.t. if $y \in S$ $\forall y < x$ then $x \in S$ (each $x \in X$). Then $S=X$.\\
+Equivalently, if $p(x)$ is a property s.t. $\forall x$: if $p(y) \forall y < x$ then $p(x)$, then $p(x) \forall x$.
+\begin{proof}
+If $S \neq X$ then let $x$ be the least element of $X \setminus S$. Then $x \not\in S$. But $y \in S$ $\forall y<x$, contradiction.
+\end{proof}
+\end{prop}
+
+A typical use:
+
+\begin{prop}
+Let $X,Y$ be isomorphic well-orderings. Then there is a \emph{unique} isomorphism from $X$ to $Y$.
+\begin{proof}
+Let $f,g$ be isomorphisms. We'll show $f(x) = g(x)$ $\forall x$ by induction. Thus we may assume $f(y) = g(y)$ $\forall y < x$, and want $f(x) = g(x)$. Let $a$ be the least element of $Y\setminus \{f(y):y<x\}$. Then we must have $f(x) = a$: if $f(x) > a$, then some $x'>x$ has $f(x') = a$ by surjectivity, contradiction. The same shows $g(x) = $least element of $Y\setminus \{g(y):y<x\}$, but this is the same as $a$. So $f(x) = g(x)$.
+\end{proof}
+\end{prop}
+
+\begin{rem}
+This is false for total orders in general. One example is, consider from $\Z to \Z$, we could either take identity, or $x \to x-5$; or from $\R$ to $\R$ we could take identity or $x \to x-5$ or $x\to x^3$...
+\end{rem}
+
+\begin{defi}
+In a total order $X$, an \emph{initial segment} $I$ is a subset of $X$ such that $x \in I, y < x \implies y \in I$.
+\end{defi}
+
+\begin{eg}
+For any $x \in X$, set $I(x) = \{y\in X : y < x\}$. Then this is an initial segment.\\
+Obviously, not every initial segment is of this form: for example, in $\R$ we can take $\{x:x \leq 3\}$; or in $\Q$, take $\{x:x^2 < 2\} \cup \{x<0\}$ (this cannot be written as above form as $\sqrt{2} \not\in \Q$.\\
+Note: in a well-ordering, every proper initial segment \emph{is} of the above form: let $x$ be the least elemnt of $X \setminus I$. Then $y<x \implies y \in I$. Conversely, if $y \in I$, then we must have $y < x$: otherwise $x \in I$, contradiction.
+\end{eg}
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
