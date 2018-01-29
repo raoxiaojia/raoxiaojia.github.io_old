@@ -295,12 +295,80 @@ Let $\Sigma_1 = \{x_1,...,x_m\}$, $\Sigma_2 = \{y_1,..,y_n\}$ $p_{ij} = \P(X=x_,
 \begin{aligned}
 \sum p_{ij} \log (p_{ij}) & \leq -\sum p_{ij} \log (p_i q_j)\\
 &= -\sum_i \sum_j p_{ij} \log p_i - \sum\sum p_{ij} \log q_j\\
-= -\sum p_i \log p_i - \sum q_j \log q_j
+&= -\sum p_i \log p_i - \sum q_j \log q_j
 \end{aligned}
 \end{equation*}
 i.e. $H(x,y) \leq H(x) + H(Y)$. Equality holds iff $p_{ij} = p_i q_j$ $\forall i,j$ $\iff X,Y$ independent.
 \end{proof}
 \end{lemma}
+
+Suppose we have a source $\Omega$ which produces a string $X_1,X_2,...$ of random variables with values in $\Sigma$. The probability mass function (pmf) of $X^{(n)} = (X_1,...,X_n)$ is given by $$p_n(x_1,...,x_n) = \P(X_1,...,X_n = x_1,...,x_n) \forall x_1,...,x_n \in \Sigma^n$$
+Now $p_n: \Sigma^n \to \R$ by $X^{(n)}: \Omega \to \Sigma^n$. We can form $p(X^{(n)}: \Omega \xrightarrow{X^{(n)}} \Sigma^n \xrightarrow{p_n} \R$ by $w \to p_n(X^{(n)} = X^{(n)} (w))$ a random variable.
+
+For example, let $\Sigma = \{A,B,C\}$. Then $X^{(2)} = AB (0.3), AC(0.1), BA(0.1), BA (0.2), CA(0.25), CB(0.05)$ So $p_2(AB)= 0.3$, etc.. And $p_2(X^{(2)})$ takes values $0.3$ with probability 0.3, 0.1 with probability 0.2, 0.2 with probaility 0.2, 0.25 with probability 0.25, 0.05 with probaility 0.05.
+
+\begin{defi}
+A sequence of random varialbes $X_1,...$ converges in probability to $c \in \R$, written $X_n \xrightarrow{p} c$ as $n \to \infty$, if $\forall \varepsilon >0$, $P(|x_n-c| \leq \varepsilon) \to 1$ as $n \to \infty$. So $X_n$ and $c$ can take very different values for large $n$ but only on a set with small probability.
+\end{defi}
+
+\begin{thm} (Weak law of large numbers)\\
+Let $X_1,X_2,...$ be an i.i.d. sequence of random variables with finite expected value $\mu$, then $$\frac{1}{n} \sum_{i=1}^n X_i \xrightarrow{p} \mu$$
+as $n \to \infty$.
+\end{thm}
+
+Application: Suppose $X_1,X_2,...$ is a Bernoulli source. Then $p(X_1),p(X_2),...$ are i.i.d. random variables, and $p(X_1,...,X_n) = p(X_1,...,X_n)$. Take log of both sides we get 
+$$-\frac{1}{n} \log p(X_1,...,X_n) = -\frac{1}{n} \sum_{i=1}^n \log p(X_i) \xrightarrow{p} \E(-\log p(X_1)) = H(X_1)$$
+as $n \to \infty$.
+
+\begin{defi}
+A source $X_1,X_2,...$ satisfies the \emph{Asymptotic Equipartition Property} (AEP) if for some $H \geq 0$ we have
+$$ -\frac{1}{n} \log p(X_1,...,X_n) \xrightarrow{p} H$$
+as $n \to \infty$.
+\end{defi}
+
+Motivating example: suppose we have a coin with $p(H) = p$. If coin tossed $N$ times, expect approximately $pN$ heads and $(1-p)N$ tails. The probability of a particular sequence of $pN$ heads and $(1-p)N$ tails equals $p^{pN} (1-p)^{(1-p)N} = 2^{N(p\log p + (1-p) \log (1-p))} = 2^{-NH(A)}$, where $A$ is the result of independent coin toss. So, with high probability we will get a typical sequence, and its probability will be close to $2^{-NH(A)}$.
+
+\begin{lemma} (1.18)\\
+A source $X_1,X_2,...$ satisfies AEP iff it satisfies the following condition (*):\\
+$\forall \varepsilon < 0, \exists n_0(\varepsilon) s.t. \forall n \geq n_0(\varepsilon) \exists$ a typical set $T_n \subset \Sigma^n$ s.t:\\
+(i) $P((X_1,...,X_n) \in T_n) > 1-\varepsilon$;\\
+(ii) $2^{-n(H+\varepsilon)} \leq p(x_1,...,x_n) \leq 2^{-n(H+\varepsilon)}$ for all $(x_1,...,x_n) \in T^n$.
+\begin{proof} (sketch)\\
+AEP $\implies$ (*):\\
+Take $T_n = \{(x_1,...,x_n) \in \Sigma^n: |-\frac{1}{n} \log p(x_1,...,x_n) - H) < \varepsilon \} = \{(x_1,...,x_n) \in \Sigma^n : 2^{-n(H+\varepsilon)} \leq p(x_1,...,x_n) \leq 2^{-n(H-\varepsilon)}\}$.\\
+(*) $\implies$ AEP:\\
+$P(|-\frac{1}{n} p(X_1,...,X_n) - H| < \varepsilon) \geq P(T_n) \to 1$ as $n \to \infty$.
+\end{proof}
+\end{lemma}
+
+\begin{defi}
+A source $X_1,X_2,...$ is \emph{reliably encodable} at rate $r$ if there exists $A_n \subset \Sigma^n$ for each $n$ s.t.:\\
+(i) $\frac{\log|A_n|}{n} \to r$ as $n \to \infty$;\\
+(ii) $p((X_1,...,X_n) \in A_n) \to 1$ as $n \to \infty$.\\
+So, in principle, you can encode at rate almost $r$ with negligible error for long enough strings.\\
+So if $|\Sigma|=a$, you can reliably encode at rate $\log a$. However, you can often do better. For example, consider telegraph english with 26 letters and a space, we have $27 \approx 2^{4.755}$. So we can encode at a rate of $4.76$ bits/letter. But much lower rates suffice, there is a lot of redundancy in the english language. Hence the following definition:\\
+\end{defi}
+
+\begin{defi}
+The \emph{information rate}, $H$, of a source, is the infimum of all rates at which it is reliably encodable.
+\end{defi}
+
+Roughly, $nH$, is the number of bits required to encode $(X_1,...,X_n)$.
+
+\begin{thm} (1.9, Shannons' first encoding theorem)\\
+If a source satisfies AEP with same constant $H$, then the source has information rate $H$.
+\begin{proof}
+Let $\varepsilon > 0$ and let $T_n \subset \Sigma^n$ be typical sets. Then for sufficiently large $n \geq n_0 (\varepsilon)$, $p(x)1,...,x_n) \geq 2^{-n(H+\varepsilon)}$ $\forall (x_1,...,x_n) \in T^n$.
+
+So, $\P(X_1,...,X_n) \in T_n) \geq 2^{-n(H+\varepsilon)} |T_n| \implies |T_n| \leq 2^{n(H+\varepsilon)}$. So the source is reliably encodable at rate $H+\varepsilon$.\\
+Conversely, if $H=0$ we are done. Otherwise, pick $0 < \varepsilon < \frac{H}{2}$. Suppose the source is reliably encodable at rate $H-2\varepsilon$, say with sets $A_n$. Then $p(x_1,...,x_n) \leq 2^{-n(H-\varepsilon)}$ $\forall (x_1,...,x_n) \in T_n$. This implies $P((x_1,...,x_n) \in A_n \cap T_n) \leq 2^{-n(H-\varepsilon)}|A_n|$, so $\frac{\log P(A_n \cap T_n}{n} \leq -(H-\varepsilon) + \frac{\log |A_n|}{n} \to -(H-\varepsilon) + (H-2\varepsilon) = -\varepsilon$ as $n \to \infty$. (??) So $\log p(A_n \cap T_n) \to -\infty$, i.e. $p(A_n \cap T_n) \to 0$. But $p(T_n) \to 1$ as $n \to \infty$ and $P(A_n) \to 1$ as $n \to \infty$, contradiction(??). So the source is not reliably encodable at rate $H-2\varepsilon$. So the information rate is $H$.
+\end{proof}
+\end{thm}
+
+\begin{coro}
+A Bernoulli source $X_1,X_2,...$ has information rate $H(X_1)$.
+\end{coro}
+
 
 \iffalse
 \begin{equation*}
