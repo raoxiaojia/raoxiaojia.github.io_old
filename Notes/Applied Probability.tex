@@ -226,7 +226,7 @@ A random variable $X>0$ has an exponential distribution iff it has the \emph{lac
 
 A MC s a combination of exponential-distribution holding times, and a transition matrix for the \emph{jump chain} $Y=(Y_n)$ given by $Y_0 =X(0)$, $Y_1 = X(T_1)$, where $T_1 = \inf\{t:X(t) \neq X(0)\}$, and $Y_n = X(T_n)$ where $T_{n+1} = \inf \{t > T_n: X(t) \neq X(T_n)\}$. $Y$ is a \emph{discrete-time Markov chain.}
 
-If in staet $i$, want $H$, we jump to state $j\neq i$ with probability $\frac{g_{ij}}{\alpha_i}$. Intensity of a jump is $\alpha_i$, and intensity of a jump to state $j$ is $g_{ij}$.\\
+If in state $i$, want $H$, we jump to state $j\neq i$ with probability $\frac{g_{ij}}{\alpha_i}$. Intensity of a jump is $\alpha_i$, and intensity of a jump to state $j$ is $g_{ij}$.\\
 Note a transition from $i$ to itself is not deemed to be a transition.
 
 We have $p_{ij} (h) = g_{ij} h + o(j)$ ($j \neq i$), $p_{ij}(h) = 1- \sum_{j \neq i} p_{ij}(h) = 1-h\sum_{j \neq i} g_{ij} + o(h) = 1-\alpha_i h + o(h) = 1+g_{ii} h + o(h)$, where we let $g_{ii} = -\alpha_i$. Now we let $G$ be the matrix $(g_{ij})$, with the off-diagonal terms the previous $g_{ij}$'s, but the diagonal terms $g_{ii}$ as defined just now (so as to make row sums 0). Now the off-diagonal terms are non-negative, and diagonal terms are non-positive. We call $G$ the \emph{generator} of the chain (otherwise known as the $Q$-matrix).
@@ -240,7 +240,7 @@ Questions of regularity: OK if $|S| < \infty$.
 p_{ij}(t+h) &= \sum_k p_{ik}(t) p_{kj}(h)\\
 &= \sum_{k \neq j} p_{ik}(t) [g_{kj} h + o(h) + p_{ij}(t) (1+g_{jj} h + o(h))\\
 &= \sum_k p_{ik} (t) g_{kj}\\
-&= pP_t \cdot G
+&= P_t \cdot G
 \end{aligned}
 \end{equation*}
 this is the (Kolmogov) Forward Equation.
@@ -251,9 +251,54 @@ Interchange of limits requires justification -- it's OK if $|S| < \infty$.
 
 Now $P'_t = P_t G$, we can rewrite this as $f'=fg$, which gives $f(t) = A e^{gt}$. So the solution should be $P_t = P_0(=I)e^{tG}$ (i.e. $=\sum_{k=0}^\infty \frac{t^k}{k!} G^k$).
 
-In many cases, the solutoin to the forward and/or backward equation is the function $P=e^{tG}$.
+In many cases, the solution to the forward and/or backward equation is the function $P=e^{tG}$.
 
-A mistake has been made! The definition for holding time is wrong. It should be $H=\inf\{ t-t_0: X(t) \neq X(t_0), t > t_0\}$.
+A mistake has been made! The definition for holding time is wrong. It should be $H=\inf\{ t-t_0: X(t) \neq X(t_0), t > t_0\}$ (the length rather than the absolute time).
+
+Let's look at an example now.
+\begin{eg}
+Let $S=\{1,2\}$, $G={{-\alpha \ \alpha} \choose {\beta \ -\beta}}$, where $\alpha\beta > 0$. What are the $p_{ij}(t)$?\\
+There are only two states, so let's find
+\begin{equation*}
+\begin{aligned}
+p_{11}'(t) = -\alpha p_{11} + \beta p_{12},\\
+p_{12}'(t) = \alpha p_{11}(t) - \beta p_{12}(t)\\
+...
+\end{aligned}
+\end{equation*}
+So we get a bunch of differential equations, with boundary conditions $p_{11}(0) = p_{22}(0) =1$. This has a unique solution (check). We get $P_t = e^{tG} =\sum_n \frac{t^n}{n!} A \Lambda^n A^{-1}$ wher we diagonalize $G=A\Lambda A^{-1}$. But $e^{t\Lambda}$ is equal to $Diag(e^{\lambda_1 t}, e^{\lambda_2 t} ...)$. Each $p_{ij}(t)$ has the form $\sum_k e^{\lambda_k t} c_K (i,j)$, where we need to find the constants $c_k(i,j)$.
+\end{eg}
+
+\begin{lemma}
+Let $i,s \in S$. Then either $p_{ij}(t)=0$ $\forall t>0$, or $p_{ij}(t) > 0$ $\forall t > 0$ (this is because our time here is continuous; we can fit in any number of jumps in any time length with positive probability).
+\begin{proof}
+Assume $p_{ij}(T) > 0$ for some $T>0$. Then for $t>T$, $p_{ij}(t) \geq p_{ij}(T) \P_j (X_j > t-T) > 0$ (start in $j$ and holding time $> t-T$, which is positive).\\
+For $t<T$: there exists finite sequence of jumps from $i$ to $j$ in time $T$, so there exists $i_1,i_2,...,i_n \in S$ with $g_{i,i_1}g_{i_1,i_2}...g_{i_n,j}>0$, where $g_{i,j}$ is as defined previously. Then we can just divide the time $(0,t)$ into $n+1$ intervals. Then $p_{i,j}(t) \geq p_{i,i_1}(t/(n+1))...p_{t_n,j}(t/(n+1)) > 0$ (this is an applied course, so we don't care that much).
+\end{proof}
+\end{lemma}
+
+\begin{defi}
+The chain $X$ on state space is \emph{irreducible} if $\forall i,j \in S$, $\forall t > 0, p_{i,j}(t)>0$ ($\iff \exists t>0, p_{i,j}(t)>0$).
+\end{defi}
+
+A distribution $\pi$ on $S$ is invariant (or stationary, or equilibrium distribution) if $\pi = \pi P_t$ for all $t \geq 0$.
+
+Note: if $X(0)$ has distribution $\mu_0$, then $X(t)$ has distribution $\mu_t = \mu_0 P_t$ ($\mu_t(j) = \sum_i \mu_0(i) p_{i,j}(t)$).
+
+Note: (a) Differentiate $\pi = \pi P_t$ to get $0 = \pi G$;\\
+(b) If $P_t = e^{tG}$ then $\pi G = 0$ iff $\pi G^n = 0$ for $n \geq 1$ iff $\pi \sum_n \frac{t^n}{n!} G^n = \pi$ iff $\pi P_t = \pi$.
+
+\begin{thm}
+Let $X$ be irreducible. If there exist an invariant distribution $\pi$, then it is unique (what a surpise), and $p_{ij}(t) \to \pi_j$ as $t\to \infty$. Can we prove this in the remaining 11 minutes? Let's try:
+\begin{proof}
+Let $h>0$. Then $Y_n=X(nh)$. So $Y$ is a 'skeleton' of $X$. $Y$ is a markov chain. Since $X$ is irreducible, so is $Y$. $Y$ has invariant distribution $\pi$, hence $\pi$ is unique. (?) Since $X$ is irreducible, $Y$ is aperiodic(?). Hence $p_{ij}(nh) \to \pi_{ij}$ as $n \to \infty$. Since this holds for all $h \in \Q^+$, we deduce that $p_{ij}(t) \to \pi_j$ as $t\to \infty$ through the rationals. The conclusion follows by continuity of $p_{ij}(\cdot)$.
+\end{proof}
+\end{thm}
+
+\begin{lemma}
+The functions $p_{ij}(\cdot)$ are continuous.
+\end{lemma}
+
 
 \iffalse
 \begin{equation*}
