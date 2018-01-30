@@ -377,7 +377,55 @@ so $\frac{d n_R}{dn_F} = \frac{n_R (1-n_F)}{-\alpha n_F(1-n_R)}$, i.e. $\alpha \
 
 \includegraphics[scale=0.5]{image/Bio_14.png}
 
+We'll get $T=1$ after some interesting contour integration (no idea) $\oint d(\ln n_R ) = \int_0^\pi (1-n_F)dt$.
 
+What if both are hunted upon (say by a disease)? Let the death rate of rabbits and foxes be $\lambda_R$ and $\lambda_F$ respectively. Then $\frac{d}{dt} n_R = an_R - bn_Rn_F - \lambda_R n_R$, $\frac{d}{dt} n_F = cn_Rn_F - dn_R-\lambda_F n_F$. We introduce a shift parameter $a \to a-\lambda_R$, $d \to d+\lambda_F$, then we find that there is a shift on the fixed points: the fixed point in original variables is $(n^*_R,n^*_F) = (d/c,a/b)$. Now the new fixed point becomes $(n^*_R$, $n^*_F) =((d+\lambda_F)/c,(a-\lambda_R)/b)$.
+
+Fragility of ecosystems: if we add competition:
+
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_R &= n_R(1-n_F) - \varepsilon_R n_R^2\\
+\frac{d}{dt} n_F &= -\alpha n_F(1-n_R) - \alpha \varepsilon_F n_F^2
+\end{aligned}
+\end{equation*}
+After doing the same calculation we get
+\begin{equation*}
+\begin{aligned}
+n_R^* &= \frac{1+\varepsilon_F}{1+\varepsilon_R\varepsilon_F}\\
+n_F^* &= \frac{1-\varepsilon_F}{1+\varepsilon_R\varepsilon_F}\\
+J^* &= \begin{pmatrix}
+-\varepsilon_R n_R^* & -n_R^*\\
+\alpha n_F^* & -\alpha\varepsilon_F n_F^*
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+and only the (2,1) entry is positive, so $\tr J <0$, $\det J >0$. So this fixed point now becomes stable.
+
+Let's consider another model, the Fitzhugh-Nagumo model:
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_1 = c(n_2+n_1 - \frac{1}{3} n_1^3 + \mathcal{L}(t))\\
+\frac{d}{dt} n_2 = -\frac{1}{c} (n_1 - a+bn_2)
+\end{aligned}
+\end{equation*}
+where $\mathcal{L}(t)$ is an external signal, which can depend on time.
+
+Nullclines(maybe something in dynamical systems?):\\
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt} n_1 = 0 \implies n_2 = -n_1 + \frac{1}{3} n_1^3\\
+\frac{d}{dt} n_2 = 0 \implies n_2 = \frac{a-n_1}{b}
+\end{aligned}
+\end{equation*}
+where $\mathcal{L}(t) = 0$. The parameter bounds are $0<b\leq 1, 1-\frac{2}{3} b < a < 1, c \gg 1$. If we plot the two graphs we get fixed point at $n_1>0,n_2<0$, a stable focus.
+
+\includegraphics[scale=0.5]{image/Bio_15.png}
+
+If we now add $\mathcal{L}(t)$, we are essentially moveing the cubic curve upwards. There are three cases in terms of the magnitude added:\\
+(1) small: nothing interesting happens, the fixed point just moves by a bit;\\
+(2) medium: $n_2$ spikes up first, then falls back to the fixed points;
+(3) large: fixed points lose stability; $n_2$ oscillate like the above diagram, with spikes after certain periods.
 
 \iffalse
 
