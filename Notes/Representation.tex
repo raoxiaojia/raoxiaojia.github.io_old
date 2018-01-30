@@ -396,12 +396,12 @@ If $V,W$ are not $G$-isomorphic then the only $G$-homomorphism $V\to W$ is $0$ b
 If finite group $G$ has a faithful complex irreducible representation, then $Z(G)$, the centre of the group, is cyclic.\\
 Note that the converse is false (Sheet 1, Q10).
 \begin{proof}
-Let $\rho:G \to GL(V)$ be faithful irreducible complex representation. Let $z \in Z(G)$, so $zg = gz$ $\forall g \in G$, hence the map $\phi_z: v \to zv$ ($v \in V$) is $G$-endomorphism of $V$, hence is multiplication by scalar $\mu_z$, say.\\
-By Schur's lemma, $zv = \mu_z v$ $\forall v$. Then the map 
+Let $\rho:G \to GL(V)$ be faithful irreducible complex representation. Let $z \in Z(G)$, so $zg = gz$ $\forall g \in G$, hence the map $\phi_z: v \to z(v)$ ($v \in V$) is $G$-endomorphism of $V$, hence is multiplication by scalar $\mu_z$, say.\\
+By Schur's lemma, $z(v) = \mu_z v$ $\forall v$. Then the map 
 \begin{equation*}
 \begin{aligned}
 Z(G) &\to \C^* \ (\text{multiplicative group})\\
-z &\to u_z
+z &\to \mu_z
 \end{aligned}
 \end{equation*}
 is a representation of $Z$ and is faithful, since $\rho$ is. Thus $Z(G)$ is isomorphic to some finite subgroup of $\C^*$, so is cyclic.
@@ -421,12 +421,12 @@ The irreducible $\C$-representations of a finite abelian group are all $1$-dimen
 &v &\to gv
 \end{aligned}
 \end{equation*}
-is a $G$-endomorphism of $V$, and as $V$ irreducible, $\theta_g = \lambda_g \iota_V$ for some $\lambda_g \in \C$. Thus $gv = \lambda_g v$ for any $g \in G$. Thus as $0 \neq V$ is irreducible, $V = \bra v\ket$, which is $1$-dimensional.
+is a $G$-endomorphism of $V$, and as $V$ irreducible, $\theta_g = \lambda_g \iota_V$ for some $\lambda_g \in \C$. Thus $gv = \lambda_g v$ for any $g \in G$ (so $\bra v\ket$ is a $G$-subspace of $V$). Thus as $0 \neq V$ is irreducible, $V = \bra v\ket$, which is $1$-dimensional.
 \end{proof}
 \end{coro}
 
 \begin{rem}
-Schur's lemma fails over non-algebraically closed field, in particular, over $\R$. For example, let's consider the cyclic group $C_3$. It has 2 irreducible $\R$-representations, one of dimension 1 and one of dimension 2.\\
+Schur's lemma fails over non-algebraically closed field, in particular, over $\R$. For example, let's consider the cyclic group $C_3$. It has 2 irreducible $\R$-representations, one of dimension 1 (maps everything to 1) and one of dimension 2(imo consider $\C$ as a dimension 2 space over $\R$, then map the generator to the 3rd root of unity?) (so 'contradicting' with Schur's lemma via the corollary above).\\
 Recall that every finite abelian group $G$ is isomorphic to a product of cyclic groups (see GRM). For example, $C_6 = C_2 \times C_3$. In fact, it can be written as a product of $C_{p^\alpha}$ for various primes $p$ and $\alpha \geq 1$, and the factors are uniquely determined up to reordering.
 \end{rem}
 
@@ -449,6 +449,95 @@ Isotypical decomposition:
 
 Recall any diagonalisable endomorphism $\alpha:V \to V$ gives eigenspace decomposition of $V \cong \oplus_\lambda V(\lambda)$, where $V(\lambda) = \{v:\alpha v = \lambda v\}$. This is \emph{caconical} (one of the three useless words: \emph{arbitrary}(anything), \emph{canonical}(only one choice), \emph{uniform}(you can choose, but it doesn't really matter)), in the sense that it depends on $\alpha$ alone (and nothing else).\\
 There is no canonical eigenbasis of $V$: must choose basis in each $V(\lambda)$.
+
+We know that in $char\ 0$ every representation $V$ decomposes as $\oplus n_i V_i$, $V_i$ irreducible, $n_i \geq 0$. How unique is this?
+
+We have this wishlist (4.7):\\
+(a) Uniqueness: for each $V$ there is only one way to decompose $V$ as above. However, this doesn't work obviously.\\
+(b) Isotypes: for each $V$, there exists a unique collection of subrepresentations $U_1,...,U_k$ s.t. $V=\oplus U_i$ and, if $V_i \subseteq U_i$ and $V'_j \subseteq U_j$ are irreducible subrepresentations, then $V_i \cong V'_j$ iff $i = j$.\\
+(c) Uniqueness of factors: If $\oplus_{i=1}^k V_i \cong \oplus_{i=1}^k V'_i$ with $V_i,V'_i$ irreducible, then $k=k'$, and $\exists \pi \in S_k$ such that $V'_{\pi(i)} \cong V_i$ (Krull-Schimdt theorem).\
+For (b),(c) see Teleman section 5.
+
+\begin{lemma} (4.8)\\
+Let $V,V_1,V_2$ be $G-$spaces over $F$.\\
+(i) $Hom_G(V,V_1 \oplus V_2) \cong Hom_G (V,V_1) \oplus Hom_G(V,V_2)$;\\
+(ii) $Hom_G(V_1\oplus V_2, V) \cong Hom_G(V_1,V) \oplus Hom_G(V_2,V)$;\\
+\begin{proof}
+(i) Let $\pi_i: V_1 \oplus V_2 \to V_i$ be $G$-linear projections onto $V_i$, with kernel $V_{3-i}$ ($i=1,2$).\\
+Consider 
+\begin{equation*}
+\begin{aligned}
+Hom_G (V,V_1 \oplus V_2) &\to Hom_G (V,V_1) \oplus Hom_G (V,V_2)\\
+\phi &\to (\pi_1 \phi, \pi_2 \phi)
+\end{aligned}
+\end{equation*}
+This map has inverse $(\psi_1,\psi_2) \to \psi_1+\psi_2)$. Check details.\\
+(ii) The map $\phi \to (\phi|_{V_1},\phi|_{V_2})$ has inverse $(\psi_1,\psi_2) \to \psi_1\pi_1+\psi_2\pi_2$.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}
+Let $F$ be algebraically closed, $V=\oplus_1^n V_i$ a decomposition of $G$-space into irreducible summands. Then, for each irreducible representation $S$ of $G$,
+\begin{equation*}
+\begin{aligned}
+\#\{j:V_j \cong S\} = \dim Hom_G(S,V)
+\end{aligned}
+\end{equation*}
+where $\#$ means 'number of times'. This is called the \emph{multiplicity} of $S$ in $V$.
+\begin{proof}
+Indunction on $n$. $n=0,1$ are trivial.\\
+If $n>1$, $V=\oplus_1^{n-1} V_i \oplus V_n$. By (4.8) we have
+\begin{equation*}
+\begin{aligned}
+\dim Hom_G (S,\oplus_1^{n-1} V_i \oplus V_n) = \dim Hom(S,\oplus_1^{n-1} V_i) + \underbrace{\dim Hom_G (S,V_n)}_{\text{Schur's lemma}}
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{lemma}
+
+\begin{defi} (4.10)\\
+A decomposition of $V$ as $\oplus W_j$ where each $W_j \cong n_j$ copies of irreducible representaitons $S_j$ (each non-isomorphic for each $j$) is the \emph{canonical decomposition} or the decomposition into \emph{isotypical components} $W_j$. For $F$ algebraically closed, $n_j=\dim Hom_G(S_j,V)$.
+\end{defi}
+
+\newpage
+
+\section{Character theory}
+
+We want to attach invariants to representation $\rho$ of a finite group $G$ on $V$. Matrix coefficients of $\rho(g)$ are basis dependent, so not true invariants.\\
+Let's take $F=\C$, $G$ finite, $\rho=\rho_V: G \to GL(V)$ be a representation of $G$.
+
+\begin{defi} (5.1)\\
+The \emph{character} $\chi_\rho = \chi_V = \chi$ is defined as $\chi(g) = \tr \rho(g) = \tr R(g)$ where $R(g)$ is any matrix representation of $\rho(g)$ w.r.t. any basis.\\
+The degree of $\chi_V$ is $\dim_\C V$.\\
+Thus $\chi$ is a function $G \to \C$. $\chi$ ie \emph{linear} (not a universal name) if $\dim V=1$, in which case $\chi$ is a homomorphism $G \to \C^*$ ($=GL_1(\C)$).\\
+$\chi$ is irreducible if $\rho$ is; $\chi$ is faithful if $\rho$ is; and, $\chi$ is trivial, or principal, if $\rho$ is the trivial representation (2.6). We write $\chi = 1_G$ in that case.\\
+$\chi$ is a complete invariant in the sense that it determines $\rho$ up to isomorphism -- see (5.7).
+\end{defi}
+
+\begin{thm} (5.2, first properties)\\
+(i) $\chi_V(1) = \dim_\C V$; (clear: $\tr I_n = n$)\\
+(ii) $\chi_V$ is a \emph{class function}, via it is conjugation-invariant: $$\chi_V (hgh^{-1}) = \chi_V(g) \forall g,h \in G$$
+Thus $\chi_V$ is constant on conjugacy classes.\\
+(iii) $\chi_V(g^{-1}) = \overline{\chi_V(g)}$, the complex conjugate;\\
+(iv) For two representaitons $V,W$, $\chi_{V \oplus W} = \chi_V + \chi_W$.
+\begin{proof}
+(ii) $\chi(hgh^{-1}) = \tr (R_h R_g R^{-1}_h) = \tr (R_g) = \chi(g)$.\\
+(iii) Recall $g \in G$ has finite order, so we can assume $\rho(g)$ is represented by a diagonal matrix $Diag(\lambda_1,...,\lambda_n)$. Then $\chi(g) = \sum \lambda_i$. Now $g^{-1}$ is represented by the matrix $Diag(\lambda_1^{-1},...\lambda_n^{-1})$, and hence $\chi(g^{-1}) = \sum \lambda_i^{-1} = \sum \bar{\lambda_i} = \overline{\chi(g)}$ (since $\lambda_i$'s are roots of unity -- since $g^k = 1$ for some $k$! and by homomorphism we know that).\\
+(iv) Suppose $V = V_1 \oplus V_2$, $\rho_i : G \to GL(V_i)$, $\rho:G \to GL(V)$. Take basis $B = B_1 \cup B_2$ of $V$ w.r.t $B$, $\rho(g)$ has matrix of block form $Diag([\rho_1(g)]_{B_1},[\rho_2(g)]_{B_2})$ and as $\chi(g)$ is the trace of the above matrix, it is equal ot $\tr \rho_1(g)+ \tr\rho_2(g) = \chi_{\rho_1} (g) + \chi_{\rho_2}(g)$.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+We see later that $\chi_1,\chi_2$ character of $G$ implies that $\chi_1\chi_2$ is also a character of $G$: uses tensor products, see (9.6).
+\end{rem}
+
+\begin{lemma} (5.3)\\
+Let $\rho:G \to GL(V)$ be a copmlex representation \emph{affording} the character $\chi$ (i.e. $\chi$ is a character of $\rho$). Then $|\chi(g)| \leq \chi(1)$, with equality iff $\rho(g) = \lambda_I$ for some $\lambda \in \C$, a root of unity. Moreover, $\chi(g) = \chi(1)$ iff $g \in \ker \rho$.
+\begin{proof}
+Fix $g$. W.r.t. basis of $V$ of eigenvalues $\rho(g)$, the matrix of $\rho(g)$ is $Diag(\lambda_1,...,\lambda_n)$. Hence $|\chi(g)| = |\sum \lambda_j| \leq \sum |\lambda_j|= \sum 1 = \dim V = \chi(1)$. Equality holds iff all $\lambda_j$ are equal (to $\lambda$, say).\\
+If $\chi(g) = \chi(1)$, then $\rho(g) = \lambda \iota$ has $\chi(g) = \lambda \chi(1)$.
+\end{proof}
+\end{lemma}
 
 \iffalse
 \begin{equation*}
