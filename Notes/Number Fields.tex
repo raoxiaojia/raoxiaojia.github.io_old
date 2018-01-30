@@ -243,12 +243,89 @@ The set $\R^* = \{u \in R | u $ is a unit$\}$ forms a group under multiplication
 If $L$ is a number field, then the units in $\mathcal{O}_L$ are $\mathcal{O}_L^* = \{\alpha \in \mathcal{O}_L| N_{L/\Q}(\alpha) = \pm 1\}$.
 \begin{proof}
 next time.
+
+It's next time now! Let's prove this lemma.\\
+$N_{L/\Q}(\alpha\beta)=N_{L/\Q}(\alpha)N_{L/\Q}(\beta)$ for any $\alpha,\beta \in L$.\\
+If $\alpha \in \mathcal{O}_L^*$, then $\exists \beta \in \mathcal{O}_L$ such that $\alpha\beta = 1 \implies N_{L/\Q}(\alpha) N_{L/\Q}(\beta) = 1$. Since $N_{L/\Q}(\alpha),N_{L/\Q}(\beta) \in \Z$, we get $N_{L/\Q}(\alpha) \in \{\pm 1\}$.\\
+Conversely, suppose $\alpha \in \mathcal{O}_L$ and $N_{L/\Q} (\alpha) = \pm 1$. Then $\alpha^{-1} \in L$. Let $\sigma_1,...,\sigma_n:L \to \C$ be the distinct complex embeddings of $L$. Then 
+\begin{equation*}
+\begin{aligned}
+N_{L/\Q}(\alpha) = \sigma_1(\alpha)...\sigma_n(\alpha) = \pm 1\\
+\implies \sigma_1(\alpha^{-1}) = \pm \sigma_2(\alpha)...\sigma_n(\alpha) \in \mathcal{O}_\C\\
+\implies \alpha^{-1} \in \mathcal{O}_L
+\end{aligned}
+\end{equation*}
 \end{proof}
 \end{lemma}
 
 \begin{rem}
 We'll prove later in the course that $\mathcal{O}_L^*$ is a finite group $\iff$ either $L=\Q$ or $L$ is an imaginary quadratic field.
 \end{rem}
+
+\newpage
+
+\section{Discriminants and integral bases}
+Let $L$ be a number field, $n=[L:\Q]$, $\sigma_1,...,\sigma_n:L \to \C$ be distinct complex embeddings.
+
+\begin{defi} (3.1)\\
+Let $\alpha_1,...,\alpha_n \in L$. Then their discriminant is $disc(\alpha_1,...,\alpha_n) = \det(D)^2$, where $D=M_{n\times n}(F)$ is $D_{ij} = \sigma_i (\alpha_j)$. Note: this is independent of the choice of ordering of $\sigma_1,...,\sigma_n$ and $\alpha_1,...,\alpha_n$, as that's just permuting the rows or columns, hence changing only possibly signs; but we took a square in the definition.
+\end{defi}
+
+\begin{lemma} (3.2)\\
+Let $\alpha_1,...,\alpha_n \in L$. Then $disc(\alpha_1,...,\alpha_n) = \det(T)$, where $T \in M_{n \times n}(\Q)$ is $T_{ij} = \tr_{L/\Q}(\alpha_i\alpha_j)$.
+\begin{proof}
+$T_{ij} = \sum_{k=1}^n \sigma_k (\alpha_i\alpha_j) = \sum_{k=1}^n D_{ki} D_{kj} = (D^T D)_{ij}$.
+\end{proof}
+\end{lemma}
+
+\begin{coro} (3.3)\\
+$disc(\alpha_1,...,\alpha_n) \in \Q$. If $\alpha_1,...,\alpha_n \in \mathcal{O}_L$, then $disc(\alpha_1,...,\alpha_n) \in \Z$.
+\begin{proof}
+$disc(\alpha_1,...,\alpha_n) = \det(T)$, and entries of $T$ is trace of some elements of $L$ (over $\Q$) so is in the base field $\Q$ (think a bit). So this must be rational. If $\alpha_1,...,\alpha_n \in \mathcal{O}_L$, then $\forall i,j$, $D_{ij} \in \mathcal{O}_\C \implies disc(\alpha_1,...,\alpha_n) \in \mathcal{O}_\C \cap \Q =\Z$.
+\end{proof}
+\end{coro}
+
+\begin{prop} (3.4)\\
+Let $\alpha_1,...,\alpha_n \in L$. Then $disc(\alpha_1,...,\alpha_n) \neq 0 \iff \alpha_1,...,\alpha_n$ form a basis of $L$ as $\Q$-vector space.\\
+\begin{proof}
+First suppose $\alpha_1,...,\alpha_n$ are linearly dependent. Then the columns of the matrix $D_{ij} = \sigma_i(\alpha_j)$ are linearly depnedent $\implies disc(\alpha_1,...,\alpha_n) = 0$ (determinant is 0).\\
+Now suppose $\alpha_1,...,\alpha_n$ are linearly independent. Then $disc(\alpha_1,...,\alpha_n) \neq 0$ $\iff \det (T) \neq 0$ $\iff$ the symmetric bilinear form $\phi:L \times L \to \Q$ by $\phi(\alpha,\beta) = \tr_{L/\Q}(\alpha\beta)$ is non-degenerate, i.e. $\forall \alpha \in L^*, \exists \beta \in L$ such that $\phi(\alpha,\beta) \neq 0$.\\
+If $\alpha \in L^*$, then $\phi(\alpha,\alpha^{-1}) = \tr_{L/\Q}(1) = n \neq 0$.
+\end{proof}
+\end{prop}
+
+\begin{defi} (3.5)\\
+We say elements $\alpha_1,...,\alpha_n \in L$ form an \emph{integral basis for $\mathcal{O}_L$}, if:\\
+(i) $\alpha_1,...,\alpha_n \in \mathcal{O}_L$;\\
+(ii) $\alpha_1,...,\alpha_n$ generate $\mathcal{O}_L$ as a $\Z$-module.
+\end{defi}
+
+\begin{lemma} (3.6)\\
+If $\alpha_1,...,\alpha_n$ form an integral basis for $\mathcal{O}_L$, then the function
+\begin{equation*}
+\begin{aligned}
+f: \Z^n &\to \mathcal{O}_L\\
+(m_1,...,m_n) &\to \sum_{i=1}^n m_i\alpha_i
+\end{aligned}
+\end{equation*}
+is an isomorphism of $\Z$-module.
+\begin{proof}
+$f$ is a homomorphism, we must show it's bijective. Observe that $\alpha_1,...,\alpha_n$ form a basis of $L$ as $\Q$-vector space. We know that if $\beta \in L$, then $\exists N \in \Z^+$ such that $N\beta \in \mathcal{O}_L$ (I think (1.7)). So we can write $N\beta = \sum_{i=1}^n m_i \alpha_i$ for some $m_1 \in \Z$ $\implies \beta = \sum_{i=1}^n \frac{m_i}{N}\alpha_i$. Hence $\alpha_1,...,\alpha_n$ span $L$, so they form a basis of $L$.\\
+If $f(m_1,...,m_n) = 0$, then $\sum_{i=1}^n m_i \alpha_i = 0 \implies (m_1,...,m_n) = (0,...,0)$, as $\alpha_1,...,\alpha_n$ are independent over $\Q$. This shows $f$ is injective. It's surjecitve by definition.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (3.7, sandwich lemma)\\
+(i) If $H \leq G$ are groups and $G \cong \Z^a$ for some $a \geq 0$, then $H \cong \Z^b$ for some $b \leq a$.\\
+(ii) If $K \leq H \leq G$ are groups and $K \cong \Z^a$, $G \cong \Z^a$ for some $a \geq 0$, then $H \cong \Z^a$.\\
+(iii) If $H \leq G$ are groups and $H \cong \Z^a$, $G \cong \Z^a$ for some $a \geq 0$, then $G/H$ is finite.
+\begin{proof}
+(i) $H \leq G$, $G \cong \Z^a$. Then $G/H$ is f.g abelian group. By the classification, there's an isomorphism $G/H \cong \Z^N \oplus A$, $A$ finite abelian group. Choose $p$ prime, $p \not\mid |A|$. Then the map $f:G/H \to G/H$ by $x+H \to px + H$ is injective, so $f':H/pH \to G/pG$ by $x+pH \to x+pG$ is injecitve -- why? If $x \in H, x \in pG$, then $x = py$ for some $y \in G$; then $y+H \in \ker(f) =H$. Hence $x \in pH$. So indeed $f'$ is injective. By the classification, $H \cong \Z^b$. $f'$ injective $\implies |H/pH| \leq |G/pG|$, i.e. $p^b \leq p^a$ so $b\leq a$.\\
+(ii) Apply (i) to $K \leq H$ and $H \leq G$ to get $H \cong \Z^b$ where $a\leq b\leq a$.\\
+(iii) $H \leq G$, $H \cong \Z^a, G \cong \Z^a$. Again $G/H$ is finitely generated, so by the classification $G/H \cong \Z^N \oplus A$ where $A$ is a finite abelian group.\\
+Let $p$ be a prime, $p \not\mid |A|$. same proof as in (i) shows that $f':H/pH \to G/pG$ is injecitve. Since $|H/pH| = |G/pG| = p^a$, $f'$ is a group isomorphism $G/H + pG \cong (\Z/p\Z)^N$. There's a surjective homomorphism $G/pG \to G/H+pG$ which has kernel containing the image of $f'$. Hence $G/pG \to G/H + pG$ is surjective with kernel $G/pG$. This forces $N=0$.
+\end{proof}
+\end{lemma}
 
 \iffalse
 \begin{equation*}
