@@ -299,6 +299,59 @@ Let $h>0$. Then $Y_n=X(nh)$. So $Y$ is a 'skeleton' of $X$. $Y$ is a markov chai
 The functions $p_{ij}(\cdot)$ are continuous.
 \end{lemma}
 
+Last time we claimed that if $\forall h>0$, $p_{ij}(nh) \pi_j$ as $n \to \infty$, then $p_{ij}(t) \to \pi_j$ as $t \to \infty$. However this is wrong as the rate of convergence might depend on $h$.\\
+From some theorem in Linear Analysis it is known that if $p$ is continuous then the above is actually true. But this is an applied course so let's not assume Linear Analysis. Let's now prove it with the following lemma:
+\begin{lemma}
+$p_{ij}(\cdot)$ is uniformly continuous in $t$.
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+|p_{ij}(t+h)-p_{ij}(t)| &= |[\sum_k p_{ik}(h) p_{kj}(t)] - p_{ij}(t)|\\
+&\leq |\sum_{k \neq i} p_{ik}(h) p_{kj}(t) | + |p_{ij}(t) [1- p_{ii}(h)]|\\
+&\leq [1-p_{ii}(h)]\\
+&\leq 2(1-e^{-g_i h}) \to 0
+\end{aligned}
+\end{equation*}
+as $h \to 0$.
+\end{proof}
+\end{lemma}
+Back to the theorem: let $t>0$, $\exists h$ s.t. $|p_{ij}(t+h) - p_{ij}(t)| < \frac{1}{2}\varepsilon \forall t$. Then $|p_{ij}(t) - p_{ij}(\lfloor t/h \rfloor h)| < \frac{1}{2} \varepsilon$. Pick $N$ s.t. $|p_{ij}(nh) -\pi_j| < \varepsilon/2$ for $n \geq N$. For $t>(n+1)h$ we have $|p_{ij}(t) - \pi_j| \leq |p_{ij}(t) - p_{ij}(\lfloor t/h\rfloor h)| + |p_{ij}(\lfloor t/h \rfloor h) - \pi_j) \leq \frac{1}{2}\varepsilon + \frac{1}{2} \varepsilon$ so done.
+
+\emph{Explosion}:\\
+Let $S$ be countable. $H=(h_{i,j}:i,j \in S)$ is the transition matrix of a discrete time markov chain $Z = (Z_n : n \geq 0)$ on $S$. Assume $h_{i,i} = 0 \forall i \in S$. Let $(g_i:i \in S)$ be non-negative reals. Inifinitesimal definition of $X$: $g_{ij} = g_i h_{ij}$ if $i \neq j$, and $-g_i$ if $i=j$. Holding time definition: $X(0) = Z_0$. Given $Z$, let $U_0,U_1,...$ be independent exponential random variables, where $U_n$ has parameter $g_{Z_n}$.
+
+We define $T_n = U_0 + ... + U_{n-1}$, the time of the $n^{th}$ jump. $X(t) = Z_n$ if $T_n \leq t < T_{n+1}$.
+
+$T_n \to T_\infty = \sum_0^\infty U_n$. Say the process [explodes if $T_\infty < \infty]$, or explodes if $\P(T_\infty < \infty) > 0$.
+
+We augment the state space $S$ to $S' = S \cup \{\infty\}$ (cemetery state, means $\infty$ is absorbing). Assume: at $T_\infty$, the chain enters the cemetery state labelled $\infty$. Such a process is called minimal.
+
+\begin{thm}
+The process $X$, constructed via holding times as above, does not explode if any of the following occurs:\\
+(a) $|S| < \infty$;\\
+(b) $\sup_i g_i < \infty$;\\
+(c) $X(0) = i$, where $i$ is recurrent for the jump chain $Z$.
+\end{thm}
+
+\begin{lemma}
+Let $X_1,...$ be independent random variales, and $X_i$ has distribution $Exp(\lambda_{i-1})$. Let $T_\infty = \sum_1^\infty X_i$. $\P(T_\infty < \infty = 0$ if $\sum \lambda_i^{-1} = \infty$, and 1 otherwise.
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+\E(T_\infty) &= \E(\sum_1^\infty X_i)\\
+&= \E (\lim_{N \to \infty} \sum_1^N X_i)\\
+&= \lim_{N \to \infty} \E(\sum_1^N X_i)\\
+&= \lim_{N \to \infty} \sum_1^N \frac{1}{\lambda_{i-1}}\\
+&= \sum_1^\infty \frac{1}{\lambda_{i-1}}
+\end{aligned}
+\end{equation*}
+Now If $\sum \frac{1}{\lambda_{i-1}} < \infty$, then $\E(T_\infty) < \infty$. So $\P(T_\infty = \infty) = 0$.\\
+The other part will be proven in next lecture.\\
+Problem sheet 2 is online!
+\end{proof}
+\end{lemma}
+
+
 
 \iffalse
 \begin{equation*}
