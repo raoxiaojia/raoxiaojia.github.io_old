@@ -308,7 +308,7 @@ Now $p_n: \Sigma^n \to \R$ by $X^{(n)}: \Omega \to \Sigma^n$. We can form $p(X^{
 For example, let $\Sigma = \{A,B,C\}$. Then $X^{(2)} = AB (0.3), AC(0.1), BA(0.1), BA (0.2), CA(0.25), CB(0.05)$ So $p_2(AB)= 0.3$, etc.. And $p_2(X^{(2)})$ takes values $0.3$ with probability 0.3, 0.1 with probability 0.2, 0.2 with probaility 0.2, 0.25 with probability 0.25, 0.05 with probaility 0.05.
 
 \begin{defi}
-A sequence of random varialbes $X_1,...$ converges in probability to $c \in \R$, written $X_n \xrightarrow{p} c$ as $n \to \infty$, if $\forall \varepsilon >0$, $P(|x_n-c| \leq \varepsilon) \to 1$ as $n \to \infty$. So $X_n$ and $c$ can take very different values for large $n$ but only on a set with small probability.
+A sequence of random variables $X_1,...$ converges in probability to $c \in \R$, written $X_n \xrightarrow{p} c$ as $n \to \infty$, if $\forall \varepsilon >0$, $P(|x_n-c| \leq \varepsilon) \to 1$ as $n \to \infty$. So $X_n$ and $c$ can take very different values for large $n$ but only on a set with small probability.
 \end{defi}
 
 \begin{thm} (Weak law of large numbers)\\
@@ -316,7 +316,7 @@ Let $X_1,X_2,...$ be an i.i.d. sequence of random variables with finite expected
 as $n \to \infty$.
 \end{thm}
 
-Application: Suppose $X_1,X_2,...$ is a Bernoulli source. Then $p(X_1),p(X_2),...$ are i.i.d. random variables, and $p(X_1,...,X_n) = p(X_1,...,X_n)$. Take log of both sides we get 
+Application: Suppose $X_1,X_2,...$ is a Bernoulli source. Then $p(X_1),p(X_2),...$ are i.i.d. random variables, and $p(X_1,...,X_n) = p(X_1)...p(X_n)$. Take log of both sides we get 
 $$-\frac{1}{n} \log p(X_1,...,X_n) = -\frac{1}{n} \sum_{i=1}^n \log p(X_i) \xrightarrow{p} \E(-\log p(X_1)) = H(X_1)$$
 as $n \to \infty$.
 
@@ -328,11 +328,11 @@ as $n \to \infty$.
 
 Motivating example: suppose we have a coin with $p(H) = p$. If coin tossed $N$ times, expect approximately $pN$ heads and $(1-p)N$ tails. The probability of a particular sequence of $pN$ heads and $(1-p)N$ tails equals $p^{pN} (1-p)^{(1-p)N} = 2^{N(p\log p + (1-p) \log (1-p))} = 2^{-NH(A)}$, where $A$ is the result of independent coin toss. So, with high probability we will get a typical sequence, and its probability will be close to $2^{-NH(A)}$.
 
-\begin{lemma} (1.18)\\
+\begin{lemma} (1.8)\\
 A source $X_1,X_2,...$ satisfies AEP iff it satisfies the following condition (*):\\
 $\forall \varepsilon < 0, \exists n_0(\varepsilon) s.t. \forall n \geq n_0(\varepsilon) \exists$ a typical set $T_n \subset \Sigma^n$ s.t:\\
 (i) $P((X_1,...,X_n) \in T_n) > 1-\varepsilon$;\\
-(ii) $2^{-n(H+\varepsilon)} \leq p(x_1,...,x_n) \leq 2^{-n(H+\varepsilon)}$ for all $(x_1,...,x_n) \in T^n$.
+(ii) $2^{-n(H+\varepsilon)} \leq p(x_1,...,x_n) \leq 2^{-n(H-\varepsilon)}$ for all $(x_1,...,x_n) \in T^n$.
 \begin{proof} (sketch)\\
 AEP $\implies$ (*):\\
 Take $T_n = \{(x_1,...,x_n) \in \Sigma^n: |-\frac{1}{n} \log p(x_1,...,x_n) - H) < \varepsilon \} = \{(x_1,...,x_n) \in \Sigma^n : 2^{-n(H+\varepsilon)} \leq p(x_1,...,x_n) \leq 2^{-n(H-\varepsilon)}\}$.\\
@@ -358,9 +358,9 @@ Roughly, $nH$, is the number of bits required to encode $(X_1,...,X_n)$.
 \begin{thm} (1.9, Shannons' first encoding theorem)\\
 If a source satisfies AEP with same constant $H$, then the source has information rate $H$.
 \begin{proof}
-Let $\varepsilon > 0$ and let $T_n \subset \Sigma^n$ be typical sets. Then for sufficiently large $n \geq n_0 (\varepsilon)$, $p(x)1,...,x_n) \geq 2^{-n(H+\varepsilon)}$ $\forall (x_1,...,x_n) \in T^n$.
+Let $\varepsilon > 0$ and let $T_n \subset \Sigma^n$ be typical sets. Then for sufficiently large $n \geq n_0 (\varepsilon)$, $p(x_1,...,x_n) \geq 2^{-n(H+\varepsilon)}$ $\forall (x_1,...,x_n) \in T^n$.
 
-So, $\P(X_1,...,X_n) \in T_n) \geq 2^{-n(H+\varepsilon)} |T_n| \implies |T_n| \leq 2^{n(H+\varepsilon)}$. So the source is reliably encodable at rate $H+\varepsilon$.\\
+So, $\P((X_1,...,X_n) \in T_n) \geq 2^{-n(H+\varepsilon)} |T_n| \implies |T_n| \leq 2^{n(H+\varepsilon)}$. So the source is reliably encodable at rate $H+\varepsilon$.\\
 Conversely, if $H=0$ we are done. Otherwise, pick $0 < \varepsilon < \frac{H}{2}$. Suppose the source is reliably encodable at rate $H-2\varepsilon$, say with sets $A_n$. Then $p(x_1,...,x_n) \leq 2^{-n(H-\varepsilon)}$ $\forall (x_1,...,x_n) \in T_n$. This implies $P((x_1,...,x_n) \in A_n \cap T_n) \leq 2^{-n(H-\varepsilon)}|A_n|$, so $\frac{\log P(A_n \cap T_n}{n} \leq -(H-\varepsilon) + \frac{\log |A_n|}{n} \to -(H-\varepsilon) + (H-2\varepsilon) = -\varepsilon$ as $n \to \infty$. (??) So $\log p(A_n \cap T_n) \to -\infty$, i.e. $p(A_n \cap T_n) \to 0$. But $p(T_n) \to 1$ as $n \to \infty$ and $P(A_n) \to 1$ as $n \to \infty$, contradiction(??). So the source is not reliably encodable at rate $H-2\varepsilon$. So the information rate is $H$.
 \end{proof}
 \end{thm}
@@ -368,6 +368,97 @@ Conversely, if $H=0$ we are done. Otherwise, pick $0 < \varepsilon < \frac{H}{2}
 \begin{coro}
 A Bernoulli source $X_1,X_2,...$ has information rate $H(X_1)$.
 \end{coro}
+
+\newpage
+
+\section{Error control codes}
+
+\begin{defi}
+A $[n,m]$ binary code is a subset $C\subset \{0,1\}^n$  of size $|C| = m$. We say $C$ has length $n$. The elements of $C$ are called codewords.\\
+Note: so this is a block codes.
+
+We use a $[n,m]$ code to send one of $m$ possible messages through a BSC making use of the channel $n$ times. Suppose that we have a probability of $p$ that a digit get mistransmitted, i.e. $0$ becomes $1$ or the other way.
+\end{defi}
+
+\begin{defi}
+The \emph{information rate} of $C$ is $\rho(C) = \frac{\log m}{n}$ (as usual, $\log$ is base 2).\\
+Note since $C \subset \{0,1\}^n$, $\rho(C) \leq 1$, with equality iff $C = \{0,1\}^n$. A code with size $m=1$ has information rate $0$.\\
+We aim to design codes with large information rate and small error rate. Apparently, these two are contradicting.
+\end{defi}
+
+The erro rate depends on the decoding rule. We consider 3 possible rules:\\
+(i) The ideal observer: decoding rule decodes $x \in \{0,1\}^n$ as the codeword $c$ maximising $\P(c$ sent$| x$ received);\\
+(ii) The maximum likelihood decoding rule decodes $x \in \{0,1\}^n$ as $c \in C$ maximising $\P(x$ received $| c$ sent);\\
+(iii) The minimum distance decoding rule decodes $x\in\{0,1\}^n$ as $c \in C$ minimising the number of $\{1\leq i\leq n: x_i \neq c_i\}$, i.e. the manhattan distance.
+
+\begin{rem}
+Some convention should be agreed in the case of a 'tie', e.g. choose at random, or ask for message to be sent again.
+\end{rem}
+
+\begin{lemma}(2.1)\\
+If all messages were equally likely, then (i) and (ii) agree.
+\begin{proof}
+By Bayes rule,
+\begin{equation*}
+\begin{aligned}
+\P(c\ sent|x\ received) &= \frac{\P(c\ sent, x\ received)}{\P(x\ received)}\\
+&= \frac{\P(c\ sent}{\P(x\ received)} \P(x\ received | c\ sent)
+\end{aligned}
+\end{equation*}
+We suppose $P(c\ sent)$ is independent of $c$, so for fixed $x$ maximising $\P(c\ sent| x\ received)$ is the same as maximising $\P(x\ received | c\ sent)$.
+\end{proof}
+\end{lemma}
+
+\begin{defi}
+Let $x,y \in \{0,1\}^n$. Then \emph{Hamming distance} between $x$ and $y$ is $d(x,y) = |\{1\leq i \leq n: x_i \neq y_i\}|$.
+\end{defi}
+
+\begin{lemma} (2.2)\\
+If $p < \frac{1}{2}$ then (ii) and (iii) agree.
+\begin{proof}
+Suppose $d(x,c) = r$. Then
+\begin{equation*}
+\begin{aligned}
+\P(x\ received | c\ sent) = p^r (1-p)^{n-r} = (1-p)^n (\frac{p}{1-p})^r
+\end{aligned}
+\end{equation*}
+since $p<1/2, \frac{p}{1-p} < 1$. So choosing $c$ to maximise the probability is the same as choosing $r$ to minimise the distance $d(x,c)$.
+\end{proof}
+\end{lemma}
+
+Note that $p<\frac{1}{2}$ is really a reasonable assumption (else just revert everything we received).
+
+\begin{eg}
+Suppose codewords 000 and 111 are sent with probabilities $\alpha = \frac{9}{10}$ and $1-\alpha = \frac{1}{10}$ respecitvely. We use a BSC with $p=\frac{1}{4}$. If we receive 110 then we know by minimum distance to decode it as 111. By lemma (2.2), the maximum likelihood would give the same choice as well.\\
+However, for ideal observer, we get $\P(000\ sent | 110\ received) = \frac{3}{4}$ (after some calculation). So ideal observer would decode as 000 (that's why it's ideal).
+\end{eg}
+
+\begin{rem}
+Ideal observer rule is also known as minimum-error rule. However, it does rely on knowing the probability of the codewords sent.
+\end{rem}
+
+From now on we use minimum distance decoding.
+
+\begin{defi}
+(i) $C$ is $d$-error detecting if changing at mod $d$ letters of a codeword cannot give another codeword.\\
+(ii) $C$ is $e$-error correcting if knowning that the string received has at most $e$ errors is sufficient to determine which codeword was sent.
+\end{defi}
+
+For example, the repetition code of length $n$, $C = \{000...0,111...1\}$ is $[n,2]$-code. It is $n-1$ error-detecting, and $\lfloor \frac{n-1}{2}\rfloor$-error correcting. But it's information rate is only $\frac{1}{n}$.
+
+Another example: the simple parity check code of length $n$ (also known as paper tape code): we view $\{0,1\} = \Z/2\Z$, and $C = \{(x_1,...,x_n) \in \{0,1\}^n$, $\sum_{i=1}^n x_i = 0\}$.\\
+This is a $[n,2^{n-1}]$ code. It is $1$-error detecting, but cannot correct any errors. It's information rate is $\frac{n-1}{n}$.
+
+\begin{rem}
+Suppose we change our code $C \subset \{0,1\}^n$ by using the same permutation to reorder each codeword. This gives a code with the same mathematical properties (e.g. information rate, error detection etc.). We say such codes are equivalent.\\
+Suppose $d(x,c) = r$. Then
+\begin{equation*}
+\begin{aligned}
+\P(x\ received | c\ sent) = p^r (1-p)^{n-r} = (1-p)^n (\frac{p}{1-p})^r
+\end{aligned}
+\end{equation*}
+since $p<1/2, \frac{p}{1-p} < 1$. So choosing $c$ to maximise the probability is the same as choosing $r$ to minimise the distance $d(x,c)$.
+\end{rem}
 
 
 \iffalse

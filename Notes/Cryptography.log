@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  29 JAN 2018 10:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  31 JAN 2018 10:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -843,7 +843,7 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 44.
 
-[4] [5] <image/CC_01.png, id=67, 722.7pt x 406.51875pt>
+[4] [5] <image/CC_01.png, id=73, 722.7pt x 406.51875pt>
 File: image/CC_01.png Graphic file (type png)
  <use image/CC_01.png>
 Package pdftex.def Info: image/CC_01.png used on input line 111.
@@ -853,7 +853,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 111--112
 [][] 
  []
 
-[6 <./image/CC_01.png>] <image/CC_02.png, id=73, 722.7pt x 406.51875pt>
+[6 <./image/CC_01.png>] <image/CC_02.png, id=79, 722.7pt x 406.51875pt>
 File: image/CC_02.png Graphic file (type png)
 
 <use image/CC_02.png>
@@ -865,7 +865,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 138--139
  []
 
 [7 <./image/CC_02.png>] [8] [9]
-<image/CC_03.png, id=88, 722.7pt x 406.51875pt>
+<image/CC_03.png, id=94, 722.7pt x 406.51875pt>
 File: image/CC_03.png Graphic file (type png)
  <use image/CC_03.png>
 Package pdftex.def Info: image/CC_03.png used on input line 250.
@@ -909,21 +909,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 345--350
  []
 
 [12] [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 381.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 381.
+Overfull \hbox (24.44829pt too wide) in paragraph at lines 407--409
+\OT1/cmr/m/n/10 (-20) We sup-pose $\OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (-20) (\OM
+L/cmm/m/it/10 c sent\OT1/cmr/m/n/10 (-20) )$ is in-de-pen-dent of $\OML/cmm/m/i
+t/10 c$\OT1/cmr/m/n/10 (-20) , so for fixed $\OML/cmm/m/it/10 x$ \OT1/cmr/m/n/1
+0 (-20) max-imis-ing $\U/msb/m/n/10 P\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 c 
+sent\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 x received\OT1/cmr/m/n/10 (-20) )$
+ []
+
+[14] [15]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 472.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 472.
  (./Cryptography.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 381.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 381.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 472.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 472.
 Package rerunfilecheck Info: File `Cryptography.out' has not changed.
-(rerunfilecheck)             Checksum: 1148EACAF97130120F15B81CC507090E;266.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 381.
+(rerunfilecheck)             Checksum: 1A8B9952150D5F6F06B1DA743AA0F37C;320.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 472.
  ) 
 Here is how much of TeX's memory you used:
- 27862 strings out of 494910
- 664354 string characters out of 6179835
+ 27870 strings out of 494910
+ 664420 string characters out of 6179835
  887621 words of memory out of 5000000
- 30592 multiletter control sequences out of 15000+600000
- 14678 words of font info for 88 fonts, out of 8000000 for 9000
+ 30593 multiletter control sequences out of 15000+600000
+ 14780 words of font info for 90 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,14n,77p,926b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -942,10 +951,10 @@ share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Cryptography.pdf (13 pages, 348351 bytes).
+Output written on Cryptography.pdf (15 pages, 358621 bytes).
 PDF statistics:
- 169 PDF objects out of 1000 (max. 8388607)
- 132 compressed objects within 2 object streams
- 19 named destinations out of 1000 (max. 500000)
- 14396 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 183 PDF objects out of 1000 (max. 8388607)
+ 144 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
+ 14404 words of extra memory for PDF output out of 17280 (max. 10000000)
 

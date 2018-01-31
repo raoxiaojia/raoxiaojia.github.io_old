@@ -295,7 +295,7 @@ Let $f,g$ be isomorphisms. We'll show $f(x) = g(x)$ $\forall x$ by induction. Th
 \end{prop}
 
 \begin{rem}
-This is false for total orders in general. One example is, consider from $\Z to \Z$, we could either take identity, or $x \to x-5$; or from $\R$ to $\R$ we could take identity or $x \to x-5$ or $x\to x^3$...
+This is false for total orders in general. One example is, consider from $\Z \to \Z$, we could either take identity, or $x \to x-5$; or from $\R$ to $\R$ we could take identity or $x \to x-5$ or $x\to x^3$...
 \end{rem}
 
 \begin{defi}
@@ -307,6 +307,54 @@ For any $x \in X$, set $I(x) = \{y\in X : y < x\}$. Then this is an initial segm
 Obviously, not every initial segment is of this form: for example, in $\R$ we can take $\{x:x \leq 3\}$; or in $\Q$, take $\{x:x^2 < 2\} \cup \{x<0\}$ (this cannot be written as above form as $\sqrt{2} \not\in \Q$.\\
 Note: in a well-ordering, every proper initial segment \emph{is} of the above form: let $x$ be the least elemnt of $X \setminus I$. Then $y<x \implies y \in I$. Conversely, if $y \in I$, then we must have $y < x$: otherwise $x \in I$, contradiction.
 \end{eg}
+
+Our aim is to show that every subset of a well-ordered $X$ is isomorphic to an initial segment.\\
+Note: this is very false for total orders: e.g. $\{1,5,9\} \subset \Z$, or $\Q \subset \R$. If we have $S \subset X$, Wwe would like to define $f:S \to X$ that sends the smallest of $S$ to the smallest of $X$, then remove them from both sets and send the smallest of the remaining to the smallest of the remaining, etc... But to do this we need a theorem.
+
+\begin{thm} (3, definition by recursion)\\
+Let $X$ be well-ordered, $Y$ be a set, and $G:\mathcal{P}(X\times Y) \to Y$. Then $\exists f : X \to Y$ s.t. $f(x) = G(f|_{I_x})$ for all $x \in X$. Moreover, such $f$ is unique.\\
+Here we define the restriction as: for $f:A \to B$, and $C \subset A$, the restriction of $f$ to $C$ is $f|_C = \{(x,f(x)) : x \in C\}$. (I think the lecturer is regarding a function as subset of a cartesian product)\\
+In defining $f(x)$, make use of $f|_{I_x}$, i.e. the values of $f(y), y<x$.\\
+\begin{proof}
+Existence: define '$h$ is an attempt' to mean: $h:I \to Y$, some initial segment $I$ of $X$, and $\forall x \in I$ we have $h(x) = G(h|_{I_X})$. Note that is $h,h'$ are attempts, both defined at $x$, then $h(x) = h'(x)$ by induction on $x$. Since if $h(y) = h'(y) \forall y < x $ then $h(x) = h'(x)$.\\
+Also, $\forall x \in X$ there exists an attempt defined at $x$ by induction on $x$: we want attempt definde at $x$, given $\forall y < x$ there exists attempt defined at $y$. For each $y<x$, we have unique attempt $h_y$ defined on $\{z:z\leq y\}$ (unique by what we just showed).\\
+Let $h = \cup_{y < x} h_y$: an attempt defined on $I_x$. This is single-valued by uniqueness, so is indeed a function.\\
+So $h'=h \cup \{(x,G(h))\}$ is an attempt defined at $x$.\\
+Now set $f(x) = y$ if $\exists$ attempt $h$, defined at $x$, with $h(x) = y$ (single-valued).\\
+Uniqueness: if $f,f'$ suitable then $f(x) = f'(x) \forall x \in X$ (induction on $X$) -- since if $f(y) = f'(y) \forall y < x$ then $f(x) = f'(x)$.
+\end{proof}
+\end{thm}
+
+A typical application:
+
+\begin{prop} (4, subset collapse)\\
+Let $X$ be well-ordered, $Y \subset X$. Then $Y$ is isomorphic to an initial segment of $X$. Moreover, such initial segment is unique.\\
+\begin{proof}
+To have $f$ an isomorphism from $y$ to an initial segment of $X$, we need precisely that $\forall x \in Y: f(x) = \min X \setminus \{f(y):y<x\}$. So done (existence and uniqueness) by theorem 3.\\
+Note that $X \setminus \{f(y):y<x\} \neq \phi$, e.g. because $f(y) \leq y$ $\forall y$ (induction), so $x \not\in \{f(y):y<x\}$.
+\end{proof}
+\end{prop}
+
+In particular, a well-ordered $X$ cannot be isomorphic to a proper initial segment of $X$ -- by uniqueness in subset collapse, as $X$ is isomorphic to $X$.
+
+How do different well-orderings relate to each other?
+
+We say $X \leq Y$ if $X$ is isomorphic to an initial segment of $Y$. For example, $\N \leq \{1-\frac{1}{n}:n=2,3,...\}\cup\{1\}$.
+
+\begin{thm} (5)\\
+Let $X,Y$ be well-orderings. Then $X\leq Y$ or $Y \leq X$.
+\begin{proof}
+Suppose $Y \not\leq X$. To obtain $f:X \to Y$ that is an isomorphism with an initial segment of $Y$, need $\forall x \in X: f(x) = \min Y \setminus \{f(y):y<x\}$. So we are done by theorem 3.\\
+Note that we cannot have $\{f(y):y<x\} = X$, as then $Y$ is isomorphic to $I_x$.
+\end{proof}
+\end{thm}
+
+\begin{prop} (6)\\
+Let $X,Y$ be well-orderings with $X \leq Y$ and $Y \leq X$. Then $X$ and $Y$ are isomorphic.
+\begin{proof}
+We have isomorphism $f$ from $X$ to an isomorphism of $Y$, and $g$ the other way round. Then $g \circ f: X \to X$ is an isomorphism from $X$ to an initial segment of $X$ (i.s. of i.s. is i.s.), but that is impossible unless the initial segment is $X$ itself. So $g\circ f$ is identity (by uniqueness in subset collapse). Similarly, $f \circ g$ is identity on $Y$.
+\end{proof}
+\end{prop}
 
 \iffalse
 \begin{equation*}
