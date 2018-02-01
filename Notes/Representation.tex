@@ -496,7 +496,7 @@ If $n>1$, $V=\oplus_1^{n-1} V_i \oplus V_n$. By (4.8) we have
 \end{lemma}
 
 \begin{defi} (4.10)\\
-A decomposition of $V$ as $\oplus W_j$ where each $W_j \cong n_j$ copies of irreducible representaitons $S_j$ (each non-isomorphic for each $j$) is the \emph{canonical decomposition} or the decomposition into \emph{isotypical components} $W_j$. For $F$ algebraically closed, $n_j=\dim Hom_G(S_j,V)$.
+A decomposition of $V$ as $\oplus W_j$ where each $W_j \cong n_j$ copies of irreducible representations $S_j$ (each non-isomorphic for each $j$) is the \emph{canonical decomposition} or the decomposition into \emph{isotypical components} $W_j$. For $F$ algebraically closed, $n_j=\dim Hom_G(S_j,V)$.
 \end{defi}
 
 \newpage
@@ -509,7 +509,7 @@ Let's take $F=\C$, $G$ finite, $\rho=\rho_V: G \to GL(V)$ be a representation of
 \begin{defi} (5.1)\\
 The \emph{character} $\chi_\rho = \chi_V = \chi$ is defined as $\chi(g) = \tr \rho(g) = \tr R(g)$ where $R(g)$ is any matrix representation of $\rho(g)$ w.r.t. any basis.\\
 The degree of $\chi_V$ is $\dim_\C V$.\\
-Thus $\chi$ is a function $G \to \C$. $\chi$ ie \emph{linear} (not a universal name) if $\dim V=1$, in which case $\chi$ is a homomorphism $G \to \C^*$ ($=GL_1(\C)$).\\
+Thus $\chi$ is a function $G \to \C$. $\chi$ is \emph{linear} (not a universal name) if $\dim V=1$, in which case $\chi$ is a homomorphism $G \to \C^*$ ($=GL_1(\C)$).\\
 $\chi$ is irreducible if $\rho$ is; $\chi$ is faithful if $\rho$ is; and, $\chi$ is trivial, or principal, if $\rho$ is the trivial representation (2.6). We write $\chi = 1_G$ in that case.\\
 $\chi$ is a complete invariant in the sense that it determines $\rho$ up to isomorphism -- see (5.7).
 \end{defi}
@@ -519,7 +519,7 @@ $\chi$ is a complete invariant in the sense that it determines $\rho$ up to isom
 (ii) $\chi_V$ is a \emph{class function}, via it is conjugation-invariant: $$\chi_V (hgh^{-1}) = \chi_V(g) \forall g,h \in G$$
 Thus $\chi_V$ is constant on conjugacy classes.\\
 (iii) $\chi_V(g^{-1}) = \overline{\chi_V(g)}$, the complex conjugate;\\
-(iv) For two representaitons $V,W$, $\chi_{V \oplus W} = \chi_V + \chi_W$.
+(iv) For two representations $V,W$, $\chi_{V \oplus W} = \chi_V + \chi_W$.
 \begin{proof}
 (ii) $\chi(hgh^{-1}) = \tr (R_h R_g R^{-1}_h) = \tr (R_g) = \chi(g)$.\\
 (iii) Recall $g \in G$ has finite order, so we can assume $\rho(g)$ is represented by a diagonal matrix $Diag(\lambda_1,...,\lambda_n)$. Then $\chi(g) = \sum \lambda_i$. Now $g^{-1}$ is represented by the matrix $Diag(\lambda_1^{-1},...\lambda_n^{-1})$, and hence $\chi(g^{-1}) = \sum \lambda_i^{-1} = \sum \bar{\lambda_i} = \overline{\chi(g)}$ (since $\lambda_i$'s are roots of unity -- since $g^k = 1$ for some $k$!(I mean an exclamation mark here to express surprise) and by homomorphism we know that).\\
@@ -538,6 +538,120 @@ Fix $g$. W.r.t. basis of $V$ of eigenvalues $\rho(g)$, the matrix of $\rho(g)$ i
 If $\chi(g) = \chi(1)$, then $\rho(g) = \lambda \iota$ has $\chi(g) = \lambda \chi(1)$.
 \end{proof}
 \end{lemma}
+
+\begin{lemma} (5.4)\\
+(a) If $\chi$ is a complex irreducible character of $G$, so is $\bar{\chi}$;\\
+(b) Under the same assumption, so is $\varepsilon\chi$ for any linear character $\varepsilon$ of $G$.\
+\begin{proof}
+If $R:G \to GL_n (\C)$ is a complex irreducible representation then so is $\bar{R}: G \to GL_n (\C)$ by $g \to \bar{R}(g)$. Similarly for $R': g \to \varepsilon(g) R(g)$ for $g \in G$. Check the details.
+\end{proof}
+\end{lemma}
+
+\begin{defi} (5.5)\\
+$\mathcal{C}(G) = \{f: G \to \C: f(hgh^{-1}) = f(g) \forall h,g \in G\}$, the $\C$-space of class functions (we call it a space since $f_1+f_2: g \to f_1(g)+f_2(g)$, $\lambda f: g \to \lambda f(g)$ are still in $\mathcal{C}(G)$), so this is a vector space.\\
+Let $k = k(G)$ be the number of ccls of $G$. List the ccls $\mathcal{C}_1,...,\mathcal{C}_k$. Conventionally we choose $g_1 = 1, g_2,...,g_k$, representatives of the ccls (hence $\mathcal{C}_1 = \{1\}$). Note that $\dim_\C \mathcal{C}(G) = k$ (the characteristic functions $\delta_j$ of each ccl which maps any element in the ccl to 1 and others to 0 form a basis).\\
+We define Hermitian inner product on $\mathcal{C}(G)$:
+\begin{equation*}
+\begin{aligned}
+\bra f,f' \ket &= \frac{1}{|G|} \sum_{g \in G} \overline{f(G)} f'(g)\\
+&= \frac{1}{|G|} \sum_{j=1}^k |\mathcal{C}_j| \overline{f(g_j)} f'(g_j)\\
+&= \sum_{j=1}^k \frac{1}{|C_G(g_j)} \overline{f(g_j)} f'(g_j)
+\end{aligned}
+\end{equation*}
+using $|\mathcal{C}_x| =  |G:C_g(x)|$, where $\mathcal{C}_x$ is the ccl of $x$, $C_G(x)$ is the centraliser of $x$.\\
+For characters
+\begin{equation*}
+\begin{aligned}
+\bra \chi,\chi' \ket &= \sum \frac{1}{|C_G(g_j)|} \chi(g_j^{-1}) \chi'(g_j)
+\end{aligned}
+\end{equation*}
+is a real symmetric form (in fact, $\bra \chi,\chi'\ket \in \Z$ -- see later).
+\end{defi}
+
+\begin{thm} (5.6)\\
+The $\C$-irreducible characters of $G$ form an orthonormal basis of $\mathcal{C}(G)$. Moreover,\\
+(a) If $\rho:G \to GL(V), \rho': G \to GL(V')$ are irreducible representations of $G$ affording characters $\chi,\chi'$ respecitvely, then
+\begin{equation*}
+\begin{aligned}
+\bra \chi,\chi' \ket = \left\{\begin{array}{ll}
+1 & \rho,\rho' \text{ are isomorphic representations}\\
+0 & \text{ otherwise}
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+we call this 'row orthogonality'.\\
+(b) Each class function of $G$ can be expressed as a linear combination of $G$.\\
+This will be proved later in section 6.
+\end{thm}
+
+\begin{coro} (5.7)\\
+Complex representations of \emph{finite} groups are characterised by their characters.\\
+We emphasise on finiteness here: for example, $G=\Z$, consider $1 \to I_2$, $1 \to {{1\ 1} \choose {0\ 1}}$ are non-isomorphic but have same character.
+\begin{proof}
+Let $\rho:G \to GL(V)$ be representation affording $\chi$ ($G$ finite over $\C$). (3.3) says 
+\begin{equation*}
+\begin{aligned}
+\rho = m_1 \rho_1 \oplus ... \oplus m_k \rho_k
+\end{aligned}
+\end{equation*}
+where $\rho_1,...,\rho_k$ are irreducible, and $m_j \geq 0$. Then $m_j = \bra \chi,\chi_j\ket$ where $\chi_j$ is afforded by $\rho_j$: we have $\chi = m_1\chi_1 + ... + m_k \chi_k$, but the $\rho_i$'s are orthonormal.
+\end{proof}
+\end{coro}
+
+\begin{coro} (5.8, irreduciblility criterion)\\
+If $\rho$ is $\C$-representation of $G$ affording $\chi$, then $\rho$ irreducible $\iff$ $\bra \chi,\chi \ket = 1$.
+\begin{proof}
+Forward is just the statement of orthonormality. Conversely, assume $bra \chi,\chi\ket = 1$. Now take a (complete) decomposition of $\rho$ and take characters of it we get $\chi = \sum m_j \chi_j$ with $\chi_j$ irreducible and $m_j \geq 0$. Then $\sum m^2_j = 1$. Hence $\chi = \chi_j$ for some $j$ (since the $m_j$'s are obviously integers), so is irreducible.
+\end{proof}
+\end{coro}
+
+\begin{coro} (5.9)\\
+If the irreducible $\C$-representations of $G$ are $\rho_1,...,\rho_k$ have dimensions $n_1,...,n_k$, then 
+\begin{equation*}
+\begin{aligned}
+|G| = \sum_{i=1}^k n_i^2
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Recall from (3.5), $\rho_{reg}; G \to GL(\C G)$, the regular representation $G$ of dimension $|G|$ (where $\C G$ is just a $G$-space with basis $\{e_g: g \in G\}$ and any $h \in G$ permutes the $e_g$: $e_g \to e_{hg}$).\\
+Let $\pi_{reg}$ be its charcter, the \emph{regular character} of $G$.\\
+Claim 1: $\pi_{reg}(1) = |G|$, $\pi_{reg}(h) = 0$ if $h \neq 1$.\\
+This is clear: take $h \in G, h \neq 1$, then we always have $0$ down the diagonal since $h$ permutes things around, so the trace is 0; if $h=1$ then we have an identity matrix so trace is $\dim \rho = |G|$.\\
+Claim 2: $\pi_{reg} = \sum n_j \chi_j$ with $n_j = \chi_j(1)$.\\
+This is because
+\begin{equation*}
+\begin{aligned}
+n_j &= \bra \pi_{reg}, \chi_j\ket\\
+&= \frac{1}{|G|} \sum_{g \in G} \overline{\pi_{reg}(g)} \chi_j(g)\\
+&= \frac{1}{|G|} \cdot |G| \chi_j(1) = \chi_j(1)
+\end{aligned}
+\end{equation*}
+(all the other $\pi_{reg}(g)$ are zero by claim 1).\\
+Our corollary is then obvious by just calculating $|G| = \pi_{reg}(1)$.
+\end{proof}
+\end{coro}
+
+\begin{coro} (5.10)\\
+Number of irreducible characters of $G$ (up to equivalence) = $k$ (=number of ccls).
+\end{coro}
+
+\begin{coro} (5.11)\\
+Elements $g_1,g_2 \in G$ are conjugate iff $\chi(g_1) = \chi(g_2)$ for all irreducible characters of $G$.
+\begin{proof}
+Forward: characters are class functions;\\
+Backward: Let $\delta$ be the characteristic function of the class of $g_1$. In particular, $\delta$ is a class function, so can be written as a linear combination of the irreducible characters of $G$. Hence $\delta(g_2) = \delta(g_1) = 1$, so $g_2 \in \mathcal{C}_G (g_1)$.
+\end{proof}
+\end{coro}
+
+In the end let's introduce a good friend which will be around for the next few lectures:\\
+Recall from (5.5), the inner product on $\mathcal{C}(G)$ and the real symmetric form $\bra,\ket$ on characters:
+\begin{defi}
+The \emph{character table} of $G$ is the $k \times k$ matrix (where $k$ is the number of ccls) $X = [\chi_i (g_j)]$, the $i^{th}$ character on the $j^{th}$ class, where we let $\chi_1 =1_G, \chi_2,...,\chi_k$ are the irreducible characters of $G$, and $\mathcal{C}_1 =\{1\},...,\mathcal{C}_k$ are the ccls with $g_j \in \mathcal{C}_j$ (as we defined in 5.5).\\
+So the $(i,j)^{th}$ entry of $X$ is just $\chi_i (g_j)$.
+\end{defi}
+
+
 
 \iffalse
 \begin{equation*}
