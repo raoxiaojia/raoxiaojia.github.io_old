@@ -356,6 +356,69 @@ We have isomorphism $f$ from $X$ to an isomorphism of $Y$, and $g$ the other way
 \end{proof}
 \end{prop}
 
+New well-orderings from old:
+
+Write $X<Y$ if $X \leq Y$ but $X$ not isomorphic to $Y$. Equivalently, $X < Y$ iff $X$ is isomorphic to a proper initial segment of $Y$. For example, if $X = \N$, $Y = \{1-\frac{1}{n}\} \cup \{1\}$ then $X < Y$.
+
+Make a bigger one: given well-ordered $X$, choose $x \not\in X$, and set $x>y$ for all $y \in X$. This is a well-ordering on $X \cup \{x\}$: written $X^+$. Clearly $X < X^+$.
+
+Put some together:\\
+Let $(X,<_X)$ and $(Y,<_Y)$ be well-orderings. Say $Y$ extends $X$ if $X \subset Y$, and $<_X$, $<_Y$ agree on $X$, and $X$ an initial segment of $(Y,<_Y)$.\\
+Well-orderings $(X_i: i \in I)$ are nested if $\forall i,j \in I:$ $X_i$ extends $X_j$ or $X_j$ extends $X_i$.
+
+\begin{prop} (7)\\
+Let $(X_i:i \in I)$ be a nested family of well-orderings. Then there exist well-ordering $X$ with $X \geq X_i$ $\forall i$.
+\begin{proof}
+Let $X = \cup_{i \in I} X_i$, with $x<y$ if $\exists i$ with $x,y \in X_i$ and $x <_i y$, Then $<$ is a well-defined total order on $X$. given $S \subset X$, $S \neq \phi$, choose $i$ with $S\cap X_i \neq \phi$. Then $S \cap X_i$ has a minimal element (as $X_i$ is well-ordered), which must also be a minimal element of $S$ (as $X_i$ an i.s. of $X$). Also, $X \geq X_i \forall i$.
+\end{proof}
+\end{prop}
+
+\newpage
+
+\section{Ordinals}
+
+Are the well-orderings themselves well-ordered?
+
+An ordinal is a well-ordered set, with two sell-ordered sets regarded as the same if they are isomorphic. (Just as a rational is an expression $\frac{M}{N}$, with $\frac{M}{N}$, $\frac{M'}{N'}$ regarded as the same if $MN' = M'N$. But, unlike for $\Q$, we cannot formalise by equivalence classes -- see later).
+
+If $X$ is a well-ordering corresponding to ordinal $X$, say $X$ has order-type $\alpha$.
+
+\begin{eg}
+For each $k \in \N$, write $k$ for the order-type of the (unique) well-ordering of a set of size $k$, and write $\omega$ for order-type of $\N$. So, in $\R$, $\{1,3,7\}$ has order-type 3. $\{1-\frac{1}{n}:n=2,3,...\}$ has order-type $\omega$. For $X$ of o-t $\alpha$ and $Y$ of o-t $\beta$, write $\alpha \leq \beta$ if $X \leq Y$ (this is independent of choice of $X$,$Y$).\\
+Similarly for $\alpha<\beta$ etc.
+\end{eg}
+
+We know: $\forall \alpha,\beta$, $\alpha\leq \beta$ or $\beta\leq\alpha$, and if $\alpha\leq \beta$, $\beta\leq\alpha$ then $\alpha=\beta$.
+
+\begin{thm}
+Let $\alpha$ be an ordinal. Then the ordinals $<\alpha$ form a well-ordered set of order-type $\alpha$. e.g. the ordinals $<\omega$ are $0,1,2,3,...$.
+\begin{proof}
+Let $X$ have o-t $\alpha$. the well-orderings $<X$ are precisely (up to isomorphism) the proper initial segments of $X$, i.e. the $I_{x},x \in X$.\\
+But these are isomorphic to $X$ itself, via $x \to I_x$.
+\end{proof}
+\end{thm}
+
+We often write $I_\alpha$ to be the set of ordinals less than $\alpha$.
+
+\begin{prop} (9)\\
+Let $S$ be a non-empty set of ordinals. Then $S$ has a least element.
+\begin{proof}
+Choose $\alpha \in S$. If $\alpha$ minimal in $S$ then done. If not, then $S \cap I_\alpha \neq \phi$, so have a minimal element of $S\cap I_\alpha$, which is therefore minimal in $S$.
+\end{proof}
+\end{prop}
+
+\begin{thm} (10, Burali-Forti paradox):\\
+The ordinals do not form a set.
+\begin{proof}
+Suppose not, let $X$ be set of all ordinals. Then $X$ is a well-orderings, say order-type $\alpha$. So $X$ is isomorphic to $I_\alpha$. But $I_\alpha$ is a proper i.s. of $X$.
+\end{proof}
+\end{thm}
+
+Given $\alpha$, we have $\alpha^+ > \alpha$. Also, if $\{\alpha_i:i \in I\}$ is a set of ordinals, then there exists $\alpha$ with $\alpha \geq \alpha_i \forall i$ (by applying prop 7 to the nested family of $I_{\alpha_i};i \in I$.
+
+In fact, there is therefore a least upper bound for $\{\alpha_i: i \in I\}$ by applying prop 9 to the set $\{\beta \leq \alpha: \beta$ an upper bound for the $\alpha_i\}$. This is written $\sup\{\alpha_i:i \
+in I\}$, e.g. $\sup\{2,4,6,8,...\} = \omega$.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}

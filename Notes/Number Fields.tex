@@ -327,6 +327,111 @@ Let $p$ be a prime, $p \not\mid |A|$. same proof as in (i) shows that $f':H/pH \
 \end{proof}
 \end{lemma}
 
+Let $L$ be a number field, $n = [L:\Q]$, $\sigma_1,...,\sigma_n:L \to \C$ be distinct complex embeddings; $\alpha_1,...,\alpha_n \in L$, we defined $disc(\alpha_1,...,\alpha_n) = \det(\sigma_i(\alpha_j))^2$. An alternative notation is $\Delta(\alpha_1,...,\alpha_n)$. We also said $\alpha_1,...,\alpha_n$ form an integral basis for $\mathcal{O}_L$ if they generate $\mathcal{O}_L$ as a $\Z$-module.
+
+\begin{prop} (3.8)\\
+There exists an integral basis for $\mathcal{O}_L$.
+\begin{proof}
+Let $\beta_1,...,\beta_n \in L$ be a basis for $L$ as $\Q$-vector space. WLOG, $\beta_1,...,\beta_n \in \mathcal{O}_L$. Then $\mathcal{O}_L \supset \oplus_{i=1}^n \Z \beta_i$.\\
+Recall $\phi:L \times L \to \Q$ by sending $(\alpha,\beta) \to \tr_{L/\Q} (\alpha\beta)$ is a non-degenerate symmetric bilinear form (we showed that last time). Let $\beta_1^*,...,\beta_n^*$ be the dual basis. Then $\tr_{L/\Q(\beta_i \beta_j^*)} = \delta_{ij}$ (why?).\\
+If $\alpha \in \mathcal{O}_L$, then we can write $\alpha = \sum_{i=1}^n a_i \beta_i^*$ where $a_i \in \Q$. We know $\alpha\beta_i \in \mathcal{O}_L$, hence $\tr_{L/\Q} (\alpha\beta) \in \Z$. However LHS = $\sum_{j=1}^n \tr_{L/\Q} (a_j \beta_j^* \beta_i) = \sum_{j=1}^n a_j \tr_{L/\Q} (\beta_j^* \beta_i) = a_j$. So $\mathcal{O}_L \subseteq \oplus_{i=1}^n \Z \beta_i^*$. By sandwich lemma there is an isomorphism between $\Z^n$ and $\mathcal{O}_L$.
+\end{proof}
+\end{prop}
+
+If $\alpha_1,...,\alpha_n$, $\beta_1,...,\beta_n$ are both integral bases for $\mathcal{O}_L$, then there exists $A \in M_{n \times n} (\Z)$ such that $\beta_j = \sum_{i=1}^n A_{ij}\alpha_i$ for each $j=1,...,n$. Moreover, we must have $\det(A) \in \{\pm 1\}$, and $A \in GL_n(\Z)$. Then $disc(\beta_1,...,\beta_n) = \det(D')^2$, where $D'_{ij} = \sigma_i(\beta_j), D_{ij} = \sigma_i(\alpha_j)$. We have $D'_{ij} = \sum_{k=1}^n \sigma_i (A_{kj} \alpha_k) = \sum_{k=1}^n \sigma_i (\alpha_k) A_{kj} = (DA)_{ij}$.
+
+We find $disc(\beta_1,...,\beta_n) = \det(D')^2 = \det(DA)^2 = \det(D)^2 = disc(\alpha_1,...,\alpha_n)$. Therefore we could define:
+
+\begin{defi} (3.9)\\
+The discriminant $D_L$ of the number field $L$ is $disc(\alpha_1,...,\alpha_n)$, where $\alpha_1,...,\alpha_n$ is any integral basis for $\mathcal{O}_L$.
+\end{defi}
+
+\begin{prop} (3.10)\\
+Let $L=\Q(\alpha)$, and let $f(x) \in \Q[x]$ be the minimal polynomial of $\alpha$ over $\Q$. Then 
+\begin{equation*}
+\begin{aligned}
+disc (1,\alpha,\alpha^2,...,\alpha^{n-1}) = \prod_{i<j} (\sigma_i(\alpha)-\sigma_j(\alpha))^2 = (-1)^{n(n-1)/2} N_{L/\Q}(f'(\alpha))
+\end{aligned}
+\end{equation*}
+In part II Galois theory, we defined the discrimant of a polynomial, $disc f = \prod_{i<j} (\sigma_i(\alpha) - \sigma_j(\alpha))^2$ where $\alpha_i$'s are the roots of $f$.
+\begin{proof}
+If $D_{ij} = \sigma_i(\alpha^{j-1})$, $D \in M_{n\times n} (\C)$, then $disc(1,\alpha,...,\alpha^{n-1}) = \det(D)^2$. $D$ is a Vandermonde matrix, so we know $\det(D) = \prod_{i<j} (\sigma_j(\alpha) - \sigma_i(\alpha))$.\\
+On the other hand, $N_{L/\Q} (f'(\alpha)) = \prod_{i=1}^n \sigma_i (f'(\alpha)) = \prod_{i=1}^n f'(\sigma_i(\alpha))$.\\
+Using $f(x) = \prod_{j=1}^n (x-\sigma_j(\alpha))$, we get RHS = $\prod_{i=1}^n \prod_{j \neq i} (\sigma_i(\alpha) - \sigma_j(\alpha)) = (-1)^{n \choose 2} \prod_{i < j} (\sigma_i(\alpha) - \sigma_j(\alpha))^2$.
+\end{proof}
+\end{prop}
+
+Note: if $\alpha \in \mathcal{O}_L$ and $\Z[\alpha] = \mathcal{O}_L$, then $1,\alpha,...,\alpha^{n-1}$ is an integral basi for $\mathcal{O}_L$. We can then use proposition to calculate $D_L$.
+
+\begin{eg}
+Let $d\in \Z$ square-free, $d \neq 0,1$, $L = \Q(\sqrt{d})$. Then 
+\begin{equation*}
+\begin{aligned}
+D_L = \left\{\begin{array}{ll}
+4d & d \equiv 2,3 \pmod 4\\
+d & d \equiv 1 \pmod 4
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+To see this, if $d \equiv 2,3 \pmod 4$, then $\mathcal{O}_L = \Z[\sqrt{d}]$ (shown previously). Apply proposition to $x^2-d = f(x)$, we get $D_L = disc(1,\sqrt{d}) = -N_{L/\Q}(2\sqrt{d}) = 4d$.\\
+On the other hand, if $d \equiv 1 \pmod 4$, then $\mathcal{O}_L = \Z[\frac{1+\sqrt{d}}{2}]$. Apply proposition to the minimal polynomial of this element, $f(x) = x^2-x+\frac{1-d}{4}$, so $f'(x) = 2x-1$, so $f'(\alpha) = \sqrt{d}$. Therefore $D_L = -N_{L/\Q}(\sqrt{d}) = \sqrt{d}$.
+\end{eg}
+
+\begin{prop}
+If $\alpha_1,...,\alpha_n \in \mathcal{O}_L$ are such that $disc(\alpha_1,...,\alpha_n)$ is a non-zero square-free integer, then $\alpha_1,...,\alpha_n$ form an integral basis for $\mathcal{O}_L$.\\
+Note: this is a sufficient condition, but is not necessary (the previous example).\\
+\begin{proof}
+Let $\beta_1,...,\beta_n$ be an integral basis for $\mathcal{O}_L$. There exists $A \in M_{n \times n} (\Z)$ such that $\alpha_j = \sum_{i=1}^n A_{ij} \beta_i$ $\forall j = 1,...,n$. Then $disc(\alpha_1,...,\alpha_n) = \det(A)^2 disc(\beta_1,...,\beta_n)$ (we proved this in the beginning of lecture: $D'=DA$). In particular, if this is square-free and non-zero, then $\det(A)$ must be $\{\pm 1\}$. So $A \in GL_n(\Z)$. Hence $\alpha_1,...,\alpha_n$ generate $\mathcal{O}_L$ (as they can generate $\beta_i$) and form an integral basis.
+\end{proof}
+\end{prop}
+
+This could save a lot of calculation if we are lucky.
+\begin{eg}
+Let $f(x) = x^3-x-1$. Then $disc f = -4a^3 - 27b^2 = -23$. This is square-free! If $L=\Q(\alpha)$, $\alpha$ a root of $f(x)$, then $\mathcal{O}_L = \Z[\alpha]$.
+\end{eg}
+
+\begin{defi} (3.12)\\
+Let $I \subseteq \mathcal{O}_L$ be a no-zero ideal. Then elements $\alpha_1,...,\alpha_n \in L$ form an integral basis for $I$ if:\\
+(i) $\alpha_1,...,\alpha_n \in I$;\\
+(ii) $\alpha_1,...,\alpha_n$ generate $I$ as a $\Z$-module.
+\end{defi}
+
+\begin{prop} (3.13)\\
+Let $I \subseteq \mathcal{O}_L$ be a non-zero ideal. Then there exists an integral basis for $I$.
+\begin{defi}
+By definition, $I \subseteq \mathcal{O}_L \cong \Z^n$. Let $\alpha_1,...,\alpha_n \in \mathcal{O}_L$ be an integral basis for $\mathcal{O}_L$. Let $\alpha \in I$ be non-zero. Then $(\alpha)\subseteq I$, hence $\oplus_{i=1}^n \Z \alpha \alpha_i \subseteq I \subseteq \mathcal{O}_L$. So by sandwich lemma, there is an isomorphism between $I$ and $\Z^n$ as $\Z$-module. Hence there exists an integral basis for $I$.
+\end{defi}
+\end{prop}
+
+An interesting consequence of the proof:
+\begin{defi} (3.14)\\
+If $I \subseteq \mathcal{O}_L$ is a non-zero ideal, then we define its norm
+\begin{equation*}
+\begin{aligned}
+N(I) = [\mathcal{O}_L:I]
+\end{aligned}
+\end{equation*}
+which is finite by the sandwich lemma.
+\end{defi}
+
+\begin{defi} (3.15)\\
+If $I \subset \mathcal{O}_L$ is a non-zero ideal then we define $disc(I) = disc(\alpha_1,...,\alpha_n)$ where $\alpha_1,...,\alpha_n$ is an integral basis for $I$. (same argument shows $disc(I)$ depends only on $I$).
+\end{defi}
+
+\begin{lemma} (3.16)\\
+If $I \subseteq \mathcal{O}_L$ is a no-zero ideal, then $disc(I) = disc(\mathcal{O}_L) N(I)^2$.
+\begin{proof}
+Let $\alpha_1,...,\alpha_n$, $\beta_1,...,\beta_n$ be integral bases for $\mathcal{O}_L$ and $I$ respectively. Then $\exists A \in M_{n \times n} (\Z)$ such that $\beta_j = \sum_{i=1}^n A_{ij} \alpha_i$ $\forall j = 1,...n$, and $disc (\alpha_1,...,\alpha_n) \det(A)^2 = disc(\beta_1,...,\beta_n)$. We must show $\det(A)^2 = [\mathcal{O}_L:I]^2$.
+
+In fact, we'll show if $B \in M_{n \times n} (\Z)$ and $\det(B) \neq 0$, then $|\Z^n / B\Z^n| = |\det(B)|$. This suffices after identify $\mathcal{O}_L \cong \Z^n$.
+
+Recall: $\exists P,Q \in GL_n(\Z)$ such that $PBQ = D = Diag(d_1,...,d_n)$, $d_i \in \Z$ (Smith normal form). Hence we have $\Z^n/B\Z^n \cong \Z^n/D\Z^n \cong \oplus_{i=1}^n \Z/d_i \Z \implies |\Z^n / B\Z^n| = |\Z^n / D\Z^n| = \prod_{i=1}^n |d_i|$.\\
+On the other hand, $|\det(B)| = |\det(D)| = \prod_{i=1}^n |d_i|$.
+\end{proof}
+\end{lemma}
+
+
 \iffalse
 \begin{equation*}
 \begin{aligned}

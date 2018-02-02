@@ -460,6 +460,74 @@ Suppose $d(x,c) = r$. Then
 since $p<1/2, \frac{p}{1-p} < 1$. So choosing $c$ to maximise the probability is the same as choosing $r$ to minimise the distance $d(x,c)$.
 \end{rem}
 
+\begin{eg} (3, Hamming's original code, 1950)\\
+Let $C \subseteq F_2^7$ be defined by\\
+\begin{equation*}
+\begin{aligned}
+c_1+c_3+c_5+c_7=0\\
+c_2+c_3+c_6+c_7=0\\
+c_4+c_5+c_6+c_7=0\\
+\end{aligned}
+\end{equation*}
+since we can choose $c_3,c_5,c_6,c_7$ freely, then $c_1,c_2,c_4$ is uniquely determined. We get $|C| = 2^4$, so $C$ is a $[7,16]$ code.\\
+Information rate = $\frac{\log m}{n} = \frac{4}{7}$.\\
+Suppose we receive $x \in F_2^7$. We form the syndrome $z_x = (z_1,z_2,z_4)$ where
+\begin{equation*}
+\begin{aligned}
+z_1=x_1+x_3+x_5+x_7\\
+z_2=x_2+x_3+x_6+x_7\\
+z_4=x_4+x_5+x_6+x_7
+\end{aligned}
+\end{equation*}
+if $x \in C$ then $z=(0,,0)$. If $d(x,c)=1$ for some $c \in C$, then the place where $x$ and $c$ differ is given by $z_1+2z_2+4z_4$ (not mod 2). So this is also $1$-error correcting.\\
+Since if $x=c+e_1$ where $e_i = 0...010...0$ where $1$ is in the $i$th position, then the syndrome of $x$ is the syndrome of $e_1$, and for example syndrome of $e_3$ is $(1,1,0)$, the binary expansion of $3$. True for each $1 \leq i \leq 7$.
+\end{eg}
+
+Recall $d(x,y)$ is the number of differences between $x, y$.
+
+\begin{lemma} (2.3)\\
+The hamming distance is a metric on $F_2^n$.\\
+Don't really want to copy the proof -- this is obvious.
+\end{lemma}
+
+Remark: we could also write $d(x,y) = \sum_{i=1}^n d_i (x_i,y_i)$ where $d_1$ is the discrete metric on $\{0,1\}$.
+
+\begin{defi}
+The minimum distance of a code $C$ is the smallest Hamming distance between distinct codewords.\\
+An $[n,m]$-code with minimum distance $d$ is sometimes called an $[n,m,d]$-code.
+\end{defi}
+
+Note: $m \leq 2^n$, with equality if $C=F_2^n$, this is called the trivial code. Also $d \leq n$, with equality in the case of the repetition code.
+
+\begin{lemma} (2.4)\\
+Let $C$ be a code with minimum distance $d$.\\
+(i) $C$ is $(d-1)$-error detecting, but cannot detect all sets of $d$ errors.\\
+(ii) $C$ is $\lfloor \frac{d-1}{2}\rfloor$ error correcting, but cannot correct all sets of $\lfloor \frac{d-1}{2}\rfloor+1$ errors.
+\begin{proof}
+(i) If $x \in F_2^n$ and $c \in C$ with $1 \leq d(x,c) \leq d-1$, then $x \not\in C$, so errors detected. The second part is obvious.\\
+(ii) Let $e = \lfloor \frac{d-1}{2}\rfloor$, so $e \leq \frac{d-1}{2} < e+1$, i.e .$2e < d \leq 2(e+1)$. Let $x \in F_2^n$. If $\exists c_1 \in C$ with $d(x,c_1) \leq e$, we want to show $d(x,c_2)>e$ $\forall c_2 \in C$, $c_2 \neq c_1$, which can be done by triangle inequality. So $C$ is $e$-error correcting. The second part is trivial as well.
+\end{proof}
+\end{lemma}
+
+\begin{eg}
+(1) The repetition code is a $[n,2,n]$-code, it is $n-1$ error detecting and $\lfloor \frac{n-1}{2}\rfloor$ error correcting.\\
+(2) The simple parity check code is a $[n,2^{n-1},2]$-code. It is $1$-error detecting and $0$-error correcting.\\
+(3) Hamming's original $[7,16]$-code is $1$-error correcting, i.e. $d \geq 3$. Since $0000000$ and $1110000$ are both in the code we get $d=3$, i.e. $[7,16,3]$-code.
+\end{eg}
+
+New codes from old:\\
+Let $C$ be an $[n,m,d]$-code.\\
+(i) The parity extension of $C$ is 
+\begin{equation*}
+\begin{aligned}
+\bar{C} =\{(c,...,c_n,\sum c_i): (c_1,...,c_n) \in C\}
+\end{aligned}
+\end{equation*}
+It is a $[n+1,m,d']$-code where $d \leq d' \leq d+1$.\\
+(ii) Fix $1 \leq i \leq n$. Deleteing the $i^{th}$ letter from each codeword gives a punctured code. Assuming $d \geq 2$, $[n-1,m,d'']$ where $d-1 \leq d'' \leq d$.\\
+(iii) Fix $1 \leq i \leq n$ and $a \in \{0,1\}$. The shortened code is $\{(c_1,...,c_{i-1},c_{i+1},...,c_n): (c_1,...,c_{i-1},a,c_{i+1},...,c_n) \in C\}$. It is a $[n-1,m',d']$-code where $d' \geq d$ and some choice of $a$ gives $m' \geq \frac{m}{2}$.
+
+
 
 \iffalse
 \begin{equation*}

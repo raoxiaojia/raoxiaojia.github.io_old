@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  31 JAN 2018 10:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  2 FEB 2018 11:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -917,19 +917,34 @@ t/10 c$\OT1/cmr/m/n/10 (-20) , so for fixed $\OML/cmm/m/it/10 x$ \OT1/cmr/m/n/1
 sent\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 x received\OT1/cmr/m/n/10 (-20) )$
  []
 
-[14] [15]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 472.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 472.
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 463--465
+
+ []
+
+[15] [16]
+Overfull \hbox (1.17892pt too wide) in paragraph at lines 525--529
+\OT1/cmr/m/n/10 (-20) (iii) Fix $1 \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 i \OMS
+/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 n$ \OT1/cmr/m/n/10 (-20) and $\OML/cmm/m/it/1
+0 a \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 (-20) 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/
+10 (-20) 1\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 (-20) . The short-ened code is $\O
+MS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 c[]; :::; c[]; c[]; :::
+; c[]\OT1/cmr/m/n/10 (-20) ) :
+ []
+
+[17]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 540.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 540.
  (./Cryptography.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 472.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 472.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 540.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 540.
 Package rerunfilecheck Info: File `Cryptography.out' has not changed.
 (rerunfilecheck)             Checksum: 1A8B9952150D5F6F06B1DA743AA0F37C;320.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 472.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 540.
  ) 
 Here is how much of TeX's memory you used:
- 27870 strings out of 494910
- 664420 string characters out of 6179835
+ 27872 strings out of 494910
+ 664434 string characters out of 6179835
  887621 words of memory out of 5000000
  30593 multiletter control sequences out of 15000+600000
  14780 words of font info for 90 fonts, out of 8000000 for 9000
@@ -951,10 +966,10 @@ share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Cryptography.pdf (15 pages, 358621 bytes).
+Output written on Cryptography.pdf (17 pages, 365707 bytes).
 PDF statistics:
- 183 PDF objects out of 1000 (max. 8388607)
- 144 compressed objects within 2 object streams
- 22 named destinations out of 1000 (max. 500000)
+ 191 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
+ 24 named destinations out of 1000 (max. 500000)
  14404 words of extra memory for PDF output out of 17280 (max. 10000000)
 
