@@ -347,9 +347,75 @@ Let $X_1,...$ be independent random variales, and $X_i$ has distribution $Exp(\l
 \end{equation*}
 Now If $\sum \frac{1}{\lambda_{i-1}} < \infty$, then $\E(T_\infty) < \infty$. So $\P(T_\infty = \infty) = 0$.\\
 The other part will be proven in next lecture.\\
-Problem sheet 2 is online!
+Problem sheet 2 is online!\\
+For the other part we have 
+\begin{equation*}
+\begin{aligned}
+\E(e^{-T_\infty}) &= \E(\prod_1^\infty e^{-X_i})\\
+&= \prod_1^\infty \E(e^{-X_i})\\
+&= \prod_1^\infty \frac{1}{1+\lambda_i^{-1}} = 0
+\end{aligned}
+\end{equation*}
+the second equation by dominated convergence. So $\P(e^{-T_\infty} = 0) = 1$.
 \end{proof}
 \end{lemma}
+
+Proof of theorem:
+\begin{proof}
+(a) to (b):(proved? where) \\
+Proof that (b) implies no explosion:\\
+Suppose $g+i \leq \gamma < \infty$ for some $\gamma$. Then $\sum_0^\infty$ is a sum of independent exponential distribution r.v.s, i.e .$U_i \sim Exp(g_{z_i})$. hence $g_{Z_i} U_i \sim Exp(1)$.\\
+Now $\gamma \sum_0^\infty U_i \geq \sum_i g_{Z_i} U_i$ is sum of independent $Exp(1)$ random variables, which diverges with probability 1. So $\P(T_\infty < \infty) = 0$.\\
+Proof that (c) implies no explosion: We know there are infinitely many $n$ with $Z_n = i$ (a.s.) since $i$ is recurrent. Now $T_\infty \geq$ sum of infinitely many indepnedent holding times in state $i$ = sum of independent $Exp(g_i)$ random variables which diverges a.s.. So $\P(T_\infty < \infty) = 0$.
+\end{proof}
+
+\begin{eg}
+Let $Z$ be a discrete-time chain with transition matrix $H$, where $H_{i,i} = 0$ $\forall i \in S$. Let $N$ be a PP with intensity $\lambda>0$.\\
+Let $X(t) = Z_n$ if $T_n \leq t < T_{n+1}$, where $T_n$ is the time of the $n^{th}$ arrival in $N$. Now
+\begin{equation*}
+\begin{aligned}
+p_{ij}(t) &= \sum_{n=0}^\infty \P(X(t) = j | X(0)=i,N(t) = n) \P(N(t) = n)\\
+&= \sum_n \frac{(\lambda t)^n}{e^{-\lambda t}}{n!} (H^n)_{i,j}
+\end{aligned}
+\end{equation*}
+We have
+\begin{equation*}
+\begin{aligned}
+e^{\lambda t} I = \sum_{n=0}^\infty \frac{(-\lambda t)^n}{n!} I^n = e^{-\lambda t I}
+\end{aligned}
+\end{equation*}
+So $P_t = e^{\lambda t(H-I)^n} = e^{tG}$ where $G=\lambda(H-I)$.
+\end{eg}
+
+\begin{defi}
+State $i$ of the continuous time MC $X$ is recurrent if $\P_i(\{t \geq 0: X(t) = i\}$ is unbounded$)=1$; it is transient if the above probability is 0.
+\end{defi}
+
+\begin{thm}
+(a) If $g_i = 0$, then $i$ is recurrent.\\
+(b) Let $g_i>0$. State $i$ is recurrent for $X$ if it is recurrent for the jump chain $Z$. Furthermore, $i$ is recurrent if 
+\begin{equation*}
+\begin{aligned}
+\int_0^\infty p_{ii}(t) dt = \infty
+\end{aligned}
+\end{equation*}
+\begin{proof}
+(a) If $g_i = 0$ then $\{(X(t) = i, \forall t) = 1$.\\
+(b) Let $g_i>0$. If $i$ is transient for $Z$, then $Z$ has a last visit to $i$ at some time $N$. So $X(t) \neq i$ for $t>T_{N+1}$. So $i$ is transient for $X$. If $i$ is recurrent for $Z$, the times at which $Z$ visits $i$ is infinite a.s.. By last theorem, there is no explosion. So the chain $\{T_n:Z_n=i\}$ is unbounded a.s.. ($T_n$ is time of $n^{th}$ jump of $X$). Hence $i$ is recurrent for $X$.
+Note: the proof implies a non-recurrent state is transient.\\
+Now
+\begin{equation*}
+\begin{aligned}
+\int_0^\infty p_{ii}(t) dt &= \int_0^\infty \E_i(1_{X(t) = i}) dt\\ 
+&= \E_i (\int 1_{X(t)=i} dt) \\
+&= \E_i(\sum_n U_n 1_{\{Z_n=i\}})\\
+&= \sum_n \frac{1}{g_i} \P_i (Z_n = i)\\
+&= \frac{1}{g_i} \sum_n (H^n)_{i,i} = \infty
+\end{aligned}
+\end{equation*}
+if $i$ is recurrent for $Z$.
+\end{proof}
+\end{thm}
 
 
 
