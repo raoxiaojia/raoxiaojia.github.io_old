@@ -651,6 +651,105 @@ The \emph{character table} of $G$ is the $k \times k$ matrix (where $k$ is the n
 So the $(i,j)^{th}$ entry of $X$ is just $\chi_i (g_j)$.
 \end{defi}
 
+\begin{eg} (5.13)\\
+(a) $C_3 = \bra x:x^3=1\ket$. The character table is
+\begin{equation*}
+\begin{aligned}
+\begin{matrix}
+ & 1 & x & x^2\\
+\chi_1 & 1 & 1 & 1\\
+\chi_2 & 1 & \omega & \omega^2\\
+\chi_3 & 1 & \omega^2 & \omega
+\end{matrix}
+\end{aligned}
+\end{equation*}
+where $\omega = e^{2\pi i/3}$.\\
+(b) $G=D_6 \cong S_3 = \bra r,s:r^3=s^2=1,sr^{-1} = r^{-1}\ket$.\\
+ccls of $G$: $\mathcal{C}_1 = \{1\}$, $\mathcal{C}_2 = \{r,r^{-1}$, $\mathcal{C}_3 =\{s,sr,sr^2\}$. We have 3 irreducible representations over $\C$: $1_G$ (trivial); $\mathcal{S}$ (sign): $x \to 1$ for $x$ even, $x \to -1$ for $x$ odd; and $W$ (2-dimensional): $sr^i$ acts by matrix with eigenvalues $\pm 1$; $r^k$ acts by the matrix
+\begin{equation*}
+\begin{aligned}
+\begin{matrix}
+\cos 2k\pi/3 & -\sin 2k\pi/3\\
+\sin 2k\pi/3 & \cos 2k\pi/3
+\end{matrix}
+\end{aligned}
+\end{equation*}
+so $\chi_w(sr^i) = 0$ $\forall j$, $\chi_w (r^k) = 2\cos 2k\pi/3 = -1$ $\forall k$. So the charactable is:
+\begin{equation*}
+\begin{aligned}
+\begin{matrix}
+ & \mathcal{C}_1 & \mathcal{C}_2 & \mathcal{C}_3\\
+ 1_G & 1 & 1 & 1\\
+ \chi_s & 1 & -1 & 1\\
+ \chi_w & 2 & 0 & -1
+\end{matrix}
+\end{aligned}
+\end{equation*}
+\end{eg}
+
+\newpage
+
+\section{Proofs and orthogonality}
+
+We want to prove(5.6): irreducible characters form orthonormal basis for the space of $\C$-class functions.
+
+\begin{proof} (of 5.6 (a))\\
+Fix bases of $V$ and $V'$. Write $R(g)$, $R'(g)$ for matrices of $\rho(g),\rho'(g)$ w.r.t. these bases, respectively. Then
+\begin{equation*}
+\begin{aligned}
+\bra \chi',\chi \ket &= \frac{1}{|G|} \chi'(g^{-1}) \chi(g) \\
+&= \frac{1}{|G|} \sum_{g \in G, i,j\ s.t. 1 \leq i \leq n', 1 \leq j \leq n} R'(g^{-1})_{ii} R(g)_{jj}
+\end{aligned}
+\end{equation*}
+the trick is to define something that annhilates almost the whole thing. Let $\phi:V \to V'$ be linear and define 
+\begin{equation*}
+\begin{aligned}
+\tilde{\phi}: V &\to &V'\\
+v &\to &\frac{1}{|G|} \sum_{g \in G} \rho'(g^{-1}) \phi \rho(g) v
+\end{aligned}
+\end{equation*}
+We claim that this is a $G$-homomorphism: if $h \in G$, let's calculate
+\begin{equation*}
+\begin{aligned}
+\rho'(h^{-1} \tilde{\phi} \rho(h) (v) &= \frac{1}{|G|} \sum_{g \in G} \rho' (gh)^{-1} \phi \rho(gh) (v)\\
+&= \frac{1}{|G|} \sum_{g' \in G} \rho'(g'^{-1}) \phi \rho(g') (v)\\
+&= \tilde{\phi} (v)
+\end{aligned}
+\end{equation*}
+(when $g$ runs through $G$, $gh$ runs through $G$ as well). So (2.8) is satisfied, i.e. $\phi$ is a $G$-homomorphism.
+
+Case 1: $\rho,\rho'$ are not isomorphic. Schur's lemma says $\tilde{\phi} = 0$ for any given linear $\phi:V \to V'$. Take $\phi - \varepsilon_{\alpha\beta}$, having matrix $E_{\alpha\beta}$ (w.r.t our basis). This is $0$ everywhere except $1$ in the $(\alpha,\beta)$-position. Then $\tilde{\varepsilon_{\alpha\beta}} = 0$. So $\frac{1}{|G|} \sum_{g \in G} (R'(g^{-1}) E_{\alpha\beta} R(g))_{ij} = 0$. So $\frac{1}{|G|} \sum R'(G^{-1})_{i\alpha} R(g)_{\beta j} =0 $ $\forall i,j$, with $\alpha = i, \beta = j$. Now $\frac{1}{|G|} \sum_{g \in G} R'(g^{-1})_{ii} R(g)_{jj} = 0$ sum over $i,j$. Then $\bra \chi',\chi\ket = 0$.\\
+Case 2: $\rho,\rho'$ isomorphic. So $\chi = \chi'$; take $V=V'$, $\rho = \rho'$. If $\phi:V \to V$ is linear endomorphism, we claim $\tr \phi = \tr \tilde{\phi}$:
+\begin{equation*}
+\begin{aligned}
+\tr \tilde{phi} = \frac{1}{|G|} \sum_{g \in G} \tr(\rho(g)^{-1} \phi \rho(g)) = \frac{1}{|G|} \sum_{g \in G} \tr \phi = \tr \phi
+\end{aligned}
+\end{equation*}
+By Schur's lemma, $\tilde{\phi} = \lambda\iota_V$ for some $\lambda \in \C$ (depending on $\phi$). Then $\lambda = \frac{1}{n} \tr\phi$. Let $\phi = \varepsilon_{]alpha\beta}$. So $\tr \phi = \delta_{\alpha\beta}$. Hence $\tilde{\varepsilon_{\alpha\beta}} = \frac{1}{n} \delta_{\alpha\beta}\iota_v = \frac{1}{|G|} \sum_{g \in G} \rho(g^{-1}) \varepsilon_{\alpha\beta} \rho(g)$. In terms of matrices, take $(i,j)$-entry: $\frac{1}{|G|} \sum_j R(g^{-1})_{i \alpha} R(g)_{\beta j} = \frac{1}{n} \delta_{\alpha\beta}\delta_{ij}$ $\forall i,j$. Put $\\alpha = i,\beta =j $ to get $\frac{1}{|G|} \sum_g R(g^{-1})_{ii} R(g)_{jj} = \frac{1}{n} \delta_{ij}$. Finally sum over $i,j$ to get $\bra \chi,\chi \ket = 1$.
+\end{proof}
+
+Before proving (b), let's prove column orthogonality:
+
+\begin{thm} (6.1, column orthogonality relations)\\
+\begin{equation*}
+\begin{aligned}
+\sum_{i=1}^k \overline{\chi_i(g_j)} \chi_i (g_l) = \delta_{jl} |C_G(g_j)|
+\end{aligned}
+\end{equation*}
+\end{thm}
+having an easy corollary
+\begin{coro} (6.2)\\
+$|G| =\sum_{i=1}^k \chi_i^2(1)$.
+\end{coro}
+
+\begin{proof} (of (6.1))\\
+$\delta_{ij} = \bra \chi_i,\chi_j\ket = \sum \overline{\chi_i (g_l)} \chi_j (g_l) / |C_G(g_l)|$. Consider the character table $X = (\chi_i(g_j))$. Then $\bar{X} D^{-1} X^T = I_{k \times k}$ where $D = Diag(|C_G(g_1)|,...,|C_G(g_k)|)$.\\
+Since $X$ is quare, it follows that $d6{-1} \bar{X}^T$ is the inverse of $X$, so $\bar{X}^T X = D$.
+\end{proof}
+
+\begin{proof} (of (5.6(b)))\\
+The $\chi_i$ generate $\mathcal{C}_G$. Let all the irreducible characters $\chi_1,...,\chi_l$ of $G$: claim these generate $\mathcal{C}_G$, the $\C$-space of class functions on $G$. It's enough to show that the orthogonal complement to $span\{\chi_1,...,\chi_l$ in $\mathcal{C}_G$ is $\{0\}$.
+\end{proof}
 
 
 \iffalse
