@@ -527,7 +527,97 @@ It is a $[n+1,m,d']$-code where $d \leq d' \leq d+1$.\\
 (ii) Fix $1 \leq i \leq n$. Deleteing the $i^{th}$ letter from each codeword gives a punctured code. Assuming $d \geq 2$, $[n-1,m,d'']$ where $d-1 \leq d'' \leq d$.\\
 (iii) Fix $1 \leq i \leq n$ and $a \in \{0,1\}$. The shortened code is $\{(c_1,...,c_{i-1},c_{i+1},...,c_n): (c_1,...,c_{i-1},a,c_{i+1},...,c_n) \in C\}$. It is a $[n-1,m',d']$-code where $d' \geq d$ and some choice of $a$ gives $m' \geq \frac{m}{2}$.
 
+\subsection{Bound on codes}
+\begin{defi}
+Let $X \in F_2^n$ and $r \geq 0$. The (closed) Hamming ball with centre $x$ and radius $r$ is just what we think it will be (obvious). We denote it by $B(x,r)$.\\
+Note that the volume $V(n,r) = |B(x,r)| =\ sum_{i=0}^r {n \choose i}$ is independent of $x$.
+\end{defi}
 
+\begin{lemma} (2.5, Hamming's bound)\\
+If $C \subset \F_2^n$ is $e$-error correcting, then
+\begin{equation*}
+\begin{aligned}
+|C| \leq \frac{2^n}{V(n,e)}
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Since $C$ is $e$-error correcting, the Hamming Balls $B(c,e)$ are disjoint for $c \in C$. So done.
+\end{proof}
+\end{lemma}
+
+\begin{defi}
+A $[n,m]$-code which can correct $e$-errors is called \emph{perfect} if $m=\frac{2^n}{V(n,e)}$.
+\end{defi}
+
+Note that if $\frac{2^n}{V(n,e} \not\in \Z$ then no perfect $e$-erro correcting code of length $n$ can exist.
+
+\begin{eg}
+Hammings' original $[7,16,3]$-code can correct $1$ error. We can check that is is a perfect code.
+\end{eg}
+
+Note, however, that a perfect $e$-error correcting code will always incorrectly decode $e+1$ errors.
+
+\begin{defi}
+$A(n,d) = \max \{m: \exists\ a [n,m,d]-$code$\}$, i.e. size of largest code with parameters $n$ and $d$. For example, $A(n,1) = 2^n$, $A(n,n) = 2$.
+\end{defi}
+
+\begin{prop} (2.6)\\
+\begin{equation*}
+\begin{aligned}
+\frac{2^n}{V(n,d-1)} \leq A(n,d) \leq \frac{2^n}{V(n,\lfloor \frac{d-1}{2} \rfloor}
+\end{aligned}
+\end{equation*}
+The lower and upper bounds have alternative names: GSV-bounds and Hamming's bound.
+\begin{proof}
+We've already done the upper bound. For the lower bound, let $C$ be a code of length $n$ and minimum distance $d$ of largest possible size. Then $\not\exists x \in \F_2^n$ such that $d(x,c) \geq d$ $\forall c \in C$, otherwise we can place $C$ with $C \cup \{x\}$. So $\F_2^n \subseteq \cup_{c \in C} B(c,d-1)$, i.e. $|C| \geq \frac{2^n}{V(n,d-1)}$.
+\end{proof}
+\end{prop}
+
+\begin{eg}
+Consider $n=10,d=3$. Then $V(n,1) = 1+10=11$. $V(n,2) = 1+10+{10 \choose 2} = 56$. 2.6 gives $19 \leq A(10,3) \leq 93$. The exact value is 72, only known in 1999.
+\end{eg}
+
+There exist asymptotic versions of GSV and Hammings bound: Let $\alpha(\delta) = \limsup\frac{1}{n} \log A(n,\delta n)$, $0 \leq \delta \leq 1$.\\
+Notation: $H(\delta) = -\delta\log\delta - (1-\delta) \log(1-\delta)$.\\
+Asymptotic GSV boudn: $\alpha(\delta) \geq 1-H(\delta)$ for $0 < \delta < 1/2$;\\
+Asymptotic Hamming: $\alpha(\delta) \leq 1-H(\delta/2)$.
+
+We'll prove the asymptotic GSV bound.
+
+\begin{prop} (2.7)\\
+Let $0 < \delta < \frac{1}{2}$. Then\\
+(i) $\log V(n,\lfloor n\delta\rfloor) \leq nH(\delta)$;\\
+(ii) $\frac{\log A(n,\lfloor n\delta\rfloor}{n} \geq 1-H(\delta)$.
+\begin{proof}
+(i) $\implies$ (ii): GSV bound implies $A(n,\lfloor n\delta\rfloor) \geq \frac{2^n}{V(n,\lfloor n\delta \rfloor}$, so $\log A(n,\lfloor n\delta\rfloor) \geq n-\log V(n,\lfloor n\delta \rfloor) \geq n-nH(\delta)$ by (i). So $\frac{\log A(n,\lfloor n\delta\rfloor)}{n} \geq 1-H(\delta)$;\\
+Proof of (i):
+\begin{equation*}
+\begin{aligned}
+1 = (\delta + (1-\delta))^n &= \sum_{i=0}^n {n\choose i} \delta^i (1-\delta)^{n-i}\\
+&\geq \sum_{i=0}^{\lfloor n\delta\rfloor} {n \choose i} \delta^i (1-\delta)^{n-i}\\
+&= (1-\delta)^n \sum_{i=0}^{\lfloor n\delta\rfloor} {n \choose i} (\frac{\delta}{1-\delta})^i\\
+&\geq (1-\delta)^n \sum_{i=0}^{\lfloor n\delta\rfloor} {n \choose i} (\frac{\delta}{1-\delta})^{n\delta}
+\end{aligned}
+\end{equation*}
+Taking log, we get
+\begin{equation*}
+\begin{aligned}
+0 \geq n(\delta\log\delta + (1-\delta) \log(1-\delta)) + \log V(n,\lfloor n\delta\rfloor)\\
+\implies \log V(n,\lfloor n\delta \rfloor) \leq nH(\delta)
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{prop}
+
+\subsection{Channel Capacity}
+Let $|\Sigma| =q$. A code of length $n$ is a subset of $\Sigma^n$ (usually we take $q=2$).
+
+A code is used to send messages through a discrete memoryless channel with $q$ imput letters. For each code a decoding rule is chosen.\\
+We define $\hat{e}(C) = \max{c \in C} \P(error\ | c\ sent)$, the maximum error probability.
+
+\begin{defi}
+A channel can transmit reliably at rate $R$ if there exist a sequence of codes $C_1,C_2,...$ where $C_n$ is a code of length $n$ and size $\lfloor 2^{nR}\rfloor$ such that (??)
+\end{defi}
 
 \iffalse
 \begin{equation*}
