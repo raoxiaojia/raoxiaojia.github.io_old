@@ -417,7 +417,25 @@ if $i$ is recurrent for $Z$.
 \end{proof}
 \end{thm}
 
+Assume $g_j>0 \forall j$. $g_i=0$.
 
+\newpage
+\section{Birth Process}
+This is a continuous-time Markov Chain with generator $g_{n,n+1} = \lambda_n$ and $g_{n,m} = 0$ for $m \neq n,n+1$. When in state $n$, we jump to $n+1$ at rate $\lambda_n$, otherwise stay at $n$. $\lambda_n$ is just a constant, so if $\lambda_n=\lambda$ $\forall_n$ then this is just a Poisson process.
+
+For a \emph{simple birth process}, living particles give birth to single offspring at rate $\lambda$ independently of other offsprings.\\
+Let $N_t =$ number of individuals alive at time $t$. Then
+\begin{equation*}
+\begin{aligned}
+\P(N_{t+h} = n+m | N_t = n) = {n \choose m} (\lambda h+o(h))^m (1-\lambda h -o(h) )^{n-m} + o(h) = \left\{\begin{array}{ll}
+1-n\lambda h + o(h) & m=0\\
+n\lambda h + o(h) & m=1\\
+o(h) & m \geq 2
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+Hence this is a birth process with $\lambda_n = n\lambda$.
 
 \iffalse
 \begin{equation*}
