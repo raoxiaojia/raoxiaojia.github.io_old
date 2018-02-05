@@ -414,10 +414,49 @@ Suppose not, let $X$ be set of all ordinals. Then $X$ is a well-orderings, say o
 \end{proof}
 \end{thm}
 
-Given $\alpha$, we have $\alpha^+ > \alpha$. Also, if $\{\alpha_i:i \in I\}$ is a set of ordinals, then there exists $\alpha$ with $\alpha \geq \alpha_i \forall i$ (by applying prop 7 to the nested family of $I_{\alpha_i};i \in I$.
+Given $\alpha$, we have $\alpha^+ > \alpha$. Also, if $\{\alpha_i:i \in I\}$ is a set of ordinals, then there exists $\alpha$ with $\alpha \geq \alpha_i \forall i$ (by applying prop 7 to the nested family of $I_{\alpha_i};i \in I$).
 
-In fact, there is therefore a least upper bound for $\{\alpha_i: i \in I\}$ by applying prop 9 to the set $\{\beta \leq \alpha: \beta$ an upper bound for the $\alpha_i\}$. This is written $\sup\{\alpha_i:i \
-in I\}$, e.g. $\sup\{2,4,6,8,...\} = \omega$.
+In fact, there is therefore a least upper bound for $\{\alpha_i: i \in I\}$ by applying prop 9 to the set $\{\beta \leq \alpha: \beta$ an upper bound for the $\alpha_i\}$. This is written $\sup\{\alpha_i:i \in I\}$, e.g. $\sup\{2,4,6,8,...\} = \omega$.
+
+Some ordinals: $0,1,2,...,\omega,\omega+1$(officially $\omega^+$),$\omega+2$,...,\\
+$\omega+\omega =\omega2 = \sup\{\omega+1,\omega+2,...,\}$, $\omega^2+1,\omega^2+2,...$,\\
+$\omega3,...,\omega4,...,...,\omega\omega = \omega^2 = \sup\{\omega,\omega2,\omega3,...\}$,\\
+$\omega^2+1,...,\omega^2+\omega,\omega^2+\omega+1,...\omega^2+\omega2,...,\omega^2+\omega^2=\omega^2 2,...,\omega^2 3,..., \omega^2 4,..., \omega^2 5,..., \omega^2 \omega = \omega^3, ...\omega^3 2,...,\omega^4,...,\omega^\omega = \sup\{\omega,\omega^2,\omega^3,...\}$,\\
+$\omega^\omega+1,...,\omega^\omega 2,...,\omega^\omega \omega = \omega^{\omega+1}$,\\
+$\omega^{\omega+2},...,\omega^{\omega+3},...,\omega^{\omega^2},...,\omega^{\omega^3},...,\omega^{\omega^\omega}$,...\\
+And as expected we have $\omega^{\omega^{\omega^{\omega^{...}}}} = \sup\{\omega,\omega^2,\omega^3,...\} := \varepsilon_0$, and then $\varepsilon_0+1,...$, and then the whole thing again until $\varepsilon_1 = \varepsilon_0^{\varepsilon_0^{...}}$.
+
+However, although this thing looks quite magnificent, they are all just countable (as we have just done it). Is there an uncoutnable ordinal? In other words, is there an uncountable well-ordered set?
+
+\begin{thm} (11)\\
+There is an uncountable ordinal.
+\begin{proof}
+\[IDEA: take sup of all countable ordinals. However, this might not be a set.\]\\
+Let $R=\{A \in \mathcal{P}(\N \times \N)\}$ s.t. $A$ is a well-ordering of a subset of $\N$. Let $S$ be image of $R$ under 'order-type', i.e. $S$ is the set of all order-types of well-orderings of some subset of $\N$. Then $S$ is the set of all countable ordinals. Let $\omega_1$ be $\sup S$. Then $\omega_1$ is uncountable: otherwise, then $\omega_1 \in S$, so $\omega_1$ would be the greatest member of $S$. But then $\omega_1+1$ is also in $S$.
+\end{proof}
+\end{thm}
+
+Note that, by contradiction, $\omega_1$ is the \emph{least} uncountable ordinal. $\omega_1$ has some strange properties, e.g.\\
+1. $\omega_1$ is uncountable, but for any $\alpha < \omega_1$, we have $\{\beta:\beta < \alpha\}$ countable.\\
+2. If $\alpha_1,\alpha_2,... < \omega_1$ is any sequence, then it is bounded in $\omega_1$: $\sup\{\alpha_1,...,\alpha_2\}$ is countable, so is less than $\omega_1$.
+
+Similarly we have
+
+\begin{thm} (11', Hartogs' lemma)\\
+For any set $X$, there is an ordinal that  does not inject into $X$.\\
+To see that, just replace $\mathcal{P}(\N\times\N)$ by $\mathcal{P}(X \times X)$ in the previous proof.\\
+\end{thm}
+
+Write $\gamma(X)$ for the least such ordinal -- e.g. $\gamma(\omega) = \omega_1$.
+
+\newpage
+
+\section{Successors and limits}
+Given ordinal $\alpha$, does $\alpha$ (any set of order-type $\alpha$, e.g. $I_\alpha$) have a greatest element?\\
+If yes: say $\beta$ is that greatest element. Then $\gamma<\beta$ or $\gamma =\beta$ $\implies$ $\gamma<\alpha$, and $\gamma<\alpha \implies \gamma < \beta$ or $\gamma = \beta$ (as we can't have $\gamma > \beta$). In other words, $\alpha = \beta^+$. In that case, we call $\alpha$ a \emph{successor};\\
+If not: then $\forall \beta < \alpha$, $\exists \gamma < \alpha$ s.t. $\gamma > \beta$. So $\alpha = \sup\{\beta:\beta < \alpha\}$. (this is false in general, e.g. $\omega+5$). We call $\alpha$ a \emph{limit}.
+
+For example, $5$ is a successor, $\omega+5$ is a successor, $\omega$ is a limit, $\omega+\omega$ is a limit. ($0$ is a limit as well).
 
 \iffalse
 \begin{equation*}
