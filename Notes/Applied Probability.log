@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  5 FEB 2018 12:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  5 FEB 2018 12:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -838,7 +838,7 @@ LaTeX Warning: No \author given.
 \openout5 = `"Applied Probability.toc"'.
 
  [2] [3] [4]
-<image/AP_01.png, id=58, 722.7pt x 406.51875pt>
+<image/AP_01.png, id=64, 722.7pt x 406.51875pt>
 File: image/AP_01.png Graphic file (type png)
  <use image/AP_01.png>
 Package pdftex.def Info: image/AP_01.png used on input line 91.
@@ -883,29 +883,22 @@ Overfull \hbox (113.91734pt too wide) detected at line 437
 [] []
  []
 
-[14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 447.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 447.
+[14] [15]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 520.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 520.
  (./Applied Probability.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 447.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 447.
-
-
-Package rerunfilecheck Warning: File `"Applied Probability".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"Applied Probability".out':
-(rerunfilecheck)             Before: 6AECD212E36E625523522469324454B5;162
-(rerunfilecheck)             After:  81FC64273B65D139ECC086250C65ED62;210.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 447.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 520.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 520.
+Package rerunfilecheck Info: File `"Applied Probability".out' has not changed.
+(rerunfilecheck)             Checksum: 81FC64273B65D139ECC086250C65ED62;210.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 520.
  ) 
 Here is how much of TeX's memory you used:
- 27844 strings out of 494910
- 664214 string characters out of 6179835
+ 27852 strings out of 494910
+ 664276 string characters out of 6179835
  886630 words of memory out of 5000000
- 30585 multiletter control sequences out of 15000+600000
- 14627 words of font info for 83 fonts, out of 8000000 for 9000
+ 30586 multiletter control sequences out of 15000+600000
+ 14780 words of font info for 86 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,12n,77p,756b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -925,10 +918,10 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Applied Probability.pdf" (14 pages, 279891 bytes).
+Output written on "Applied Probability.pdf" (15 pages, 284893 bytes).
 PDF statistics:
- 172 PDF objects out of 1000 (max. 8388607)
- 134 compressed objects within 2 object streams
- 20 named destinations out of 1000 (max. 500000)
- 14890 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 181 PDF objects out of 1000 (max. 8388607)
+ 142 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
+ 14898 words of extra memory for PDF output out of 17280 (max. 10000000)
 

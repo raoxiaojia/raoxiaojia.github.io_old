@@ -437,6 +437,79 @@ o(h) & m \geq 2
 \end{equation*}
 Hence this is a birth process with $\lambda_n = n\lambda$.
 
+Let's look at another example:
+
+\begin{eg}
+Simple birth with immigration: in this model we have $\lambda_n = n\lambda + \varepsilon$, where $\lambda$ is the birth rate and $\varepsilon$ is the immigration rate.
+
+Kolmogorov equations:\\
+Forward equation: condition on $N_t$, $p'_{ij}(t) = \lambda_{j-1} p_{i,j-1}(t) - \lambda_j p_{ij}(t), i,j \geq 0, t \geq 0$, so $P'_t = P_t G$.\\
+Backward eqautions: condition on $N_h$, $p'_{ij}(t) = \lambda_i p_{i+1,j}(t) - \lambda_i p_{i,j}(t)$. So $P'_t = GP_t$.\\
+Boundary condition: $p_{i,j}(0) = \delta_{i,j}$.\\
+Facts: $p_{i,i-1}(t) = 0$.
+\end{eg}
+
+\begin{thm}
+For a birth process, the forward equations have a unique solution, which satisfies the backward equation.
+\begin{proof}
+$j=i$ in Forward equation: $p_{ii}'(t) = -\lambda_i p_{i,i}(t)$. Hence $p_{ii}(t) = e^{-\lambda_i t}$,\\
+$p_{i,i+1}'(t) = \lambda_i p_{i,i}(t) - \lambda_{i+1} p_{i,i+1}(t)$.\\
+Hence $p_{i,i+1}(t)$ and hence $p_{i,j}(t)$ by induciton.
+\end{proof}
+\end{thm}
+
+Laplace transforms:\\
+Let $g:\R^+ \to \R$. We define the laplace transform of $g$,
+\begin{equation*}
+\begin{aligned}
+\hat{g}(\theta) = \int_0^\infty e^{-\theta t} g(t) dt
+\end{aligned}
+\end{equation*}
+for $\theta > 0$.
+
+Remember we have the mgf, $E(e^{\theta x}) = \int e^{\theta t} f_x(t) dt$.
+
+We have the Laplace inverse theorem (in Complex Methods). We know
+\begin{equation*}
+\begin{aligned}
+\int e^{-\theta t} g'(t) dt = [e^{-\theta t} g]_0^\infty + \int \theta e^{-\theta t} g(t) dt\\
+&= -g(0) + \theta \hat{g}(\theta) = \hat{g'}
+\end{aligned}
+\end{equation*}
+
+Now
+\begin{equation*}
+\begin{aligned}
+&\theta \hat{p}_{ij} - \delta_{i,j} = \lambda_{j-1} \hat{p}_{i,j-1} - \lambda_j \hat{p}_{i,j}\\
+&\implies (\theta+\lambda_j) \hat{p}_{ij} = \delta_{i,j} + \lambda_{j-1} \hat{p}_{i,j-1}
+\end{aligned}
+\end{equation*}
+hence the $\hat{p}_{i,j}$'s are
+\begin{equation*}
+\begin{aligned}
+\hat{p}_{ij}(\theta) = \frac{1}{\lambda_j} \frac{\lambda_j}{\theta+\lambda_i} ... \frac{\lambda_j}{\theta+\lambda_j}, i \leq j.
+\end{aligned}
+\end{equation*}
+
+It's easy to check that this Laplace transform satisfies the "Laplace" equation of the backward "system",
+\begin{equation*}
+\begin{aligned}
+-\delta_{ij} + \theta \hat{p}_{ij} = \lambda \hat{p}_{i+1,j} -\lambda_j \hat{p}_{i,j}
+\end{aligned}
+\end{equation*}
+
+\begin{thm}
+The forward equations have a unique solution $(p_{i,j}(t))$ which is the minimal solution to the backward equation, in that, for any other solutions $(\pi_{i,j}(t))$ to the backward equation, we have
+\begin{equation*}
+\begin{aligned}
+p_{i,j}(t) \leq \pi_{i,j}(t) \forall i,j,t
+\end{aligned}
+\end{equation*}
+The lecture thinks the proof might be in a book of Norris, or online notes by Burostychi + Sousi(?).
+\end{thm}
+
+If we know in addition that $\sum_j p_{i,j}(t) = 1$ $\forall i$, then we know $p_{i,j}(t)$ is the unique solution to the backward equation, as any other solution $\pi_{i,j}(t)$ would have a sum exceeding 1.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
