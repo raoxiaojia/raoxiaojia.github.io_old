@@ -748,8 +748,113 @@ Since $X$ is quare, it follows that $d6{-1} \bar{X}^T$ is the inverse of $X$, so
 \end{proof}
 
 \begin{proof} (of (5.6(b)))\\
-The $\chi_i$ generate $\mathcal{C}_G$. Let all the irreducible characters $\chi_1,...,\chi_l$ of $G$: claim these generate $\mathcal{C}_G$, the $\C$-space of class functions on $G$. It's enough to show that the orthogonal complement to $span\{\chi_1,...,\chi_l\}$ in $\mathcal{C}_G$ is $\{0\}$. To see this, assume $f \in \mathcal{C}_G$ with $\bra f,\chi_j\ket = 0 \forall j$. Let $\rho:G \to GL(V)$ be irreducible representation affording $\chi$.
+The $\chi_i$ generate $\mathcal{C}_G$. Let all the irreducible characters $\chi_1,...,\chi_l$ of $G$: claim these generate $\mathcal{C}_G$, the $\C$-space of class functions on $G$. It's enough to show that the orthogonal complement to $span\{\chi_1,...,\chi_l\}$ in $\mathcal{C}_G$ is $\{0\}$. To see this, assume $f \in \mathcal{C}_G$ with $\bra f,\chi_j\ket = 0 \forall j$. Let $\rho:G \to GL(V)$ be irreducible representation affording $\chi \in \{\chi_1,...,\chi_l\}$. Then $\bra f,\chi\ket = 0$.\\
+Consider
+\begin{equation*}
+\begin{aligned}
+\frac{1}{|G|} \sum_G \overline{f(g)} \rho(g): V \to V
+\end{aligned}
+\end{equation*}
+This is a $G$-homomorphism, so as $\rho$ is irreducible, it must be $\lambda_\iota$ for some $\lambda \in \C$. Now 
+\begin{equation*}
+\begin{aligned}
+n\lambda &= \tr \frac{1}{|G|} \sum_g \overline{f(g)} \rho(g)\\
+&= \frac{1}{|G|} \sum_g \overline{f(g)} \chi(g) = 0 = \bra f,\chi\ket
+\end{aligned}
+\end{equation*}
+So $\lambda = 0$. Hence $\sum \overline{f(g)} \rho(g) = 0$, the zero endomorphism on $V$ for all representations $\rho$ (complete reducibility).
+
+Take $\rho = \rho_{reg}$ where $\rho_{reg}(g): e_1 \to e_g$ ($g \in G$). So
+\begin{equation*}
+\begin{aligned}
+\sum_g \overline{f(g)} \rho_{reg}(g): e_1 \to \sum_g \overline{f(g)} e_g
+\end{aligned}
+\end{equation*}
+So it follows $\sum_g \overline{f(g)} e_g = 0$. So $\overline{f(g)} = 0 \forall g \in G$, so $f \equiv 0$.
 \end{proof}
+
+Variuous corollaries now follow:\\
+$\bullet$ The number of irreducible representations of $G$ = number of ccls; (5.10)\\
+$\bullet$ Column orthogonality (6.1);\\
+$\bullet$ $|G| = \sum n_i^2$ (6.2);\\
+$\bullet$ $g_1 \stackrel{\sim}{G} g_2 \iff \chi(g_1) = \chi(g_2)$ for all irreducible $\chi$ (5.11);\\
+$\bullet$ If $g \in G$, $g \stackrel{\sim}{G} g^{-1} \iff \chi(g) \in \R$ for all irreducible $\chi$.
+
+\newpage
+
+\section{Permutation representations}
+Preview was given in (3.7). Recall:
+$\bullet$ $G$ finite group acting on finite set $X = \{x_1,...,x_n\}$;\\
+$\bullet$ $\C X$ = $\C$-space, with basis $\{e_{x_1},...,e_{x_n}\}$ of dimension $|X|$, so is $\{\sum_j a_j e_{x_j}: a_j \in \C\}$;\\
+$\bullet$ corresponding permutation representation $\rho_X:G \to GL(\C X)$ by $g \to \rho(g)$, where $\rho(g)$ sends $e_{x_j} \to e_{gx_j}$, extending linearly.\\
+$\bullet$ $\rho_X$ is the \emph{permutation representation} corresponding to the action of $G$ on $X$.\\
+$\bullet$ matrices representing $\rho_X(g)$ w.r.t. basis $\{e_x\}_{x \in X}$ are permutation matrices: 0 except for one 1 in each row and column, and $(\rho(g))_{ij} = 1$ iff $gx_j = x_i$. Consider its character:
+
+(7.1) Permutation character, $\pi_X$, is
+\begin{equation*}
+\begin{aligned}
+\pi_X(g) = |Fix_X(g)| =|\{x \in X:gx = x\}|.
+\end{aligned}
+\end{equation*}
+
+(7.2) $\rho_X$ always contains $1_G$: $span \{e_{x_1}+...+e_{x_n}\}$ is a trivial $G$-subspace of $\C X$ with $G$-invariant complement $span\{\sum a_x e_x: \sum a_x = 0\}$.
+
+\begin{lemma} (7.3, Burnside's lemma, after Cauchy, Frobenius)
+$\bra \pi_X, 1\ket = $ number of orbits of $G$ on $X$.
+\begin{proof}
+If $X = X_1 \cup ... \cup X_l$ disjoint union of orbits, then $\pi_X = \pi_{X_1}+...+\pi_{X_l}$, with $\pi_{X_j}$ permutation character of $G$ on $X_j$, so to prove the claim it's enough to show that if $G$ is transitive on $X$ then $\bra \pi_X,1\ket = 1$. Assume $G$ is transitive on $X$. Now
+\begin{equation*}
+\begin{aligned}
+\bra \pi_X,1\ket &= \frac{1}{|G|} \sum_g \pi_X(g) = \frac{1}{|G} |\{(g,x) \in G \times X: gx = x\}|\\
+&= \frac{1}{|G|} \sum_{x \in X} |G_x|=\frac{1}{|G|}|X||G_x| = \frac{1}{|G|}|G| = 1
+\end{aligned}
+\end{equation*}
+(Note the use of orbit-stabilizer theorem).
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (7.4)\\
+Let $G$ act on the sets $X_1,X_2$. Then $G$ acts on $X_1 \times X_2$ via $g(x_1,x_2) = (gx_1,gx_2)$. The character $\pi_{X_1 \times X_2} = \pi_{X_1} \pi_{X_2}$ and so $\bra \pi_{X_1} ,\pi_{X_2}\ket =$ number of orbits of $G$ on $X_1 \times X_2$.
+\begin{proof}
+If $g \in G$ then $\pi_{X_1 \times X_2} (g) = \pi_{X_1} (g) \pi_{X_2}(g)$. And we have
+\begin{equation*}
+\begin{aligned}
+\bra \pi_{X_1},\pi_{X_2} \ket = \bra \pi_{X_1}\pi_{X_2},1\ket = \bra \pi_{X_1 \times X_2} ,1\ket = (7.3) \text{ number of orbits of G on } X_1 \times X_2.
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{lemma}
+
+\begin{defi} (7.5)\\
+Let $G$ act on $X$, $|X| > 2$. Then $G$ is \emph{2-transitive} on $X$ if $G$ has precisely two orbits on $X \times X: \{(x,x):x \in X\}$ and $\{x_1,x_2) : x_i \in X,x_1 \neq x_2\}$.
+\end{defi}
+
+\begin{lemma} (7.6)\\
+Let $G$ act on $X$, $|X|>2$. Then $\pi_X = 1+\chi$ with $\chi$ irreducible $\iff$ $G$ is 2-transitive on $X$.
+\begin{proof}
+$\pi_X = m_1 1 + m_2 \chi_2 + ... + m_l \chi_l$ with $1,\chi_2,...,\chi_l$ distinct irreducible characters and $m_i \in \N$. Then
+\begin{equation*}
+\begin{aligned}
+\bra \pi_X,\pi_X\ket = \sum_{i=1}^l m_i^2
+\end{aligned}
+\end{equation*}
+hence $G$ is 2-transitive on $X$ $\iff$ $l=2,m_1=m_2=1$.
+\end{proof}
+\end{lemma}
+
+\begin{eg} (7.7)\\
+Consider $S_n$ acting on $X=\{1,...,n\}$ which is $2$-transitive. Hence $\pi_X =1+\chi$ with $\chi$ irreducible of degree $n-1$. Similarly for $A_n$ ($n>3$).
+\end{eg}
+
+\begin{eg} (7.8)\\
+Consider $G=S_4$.
+\includegraphics[scale=0.7]{image/Rep_04.png}
+\end{eg}
+
+
+
+
+
 
 
 \iffalse

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  6 FEB 2018 09:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  6 FEB 2018 10:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -843,7 +843,7 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 62.
 
-[4] [5] [6] <image/Rep_01.png, id=109, 722.7pt x 406.51875pt>
+[4] [5] [6] <image/Rep_01.png, id=115, 722.7pt x 406.51875pt>
 File: image/Rep_01.png Graphic file (type png)
 
 <use image/Rep_01.png>
@@ -854,7 +854,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 151--152
 [][] 
  []
 
-[7 <./image/Rep_01.png>] <image/Rep_02.png, id=115, 722.7pt x 406.51875pt>
+[7 <./image/Rep_01.png>] <image/Rep_02.png, id=121, 722.7pt x 406.51875pt>
 File: image/Rep_02.png Graphic file (type png)
 
 <use image/Rep_02.png>
@@ -865,7 +865,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 177--178
 [][] 
  []
 
-[8 <./image/Rep_02.png>] <image/Rep_03.png, id=120, 722.7pt x 406.51875pt>
+[8 <./image/Rep_02.png>] <image/Rep_03.png, id=126, 722.7pt x 406.51875pt>
 File: image/Rep_03.png Graphic file (type png)
 
 <use image/Rep_03.png>
@@ -896,21 +896,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 733--734
  []
 
 [23]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 763.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 763.
+Overfull \hbox (20.46075pt too wide) detected at line 824
+[] []
+ []
+
+[24] <image/Rep_04.png, id=196, 722.7pt x 406.51875pt>
+File: image/Rep_04.png Graphic file (type png)
+ <use image/Rep_04.png>
+Package pdftex.def Info: image/Rep_04.png used on input line 851.
+(pdftex.def)             Requested size: 505.88655pt x 284.56117pt.
+
+Overfull \hbox (239.21169pt too wide) in paragraph at lines 849--852
+\OT1/cmr/m/n/10 (-20) Consider $\OML/cmm/m/it/10 G \OT1/cmr/m/n/10 (-20) = \OML
+/cmm/m/it/10 S[]$\OT1/cmr/m/n/10 (-20) . [] 
+ []
+
+[25 <./image/Rep_04.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 868.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 868.
  (./Representation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 763.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 763.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 868.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 868.
 Package rerunfilecheck Info: File `Representation.out' has not changed.
-(rerunfilecheck)             Checksum: 22F4E1FB0CF9879489DFE669ACF426F3;590.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 763.
+(rerunfilecheck)             Checksum: F0B0461DD8D2D19CA1DAB495479FE4FB;653.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 868.
  ) 
 Here is how much of TeX's memory you used:
- 27906 strings out of 494910
- 664775 string characters out of 6179835
+ 27917 strings out of 494910
+ 664918 string characters out of 6179835
  886623 words of memory out of 5000000
- 30598 multiletter control sequences out of 15000+600000
- 15524 words of font info for 99 fonts, out of 8000000 for 9000
+ 30603 multiletter control sequences out of 15000+600000
+ 15632 words of font info for 100 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,15n,77p,749b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -930,10 +946,10 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Representation.pdf (23 pages, 368893 bytes).
+Output written on Representation.pdf (25 pages, 461043 bytes).
 PDF statistics:
- 253 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 35 named destinations out of 1000 (max. 500000)
- 14444 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 272 PDF objects out of 1000 (max. 8388607)
+ 220 compressed objects within 3 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 14457 words of extra memory for PDF output out of 17280 (max. 10000000)
 
