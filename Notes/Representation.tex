@@ -711,7 +711,7 @@ v &\to &\frac{1}{|G|} \sum_{g \in G} \rho'(g^{-1}) \phi \rho(g) v
 We claim that this is a $G$-homomorphism: if $h \in G$, let's calculate
 \begin{equation*}
 \begin{aligned}
-\rho'(h^{-1} \tilde{\phi} \rho(h) (v) &= \frac{1}{|G|} \sum_{g \in G} \rho' (gh)^{-1} \phi \rho(gh) (v)\\
+\rho'(h^{-1}) \tilde{\phi} \rho(h) (v) &= \frac{1}{|G|} \sum_{g \in G} \rho' (gh)^{-1} \phi \rho(gh) (v)\\
 &= \frac{1}{|G|} \sum_{g' \in G} \rho'(g'^{-1}) \phi \rho(g') (v)\\
 &= \tilde{\phi} (v)
 \end{aligned}
@@ -722,10 +722,10 @@ Case 1: $\rho,\rho'$ are not isomorphic. Schur's lemma says $\tilde{\phi} = 0$ f
 Case 2: $\rho,\rho'$ isomorphic. So $\chi = \chi'$; take $V=V'$, $\rho = \rho'$. If $\phi:V \to V$ is linear endomorphism, we claim $\tr \phi = \tr \tilde{\phi}$:
 \begin{equation*}
 \begin{aligned}
-\tr \tilde{phi} = \frac{1}{|G|} \sum_{g \in G} \tr(\rho(g)^{-1} \phi \rho(g)) = \frac{1}{|G|} \sum_{g \in G} \tr \phi = \tr \phi
+\tr \tilde{\phi} = \frac{1}{|G|} \sum_{g \in G} \tr(\rho(g)^{-1} \phi \rho(g)) = \frac{1}{|G|} \sum_{g \in G} \tr \phi = \tr \phi
 \end{aligned}
 \end{equation*}
-By Schur's lemma, $\tilde{\phi} = \lambda\iota_V$ for some $\lambda \in \C$ (depending on $\phi$). Then $\lambda = \frac{1}{n} \tr\phi$. Let $\phi = \varepsilon_{]alpha\beta}$. So $\tr \phi = \delta_{\alpha\beta}$. Hence $\tilde{\varepsilon_{\alpha\beta}} = \frac{1}{n} \delta_{\alpha\beta}\iota_v = \frac{1}{|G|} \sum_{g \in G} \rho(g^{-1}) \varepsilon_{\alpha\beta} \rho(g)$. In terms of matrices, take $(i,j)$-entry: $\frac{1}{|G|} \sum_j R(g^{-1})_{i \alpha} R(g)_{\beta j} = \frac{1}{n} \delta_{\alpha\beta}\delta_{ij}$ $\forall i,j$. Put $\\alpha = i,\beta =j $ to get $\frac{1}{|G|} \sum_g R(g^{-1})_{ii} R(g)_{jj} = \frac{1}{n} \delta_{ij}$. Finally sum over $i,j$ to get $\bra \chi,\chi \ket = 1$.
+By Schur's lemma, $\tilde{\phi} = \lambda\iota_V$ for some $\lambda \in \C$ (depending on $\phi$). Then $\lambda = \frac{1}{n} \tr\phi$. Let $\phi = \varepsilon_{\alpha\beta}$. So $\tr \phi = \delta_{\alpha\beta}$. Hence $\tilde{\varepsilon_{\alpha\beta}} = \frac{1}{n} \delta_{\alpha\beta}\iota_v = \frac{1}{|G|} \sum_{g \in G} \rho(g^{-1}) \varepsilon_{\alpha\beta} \rho(g)$. In terms of matrices, take $(i,j)$-entry: $\frac{1}{|G|} \sum_j R(g^{-1})_{i \alpha} R(g)_{\beta j} = \frac{1}{n} \delta_{\alpha\beta}\delta_{ij}$ $\forall i,j$. Put $\alpha = i,\beta =j $ to get $\frac{1}{|G|} \sum_g R(g^{-1})_{ii} R(g)_{jj} = \frac{1}{n} \delta_{ij}$. Finally sum over $i,j$ to get $\bra \chi,\chi \ket = 1$.
 \end{proof}
 
 Before proving (b), let's prove column orthogonality:
@@ -748,7 +748,7 @@ Since $X$ is quare, it follows that $d6{-1} \bar{X}^T$ is the inverse of $X$, so
 \end{proof}
 
 \begin{proof} (of (5.6(b)))\\
-The $\chi_i$ generate $\mathcal{C}_G$. Let all the irreducible characters $\chi_1,...,\chi_l$ of $G$: claim these generate $\mathcal{C}_G$, the $\C$-space of class functions on $G$. It's enough to show that the orthogonal complement to $span\{\chi_1,...,\chi_l$ in $\mathcal{C}_G$ is $\{0\}$.
+The $\chi_i$ generate $\mathcal{C}_G$. Let all the irreducible characters $\chi_1,...,\chi_l$ of $G$: claim these generate $\mathcal{C}_G$, the $\C$-space of class functions on $G$. It's enough to show that the orthogonal complement to $span\{\chi_1,...,\chi_l\}$ in $\mathcal{C}_G$ is $\{0\}$. To see this, assume $f \in \mathcal{C}_G$ with $\bra f,\chi_j\ket = 0 \forall j$. Let $\rho:G \to GL(V)$ be irreducible representation affording $\chi$.
 \end{proof}
 
 
