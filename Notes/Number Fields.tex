@@ -420,7 +420,7 @@ If $I \subset \mathcal{O}_L$ is a non-zero ideal then we define $disc(I) = disc(
 \end{defi}
 
 \begin{lemma} (3.16)\\
-If $I \subseteq \mathcal{O}_L$ is a no-zero ideal, then $disc(I) = disc(\mathcal{O}_L) N(I)^2$.
+If $I \subseteq \mathcal{O}_L$ is a non-zero ideal, then $disc(I) = disc(\mathcal{O}_L) N(I)^2$.
 \begin{proof}
 Let $\alpha_1,...,\alpha_n$, $\beta_1,...,\beta_n$ be integral bases for $\mathcal{O}_L$ and $I$ respectively. Then $\exists A \in M_{n \times n} (\Z)$ such that $\beta_j = \sum_{i=1}^n A_{ij} \alpha_i$ $\forall j = 1,...n$, and $disc (\alpha_1,...,\alpha_n) \det(A)^2 = disc(\beta_1,...,\beta_n)$. We must show $\det(A)^2 = [\mathcal{O}_L:I]^2$.
 
@@ -428,6 +428,94 @@ In fact, we'll show if $B \in M_{n \times n} (\Z)$ and $\det(B) \neq 0$, then $|
 
 Recall: $\exists P,Q \in GL_n(\Z)$ such that $PBQ = D = Diag(d_1,...,d_n)$, $d_i \in \Z$ (Smith normal form). Hence we have $\Z^n/B\Z^n \cong \Z^n/D\Z^n \cong \oplus_{i=1}^n \Z/d_i \Z \implies |\Z^n / B\Z^n| = |\Z^n / D\Z^n| = \prod_{i=1}^n |d_i|$.\\
 On the other hand, $|\det(B)| = |\det(D)| = \prod_{i=1}^n |d_i|$.
+\end{proof}
+\end{lemma}
+
+Remember we have $L$ a number field, $n=[L:\Q]$, $\sigma_1,...,\sigma_n:L \to \C$ are distinct complex embeddings of $L$.
+
+\begin{lemma} (3.17)\\
+Let $\alpha \in \mathcal{O}_L \setminus\{0\}$. Then $N((\alpha)) = |N_{L/\Q}(\alpha)|$ (Note that's an ideal).
+\begin{proof}
+Let $\alpha_1,...,\alpha_n$ be an integral basis for $\mathcal{O}_L$. Then $\alpha\alpha_1,...,\alpha\alpha_n$ is an integral basis for $I=(\alpha)$. So
+\begin{equation*}
+\begin{aligned}
+disc(I) &= disc(\alpha\alpha_1,...,\alpha\alpha_n)\\
+&= \det(\sigma_i(\alpha\alpha_j))^2\\
+&= \det(\sigma_i(\alpha)\sigma_i(\alpha_j))^2\\
+&= (\prod_{i=1}^n \sigma_i(\alpha))^2 \det(\sigma_i(\alpha_j))^2\\
+&= N_{L/\Q}(\alpha)^2 disc(\mathcal{O}_L)
+\end{aligned}
+\end{equation*}
+And we showed last time that for any non-zero ideal $J \subseteq \mathcal{O}_L$, $disc(J) = N(J)^2 disc(\mathcal{O}_L)$.
+\end{proof}
+\end{lemma}
+
+Notation: If $\alpha \in \mathcal{L}-\{0\}$, we let $N(\alpha) = N((\alpha)) N(0) = 0$.\\
+Then $\forall \alpha,\beta \in \mathcal{O}_L$, $N(\alpha\beta) = N(\alpha)N(\beta)$.
+
+\newpage
+\section{Unique factorisation in $\mathcal{O}_L$}
+Recall: we say a ring $R$ is a unique factorisation domain (UFD) if\\
+(i) $R$ is an integral domain;\\
+(ii) if $x \in R$ is non-zero and not a unit, then there exists an expression $x=p_1...p_r$ where $p_i \in R$ are irreducible elements. This expression is unique in the sense that if $x = q_1...q_s$ is another such expression, then $r=s$ and after re-ordering, each $q_i$ is an associate of $p_i$ (i.e. $q_i \in R^* p_i$, where $R^*$ is the field of units).
+
+After 2 years of Cambridge Maths we certainly know $\Z$ is a UFD. However, if $L$ is a number field, $\mathcal{O}_L$ need not be a UFD.
+
+In fact, any non-zero $x \in \mathcal{O}_L$ which is not a unit can be expressed as a product of irreducible elements.
+
+If $x \in \mathcal{O}_L$, then $x$ is a no-zero non-unit $\iff N(x)>1$. Suppose $x \in \mathcal{O}_L$ is a non-zero non-unit which cannot be written as a product of irreducible elements, and with $N(x)$ minimal among elements with this property. Then $x=yz$ with $N(y) >1$, $N(z)>1$, hence $N(y)<N(x)$, $N(z)<N(x)$. By minimality of $N(x)$, both $y,z$ can be written as products of irreducible; contradiction.
+
+\begin{eg}
+Consider $L=\Q(\sqrt{-5}$, $\mathcal{O}_L = \Z[\sqrt{-5}]$, and $\mathcal{O}_L^* = \{\pm 1\}$. In $\mathcal{O}_L$ we have $6 = 2 \times 3 = (1+\sqrt{-5})(1-\sqrt{-5})$, and all of the four are irreducibles, and no two are associates (norms). So $\mathcal{O}_L$ is not a UFD (famous example).
+\end{eg}
+
+Idea: introduce ideal multiplication in order to reduce elements further.
+
+Recall that if $R$ is a ring and $I,J$ are ideals of $R$, then we define
+\begin{equation*}
+\begin{aligned}
+IJ = \{\sum_{i=1}^k a_ib_i | a_i \in I, b_i \in J\},\\
+I+J = \{a+b|a\in I, b \in J\}
+\end{aligned}
+\end{equation*}
+We can define an ideal $I \subsetneq R$ to be irreducible if it does not admit an expression $I=JK$ where $J,K$ are proper ideals of $R$.
+
+Key point: even if $\alpha \in \mathcal{O}_L$ is irreducible, the ideal $(\alpha)$ need not be irreducible. For example in $\Z[\sqrt{-5}]$, we have $(2) = (2,1+\sqrt{-5})^2$, $(3) = (3,1+\sqrt{-5})(3,1-\sqrt{-5})$.
+
+\begin{defi} (4.1)\\
+If $R$ is a ring, we say that an ideal $P \subsetneq R$ is prime if $\forall x,y \in R$, $xy \in P$ $\implies x \in P$ or $y \in P$.
+\end{defi}
+
+\begin{lemma} (4.2)\\
+Let $R$ be a ring, and let $I,J,P \subseteq R$ be ideals, and suppose $P$ is prime and $IJ \subseteq P$. Then $I \subseteq P$ or $J \subseteq P$.
+\begin{proof}
+WLOG $I \not\subseteq P$. Choose some $x \in I \setminus P$. If $y \in J$, is any element, then $xy \in IJ \subseteq P$. So $y \in P$. So $J \subseteq P$.
+\end{proof}
+\end{lemma}
+
+From now on, $L$ is a number field.
+
+\begin{lemma} (4.3)\\
+Any non-zero prime ideal $P \subseteq \mathcal{O}_L$ is a maximal ideal.
+\begin{proof}
+Recall: if $R$ is a ring and $I \subsetneq R$ is an ideal, then $I$ is prime $\iff R/I$ is an integral domain, and $I$ is maximal $\iff R/I$ is a field. If you don't remember these statements then I strongly encourage you to review GRM. If $p \subseteq \mathcal{O}_L$ is a non-zero prime ideal, then $\mathcal{O}_L/P$ is a finite integral domain (of cardinality $N(P)$); any such ring is a field, so $P$ is also maximal.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (4.4)\\
+If $I \subsetneq \mathcal{O}_L$ is a non-zero ideal, then there exist non-zero prime ideals $P_1,...,P_r \subseteq \mathcal{O}_L$ such that $P_1...P_r \subseteq I$.
+\begin{proof}
+For contradiction, let $I \subsetneq \mathcal{O}_L$ be an ideal whicih does not have this property, and such that $N(I)$ is minimal among ideals not having this property. Then $I$ is not prime, so there exist elements $x,y \in \mathcal{O}_L$ such that $xy \in I$ but $x \not\in I$, $y \not\in I$. But then it follows that $I \subsetneq I+(x)$ and $I \subsetneq I+(y)$. So $N(I+(x)), N(I+(y)) < N(I)$. By minimality of $N(I)$, we can find non-zero prime ideals $P_1...P_r \subseteq I+(x)$ and $Q_1...Q_r \subseteq I+(y)$. Then $P_1 ... P_rQ_1...Q_r \subseteq (I+(x))(I+(y)) \subseteq I^2 +xI+yI+(xy) \subseteq I$. Contradiction.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (4.5)\\
+If $I \subsetneq \mathcal{O}_L$ is a non-zero ideal, then there exists $\gamma \in L\setminus \mathcal{O}_L$ such that $\gamma I \subseteq \mathcal{O}_L$.
+\begin{proof}
+Let $\alpha \in I \setminus \{0\}$. Let $P_1,...,P_r \subseteq \mathcal{O}_L$ be non-zero prime ideals such that $P_1...P_r \subseteq (\alpha)$. WLOG $r$ is minimal with this property. Let $P$ be a minimal ideal containing $I$. Then $P \supseteq I \supseteq (\alpha) \supseteq P_1...P_r$, hence $P \supset P_i$ for some $i$. After relabelling assume $P \supset P_1$. Since non-zero prime ideals are maximla, we have $P=P_1$. Since $r$ is minimal, we have $P_2...P_r \not\subseteq(\alpha)$. Choose $\beta \in P_2...P_r \setminus (\alpha)$.\\
+Claim: the element $\gamma = \beta/\alpha$ has the desired property.\\
+If $\gamma \in \mathcal{O}_L$, then $\beta = \alpha\gamma \in (\alpha)$, contradiction;\\
+$\gamma I = \frac{\beta}{\alpha} I \subseteq \frac{1}{\alpha} P_2...P_r \cdot I \subseteq \frac{1}{\alpha} P_1P_2...P_r \subseteq \mathcal{O}_L$.
 \end{proof}
 \end{lemma}
 
