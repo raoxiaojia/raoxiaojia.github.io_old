@@ -458,6 +458,49 @@ If not: then $\forall \beta < \alpha$, $\exists \gamma < \alpha$ s.t. $\gamma > 
 
 For example, $5$ is a successor, $\omega+5$ is a successor, $\omega$ is a limit, $\omega+\omega$ is a limit. ($0$ is a limit as well).
 
+For ordinals $\alpha,\beta$, define $\alpha+\beta$ by recursion on $\beta$ ($\alpha$ fixed) by: $\alpha+0=\alpha$, $\alpha+\beta^+ = (\alpha+\beta)^+$, $\alpha+\lambda = \sup \{\alpha+\gamma: \gamma < \lambda\}$ for $\lambda$ a non-zero limit.
+
+For example, $\omega+1 = (\omega+0)^+ = \omega^+$, $\omega+2 = \omega^{++}$, $1+\omega = \sup \{1+\gamma:\gamma < \omega\} =\omega$ -- so addition is not commutative.
+
+Officially, by 'recursion on the ordinals', we mean: define $\alpha+\gamma$ on $\{\gamma:\gamma \leq \beta\}$ (a set) recursively, plus uniqueness. Similarly for induction: if know $p(\beta) \forall \beta < \alpha \implies p(\alpha)$ (for each $\alpha$), then must have $p(\alpha) \forall \alpha$. If not, say $p(\alpha)$ false: then look at $\{\beta \leq \alpha : p(\beta)$ false $\}$.
+
+Note that $\beta \leq \gamma \implies \alpha + \beta \leq \alpha +\gamma$ (induction on $\gamma$). Also, $\beta <\gamma \implies \alpha+\beta<\alpha+\gamma$. Indeed, $\gamma \geq \beta^+$, so $\alpha+\gamma\geq \alpha+\beta^+ = (\alpha+\beta)^+ > \alpha+\beta$. However, $1<2$, but $1+\omega = 2+\omega$.
+
+\begin{prop} (12)\\
+$\alpha+(\beta+\gamma) = (\alpha+\beta)+\gamma \forall \alpha,\beta,\gamma$ ordinals.
+\begin{proof}
+Induction on $\gamma$:\\
+$0$: $\alpha+(\beta+0) = \alpha+\beta = (\alpha+\beta)+0$.\\
+Successors: $(\alpha+\beta)+\gamma^+ = ((\alpha+\beta)+\gamma)^+ = (\alpha+(\beta+\gamma))^+ = \alpha+(\beta+\gamma)^+ = \alpha+(\beta+\gamma^+)$.\\
+$\lambda$ a non-zero limit: $(\alpha+\beta)+\lambda = \sup\{(\alpha+\beta)+\gamma: \gamma<\lambda\} = \sup\{\alpha+(\beta+\gamma):\gamma<\lambda\}$.
+
+Claim: $\beta+\lambda$ is a limit.\\
+Proof of claim: We have $\beta + \gamma = \sup\{\beta+\gamma:\gamma<\lambda\}$. But $\gamma<\lambda \implies \exists \gamma' <\lambda$ with $\gamma <\gamma'$ $\implies $ $\beta+\gamma < \beta+\gamma'$. So $\{\beta+\gamma : \gamma<\lambda\}$ does not have a greatest element.
+
+Back to the main proof, now $\alpha+(\beta+\gamma) = \sup\{\alpha+\delta:\delta<\beta+\lambda\}$. So want $\sup\{\alpha+(\beta+\gamma):\gamma<\lambda\{ = \sup\{\alpha+\delta:\delta <\beta+\lambda\}$. \\
+$\leq$: $\gamma < \lambda \implies \beta+\gamma<\beta+\lambda$, so LHS $\subset$ RHS;\\
+$\geq$: $\delta < \beta+\lambda \implies \delta<\beta+\gamma$, some $\gamma<\lambda$ (definition of $\beta+\lambda$). So $\alpha+\delta \leq \alpha+(\beta+\gamma)$.
+\end{proof}
+\end{prop}
+
+Alternative viewpoint:\\
+Above is the 'inductive' definition of $+$. Thereis also a synthetic definition: $\alpha+\beta$ is the order-type of $\alpha \sqcup \beta$ ($\alpha$ disjoint union $\beta$), with all of $\alpha$ coming before all of $\beta$.
+
+Clearly we have $\alpha+(\beta+\gamma) = (\alpha+\beta)+\gamma$ with this definition (same order-type). We need:
+
+\begin{prop} (13)\\
+The synthetic and inductive definition of $+$ coincide.
+\begin{proof}
+Write $\alpha+\beta$ for inductive, $\alpha +' \beta$ for synthetic. Do induction on $\beta$ ($\alpha$ fixed).\\
+$0$: $\alpha+0=\alpha=\alpha+'0$:\\
+Successors: $\alpha+'\beta^+ = (\alpha+'\beta)^+ = (\alpha+\beta)^+=\alpha+\beta^+$;\\
+$\lambda$ a non-zero limit: $\alpha+'\gamma$ = order-type of $\alpha \sqcup \lambda$ = $\sup$ of order-type of $\alpha\sqcup \gamma$, $\gamma <\lambda$ (nest union, so order-type of union = $\sup$ -- this was proved before) = $\sup(\alpha+'\gamma:\gamma<\lambda) = \sup(\alpha+\gamma:\gamma<\lambda) = \alpha+\lambda$.
+\end{proof}
+\end{prop}
+
+Normally we prefer to use synthetic than inductive, \emph{if} we do have a synthetic definition available.
+
+
 \iffalse
 \begin{equation*}
 \begin{aligned}

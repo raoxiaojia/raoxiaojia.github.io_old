@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  5 FEB 2018 09:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  7 FEB 2018 09:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -863,22 +863,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 445--448
 
  []
 
-[15] [16]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 470.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 470.
+[15] [16] [17]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 513.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 513.
  (./LST.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 470.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 470.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 513.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 513.
 Package rerunfilecheck Info: File `LST.out' has not changed.
 (rerunfilecheck)             Checksum: 499ABEB7FA3C25420AFBF071074FD36B;319.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 470.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 513.
  ) 
 Here is how much of TeX's memory you used:
- 27864 strings out of 494910
- 664061 string characters out of 6179835
+ 27867 strings out of 494910
+ 664086 string characters out of 6179835
  889612 words of memory out of 5000000
  30580 multiletter control sequences out of 15000+600000
- 14899 words of font info for 94 fonts, out of 8000000 for 9000
+ 15007 words of font info for 95 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,12n,77p,791b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -898,10 +898,10 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on LST.pdf (16 pages, 246893 bytes).
+Output written on LST.pdf (17 pages, 252708 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 156 compressed objects within 2 object streams
- 24 named destinations out of 1000 (max. 500000)
+ 199 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
  13885 words of extra memory for PDF output out of 14400 (max. 10000000)
 
