@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  5 FEB 2018 12:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  7 FEB 2018 10:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -843,7 +843,7 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 44.
 
-[4] [5] <image/CC_01.png, id=85, 722.7pt x 406.51875pt>
+[4] [5] <image/CC_01.png, id=91, 722.7pt x 406.51875pt>
 File: image/CC_01.png Graphic file (type png)
  <use image/CC_01.png>
 Package pdftex.def Info: image/CC_01.png used on input line 111.
@@ -853,7 +853,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 111--112
 [][] 
  []
 
-[6 <./image/CC_01.png>] <image/CC_02.png, id=91, 722.7pt x 406.51875pt>
+[6 <./image/CC_01.png>] <image/CC_02.png, id=97, 722.7pt x 406.51875pt>
 File: image/CC_02.png Graphic file (type png)
 
 <use image/CC_02.png>
@@ -865,7 +865,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 138--139
  []
 
 [7 <./image/CC_02.png>] [8] [9]
-<image/CC_03.png, id=106, 722.7pt x 406.51875pt>
+<image/CC_03.png, id=112, 722.7pt x 406.51875pt>
 File: image/CC_03.png Graphic file (type png)
  <use image/CC_03.png>
 Package pdftex.def Info: image/CC_03.png used on input line 250.
@@ -947,22 +947,27 @@ A\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 n; \OMS/cmsy/m/n/10 b\OML/cmm/m/it/10
 n^^N\OMS/cmsy/m/n/10 c\OT1/cmr/m/n/10 (-20) ) \OMS/cmsy/m/n/10 ^^U
  []
 
-[18] [19]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 630.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 630.
+[18]
+Overfull \hbox (117.92982pt too wide) detected at line 665
+[] []
+ []
+
+[19] [20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 714.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 714.
  (./Cryptography.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 630.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 630.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 714.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 714.
 Package rerunfilecheck Info: File `Cryptography.out' has not changed.
-(rerunfilecheck)             Checksum: 8BB4DD8A18381957DA07F99A88D8D061;448.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 630.
+(rerunfilecheck)             Checksum: 47D73D5D249367B38841E85D71E77B3D;516.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 714.
  ) 
 Here is how much of TeX's memory you used:
- 27880 strings out of 494910
- 664522 string characters out of 6179835
+ 27885 strings out of 494910
+ 664575 string characters out of 6179835
  887621 words of memory out of 5000000
- 30595 multiletter control sequences out of 15000+600000
- 14831 words of font info for 91 fonts, out of 8000000 for 9000
+ 30596 multiletter control sequences out of 15000+600000
+ 14882 words of font info for 92 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,14n,77p,926b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -981,10 +986,10 @@ share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Cryptography.pdf (19 pages, 376995 bytes).
+Output written on Cryptography.pdf (20 pages, 385510 bytes).
 PDF statistics:
- 213 PDF objects out of 1000 (max. 8388607)
- 170 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 500000)
- 14420 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 223 PDF objects out of 1000 (max. 8388607)
+ 179 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 14428 words of extra memory for PDF output out of 17280 (max. 10000000)
 
