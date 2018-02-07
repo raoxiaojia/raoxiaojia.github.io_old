@@ -510,6 +510,43 @@ The lecture thinks the proof might be in a book of Norris, or online notes by Bu
 
 If we know in addition that $\sum_j p_{i,j}(t) = 1$ $\forall i$, then we know $p_{i,j}(t)$ is the unique solution to the backward equation, as any other solution $\pi_{i,j}(t)$ would have a sum exceeding 1.
 
+Assume we have a MC $X=(X(t))$, and jump chain $Y=(Y_n)$. Assume $g_j>0$ $\forall j$. Speaking (probably not this word) $X$ via holding time definition. Assume $X$ is a minimal process. We can define the transition probability: 
+\begin{equation*}
+\begin{aligned}
+p_{i,j}(t) = \P_i(X(t)=j) \forall i,j \in S
+\end{aligned}
+\end{equation*}
+The $(p_{i,j}(t))$ satify the C-K equations.
+
+Something we've talked about in the last lecture:
+
+(a) $(p_{i,j}(t))=P_t$ is the minimal no-negative solution to forward equation $P_t' = P_tG$, $P_0 = I$. Here minimal: for any non-negative solution $\pi$ we have $p_{i,j}(t) \leq \pi_{i,j}(t)$ $\forall i,j,t$;\\
+a
+(b) $P_r$ is the minimal non-negative solution to the backward equation $P'_t=GP_t$, $P_0=I$.
+
+\subsection{Strong Markov Property}
+A \emph{Stopping time} is a random variable $T$ taking values in $[0,\infty) \cup \{\infty\}$ such that $\{T \leq t\} \in \mathcal{F}_T = \sigma(\{X(s):s\leq t\})$, the smallest $\sigma$-algebra on which every $X(s)$ for $s\leq t$ is measurable.
+
+Strong Markov Property: Let $X$ be a MC, with given generator and initial distribution. Let $T$ be a stopping time for $X$. Given $T<S$, and $X(T) = i$. Then $\{X(T+t):t \geq 0\}$ is a MP with generator $G$ and initial state $X(T) =i$, which is independent of $\{X(s):s \leq T\}$.\\
+The proof is omitted for measure-theoretic reasons.
+
+Hitting times: Let $X$ be a MC, as usual, with generator $G$. Hitting time of $A \subseteq S$ is $T_A = \inf \{t \geq 0: X(t) \in A\}$.
+
+Note: $T_A$ is a stopping time. The jump chain $Y$ has hitting time $H_A= \inf\{n \geq 0:Y_n \in A\}$. Now $\{T_A < \infty\} = \{H_A < \infty\}$. We call $h_A(i) = \P_i(T_A < \infty)$ (starting in $i$). Then $h_A(i) = \P_i(H_A < \infty)$. Hence $h_A$ is least non-negative solution to $h_A(i) = 1$ if $i \in A$, $h_A (i) = \sum_{j \in S} \frac{g_{i,j}}{g_i} h_A(j)$ if $i \not\in A$\\
+i.e. $h_A$ satisfies the equations, and $h+A(i) \leq h'_A(i)$ $\forall i$ for any other non-zero solution $h'_A$.
+
+$-g_{i,i}h_A(i) = \sum_{j \neq i} g_{i,j} h_A(j)$, i.e. $Gh_A = 0$.
+
+Hence $h_A$ is the least non-negative solution to:\\
+$h_A(i) = 1$ if $i \in A$,\\
+$Gh_A(i) = 0$ if $i \not\in A$.
+
+Let $k_A(i) = \E_i(T_A)$, and assume $h_A(i) = 1$ $\forall i$. $k_A(i) = 0$ if $i \in A$. Let $i \not\in A$. Then $k_A(i) = \frac{1}{g_i} + \sum_{j \neq i} \frac{g_{i,j}}{g_i} k_A(j)$. By SMP, $-g_{ii}k_A(i) = 1+\sum_{j \neq i} g_{ij} k_A(j)$, so $Gk_A(i) = -1$ for $i \not\in A$.
+
+\begin{thm}
+$k_A$ is minimal non-negative solution to $k_A(i) = 0$ if $i\in A$ and $Gk_A(i) = -1$ if $i \not\in A$.
+\end{thm}
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
