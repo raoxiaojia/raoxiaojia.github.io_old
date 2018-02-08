@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  6 FEB 2018 12:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  8 FEB 2018 13:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -915,22 +915,22 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 457.
 
-[16] [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 531.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 531.
+[16] [17] [18] [19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 621.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 621.
  (./Number Fields.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 531.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 531.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 621.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 621.
 Package rerunfilecheck Info: File `"Number Fields".out' has not changed.
 (rerunfilecheck)             Checksum: 3D2027C2D964F8FD8C7DAA09971C0BB7;326.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 531.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 621.
  ) 
 Here is how much of TeX's memory you used:
- 27853 strings out of 494910
- 664257 string characters out of 6179835
+ 27857 strings out of 494910
+ 664285 string characters out of 6179835
  889624 words of memory out of 5000000
  30590 multiletter control sequences out of 15000+600000
- 15243 words of font info for 88 fonts, out of 8000000 for 9000
+ 15294 words of font info for 89 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  57i,14n,77p,1018b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -950,10 +950,10 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Number Fields.pdf" (17 pages, 267314 bytes).
+Output written on "Number Fields.pdf" (19 pages, 277370 bytes).
 PDF statistics:
- 199 PDF objects out of 1000 (max. 8388607)
- 160 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
+ 208 PDF objects out of 1000 (max. 8388607)
+ 167 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 500000)
  13885 words of extra memory for PDF output out of 14400 (max. 10000000)
 
