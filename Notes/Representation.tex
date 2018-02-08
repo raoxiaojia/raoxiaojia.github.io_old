@@ -848,7 +848,7 @@ Consider $S_n$ acting on $X=\{1,...,n\}$ which is $2$-transitive. Hence $\pi_X =
 
 \begin{eg} (7.8)\\
 Consider $G=S_4$.\\
-\includegraphics[scale=0.7]{image/Rep_04.png}
+\includegraphics[scale=0.6]{image/Rep_04.png}
 \end{eg}
 
 Last lecture we were talking about using column orthogonality to find $\chi_5$. Indeed we have 
@@ -860,7 +860,93 @@ Last lecture we were talking about using column orthogonality to find $\chi_5$. 
 So we can use this to find $\chi_5$. Also, $S_4 / V_4 \cong S_3$ by 'lifting' -- see next chapter.
 
 
+\subsection{Alternating groups}
+Suppose $g \in A_n$. In 1A we've known that $|\mathcal{C}_{S_n} (g)| = |S_n:C_{S_n}(g)|$ and $|\mathcal{C}_{A_n}(g)| = |A_n : C_{A_n}(g)|$.
 
+These are not necessarily equal. For example, $\sigma=(123) \in A_3$, $\mathcal{A}_3 (\sigma) =\{\sigma\}$, but $\mathcal{S_3}(\sigma) = \{\sigma,\sigma^{-1}\}$.
+
+\begin{lemma} (7.9)\\
+Let $g \in A_n$. Then if $g$ commutes with some odd permutation in $S_n$ then $\mathcal{C}_{S_n} (g) = \mathcal{C}_{A_n}(g)$; otherwise $\mathcal{C}_{S_n}(g)$ splits into two ccls in $A_n$ of equal size.
+\end{lemma}
+
+For example, consider $G=A_4$, so $|G| = 12$.
+
+\includegraphics[scale=0.6]{image/Rep_05.png}
+
+Note that if we ignore the second row and first column, the table becomes identical to that of $C_3 \cong G/V_4$. This is not a coincident, and is actually called \emph{lifting}.
+
+\newpage
+
+\section{Normal subgroups and lifting characters}
+\begin{lemma} (8.1)\\
+Let $N \triangleleft G$. Let $\tilde{\rho} : G/N \to GL(V)$ be a representation of $G/N$. Then
+\begin{equation*}
+\begin{aligned}
+\rho:G &\xrightarrow{canonical} G/N &\xrightarrow{\tilde{\rho}} GL(V)\\
+g & \to & \tilde{\rho}(gN)
+\end{aligned}
+\end{equation*}
+is a representation of $G$, where $\rho(g) := \tilde{\rho}(gN)$. Moreover, $\rho$ is irreducible iff $\tilde{\rho}$ is irreducible.
+
+The corresponding characters satisfy $\chi(g) =\tilde{\chi} (gN)$. We say that $\tilde{\chi}$ \emph{lifts} to $\chi$. The lifting $\tilde{\chi} \to \chi$ is a bijection between irreducible representations of $G/N$ and irreducible representations of $G$ with $N$ in $\ker$.
+
+Well this looks like Q4/Q12 in the first example sheet.
+
+\begin{proof}
+Note $\chi(g) = \tr(\rho(g)) = \tr(\tilde{\rho}(gN)) = \tilde{\chi}(gN) \forall g$, and $\chi(1) = \tilde{\chi}(N)$. SO have some degree (?).
+
+Bijection: if $\tilde{\chi}$ is a charcter of $G/N$-representaiton and $\chi$ is its lift to $G$, then $\chi(N) = \chi(1)$. Also, if $k \in N$ then 
+\begin{equation*}
+\begin{aligned}
+\chi(k) = \tilde{\chi} (kN) = \tilde{\chi}(N) = \chi(1)
+\end{aligned}
+\end{equation*}
+So $N \leq \ker\chi$.
+
+Now let $\chi$ be character of $G$ with $N \leq \ker\chi$. Suppose $\rho:G \to GL(V)$ affords $\chi$. Define
+\begin{equation*}
+\begin{aligned}
+\tilde{\rho}: & G/N &\to GL(V)\\
+&gN &\to \rho(g)
+\end{aligned}
+\end{equation*}
+Check this is well-defined (uses $N \leq \ker\chi$) and $\tilde{\rho}$ is homomorphism, hence gives representaiton of $G/N$. If $\tilde{\chi}$ is the character of $\tilde{\rho}$ then $\tilde{\chi}(gN) = \chi(g)$ $\forall g\in G$. So $\tilde{\chi}$ lifts to $\chi$.\\
+Check irreducibility.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (8.2)\\
+The derived subgroup, $G' = \bra[a,b],a,b \in G \ket$ of $G$ is the unique minimal normal subgroup of $G$ s.t. $G/G'$ is abelian, i.e. $G/N$ is abelian $\implies G' \leq N$ and $G^{ab}=G/G'$ is abelian, where $G^{ab}$ is the \emph{abelianisation} of $G$.\\
+$G$ has precisely $l=|G/G'|$ representaitons of $\dim 1$, all with kernel containing $G'$ and obtained by lifting from $G/G'$. In particular, $l | |G|$.
+\begin{proof}
+$G'\triangleleft G$ is an easy exercise.
+
+Let $N \triangleleft G$. Let $h,g \in G$, so 
+\begin{equation*}
+\begin{aligned}
+&g^{-1}h^{-1}gh \in N \iff &(gh)N = (hg)N\\
+&[g,h] \iff (gN)(hN) = (hN)(gN)
+\end{aligned}
+\end{equation*}
+So $G' \leq N \iff G/N$ is abelian. Since $G' \triangleleft G$ we deduce $G/G'$ is abelian.
+
+By (4.5), $G/G'$ has exactly $l$ irreducible characters $\tilde{\chi}_1,...,\tilde{\chi}_l$ all of degree 1. The lifts of these to $G$ also have degree 1 and by (8.1) these are precisely the irreducible characters $\chi_i$ of $G$ s.t. $G' \leq \ker \chi_i$. But any linear character of $G$ is a homomorphism $\chi:G \to \C^*$, hence $G' \leq \ker \chi$ ($\chi(ghg^{-1}h^{-1}) = \chi(g)\chi(h)\chi(g^{-1} \chi(h)^{-1} = 1$), so the $\chi_1,...,\chi_l$ are all the linear characters of $G$.
+\end{proof}
+\end{lemma}
+
+Examples:\\
+(a) If $G=S_n$, show $s'_n = A_n$. Thus since $G/G' \cong C_2$, $S_n$ must have exactly two linear characters.\\
+(b) Consider $G=A_4$. We've seen previously that this can be lifted from $C_3$ using (8.1),(8.2).
+
+\begin{lemma} (8.4)\\
+$G$ is not simple iff $\chi(g) = \chi(1)$ for some irreducible character $\chi \neq 1_G$ and some $1 \neq g \in G$.\\
+Any normal subgroup of $G$ is the intersection of the kernels of some of the irreducible characters of $G$:
+\begin{equation*}
+\begin{aligned}
+N =\bigcap_i \ker \chi_i
+\end{aligned}
+\end{equation*}
+\end{lemma}
 
 
 \iffalse
