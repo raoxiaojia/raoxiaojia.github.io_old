@@ -451,7 +451,7 @@ Write $\gamma(X)$ for the least such ordinal -- e.g. $\gamma(\omega) = \omega_1$
 
 \newpage
 
-\section{Successors and limits}
+\subsection{Successors and limits}
 Given ordinal $\alpha$, does $\alpha$ (any set of order-type $\alpha$, e.g. $I_\alpha$) have a greatest element?\\
 If yes: say $\beta$ is that greatest element. Then $\gamma<\beta$ or $\gamma =\beta$ $\implies$ $\gamma<\alpha$, and $\gamma<\alpha \implies \gamma < \beta$ or $\gamma = \beta$ (as we can't have $\gamma > \beta$). In other words, $\alpha = \beta^+$. In that case, we call $\alpha$ a \emph{successor};\\
 If not: then $\forall \beta < \alpha$, $\exists \gamma < \alpha$ s.t. $\gamma > \beta$. So $\alpha = \sup\{\beta:\beta < \alpha\}$. (this is false in general, e.g. $\omega+5$). We call $\alpha$ a \emph{limit}.
@@ -500,6 +500,45 @@ $\lambda$ a non-zero limit: $\alpha+'\gamma$ = order-type of $\alpha \sqcup \lam
 
 Normally we prefer to use synthetic than inductive, \emph{if} we do have a synthetic definition available.
 
+Ordinal multiplication:\\
+Define $\alpha \beta$ recursively by:\\
+$\alpha 0 = 0$, $\alpha(\beta^+) = \alpha\beta + \alpha$, $\alpha\lambda = \sup\{\alpha\gamma:\gamma <\lambda \}$ for $\lambda$ a non-zero limit. e.g:\\
+$\omega 1 = \omega 0 + \omega = 0 + \omega = \omega$;\\
+$\omega 2 = \omega 1 + \omega = \omega+\omega$;\\
+$\omega\omega = \sup\{0,\omega,\omega+\omega,\omega+\omega+\omega,...\}$ (as in our big picture)\\
+$2\omega = \sup\{2 \gamma:\gamma < \omega\} = \omega$, so multiplication is not commutative.
+
+Similarly, this also has a synthetic definition: $\alpha\beta$ is the order-type of $\alpha\times\beta$, with $(x,y) < (z,t)$ if either $y<t$ or $y=t$ and $x<z$. We can check that these coincide on the previous examples. Also we can see $\alpha(\beta\gamma) = (\alpha\beta)\gamma$ etc.
+
+We can define ordinal exponentiation, powers, etc. Similarly. For example, let's define exponentiation:\\
+$\alpha^0 = 1$, $\alpha^{\beta^+} = \alpha^\beta \cdot \alpha$, $\alpha^\lambda = \sup\{\alpha^\gamma:\gamma<\lambda\}$ for $\lambda$ a non-zero limit.
+
+Note that $\omega^1 = \omega$, $\omega^2 = \omega \cdot \omega$, and $2^\omega = \sup\{2^\gamma: \gamma<\omega\} = \omega$ (and is countable). This is different to what we expect from cardinality, but the notation in cardinality and here is different.
+
+\newpage
+
+\section{Posets and Zorn's lemma}
+A \emph{Partially ordered} set or {poset} is a pair $(X,\leq)$ where $X$ is a set and $\leq$ is a relation on $X$ that is reflexive,transitive and antisymmetric. Write $x<y$ if $x\leq y ,x \neq y$. In terms of $<$, a poset is irreflexive and transitive.
+
+For example, any total order is a partial order; $\N^+$ with divides; for any set $S$, $\mathcal{P}(S)$, wiith $x \leq y$ if $x \subset y$; for any $X \subset \mathcal{P}(S)$, with same relation of $x \leq y$ if $x \subset y$ (e.g. all subspaces of a given vector space).
+
+In general, a hasse diagram for a poset $X$ consists of a drawing of the posets of $X$, with an upward line from $x$ to $y$ if $y$ \emph{covers} x, i.e. $y>x$, but no $z$ that $y>z>x$.
+
+Hasse diagrams can be useful to visualize a poset (e.g. $\N$, usual order), or useless (e.g. $\Q$, usual order).
+
+In a poset $X$, a \emph{chain} is a set $S \subset X$ that is totally ordered ($\forall x,y\in S: x \leq y$ or $y \leq x$). 
+
+Note: chains can be uncountable, e.g. in $(\R,\leq)$ take $\R$.
+
+We say $S \subset X$ is an antichain if no two elmeent are related.
+
+For $S \subset X$, an \emph{upper bound} for $S$ is an $x \in X$ s.t. $x \geq y$ $\forall y \in S$.
+
+Say $X$ is a \emph{least upper bound}, or \emph{supremum} for $S$, if $x$ is an upper bound for $S$, and $x \leq y$ for every upper bound $y$ of $S$.
+
+Write $x = \sup S$ or $x = \vee S$.
+
+e.g. In $\R$, $\{x:x^2<2\}$ has 7 as least upper bound, and $\sup = \sqrt{2}$ (so $\sup S$ need not be in $S$). In $\R$, $\Z$ has no upper bound. In $\Q$, $\{x:x^2 < 2\}$ has 7 as an upper bound, but no least upper bound.
 
 \iffalse
 \begin{equation*}

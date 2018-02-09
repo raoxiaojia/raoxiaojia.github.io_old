@@ -3,4 +3,5 @@
 \contentsline {section}{\numberline {2}Syntactic implication}{6}{section.2}
 \contentsline {section}{\numberline {3}Well-Orderings and Ordinals}{10}{section.3}
 \contentsline {section}{\numberline {4}Ordinals}{14}{section.4}
-\contentsline {section}{\numberline {5}Successors and limits}{16}{section.5}
+\contentsline {subsection}{\numberline {4.1}Successors and limits}{16}{subsection.4.1}
+\contentsline {section}{\numberline {5}Posets and Zorn's lemma}{18}{section.5}
