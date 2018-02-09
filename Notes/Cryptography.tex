@@ -634,7 +634,7 @@ The capacity of a BSC with error probability $p<1/4$ is not zero.
 Choose $\delta$ with $2p < \delta < 1/2$. We prove reliably encoding at rate $R=1-H(\delta)>0$. Let $C_n$ be the largest code of length $n$ and minimum distance $\lfloor n\delta\rfloor$. So $|C_n| = A(n,\lfloor n\delta\rfloor) \geq 2^{n(1-H(\delta))} = 2^{nR}$ by (2.7). Replacing $C_n$ by a subcode gives $|C_n| = \lfloor 2^{nR}\rfloor$ and still minimum distance $\geq \lfloor n\delta\rfloor$. Using minimum distance decoding,
 \begin{equation*}
 \begin{aligned}
-\hat{e}(C_n) &\leq P(BSC \text{ makes} \geq \lfloor \frac{\lfloor n\delta-1}{2}\rfloor \text{ errors} )\\
+\hat{e}(C_n) &\leq P(BSC \text{ makes} \geq \lfloor \frac{\lfloor n\delta-1}{2}\rfloor+1 \text{ errors} )\\
 &\leq P(BSC \text{ makes} \geq \frac{n\delta-1}{2} \text{ errors})
 \end{aligned}
 \end{equation*}
@@ -653,7 +653,7 @@ H(X|y) = \sum_{y \in \Sigma_2} P(Y=y)H(x|Y=y)
 \end{equation*}
 
 \begin{lemma} (2.10)\\
-$H(x.y) = H(X|y) + H(y)$.
+$H(X,Y) = H(X|Y) + H(Y)$.
 \begin{proof}
 \begin{equation*}
 \begin{aligned}
@@ -699,9 +699,108 @@ Now $H(X|Y=y,Z=0) = 0$ (must have $X=y$), $H(X|Y=y,Z=1) \leq \log (m-1)$ since $
 \end{proof}
 \end{lemma}
 
+\begin{defi}
+Let $X,Y$ be random variables. The mutual information is 
+\begin{equation*}
+\begin{aligned}
+I(X,Y) = H(X)-H(X|Y)
+\end{aligned}
+\end{equation*}
+i.e. the amount of information about $X$ conveyed by $Y$.
+\end{defi}
 
+By (1.7) and (2.10), we have $I(X,Y) = H(X)+H(Y)-H(X,Y) \geq 0$ is symmetric in $X$ and $Y$. We get equality iff $X$ and $Y$ are independent.
 
+consider a DMC. Let $X$ takes values in $\Sigma_1$, where $|\Sigma_1 = m$ with probabilities $p_1,...,p_m$. Let $Y$ be the random variable output when channel is given input $X$. 
 
+\begin{defi}
+The \emph{information channel capcity} is $\max_X I(x;y)$.
+\end{defi}
+
+\begin{rem}
+The $\max$ is over all choices of $p_1,...,p_m$; $\max$ is always attained since $I$ is continuous on a compact set.\\
+The information capacity only depnds on the channel matrix.
+\end{rem}
+
+\begin{thm} (2.13, Shannon's Second Coding Theorem)\\
+Operational capacity = information capacity. (LHS?)
+
+We'll show $\leq$ in general, and $\geq$ for a BSC.
+\end{thm}
+
+We now compute the capacity of certain channels using Shannon's second coding theorem (error probability $p$):\\
+Input $X$, $P(X=0) = 1-\alpha$, $P(X=1) = \alpha$, output $Y$, $P(Y=0) = (1-\alpha)(1-p) +\alpha p$, $P(Y=1) = \alpha(1-p) + (1-\alpha)p$.
+
+Capacity is 
+\begin{equation*}
+\begin{aligned}
+C &= \max_\alpha I(X,Y)\\
+&= \max_\alpha(H(Y) - H(Y|X))\\
+&= \max_\alpha(H(\alpha(1-\beta)+(1-\alpha)\beta) - H(p))\\
+&= 1-H(p) \text{ max attained when } \alpha=1/2\\
+&= 1+p\log p + (1-p) \log (1-p)
+\end{aligned}
+\end{equation*}
+Here we denote $H(p) = H(p,1-p)$.
+
+Capacity of Binary Erasive Channel (erasive probability $p$):\\
+In this model we have each bit having a probability of $p$ being erased to become a $*$.\\
+Input $X$, $P(X=0) = 1-\alpha$, $P(X=1) = \alpha$; output $Y$, $P(Y=0) = (1-\alpha)(1-p)$, $P(Y=1) = \alpha(1-p), P(Y=*) = p$. Now $H(X|Y=0) = 0$, $H(X|Y=1) = 0$. The only interesting case is 
+\begin{equation*}
+\begin{aligned}
+H(X|Y=*) &= -\sum_x P(X=x|Y=*) \log P(X=x|Y=*)\\
+&= H(\alpha)
+\end{aligned}
+\end{equation*}
+where we work out
+\begin{equation*}
+\begin{aligned}
+P(X=0|Y=* = 1-\alpha, P(X=1|Y=*) = \alpha
+\end{aligned}
+\end{equation*}
+Capacity is 
+\begin{equation*}
+\begin{aligned}
+C&=\max_\alpha I(X,Y)\\
+&=\max_\alpha (H(X)-H(X|Y))\\
+&= \max_\alpha (H(\alpha) - pH(\alpha))\\
+&= (1-p) \max_\alpha H(\alpha)\\
+&= 1-p
+\end{aligned}
+\end{equation*}
+attained when $\alpha = 1/2$.
+
+We model using a channel $n$ times as the $n^{th}$ extension, i.e. we replace input and output alphabets $\Sigma_1$ and $\Sigma_2$ by $\Sigma_1^n$ and $\Sigma_2^n$. Channel probabilities: $P(y_1...y_n\ received | x_1...x_n\ sent =\ prod_{i=1}^n P(y_i\ received| x_i\ send)$.
+
+\begin{lemma} (2.14)\\
+The $n^{th}$ extension of a DMC with information capacity $C$ has information capacity $nC$.
+\begin{proof}
+We take r.v. input $X_1,...,X_n = X$ producing r.v. output $Y_1,...,Y_n = Y$. Now
+\begin{equation*}
+\begin{aligned}
+H(Y|X = \sum_x P(X=x) H(Y|X=x)
+\end{aligned}
+\end{equation*}
+Since channel is memoryless,
+\begin{equation*}
+\begin{aligned}
+H(Y|X=x) = \sum_i H(Y_i|X=x) = \sum_i H(Y_i|X_i=x_i)
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+H(Y|X) &= \sum_x P(X=x) \sum_i H(Y_i|X_i = x_i)\\
+&= \sum_i \sum_n H(Y_i|X_i = n) P(X_i = n)\\
+&= \sum_i H(X_i | Y_i)
+\end{aligned}
+\end{equation*}
+Now $H(Y) \leq H(Y_1)+...+H(Y_n)$ by (1.7). So $I(X,Y) = H(Y)-H(Y|X) \leq \sum_i (H(Y_i)-H(Y_i|X_i)) = \sum_{i=1}^n I)X_i,Y_i) \leq nC$ by definition of info capacity.
+
+For equality, we need $Y_1,...,Y_n$ to be independent. This can be achieved by taking $X_1,...,X_n$ independent and choosing the distribution s.t. $I(X_i,Y_i) = C$.
+
+\end{proof}
+\end{lemma}
 
 \iffalse
 \begin{equation*}
