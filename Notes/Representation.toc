@@ -11,3 +11,5 @@
 \contentsline {section}{\numberline {7}Permutation representations}{24}{section.7}
 \contentsline {subsection}{\numberline {7.1}Alternating groups}{25}{subsection.7.1}
 \contentsline {section}{\numberline {8}Normal subgroups and lifting characters}{27}{section.8}
+\contentsline {section}{\numberline {9}Dual spaces and tensor products of representations}{29}{section.9}
+\contentsline {subsection}{\numberline {9.1}tensor products}{29}{subsection.9.1}

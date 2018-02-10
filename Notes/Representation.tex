@@ -946,8 +946,114 @@ Any normal subgroup of $G$ is the intersection of the kernels of some of the irr
 N =\bigcap_i \ker \chi_i
 \end{aligned}
 \end{equation*}
+\begin{proof}
+If $\chi(g) = \chi(1)$ for some non-trivial irreducible character $\chi$ (afforded by $\rho$, say). Then $g \in \ker\rho$ (5.3), so if $g \neq 1$, then $1 \neq \ker \rho \stackrel{\triangleleft}{\neq} G$.\\
+If $1 \neq N \stackrel{\triangleleft}{\neq} G$, take irreducible $\tilde{\chi}$ of $G/N$, $\tilde{\chi}$ non-trivial. Lift to get an irreducible $\chi$, afforded by $\rho$ of $G$, then $N \leq \ker \rho \triangleleft G$. So $\chi(g) \ chi(1)$ for $g \in N$.\\
+We claim that, if $1 \neq N \triangleleft G$, then $N$ is the intersection of the kernels of the lifts of all the irreducibles of $G/N$.\\
+$\leq$ is clear from (8.1). If $g \in G \setminus N$, then $gN \neq N$. so $\tilde{\chi} (gN) \neq \tilde{\chi}(N)$ for some irreducible $\tilde{\chi}$ of $G/N$. Lifting $\tilde{\chi}$ to $\chi$, we have $\chi(g) \neq \chi(1)$.
+\end{proof}
+\end{lemma}
+Recall $\ker \chi = \{g \in G: \chi(g) = \chi(1)\}$. (5.3) : $g \in \ker\chi \iff g \in \ker\rho$.
+
+\newpage
+\section{Dual spaces and tensor products of representations}
+
+Recall (5.5):\\
+$\bullet$ $\mathcal{C}(G)$ is $\C$-space of class functions on $G$;\\
+$\bullet$ endowed with irreducible product, $\dim \mathcal{C}(G) = k$, orthonormal basis of irreducible characters of $G$ (5.6)l\\
+$\bullet$ there exists an involution (ring homomorphism of order 2): $f \to f^*$ where $f^*(g) = f(g^{-1})$.
+
+\begin{lemma} (9.1)\\
+Let $\rho:G \to GL(V)$, representation over $F$, and let $V^* = Hom_F (V,F)$, dual space of $V$. Then $V^*$ is a $G$-space under 
+\begin{equation*}
+\begin{aligned}
+(\rho^*(g)\phi)(v) = \phi(\rho(g^{-1})v)
+\end{aligned}
+\end{equation*}
+called the \emph{dual representation} to $\rho$. Its charcater is $\chi_{\rho^*}(g) = \chi_\rho (g^{-1})$.
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+\rho^*(g_1) (\rho^*(g_2)\phi)(v) &= (\rho^*(g_2)\phi)(\rho(g_1^{-1})(v))\\
+&= \phi(\rho(g_2^{-1}) \rho(g_1^{-1}) v)\\
+&= \phi(\rho(g_1g_2)^{-1}(v))\\
+&= (\rho^*(g_1g_2)\phi)(v)
+\end{aligned}
+\end{equation*}
+So this is a representation. For its character, fix $g \in G$ and let $e_1,...,e_n$ be basis of $V$ of eigenvectors of $\rho(g)$, say $\rho(g) e_j = \lambda_j e_j$. Let $\varepsilon_1,...,\varepsilon_n$ be dual basis. We claim that $\rho^*(g) \varepsilon_j =\lambda^{-1}_j \varepsilon_j$:
+\begin{equation*}
+\begin{aligned}
+(\rho^*(g)\varepsilon_j)(e_i) = \varepsilon_j(\rho(g^{-1})e_i) = \varepsilon_j\lambda_i^{-1}e_i = \lambda_j^{-1} \varepsilon_j e_i \forall i
+\end{aligned}
+\end{equation*}
+So $\chi_{\rho^*}(g) = \sum \lambda_j^{-1}  = \chi_\rho(g^{-1})$.
+\end{proof}
 \end{lemma}
 
+\begin{defi} (9.2)\\
+$\rho:G \to GL(V)$ is \emph{self-dual} if $V \cong V^*$ (as $G$-spaces). Over $\C$, this holds iff $\chi_\rho(g) = \chi_\rho(g^{-1})$ ($=\overline{\chi_\rho(g)}$) $\forall g$, iff $\chi_\rho(g) \in \R$ for all $g$.
+\end{defi}
+
+Exercise: all irreducible representaitons of $S_n$ are self-dual (the ccls are determined by cycle type, so $g,g^{-1}$ are always $S_n$-conjugate. Not always true for $A_n$.
+
+\subsection{tensor products}
+Let $V,W$ be $F-$spaces, $\dim V = m$, $\dim W = n$. Fix bases $v_1,...,v_m$ and $w_1,...,w_n$ of $V,W$ respectively. The \emph{tensor product space} $V \otimes_F W$ is an $nm$-dimensional $F$-space with basis $\{v_i \otimes w_j: 1 \leq i \leq m, 1 \leq j \leq n\}$. Thus\\
+(a) $V \otimes W = \{\sum_{i,j} \lambda_{ij} v_i \otimes w_j: \lambda_{ij} \in F\}$ with 'obvious' addition and scalar multiplication;\\
+(b) If $v = \sum_{i} \alpha_iv_i \in V$, $w = \sum_j \beta_j w_j \in W$, define $v\otimes w:=\sum_{i,j} \alpha_i\beta_j (v_i\otimes w_j)$.
+
+\begin{rem}
+Not all elements of $V \otimes W$ are of this form: some are combinations, e.g. $v_1 \otimes w_1 + v_2 \times w-2$, which can't be further simplified. (like entangled)
+\end{rem}
+
+\begin{lemma} (9.3)\\
+(i) For $v \in V$, $w \in W$, $\lambda \in F$, $(\lambda v) \otimes w = \lambda (v\otimes w) = v \otimes (\lambda w)$;\\
+(i) If $x_1,x_2,x \in V$, $y_1,y_2,y \in W$, then 
+\begin{equation*}
+\begin{aligned}
+(x_1+x_2) \otimes y = (x_1 \otimes y) + (x_2 \otimes y),\\
+x \otimes (y_1+y_2) = (x \otimes y_1) + (x \otimes y_2)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+(i) $v = \sum \alpha_i v_i$, $w = \sum \beta_j w_j$. Then just multiply out everything we get the desired equality. (ii) is similar.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (9.4)\\
+If $\{e_1,...,e_m\}$ is a basis of $V$, $\{f_1,...,f_n\}$ is a basis of $W$, then $\{e_i \otimes f_j: 1 \leq i \leq m,1 \leq j \leq n\}$ is a basis of $V \otimes W$.
+\begin{proof}
+Writing $v_k = \sum_i \alpha_{ik} e_i$, $w_l = \sum_j \beta_{jl} f_j$, we have
+\begin{equation*}
+\begin{aligned}
+v_k \otimes w_l = \sum \alpha_{ik} \beta_{jl} e_i \otimes f_j
+\end{aligned}
+\end{equation*}
+Hence $\{e_i \otimes f_j\}$ spans $V \otimes W$ and, since we have $nm$ of them, they form a basis.
+\end{proof}
+\end{lemma}
+
+\begin{rem}
+One can define $V \otimes W$ in a basis-independent way in the first place, see Teleman chapter 6.
+\end{rem}
+
+\begin{prop} (9.5)\\
+Let $\rho: G \to GL(V)$, $\rho': G \to GL(V')$ be representations of $G$. Define $\rho \otimes \rho': G \to GL(V \otimes V')$ by
+\begin{equation*}
+\begin{aligned}
+(\rho \otimes \rho') (g) : \sum \lambda_{ij} v_i \otimes w_j \to \sum \lambda_{ij} \rho(g) v_i \otimes \rho'(g) w_j
+\end{aligned}
+\end{equation*}
+Then $\rho \otimes \rho'$ is a representation of $G$ with character
+\begin{equation*}
+\begin{aligned}
+\chi_{\rho \otimes \rho'} (g) = \chi_\rho(g) \chi_{\rho'} (g) \forall g \in G
+\end{aligned}
+\end{equation*}
+Hence product of two characters of $G$ is still a character of $G$.
+\begin{proof}
+On Tuesday.
+\end{proof}
+\end{prop}
 
 \iffalse
 \begin{equation*}

@@ -547,6 +547,47 @@ Let $k_A(i) = \E_i(T_A)$, and assume $h_A(i) = 1$ $\forall i$. $k_A(i) = 0$ if $
 $k_A$ is minimal non-negative solution to $k_A(i) = 0$ if $i\in A$ and $Gk_A(i) = -1$ if $i \not\in A$.
 \end{thm}
 
+Invariant distributions:\\
+Suppose we have a MC $X$, $\pi=(\pi_i:i \in S)$ is an invariant distribution if $\pi_i \geq 0$, $\sum_i \pi_i = 1$, and is invariant if $\pi P_t = \pi \forall t$.
+
+\begin{thm}
+Let $X$ be irreducible and recurrent. The distribution $\pi$ on $S$ satisfies $(\pi P_t = \pi \forall t)$ iff $\pi G=0$.
+\begin{proof} (skeleton proof)\\
+If $\pi P_t = \pi \forall t$, then $\pi P'_t = 0$ $\forall t$. When $t=0,\pi G = 0$. If $\pi G = 0$, by K-Backward equation, $\pi P'_t = (\pi G) P_t = 0$, so $\pi P_t =\ pi P_0 = \pi I = \pi$.
+\end{proof}
+\end{thm}
+
+Positive recurrence: assume $g_j>0$ $\forall j$.
+
+Let $U_i = \inf \{t>X-1:X(t) = i\}$. $i$ is recurrent if $\P_i (U_i < \infty) =1$. Easy to see this is equivalent to saying $\P_i(\{t:X(t) = i\}$ is unbounded $) = 1$. $i$ is positive (or non-null) recurrent if $\E_i(U_i) < \infty$.
+
+\begin{thm}
+Let $X$ be irreducible, with generator $G$. The following are equivalent:\\
+(a) every state is positive recurrent;\\
+(b) some state is positive recurrent;\\
+(c) $X$ is non-explosive with invariant distribution $\pi_i = 1/g_im_i$ ($i \in S$).
+\begin{proof}
+(a) $\implies$ (b) is trivial.\\
+Assume (b). Let $i$ be positive recurrent. Recurrence or not are shared properties of $X$ and $Y$ and irreducibility (??). So $i$ is recurrent for $X$ $\implies$ $i$ is recurrent for $Y$ (?), $X$ is irreducible implies $Y$ is. So every state is recurrent for $Y$, and so is for $X$.\\
+In particular, $X$ starts in a recurrent state, so $X$ is non-explosive. Let $i$ be recurrent. Let $\mu_j = \E_i (\int_0^{U_i} 1(X_s = j) ds) = \frac{1}{g_j} \E_i ($number of visits by $Y$ to $j$ before 1st return to $i) = \frac{1}{g_j} v_i(j)$.
+
+$v_i = (v_i(j) : j \in S)$ is invariant for $Y$ (this is not a distribution). Now
+\begin{equation*}
+\begin{aligned}
+\sum_j \mu_j g_{jk} &= \sum_j \frac{v(j)}{g_j} [(h_{jk}-\delta_{jk})g_j] \\
+&= v(k) - v(k) = 0
+\end{aligned}
+\end{equation*}
+where $(h_{jk}$ is the transition matrix of $Y$. So $\mu G = 0$. 
+
+$\sum_j \mu-j = m_i$.  Assuming that $i$ is positive recurrent, $m_i < \infty$, and hence $(\mu_j/m_i:j \in S)$ is an invariant distribution $\pi$. In particular, $\pi_i = 1/g_i m_i$.
+\end{proof}
+\end{thm}
+
+\subsection{Reversibility}
+Fact: If $X$ is a MC with generator $G$, $X$ irreducible $\iff$ $\forall i,j \in S, \exists i_1,i_2,...,i_n \in S$ distinct, with $g_{i,i_1}g_{i_1,i_2}...g_{i_n,j} > 0$ (also $i \neq i+1, i_n \neq j$).
+
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
