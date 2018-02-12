@@ -540,6 +540,55 @@ Write $x = \sup S$ or $x = \vee S$.
 
 e.g. In $\R$, $\{x:x^2<2\}$ has 7 as least upper bound, and $\sup = \sqrt{2}$ (so $\sup S$ need not be in $S$). In $\R$, $\Z$ has no upper bound. In $\Q$, $\{x:x^2 < 2\}$ has 7 as an upper bound, but no least upper bound.
 
+We say a poset is \emph{complete} if every subset has a sup.
+
+e.g. $(\R,\leq)$ is not complete: $\Z$ has no sup (so different to notion of 'completeness' from analysis);\\
+$[0,1]$ is complete; $(0,1)$ is not complete: itself has no sup;\\
+$\P(S)$ is always complete: $\{A_i: i \in I\}$ has sup $\cup_{i \in I} A_i$.
+
+A function $f:X \to X$, where $X$ is any poset, is order-preserving if $f(x) \leq f(y)$ $\forall x \leq y$.
+
+e.g. on $\N$ : $f(x) = x+1$; on $[0,1]: f(x) = \frac{1+x}{2}$ (halve the distance to 1); on $\P(S)$: $f(A) = A \cup \{i\}$ for some fixed $i \in S$.
+
+not every order-preserving $f$ has a fixed point ($f(x) = x$), e.g. $f(x) = x+1$ on $\N$.
+
+\begin{thm} (1, Knaster-Tarski fixed point theorem):\\
+Let $X$ be a complete poset. Then every order-preserving function $f:X \to X$ has a fixed point.
+\begin{proof}
+Let $E = \{x \in X: x \leq f(x)\}$, and put $s = \sup E$. To show $f(s) = s$, we'll show that $s \leq f(s)$ and $s \geq f(s)$.\\
+$s \leq f(S)$: Enough to show $f(s)$ is an upper bound for $E$ (as $s$ the \emph{least} upper bound). But $x \in E$ $\implies x \leq s$ $\implies f(x) \leq f(s) \implies x \leq f(x) \leq f(s)$.\\
+$s \geq f(s)$: Enough to show $f(s) \in E$ (as $s$ an upper bound). We know $s \leq f(s)$, and want $f(s) \leq f(f(s))$. But that's true because $f$ is order preserving.
+\end{proof}
+\end{thm}
+
+Note: in any complete poset $X$, we have a greatest element ($x s.t. x \geq y \forall y$), namely $\sup X$. A typical application of knaster-tarski:
+
+\begin{thm} (2, schr$\ddot{o}$der-bernstein theorem)\\
+Let $a,B$ be sets s.t. there exists injection $f:A \to B$ and an injection $g:B \to A$. Then there exists an bijection from $A$ to $B$.
+\begin{proof}
+Seek partition $A = P \sqcup Q,B = R \sqcup S$ s.t. $f(P) = R$ and $g(S) = Q$. Then we are done: set $h$ to be $f$ on $P$, $y^{-1}$ on $Q$, then $h:A \to B$ is a bijection.\\
+i.e. we seek $P \subset A$ s.t. $A \setminus g(B\setminus f(P)) = P$. Define $\theta: \mathcal{P}(A) \to \mathcal{P}(A)$ via $P \to A \setminus g(B\setminus f(P))$. Then since $\mathcal{P}(A)$ is complete, $\theta$ order-preserving, there is a fixed point by K-T theorem.
+\end{proof}
+\end{thm}
+
+\subsection{Zorn's Lemma}
+An element $x$ in poset $X$ is \emph{Maximal} if no $y \in X$ has $y >x$.
+
+Posets need not have a maximal element, for example $\Z,\Q,\R$.
+
+\begin{thm} (3, Zorn's lemma)\\
+Let $X$ be a non-empty poset in which every chain has an u.b.. Then $X$ has a maximal element.
+\begin{proof}
+Suppose not. Then for each $x \in X$ there is some $x' \in X$ with $x' > x$. Also, for any chain $C$ we have an upper bound $u(C)$. Pick $x \in X$. Define $x_\alpha \in X$, each $\alpha < \gamma(x)$ ($\gamma(x)$ is the u.b.?) recursively by: $x_0 = x$, $x_{\alpha+1} = x'_\alpha$, $x_\lambda = u(\{x_\alpha: \alpha < \lambda\})$ for $\lambda$ a non-zero limit (this is a chain by induction). Then $\alpha \to x_\alpha$ is an injection from $\gamma(X) to X$.
+\end{proof}
+\end{thm}
+
+A typical application of Zorn: does every vecotr space have a basis? Recall that a basis is a LI spanning set.
+
+e.g. $V=$ space of all real polynomials. We can take $1,x,x^2,...$\\
+Let $V$ now be all real sequences. But $l_1 = (1,0,0,0,...)$, $l_2 = (0,1,0,0,...)$, then $l_1,l_2$ LI but not spanning! (recall span must be a finite linear combination!) It's easy to check that there is no countable basis. Also, it turns out that there is no \emph{explicit} basis.\\
+$\R$ as a vector space over $\Q$. Basis is called a Hamel basis.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
