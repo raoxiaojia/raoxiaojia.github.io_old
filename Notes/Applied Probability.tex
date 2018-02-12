@@ -568,7 +568,7 @@ Let $X$ be irreducible, with generator $G$. The following are equivalent:\\
 (c) $X$ is non-explosive with invariant distribution $\pi_i = 1/g_im_i$ ($i \in S$).
 \begin{proof}
 (a) $\implies$ (b) is trivial.\\
-Assume (b). Let $i$ be positive recurrent. Recurrence or not are shared properties of $X$ and $Y$ and irreducibility (??). So $i$ is recurrent for $X$ $\implies$ $i$ is recurrent for $Y$ (?), $X$ is irreducible implies $Y$ is. So every state is recurrent for $Y$, and so is for $X$.\\
+Assume (b). Let $i$ be positive recurrent. Recurrence or not are shared properties of $X$ and $Y$ and irreducibility (??). So $i$ is recurrent for $X$ $\implies$ $i$ is recurrent for $Y$ (???), $X$ is irreducible implies $Y$ is. So every state is recurrent for $Y$, and so is for $X$.\\
 In particular, $X$ starts in a recurrent state, so $X$ is non-explosive. Let $i$ be recurrent. Let $\mu_j = \E_i (\int_0^{U_i} 1(X_s = j) ds) = \frac{1}{g_j} \E_i ($number of visits by $Y$ to $j$ before 1st return to $i) = \frac{1}{g_j} v_i(j)$.
 
 $v_i = (v_i(j) : j \in S)$ is invariant for $Y$ (this is not a distribution). Now
@@ -581,12 +581,31 @@ $v_i = (v_i(j) : j \in S)$ is invariant for $Y$ (this is not a distribution). No
 where $(h_{jk}$ is the transition matrix of $Y$. So $\mu G = 0$. 
 
 $\sum_j \mu-j = m_i$.  Assuming that $i$ is positive recurrent, $m_i < \infty$, and hence $(\mu_j/m_i:j \in S)$ is an invariant distribution $\pi$. In particular, $\pi_i = 1/g_i m_i$.
+
+Also, see the printed notes for proof.
 \end{proof}
 \end{thm}
 
 \subsection{Reversibility}
 Fact: If $X$ is a MC with generator $G$, $X$ irreducible $\iff$ $\forall i,j \in S, \exists i_1,i_2,...,i_n \in S$ distinct, with $g_{i,i_1}g_{i_1,i_2}...g_{i_n,j} > 0$ (also $i \neq i+1, i_n \neq j$).
 
+--Lecture on 20180212: half an hour spent on the proof of positive recurrence and invariant distribution. See printed notes.
+
+For an example, let's consider a birth-death process again, with $g_{n,n+1} = \lambda g_n$, $g_{n,n-1} = \mu g_n$, where we disallow jumping left from $0$, and $\lambda + \mu = 1$, $g_n > 0 \forall n$.
+
+The jump chain is a simple random walk, i.e. jumps take values $\pm 1$. We know this SRW is recurrent if $\lambda \leq \mu$, and is positive recurrent if $\lambda < \mu$. Invariant measure for jump chain is $\rho_i = (\lambda/\mu)^i (1-\frac{\lambda}{\mu}$. Hence $X$ has invariant distribution $A(\lambda/\mu)^i/g_i$ for some constant $A$ by previous result (see printed notes).
+
+When is this a distribution? Let's try some examples. If $g_i = g$ $\forall i$, then $X$ has an invariant distributon iff $\lambda < \mu$. Try another one: if $g_i = 2^i$, i.e. when we go further to the right, we move faster and faster, and suppose we have $1<\lambda/\mu<2$, then $X$ has an invariant distribution, since $\sum (\lambda.\mu)^i 1.2^i < \infty$.\\
+In this case, $X$ has an invariant distribution, but the jump chain is not recurrent ($\lambda/\mu>1$) (the chain $X$ is exploding -- check).
+
+\begin{thm}
+Let $X=(X(t):t \geq 0)$ be an irreducible, non-explosive MC, with generator $G$ and invariant distribution $\pi$. In particular, $\pi G = 0$. Assume $X(0)$ has distribution $\pi$. Fix $T>0$, and let $\tilde{X}(t) = X(T-t)$. Then $\tilde{X}$ is a MC with initial distribution $\pi$, generator $\tilde{G} = (\tilde{g}_{ij})$ given by (detailed balance equation) $\pi_i g_{i,j} = \pi_j \tilde{g}_{ji}$ for $i,j \in S$.\\
+$\tilde{X}$ is iireducible, non-explosive, with invariant distribution $\pi$.
+\begin{proof}
+$\tilde{G}$ is a generator since $\tilde{g}_{ij} \geq 0$ for all $i \neq j$ by (the detailed balance equation). Furthermore, $\sum_j \tilde{g}_{i,j} = \sum_j \pi_j \frac{g_{ji}}{\pi_i} = \frac{1}{\pi_i} 0 = 0$.\\
+We'll complete the proof next time.
+\end{proof}
+\end{thm}
 
 \iffalse
 \begin{equation*}
