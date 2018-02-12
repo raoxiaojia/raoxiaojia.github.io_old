@@ -798,9 +798,61 @@ H(Y|X) &= \sum_x P(X=x) \sum_i H(Y_i|X_i = x_i)\\
 Now $H(Y) \leq H(Y_1)+...+H(Y_n)$ by (1.7). So $I(X,Y) = H(Y)-H(Y|X) \leq \sum_i (H(Y_i)-H(Y_i|X_i)) = \sum_{i=1}^n I)X_i,Y_i) \leq nC$ by definition of info capacity.
 
 For equality, we need $Y_1,...,Y_n$ to be independent. This can be achieved by taking $X_1,...,X_n$ independent and choosing the distribution s.t. $I(X_i,Y_i) = C$.
-
 \end{proof}
 \end{lemma}
+
+\begin{prop} (2.15)\\
+For a DMC, operational capacity $\leq$ information capacity.
+\begin{proof}
+Let $C$ be the information capacity. Suppose we can transmit reliably at rate $R>C$, i.e. there is a sequence of codes $(C_n)_{n \geq 1}$ with $C_n$ of length $n$ and size $\lfloor 2^{nR} \rfloor$ such that $\hat{e}(C_n) \to 0$ as $n \to \infty$. Then $\hat{e}(C_n) = \max_{c \in C_n} P(error | c\ sent)$, $e(C_n) = \frac{1}{|C_n|} \sum_{c \in C_n} P(error|\ sent)$. Clearly $e(C_n) \leq \hat{e}(C_n)$, so $e(C_n) \to 0$ as $n \to \infty$. Take r.v. input $X$, equidistributed over $C_n$. Let $Y$ be the r.v. output when $X$ is transmitted and decoded. So $e(C_n) = P(x \neq y) = p$ say.\\
+Now $H(X) = \log (|C_n|) \geq nR-1$ for $n$ sufficiently large, $H(X|Y) \leq H(p) + p\log (|C_n|-1) \leq 1+pnR$ (Fano's inequality), $I(X,Y) = H(X) - H(X|Y)$, $nC \geq nR-1 - (1+pnR)$ (2.14), so $pnR \geq n(R-C)-2$. So we get $p \geq \frac{n(R-C)-2)}{nR} \not\to 0$ as $n \to \infty$.\\
+Thus our sequence of codes cannot exist.
+\end{proof}
+\end{prop}
+
+\begin{prop} (2.16)\\
+Consider a BSC, erro probability $p$. Let $R < 1-H(p)$. Then ther exists a sequence of codes $(C_n)_{n \geq 1}$ of length $n$ and size $\lfloor 2^{nR}\rfloor$ such that $e(C_n) \to 0$ as $n \to \infty$.
+\begin{proof}
+The idea is to construct codes by picking codewords at random. WLOG let $p<1/2$, so $\exists \varepsilon>0$ s.t. $R<1-H(p+\varepsilon)$. We use minimum distance decoding (in case of tie, make arbitrary choice).\\
+Let $m = \lfloor 2^{nR}\rfloor$. We pick a $[n,m]-$code $C$ at random (i.e. each with probability $\frac{1}{{2^n \choose m}}$, say $C=\{c_1,...,c_m\}$. Choose $1 \leq i \leq m$ at random (i.e. each with probability $1/m$). We send $c_1$ through the channel and get output $Y$.\\
+Then $P(Y$ is not decoded as $c)$ is the average value of $e(C)$ as $C$ runs over all $[n,m]-$codes. We can pick $C_n$ a $[n,m]-$code with $e(C_n)$ at most this average. So it will suffice to show that
+\begin{equation*}
+\begin{aligned}
+P(Y \text{ is not decoded as } c_i) \to 0 \text{ as }n \to \infty
+\end{aligned}
+\end{equation*}
+Let $r = \lfloor n(p+\varepsilon)\rfloor$. Then the above probability $\leq$ $P(C_i \not\in B(Y,r)) + P(B(Y,r) \cap C \supsetneq \{c_i\})$, i.e. either $c_i$ is not in the ball, or it is in the ball but is not the only one. We consider the two probabilities separately:\\
+(i) $P(d(c_i,y) > r) = P($ BSC makes $>r$ errors$) = P($ BSC makes $>n(p+\varepsilon)$ errors$) \to 0$ as $n \to \infty$ by WLLN. \\
+(ii) if $j \neq i$, $P(c_j \in B(Y,r) | c_i \in B(Y,r)) = \frac{V(n,r) - 1}{2^n-1} \leq \frac{V(n,r)}{2^n}$. So,
+\begin{equation*}
+\begin{aligned}
+P(B(Y,r) \cap C \supsetneq \{c_i\}) &\leq (m-1) \frac{V(n,r)}{2^n}\\
+&\leq 2^{nR} 2^{nH(p+\varepsilon)} 2^{-n}\\
+&= 2^{n(R-(1-H(p+\varepsilon)))} \to 0
+\end{aligned}
+\end{equation*}
+as $n \to \infty$, since $R<1-H(p+\varepsilon)$.
+\end{proof}
+\end{prop}
+
+\begin{prop} (2.17)\\
+Consider a BSC with error probaiblity $p$. Let $R<1-H(p)$. Then there exists a sequence of codes $(C_n)_{n \geq 1}$ with $C_n$ of length $n$, size $\lfloor 2^{nR}\rfloor$ and $\hat{e}(C_n) \to 0$ as $n \to \infty$.
+\begin{proof}
+Pick $R'$ s.t. $R < R' < 1-H(p)$. By (2.16), we construct a sequence of codes $(C'_n)_{n \geq 1}$ with $C'_n$ of length $n$, size $\lfloor 2^{nR} \rfloor$ and $e(C'_n) \to 0$ as $n \to \infty$.\\
+Throwing at the worst half of the codewords in $C'_n$, gives a code $C_n$ with $\hat{e}(C_n \leq 2e(C'_n)$. So $\hat{e}(C_n) \to 0$ as $n \to \infty$.\\
+Note $C_n$ has length $n$ and size $\lfloor 2^{nR-1} \rfloor$, but $2^{nR-1} = 2^{n(R'-[frac{1}{n}} \geq 2^{nR}$ for $n$ sufficiently large.\\
+We can replace $C_n$ by a subcode of size $\lfloor 2^{n+R}\rfloor$ and still get $\hat{e}(C_n) \to 0$ as $n \to \infty$.
+\end{proof}
+\end{prop}
+
+Conclusion: a BSC with error probaility $p$ has operational capacity $1-H(p)$.
+
+Remark: (i) How does it work? say capcity is 0.8, and we have a message a string of $0's$ and $1's$. Let $R=0.7s < 0.8$, Then $\exists$ a set of $2^{0.75n}$ codewords of length $n$ that have error probability below some prescribed threshold, hence to encode message:\\
+(a) break message into block's of size $3\lceil[\frac{n}{4}\rceil = m$ sufficiently large;\\
+(b) encode these $m$-blocks into $C_n$ using codewords of length $\frac{4}{3} m$ each $m$ block;\\
+(c) transmit new message through channel.\\
+
+The theorem shows good codes exists. But the proof does not construct them for us.
 
 \iffalse
 \begin{equation*}
