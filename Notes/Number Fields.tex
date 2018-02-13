@@ -609,6 +609,53 @@ Example sheet 2.
 \end{proof}
 \end{lemma}
 
+Example sheet 2 now available!
+
+Last time we learned that, if $L$ is a number field, then we know any non-zero ideal $I \subseteq \mathcal{O}_L$ canbe written uniquely as $I = \prod_{i=1}^r P_i^{e_i}$, wher the $p_i$ are distinct prime ideals, and $e_i \geq 1$. We also defined $Cl(\mathcal{O}_L)$ as the obstruction to $\mathcal{O}_L$ being a UFD.
+
+\newpage
+\section{Dedekind's criteion}
+If $P\subseteq \mathcal{O}_L$ is a non-zero prime ideal, then there's a unique prime number $p \in \Z_{\geq 0}$ such that $p \in P$. $(p) = \ker(\Z \to \mathcal{O}_L/P)$. Then $P | p \mathcal{O}_L$, and $N(P) = p^f$ for some $f \geq 1$.
+
+\begin{lemma} (5.1)\\
+Let $p$ be a prime number, and factor $p\mathcal{O}_L = \prod_{i=1}^r P_i^{e_i}$ where $P_1,...,P_r$ are distinct prime ideals of $\mathcal{O}_L$, $e_i \geq 1$. Define $f_i \geq 1$ by $N(P_i) = p^{f_i}$. Then $\sum_{i=1}^r e_i f_i = [L:\Q]$. In particular, $r \leq [L:\Q]$.
+\begin{proof}
+Apply norm to get $N(p\mathcal{O}_L) (=p^{[L:\Q]}) = \prod_{i=1}^r N(P_i)^{e_i} (=p^{\prod_{i=1}^r e_if_i})$.
+\end{proof}
+\end{lemma}
+
+\begin{defi} (5.2)\\
+Let $p$ be a prime number, and let $p\mathcal{O}_L = \prod_{i=1}^r P_i^{e_i}$ be the factorization as above.\\
+(i) We say $p$ \emph{ramifies} in $L$ if $e_i > 1$ for some $i$. We say $p$ is totally \emph{ramified} if $r=1$ and $e_1 = [L:\Q]$. In other words, $p\mathcal{O}_L = P_i^{[L:\Q]}$.\\
+(ii) We say $p$ is \emph{inert} in $L$ if $r=1$ and $e_1 = 1$, i.e. $p\mathcal{O}_L$ is prime.\\
+(iii) We say $p$ \emph{splits completely} in $L$ if $r=[L:\Q]$ and $e_i=f_i=1$ for all $i$.
+
+Note that these don't cover all the possible cases.
+\end{defi}
+
+\begin{thm} (5.3, Dedekind's criterion)\\
+Let $\alpha \in \mathcal{O}_L$ be such that $L=\Q(\alpha)$. Let $f(x) \in \Z[x]$ be its minimal polynomial and let $p$ be a prime such that $p \nmid [\mathcal{O}_L:\Z[\alpha]]$.\\
+Let $\bar{f}(x) = f(x) \pmod p$, and factor $\bar{f}(x) = \prod_{i=1}^r \bar{g}_i(x)^{e_i}$ in $F_p[x]$, where $\bar{g}_1(x),...,\bar{g}_r(x) \in F_p[x]$ are distinct monic irreducible polynomials. Let $g_i(x) \in \Z[x]$ be any polynomial with $g_i(x) \pmod p = \bar{g}_i(x)$, and define $Q_i = (p,g_i(\alpha)) \subseteq \mathcal{O}_L$, an ideal of $\mathcal{O}_L$. Let $f_i = \deg \bar{g}_i(x)$.\\
+Then $Q_1,...,Q_r$ are distinct prime ideals of $\mathcal{O}_L$, and $p\mathcal{O}_L = \prod_{i=1}^r Q-i^{e_i}$, and $N(Q_i) = p^{f_i}$.
+\end{thm}
+
+For example, let's take $L=\Q(\sqrt{-11})$, $p=5$. We see $-11 \equiv 1 \pmod 4$, so $\mathcal{O}_L = \Z [ \frac{1+\sqrt{-11}}{2}]$. Thus $\Z[\sqrt{-11}] \subseteq \mathcal{O}_L$ has index 2 as an additive subgroup. Therefore we can apply Dedekind's criterion to $\alpha = \sqrt{-11}$, with $f(x) = x^2+11$ in order to factorize $5\mathcal{O}_L$. We see $\bar{f}(x) = f(x) \pmod 5 = x^2+1 = (x+2)(x+3)$ in $F_5[x]$. So $t\mathcal{O}_L = PQ$ where $P = (5,\sqrt{-11}+2), Q = (5,\sqrt{-11},3)$, and hence $P,Q$ are the same prime ideals (of $\mathcal{O}_L$). Thus $5\mathcal{O}_L$ splits completely in $\mathcal{Q}\sqrt{-11}$.
+
+\begin{proof} (of 5.3)\\
+Recall: if $R$ is a ring and $I \subseteq R$ is an ideal, then there's a bijection between ideals containing $I$ and idealks of $R/I$. 3rd isomorphism theorem gives $R/J \cong (R/I)/(J/I)$. We have $\Z[\alpha] \subseteq \mathcal{O}_L$ of finite index. Let $A = \Z[\alpha]$, $\phi:A \to \mathcal{O}_L$. By reduction mod $p$, we get another ring homomorphism $\bar{\phi}: A/pA \to \mathcal{O}_L / p\mathcal{O}_L$ by $\bar{\phi}(\beta+pA) = \beta + p\mathcal{O}_L$.\\
+We claim that this is actually an isomorphism. Both source and targe have cardinality $p^{[L:\Q]}$, so it's enough to show $\bar{\phi}$ is surjective. Let $N=[\mathcal{O}_L:\Z[\alpha]]$. We can find $a,b \in \Z$ such that $aN+bp = 1$. If $\beta \in \mathcal{O}_L$, then $N\beta \in \Z[\alpha]$ (by Lagrance), and $\beta = aN\beta + bp\beta \implies \bar{\phi} (aN\beta + pA) = \beta + p\mathcal{O}_L$. Therefore there is a bijection between ideals in $\mathcal{O}_L$ containing $p$ and ideals of $A/pA$.\\
+We have $A=\Z[\alpha] \cong \Z[x] / (f(x))$ by sending $\alpha$ to $x$. Reduction mod $p$ gives an isomorphism $A/pA \cong \Z[x] / (p,f(x)) \cong F_p[x]/ (\bar{f}(x))$. We have $\bar{f}(x) = \prod_{i=1}^r \bar{g}_i(x)^{e_i}$, so there are homomorphisms $F_p[x] / (\bar{f}(x)) \to \F_p[x]/(\bar{g}_i(x))$, given by quotient by the ideal $(\bar{g}_i (x)) \supseteq (\bar{f}(x))$. Define $\Q_i \subseteq \mathcal{O}_L$ to be the ideal containing $p$ such that $\Q_i/(p)$ is the kernel of the ring homomorphism $\mathcal{O}_L/p\mathcal{O}_L \xrightarrow{\bar{\phi}^{-1}} A/pA \xrightarrow{\cong} F_p[x]/(\bar{f}(x)) \to F_p[x]/(\bar{g}_i(x))$. This ring homomorphism is surjective, and its image is a field of cardinality $p^{f_i}$. Hence $\mathcal{O}_L/\Q_i$ is a finite field of cardinality $p^{f_i}$, hence $\Q_i$ is a prime ideal of norm $N(\Q_i) = p^{f_i}$.\\
+Also, the $\Q_i$ are distinct, because their images in $\mathcal{O}_L/p\mathcal{O}_L$ are distinct, as if $i \neq j$ then $(\bar{g}_i(x),\bar{g}_j(x))$ is the unit ideal of $F_p[x]$. To show $\Q_i = (p,g_i(\alpha))$, it's enough to show $\Q_i/(p) \subseteq \mathcal{O}_L/p\mathcal{O}_L$ is generated by $\bar{g}_i(\alpha)$. This is equivalent to showing that $\ker(F_p[x] / (\bar{f}(x)) \to F_p[x]/(\bar{g}_i(x)))$ is generated by $\bar{g}_i(x)$. This is true by definition.\\
+It remains to show $Q_1^{e_1}...Q_r^{e_r} = p\mathcal{O}_L$. We have
+\begin{equation*}
+\begin{aligned}
+Q_1^{e_1}...Q_r^{e_r} &= (p_1g_1(\alpha))^{e_1}...(p_rg_r(\alpha))^{e_r}\\
+&=(p_1g_1(\alpha)^{e_1}) ... (p_1g_r(\alpha)^{e_r})\\
+&\leq (p,g_1(\alpha)^{e_1})...(g_r(\alpha)^{e_r}) = (p,f(\alpha))=(p)
+\end{aligned}
+\end{equation*}
+Take norms, $N(LHS) = \prod_{i=1}^r N(Q_i)^{e_i} = p^{\sum_{i=1}^r e_i f_i} =p^{\deg f} = p^{[L:\Q]} = N(p) = N(RHS)$. This forces $Q_1^{e_1}...Q_r^{e_r} = p\mathcal{O}_L$.
+\end{proof}
 
 \iffalse
 \begin{equation*}
