@@ -1055,6 +1055,127 @@ On Tuesday.
 \end{proof}
 \end{prop}
 
+(After lecture 11: this is the first notes to get beyond 1000 lines!)
+
+\begin{rem} (9.6)\\
+Sheet 1, Q2 says $\rho$ irreducible, $\rho'$ of degree 1, then $\rho \otimes \rho'$ irreducible; if $\rho'$ is not of $\deg$ 1 this is usually false.
+\end{rem}
+
+\begin{proof} (of 9.5)\\
+It's clear that $(\rho \otimes \rho') (g) \in GL(V \otimes V')$ $\forall g \in G$ and so $\rho \otimes \rho'$ is a homomorphism $G \to GL(V \otimes V')$. Let $g \in G$. Let $V_1,...,v_m$ be basis of $V$ of eigenvectors of $\rho(g)$; let $w_1,...,w_n$ be a basis of $V'$. Say: 
+\begin{equation*}
+\begin{aligned}
+\rho(g) v_j = \lambda_j v_j, \rho'(g) w_j = \mu_j w_j
+\end{aligned}
+\end{equation*}
+Then 
+\begin{equation*}
+\begin{aligned}
+(\rho \otimes \rho') (g) (v_i \otimes w_j) &= \rho(g) v_i \otimes \rho'(g) w_j\\
+&= \lambda_i v_i \otimes \mu_j w_j\\
+&= (\lambda_i \mu_j) (v_i \otimes w_j)
+\end{aligned}
+\end{equation*}
+So $\chi_{\rho \otimes \rho'}(g) = \sum_{i,j} \lambda_i \mu_j = (\sum \lambda_i)(\sum\lambda_j) = \chi_\rho(g)\chi_{\rho'}(g)$
+\end{proof}
+
+Now work over $\C$. Take $V=V'$ and define $V^{\otimes 2} = V \otimes V$.\\
+Let
+\begin{equation*}
+\begin{aligned}
+\tau: \sum \lambda_{ij} v_i \otimes v_j \to \sum \lambda_{ij} \lambda_j \otimes v_i
+\end{aligned}
+\end{equation*}
+which is a linear $G$-endomorphism of $V^{\otimes 2}$, s.t. $\tau^2 =1$ (so eigenvalues $\pm 1$).
+
+\begin{defi} (9.7)\\
+\begin{equation*}
+\begin{aligned}
+S^2 V = \{v \in V^{\otimes 2}: \tau(x) = x\},\\
+\wedge^2 V = \{x \in V^{\otimes 2}: \tau(x) = -x\}
+\end{aligned}
+\end{equation*}
+known as the \emph{symmetric square} of $V$ and \emph{exterior square} of $V$ respectively.
+\end{defi}
+
+\begin{lemma} (9.8)\\
+$S^2 V$ and $\wedge^2 V$ are $G$-subspaces of $V^{\otimes 2}$ and $V^{\otimes 2} \cong S^2 V \otimes \wedge^2 V$. $S^2 V$ has basis $\{v_iv_j := v_i \otimes v_j + v_j \otimes v_i: 1 \leq i \leq j \leq n\}$, and $\wedge^2 V$ has basis $\{v_i \wedge v_j:=v_i \otimes v_j - v_j \otimes v_i: 1 \leq i < j \leq n\}$. Hence we have $\dim S^2 V = \frac{1}{2}n(n+1)$ and $\dim \wedge^2 V = \frac{1}{2} n(n-1)$.
+\begin{proof}
+Exercise in linear algebra.\\
+To show $V^{\otimes 2}$ is reducible, write $x \in V^{\otimes 2}$ as $x=\frac{1}{2} (x+\tau(x)) + \frac{1}{2} (x-\tau(x))$, which is in $S^2 V$ and $\wedge^2 V$ respectively.
+\end{proof}
+\end{lemma}
+
+In fact, $V^{\otimes 2}$, $V^{\otimes 3} = V \otimes V \otimes V$, ...,etc. are never irreducible if $\dim V > 1$.
+
+\begin{lemma} (9.9)\\
+If $\rho:G \to GL(V)$ is a representation affording character $\chi$, then $\chi^2 = \chi_S + \chi_\wedge$ where $\chi_s$ ($=S^2 \chi$) is the character of $G$ in the subrepresentation $S^2 V$, and $\chi_\wedge$ ($=\wedge^2 \chi)$ is the character of $G$ in the subrepresentation $\wedge^2 V$. Moreover, for $g \in G$,
+\begin{equation*}
+\begin{aligned}
+\chi_s(g) = \frac{1}{2} (chi^2(g) + \chi(g^2)),
+\chi_\wedge(g) = \frac{1}{2} (\chi^2(g) - \chi(g^2)).
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Let's compute the characters $\chi_s,\chi_\wedge$. Fix $g \in G$. Let $v_1,...,v_n$ be a basis of eigenvectors of $\rho(g)$, say $\rho(g)v_i = \lambda_i v_i$ (we drop the $\rho$ to write $g v_i = \lambda_i v_i$ for simplicity below). Then
+\begin{equation*}
+\begin{aligned}
+g v_i v_j = \lambda_i \lambda_j v_i v_j\\
+g v_i \wedge v_j = \lambda_i \lambda_j v_i \wedge v_j
+\end{aligned}
+\end{equation*}
+Hence $\chi_s(g) = \sum_{1 \leq i \leq j \leq n} \lambda_i\lambda_j$ and $\chi_\wedge(g) = \sum_{1 \leq i < j \leq n} \lambda_i \lambda_j$. Now,
+\begin{equation*}
+\begin{aligned}
+(\chi(g))^2 &= (\sum \lambda_i)^2\\
+&= \sum \lambda_i^2 + 2\sum_{i < j} \lambda_i \lambda_j\\
+&= \chi(g^2) + 2\sum_{i < j} \lambda_i \lambda_j\\
+&= \chi(g^2) + 2 \chi_\wedge (g)
+\end{aligned}
+\end{equation*}
+So $\chi_\wedge (g) = \frac{1}{2} (\chi^2 (g) - \chi(g^2))$. But $\chi^2 = \chi_s + \chi_\wedge$ so we get the expression for $\chi_s(g)$.
+\end{proof}
+\end{lemma}
+
+\begin{eg} (9.10)\\
+Consider our usual example $G=S_4$ (see 7.8).
+
+\includegraphics[scale=0.5]{image/Rep_06.png}
+
+\includegraphics[scale=0.5]{image/Rep_07.png}
+
+Notice that $\wedge^2 \chi_3 = \bar{\chi}_3$ (irreducible since $\bra \chi_\wedge,\chi_\wedge\ket = 1$),\\
+$S^2 \chi_3 = 1+\chi_3+\chi5$: The inner product is 3 and it contains $1$ ,$\chi_3$, so the one left is $\chi_5$.
+
+Characters of $G \times H$ (seen in (4.5) for abelian groups):\\
+\begin{prop} (9.11)\\
+If $G,H$ are finite groups with irreducible characters $\chi_1,...,\chi_k$ and $\psi_1,...,\psi_r$ respectively, then the irreducible characters of the direct product $G \times H$ are precisely $\{\chi_i \psi_j:1 \leq i \leq k, 1 \leq j \leq r\}$, where $\chi_i \psi_j (g,h) = \chi_i*g( \psi_j(h)$.
+\begin{proof}
+If $\rho:G \to GL(V)$, $\rho':H \to GL(W)$ affording $\chi$ and $\psi$ respectively, then
+\begin{equation*}
+\begin{aligned}
+\rho \otimes \rho': &G \times H \to &GL(V \otimes W)\\
+&(g,h) \to &\rho(g) \otimes \rho'(h)
+& &v_i \otimes w_j \to \rho(g) v_i \otimes \rho'(h) w_j
+\end{aligned}
+\end{equation*}
+is a representation of $G \times H$ on $V \otimes W$ by (9.5), and $\chi_{\rho \otimes \rho'} = \chi\psi$, again by (9.5).\\
+We claim that $\chi_i \psi_j$ are distinct and irreducible:
+\begin{equation*}
+\begin{aligned}
+\bra \chi_i \psi_j,\chi_r\psi_s \ket_{G \times H} &= \frac{1}{|G \times H|} \sum_{(g,h)} \overline{\chi_i\psi_j (g,h)} \chi_r \psi_s (g,h)\\
+&= (\frac{1}{|G|} \overline{\chi_i(g)} \chi_r(g)) (\frac{1}{|H|} \sum_h \overline{\psi_j(h)} \psi_s(h))\\
+&= \delta_{ir} \delta_{js}
+\end{aligned}
+\end{equation*}
+...tbc.
+\end{proof}
+\end{prop}
+
+
+
+\end{eg}
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
