@@ -854,6 +854,86 @@ Remark: (i) How does it work? say capcity is 0.8, and we have a message a string
 
 The theorem shows good codes exists. But the proof does not construct them for us.
 
+\subsection{Linear codes}
+In practice, we consider codes with extra strucutre to allow efficient decoding.
+
+\begin{defi}
+A code $C \subset F_2^n$ is linear if:\\
+(i) $0 \in C$;\\
+(ii) If $x,y \in C$, then $x+y \in C$.
+\end{defi}
+
+Recall: $F_2 =\{0,1\}$ the field with $2$ elements, addition and multiplication are mod 2. Equivalently, $C \subset F_2^n$ is linear if its an $F_2$ vector space.
+
+\begin{defi}
+The \emph{rank} of a linear code $C$ is its dimension as an $F_2$ vector space.
+\end{defi}
+
+A code $C$ of length $n$ and rank $k$ is called an $(n,k)$-code.
+
+We say $C$ has a basi s$v_1,...,v_k$. Then $C = \{\sum \lambda_i v_i: \lambda_i \in F_2\}$ so $|C|=2^k$, i.e. a $(n,k)$-code is a $[n,2^k]$ code. The information rate is $\frac{k}{n}$.
+
+For $x,y \in F_2^n$, we defined $x \cdot y = \sum_{i=1}^n x_i y_i \in F_2$ i.e. the inner product. Note this is commutative, and distributive. But note $x \cdot x = 0 \not\implies x = 0$.
+
+\begin{lemma} (2.18)\\
+Let $P \subset F_2^n$ be a subset. Then $C = \{x \in F_2^n : p \cdot x = 0 \forall p \in P\}$ is a linear code.
+\begin{proof}
+(i) $0 \in C$ since $p \cdot 0 = 0$ $\forall p \in P$.\\
+(ii) If $x,y \in C$, then $p \cdot (x+y) = p\cdot x + p \cdot y = 0$, so $x+y \in C$.
+\end{proof}
+\end{lemma}
+
+$P$ is called a set of \emph{parity checks} and $C$ is a \emph{parity check code}.
+
+\begin{defi}
+Let $C \subset F_2^n$ be a linear code. The \emph{dual code}
+\begin{equation*}
+\begin{aligned}
+C^\perp = \{x \in F_2^n : x \cdot y = 0 \forall y \in C\}
+\end{aligned}
+\end{equation*}
+by (2.18), $C^\perp$ is a code.
+\end{defi}
+
+\begin{lemma} (2.19)\\
+$\dim C + \dim C^\perp = n$.\\
+Note that these two sets might have non-empty intersection.
+\begin{proof}
+$V=F_2^n$, $V^* = $ linear maps from $V \to F_2$. Consider $\varphi: V \to V^*$ by $x \to \theta_x$ where $\theta_x: y \to x \cdot y$. Then $\varphi$ is a linear map. Suppose $x \in \ker \varphi$, then $x \cdot y = 0$ $\forall y \in V$. Taking $y = e_i = (0...010..0)$ ($i$th place is 1) gives $x_i = 0$. So $\ker \varphi = \{0\}$. Since $\dim V = \dim V^*$ (LA), it follows that $\varphi$ is an isomorphism. Thus $\phi(C^\perp) = \{\theta \in V^*: \theta(x) = 0 \forall x \in C\}$, i.e. the annihilator of $C$, denoted by $C^\circ$. By Linear algebra we know $\dim C + \dim C^\circ = \dim V = n$.
+\end{proof}
+\end{lemma}
+
+\begin{coro}
+$(C^\perp)^\perp = C$ for any linear code $C$. In particular, any linear code is a partiy check code.
+\begin{proof}
+Let $x \in C$. Then $x \cdot y = 0 \forall y \in C^\perp \implies x \in (C^\perp)^\perp$, i.e. $C \subseteq (C^\perp)^\perp$. By (2.19) twice, $\dim(C^\perp)^\perp = \dim C$, so $C = (C^\perp)^\perp$.
+\end{proof}
+\end{coro}
+
+\begin{defi}
+Let $C$ be a $(n,k)$ linear code.\\
+(i) A generator matrix for $C$ is a $k \times n$ matrix whose rows are a basi for $C$.\\
+(ii) A parity check matrix for $C$ is a generator matrix for $C^\perp$. It is a $(n-k)\times n$ matrix.
+\end{defi}
+
+\begin{defi} (2.20)\\
+Every $(n,k)$ linear code is equivalent to a linear code with generator matrix $(I_k|B)$.
+\begin{proof}
+We can perform row operations: swap 2 rows or add one row to another (multiplying by scalars is not useful here).\\
+By Gaussian elimination, we get $G$, the generator matrix in row echelon form, i.e. $\exists l(1) < l(2) < ... < l(n)$ s.t. $G_{ij} = 0$ if $j<l_i$ and $1$ if $j=l(i)$. Permuting the columns of $G$ gives an equivalent code, i.e. $l(i) = 1$ for $1 \leq i \leq k$. More row operations put $G$ in the form $(I_k|B)$ with $B$ a $k \times (n-k)$ matrix.
+\end{proof}
+\end{defi}
+
+\begin{rem}
+A message $y\in F_2^k$ (a row vector) is sent as $yG$. If $G = (I_k |B)$ then $yG = (y|yB)$, where we can see $y$ as message and $yB$ as check digits.
+\end{rem}
+
+\begin{lemma} (2.21)\\
+A $(n,k)$ linear code with generator matrix $G = (I_k|B)$ has parity check matrix $H=(-B^T | I_{n-k})$.
+\begin{proof}
+Since $GH^T = -B+B =0$, we know rows of $H$ generate a subcode $C^\perp$. But $\dim (C^\perp) = n-k = r(H)$ as $H$ has $I_{n-k}$ as submatrix. So the rows of $H$ are a basis for $C^\perp$ as required.
+\end{proof}
+\end{lemma}
 \iffalse
 \begin{equation*}
 \begin{aligned}

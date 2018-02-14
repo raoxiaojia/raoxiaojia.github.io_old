@@ -6,3 +6,4 @@
 \contentsline {subsection}{\numberline {2.1}Bound on codes}{17}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Channel Capacity}{18}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Conditional Entropy}{19}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Linear codes}{24}{subsection.2.4}
