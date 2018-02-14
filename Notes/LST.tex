@@ -589,6 +589,46 @@ e.g. $V=$ space of all real polynomials. We can take $1,x,x^2,...$\\
 Let $V$ now be all real sequences. But $l_1 = (1,0,0,0,...)$, $l_2 = (0,1,0,0,...)$, then $l_1,l_2$ LI but not spanning! (recall span must be a finite linear combination!) It's easy to check that there is no countable basis. Also, it turns out that there is no \emph{explicit} basis.\\
 $\R$ as a vector space over $\Q$. Basis is called a Hamel basis.
 
+\begin{thm} (4)
+Every vector space $V$ has a basis.
+\begin{proof}
+Let $X = \{A\subset V: A$ is LI$\}$, ordered by $\subset$. We seek a maximal element $M$ of $X$ (then we are done: if $M$ does not span then choose $x \not\in \bra M\ket$, and now $M \cup \{x\}$ is LI, contradiction.\\
+We have $X\neq\phi$, as $\phi \in X$.\\
+Given a chain $\{A_i: i \in I\}$ in $X$, put $A = \cup_{i \in I} A_i$, then $A > A_i$ $\forall i$, so just need $A \in X$, i.e. $A$ LI. Suppose $A$ is not LI, hten $\sum_{i=1}^n \lambda_i x_i = 0$ for some $x_1,...,x_n \in A$, and $\lambda_i$ scalars not all zero. We have $x_i \in A_{i_1},...,x_n \in A_{i_n}$ for some $i_1,...,i_n \in I$. But $A_{i_1},...,A_{i_n} \in A_{i_k}$, some $k$ (as they are nested), contradicting $A_{i_k}$ being LI.
+\end{proof}
+\end{thm}
+
+Note: the only actualy maths (i.e. linear alebra) in the proof was the 'then done' part.
+
+Another application: completeness theorem when proposition language uncountable.
+
+\begin{thm} (5)\\
+Let $S \subset L(P)$, where $P$ is any set. Then $S$ consistent implies that $S$ has a model.
+\begin{proof}
+We seek a maximal consistent $\bar{S} \supset S$. Then done: for each $t \in L(p)$ we have $\bar{S} \cup \{t\}$ or $\bar{S} \cup \{\neg t\}$ consistent (see chapter 1), hence $t \in \bar{S}$ or $\neg t \in \bar{S}$ by maximality of $\bar{S}$.  Now define $v(t) = 1$ if $t \in \bar{S}$, $0$ otherwise (as in chapter 1). Let $X$ be the set of all consistent subsets of $L(P)$, ordered by $\subset$. Then $X \neq \phi$, as $S \in X$. Given a non-empty chain $(T_i:i \in I)$ in $X$, put $T = \cup_{i \in I} T_i$. Then $T \supset T_i$ for each $i$, so we just need $T \in X$. We have $S \subset T$ as $T \neq \phi$. Also $T$ is consistent: if $T \vdash \perp$, then $\{t_1,...,t_n\} \vdash \perp$ for some $t_1,...,t_n \in T$. We have $t_1 \in T_{i_1},...,t_n \in T_{i_n}$ for some $i_1,...,i_n \in I$. But $T_{i_1},...,T_{i_n} \subset T_{i_k}$ for some $k$ (nested), contradicting $T_{i_k}$ being consistent.
+\end{proof}
+\end{thm}
+
+One more:
+
+\begin{thm} (6, well-ordering principle)\\
+Every set $S$ can be well-ordered.\\
+Note that this is very surprising for e.g $S=\R$.
+\begin{proof}
+Let $X = \{(A,R):A \subset S$ and $R$ is a well-ordering of $A\}$. We order this by: $(A,R) \leq (A',R')$ if $(A',R')$ extends $(A,R)$. Then $X \neq \phi$, as $(\phi,\phi) \in X$. Given a chain $((A_i,R_i) : i \in I)$, we have $(\cup_{i \in I} A_i, \cup_{i \in I} R_i) \in X$, and extends each $(A_i,R_i)$ from chapter 2. So by Zorn's lemma, $X$ has a maximal element $(A,R)$. We must have $A = S$: otherwise choose $x \in S\setminus A$ and take 'successor': well-order $A\cup\{x\}$ by putting $x > a$ $\forall a \in A$, contradicting maximality of $(A,R)$.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+Proof of zorn was easy, but we used a lot of machinery there (ordinals, recursion, hartog's lemma).
+\end{rem}
+
+\subsection{Zorn's lemma and the axiom of choice}
+In proof of Zorn's kemma, we chose, for each $x \in X$, and $x' \supset x$, i.e. we made infinitely many arbitrary choices, even by time we get to $x_\omega$. We did the same in part IA, to prove that a countable union of countable sets is countable. This is appealing to the axiom of choice, saying that we may choose an element of each set in a family of non-empty sets.
+
+More precisely, the axiom of choice states that, if $(A_i : i \in I)$ is a family of sets, we have a choice function, meaning a function $f:I \to \cup_{i \in I} A_i$ s.t. $f(i) \in A_i$ $\forall i$. This is of a different characterto the other set-building rules in that the object whose existence is asserted is not uniquely specified by its properties (unlike ,e.g., $A \cup B$).\\
+So often one points out when one has used axiom of choice.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
