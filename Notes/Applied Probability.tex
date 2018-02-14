@@ -595,17 +595,89 @@ For an example, let's consider a birth-death process again, with $g_{n,n+1} = \l
 
 The jump chain is a simple random walk, i.e. jumps take values $\pm 1$. We know this SRW is recurrent if $\lambda \leq \mu$, and is positive recurrent if $\lambda < \mu$. Invariant measure for jump chain is $\rho_i = (\lambda/\mu)^i (1-\frac{\lambda}{\mu}$. Hence $X$ has invariant distribution $A(\lambda/\mu)^i/g_i$ for some constant $A$ by previous result (see printed notes).
 
-When is this a distribution? Let's try some examples. If $g_i = g$ $\forall i$, then $X$ has an invariant distributon iff $\lambda < \mu$. Try another one: if $g_i = 2^i$, i.e. when we go further to the right, we move faster and faster, and suppose we have $1<\lambda/\mu<2$, then $X$ has an invariant distribution, since $\sum (\lambda.\mu)^i 1.2^i < \infty$.\\
+When is this a distribution? Let's try some examples. If $g_i = g$ $\forall i$, then $X$ has an invariant distributon iff $\lambda < \mu$. Try another one: if $g_i = 2^i$, i.e. when we go further to the right, we move faster and faster, and suppose we have $1<\lambda/\mu<2$, then $X$ has an invariant distribution, since $\sum (\lambda/\mu)^i 1/2^i < \infty$.\\
 In this case, $X$ has an invariant distribution, but the jump chain is not recurrent ($\lambda/\mu>1$) (the chain $X$ is exploding -- check).
 
 \begin{thm}
 Let $X=(X(t):t \geq 0)$ be an irreducible, non-explosive MC, with generator $G$ and invariant distribution $\pi$. In particular, $\pi G = 0$. Assume $X(0)$ has distribution $\pi$. Fix $T>0$, and let $\tilde{X}(t) = X(T-t)$. Then $\tilde{X}$ is a MC with initial distribution $\pi$, generator $\tilde{G} = (\tilde{g}_{ij})$ given by (detailed balance equation) $\pi_i g_{i,j} = \pi_j \tilde{g}_{ji}$ for $i,j \in S$.\\
-$\tilde{X}$ is iireducible, non-explosive, with invariant distribution $\pi$.
+$\tilde{X}$ is irreducible, non-explosive, with invariant distribution $\pi$.
 \begin{proof}
 $\tilde{G}$ is a generator since $\tilde{g}_{ij} \geq 0$ for all $i \neq j$ by (the detailed balance equation). Furthermore, $\sum_j \tilde{g}_{i,j} = \sum_j \pi_j \frac{g_{ji}}{\pi_i} = \frac{1}{\pi_i} 0 = 0$.\\
-We'll complete the proof next time.
+We'll complete the proof next time.\\
+Now $\tilde{G}$ is a generator, we have
+\begin{equation*}
+\begin{aligned}
+\tilde{p}_{ij} (t) &= \P (\tilde{X}(u+t) = j | \tilde{X}(u) = i)\\
+&= \frac{\pi_j}{\pi_i} p_{ji}(t)
+\end{aligned}
+\end{equation*}
+Now prove that $\tilde{X}$ is a MC:
+\begin{equation*}
+\begin{aligned}
+P(\tilde{X}_{t_0} = i_0,\tilde{X}_{t_1} = i_1,...,\tilde{X}_{t_n} = i_n) &= \P(X(0) = i_n,X_{s_n} = i_{n-1},...,X_{s_1+...+s_n} = i_0)\\
+&= \pi_{i_n} p_{i_n,i_{n-1}} (s_n)...p_{i_1,i_0} (s_1)\\
+&= \pi_{i_0} \tilde{p}_{i_0,i_1} (s_1) ... \tilde{p}_{i_{n-1},i_n} (s_n)
+\end{aligned}
+\end{equation*}
+for $t_0<t_1<...<t_n = T$, $i_0,...,i_n \in S$, $s_i = t_i - t_{i-1}$. Well hopefully this is correct. So $\tilde{X}$ is a MC with invariant distribution $\pi$.
 \end{proof}
 \end{thm}
+
+$\sum_j p_{ij}(t) = 1$? $(p_{ij}(t))$ satisfies the forward equation $P'_t = P_t G$. Deduce $(\tilde{p}_{i,j}(t))$ satisfy backward equation $\tilde{P}'_t = \tilde{G}\tilde{P}_t$.\\
+Proof that $\tilde{P}'_t = \tilde{G} \tilde{P}_t$:
+\begin{equation*}
+\begin{aligned}
+p'_{ij}(t) &= \frac{\pi_j}{\pi_i} p'_{ji}(t) = \frac{\pi_j}{\pi_i} \sum_k p_{jk}(t) g_{ki}\\
+&= \frac{\pi_j}{\pi_i} \sum_k \frac{\pi_k}{\pi_j}\tilde{p}_{kj}(t) g_{ki}\\
+&= \sum_k \tilde{g}_{ik} \tilde{p}_{kj} (t)
+\end{aligned}
+\end{equation*}
+So $\tilde{P}'_t = G\tilde{P}_t$.\\
+We know $\sum_j \tilde{p}_{ij}(t) = \sum_j \frac{\pi_j}{\pi_i} p_{ji}(t) = \frac{1}{\pi_i}\pi_i = 1$. So $\tilde{X}$ is non-explosive, and $\tilde{P}'_t = \tilde{G}\tilde{P}_t$. So $\tilde{X}$ is a non-explosive MC with generator $\tilde{G}$. $\tilde{G}$ is irreducible since $G$ is.
+
+\begin{defi}
+$X$ is called reversible if, $\forall T>0$, the reversed process $\tilde{X}$ has the same distribution/law as $X$. Above, $X$ is reversible iff $\pi_i \tilde{g}_{ij} = \pi_j g_{ji}$, $i,j \in S$. This is called the \emph{detailed balance equation}.
+
+We say $G,\lambda$ (generator and distribution) are in detailed balnce if the detailed balance equations hold.
+\end{defi}
+
+\begin{thm}
+If $G,\pi$ are in detailed balance, then $\pi$ is invariant.\\
+Note that the reverse is not necessarily true.
+\begin{proof}
+Check $\pi G = 0$:
+\begin{equation*}
+\begin{aligned}
+\sum_i \pi_i g_{ij} = \sum_i \pi_j g_{ji} = \pi_j \times 0 = 0
+\end{aligned}
+\end{equation*}
+\end{proof}
+Note: in this case, if $X(0)$ has distribution $\pi$, then $X$ is reversible.
+\end{thm}
+
+\begin{eg} (Birth-death chains)\\
+We have $g_{i,i+1} = \lambda_i$, $g_{i,i-1} = \mu_i$, $g_{ij} = 0$ if $|i-j| \geq 2$, and $g_{0,-1} =0$. Assume $\lambda_i,\mu_i > 0$ otherwise.\\
+\end{eg}
+
+Detailed balance equations:\\
+$\pi_i g_{i,i+1} = \pi_{i+1} g_{i+1,i}$, $x_i \pi_i = \mu_{i+1} \pi_{i+1}$ with $i \geq 0$. Solve to obtain each $\pi_n$ in terms of $\pi_0$. $\pi$ is a distribution iff we can choose $\pi_0 \in (0,1)$ such that $\sum_n \pi_n = 1$.\\
+If $\exists$ such a distribution $\pi$ then $G,\pi$ are in detailed balance $\pi$ is invariant, and '$X$ stated in $\pi$' is reversible.
+
+\newpage
+
+\section{Queueing theory}
+Assumptions:\\
+(a) Inter-arrival times are iid;\\
+(b) Some queue discipline;\\
+(c) There is a number, $k$, say, of servers;\\
+(d) Each customer requires a service time, and these times are iid;\\
+(e) After service, the customer departs.
+
+We will denote a queue by: $A/B/k$, where $A$ describes the distribution of interarrival times, $B$ describes the service tmies, and $k$ is the number of servers. For example, we may use $\frac{Exs}{M_\lambda}$ to mean exponential $Exp(\lambda)$ random variable, and we may use $D$ to mean a deterministic interarrival time; or $G$ for some general distribution.
+
+An example which we will look into is $M/M/1$ queue.
+
+
 
 \iffalse
 \begin{equation*}
