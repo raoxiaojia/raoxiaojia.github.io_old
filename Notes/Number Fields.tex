@@ -657,6 +657,102 @@ Q_1^{e_1}...Q_r^{e_r} &= (p_1g_1(\alpha))^{e_1}...(p_rg_r(\alpha))^{e_r}\\
 Take norms, $N(LHS) = \prod_{i=1}^r N(Q_i)^{e_i} = p^{\sum_{i=1}^r e_i f_i} =p^{\deg f} = p^{[L:\Q]} = N(p) = N(RHS)$. This forces $Q_1^{e_1}...Q_r^{e_r} = p\mathcal{O}_L$.
 \end{proof}
 
+Let $L$ be a number field. Last time we had that if $\alpha \in \mathcal{O}_L$, $\Q(\alpha) = L$, $p \nmid [\mathcal{O}_L:\Z[\alpha]]$. Dedekind's criterion: can factor $p\mathcal{O}_L$ by factoring $f_\alpha(x) \pmod p$.
+
+\begin{prop} (5.4)\\
+Let $d$ be a square-free integer, $d \neq 0,1$, $L = \Q(\sqrt{d})$, and let $p$ be a prime number. Then\\
+(1) If $p$ is odd, then:\\
+$\bullet$ if $p|d$, then $(p) = P^2$, so $p$ ramifies in $L$;\\
+$\bullet$ if $p \nmid d$ and $(\frac{d}{p}) = 1$, then $(p) = PQ$, so $p$ splits completely in $L$;\\
+$\bullet$ if $p \nmid d$ and $(\frac{d}{p} = -1$, then $(p)$ is prime and $p$ is inert in $L$.\\
+(2) If $p=2$, then:\\
+$\bullet$ if $d \equiv 2,3 \pmod 4$, then 2 ramifies in $L$;\\
+$\bullet$ if $d \equiv 1 \pmod 8$, then 2 splits completely in $L$;\\
+$\bullet$ if $d \equiv 5 \pmod 8$, then $2$ is inert in $L$.
+\begin{proof}
+We just do the case where $p=2$. If $d \equiv 2,3 \pmod 4$, then $\mathcal{O}_L = \Z[\sqrt{d}]$, so by Dedekind's criterion, we must factor $x^2 - d \pmod 2$. But $x^2-d \equiv (x-d)^2 \pmod 2$. If $d \equiv 1 \pmod 4,$ then $\mathcal{O}_L = \Z[\frac{1+\sqrt{d}}{2}]$, so we must factor $x^2+x+\frac{1-d}{4} \pmod 2$. If $d \equiv 1 \pmod 8$, this is $x^2+x = x(x+1) \pmod 2$. If $d \equiv 5 \pmod 8$, this is $x^2+x+1 \pmod 2$ which is irreducible.
+\end{proof}
+\end{prop}
+
+\newpage
+\section{Geometry of numbers}
+
+\begin{defi} (6.1)\\
+If $V$ is a finite dimensional $\R$-vector space, then a lattice in $V$ is a subgroup of the form $\Lambda = \oplus_{i=1}^m \Z v_i$, where $v_1,...,v_n$ is a basis of $V$ as $\R$-vector space (for example, $\Z^n \subseteq \R^n$).
+\end{defi}
+
+\begin{defi} (6.2)\\
+If $V$ is a finite-dimensional inner product space over $\R$, and $\Lambda \subseteq V$ is a lattice, then the covolume of $\Lambda$ is 
+\begin{equation*}
+\begin{aligned}
+A(\Lambda) = vol(\{\sum_{i=1}^n t_i v_i | t_i \in [0,1)\})
+\end{aligned}
+\end{equation*}
+where $\Lambda = \oplus_{i=1}^n \Z v_i$.\\
+Check: this is independent of the choice of basis $v_1,...,v_n$.
+\end{defi}
+
+For today, let's consider only a fixed imaginary quadratic field $L = \Q(\sqrt{d})$ where $d<0$ is a square-free integer. Let's take $\sigma:L \to \Q$ be a complex embedding. Then $\sigma(\mathcal{O}_L)$ is a lattice in $\phi$. If $d \equiv 2,3 \pmod 4$, then $\sigma(\mathcal{O}_L) = \Z \oplus \Z [\sqrt{d}]$; if $d \equiv 1 \pmod 4$ then $\sigma(\mathcal{O}_L) = \Z \oplus \Z (\frac{1+\sqrt{d}}{2})$\\
+If $I \leq \mathcal{O}_L$ is a non-zero ideal, then $\sigma(I)$ is a lattice in $\C$.
+
+\begin{lemma} (6.3)\\
+If $I \subseteq \mathcal{O}_L$ is a non-zero ideal, then $A(I) = \frac{1}{2} \sqrt{|disc(I)|} = \frac{N(I)}{2} \sqrt{|D_L|}$.
+\begin{proof}
+Let $\alpha_1,\alpha_2$ be an integral basis for $I$. Then $\sigma(I) = \Z \sigma(\alpha_1) \oplus \Z \sigma (\alpha_2)$. Write $\alpha_1 = x_1+iy_1,\alpha_2=x_2+iy_2$, then $A(\sigma(I)) = |\det{{x_1 \ x_2} \choose {y_1 \ y_2}}|$ (area of a parallelogram).\\
+Then 
+\begin{equation*}
+\begin{aligned}
+disc(I) = \det 
+\begin{pmatrix}
+x_1+iy_1 & x_2 + iy_2\\
+x_1 - iy_1 & x_2 - iy^2
+\end{pmatrix} 
+= 
+(2i)^2 \det 
+\begin{pmatrix}
+y_1 & y_2\\
+x_1 & x_2
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{lemma}
+
+\begin{thm} (6.4, special case of Minkovski's theorem)\\
+Let $\Lambda \subseteq \R^2$ be a lattice, and let $S=D(0,r) \subseteq \R^2$ be the closed disk of radius $r$. Then if $area(S) \geq 4A(\Lambda)$, then $\exists \lambda \in \Lambda - \{0\}$ such that $\lambda \in S$.\\
+In particular, there exists $\lambda \in \Lambda - \{0\}$ such that $|\lambda|^2 \leq \frac{4}{\pi} A(\Lambda)$.
+\end{thm}
+
+\begin{coro} (6.5)\\
+If $I \subseteq \mathcal{O}_L$ is a non-zero ideal, then there exists $\alpha \in I-\{0\}$ s.t. $N(\alpha) \leq c_LN(I)$, where $c_L := \frac{2}{\pi} \sqrt{|D_L|}$.
+\begin{proof}
+We apply the theorem to $\sigma(I) \subseteq \C$ to get $\lambda \in \sigma(I) - \{0\}$, such that $|\lambda|^2 \leq \frac{4}{\pi} \cdot \frac{N(I)}{2} \sqrt{|D_L|} = c_l N(I)$. If $\alpha \in I$ is such that $\sigma(\alpha) = \lambda$, then $N(\alpha) = \sigma(\alpha) \overline{\sigma(\alpha)} = |\sigma(\alpha)|^2 = |\lambda|^2$.
+\end{proof}
+\end{coro}
+
+\begin{coro} (6.6)\\
+If $[I] \in Cl(\mathcal{O}_L)$, then there exists $J \in [I]$ such that $N(J) \leq c_L$.
+\begin{proof}
+Choose $k \in [I]^{-1}$ so that $IK$ is principal. Apply the corollary to find $\alpha \in K-\{0\}$, such that $N(\alpha) \leq c_L N(K)$. Then $(\alpha) \subseteq K \implies K | (\alpha) \implies \exists J \subseteq \mathcal{O}_L$ non-zero ideal such that $JK = (\alpha)$. We have $[J] = [K]^{-1} = [I]$, so $J \in [I]$. Also, $N(J) = N(\alpha) / N(K) \leq c_L$.
+\end{proof}
+\end{coro}
+
+\begin{thm} (6.7)\\
+The group $Cl(\mathcal{O}_L)$ is finite. (we'll prove this for any $L$ next time).
+\begin{proof}
+We've shown every class $[I] \in Cl(\mathcal{O}_L)$ has a representative of norm $\leq c_L$. It therefore suffices to show that $\forall m \in \Z, m \geq 1$, the number of ideals $I \subseteq \mathcal{O}_L$ of norm $N(I) = m$ is finite. If $N(I) = m$, then $[\mathcal{O}_L:I] = m$, so by Lagrance, $m \in I$. Thus $I$ comes from an ideal of the finite ring $\mathcal{O}_L / m\mathcal{O}_L$.
+\end{proof}
+\end{thm}
+
+Note: we see $CL(\mathcal{O}_L)$ is generated by ideal classes $[P]$, where $P \subseteq \mathcal{O}_L$ is a non-zerp prime ideal of norm $N(P) \leq c_L$. Why? Any class has the form $[I]$, where $N(I) \leq c_L$. If $I = \prod_{i=1}^r p_i^{e_i}$, then $[I] = \pod_{i=1}^r [P_i]^{e_i}$ and $N(I) = \prod_{i=1}^r N(P_i)^{e_i}$, so $N(P_i) \leq N(I) \leq c_L$ for each $i=1,...,r$.
+
+\begin{eg}
+Consider $d=-7$. $d \equiv 1\pmod 4$, so $D_L = -d$, $c_l = \frac{2}{\pi} \sqrt{7} < \frac{2}{3} \sqrt{7} < 2$.\\
+$Cl(\mathcal{O}_L)$ is generated by ideals of norm $<2$. There are none except $\mathcal{O}_L$, so $Cl(\mathcal{O}_L)$ is the trivial group. Hence $\mathcal{O}_L = \Z[\frac{1+\sqrt{-7}}{2}]$ is a UFD.\\
+$d=-5$: $D_L = -4d$, $c_L = \frac{2}{\pi} \sqrt{70} = \frac{4}{\pi} \sqrt{5} < \frac{4}{3}\sqrt{5} < 3$. Hence $Cl(\mathcal{O}_L)$ is generated by prime ideals $P \subseteq \mathcal{O}_L$ of norm $N(P) = 2$. We know by Dedekind's criterion that $2\mathcal{O}_L = P^2$. Hence $Cl(\mathcal{O}_L)$ is generated by $[P]$, and $[P]^2 = [2\mathcal{O}_L]$ is the trivial class.\\
+Hence there are two possibilities: if $P$ is principal, then $Cl(\mathcal{O}_L)$ is trivial; if $P$ is not principal, then $Cl(\mathcal{O}_L) \cong \Z/2\Z$. We know $\mathcal{O}_L$ is not a UFD, so we must have $Cl(\mathcal{O}_L) \cong \Z/2\Z$.
+\end{eg}
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
