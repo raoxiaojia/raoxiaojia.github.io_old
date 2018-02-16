@@ -629,6 +629,59 @@ In proof of Zorn's kemma, we chose, for each $x \in X$, and $x' \supset x$, i.e.
 More precisely, the axiom of choice states that, if $(A_i : i \in I)$ is a family of sets, we have a choice function, meaning a function $f:I \to \cup_{i \in I} A_i$ s.t. $f(i) \in A_i$ $\forall i$. This is of a different characterto the other set-building rules in that the object whose existence is asserted is not uniquely specified by its properties (unlike ,e.g., $A \cup B$).\\
 So often one points out when one has used axiom of choice.
 
+Note that AC is trivial $|I| = 1$ ($A \neq \phi$ means $\exists x \in A$). Similarly for $I$ finite by induction. However, there is no derivation of AC from the other set-building rules for general $I$.
+
+Also, we cannot prove ZL without AC because we can deduce AC from ZL:\\
+Given family $(A_i:i \in I)$ of non-empty sets, a partial choice function is an $f:J \to \cup_{i \in I} A_i$ for some $J \subset I$, s.t. $f(j) \in A_j \forall j \in J$. Put $(J,f) \leq (J',f')$ if $J \subset J'$ and $f'|J = f$. This poset is not empty. Also, given a chain we have an upper bound being the union of them. So by ZL, there is a maximal of such. We must have $J=I$ in that case, as if not we can choose (???) $i \in I \setminus J$, $x \in A_i$ and put $J' = J \cup \{i\}$, $f' = f \cup \{(i,x)\}$. Contradiction.
+
+Conclusion: ZL $\iff$ AC (in presence of the other set-building rules).
+
+Also, we had $ZL \implies WO$, and $WO \implies AC$ trivially (well order $\cup i \in I A_i$ and let $f(i)$ be the least element of $A_i$). So we get $ZL \iff AC \iff WO$.
+
+\subsection{The Bourbaki-Witt theorem}
+Poset $X$ is \emph{chain-complete} if $X \neq \phi$ and every non-empty chain has a sup.\\
+For example, any complete poset is chain-complete; any finite poset is chain-complete; and $\{A \subset V: A$ is LI$\}$, for a vector space $V$ is also.
+
+We say $f:X \to X$ is \emph{inflationary} if $f(x) \geq x$ $\forall x$.
+
+\begin{thm} (Bourbaki-Witt)\\
+$X$ chain-complete, $f:X \to X$ inflationary. Then $f$ has a fixed point.\\
+Note that BW follows instantly from ZL: take maximal $x$, and now $f(x) \geq x$ $\implies f(x) = x$.\\
+However, we can prove BW without AC: we pick some $x_0 \in X$, then let $x_1 = f(x_0)$, $x_2 = f(x_1)$, ..., and let $x_\omega$ be the sup of them.
+
+In chapter 2, we did not use AC, except in remark that well-ordering $\iff$ no decreasing sequence, and that $\omega_1$ is not a countable sup.
+\end{thm}
+
+In fact, it's easy to deduce ZL from BW (using AC). So we can view BW as the choice-free version of ZL.
+
+\newpage
+\section{Predicate Logic}
+Recall that a group is a set equipped with functions:\\
+$M:A^2 \to A$ ('arity' (slots) 2) and inverse $iA \to A$ ('arity' 1), and a constant $e \in A$ (kind of 'arity' 0), s.t.
+\begin{equation*}
+\begin{aligned}
+& (\forall x,y,z \in A) (M(x,M(y,z)) = M(M(x,y),z)),\\
+(\forall x \in A) (M(x,e) = x \wedge M(e,x) = x),\\
+(\forall x \in A) (M(x,i(x)) = e \wedge M(i(x),x) = e)
+\end{aligned}
+\end{equation*}
+
+And a poset is a set $A$ equipped with a predicate (relation) $\leq$ (arity 2) $\subset A^2$ s.t\\
+\begin{equation*}
+\begin{aligned}
+(\forall x \in A) (x \leq x),\\
+(\forall x,y,z \in A) ((x \leq y) \wedge (y \leq z) \implies x \leq z),\\
+(\forall x,y \in A) ((x \leq y \wedge y \leq x) \implies x = y)
+\end{aligned}
+\end{equation*}
+
+We try to establish these correspondence between propositional logic and predicate logic:
+Language $\to$ e.g. language of groups (thinks like the definitions above);\\
+Valuation $\to$ structure (set equipped with functions and relations of given arities);\\
+Model of $S$ (valuation making each $s \in S$ true) $\to$ model of $S$ (structure in which each $s \in S$ holds);\\
+$S \vDash t$ $\to $ same (e.g. In language of groups, should have the above 3 definitions $\vDash M(e,e) = e$ etc);\\
+$S \vdash t$ $\to $ same (but a bit more complicated).
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
