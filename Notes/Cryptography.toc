@@ -7,3 +7,4 @@
 \contentsline {subsection}{\numberline {2.2}Channel Capacity}{18}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Conditional Entropy}{19}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Linear codes}{24}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Syndrome Decoding}{26}{subsection.2.5}

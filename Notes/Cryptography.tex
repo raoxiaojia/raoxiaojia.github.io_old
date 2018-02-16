@@ -934,6 +934,89 @@ A $(n,k)$ linear code with generator matrix $G = (I_k|B)$ has parity check matri
 Since $GH^T = -B+B =0$, we know rows of $H$ generate a subcode $C^\perp$. But $\dim (C^\perp) = n-k = r(H)$ as $H$ has $I_{n-k}$ as submatrix. So the rows of $H$ are a basis for $C^\perp$ as required.
 \end{proof}
 \end{lemma}
+
+Hamming weight: the weight of $x \in F_2^n$ is $N(x) = d(x,0)$.
+
+\begin{lemma} (2.22)\\
+The minimum distance of a linear code $C$ is the minimum weight of a non-zero codeword.
+\begin{proof}
+Let $x,y \in C$. Then $x+y \in C$, and $d(x,y) = d(x-y,0) = d(x+y,0) = w(x+y)$. Note $x,y$ distinct means $x+y \neq 0$, so $d(C) = \min_{x,y \in C distinct} d(x,y) = \min_{z \in C,z \neq 0} w(z)$.
+\end{proof}
+\end{lemma}
+
+\begin{defi}
+The weight $w(C)$ of a linear code $C$ is the minimum weight of a non-zero codeword.
+
+By (2.22), this is the same as minimum distance.
+\end{defi}
+
+\subsection{Syndrome Decoding}
+Let $C$ be a $(n,\hat{k})$-linear code with parity check matrix $H$. Then $C =\{x \in F_2^n: Hx = 0\}$ where $x$ is a column vector.
+
+Suppose we receive $y=c+e$ where $c \in C$ is a codeword and $e \in F_2^n$ is an error. We compute the \emph{syndrome} $Hy$. Suppose we know $C$ is $k$-error correcting. Then we tabulate the syndromes $He$ for all $e \in F_2^n$ with $w(e) \leq k$. If we receive $y$ we search for $Hy$ in our list. If successful, we get $Hy = He$ for some $e \in F_2^n$ with $w(e) \leq k$. We decode $y$ as $c = y-e$. Then $c \in C$ as $Hc = Hy-He = 0$ and $d(y,c) = w(e) \leq k$.
+
+Recall Hamming's original code: $c_1+c_3+c_5+c_7 = 0$, $c_2+c_3+c_6+c_7 = 0$, $c_4+c_5+c_6+c_7 = 0$. So $c^\perp = \bra (1010101),(0110011),(0001111)\ket$. So 
+\begin{equation*}
+\begin{aligned}
+H=\begin{pmatrix}
+1010101\\
+0110011\\
+0001111
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+and $Hy = z = (z_1 z_2 z_4)$.
+
+In general we have Hamming codes: let $d \geq 1, n = 2^d-1$. Let $H$ be the $d \times n$ matrix whose columns are the non-zero elmeents of $F_2^d$. The hamming $(n-n-d)$ linear code is the linear code with parity check matrix $H$ (original is $d=3$).
+
+\begin{lemma} (2.23)\\
+Let $C$ be a linear code with parity check matrix $H$. Then $w(C) = d$ iff\\
+(i) any $(d-1)$ columns of $H$ are linearly independent;\\
+(ii) some $d$ columns of $H$ are linearly dependent.
+\begin{proof}
+Suppose $C$ has length $n$. Then $C = \{x \in F_2^n: Hx = 0\}$. If $H$ has columnts $v_1,...,v_n$. Then
+\begin{equation*}
+\begin{aligned}
+(x_1,,...,x_n) \in C \iff \sum_{i=1}^n x_i v_i = 0
+\end{aligned}
+\end{equation*}
+i.e. code words are dependence relations between columns.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (2.24)\\
+The Hamming $(n,n-d)$ linear code has minimum distance $d(C) = 3$, and is a perfect $1$-error correcting code.
+\begin{proof}
+Any two columns of $H$ are linearly independent (where $H$ is the parity check matrix of $C$, but there exists $3$ that are linearly dependent. Hence $d(C) = 3$ by (2.23). And (2.4) says $C$ is a 1-error correcting code. To be perfect: $|C| = \frac{2^n}{V(n,e)}$, here $n = 2^d - 1$, $e=1$, so $\frac{2^n}{V(n,e)} = \frac{2^n}{1+2^d-1} = 2^{n-d} = |C|$.
+\end{proof}
+\end{lemma}
+
+New codes from old:
+
+The following construction is specefic to linear code.
+
+\begin{defi}
+Let $C_1$, $C_2$ linear codes of length $n$ with $C_2 \subseteq C_1$, i.e. $C_2$ is a subcode of $C_1$. The \emph{bar product} is 
+\begin{equation*}
+\begin{aligned}
+C_1 | C_2 = \{(x|x+y): x \in C_1, y \in C_2\}
+\end{aligned}
+\end{equation*}
+is a linear code of length $2n$.
+
+\begin{lemma} (2.25)\\
+Let $C_1,C_2$ be as above.\\
+(i) $rk (C_1|C_2) = rank(C_1)+rk(C_2)$;\\
+(ii) $w(C_1|C_2) = \min \{2w(C_1),w(C)2)\}$.
+\begin{proof}
+(i) Let $x_1,...,x_k$ be basis for $C_1$. Let $y_1,...,y_l$ be basis for $C_2$. Then $\{(x_i|x_i) : 1 \leq i \leq k\} \cup \{(0 | y_i): 1 \leq j \leq l\}$ is a basis for $C_1 | C_2$, hence $rank(C_1|C_2) = rank(C_1)+rank(C_2)$.\\
+(ii) Let $x \in C_1$, $y \in C_2$ not both zero. If $y \neq 0$: $w(x|x+y) = w(x)+w(x+y) \geq w(y \geq w(C_2)$. If $y=0$ (so $x \neq 0$), $w(x|x) = 2w(x) \geq 2w(C_1)$. So $w(C_1|C_2) \geq \min \{2w(C_1),w(C_2)\}$. But there exists $0 \neq x \in C_1$ s.t. $w(x) = w(C_1)$, so $w(x) = 2w(x) = 2w(C_1)$; So $w(0|y) = w(y) = w(C_2)$. So $w(C_1|C_2) = \min\{2w(C_1), w(C_2)\}$.
+\end{proof}
+\end{lemma}
+\end{defi}
+
+
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
