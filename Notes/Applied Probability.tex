@@ -677,7 +677,86 @@ We will denote a queue by: $A/B/k$, where $A$ describes the distribution of inte
 
 An example which we will look into is $M/M/1$ queue.
 
+Let's consider a  $A/B/k(=1)$ queue. Let $X$ be a typical inter-arrival time, $S$ be a typical service time. Define $\rho = \frac{E(S)}{E(S)}$ to be the traffic intensity. Overall observation: if $\rho > 1$, the queue grows in length; and if $\rho < 1$ the queue converges to some equilibrium.
 
+Now consider a $M_\lambda/M_\mu/1$, i.e. arrivals form a $PP(\lambda)$, service times are independent $Exp(\mu)$. Let $Q_t$ be the number of people in the system at time $t$, including anybody being served. By the lack of memory property, $Q = (Q_t:t \geq 0)$ is Markov chain on $S = \{0,1,2,...\}$. We have under this model,
+\begin{equation*}
+\begin{aligned}
+g_{i,i+1} = \lambda & i \geq 0,\\
+g_{i,i-1} = 0 & i = 0,\\
+g_{i,i-1} = \mu & i \geq 1
+\end{aligned}
+\end{equation*}
+And obviously $g_{i,j} = 0$ for $|i-j| \geq 2$.
+
+$g_i ( = -g_{i,i}) \leq \lambda+\mu < \infty$ $\forall i$, so the chain is non-explosive.
+
+For con(?), assume $Q_0 =0 $. Let $p_n(t) =  \P(Q_t = n)$. The K-forward equation is 
+\begin{equation*}
+\begin{aligned}
+p'_n(t) &= \lambda p_{n-1}(t) - (\lambda+\mu)p_n (t) + \mu p_{n+1}(t) & n \geq 1\\
+p'_0(t) = -\lambda p_0(t) + \mu p_1(t)
+\end{aligned}
+\end{equation*}
+We can write this as $P'_t = P_t G$. This may be solved directly to find $p_n(t)$ in terms of a modified Bessel function,
+\begin{equation*}
+\begin{aligned}
+\hat{p}_n(\theta) = \int_0^\infty e^{-\theta t} p_n(t) dt, \theta \geq 0,\\
+\theta \hat{p}_n = \lambda \hat{p}_{n-1} -(\lambda + \mu) \hat{p}_n + \mu \hat{p}_{n+1}, n \geq 1,\\
+\theta \hat{p}_0 - 1 = \lambda \hat{p}_0 - \mu \hat{p}_1
+\end{aligned}
+\end{equation*}
+Solve this difference equation as usual: The indicial/auxiliary equation is
+\begin{equation*}
+\begin{aligned}
+\mu x^2 - (\lambda + \mu + \theta) x + \lambda = 0
+\end{aligned}
+\end{equation*}
+unique solution that is bounded in $\theta$ is
+\begin{equation*}
+\begin{aligned}
+x =\frac{\lambda+\theta) \pm \sqrt{(\lambda+\mu+\theta)^2 -4\lambda \mu}}{2\mu}
+\end{aligned}
+\end{equation*}
+Note that we can't have plus here, otherwise the solution is unbounded in $\theta$. So let the minus solution be $\alpha(\theta)$. So
+\begin{equation*}
+\begin{aligned}
+\hat{p}_n (\theta) = \hat{p}_0(\theta) \alpha(\theta)^n
+\end{aligned}
+\end{equation*}
+We have also used the fact that $\hat{p}_n$ are continuous functions.
+
+Find expression for $\hat{p}_0$ by either using (*), or using $\sum_n p_n(t) = 1$, so $\sum_n \hat{p}_n(\theta) = \frac{1}{\theta}$.
+
+So $\hat{p}_n(\theta) = \frac{1}{\theta} \alpha(\theta)^n (1-\alpha(\theta))$.
+
+Invariant measures:\\
+Let $t \to \infty$ in $p_n(t)$. It's easier to solve equation $\pi G = 0$:
+\begin{equation*}
+\begin{aligned}
+\lambda \pi_{n-1} - (\lambda+\mu) \pi_n + \mu \pi_{n+1} = 0
+\end{aligned}
+\end{equation*}
+Write $\lambda/\mu = \rho$, the solution is
+\begin{equation*}
+\begin{aligned}
+\pi_n = \left\{ \begin{array}{ll}
+A+B \rho^n & \rho \neq 1\\
+A+Bn & \rho=1
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+$\pi_n)$ is a measure iff $\rho < 1$, in which case $\pi_n = B\rho^n$ with $B = 1-\rho$.. So the unique invariant measure (when $\rho<1$) is the geometric distribution.
+
+We know $Q$ is irreducible (since $\lambda,\mu>0$), non-explosive, and (when $\rho<1)$ has an invariant measure. Hence $Q$ is positive recurrent.
+
+\begin{thm} (Burke)\\
+Let $\rho < 1$. Assume $Q_0$ has the invariant distribution $\pi$. Let $D = (D_t:t \geq 0)$ be the departure process, i.e. $D_t$ = number of departures up to $t$. Then $D_t$ is a $PP(\lambda)$ (!), and $Q_t$ is independent of $(D_s:s \leq t)$. 
+\begin{proof}
+The 'reason' is that $Q$ is reversible.
+\end{proof}
+\end{thm}
 
 \iffalse
 \begin{equation*}
