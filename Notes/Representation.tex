@@ -1260,6 +1260,146 @@ where $\psi_i$ are irreducible characters of $G$.
 \end{proof}
 \end{lemma}
 
+\begin{lemma} (10.3)\\
+Let $\chi$ be irreducible character of $G$, and let $Res_H^G \chi = \sum c_I \chi_i$ with $\chi_i$ irreducible characters of $H$, $c_i \in \Z_{\geq 0}$. Then
+\begin{equation*}
+\begin{aligned}
+\sum c_I^2 \leq |G:H|
+\end{aligned}
+\end{equation*}
+with equality iff $\chi(g) = 0$ $\forall g \in G \setminus H$.
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+\sum c_i^2 = \bra Res_H^G \chi,Res_H^G \chi \ket_H = \frac{1}{|H|} \sum_{h \in H} |\chi(h)|^2
+\end{aligned}
+\end{equation*}
+But 
+\begin{equation*}
+\begin{aligned}
+1 = \bra \chi,\chi\ket G &= \frac{1}{|G|} \sum_{g \in G} |\chi(g)|^2\\
+&= \frac{1}{|G|} (\sum_{h \in H} |\chi(h)|^2 + \sum_{g \in G \setminus H} |\chi(g)|^2)\\
+&= \frac{|H|}{|G|} \sum c_i^2 + \underbrace{\frac{1}{|G|} \sum_{g \in G \setminus H} |\chi(g)|^2}_{\geq 0}
+\end{aligned}
+\end{equation*}
+So $\sum c_i^2 \leq |G:H|$, with equality holds iff $\chi(g) = 0$. $\forall g \in G\setminus H$.
+\end{proof}
+\end{lemma}
+
+\begin{eg}
+Let $G=S_5$, $H=A_5$. This has 7 representations of degree $1,1,4,4,5,5,6$ respectively, where if we restrict to $H$, the two representations of degree $1,4,5$ combines into one of the same degree respectively; however, the degree $6$ representation splits into two irreducible representations of degree 3. In the first case we have $\chi(g) \neq 0$ somewhere outside $H$; for the degree $6$ representation, $\chi(g) = 0$ $\forall g \in S_5 \setminus A_5$. All restrictions are irreducible if $|G:H|=2$ which is the case here. Fact: $\chi \downarrow_H$ all constituents have same degree if $H \triangleleft G$ (Janes-Liebeck, chapter 20).
+\end{eg}
+
+Let's talk about induced characters.
+
+\begin{defi} (10.4)\\
+If $\psi \in \mathcal{C}(H)$, define $Ind_H^G \psi(g) = \frac{1}{|G|} \sum_{\chi \in G} \mathring{\psi} (x^{-1} gx)$, where
+\begin{equation*}
+\begin{aligned}
+\mathring{\psi(g)} = \left\{\begin{array}{ll}
+\psi(g) & g \in H\\
+0 & g \not\in H
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+We also write $Ind_H^G \psi (g)$ as $\psi \uparrow^G = \psi^G$.
+\end{defi}
+
+\begin{lemma} (10.5)\\
+If $\psi \in \mathcal{C}(H)$ then $Ind_H^G \psi \in \mathcal{C}(G)$ and $Ind_H^G \psi(1) = |G:H|\psi(1)$.
+\begin{proof}
+This is clear, noting that $Ind_H^G \psi(1) = \frac{1}{H} \sum \mathring{\psi}(1) = |G:H| \psi(1)$.
+\end{proof}
+\end{lemma}
+
+Let $n = |G:H|$. Let $1=t_1,t_2,...,t_n$ be a \emph{left transversal} of $H$ in $G$ (complete set of coset representatives), so that $t_1H = H$, $t_2H,...,t_nH$ are precisely the $n$ left cosets of $H$ in $G$.
+
+\begin{lemma} (10.6)\\
+Given left transversal as above,
+\begin{equation*}
+\begin{aligned}
+Ind_H^G \psi(g) = \sum_{i=1}^n \mathring{\psi} (t_i^{-1} gt_i)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+For $h \in H$, $\mathring{\psi}((t_i h)^{-1} g(t_ih)) = \mathring{\psi} (t_i^{-1} g t_i)$ as $\psi$ is a class function on $H$.
+\end{proof}
+\end{lemma}
+
+\begin{thm} (10.7, Frobenius reciprocity)\\
+$H \leq G$. $\psi$ is a class function for $H$, $\phi$ is a class function for $G$. Then
+\begin{equation*}
+\begin{aligned}
+\bra \underbrace{Res_H^G \phi}_{in\ \mathcal{C}(H)} , \psi\ket_H = \bra\phi,\underbrace{Ind_H^G \psi}_{in\ \mathcal{C}(G)}\ket_G
+\end{aligned}
+\end{equation*}
+\begin{proof}
+We want to show $\bra \phi_H,\psi\ket_H =\bra \phi,\psi^G \ket_G$:
+\begin{equation*}
+\begin{aligned}
+\bra \phi,\psi^G \ket = \frac{1}{|G|} \sum_{g \in G} \overline{\phi(g)} \psi^G (g) =\frac{1}{|G||H|} \sum_{g,x \in G} \overline{\phi(g)} \mathring{\psi} (x^{-1}gx)
+\end{aligned}
+\end{equation*}
+Put $y=x^{-1}gx$. The above then equals
+\begin{equation*}
+\begin{aligned}
+\frac{1}{|G||H|} \sum_{x,y \in G} \overline{\phi(y)} \mathring{\psi}(y) = \frac{1}{|H|} \sum_{y \in G} \overline{\phi(y)} \mathring{\psi}(y)
+\end{aligned}
+\end{equation*}
+which is independent of $x$, and then equals
+\begin{equation*}
+\begin{aligned}
+\frac{1}{|H|} \sum_{y \in H} \overline{\phi(y)} \psi(y) = \bra \phi_H,\psi\ket_H
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{thm}
+
+\begin{coro} (10.8)\\
+If $\psi$ is a character of $H$, then $Ind_H^G \psi$ is a character of $G$.
+\begin{proof}
+Let $\chi$ be an irreducible character of $G$. Then
+\begin{equation*}
+\begin{aligned}
+\bra Ind_H^G \psi,\chi\ket = \bra \psi,Res_H^G \chi\ket \in \Z_{\geq 0}
+\end{aligned}
+\end{equation*}
+since $\psi$ and $Res_H^G \chi$ are characters. Hence $Ind_H^G \psi$ is a linear combination of irreducible charcaters with non-negative coefficients, hence a character.
+\end{proof}
+\end{coro}
+
+\begin{lemma} (10.9)\\
+Let $\psi$ be a character of $H \leq G$, and let $g \in G$. Let 
+\begin{equation*}
+\begin{aligned}
+\mathcal{C}_G(g) \cup H = \bigcup_{i=1}^m \mathcal{C}_H (x_i)
+\end{aligned}
+\end{equation*}
+(disjoint union), where the $x_i$ are representatives of the $H$-ccls of elements of $H$ conjugate to $g$.\\
+If $m =0$, then $Ind_H^G \psi(g) = 0$. Otherwise
+\begin{equation*}
+\begin{aligned}
+Ind_H^G \psi(g) = |C_G(g)| \cdot \sum_{i=1}^m \frac{\psi(x_i)}{|C_H(x_i)|}
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Assume $m>0$. Let $X_i = \{x \in G: x^{-1} g x \in H$ and is conjugate in $H$ to $x_i\}$ $\forall 1 \leq i \leq m$.
+The $X_i$ are pairwise disjoint, and their union is $\{x \in G: x^{-1} gx \in H\}$. By definition,
+\begin{equation*}
+\begin{aligned}
+Ind_H^G \psi(g) &= \frac{1}{|H|} \sum_{\alpha \in G} \mathring{\psi}(x^{-1}gx)\\
+&= \frac{1}{|H|} \sum_{i=1}^m \sum_{x \in X_i} \psi (x^{-1}gx)\\
+&= \frac{1}{|H|} \sum_{i=1}^m \sum_{x \in X_i} \psi(x_i)\\
+&= \sum_{i=1}^m \frac{|X_i|}{|H|} \psi(x_i)
+\end{aligned}
+\end{equation*}
+and evaluate $\frac{|X_i|}{|H|}$ to get what we want... although a bit tedious.
+\end{proof}
+\end{lemma}
+
+
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
