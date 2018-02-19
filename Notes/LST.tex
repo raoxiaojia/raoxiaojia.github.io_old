@@ -682,6 +682,101 @@ Model of $S$ (valuation making each $s \in S$ true) $\to$ model of $S$ (structur
 $S \vDash t$ $\to $ same (e.g. In language of groups, should have the above 3 definitions $\vDash M(e,e) = e$ etc);\\
 $S \vdash t$ $\to $ same (but a bit more complicated).
 
+Let $\Omega$ (function symbols) and $\Pi$(relation symbols) be disjoint sets, and $\alpha$ (arity) : $\Omega \cup \Pi \to \N$. The \emph{language} $L=L(\Omega,\Pi,\alpha)$ is the set of \emph{formulae}, defined by:\\
+$\bullet$ variables: $x_1,x_2,x_3,...$ (can use $x,y$, etc);\\
+$\bullet$ terms: defined inductively by:\\
+(i) each variable is a term;\\
+(ii) If $f \in \Omega$, $\alpha(f) = n$, and $t_1,...,t_n$ are terms, then $ft_1...t_n$ is a term (and as always, we can add brackets, commas, etc).
+For example, in the language of groups: $\Omega = \{m,i,e\}$ of arities $2,1,0$, $\Pi = \phi$. Some terms: $x_1,m(x_1,x_2),e,m(e,e),m(x_1,i(x_1))$, etc.\\
+$\bullet$ Atomic formulae, consists of:\\
+(i) $\perp$;\\
+(ii) $(s=t)$, any terms $s,t$;\\
+(iii) $\phi(t_1,...,t_n)$, any $\phi \in \Pi$, $\alpha(\phi) = n$, and terms $t_1,...,t_n$.\\
+Again use the language of groups as example: $m(x,y) = m(y,x)$, $m(x,i(x)) = e$;\\
+In language of posets: $\Omega = \phi$, $\Pi = \{\leq\}$ of arity 2. We could take $x=y,x\leq y,x \leq x$.\\
+$\bullet$ Formulae: defined inductively by:\\
+(i) Each atomic formula is a formula;\\
+(ii) If $p,q$ are formulae, then so is $(p \implies q)$;\\
+(iii) If $p$ is a formulae, $x$ is a variable, then $(\forall x) p$ is a formula.\\
+e.g. in language of groupsL $(\forall x)(m(x,x) = e)$, $(\forall x)((m(x,x) = e) \implies (\exists y)(m(y,y) = x))$ (note that we have not talked about $\exists$ yet; we'll do that later).\\
+In language of posets: $(\forall x)(x \leq x)$.\\
+
+Notes:\\
+1. A formula is just a string of symbols.\\
+2. We can now write $\neg p$ for $p \implies \perp$, and similarly for $p \wedge q$, $p \vee q$ etc, and $(\exists x) p$ for $\neg(\forall x)(\neg p)$.
+
+A term is \emph{closed} if it contains no variables. For example, $e,m(e,e),m(e,m(e,e))$. However, $m(x,i(x))$ is \emph{not} closed.\\
+An occurrence of variable $x$ in formular $p$ is \emph{bound} if it is inside the brackets of '$\forall x$' quantifier. Otherwise, it is \emph{free}.\\
+For example, in $m(x,x) = e \implies (\exists y) (m(y,y) = x)$, each $x$ is free and each $y$ is bound.\\
+Note that in some cases we can make a variable both free and bound: $(m(x,x) = e) \implies (\forall x)(\forall y) (m(x,y) = m(y,x))$. We see that $x$ in LHS is free, but in RHS is bound (although it's not a very helpful expression).
+
+A \emph{sentence} is a formula without free variables: e.g., $(\forall x) (m(x,e) = x)$. For formula $p$, variable $x$, term $t$, the \emph{substitution} $p[t/x]$ is obtained by replacing each free occurence of $x$ with $t$.\\
+For example, if $p$ is $(\exists y) (m(y,y) = x)$, then $p[e/x]$ is $(\exists y) (m(y,y) = e)$.
+
+\emph{Semantic entailment}:
+An \emph{$L$-structure} consists of a non-empty (see later wfor why) set $A$ equipped with, for each $f \in \Omega$ with $\alpha(f) = m$, a function $f_A:A^m \to A$, and for each $\phi \in \Pi$, with $\alpha(\phi) = n$, a relation $\phi_A \subset A^n$.
+
+For example, let $L$ be the language of groups: an $L$-structure is a set $A$ with functions $m_A:A^2 \to A$, $i_A: A \to A$, $e_A$ an element of $A$ (need not be a group! These have no 'meaning' yet).\\
+Another example: $L$ be the language of posets: an $L$-structure is a set $A$ with a relation $\leq_A \subset A^2$.
+
+We want to define the \emph{interpretation} $p_A \in \{0,1\}$ of a sentence $p$ in structure $A$, e.g. $(\forall x)(m(x,x) = e)$ shold be 'true in $A$' if $\forall a \in A: m_A(a,a) = e_A$.\\
+So: 'insert $\in A$ subsubscript $A$ and say it aloud'.
+
+\emph{Formal bit}:
+For $L$-structure $A$, define \emph{interpretation} of a closed term $t$ to be $t_A \in A$, defined inductively by:\\
+$(ft_1...t_n)_A = f_A({t_1}_A,...,{t_n}_A)$ for any $f \in \Omega$, $\alpha(f) = n$, closed terms $t_1,...,t_n$.\\
+e.g. $m(e,i(e))_A =m_A (e_A, i_A (e_A))$ (and $e_A$ already defined).\\
+
+Atomic formulae: define $p_A \in \{9,1\}$ for $p$ atomic by:\\
+(i) $\perp_A = 0$;\\
+(ii) 
+\begin{equation*}
+\begin{aligned}
+(s=t)_A = \left\{\begin{array}{ll}
+1 & s_A = t_A\\
+0 & else
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+for $s,t$ closed terms;\\
+(iii) 
+\begin{equation*}
+\begin{aligned}
+\phi(t_1...t_n)_A = \left\{\begin{array}{ll}
+1 & ({t_1}_A,...,{t_n}_A) \in \phi_A\\
+0 & else
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+for $\phi \in \Pi$, $\alpha(\phi) = n$, closed terms $t_1,...,t_n$.
+
+Sentences: $p_A$ defined inductively by:\\
+(i)
+\begin{equation*}
+\begin{aligned}
+(p \implies q)_A =\left\{\begin{array}{ll}
+0 & p_A=1,q_A=0\\
+1 & else
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+(ii)
+\begin{equation*}
+\begin{aligned}
+((\forall i)_p)_A =\left\{\begin{array}{ll}
+1 & p[\bar{a}/x]_A = 1 \text{ for all } a \in A\\
+0 & else
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+where, for any $a \in A$, add constant symbol $\bar{a}$ to $L$, obtaining $L'$, and make $A$ an $L'$-structure by setting $\bar{a}_A = a$.
+
+If $p$ has free variables, we can define $p_A \subset A^{\text{number of free variables of } p}$.\\
+e.g. if $p$ is $(\exists y)(m(y,y) = x)$, then $p_A = \{a \in A: \exists b \in A$ with $m_A(b,b) = a\}$.
 \iffalse
 \begin{equation*}
 \begin{aligned}

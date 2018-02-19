@@ -1015,7 +1015,41 @@ Let $C_1,C_2$ be as above.\\
 \end{lemma}
 \end{defi}
 
+\subsection{Reed-Muller Codes}
+Let $X = F_2^d = \{p_1,...,p_n\}$ where $n=2^d$ (chosen an ordering). For $A \subseteq X$, we get a vector $1_A \in F_2^n$ by the rule $(1_A)_i = 1 \iff p_i \in A$, i.e. $1_A$ is the indicator function of $A$.
 
+For $x,y \in F_2^n$, we have $x+y = (x_1+y_1,...,x_n+y_n)$, $x \wedge y = (x_1y_1,...,x_ny_n)$, then $(F_2^n,+,\wedge)$ is aring.
+
+For $A,B \subseteq X$ we have $1_A+1_B = 1_{A \triangle B}$ where $\triangle$ is the symmetric difference: $A \triangle B = A \cap B \setminus A \cup B$, and $1_A \cup 1_B = 1_{A \cup B}$.\\
+$w(1_A) = |A|$.
+
+Let $v_0 = 1_x = (1,...,1)$ (multiplicative identity).
+
+For $1 \leq i \leq d$, let $v_i = 1_{H_i}$ where $H_i = \{p \in X: p_i = 0\}$.
+
+\begin{defi}
+Let $0 \leq r \leq d$. The Reed-Muller code $RM(d,r)$ of order $r$ and length $2^d$ is the vector subspace of $F_2^n$ spanned by $v_0$ and wedge products of at most $r$ of the $v_i$.\\
+Convention: the wedge product with zero terms is $v_0$.
+\end{defi}
+
+For example, consider $d=3$. We have $v_0 = 11111111,v_1 = 11110000,v_2=11001100,v_3 = 10101010$, and we can calculate their wedge products correspondingly. We have $RM(3,0)$ is spanned by $v_0$. It is the repetition code of length 8; $RM(3,1)$ is spanned by $v_0,v_1,v_2,v_3$. Deleteing the 1st component gives Hamming's $(7,4)$-code, i.e. the last 7 digits of $v_i$ are generator matrix for Hamming's $(7,4)-$code. Note also that all $v_i$ have even weight. So $RM(3,1)$ is equivalent to the partiy check extension of Hamming's $(7,4)-$code.\\
+
+$RM(3,2)$ is spanned by $v_0,v_1,v_2,v_3,v_1 \wedge v_2,v_2 \wedge v_3,v_3 \wedge v_1$. These are linearly independent (see next theorem), so $RM(3,2)$ is a $(8,)7$-code. Each codeword has even weight, so $RM(3,2)$ is the simple parity check code of length $8$.
+
+Lastly, $RM(3,3)$ is the trivial code.
+
+\begin{thm} (2.26)\\
+(i) The vectors $v_{i_1} \wedge ... \wedge v_{i_s}$ for $1 \leq i_1 < ... < i_s < d$ and $0 \leq s \leq d$ are a basis for $F_2^n$.\\
+(ii) $RM(d,r)$ has rank $\sum_{s=0}^r {d \choose r}$.\\
+(iii) $RM(d,r) = RM(d-1,r) | RM(d-1,r-1)$.\\
+(iv) $RM(d,r)$ has weight $2^{d-r}$.
+\begin{proof}
+(i) We have a set of $\sum_{s=0}^d = 2^d = n$ vectors, so it suffices to show they span $F_2^n$, equivalently $R(d,d) = F_2^n$. Let $p \in X$. Let $y_i = v_i$, if $p_i=0$, or $v_0+v_i$ if $p_i = 1$. Then $1_{\{p\}} = y_1 \wedge y_2 \wedge ... \wedge y_d$. Expanding using distributive law gives that $1_{\{p\}} \in RM(d,d)$. But these indicator functions form a spanning set.\\
+(ii) By definition, $RM(d,r)$ is spanned by the vectors $v_{i_1} \wedge ... \wedge v_{i_s}$ with $1 \leq i_1 < ... < i_s \leq d$ and $0 \leq s \leq r$. By (i) those are LI, so is a basis. Then just count the number of vectors.\\
+(iii) We order $X = F_2^d$ s.t. $v_d = (0...0 11...1)$, and $v_i = (v'_i | v'_i)$ for $1 \leq i \leq d-1$.\\
+Let $z \in RM(d,r)$. It is a sum of wedge products of $v_0,...,v_d$, so $z = x+(y \wedge v_d)$, where $x$ and $y$ are sums of wedge products of $v_0,...,v_{d-1}$. We have $(x=(x'|x')$ for some $x' \in RM(d-1,r)$, $y= (y' | y')$ for some $y' \in RM(d-1,r-1)$. So $z=(x'|x')+(y'|y') \wedge (000...0|1...1) = (x'|x'+y') \in RM(d-1,r) | RM(d-1,r-1)$. Also, ranks same by (2.25) and (ii).
+\end{proof}
+\end{thm}
 
 \iffalse
 \begin{equation*}

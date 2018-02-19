@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  16 FEB 2018 09:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  19 FEB 2018 10:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -873,24 +873,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 669--670
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 685--703
+
+ []
+
 [23]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 694.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 694.
+Underfull \hbox (badness 10000) in paragraph at lines 725--729
+
+ []
+
+[24] [25]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 789.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 789.
  (./LST.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 694.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 694.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 789.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 789.
 Package rerunfilecheck Info: File `LST.out' has not changed.
 (rerunfilecheck)             Checksum: A5BC15A13DEA3282BA670B97A3F1FAFC;663.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 694.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 789.
  ) 
 Here is how much of TeX's memory you used:
- 27895 strings out of 494910
- 664383 string characters out of 6179835
+ 27901 strings out of 494910
+ 664429 string characters out of 6179835
  889612 words of memory out of 5000000
  30587 multiletter control sequences out of 15000+600000
- 15626 words of font info for 101 fonts, out of 8000000 for 9000
+ 15842 words of font info for 103 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 57i,12n,77p,939b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,15n,77p,939b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
@@ -908,10 +918,10 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on LST.pdf (23 pages, 285245 bytes).
+Output written on LST.pdf (25 pages, 297756 bytes).
 PDF statistics:
- 256 PDF objects out of 1000 (max. 8388607)
- 210 compressed objects within 3 object streams
- 36 named destinations out of 1000 (max. 500000)
+ 268 PDF objects out of 1000 (max. 8388607)
+ 220 compressed objects within 3 object streams
+ 38 named destinations out of 1000 (max. 500000)
  14437 words of extra memory for PDF output out of 17280 (max. 10000000)
 
