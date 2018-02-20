@@ -895,7 +895,7 @@ Well this looks like Q4/Q12 in the first example sheet.
 \begin{proof}
 Note $\chi(g) = \tr(\rho(g)) = \tr(\tilde{\rho}(gN)) = \tilde{\chi}(gN) \forall g$, and $\chi(1) = \tilde{\chi}(N)$. SO have some degree (?).
 
-Bijection: if $\tilde{\chi}$ is a charcter of $G/N$-representaiton and $\chi$ is its lift to $G$, then $\chi(N) = \chi(1)$. Also, if $k \in N$ then 
+Bijection: if $\tilde{\chi}$ is a charcter of $G/N$-representation and $\chi$ is its lift to $G$, then $\chi(N) = \chi(1)$. Also, if $k \in N$ then 
 \begin{equation*}
 \begin{aligned}
 \chi(k) = \tilde{\chi} (kN) = \tilde{\chi}(N) = \chi(1)
@@ -910,14 +910,14 @@ Now let $\chi$ be character of $G$ with $N \leq \ker\chi$. Suppose $\rho:G \to G
 &gN &\to \rho(g)
 \end{aligned}
 \end{equation*}
-Check this is well-defined (uses $N \leq \ker\chi$) and $\tilde{\rho}$ is homomorphism, hence gives representaiton of $G/N$. If $\tilde{\chi}$ is the character of $\tilde{\rho}$ then $\tilde{\chi}(gN) = \chi(g)$ $\forall g\in G$. So $\tilde{\chi}$ lifts to $\chi$.\\
+Check this is well-defined (uses $N \leq \ker\chi$) and $\tilde{\rho}$ is homomorphism, hence gives representation of $G/N$. If $\tilde{\chi}$ is the character of $\tilde{\rho}$ then $\tilde{\chi}(gN) = \chi(g)$ $\forall g\in G$. So $\tilde{\chi}$ lifts to $\chi$.\\
 Check irreducibility.
 \end{proof}
 \end{lemma}
 
 \begin{lemma} (8.2)\\
 The derived subgroup, $G' = \bra[a,b],a,b \in G \ket$ of $G$ is the unique minimal normal subgroup of $G$ s.t. $G/G'$ is abelian, i.e. $G/N$ is abelian $\implies G' \leq N$ and $G^{ab}=G/G'$ is abelian, where $G^{ab}$ is the \emph{abelianisation} of $G$.\\
-$G$ has precisely $l=|G/G'|$ representaitons of $\dim 1$, all with kernel containing $G'$ and obtained by lifting from $G/G'$. In particular, $l | |G|$.
+$G$ has precisely $l=|G/G'|$ representations of $\dim 1$, all with kernel containing $G'$ and obtained by lifting from $G/G'$. In particular, $l | |G|$.
 \begin{proof}
 $G'\triangleleft G$ is an easy exercise.
 
@@ -994,7 +994,7 @@ So $\chi_{\rho^*}(g) = \sum \lambda_j^{-1}  = \chi_\rho(g^{-1})$.
 $\rho:G \to GL(V)$ is \emph{self-dual} if $V \cong V^*$ (as $G$-spaces). Over $\C$, this holds iff $\chi_\rho(g) = \chi_\rho(g^{-1})$ ($=\overline{\chi_\rho(g)}$) $\forall g$, iff $\chi_\rho(g) \in \R$ for all $g$.
 \end{defi}
 
-Exercise: all irreducible representaitons of $S_n$ are self-dual (the ccls are determined by cycle type, so $g,g^{-1}$ are always $S_n$-conjugate. Not always true for $A_n$.
+Exercise: all irreducible representations of $S_n$ are self-dual (the ccls are determined by cycle type, so $g,g^{-1}$ are always $S_n$-conjugate. Not always true for $A_n$.
 
 \subsection{tensor products}
 Let $V,W$ be $F-$spaces, $\dim V = m$, $\dim W = n$. Fix bases $v_1,...,v_m$ and $w_1,...,w_n$ of $V,W$ respectively. The \emph{tensor product space} $V \otimes_F W$ is an $nm$-dimensional $F$-space with basis $\{v_i \otimes w_j: 1 \leq i \leq m, 1 \leq j \leq n\}$. Thus\\
@@ -1394,11 +1394,103 @@ Ind_H^G \psi(g) &= \frac{1}{|H|} \sum_{\alpha \in G} \mathring{\psi}(x^{-1}gx)\\
 &= \sum_{i=1}^m \frac{|X_i|}{|H|} \psi(x_i)
 \end{aligned}
 \end{equation*}
-and evaluate $\frac{|X_i|}{|H|}$ to get what we want... although a bit tedious.
+and evaluate $\frac{|X_i|}{|H|}$ to get what we want... although a bit tedious: Fix $1 \leq i \leq m$ and choose some $g_i \in G$ s.t. $g_i^{-1} gg_i = x_i$ so $\forall c \in C_G (g)$ and $h \in H$,
+\begin{equation*}
+\begin{aligned}
+(cg_i h)^{-1} g(cg_ih) &= h^{-1}g_i^{-1}c^{-1}gcg_i h\\
+&= h^{-1}g_i^{-1} c^{-1}cgg_i h\\
+&=h^{-1} g_i^{-1} g g_i h\\
+&= h^{-1} x_i h \in H
+\end{aligned}
+\end{equation*}
+i.e. $cg_i h \in X_i$, hence $C_G(g) g_i H \subseteq X_i$;
+
+Convserly, if $x\in X_i$ then $x^{-1} gx = h^{-1} x_i h = h^{-1} (g_i^{-1} gg_i)h$ for some $h \in H$; thus $xh^{-1} g_i^{-1} \in C_G(g)$. So $x \in C_G(g) g_i h \subseteq C_G(g) g_i H$. Conclude $X_i = C_G (g) g_i H$, thus 
+\begin{equation*}
+\begin{aligned}
+|X_i| = |C_G(g) g_i H| = \frac{|C_G(g)||H|}{|H \cap g_i^{-1} C_G (g) g_i}
+\end{aligned}
+\end{equation*}
+(see notes at end). Finally $g_i^{-1} C_G(g) g_i = C_G(g_i^{-1} gg_i) = C_G(x_i)$. Thus
+\begin{equation*}
+\begin{aligned}
+|X_i| &= |H:H \cup C_G(x_i)||C_G(g)|\\
+&=|H:C_H(x_i)||C_G(g)|
+\end{aligned}
+\end{equation*}
+Thus, 
+\begin{equation*}
+\begin{aligned}
+\frac{|X_i|}{|H|} &= \frac{|H:C_H(x_i)||C_G(g)|}{|H|}\\
+&= \frac{|C_G(g)|}{|C_H(x_i)|}
+\end{aligned}
+\end{equation*}
+for each $1 \leq i \leq m$.
 \end{proof}
 \end{lemma}
 
+Note: if $H,K \leq G$, a double coset of $H$ and $K$ in $G$ is a set $HgK = \{hgk:h \in H,k \in K\}$ for some $g \in G$.
 
+Facts:\\
+$\bullet$ two double cosets are either disjoint or equal;\\
+$\bullet$ $|HgK| = \frac{|H||K|}{|H \cap gKg^{-1}} = \frac{|H||K|}{|g^{-1} Hg\cap K|}$ (prove this: it's a bit like $|HK|$).
+
+\begin{eg}
+Consider $H = C_4 = \bra (1234 \ket \leq G = S_4$, of index 6. Char of induced representation $Ind_H^G(\alpha)$ wher $|alpha$ is faithful 1-dim representation of $C_4$. If $\alpha((1234)) = i$, then char of $\alpha$ is $(1\ i\ -1\ i)$ for $(1),(1234),(13)(24),(1432)$. The induced representation of $S_4$, we know $Ind_{C_4}^{S_4} \chi_\alpha$ evaluates to 6 at $(1)$ (by (10.5)) and to $0$ at $(12)$ and $(123)$.\\
+For $(12)(34)$ only one of the three elements of $S_4$ it's conjugate to, lies in $H$, namely $(13)(24)$. So $Ind_H^G \chi_\alpha((12)(34)) = 8(-1/4) = -2$.\\
+For $(1234)$, it is conjugate to $6$ elements of $S_4$ of which two are in $C_4$, namely $(1234)$ and $(1432)$. So $Ind_H^G \chi_\alpha (1234) = 4(\frac{i}{4} - \frac{i}{4}) = 0$.
+\end{eg}
+
+\subsection{Induced representations}
+Let $H \leq G$, of index $n$. Let $1=t_1,t_2,...,t_n$ transversal, i.e. $H,t_2H,...,t_n H$ are left cosets of $H$. Let $W$ be a $H$-space.
+
+\begin{lemma} (10.10)\\
+$Ind_{\{1\}}^G 1= \rho_{reg}$.
+\end{lemma}
+
+\begin{defi} (10.11)
+Let $V:=W \oplus t_2\otimes W \oplus ... \oplus t_n \otimes W = \bigoplus_{t_i} t_i \otimes W$, where $t_i \otimes W = \{t_i \otimes w: w \in W\}$. So $\dim V = n\dim W$. We write $V = Ind_H^G W$.
+\end{defi}
+
+\emph{$G$-action}: Let $g \in G$. $\forall i \exists $ unique $j$ with $t_j^{-1} g t_i \in H$ (namely $t_j H$ is the coset containing $gt_i$). You got to understand where did this $g$ come from, otherwise you can't make progress. Define
+\begin{equation*}
+\begin{aligned}
+g(t_i \otimes W) = t_j \otimes ((t_j^{-1} gt_i) w)
+\end{aligned}
+\end{equation*}
+We drop $\otimes$ from now. Check this is a $G$-action. Then
+\begin{equation*}
+\begin{aligned}
+g_1(g_2 t_i w) &= g_1(t_j(t_j^{-1} g_2t_i)w)\\
+&= t_l((t_l^{-1}g_1t_j)(t_j^{-1}g_2 t_i)w)\\
+&= t_l (t_l^{-1} (g_1g_2) t_i)w = (g_1)(g_2) (t_i w)
+\end{aligned}
+\end{equation*}
+where $j$ and $l$ are the unique ones such that $g_2 t_iH = t_jH$ and $g_1 t_j H = t_l H$.
+
+It has the 'right' character: $g:t_i w \to t_j \underbrace{(t_j^{-1} gt_i})_{ \in H} w$, so the contribution to the character is $0$ unless $j=i$, i.e. if $t_i^{-1} gt_i \in H$, in which case it contributes $\psi(t_i^{-1} gt_i)$. So
+\begin{equation*}
+\begin{aligned}
+Ind_H^G \psi_(g) = \sum_1^m \mathring{\psi} (t_i^{-1} gt_i)\ (10.6)
+\end{aligned}
+\end{equation*}
+
+\begin{rem} (10.12)\\
+There is Frobenius Reciprocity,
+\begin{equation*}
+\begin{aligned}
+Hom_H(W,Res_H^G V) \cong Hom_G (Ind_H^G W,V)
+\end{aligned}
+\end{equation*}
+\end{rem}
+naturally as vector spaces ($W$ is a $H$-space, $V$ is a $G$-space).
+
+\begin{lemma} (10.13)\\
+(i) $Ind_H^G(W_1 \oplus W_2) \cong Ind_H^G W_1 \otimes Ind_H^G W_2$;\\
+(ii) $\dim Ind_H^G W = |G:H|\dim W$.\\
+(iii) If $H \leq K \leq G$, then $Ind_K^G Ind_H^K W \cong Ind_H^G W$.\\
+(lecture had (10.10) here because he missed it previously, and labelled (iii) as (iv) while (10.10) as (iii)).
+\end{lemma}
 
 \iffalse
 \begin{equation*}

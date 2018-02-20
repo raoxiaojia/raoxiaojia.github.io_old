@@ -677,7 +677,7 @@ We will denote a queue by: $A/B/k$, where $A$ describes the distribution of inte
 
 An example which we will look into is $M/M/1$ queue.
 
-Let's consider a  $A/B/k(=1)$ queue. Let $X$ be a typical inter-arrival time, $S$ be a typical service time. Define $\rho = \frac{E(S)}{E(S)}$ to be the traffic intensity. Overall observation: if $\rho > 1$, the queue grows in length; and if $\rho < 1$ the queue converges to some equilibrium.
+Let's consider a  $A/B/k(=1)$ queue. Let $X$ be a typical inter-arrival time, $S$ be a typical service time. Define $\rho = \frac{E(X)}{E(S)}$ to be the traffic intensity. Overall observation: if $\rho > 1$, the queue grows in length; and if $\rho < 1$ the queue converges to some equilibrium.
 
 Now consider a $M_\lambda/M_\mu/1$, i.e. arrivals form a $PP(\lambda)$, service times are independent $Exp(\mu)$. Let $Q_t$ be the number of people in the system at time $t$, including anybody being served. By the lack of memory property, $Q = (Q_t:t \geq 0)$ is Markov chain on $S = \{0,1,2,...\}$. We have under this model,
 \begin{equation*}
@@ -754,9 +754,51 @@ We know $Q$ is irreducible (since $\lambda,\mu>0$), non-explosive, and (when $\r
 \begin{thm} (Burke)\\
 Let $\rho < 1$. Assume $Q_0$ has the invariant distribution $\pi$. Let $D = (D_t:t \geq 0)$ be the departure process, i.e. $D_t$ = number of departures up to $t$. Then $D_t$ is a $PP(\lambda)$ (!), and $Q_t$ is independent of $(D_s:s \leq t)$. 
 \begin{proof}
-The 'reason' is that $Q$ is reversible.
+The 'reason' is that $Q$ is reversible.\\
+Let's just remind ourself: here we are considering a $M_\lambda/M_\mu/1$ queue, where $\rho = \lambda/\mu < 1$.\\
+Let $T>0$. $\tilde{Q}_u := Q_{t-u}$ (i.e. reversing the chain). By reversibility, $\tilde{Q}$ has the same probability distribution as $Q$ (subject to an adjustment of continuity at jump times). Departures in $Q$ correspond to arrivals in $\tilde{Q}$ and the converse also holds. Therefore $D$ has the same distribution as the arrival process in $Q$, i.e. $PP(\lambda)$.\\
+For the second part, $Q_0$ is independent of arrivas in $(0,T)$, so $\tilde{Q}(T)$ is independent of departures in $\tilde{Q}$. So $Q_T$ is independent of $(D_s:0<s<T)$.
 \end{proof}
 \end{thm}
+
+Let's now consider $M_\lambda/M_\mu/\infty$, i.e. arrivals begin their services immediately. In a sense, the queue-length at time $t$, $Q_t$, is a type of \emph{thinned Poisson process}. We have $g_{i,i+1} = \lambda$, $g_{i,-1} = \mu i $. The queue process $Q$ is non-explosive.
+
+Number of jumps of $Q$ in $(0,t]$ is no more than $N_t + N_t = 2N_t$, where $N$ is the arrival process, and $\P(N_t < \infty) = 1$ for all $t$.
+
+We look for solutions of $\pi G = 0$: Try detailed balance equations $\pi_i g_{i,j} = \pi_j g_{ji}$: we get
+\begin{equation*}
+\begin{aligned}
+\pi_i = \pi_{i=1} \frac{\lambda}{\mu i} = ... = \pi_0 (\lambda/\mu)^i \frac{1}{i!}
+\end{aligned}
+\end{equation*}
+so $1 = \sum \pi_i = \pi_0 e^{\lambda.\mu}$.
+
+So $\pi_i = (\frac{\lambda}{\mu})^i \frac{1}{i!} e^{-\lambda}{\mu}$ is an invariant distribution. Hence $Q$ is positive recurrent (as it's not explosive).
+
+Now let's turn to the $M/G/1$ queue. We want to find an embedded/discrete-time MC.
+
+Let $D_n$ be the departure time of the $n$th customer. Let $Q(D_n)$ ($=Q_{D_n}$) ($:= Q(D_n+)$). Then 
+\begin{equation*}
+\begin{aligned}
+Q(D_{n+1}) = \left\{\begin{array}{ll}
+Q(D_n) + U_n & Q(D_n) =0 \\
+Q(D_n) - 1 + U_n & Q(D_n) \geq 1
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+where $U_n$ is the number of arrivals during the service of the $(n+1)$th customer.
+
+We can write this as $Q(D_{n+1}) = Q(D_n) + U_n - h(Q(D_n))$, where $h(x) = 1$ if $x>0$ and is $0$ if $x=0$.
+
+$U_n$ depends on length of $(n+1)$ th service, but is independent of $Q(D_1),...,Q(D_n)$. So $Q(D):=(Q(D_n):n\geq 1)$ is a MC. We can study $Q$ by following the embedded chain $Q(D)$. This is OK in the sense that $D_n \to \infty$ as $n \to \infty$.
+
+We define $\delta_j = \P(U_n = j) = E(P(U_n = j|S))$, where $S$ is a typical service length (consider tower law). The above is then equal to $\E(e^{-\lambda S} \frac{(\lambda S)^j}{j!})$.
+
+The pgf of the $\delta_j$ is $\Delta(s) = \sum_j s^j \delta_j = \E(\sum_j \frac{(\lambda Ss)^j}{j!} e^{-\lambda S}) =\E (e^{-\lambda S + \lambda Ss}) =\E (e^{\lambda(s-1)S})$, which is exactly the mgf of $S$ evaluated at $\lambda(s-1)$.
+
+
+
 
 \iffalse
 \begin{equation*}
