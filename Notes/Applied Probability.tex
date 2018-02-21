@@ -797,6 +797,45 @@ We define $\delta_j = \P(U_n = j) = E(P(U_n = j|S))$, where $S$ is a typical ser
 
 The pgf of the $\delta_j$ is $\Delta(s) = \sum_j s^j \delta_j = \E(\sum_j \frac{(\lambda Ss)^j}{j!} e^{-\lambda S}) =\E (e^{-\lambda S + \lambda Ss}) =\E (e^{\lambda(s-1)S})$, which is exactly the mgf of $S$ evaluated at $\lambda(s-1)$.
 
+I think last time we considered a $M/G/1$ chain, and defined $D_n$ to be the time of $n$th departure. We also defined $Q(D_n+)$. So $Q(D) = (Q(D_n):n \geq 1)$ is a MC. We had $\delta_j = \P(j$ arrivals in one service time$)$, $\Delta(s) = \sum \delta_j s^j = \E(e^{\lambda(s-1)S}) = M_s(\lambda(s-1))$. We know $Q(D_{n+1}) = Q(D_n) - h(Q(D_n)) + U_n$ where the $U_n$ are independent with pmf $\delta$.
+
+The transition matrix of $Q(D)$ is 
+\begin{equation*}
+\begin{aligned}
+P = \begin{pmatrix}
+\delta_0 & \delta_1 & \delta_2 & ...\\
+\delta_0 & \delta_1 & \delta_2 & ...\\
+0 & \delta_0 & \delta_1 & ...\
+0 & 0 & \delta_0 & ...\\
+...
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+
+An invariant distribution $\pi$ for $Q(D)$ solution $\pi P = \pi$. Consider $\pi_j = \pi_0 \delta_j + \sum_{i=1}^{j+1} \pi_i \delta_{j-i+1}$ ($j \geq 0$).
+
+For given $\pi_0$, there exists a unique solution (by iteration). We claim (by symming over $j=0,1,...,n$) $\pi_{n+1} \delta_0 = \pi_0 \varepsilon = 1-(\delta_0+\delta1+...+\delta_n) > 0 \forall n$. Hence $\pi_n > 0$ for all $n \geq 0$.
+
+\begin{equation*}
+\begin{aligned}
+\sum_{j=0}^n \pi_j &= \sum_{j=0}^n \pi_0 \delta_j + \sum_{j = 0}^n \sum_{i=1}^{j+1} \pi_i \delta_{j-i+1}\\
+&= \pi_0(1-\varepsilon_n) + \sum_{i=1}^{n+1} \sum_{j=i-1}^n \pi_i \delta_{j-i+1}\\
+&= \pi_0(1-\varepsilon_n) + \pi_{n+1} \delta_0 + \sum_{i=1}^{n-1} \underbrace{\sum_{j=i-1}^n \pi_i \delta_{j-i+1}}_{=\pi_i (1-\varepsilon_{n-i+1})}
+\end{aligned}
+\end{equation*}
+
+
+$\pi$ is a distribution if $\pi_0 > 0$, $\sum \pi_i = 1$, $G(s) = \sum_0^\infty s^j \pi_j$, $\Delta(s) = \sum_j \delta_j s^j$, $G= \pi_0 \Delta + \frac{1}{s}(G-\pi_0) \Delta$.\\
+Therefore $G = \frac{\pi_0(s-1)\Delta}{s-\Delta}$.
+
+We have $G(1) = 1$. By L'Hopital rule, $G(1) = \lim{s \uparrow 1} \frac{\pi_0 \Delta + \pi_0(s-1)\Delta'}{1-\Delta'} = \frac{\pi_0 \Delta(1)}{1-\Delta'(1)}$ which is meaningful iff $\Delta'(1) < 1$. So $\pi_0$ can be picked s.t. $\pi$ is a distribution iff $\Delta'(1) < 1$ in which case $\pi_\Delta = 1-\Delta'(1)$.
+
+$\Delta(s) = M_s(\lambda(s-1))$, and $\Delta'(1) = M'_s(0) \lambda$. But $M'_s(0)$ is the mean of $S$. So $\Delta'(1) = \frac{E(S)}{1/\lambda} = \rho$. So the chain $Q(D)$ has an invariant distribution, and hence is positive recurrent iff $\rho<1$, and the invariant distribution has pgf $G(s)$ as we derived. In addition, when $\rho=1$ we have null recurrence and when $\rho>1$ the chain is transient.
+
+\subsection{Waiting time}
+Let $\rho < 1$, and suppose the embedded queue $Q(D)$ is in equilibrium. Let $W$ denote the (random) waiting time of a typical customer (service time not included).\\
+Number of people left behind on this person's departure is the number of arrivals during my total time $W+S$. By strong Markov Property, this (random) number is independent of arrivals prior to this person.\\
+So $G(s) = \E(e^{\lambda (W+S) (s-1)}) = \E(e^{\lambda W(s-1)}) \E(e^{\lambda S(s-1)}) = M_W(\lambda(s-1))M_S(\lambda(s-1))$, where $M_W$ and $M_S$ are the mgf of $W$ and $S$ respectively; here we also used the tower law $E(S^U) = E(E(S^U|W,S))$. Hence we get $M_W(\lambda(s-1))$ in terms of $G$ and $M_S$.
 
 
 
