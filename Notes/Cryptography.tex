@@ -1047,9 +1047,94 @@ Lastly, $RM(3,3)$ is the trivial code.
 (i) We have a set of $\sum_{s=0}^d = 2^d = n$ vectors, so it suffices to show they span $F_2^n$, equivalently $R(d,d) = F_2^n$. Let $p \in X$. Let $y_i = v_i$, if $p_i=0$, or $v_0+v_i$ if $p_i = 1$. Then $1_{\{p\}} = y_1 \wedge y_2 \wedge ... \wedge y_d$. Expanding using distributive law gives that $1_{\{p\}} \in RM(d,d)$. But these indicator functions form a spanning set.\\
 (ii) By definition, $RM(d,r)$ is spanned by the vectors $v_{i_1} \wedge ... \wedge v_{i_s}$ with $1 \leq i_1 < ... < i_s \leq d$ and $0 \leq s \leq r$. By (i) those are LI, so is a basis. Then just count the number of vectors.\\
 (iii) We order $X = F_2^d$ s.t. $v_d = (0...0 11...1)$, and $v_i = (v'_i | v'_i)$ for $1 \leq i \leq d-1$.\\
-Let $z \in RM(d,r)$. It is a sum of wedge products of $v_0,...,v_d$, so $z = x+(y \wedge v_d)$, where $x$ and $y$ are sums of wedge products of $v_0,...,v_{d-1}$. We have $(x=(x'|x')$ for some $x' \in RM(d-1,r)$, $y= (y' | y')$ for some $y' \in RM(d-1,r-1)$. So $z=(x'|x')+(y'|y') \wedge (000...0|1...1) = (x'|x'+y') \in RM(d-1,r) | RM(d-1,r-1)$. Also, ranks same by (2.25) and (ii).
+Let $z \in RM(d,r)$. It is a sum of wedge products of $v_0,...,v_d$, so $z = x+(y \wedge v_d)$, where $x$ and $y$ are sums of wedge products of $v_0,...,v_{d-1}$. We have $(x=(x'|x')$ for some $x' \in RM(d-1,r)$, $y= (y' | y')$ for some $y' \in RM(d-1,r-1)$. So $z=(x'|x')+(y'|y') \wedge (000...0|1...1) = (x'|x'+y') \in RM(d-1,r) | RM(d-1,r-1)$. Also, ranks same by (2.25) and (ii).\\
+(iv) $RM(d,0)$ is the repetition code of length $2^d$, it has weight $2^d$. $RM(d,d) = F_2^n$ by (i), it has weight $1=2^{d-d}$. If $0 < r < d$ we use (iii) and induction on $d$. By indcution, $RM(d-1,r)$ has weight $2^{d-1-r}$, and $RM(d-1,r-1)$ has weight $2^{d-r}$.\\
+(2.25) implies that RM($d,r)$ has weight $\min \{2 \times 2^{d-1-r}, 2^{d-r}\} = 2^{d-r}$.
 \end{proof}
 \end{thm}
+
+Remark: (i) A different ordering gives an equivalent code.\\
+(ii) You can define the Reed-Muller code recursvively using the bar product, starting with $RM(d,d) = F_2^{2^d}$ and $RM(d,0) = \{1,...,1,0,...,0\}$.
+
+Cyclic codes:
+\begin{defi}
+$C \subset F_2^n$ is a \emph{cyclic code} if it is linear and $(a_0,...,a_{n-1}) \in C \implies (a_{n-1},a_0,...,a_{n-2}) \in C$.
+
+We identify $F_2^n$ with $F_2[x]/(x^n-1)$ via $\pi: (a_0,a_1,...,a_{n-1}) \to a_0+a_1 X + ... + a_{n-1} X^{n-1} \pmod (x^n-1)$.
+\end{defi}
+
+See printed sheet for lemma 2.27 and lemma 2.28 (some facts in grm).
+
+\begin{lemma} (2.29)\\
+A code $C \subset F_2^n$ is cyclic iff $\mathcal{C}=\pi (C)$ satisfies:\\
+(i) $0 \in \mathcal{C}$;\\
+(ii) $f,g \in \mathcal{C} \implies f+g \in \mathcal{C}$;\\
+(iii) $f \in \mathcal{C}, g \in F_2[x] \implies gf \in \mathcal{C}$.
+\begin{proof}
+(i) and (ii) by linearity of $C$.\\
+(iii) if $f(x) = a_0+a_1 x + ... + a_{n-1}x^{n-1}$, then $xf(x) = a_{n-1}+a_0 x + ... + a_{n-2} x^{n-1}$. So $C$ cyclic if $f(x) \in \mathcal{C} \implies xf(x) \in \mathcal{C}$, i.e. (iii) holds if $g=X$. Repeating gives $X^r f(x) \in \mathcal{C}$, then use (ii) to get $gf \in \mathcal{C}$ for $g \in F_2[x]$.
+\end{proof}
+\end{lemma}
+
+\begin{rem}
+So, $C$ is a cyclic code of length $n$ iff $\mathcal{C}$ is an ideal in $F_2[x]/(x^n-1)$. From now on identify $C$ with $\mathcal{C}$.
+\end{rem}
+
+\begin{defi}
+A \emph{generator polynomial} $g(x)$ for a cyclic code $C$ is a polynomial $g(x) | X^n-1$ s.t. $C = \{f(x) g(x) \pmod (x^n-1) | f(x) \in F_2[X]\}$.
+\end{defi}
+
+\begin{thm} (2.30)\\
+Every cyclic code has a generator polynomial.
+\begin{proof}
+$C$ is an ideal in $F_2[x]/(x^n-1)$. By (2.27) (ideal correspondence), $C = J/(x^n-1)$ for some $(X^n-1) \subseteq J \subset F_2[x]$ for  $J$ an ideal. But $F_2[x]$ is a PID, so we can write $J = (g(x))$ for some $g(x) \in F_2[x]$. Then $(x^n-1) \subseteq (g(x)) \implies g(x) | x^n-1$.
+\end{proof}
+\end{thm}
+
+Note: generator polynomials are unique if we insist they are monic (automatic if we are working over $F_2^n$).
+
+\begin{coro}
+There is a bijection between cyclic codes of length $n$ and factors of $X^n-1$ in $F_2[x]$.
+\end{coro}
+
+If cyclic codes $C_1$ and $C_2$ have generator polynomials $g_1$ and $g_2$, and $C_1 \supset C_2 \iff g_1(x) | g_2(x)$.
+
+Also, if $n$ is odd, $f(x) = x^n-1$ has no repeated roots, so $x^n-1 = f_1(x) ... f_r(x)$ where $f_1(x),...,f_r(x)$ are distinct irreducible polynomials in $F_2[x]$. So number of cyclic codes lf oength $n$ is $2^r$.
+
+\begin{lemma} (2.31)\\
+$C$ cyclic code of length $n$ with genrator polynomial $g(x)$,
+\begin{equation*}
+\begin{aligned}
+g(x) = a_0 + a_1 X + ... + a_k X^k (a_k \neq 0)
+\end{aligned}
+\end{equation*}
+Then $g(x), x_g(X),...,x^{n-k-1} g(x)$ is a basis for $C$.
+\begin{proof}
+LI: suppose $f(x) g(x) \equiv 0 \pmod (x^n-1)$ for some $f(x) \in F_2[x]$ with $\deg(f) \leq n-k-1$. As $\deg (fg) \leq n-1$, $f(x)g(x) = 0$, so $f(x) = 0$.\\
+Spanning: let $p(x) \in F_2[x]$ represent an element of $C$, wlog $\deg(p)< n$. Then $p(x) = f(x)g(x)$ for some $f(x) \in F_2[x]$, with $\deg (f) = \deg p - \deg g < n-k \implies p(x)$ is in the span of $g(x),xg(x),...,x^{n-k-1}g(x)$.
+\end{proof}
+\end{lemma}
+
+\begin{coro}
+$C$ has rank $n-k$.\\
+The generator matrix is 
+\begin{equation*}
+\begin{aligned}
+G = \begin{pmatrix}
+a_0 & a_1 & ... & a_k & 0 & ... & 0\\
+0 & a_0 & a_1 & ... & a_k & ... & 0\\
+0 & 0 & a_0 & ... & ... & a_k & 0\\
+...\\
+0 & 0 & ... & a_0 & a_1 & ... & a_k
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+a $n \times (n-k)$ matrix.
+\end{coro}
+
+\begin{defi}
+The \emph{parity check polynomial} $h(x)$ is defined by $g(x) h(x) = x^n-1$.
+\end{defi}
 
 \iffalse
 \begin{equation*}

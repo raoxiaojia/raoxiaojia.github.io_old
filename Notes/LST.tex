@@ -777,6 +777,69 @@ where, for any $a \in A$, add constant symbol $\bar{a}$ to $L$, obtaining $L'$, 
 
 If $p$ has free variables, we can define $p_A \subset A^{\text{number of free variables of } p}$.\\
 e.g. if $p$ is $(\exists y)(m(y,y) = x)$, then $p_A = \{a \in A: \exists b \in A$ with $m_A(b,b) = a\}$.
+
+If $p_A = 1$, say $p$ \emph{true} in $A$, or $p$ holds in $A$, or $A$ is a \emph{model} of $p$. For $T$ a theoy (set of sentences), say $T$ semantically entails $p$, written $T \vDash p$, if every model of $T$ is a model of $p$.
+
+$p$ is a \emph{tautology} if $\phi \vDash p$ (or just $\vDash p$), i.e. $p$ holds in every $L$-structure. For example, $\vDash (\forall x)(x=x)$.
+
+Examples: theory of groups: $\Omega = (m,i,e)$, $\Pi = \phi$. Let
+\begin{equation*}
+\begin{aligned}
+T = \{(\forall x)(\forall y)(\forall z)(m(x,m(y,z)) = m(m(x,y),z),(\forall x)(m(x,e) = x \wedge m(e,x) = x),(\forall x)(m(x,i(x)) = e \wedge m(i(x),x) = e)\}
+\end{aligned}
+\end{equation*}
+Then an $L$-structure is a model of $T$ $\iff$ it is a group.
+
+Say $T$ 'axiomatises' the class of groups or 'axiomatises the theory of groups'.
+
+Sometimes call the elements of $T$ the 'axioms' of $T$.
+
+Theory of fields: $\Omega = \{+,\times,-,0,1\}$. $T$ is: abelian group under $(+,-,0)$; $X$ is commutative, associative, distributive under $+$; $(\forall x)(1x=x)$, $\neg(1=0)$, $(\forall x)((\neg(x=0)) \implies (\exists y) (xy = 1))$. Then $T$ axiomatises the class of fields. E.g., $T\vDash$ inverses are unique: $(\forall x) ((\neg(x \neq 0)) \implies ((\forall y)(\forall x)((yx = 1 \wedge zx=1) \implies y=z))$.
+
+Theory of posets: $\Omega = \phi, \Pi = \{\leq\}$.
+
+$T$ is: $(\forall x)(x \leq x)$, $(\forall x)(\forall y)(\forall z)((x \leq y \wedge y \leq z) \implies x \leq z)$, $(\forall x)(\forall y)((x \leq y \wedge y \leq x) \implies x=y)$.
+
+Theory of graphs: $\Omega = \phi$, $\Pi =\{a\}$ ('is adjacent to').
+
+$T$ is $(\forall x)(\neg a(x,x))$, $(\forall x)(\forall y)(a(x,y) \implies a(y,x))$.
+
+Proofs:
+
+Logical axioms:\\
+(1) $p \implies (q \implies p)$ (any formulae $p,q$);\\
+(2) $p \implies (q \implies r)) \implies ((p \implies q) \implies (p \implies r))$ (any formulae $p,q,r$);\\
+(3) $(\neg\neg p) \implies p$ (any formula $p$);\\
+(4) $(\forall x) (x=x)$; (any variable $x$);\\
+(5) $(\forall x)(\forall y)(x=y) \implies (p\implies p[y/x]))$ (any variables $x,y$, formula $p$ where $y$ is a bound);\\
+(6) $((\forall x) p) \implies p [t/x]$ (any variable $x$, term $t$, formula $p$ with no variable in $t$ occuring bound in $p$)\\
+(7) $((\forall x)(p \implies q)) \implies (p \implies (\forall x) q)$ (any variable $x$, formulae $p,q$ with $x$ not occurring free in $p$).
+
+As rules of deduction, we take:\\
+\emph{Modus Ponens}: From $p,p \implies q$ can deduce $q$;\\
+\emph{Generalisation}: From $p$ can deduce $(\forall x)p$, if $x$ does not occur free in any premise used to prove $p$.
+
+For $S \subset L$, $p \in L$, a proof of $p$ from $S$ is a finite sequence of formulae, ending with $p$, s.t. each line is a logical axiom, or a member of $S$, or follows from earlier lines by MP or GEN. Write $S\vdash p$ ('$S$ proves $P$') if there exists a proof of $p$ from $S$.
+
+Example: $\{x=y,x=z\} \vdash\{y=z\}$ (use axiom 5, with $p$ being $'x=z')$.
+
+1. $(\forall x)(\forall y) (x=y \implies (x=z \implies y=z))$ (axiom 5);\\
+2. $(\forall x)(\forall y)(x=y \implies (x=z \implies y=z)) \implies (\forall y)(x=y \implies (x=z \implies y=z))$ (axiom 6, $t='x'$);\\
+3. $(\forall y)(x=y \implies (x=z \implies y=z))$ (MP on 1,2);\\
+4. $(\forall y) (x=y \implies (x=z \implies y=z)) \implies (x=y \implies (x=z \implies y=z))$ (axiom 6);\\
+5. $x=y \implies (x=z \implies y=z)$ (MP on 3,4);\\
+6. $x=y$ (hypothesis)\\
+7. $x=y \implies y=z$ (mp on 5,6)\\
+8. $x \implies z$ (hypothesis)\\
+9. $y=z$ (mp on 7,8).
+
+Aim: $T \vdash p$ $\iff$ $T \vDash p$.
+
+e.g. if $p$ holds in every group then $p$ can be proved from the three group axioms (completely obvious).
+
+
+
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
