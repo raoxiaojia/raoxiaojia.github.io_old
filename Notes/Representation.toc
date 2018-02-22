@@ -17,3 +17,4 @@
 \contentsline {subsection}{\numberline {9.3}Tensor algebra}{34}{subsection.9.3}
 \contentsline {section}{\numberline {10}Restriction and induction}{36}{section.10}
 \contentsline {subsection}{\numberline {10.1}Induced representations}{39}{subsection.10.1}
+\contentsline {section}{\numberline {11}Frobenius groups}{41}{section.11}

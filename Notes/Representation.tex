@@ -1489,8 +1489,81 @@ naturally as vector spaces ($W$ is a $H$-space, $V$ is a $G$-space).
 (i) $Ind_H^G(W_1 \oplus W_2) \cong Ind_H^G W_1 \otimes Ind_H^G W_2$;\\
 (ii) $\dim Ind_H^G W = |G:H|\dim W$.\\
 (iii) If $H \leq K \leq G$, then $Ind_K^G Ind_H^K W \cong Ind_H^G W$.\\
-(lecture had (10.10) here because he missed it previously, and labelled (iii) as (iv) while (10.10) as (iii)).
+(lecture had (10.10) here because he missed it previously, and labelled (iii) as (iv) while (10.10) as (iii)).\\
+\begin{proof}
+(10.10):
+\begin{equation*}
+\begin{aligned}
+Ind_H^G \psi(g) &= \sum_{i=1}^n \mathring{\psi}(t_i^{-1} gt_i)\\
+&= \sum_1^n \mathring{1}_H (e_i^{-1} gt_i)\\
+&= |\{ i: t_i^{-1} gt_i \in H\}|\\
+&= |\{i : g \in t_i H t_i^{-1}\}| = |fix_X (g)| = \pi_X
+\end{aligned}
+\end{equation*}
+\end{proof}
 \end{lemma}
+
+\begin{rem}
+$\bra \psi_X,1_G\ket_G = \bra Ind_H^G 1_H, 1_G\ket_G = \bra 1_H,1_H\ket = 1$ as predicted in chapter 7.
+\end{rem}
+
+\newpage
+\section{Frobenius groups}
+
+\begin{thm} (11.1, Frobenius theorem, 1891)\\
+Let $G$ be a transitive permutation group on a finite $X$, say $|X|=n$. Assume that each non-identity element of $G$ fixes at most one element of $X$. Then
+\begin{equation*}
+\begin{aligned}
+K =  \{1\} \cup \{g \in G: g \alpha \neq \alpha \forall \alpha \in X\}
+\end{aligned}
+\end{equation*}
+is a normal subgroup of $G$ of order $n$.\\
+Note that $G$ is necessarily finite, being isomorphic to a subgroup of $S_X$.
+\begin{proof}
+(method of exceptional characters, due to M. Isaacs - chapter 7 books)\\
+We have to show $K \triangleleft G$. Let $H = G_\alpha$ the stabiliser of $\alpha \in X$ for some $\alpha \in X$, i.e. $g G_\alpha g^{-1} = G_{g\alpha}$. Conjugates of $H$ are stabiliers of single elements of $X$. No two conjugates can share a non-identity elment (by hypothesis), so $H$ has $n$ distinct conjugate, and $G$ itself has $n(|H|-1)$ elements that fix exactly one element of $X$. But $|G| = |X||H = n|H|$ ($X$ and $G/H$ are isomorphic (because transitive action) as $G$-sets). Hence $|K| = |G| -n(|H|-1) = n$. Let $1 \neq h \in H$. Suppose $h = ghg^{-1}$ for some $g \in G, h' \in H$. Then $h$ lies in both $H = G_\alpha$ and $gHg^{-1} = G_{g\alpha}$; by hypothesis $g\alpha = \alpha$, hence $g \in H$. Therefore, the ccls in $G$ of $h$ is precisely the ccls in $H$. Similarly oif $g \in C_G(h)$, then $h=ghg^{-1} \in G_{g\alpha}$ and hence $g \in H$. We conclude $C_G(h) = C_H(h)$ ($1 \neq h \in H$). Every element of $G$ either belongs to $K$ or lies in one of the $n$ stabilisers, each of which is conjugate to $H$. So evergy element of $G \setminus K$ is conjugate with a non-identity element of $H$.\\
+So $\{1,h_2,...,h_t,y_1,...,y_u\}$ (the representations of $H$-ccls and representations of ccls of $G$ which comprise $K \setminus \{1\}$ respectively) is a set of ccls reps for $G$.
+
+Take $\theta_1 = 1_G$. $\{1_H = \psi_1,...,\psi_t\}$ be irreducible characters of $H$. Fix $1 \leq i \leq t$. Then, if $g \in G$, we know
+\begin{equation*}
+\begin{aligned}
+Ind_H^G \psi_i (g) = \left\{\begin{array}{ll}
+|G:H| \psi_i(1) = n\psi_i(1) & g=1\\
+\psi_i (h_j) & g=h_j (2 \leq j \leq t)\\
+0 & g=y_k (1 \leq k \leq u)
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+where in the second case we appeal to $C_G(h_j) = C_H(h_j)$ and (10.9). Now fix some $2 \leq i \leq t$ and put $\theta_i = \psi_i^G - \psi_i(1) \psi_1^G + \psi_i(1) \theta_1 \in R(G)$ by (9.15). Values for $2 \leq j \leq t$, $1 \leq k\ leq u$:
+
+\includegraphics[scale=0.5]{image/Rep_08.png}
+
+Now calculate
+\begin{equation*}
+\begin{aligned}
+\bra \theta_i ,\theta_i \ket &= \frac{1}{|G|} \sum_{g \in G} |\theta_i(g)|^2\\
+&= \frac{1}{|G|} \left(\sum_{g \in K} |\theta_i(g)|^2 + \sum_{\alpha \in X} \sum_{1 \neq g \in G_\alpha} |\theta_i(g)|^2\right)\\
+&= \frac{1}{|G|} (n\psi_i^2 (1) + n \sum_{1 \neq h \in H} |\theta_i (h)|)^2\\
+&= \frac{1}{|H|} \sum_{h \in H} |\psi_i(h)|^2\\
+&= \bra \psi_i,\psi_i\ket\\
+&= 1
+\end{aligned}
+\end{equation*}
+As $\psi_i$ is irreducible. So (by (9.15)), either $\theta_i$ or $-\theta_i$ is a character. Since $\theta_i(1) > 0$, it's $+\theta_i$, an actual character. Let $\theta = \sum_{i=1}^t \theta_i(1) \theta_i$. Column orthogonality gives $\theta(h) = \sum_{i=1}^t \psi_i(1) \psi_i(h) = 0$ ($1 \neq h \in H$), and for any $y \in K$, $\theta(y) = \sum_{i=1}^t \psi_i^2 (1) = |H|$. Hence
+\begin{equation*}
+\begin{aligned}
+\theta(g) = \left\{\begin{array}{ll}
+|H| & g \in K\\
+0 & g \not\in K
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+So $K = \{g \in G : \theta(g) = \theta(1) \} \triangleleft G$.
+
+\end{proof}
+\end{thm}
 
 \iffalse
 \begin{equation*}
