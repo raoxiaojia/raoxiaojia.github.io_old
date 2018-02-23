@@ -837,6 +837,38 @@ Let $\rho < 1$, and suppose the embedded queue $Q(D)$ is in equilibrium. Let $W$
 Number of people left behind on this person's departure is the number of arrivals during my total time $W+S$. By strong Markov Property, this (random) number is independent of arrivals prior to this person.\\
 So $G(s) = \E(e^{\lambda (W+S) (s-1)}) = \E(e^{\lambda W(s-1)}) \E(e^{\lambda S(s-1)}) = M_W(\lambda(s-1))M_S(\lambda(s-1))$, where $M_W$ and $M_S$ are the mgf of $W$ and $S$ respectively; here we also used the tower law $E(S^U) = E(E(S^U|W,S))$. Hence we get $M_W(\lambda(s-1))$ in terms of $G$ and $M_S$.
 
+Remember we are considering $M/G/1$ queue. 
+
+A busy period is a maximal interval of time during which the server is continuously busy. Let $B$ be the length of \emph{a} busy period. Then $\E(B) < \infty$ iff $Q(D)$ is positive recurrent iff $\rho<1$.
+
+Arriving customer finds queue empty, and is served for a length $S$. Let $j=1,2,...$ be the arrivals during this time $S$. first customer is a progenitor of a branching process, in which the family an individual is the set of arriving customers during $I$'s service time (think of number of people that arrive during the first waiting customer, then the number of people arrive during the first among those...) This is a branching process. Let $\mu$ be the mean familty size, $E(E($number of arrivals$|S))$, the branching process is a.s. finite iff $\rho \leq 1$. So $\P(B<\infty) = 1$ iff $\rho \leq 1$ where $B$ is the sum of the service times of the individuals in the population.
+
+Let $B = S + \sum_{i=1}^A B_i$, where $A$ is the number of arrivals during first service time. Given $A$, $B_1,...,B_A$ are independent copies of $B$.
+
+The moment generating function, $M_B = \E(e^{sS} e^{\lambda S (M_B-1)}) = \E(e^{S[s+\lambda(M_B-1)]})$.
+
+Theorem: $M_B = M_S (s+\lambda(M_b-1)$.
+
+It can be shown that, when $\rho < 1$, the equation has a unique solution which is a mgf.
+
+Networks of queues:
+
+We have a finite set $S = \{s_1,...,s_c\}$ of 'stations'. At time $t$, station $s_i$ has $Q_i(t)$. Overall state at itme $t$ is $Q(t) = (Q_1(t), ..., Q_c(t))$. We will assume that service times are exponentially distributed.
+
+A typical state is a vector $\mathbf{n} = (n_1,n_2,...,n_c) \in \{0,1,...\}^c$. Let $\mathbf{e}_i = (0,0,...,0,1,...,0)$, where the $1$ is in the $i^{th}$ position. Statespace is set of all $\mathbf{n}$.
+
+Generator:\\
+$g_{\mathbf{n},\mathbf{n}-\mathbf{e}_i+\mathbf{e}_j} = \lambda_{i,j} \phi_i(n_i)$,\\
+$g_{\mathbf{n},\mathbf{n}+\mathbf{e}_j} = v_j$,\\
+$g_{\mathbf{n},\mathbf{n}-\mathbf{e}_i} = \mu_i \phi_i(n_i)$.
+
+Otherwise $g_{\mathbf{m},\mathbf{n}} = 9$ when $\mathbf{m} \neq \mathbf{n}$.
+
+\begin{eg}
+At each station there are $r (\geq 1)$ servers, and at station $i$, the service time distribution is $Exp(\gamma_i)$. A departing customer at $i$, gres to staiton $j$ with probability $p_{i,j}$, and it departs queueing system entirely with probability $1-\sum_{j} p_{i,j} = q_i$. (and independence, and no immigration).
+
+$\phi_i(n) = \min\{n,r\}$, $\lambda_{i,j} = \gamma_i p_{i,j}$, $\mu_i = \gamma_i q_i$, $v_j = 0$.
+\end{eg}
 
 
 \iffalse
