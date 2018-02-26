@@ -1081,7 +1081,7 @@ So, $C$ is a cyclic code of length $n$ iff $\mathcal{C}$ is an ideal in $F_2[x]/
 \end{rem}
 
 \begin{defi}
-A \emph{generator polynomial} $g(x)$ for a cyclic code $C$ is a polynomial $g(x) | X^n-1$ s.t. $C = \{f(x) g(x) \pmod (x^n-1) | f(x) \in F_2[X]\}$.
+A \emph{generator polynomial} $g(x)$ for a cyclic code $C$ is a polynomial $g(x) | X^n-1$ s.t. $C = \{f(x) g(x) \pmod {x^n-1} | f(x) \in F_2[X]\}$.
 \end{defi}
 
 \begin{thm} (2.30)\\
@@ -1099,10 +1099,10 @@ There is a bijection between cyclic codes of length $n$ and factors of $X^n-1$ i
 
 If cyclic codes $C_1$ and $C_2$ have generator polynomials $g_1$ and $g_2$, and $C_1 \supset C_2 \iff g_1(x) | g_2(x)$.
 
-Also, if $n$ is odd, $f(x) = x^n-1$ has no repeated roots, so $x^n-1 = f_1(x) ... f_r(x)$ where $f_1(x),...,f_r(x)$ are distinct irreducible polynomials in $F_2[x]$. So number of cyclic codes lf oength $n$ is $2^r$.
+Also, if $n$ is odd, $f(x) = x^n-1$ has no repeated roots, so $x^n-1 = f_1(x) ... f_r(x)$ where $f_1(x),...,f_r(x)$ are distinct irreducible polynomials in $F_2[x]$. So number of cyclic codes of length $n$ is $2^r$.
 
 \begin{lemma} (2.31)\\
-$C$ cyclic code of length $n$ with genrator polynomial $g(x)$,
+$C$ cyclic code of length $n$ with generator polynomial $g(x)$,
 \begin{equation*}
 \begin{aligned}
 g(x) = a_0 + a_1 X + ... + a_k X^k (a_k \neq 0)
@@ -1135,6 +1135,120 @@ a $n \times (n-k)$ matrix.
 \begin{defi}
 The \emph{parity check polynomial} $h(x)$ is defined by $g(x) h(x) = x^n-1$.
 \end{defi}
+
+------20160223------
+
+Lecture is on strike today, so no lecture today!
+
+--------------------
+
+Last time we introduced cyclic codes and parity check codes polynomial $h(x)$ that satisfies $g(x) h(x) = X^n-1$. Suppose $g(x) = a_0+a_1 x + ... + a_k x^k$, $h(x) = b_0+b_1x + ... + b_{n-k} x^{n-k}$, with $b_{n-k} \neq 0$. Then
+\begin{equation*}
+\begin{aligned}
+H = \begin{pmatrix}
+b_{n-k} & b_{n-k-1} & ... & b_0 & 0 & ... & 0\\
+0 & b_{n-k} & b_{n-k-1} & ... & b_0 & ... & 0\\
+...\
+0 & ... & 0 & b_{n-k} & ... & b_0
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+
+Since rows of $G$ are orthogonal to the rows of $H$, e.g. 1st row of $G$ $\cdot$ 1st row of $H$ gievs coefficients of $X^{n-k}$ in $g(x)h(x)$.
+
+In general, $i$th row of $G$ $\cdot$ $j$th row of $H$ gives coefficients of $X^{n-k+(j-i)}$ in $g(x)h(x)$.
+
+As $b_{n-k} \neq 0$, $rank(H) = k = rank(C^\perp)$.
+
+\begin{lemma} (2.32)\\
+The parity check polynomial is the generator polynomial for the reverse of $C^\perp$ (i.e. reverse all codewords).
+\end{lemma}
+
+BCH codes (Bose, Ray-Chavdhun; Hocqienghem)
+
+\begin{defi}
+Let $K \supset F_2$, $A \subset \{x \in K: x^n=1\}$. The cyclic code of length $n$ \emph{defined by} $A$ is
+\begin{equation*}
+\begin{aligned}
+C = \{ f(x) \pmod {X^n-1} : f(\alpha) = 0 \forall \alpha \in A\}
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+Note $f(x) \equiv 0 \in C$. If $f,g \in C$, $(f+g) (\alpha) = f(\alpha)+g(\alpha) = 0 \implies f+g \in C$.\\
+$f \in C \implies f(\alpha) = 0 \implies \alpha f(\alpha) =0 \implies Xf \in C$, so $C$ is cyclic.
+
+\begin{defi}
+Let $K \supset F_2$, $n$ odd and $\alpha \in K$ a primitive $n$th root of unity. The cyclic code with defining set $A = \{\alpha,\alpha^2,...,\alpha^{\delta-1}\}$ is called a BCH code with design distance $\delta$.
+\end{defi}
+
+\begin{rem}
+(i) The minimal polynomial for $\alpha$ over $F_2$ is the polynomial of least degree satisfied by $\alpha$.\\
+(ii) The generator polynomial $g(x)$ for BCH code $C$ is $lcm(\{m_1(x),...,m_{\delta-1}(x)\}$, where $m_i(x)$ is the minimal polynomial for $\alpha^i$ over $F_2$.
+\end{rem}
+
+\begin{thm} (2.35)\\
+The minimum distance of a BCH code is at least the design distance.
+\end{thm}
+
+\begin{lemma}
+This lemma is about the determinant of Van der Monde determinant, but I think we all know that so I won't waste time copying the formula. To prove it just notice that $x_i = x_j$ is a factor of the determinant, then compare degree and coefficient we get the desired results.
+\end{lemma}
+
+Proof of (2.33):\\
+Consider the $(\delta - 1) \times n$ matrix
+\begin{equation*}
+\begin{aligned}
+H = \begin{pmatrix}
+1 & \alpha & \alpha^2 & ... & \alpha^{n-1}\\
+1 & \alpha^2 & \alpha^4 & ... & \alpha^{2(n-1)}\\
+...\\
+1 & \alpha^{\delta-1} & \alpha^{2(\delta-1)} & ... & \alpha^{(\delta-1)(n-1)}
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+
+Using VDM (pulling out factors in columns as required) gives that any $\delta-1$ columns of $H$ are LI. But a codeword in $C$ is a dependence relation between the columns of $H$, so $w(C) \geq \delta$.
+
+\begin{rem}
+$H$ is not a parity check matrix in usual sense: (entries in $K$ rather than $F_2$).
+\end{rem}
+
+\begin{eg}
+(i) $n=7$. We have $x^7-1 = (1+x)(1+x+x^3)(1+x^2+x^3)$ in $F_2[x]$. Suppose $g(x) = 1+x+x^3$, then $h(x) = 1+x+x^2+x^4$. The parity check matrix is
+\begin{equation*}
+\begin{aligned}
+\begin{pmatrix}
+1011100\\
+0101110\\
+0010111
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+which are columns of $F_2^3 \setminus \{0\}$. So code generated by $g(x)$ is precisely the Hamming's (7,4)-code.
+
+(ii) $K\supset F_2$ splitting field of $x^7-1$. Let $\alpha \in K$ be a root of $g(x) = x^3+x+1$, then $\alpha$ is a primitive 7th root of unity. Note $g(\alpha) = 0$ $\implies \alpha^3 = \alpha+1$ $\implies \alpha^6 = (\alpha+1)^2 = \alpha^2+1$, so $g(\alpha^2 = 0$. Also, $g(\alpha^3) \neq 0$, but $g(\alpha^4)=0$. The BCH code of length $7$ and design distance 3 with defining set $\{\alpha,\alpha^2\}$ has generator polynomial $g(x)$.
+
+By (i), this is Hamming's original code. By (2.33), the weight of this code is at least 3.
+
+Decoding BCH codes:
+
+Recall, $K \supset F_2$, $n$ odd, $\alpha \in K$ a primitive $n$th root of unity, $C$ defined by $\{\alpha,\alpha^2,...,\alpha^{\delta-1}$, i.e. $C =\{f(x) \pmod {x^n-1}: f(\alpha^i) = 0, 1 \leq i \leq \delta-1\}$. By (2.33) can correct $r=\lfloor \frac{\delta-1}{2}\rfloor$ errors.
+
+\begin{defi}
+The error-locator polynomial is
+\begin{equation*}
+\begin{aligned}
+\sigma(x) = \prod_{i \in \xi} (1-\alpha^i x)
+\end{aligned}
+\end{equation*}
+Problem: assuming $\deg (\sigma) = |\xi| \leq r$ ($\xi$ is number of errors I think?), recover $\sigma(x)$ from $r(x)$.
+\end{defi}
+
+
+\end{eg}
+
+
 
 \iffalse
 \begin{equation*}
