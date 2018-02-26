@@ -879,6 +879,119 @@ $\bullet$ $\bar{S}$ has witnesses (for itself): given $(\exists x)p \in \bar{S}$
 \end{proof}
 \end{thm}
 
+On set of closed terms of $\bar{L}$, define $s \sim t$ if $\bar{S} \vdash (s=t)$.
+
+This is clearly an equivalent relationship. let $A$ be the set of equivalent clases. Make $A$ into an $\bar{L}$-structure by setting $f_A([t_1],...,[t_2]) = [ft_1...t_n]$ (each $f \in \bar{\Omega},\alpha(f) = n$, closed terms $t_1...t_n$), $\varphi_A = \{([t_1],...,[t_n]): \bar{S} \vdash \phi(t_1,...,t_n)\}$ (each $\phi \in \Pi$, $\alpha(\phi) = n$, closed terms $t_1...t_n$).
+
+Claim: $\phi_A = 1 \iff \bar{S} \vdash p$ for each setnence $p \in \bar{L}$. (Then done: $A$ is a model of $\bar{S}$, so $A$ is a model of $S$.
+\begin{proof}
+An easy induction:\\
+\emph{Atomic sentences}:\\
+$\perp$: $\perp_A = 0$ and $\bar{S} \not\vdash \perp$.\\
+$s=t$: 
+\begin{equation*}
+\begin{aligned}
+\bar{S} \vdash (s=t) &\iff [s] = [t]\\
+&\iff s_A = t_A\\
+&\iff (s=t)_A = 1
+\end{aligned}
+\end{equation*}
+$\phi(t_1...t_n)$: same.
+
+\emph{Induction step}:\\
+$p \implies q$: 
+\begin{equation*}
+\begin{aligned}
+\bar{S} \vdash (p \implies q) &\iff \bar{S} \vdash (\neg p)\text{ or } \bar{S} \vdash q\\
+&\iff p_A = 0\text{ or } q_A = 1 (induction)\\
+&\iff (p \implies q)_A =1 
+\end{aligned}
+\end{equation*}
+where the second step is because, say if the forward direction doesn't hold, then $\bar{S} \vdash p$, $\bar{S} \vdash (\neg q)$ (since $\bar{S}$ is complete), but then $\bar{S} \vdash \neg(p \implies q)$, contradiction).
+
+$(\exists x) p$:
+\begin{equation*}
+\begin{aligned}
+\bar{S} \vdash (\exists x) p &\iff \bar{S} \vdash p[t/x]\\
+&\iff p[t/x]_A = 1\\
+&\iff ((\exists x)p)_A = 1
+\end{aligned}
+\end{equation*}
+for some closed term $t$. The last line is because $A$ is the set of equivalent classes of closed terms.
+\end{proof}
+
+By remark before theorem 3 we have
+
+\begin{coro} (4,adequacy)\\
+If $S \vDash p$, then $S \vdash o$.
+\end{coro}
+
+Hence:
+\begin{thm} (5, G$\ddot{o}$del's completeness theorem for first-order logic)\\
+Let $S$ be a set of sentences and $p$ a sentence (in language $L$). Then $S \vDash p \iff S \vdash p$.\\
+The proof is just soundness + adequacy.
+\end{thm}
+
+Note:\\
+$\bullet$ If $L$ is countable (i.e .$\Omega,\Pi$ countable), then we don't need Zorn's lemma;\\
+$\bullet$ 'First-order' means variables range over elements of our structure (not, e.g., subsets).
+
+\begin{thm} (6, compactness)\\
+Let $S \subset L$ be a set of sentences. Then if every finite subset of $S$ has a model, then $S$ has a model.
+\begin{proof}
+This is trivial if we replace $\vDash$ with $\vdash$ (as proofs are finite).
+\end{proof}
+\end{thm}
+
+Note: we have no decidability theorem -- how to check if $S \vDash t$?
+
+Some consequences of completeness/compactness:\\
+Can we axiomatise the class of finite groups? In other words, we want some sentences $S$ (in language of groups) s.t. a structure is a model for $S$ $\iff$ it is a finite group.
+
+However, this is not possible.
+
+\begin{coro} (7)\\
+the class of finite groups cannot be axiomatised (in language of groups).
+\begin{proof}
+Suppose $S$ axiomatises finite groups. We add to $S$ the sentences:
+\begin{equation*}
+\begin{aligned}
+(\exists x_1) (\exists x_2) (\neg (x_1 =x_2))\\
+(\exists x_1) (\exists x_2) (\exists x_3) (\neg (x_1 = x_2) \wedge \neg(x_1 = x_3) \wedge \neg(x_2 = x_3))\\
+...
+\end{aligned}
+\end{equation*}
+which stands for $|G| \geq 2$, $|G| \geq 3$, etc.\\
+Then ever finite subset has a model (e.g. $\Z_n$, $n$ large). However, the set itself has no model -- contradicting compactness.
+\end{proof}
+\end{coro}
+
+Similarly,
+\begin{coro} (7')\\
+Let $S$ be a theory in a language $L$. Then if $S$ has arbitrarily large finite models, then it has an infinite model.
+\begin{proof}
+Add sentences as in corollary 7, and apply compactness theorem.
+\end{proof}
+\end{coro}
+
+So we know \emph{finiteness is not a first-order property}.
+
+\begin{coro} (8, upward L$\ddot{o}$wenheim-Skolem theorem)\\
+If a theory $S$ has an infinite model, then it has an uncoutnable model.
+\begin{proof}
+Add uncoutnably many consttants $\{c_i:i \in I\}$ to the language, and add to $S$ the set of sentences $c_i \neq c_j$ (for each distinct $i,j \in I$). Then any finite subset has a model. So the whole set has a model by compactness.
+\end{proof}
+\end{coro}
+
+Similarly, we coudn find a model into which $P(P(R))$ injects (choose $I = P(P(R))$). E.g., there exists an infinite field ($\Q$), so there exists field as big as $P(P(R))$.
+
+\begin{coro} (9, downward L$\ddot{o}$wenheim-Skolem theorem):\\
+Let $S$ be a theory in countable language $L$. If $S$ has a model, then it has a countable model.
+\begin{proof}
+The model constructed in theorem 3 is countable.
+\end{proof}
+\end{coro}
+
 
 \iffalse
 \begin{equation*}
