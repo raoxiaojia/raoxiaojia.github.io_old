@@ -824,11 +824,10 @@ For given $\pi_0$, there exists a unique solution (by iteration). We claim (by s
 \end{aligned}
 \end{equation*}
 
-
 $\pi$ is a distribution if $\pi_0 > 0$, $\sum \pi_i = 1$, $G(s) = \sum_0^\infty s^j \pi_j$, $\Delta(s) = \sum_j \delta_j s^j$, $G= \pi_0 \Delta + \frac{1}{s}(G-\pi_0) \Delta$.\\
 Therefore $G = \frac{\pi_0(s-1)\Delta}{s-\Delta}$.
 
-We have $G(1) = 1$. By L'Hopital rule, $G(1) = \lim{s \uparrow 1} \frac{\pi_0 \Delta + \pi_0(s-1)\Delta'}{1-\Delta'} = \frac{\pi_0 \Delta(1)}{1-\Delta'(1)}$ which is meaningful iff $\Delta'(1) < 1$. So $\pi_0$ can be picked s.t. $\pi$ is a distribution iff $\Delta'(1) < 1$ in which case $\pi_\Delta = 1-\Delta'(1)$.
+We have $G(1) = 1$. By L'Hopital rule, $G(1) = \lim_{s \uparrow 1} \frac{\pi_0 \Delta + \pi_0(s-1)\Delta'}{1-\Delta'} = \frac{\pi_0 \Delta(1)}{1-\Delta'(1)}$ which is meaningful iff $\Delta'(1) < 1$. So $\pi_0$ can be picked s.t. $\pi$ is a distribution iff $\Delta'(1) < 1$ in which case $\pi_\Delta = 1-\Delta'(1)$.
 
 $\Delta(s) = M_s(\lambda(s-1))$, and $\Delta'(1) = M'_s(0) \lambda$. But $M'_s(0)$ is the mean of $S$. So $\Delta'(1) = \frac{E(S)}{1/\lambda} = \rho$. So the chain $Q(D)$ has an invariant distribution, and hence is positive recurrent iff $\rho<1$, and the invariant distribution has pgf $G(s)$ as we derived. In addition, when $\rho=1$ we have null recurrence and when $\rho>1$ the chain is transient.
 
@@ -851,25 +850,109 @@ Theorem: $M_B = M_S (s+\lambda(M_b-1)$.
 
 It can be shown that, when $\rho < 1$, the equation has a unique solution which is a mgf.
 
-Networks of queues:
+\subsection{Networks of queues}
 
 We have a finite set $S = \{s_1,...,s_c\}$ of 'stations'. At time $t$, station $s_i$ has $Q_i(t)$. Overall state at itme $t$ is $Q(t) = (Q_1(t), ..., Q_c(t))$. We will assume that service times are exponentially distributed.
 
-A typical state is a vector $\mathbf{n} = (n_1,n_2,...,n_c) \in \{0,1,...\}^c$. Let $\mathbf{e}_i = (0,0,...,0,1,...,0)$, where the $1$ is in the $i^{th}$ position. Statespace is set of all $\mathbf{n}$.
+A typical state is a vector $\mathbf{n} = (n_1,n_2,...,n_c) \in \{0,1,...\}^c$. Let $\mathbf{e}_i = (0,0,...,0,1,...,0)$, where the $1$ is in the $i^{th}$ position. State space is set of all $\mathbf{n}$.
 
 Generator:\\
 $g_{\mathbf{n},\mathbf{n}-\mathbf{e}_i+\mathbf{e}_j} = \lambda_{i,j} \phi_i(n_i)$,\\
 $g_{\mathbf{n},\mathbf{n}+\mathbf{e}_j} = v_j$,\\
 $g_{\mathbf{n},\mathbf{n}-\mathbf{e}_i} = \mu_i \phi_i(n_i)$.
 
-Otherwise $g_{\mathbf{m},\mathbf{n}} = 9$ when $\mathbf{m} \neq \mathbf{n}$.
+Otherwise $g_{\mathbf{m},\mathbf{n}} = 0$ when $\mathbf{m} \neq \mathbf{n}$.
 
 \begin{eg}
-At each station there are $r (\geq 1)$ servers, and at station $i$, the service time distribution is $Exp(\gamma_i)$. A departing customer at $i$, gres to staiton $j$ with probability $p_{i,j}$, and it departs queueing system entirely with probability $1-\sum_{j} p_{i,j} = q_i$. (and independence, and no immigration).
+At each station there are $r (\geq 1)$ servers, and at station $i$, the service time distribution is $Exp(\gamma_i)$. A departing customer at $i$, goes to station $j$ with probability $p_{i,j}$, and it departs queueing system entirely with probability $1-\sum_{j} p_{i,j} = q_i$. (and independence, and no immigration).
 
 $\phi_i(n) = \min\{n,r\}$, $\lambda_{i,j} = \gamma_i p_{i,j}$, $\mu_i = \gamma_i q_i$, $v_j = 0$.
 \end{eg}
 
+Consider a closed network where $\nu_i = \mu_j = 0$ and irreducible (for a single particle). Suppose first that total number of individuals is $N=1$, and in addition $Q_i(1) = 1$ $\forall i$. The individual's position is a continuous-time MC with $g_{ij} = \lambda_{ij}$, $i \neq j$. The invariant distribution $\alpha = (\alpha_i:i \in S)$, $\alpha G =0$ where $G$ is the generator matrix. Then
+\begin{equation*}
+\begin{aligned}
+\sum_j \alpha_j \lambda_{ji} = \alpha_i \sum_j \lambda_{ij}, i \in S
+\end{aligned}
+\end{equation*}
+
+In the general case we hhave $N \geq 1$ and general $Q_i$. Assume the MC is irreducible. State space is $N = \{\mathbf{n} \in \{0,1,...,\}^c\}$, or more precisely, $N_\N = \{\mathbf{n} : \sum_i n_i =N\}$ (since we can't gain or lose anyone). The unique invariant distribution $\gamma = (\gamma(\mathbf{n}):\mathbf{n} \in N_\N)$ satisfies
+\begin{equation*}
+\begin{aligned}
+\sum_{i,j} \gamma(\mathbf{n} - \mathbf{e}_i + \mathbf{e}_j) \lambda_{ji} \phi_j*n_j) = \gamma(\mathbf{n}) \sum_{i,j} \lambda_{ij} \phi_i(n_i)
+\end{aligned}
+\end{equation*}
+
+Try to solve the above equation with $\sum_i$ removed, i.e. $|S| = c$ separate equations, called the \emph{partial balance equations}.
+
+Claim: the following solve the partial balnace equations:
+\begin{equation*}
+\begin{aligned}
+\gamma(\mathbf{n}) = B \prod_{i=1}^c \left[ \frac{\alpha_i^{n_i}}{\prod_{r=1}^{n_i} \phi_i(r)} \right]
+\end{aligned}
+\end{equation*}
+where $B$ is chosen so that $\sum_{\mathbf{n}} \gamma(\mathbf{n}) = 1$, where the $\alpha_i$ is the previous invariant distribution.
+\begin{proof}
+$\frac{\gamma(\mathbf{n}-\mathbf{e}_i + \mathbf{e}_j}{\gamma(\mathbf{n})} = \frac{\alpha_j \phi_i(n_i)}{\alpha_i\phi_j(n_j+1)}$. Do we have $\sum_j \alpha_j \lambda_{ji} =\sum_j \alpha_i \lambda_{ij}$?
+\end{proof}
+
+\begin{eg}
+Let's conside a telephone switchboard, where we have $K$ of incoming lines. Calls arrive, each requires $Exp(\lambda)$ time by the receptionist, and are then part through to target, who stays on the line for an $Exp(\mu)$ time, and independence where neccesary. Calls arrive as a PP with parameter $\nu$.
+
+Assume there are infinitely many porters. Model this via the lines (a word not recognisable?). States are: (1) empty ($n_1$), (2) connected to reception ($n_2$), (3) connected to target individual ($n_3$). Then $n_1+n_2+n_3 = K$. So we get
+\begin{equation*}
+\begin{aligned}
+\lambda_{12} = \nu, \lambda_{23} = \lambda, \lambda_{31} = \mu,\\
+\phi_1(n_1) = 1_{\{n_1 \geq 1\}},\\
+\phi_2(n_2) = n_2,\\
+\phi_3(n_3) = n_3
+\end{aligned}
+\end{equation*}
+\end{eg}
+It's easy to get $\alpha_1:\alpha_2:\alpha_3 = \frac{1}{\nu} : \frac{1}{\lambda} : \frac{1}{\nu}$.
+
+So the unique invariant distribution is
+\begin{equation*}
+\begin{aligned}
+\gamma(\mathbf{n}) = B(1/\nu^{n_1}) (1/\lambda^{n_2} n_2!) (1/\mu^{n_3} n_3!)
+\end{aligned}
+\end{equation*}
+where $n_1+n_2+n_3 = k$.
+
+Now let's consider open systems (still, assume irreducibility).
+
+Device: Add an extra station labelled $\infty$, with rates as follows: there is a unique individual with jump rates
+\begin{equation*}
+\begin{aligned}
+g_{ij} = \left\{\begin{array}{ll}
+\lambda_{i,j} & 1 \leq i,j \leq c\\
+\mu_i & i \leq c, j = \infty\\
+\nu_j & i = \infty, j \leq c
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+The unique invariant distribution satisfies
+\begin{equation*}
+\begin{aligned}
+\beta = (\beta_j:j=1,2,...,c,\infty):\\
+\beta_\infty v_i + \sum_{j\neq \infty} \beta_j \lambda_{ji} = \beta_i(\mu_i+\sum_{j \in S} \lambda_{ij})
+\end{aligned}
+\end{equation*}
+
+Let $\alpha_i = \beta_i/\beta_\infty$. 
+
+\begin{thm}
+The open mutaiton system has unique invariant distribution
+\begin{equation*}
+\begin{aligned}
+\pi(\mathbf{n}) = \prod_{i=1}^c \pi_i(n_i)
+\end{aligned}
+\end{equation*}
+where $\pi_i(n_i) = B_i \frac{\alpha_i^{n_i}}{\prod_{r=1}^{n_i} \phi_i(r)}$, and $B_i$ are constants such that $\sum_{n_i} \pi_i (n_i) = 1$.
+\end{thm}
+
+Note: for open system in equilibrium, the queue length at different stations are independent
 
 \iffalse
 \begin{equation*}

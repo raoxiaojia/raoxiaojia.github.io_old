@@ -1561,15 +1561,88 @@ As $\psi_i$ is irreducible. So (by (9.15)), either $\theta_i$ or $-\theta_i$ is 
 \end{aligned}
 \end{equation*}
 So $K = \{g \in G : \theta(g) = \theta(1) \} \triangleleft G$.
-
---------
-2018-02-24: It's Saturday today and I have only one lecture today. I'll forgive myself for not going to lecture today!\\
-(missing one lecture)
---------
-
-
 \end{proof}
 \end{thm}
+
+\begin{defi} (11.2)\\
+A Frobenius group is a group $G$ having subgroup $H$ s.t. $H \cap gHg^{-1} = 1$ $\forall g \not\in H$.\\
+$H$ is the Frobenius complement of $G$.
+\end{defi}
+
+\begin{prop} (11.3)\\
+Any finite Frobenius group satisfies the hypothesis of (11.1). The normal subgroup $K$ is a Frobenius Kernel of $G$.
+\begin{proof}
+Let $G$ be Frobenius, with complement $H$. Then action of $G$ on $G/H$ is transitive and faithful. Furthermore, if $1 \neq g \in G$ fixes both $xH$ and $yH$, then $g \in xHx^{-1} \cap yhy^{-1}$ $\implies$ $H \cap (y^{-1} x) H (y^{-1}x)^{-1} \neq 1$ $\implies xH = yH$.
+\end{proof}
+\end{prop}
+
+Example: If $p,q$ distinct primes, $p \equiv 1 \pmod q$, the unique non-abelian group of order $pq$ is a Frobenius group (see James-Liebeck chapter 25 or Teleman chapter 11).
+
+Remarks:\\
+$\bullet$ Thompson (thesis, 1959) proved any finite group having fixed point free automorphism of prime power order is nilpotent. This implied that in finite Frobenius group, $K$ is nilpotent (iff $K$ is a direct product of its sylow subgroups).\\
+$\bullet$ There is no profo of (11.1) known in which character theory is not required.
+
+\newpage
+\section{The missing lecutre: Mackey Theory}
+Let's work over $\C$. Mackey Theory describes restriction to a subgroup $K \leq G$ of an irreducible representation $Ind_H^G W$. Here $K,H$ are unrelated, but usually we take $K=H$, in which case we can characterise when $Ind_H^G W$ is irreducible. (?)
+
+Special case: $W=1_H$ (trivial $H$-space of dimension 1). Then $Ind_H^G W$ is the permutation representation of $G$ on $G/H$ (by 10.10, action on left cosets of $H$ in $G$).
+
+Recall: if $G$ is transitive on a set $X$ and $H=G_\alpha$ for some $\alpha \in X$, then the action of $G$ on $X$ is isomorphic to the action of $G$ on $G/H$, namely
+\begin{equation*}
+\begin{aligned}
+g \cdot \alpha & \leftrightarrow &gH \ (12.1)
+\in X & & \in G/H
+\end{aligned}
+\end{equation*}
+is a well-defined bijection and commutes with $G$-actions ($x(g\alpha) = (xg)\alpha \leftrightarrow x(gH) = (xg)H$).
+
+Consider the action of $G$ on $G/H$ and let $K \leq G$. $G/H$ splits into $K$-orbits: these correspond to \emph{double cosets} $KgH = \{KgH : k \in K, h \in H\}$, namely the $K$-orbit containing $gH$ contains precisely all $kgH$ with $k \in K$ (bunches of some $gH$ cosets together).
+
+\begin{notation} (12.2)\\
+$K\backslash G/H$ is the set of $(K,H)$-double cosets; they partition $G$. Note that $|K\backslash G/H| = \bra \pi G/K,\pi G/H\ket$ as in (7.4). Let $S$ be the set of representations.
+\end{notation}
+
+Clearly $G_{gH} = gHg^{-1}$, so $K_{gH} = gHg^{-1} \cap K = Hg$.
+
+So by (12.1), the action of $K$ on the orbit containing $gH$ is isomorphic to the action of $K$ on $K/Hg$. From this, using $Ind_H^G 1_H = \C(G/H)$ and, if $X = \cup X_i$ a decomposition into orbits, then $\C X = \oplus_i \C X_i$, we get
+
+\begin{prop} (12.3)\\
+$G$ is a finite group, $H,K \leq G$. Then
+\begin{equation*}
+\begin{aligned}
+Res_K^G Ind_H^G 1 \cong \oplus_{g \in S} Ind_{gHg^{-1}}^K 1
+\end{aligned}
+\end{equation*}
+I think this is some application:\\
+Let $S = \{g_1=1,g_2,...,g_r\}$ be s.t. $G = \cup_i Kg_i H$. Write $H_g = gHg^{-1} \cap K$ ($\leq K$). $(\rho,W)$ is representation of $H$. For $g \in G$, define $(\rho_g,W_g)$ to be the representation of $Hg$ with the same underlying vector space $W$, but now the $Hg$-action is $\rho_g(x) = \rho(h)$, where $x \in gHg^{-1}$. Since $H_g \leq K$, we obtain an induced represntation $Ind_{H_g}^G W_g$ from this.
+\end{prop}
+
+\begin{thm} (12.4) (Mackey's restriction formula)\\
+$G$ finite, $H,K \leq G$ and $W$ $H$-space. Then
+\begin{equation*}
+\begin{aligned}
+Res_K^G Ind_H^G W = \oplus_{g\in S} Ind_{H_g}^K W_g
+\end{aligned}
+\end{equation*}
+as $K$-modules.
+\end{thm}
+
+\begin{coro} (12.5, character version of (12.4))\\
+If $\psi$ is a character of a representation of $H$, then
+\begin{equation*}
+\begin{aligned}
+es_K^G Ind_H^G \psi = \sum_{g \ni S} Ind_{H_g}^K \psi_g
+\end{aligned}
+\end{equation*}
+where $\psi_g$ is the character of $H_g$ given as $\psi_g(x) = \psi(g^{-1} xg)$.
+\end{coro}
+
+\begin{coro} (12.6, Mackey's irreducibility criterion)\\
+Let $H \leq G$, $W$ be a $H$-vector space. Then $V = Ind_H^G W$ is irreducible iff\\
+(i) $W$ is irreducible;\\
+(ii) for each $g \in S\setminus H$, the two $Hg$- spaces $Wg$ and $Res_{H_g}^H W$ have no irreducible consitutnets in common (they're 'disjoint' representations).
+\end{coro}
 
 \iffalse
 \begin{equation*}
