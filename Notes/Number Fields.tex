@@ -916,6 +916,72 @@ The proof of the theorem will show $l(\mathcal{O}_L^*)$ is a lattice in $H$.
 Example: $\mathcal{O}_L^*$ is finite $\iff r+s = 1$, i.e. $r=1,s=0$ ($L=\Q$), or $r=0,s=1$ ($L=\Q(\sqrt{d})$,$d<0$ square-free). The first case where $\mathcal{O}_L^*$ is infinite is $L=\Q\sqrt{d}), d>0$, square-free. Then $+s-1=1$, so $l(\mathcal{O}_L^*)$ is infinite cyclic. Let's fix $\sigma:\Q(sqrt{d}) \to \R$ to be the real embedding with $\sigma(\sqrt{d}) \geq 0$. $\sigma(\mu_L) \subseteq \R^*$, so $\mu_L = \{\pm 1\}$ in this case. In this case, we can consider the map $l':\mathcal{O}_L^* \to \R$ by $\alpha \to \log |\sigma(\alpha)|$. We know that $l'(\mathcal{O}_L^*) \subseteq \R$ is a lattice, in particular there is a uniquely characterised unit $\alpha \in \mathcal{O}_L^*$ satisfying $\sigma(\alpha)>0$, $\log |\sigma(\alpha)| > 0$ and as small as possible. In other words, $\alpha \in \mathcal{O}_L^*$ is the unit for which $\sigma(\alpha)>1$ and $\sigma(\alpha)$ is minimal with respect to this property. We call $\alpha$ the fundamental unit of $L=\Q(\sqrt{d})$. Then we have $\mathcal{O}_L^* = \{\pm \alpha^n | n \in \Z\}$.
 \end{thm}
 
+Example sheet 3 is now online!
+
+Last time we have: if $L$ is a number field, then $\mathcal{O}_L^* \cong \mu_L \times \Z^{r+s-1}$, where $\mu_L$ are roots of unity.
+
+Now suppose $L = \Q(\sqrt{d})$ where $d \in \Z$ is a square free integer, $d>1$. We identify $L$ with a subfield of $\R$, where $\sqrt{d}$ is the positive square root.
+
+We saw that the Dirichlet's unit theorem implies $\exists u \in \mathcal{O}_L^*$ such that $u = \min \{v \in \mathcal{O}_L^* | v>1\}$. $u$ is called the fundamental unit, and $\mathcal{O}_L^* = \{\pm u^n | n \in \Z\}$.
+
+\begin{lemma} (7.2)\\
+(1) If $d \equiv 2,3 \pmod 4$ and $v \in \mathcal{O}_L^*$ satisfies $v > 1$, then $v = a+b\sqrt{d}$ where $a \geq b \geq 1$;\\
+(2) If $d \equiv 1 \pmod 4$, and $v \in \mathcal{O}_L^*$ satisfies $v>1$, then $v = \frac{1}{2} (a+b\sqrt{d})$ wher $a \geq b \geq 1$.
+\begin{proof}
+(1) Let $v' = a-b\sqrt{d}$. Then $vv' = a^2 - db^2 = N_{L/\Q}(v) = \pm 1$. So $v>1 \implies |v'| < 1$. Hence $v+v' = 2a > 0$, $v-v' = sb\sqrt{d} > 0$. As $a,b$ are integers, we must have $a \geq 1, b \geq 1$.\\
+Also, $(a/b)^2 = d \pm 1/b^2 \geq 1$ as $d \geq 2$.\\
+(2) Let $v' = \frac{1}{2} (a-b\sqrt{d}$). Then $vv' = \pm 1$ and $a^2-db^2 = \pm 4$. Then $v+v' = a > 0$, and $v-v' = b\sqrt{d} > 0$. Hence $a \geq 1, b \geq 1$. Also, $(a/b)^2 = d \pm 4/b^2$ as $d \geq 5$ as $d \equiv 1 \pmod 4$.
+\end{proof}
+\end{lemma}
+
+We can use this to find the fundamental unit $u \in \mathcal{O}_L^*$. First suppose $d \equiv 2,3 \pmod 4$ and let $u = a+b\sqrt{d}$. Let $u^k = a_k + b_k \sqrt{d}$. Then $u^{k+1} = (a_1 + b_1 \sqrt{d})(a_k + b_k \sqrt{d}) = (a_1a_k + db_1b_k) + (b_1a_k + a_1b_k) \sqrt{d}$. Hence $b_{k+1} = b_1a_k + a_1b_k > b_k$.\\
+Hence the sequence $b_1,b_2,b_3$ is strictly increasing.
+
+We can therefore characterise $u$ as follows: let $b \in \N$ be the least positive integer such that $db^2+1$ or $db^2-1$ is of the form $a^2$ for some $a \in \N$. Then $u = a+b\sqrt{d}$.\\
+Now suppose $d \equiv 1 \pmod 4$, and let $u = \frac{1}{2} (a+b\sqrt{d})$, $a,b \in \Z$. Let $u^k = \frac{1}{2} (a_k + b_k \sqrt{d})$. Then $b_{k+1} = \frac{1}{2} (a_1b_k + b_1 a_k$). Using lemma 7.2, we see $b_{k+1} \geq b_k$. If (??)\\
+This is wrong. Let's correct this next time. Sorry!
+
+\begin{eg}
+$d=2$.$L = \Q(\sqrt{2})$. $b=1$ works: $2-1=1^2$. So $1+\sqrt{2}$ is a fundamental unit.\\
+$d=7$. Try $b=1$: $7 \pm 1$ is not a square; $b=2,$ doesn't work either; $b=3$: $9 \cdot 7 \pm 1 = 8^2$. So $8+3\sqrt{7}$ is a fundamental unit.
+\end{eg}
+
+Note: This procedure is not always efficient. For example, the fundamental unit in $\Q(\sqrt{22})$ is $197+42\sqrt{22}$.
+
+There is a more efficient algorithm which uses continued fractions, but it is not discussed in this course (see number theory).
+
+We now prove the unit theorem (this is non-examinable).
+
+We recall the setup: $L$ is a number field, $\tau_1,...,\tau_r: L \to \R$, $\sigma_1,\bar{\sigma}_1,...,\sigma_s,\bar{\sigma}_s:L \to \C$ are real and complex embeddings of $L$ respectively.\\
+Last time we defined a map: $l: \mathcal{O}_L^* \to \R^{r+s}$ by $\alpha \to (\log (\tau_1(\alpha)),...,\log(\tau_r (\alpha)),2\log (\sigma_1(\alpha)),...,2\log(\sigma_s(\alpha)))$.\\
+The image is contained inside the subspace $H = \{\mathbf{x} \in \R^{r+s}| \sum_{i=1}^{r+s} x_i = 0\}$.
+
+\begin{lemma} (7.3)\\
+Let $\alpha \in \mathcal{O}_L \setminus \{0\}$ be such that the above image vector is $(a_1,...,a_{r+s}) \in \R^{r+s}$. Fix an integer $1 \leq k \leq r+s$. Then ther exists $\beta \in \mathcal{O}_L \setminus\{0\}$ such that if $l(\beta) = (b_1,...,b_{r+s}) \in \R^{r+s}$, then $b_i < a_i$ if $i \neq k$. Moreover, $N(\beta) \leq (\frac{2}{\pi})^s \sqrt{|D_L|}$.
+\begin{proof}
+Let $c_1,...,c_{r+s} \in \R_{>0}$, and let
+\begin{equation*}
+\begin{aligned}
+E=\{(\mathbf{x},\mathbf{z})\in \R^r \times \C^s | |x_1| \leq c_1,...,|x_r| \leq c_r,|z_1|^2 \leq c_{r+1},...,|z_r|^2 \leq c_{r+s}\}
+\end{aligned}
+\end{equation*}
+Then if $vol(E) \geq 2^{r+2s} A(S(\mathcal{O}_L)) = 2^{r+s} \sqrt{|D_L|}$, then $(S:\mathcal{O}_L \to \R^r \times \C^s)$.
+
+There exists $\beta \in \mathcal{O}_L \setminus \{0\}$ such that $S(\beta) \in E$ (by Minkovski's theorem). In particular, $N(\beta) = \prod_{i=1}^r |\tau_1(\beta)| \prod_{i=1}^s |\sigma_i(\beta)|^2 \leq c_1...c_{r+s}$ (by defiintion of $E$).
+
+We choose $c_i$ so that $0 < c_i < e^{a_i}$ if $i \neq k$, and $vol(E) = \pi^s 2^r c_1...c_{r+s} = 2^{r+s} \sqrt{|D_L|}$.
+
+The first property gives $b_i < a_i$ if $i \neq k$, and the second property gives $N(\beta) \geq c_1...c_{r+s} = (\frac{2}{\pi})^s \sqrt{|D_L|}$.
+\end{proof}
+\end{lemma}
+
+\begin{coro} (7.4)\\
+Fix an integer $1 \leq k \leq r+s$. Then there exists $\varepsilon \in \mathcal{O}_L^*$ such that if $l(\varepsilon) = (a_1,...,a_{r+s})$ then $a_i < 0$ if $i \neq k$, and $a_k > 0$.
+\begin{proof}
+By the lemma, we can find elements $\alpha_1,\alpha_2,...$ of $\mathcal{O}_L\setminus \{0\}$ such that $N(\alpha_1) \leq (\frac{2}{\pi})^s \sqrt{|D_L|}$ $\forall i \in \N$, and if $l(\alpha_i) = (b_{i_1},...,b_{i,r+s})$, then $b_{ij} < b_{i-1,j}$ if $j \neq k$ $\forall i = 2,3,...$. The ideals $(\alpha_i)$ have bounded norm, so are finite in number, so there exist elements $\alpha_N, \alpha_M$ with $(\alpha_N) = (\alpha_M)$. Then the element $\varepsilon = \alpha_N/\alpha_M \in \mathcal{O}_L^*$ has the desired property.
+\end{proof}
+\end{coro}
+
 \iffalse
 \begin{equation*}
 \begin{aligned}

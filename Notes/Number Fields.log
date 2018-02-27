@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.19)  22 FEB 2018 12:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.19)  27 FEB 2018 13:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -932,21 +932,35 @@ m/n/10 j\OT1/cmr/m/n/10 (-20) )$,
  []
 
 [27]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 927.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 927.
+Overfull \hbox (113.42625pt too wide) in paragraph at lines 955--958
+\OT1/cmr/m/n/10 (-20) Last time we de-fined a map: $\OML/cmm/m/it/10 l \OT1/cmr
+/m/n/10 (-20) : \OMS/cmsy/m/n/10 O[] ! \U/msb/m/n/10 R[]$ \OT1/cmr/m/n/10 (-20)
+ by $\OML/cmm/m/it/10  \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 (-20) ([](\OML/cmm/m
+/it/10 ^^\[]\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 \OT1/cmr/m/n/10 (-20) ))\O
+ML/cmm/m/it/10 ; :::; []\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 ^^\[]\OT1/cmr/m
+/n/10 (-20) (\OML/cmm/m/it/10 \OT1/cmr/m/n/10 (-20) ))\OML/cmm/m/it/10 ; \OT1/
+cmr/m/n/10 (-20) 2 [](\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/i
+t/10 \OT1/cmr/m/n/10 (-20) ))\OML/cmm/m/it/10 ; :::; \OT1/cmr/m/n/10 (-20) 2 [
+](\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 \OT1/cmr/m/n/1
+0 (-20) )))$. 
+ []
+
+[28] [29]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 993.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 993.
  (./Number Fields.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 927.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 927.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 993.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 993.
 Package rerunfilecheck Info: File `"Number Fields".out' has not changed.
 (rerunfilecheck)             Checksum: A72B3CCAB8EAB9D3EFF7696FBDD57B66;493.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 927.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 993.
  ) 
 Here is how much of TeX's memory you used:
- 27889 strings out of 494953
- 664569 string characters out of 6180977
+ 27893 strings out of 494953
+ 664597 string characters out of 6180977
  891474 words of memory out of 5000000
  30590 multiletter control sequences out of 15000+600000
- 16219 words of font info for 97 fonts, out of 8000000 for 9000
+ 16270 words of font info for 98 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  57i,14n,77p,1076b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
@@ -967,10 +981,10 @@ live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Number Fields.pdf" (27 pages, 346865 bytes).
+Output written on "Number Fields.pdf" (29 pages, 358391 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
- 38 named destinations out of 1000 (max. 500000)
+ 276 PDF objects out of 1000 (max. 8388607)
+ 223 compressed objects within 3 object streams
+ 40 named destinations out of 1000 (max. 500000)
  14933 words of extra memory for PDF output out of 17280 (max. 10000000)
 
