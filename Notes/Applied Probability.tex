@@ -952,7 +952,101 @@ The open mutaiton system has unique invariant distribution
 where $\pi_i(n_i) = B_i \frac{\alpha_i^{n_i}}{\prod_{r=1}^{n_i} \phi_i(r)}$, and $B_i$ are constants such that $\sum_{n_i} \pi_i (n_i) = 1$.
 \end{thm}
 
-Note: for open system in equilibrium, the queue length at different stations are independent
+Note: for open system in equilibrium, the queue length at different stations are independent.
+
+Renewal processes:
+
+Let $x_1,x_2,...$ be iid, $x_i \sim$ lifetime of $i$th object (think light bulbs). Assume $\P(X_1 > 0 = 1$, $\E(X_1) < \infty$.
+
+Time of $n$th change is $T_n = X_1 + ... + X_n$, renewal process $N(t) = \max\{ n:T_n \leq t\}$, $N = (N(t) : t \geq 0)$.
+
+If $X_1 \sim Exp(\lambda)$, $N$ is a PP of rate $\lambda$.
+
+Fact: $N(t) \geq n$ iff $T_n \leq t$.
+
+Let $F_k$ be the distribution function of $T_k$, i.e. $F_k(x) = \P(T_k \leq x)$. $T_{k+1} = T_k + X_{k+1}$. Hence
+\begin{equation*}
+\begin{aligned}
+F_{k+1} (x) = \int_0^\infty F_k(x-y) dF(y)
+\end{aligned}
+\end{equation*}
+where $F=F_1$.
+
+Notation:
+\begin{equation*}
+\begin{aligned}
+\int h(y) dF(y) = \left\{ \begin{array}{ll}
+\int h(y) f(y) dy & F' = f \text{ density function}\\
+\sum H(y) \P(x=y) & \text{F discrete distribution of }X
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+
+$\P(N(t) = k) = \P(T_k < t \leq T_{k+1}) = F_{k+1}(t) - F_k(t)$ (issue!).
+
+Renewal function: $m(t) = \E(N(t))$. $m(t) = \sum_{k=1}^\infty \P(N(t) \geq k) = \sum_{k=1}^\infty F_k(t)$.
+
+\begin{thm}
+$m$ satisfies the 'renewal equation',
+\begin{equation*}
+\begin{aligned}
+m(t) = F(t) + \int_0^\infty m(t-x) dF(x)
+\end{aligned}
+\end{equation*}
+\begin{proof}
+$m(t) = \E(\E(N(t)|X_1))$. We consider two cases:
+\begin{equation*}
+\begin{aligned}
+\E(N(t)|X_1=x) = \left\{\begin{array}{ll}
+1 + m(t-x) & x\leq t\\
+0 & x>t
+\end{array}
+\right.
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+m(t) &= \int_0^t (1+m(t-x)) dF(x)\\
+&= [F(t) - F(0)] + \int_0^t m(t-x) dF(x)
+\end{aligned}
+\end{equation*}
+but $F(0) = 0$. So done.
+\end{proof}
+\end{thm}
+
+Renewal-type equation:
+\begin{equation*}
+\begin{aligned}
+\mu(t) = H(t) +\int_0^t \mu(t-x) dF(x) \ (*)
+\end{aligned}
+\end{equation*}
+
+\begin{thm}
+The function $\mu(t) = H(t) + \int_0^t H(t-x) dF(x)$ (**) satisfies (*). Furthermore, if $H$ is bounded on finite intervals, then $\mu$ has the same property and it is the unique solution with this property. (proof omitted).
+\end{thm}
+
+We introduce $F^*(\theta) = \int e^{-\theta x} dF(x)$, i.e. if $f:[0,\infty) \to \R$, then $\hat{f}(\theta) = \int_0^\infty e^{-\theta x} f(x) dx$. This is the Laplace-Stieltjes transform.
+
+We have
+\begin{equation*}
+\begin{aligned}
+(h*m) (t) = \int_0^t h(t-x) dm(x)\\
+(h*F) (t) = \int_0^t h(t-x) dF(x)
+\end{aligned}
+\end{equation*}
+(different from previous convolution operations).
+
+Check: $(h*m)*F = h*(m*F)$ (so we can write $h*m*F$).
+
+We know $m = F+m*F$, $F_{k+1} = F_k * F = F*F_k$.
+
+By (**), $\mu = H+H*m$, $\mu*F = H*F + H*m*F = H*m = \mu-H$, $\mu=H+\mu*F$, i.e. (*).
+
+\begin{thm}
+$\frac{m(t)}{t} \xrightarrow{t \to \infty} \frac{1}{\E(x)}$.
+\end{thm}
 
 \iffalse
 \begin{equation*}

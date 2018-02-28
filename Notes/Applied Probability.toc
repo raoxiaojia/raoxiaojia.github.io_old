@@ -6,3 +6,4 @@
 \contentsline {subsection}{\numberline {3.2}Reversibility}{17}{subsection.3.2}
 \contentsline {section}{\numberline {4}Queueing theory}{20}{section.4}
 \contentsline {subsection}{\numberline {4.1}Waiting time}{23}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Networks of queues}{24}{subsection.4.2}
