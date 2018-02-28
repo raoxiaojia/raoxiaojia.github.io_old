@@ -983,7 +983,7 @@ Add uncoutnably many consttants $\{c_i:i \in I\}$ to the language, and add to $S
 \end{proof}
 \end{coro}
 
-Similarly, we coudn find a model into which $P(P(R))$ injects (choose $I = P(P(R))$). E.g., there exists an infinite field ($\Q$), so there exists field as big as $P(P(R))$.
+Similarly, we could find a model into which $P(P(R))$ injects (choose $I = P(P(R))$). E.g., there exists an infinite field ($\Q$), so there exists field as big as $P(P(R))$.
 
 \begin{coro} (9, downward L$\ddot{o}$wenheim-Skolem theorem):\\
 Let $S$ be a theory in countable language $L$. If $S$ has a model, then it has a countable model.
@@ -992,6 +992,74 @@ The model constructed in theorem 3 is countable.
 \end{proof}
 \end{coro}
 
+\subsection{Peano Arithmetic}
+We try to make the usual axioms for $\N$ into a first-order theory.\\
+$L : \Omega = \{0,s,+,\times\}$, $\Pi = \phi$, axioms:\\
+1. $(\forall x) (\neg s(x) = 0)$;\\
+2. $(\forall x)(\forall y) (s(x) = s(y) \implies x=y)$;\\
+3. $(\forall y_1)...(\forall y_n) [(p[0/x] \cap (\forall x) (p \implies p[s(x)/x])) \implies (\forall x) p]$.\\
+($y_i$ in 3 are parameters).\\
+4. $(\forall x) (x+0=x)$;\\
+5. $(\forall x)(\forall y) (x+s(y) = s(x+y))$;\\
+6. $(\forall x) (x+0=0)$;\\
+7. $(\forall x)(\forall y) (x\timess(y) = (x+y)+x)$.
+
+These axioms are called Peano Arithmetic or Formal Number Theory.
+
+Note on axiom 3: first guess shold have been 
+\begin{equation*}
+\begin{aligned}
+(p[0/x] \cap (\forall x|(p \implies p[s(x)/x])) \implies (\forall x) p
+\end{aligned}
+\end{equation*}
+But then missing properties like $x \geq y$ ($y$ chosen earlier).
+
+Then PA has an infinite model, so by upward L-S, PA has an uncountable model that is not isomorphic to $\N$ trivially. Doesn't this contradict the fact that the usual axioms characterise $\N$ uniquely?
+
+Answer: axiom 3 is only 'first-order induction' -- even in $\N$ itself, it refers to only countably many subsets (as opposed to true induction).
+
+A subset $S \subset \N$ is called \emph{definable} if there exists $p \in L$, free variable $x$, s.t. $\forall m \in \N$ we have: $m \in S \iff p[m/x]$ holds in $\N$ (where by $m$ we mean $1+1+...+1$ ($m$ times)).
+
+e.g. set of squares: $p(x)$ is $(\exists y) (yy=x)$;\\
+set of primes: $p(x)$ is: $\neg(x=0) \cap \neg(x=1) \neg (\forall y) (y |x) \implies ((y=1) \vee (y=x))$, where $y|x$ is a short hand for $(\exists z) (yz = x)$, and by $1$ we mean $s(0)$.\\
+Powers of $2$: $p(x)$ is $(\forall y) ((y|x \wedge y\ prime) \implies (y=2))$.
+
+Exercise: powers of 4; challenge: powers of 6.
+
+Is PA complete? in other words, for each sentence $p$, PA $\vdash p$ or PA $\vdash \neg p$?
+
+\begin{thm} (G$\ddot{o}$del's incompleteness theorem)\\
+PA is not complete.\\
+Take $p$ with PA $\not\vdash p$, $PA \not\vdash \neg p$. We have $p$ holding in $\N$ or $(\neg p)$ holding in $\N$. Conclution: $\exists$ sentence $p$ s.t. $p$ is true in $\N$, but $PA \not\vdash p$.
+\end{thm}
+
+This does not contradict completeness; it shows that if $p$ true in all models of PA, then PA $\vdash p$.
+
+\newpage
+\section{Set Theory}
+Aim: what does 'the universe of sets' look like?
+
+Key starting point: view set theory as 'just another finite-order theory'.
+
+\subsection{Zermelo-Fraenkel set theory}
+We have $L$: $\Omega = \phi$, $\Pi = \{\varepsilon\}$, $\alpha(\epsilon) = 2$.
+
+We'll have the ZF axioms: 2 to get started, 4 to build things, and 3 you might not think of at first.
+
+Then a 'universe of sets' will mean a model ($V,\epsilon$) of the ZF axioms.
+
+1. \emph{Axiom of extension}:\\
+If two sets have the same mebmers, then they are equal:\\
+$(\forall x)(\forall y) ((\forall z) (z \in x \iff z \in y) \implies (x=y))$.
+
+Note: converse is an instance of a logical axiom.
+
+2. \emph{Axiom of separtion}:\\
+We can form a subset of a set, or precisely, given set $x$ and property $p(z)$, we can form the set of all $z \in x$ such that $p(z)$ holds:\\
+$(\forall t_1) ... (\forall t_n) (\forall x)(\exists y) (\forall z) (z \in y \iff (z \in x \wedge p))$\\
+This is actually an axiom scheme: for each formula $p$ and free variables $t_i$.
+
+Note: we do want parameters, e.g. to have $\{z \in x: t \in z\}$, $t$ chosen earlier.
 
 \iffalse
 \begin{equation*}

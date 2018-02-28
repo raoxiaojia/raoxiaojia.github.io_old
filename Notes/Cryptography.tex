@@ -1244,9 +1244,98 @@ The error-locator polynomial is
 \end{equation*}
 Problem: assuming $\deg (\sigma) = |\xi| \leq r$ ($\xi$ is number of errors I think?), recover $\sigma(x)$ from $r(x)$.
 \end{defi}
-
-
 \end{eg}
+
+\begin{thm} (3.4)\\
+$\sigma(x)$ has constant term 1, and satisfies
+\begin{equation*}
+\begin{aligned}
+\sigma(x) \sum_{j=0}^{2r} r(\alpha^j) x^j \equiv w(x) \pmod {x^{2r+1}}
+\end{aligned}
+\end{equation*}
+where $w(x)$ is a polynomial of degree $\leq r$. Moreover, $\sigma(x)$ is the unique polynomial of least degree satisfying the above.
+\end{thm}
+
+Application: Taking coefficeints of $X^i$ for $r+1 \leq i \leq 2r$ allows us to solve for the coefficients of $\sigma(x)$. Then
+\begin{equation*}
+\begin{aligned}
+\xi = \{0 \leq i \leq n-1: \sigma(\alpha^{-i}) = 0\}
+\end{aligned}
+\end{equation*}
+This determines $e$ and we decode as $r-e$ (remember $\sigma(x) = \prod_{i \in \xi} (1-\alpha^i x^i)$.
+
+Proof of (2.34):\\
+Let $w(x) = -x \sigma'(x) =\sum_{i \in \xi} \alpha^i x \prod_{j \neq i} (1-\alpha^j x)$. So $w(x)$ is a polynomial of degree $=\deg(\sigma)$. We work in $K[[x]]$ the ring of formal power series $\sum_{i=0}^\infty \beta_ix^i$, $\beta_i \in K$. Note $\frac{1}{1-\alpha^ix} = \sum_{j=0}^\infty (\alpha^i x)^j \in K[[x]]$, so 
+\begin{equation*}
+\begin{aligned}
+\frac{w(x)}{\sigma(x)} &= \sum_{i \in \xi} \frac{\alpha^i x}{1-\alpha^i x}\\
+&= \sum_{i \in \xi} \sum_{j =1}^\infty (\alpha^i x)^j\\
+&= \sum_{j=1}^\infty (\sum_{i \in \xi} (\alpha^j)^i) x^j\\
+&= \sum_{j=1}^\infty e(\alpha^j) x^j
+\end{aligned}
+\end{equation*}
+So
+\begin{equation*}
+\begin{aligned}
+w(x) = (\sum_{j=1}^\infty e(\alpha^j) x^j) \sigma(x)
+\end{aligned}
+\end{equation*}
+
+By definition of $C$ we have $c(\alpha^j)=0$ for $1 \leq j \leq \delta-1$, so for $1 \leq j \leq 2r$, so $r(\alpha^j) = e(\alpha^j)$ for $1\ leq j \leq 2r$. Thus
+\begin{equation*}
+\begin{aligned}
+\sigma(x) \sum_{j=1}^{2r} \sum_{j=1}^{2r} r(\alpha^j) x^j \equiv w(x) \pmod {x^{2r+1}}
+\end{aligned}
+\end{equation*}
+
+Now to show uniqueness, note $\sigma(x)$ has distinct, nonzero roots, so $\sigma(x)$ and $w(x) = -x\sigma'(x)$ are coprime. Suppose $\tilde{\sigma}(x)$ and $\tilde{w}(x)$ are another solution.
+
+Assume $\deg(\tilde{\sigma}) \leq \deg(\sigma)$. Then
+\begin{equation*}
+\begin{aligned}
+\sigma(x) \tilde{w}(x) \equiv \tilde{\sigma(x)} w(x) \pmod {x^{2r+1}}
+\end{aligned}
+\end{equation*}
+But these four polynomials have degree $\leq r$, so LHS and RHS are actually equal. Since $\sigma(x)$ and $w(x)$ are coprime, we must get $\sigma(x) | \tilde{\sigma(x)}$. But $\deg(\tilde{\sigma}) \leq \deg(\sigma)$, so $\tilde{\sigma}$ is a scalar multiple of $\sigma$. Both have constant term 1, so they are equal.
+
+\subsection{Shift registers}
+\begin{defi}
+A general feedack shift register is a function $f:F_2^d \to F_2^d$ of the form
+\begin{equation*}
+\begin{aligned}
+f(x_0,...,x_{d=1}) = (x_1,...,x_{d-1},c(x_0,...,x_{d-1}))
+\end{aligned}
+\end{equation*}
+where $c:F_2^d \to F_2^d$ is a function.
+\end{defi}
+
+\begin{defi}
+A linear feedback shift register is a function $f:F_2^d \to F_2^d$ as abovev with $c$ linear in $x_0,...,x_{d-1}$.
+\end{defi}
+
+The stream associated to the initial fill $y_0,...,y_{d-1}$ is the sequence $y_0,y_1,...$ wher $y_n = a_{d-1} y_{n-1} + ... + a_0 y_{n-1}$ $\forall n \geq d$ or more generally, $y_n = c(y_{n-d},...,y_{n-1})$.
+
+The stream produced by a LFSR is a recurrence relation (difference relation). The feedback (auxilary) polynomial is $p(x) = x^d+a_{d-1} x^{d-1} + ... + a_0$.
+
+\begin{defi}
+A sequence of elements in $F_2$ has generating function $G(x) = \sum_{j=0}^\infty x_j X^j \in F_2[[x]]$.
+\end{defi}
+
+\begin{thm} (2.35)\\
+The stream comes from a LFSR with feedback polynomial $P(x)$ iff $G(X) = \frac{B(x)}{A(x)}$, where $A(X)$ is the reverse of $P(X)$ and $B(X)$ a polynomial of degree less than $d$.
+\begin{proof}
+Suppose $P(X) = a_n x^d + a_{n-1} x^{d-1} + ... + a_0$ with $a_d = 1$. Then $A(X) = a_0 x^d + a_1 x^{d-1} + ... + a_d$. So $A(x)G(x) = (\sum_{i=0}^d a_{d-i}X^i)(\sum_{j=0}^\infty x_j X^j)$.
+
+So $A(X)G(X)$ is a polynomial of deg $<d$ iff coefficients of $X^r$ in $A(X)G(X) = 0$ $\forall r \geq d$, iff $\sum_{i=0}^d a_{d-1} x_{r-1} = 0$ $\forall r \geq d$ $\iff (x_n)_{n \geq 0}$ comes from a LFSR with feedback polynomial $P(X)$.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+The problems:\\
+(i) Recover the LFSR from its sequence output;\\
+(ii) Decoding BCH codes;\\
+Both involve recognisigin a power series as a quotient of polynomials.
+\end{rem}
 
 
 
