@@ -21,3 +21,4 @@
 \contentsline {section}{\numberline {12}The missing lecutre: Mackey Theory}{45}{section.12}
 \contentsline {section}{\numberline {13}Integrality in the group algebra}{48}{section.13}
 \contentsline {subsection}{\numberline {13.1}The centre of $\mathbb {C}G$}{48}{subsection.13.1}
+\contentsline {section}{\numberline {14}Burnside's theorem}{51}{section.14}

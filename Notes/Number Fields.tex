@@ -982,6 +982,66 @@ By the lemma, we can find elements $\alpha_1,\alpha_2,...$ of $\mathcal{O}_L\set
 \end{proof}
 \end{coro}
 
+We continue with the non-examinable proof of Dirichlet's unit theorem.
+
+We proved propoition: let $\alpha \in \mathcal{O}_L \setminus \{0\}$ be such that $l(\alpha)$ fix $1 \leq k \leq r+s$. Then $\exists \beta \in \mathcal{O}_L \setminus \{0\}$ such that $N(\beta) \leq (\frac{2}{\pi})^s \sqrt{|D_L|}$, and if $l(\beta) = (b_1,...,b_{r+s})$ then $b_i < a_i$ if $i \neq k$.
+
+We deduced Corllary 7.4: fix $1 \leq k \leq r+s$. Then there exists $\varepsilon \in \mathcal{O}_L^*$ such that if $l(\varepsilon) = (a_1,...,a_{r+s})$, then $a_i < 0$ if $i \neq k$.
+\begin{proof}
+Choose $\alpha \in \mathcal{O}_L \setminus \{0\}$. By the proposition, we can find elements $\alpha_1,...$ such that $N(\alpha_i) \leq (2/\pi)^s \sqrt{|D_L|}$, and if $l(i) = (b_{i1,...,ir+s})$ then $b_{ij} > b_{i+1j}$ if $j \neq k$ for all $i \geq 1$.
+
+We now look at the ideals $(\alpha_1),(\alpha_2),...$. These have norm at most $(2/\pi)\sqrt{|D_L|}$. We know there are only finitely many ideals of $\mathcal{O}_L$ of norm at monst that, so there must exist $N<M$ such that $(\alpha_N) = (\alpha_M)$. Hence $\exists u \in \mathcal{O}_L^*$ such that $\alpha_M = u \alpha_N$. Also, $u = \alpha_M / \alpha_N \implies l(u) = (b_{m1}-b_{N1},...,b_{mr+s}-b_{Nr+s})$. But $N<M$, so $b_{Nj} > b_{Mj}$ if $j \neq k$. So $B_{Mj} - b_{Nj} < 0$ if $j \neq k$.
+\end{proof}
+
+\begin{lemma} (7.5)\\
+Let $N \geq 1$, and let $A \in M_{N \times N} (\R)$ be such that:\\
+$\bullet$ $\sum_{i=1}^N A_{ij} = 0$ for all $j=1,...,N$;\\
+$\bullet$ $A_{ij} > 0$ if $i = j$, and $<0$ if $i \neq j$.\\
+Then $A$ has rank $N-1$.
+\begin{proof}
+The rank is at most $N-1$. We show the first $N-1$ rows of $A$ are LI.\\
+Suppose there exist $t_i \in \R,i = 1,...,N-1$ not all zero s.t. $\sum_{i=1}^{N-1} t_i A_{ij} = 0$ for each $j = 1,...,N$. WLOG after rescaling ther exists $k$ that $t_k=1$ and $t_i \leq 1$ if $i \neq k$. Then $0 = \sum_{i=1}^{N-1} t_i A_{ik} \geq \sum_{i=1}^{N-1} A_{ik} > \sum_{i=1}^N A_{ik} = 0$, contradiction.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (7.6)\\
+Fix $B>0$. Let $X_B = \{\alpha \in \mathcal{O}_L | \forall \sigma: L \to \C, |\sigma(\alpha)| \leq B\}$. THen $X_B$ is finite.
+\begin{proof}
+Recall the map $S:\mathcal{O}_L \to \R^r \times \C^s$. $S(\mathcal{O}_L)$ is a lattice in $\R^r \times \C^s$. $S(X_B)$ is the intersection of the lattice $S(\mathcal{O}_L)$ with a compact subset of $\R^r \times \C^s$. Therefore it must be finite.
+\end{proof}
+\end{lemma}
+
+\begin{prop} (7.7)\\
+$l(\mathcal{O}_L^*)$ is a lattice in $H \leq \R^{r+s}$.
+\begin{proof}
+We must show there exist units $v_1,...,v_{r+s-1} \in \mathcal{O}_L^*$ such that $l(v_1),...,l(v_{r+s-1})$ span $H$ as an $\R$-vector space and generate $l(\mathcal{O}_L^*)$ as an abelian group.\\
+By corollary 7.4, we can find $\varepsilon_1,...,\varepsilon_{r+s} \in \mathcal{O}_L^*$ such htat if $l(\varepsilon_j) = (A_{ij},...,A_{r+sj})$, then $A_{ij} < 0$ if $i \neq j$ and $A_{ij} > 0$ if $i = j$. By lemma 7.5, the matrix $A$ has rank $r+s-1$, so we can find $v_1,...,v_{r+s-1} \in \mathcal{O}_L^*$ such that $l(v_1),...,l(v_{r+s-1})$ span $\mathcal{O}_L^*$ as an $\R$-vector space.\\
+Let $\Lambda = \oplus_{i=1}^{r+s-1} \Z l(v_i) \leq H$. This is a lattice in $H$. Then $\Lambda \leq l(\mathcal{O}_L^*)$ and if $u \in \mathcal{O}_L^*$, then $\exists \lambda \in \Lambda$ such that $l(u) - \lambda \in \{\sum_{i=1}^{r+s-1} t_i l(v_i) | t_1,...,t_{r+s-1} \in [0,1]\}=P$. But the set of units $l(P)$ is finite by Lemma 7.6. Hence the quotien $l(\mathcal{O}_L^*) / \Lambda$ is finite. By Lagrange's theorem, $\exists N \in \Z, N > 1$ such that $N l(\mathcal{O}_L^*) \leq \Lambda$. Hence $\Lambda \leq l(\mathcal{O}_L^*) \leq \frac{1}{N}\Lambda$. By the sandwich lemma, $l(\mathcal{O}_L^*)$ is a free abelian group of rank $r+s-1$. In particular, it is a lattice in $H$.
+\end{proof}
+\end{prop}
+
+Let's now finish the proof of the unit theorem, i.e. show there's an isomorphism $\mathcal{O}_L^* \cong \mu_L \times \Z^{r+s-1}$, where $\mu_L$ is the (finite) group of roots of unity in $\mathcal{O}_L$.
+
+\begin{proof}
+We have $\mu_L = \ker l$. If $\xi \in \mu_L$, then $\xi^N = 1$ for some $N\geq 1$, hence $l(\xi^N) = 0 = N l(\xi) \implies l(\xi) = 0$ as $l(\xi \in \R^{r+s}$. If $\alpha \in \mathcal{O}_L^*$ and $l(\alpha) = 0$ then $\forall \sigma: L \to \C$, $|\sigma(\alpha)| = 1$. By lemma 7.6, $\ker l$ is finite. By Lagrange's theorem, it consists of roots of unity.
+
+Choose $v_1,...,v_{r=s-1} \in \mathcal{O}_L^*$ such that $l(v_1),...,l(v_{r+s-1})$ is a $\Z$-basis of $l(\mathcal{O}_L^*)$. Define a map $f:\mu_L \times \Z^{r+s-1} \to \mathcal{O}_L^*$ by $(\xi,n_1,...,n_{r+s-1}) \to \xi v_1^{n_1} ... v_{r+s-1}^{n_{r+s-1}}$.
+\end{proof}
+
+Exercise: this is an isomorphism.
+
+Return to the examinable parts:
+
+We now show how to find the fundamental unit in $\Q(\sqrt{d})$, where $\sqrt{d} \in \R_{>0}$ and $d \in \Z$ is a positive square-free integer.
+
+$d>1,d \equiv 1 \pmod 4$:
+
+Recall: the fundamental unit $u \in \mathcal{O}_L^*$ is the least unit $u>1$. We saw last time that if $v=\frac{1}{2}(a+b\sqrt{d}) \in \mathcal{O}_L^*$ is any unit with $v>1$, then $a \geq b \geq 1$.
+
+Let $u^k = \frac{1}{2} (a_k+b_k\sqrt{d})$. Then $b_{k+1} = \frac{1}{2} (a_1 b_k + b_1a_k) \geq \frac{1}{2} (a_1+b_1)b_k \geq b_k$. We see $b_{k+1} \geq b_k$, with equality iff $a_k = b_k$ and $a_1=b_1=1$. Note: if $a_1=b_1 =1$, then $N(u) = |\frac{1-d}{4}| = 1 \implies d=5$. Assume first that $d>5$. Then the sequence $b_1<b_2<b_3<...$ is strictly increasing. The fundamental unit $u$ can therefore be found as following: let $b \in \N$ be the least positive integer such that $db^2 + 4 = a^2$ or $db^2 - 4 = a^2$, where $a \in \N$. Then $\frac{1}{2} (a+b\sqrt{d})$ is the fundamental unit.
+
+Now suppose $d=5$. Then at least $b_1 \leq b_2 \leq ...$ is non-decreasing, and each value $b_i$ can appear at most twice: this is because occurrences correspond to solutions to $b_i^2 d \pm 4 = a_i^2$. We can therefore characterize the fundamental unit $u$ as follows: let $b\ in \N$ be the least positive integer for which $db^2+4 = a^2$ or $db^2-4 = a^2$ for $a,a' \in \N$ (units $\frac{1}{2}(a+b\sqrt{d}) and \frac{1}{2} (a'+b\sqrt{d})$). Recall that the fundamental unit is the least unit with $u>1$. Of these two possibilities, choose the unit with the smaller value of $a$ or $a'$. In this case, $b=1$ gives $d+4=3^2,d-4=1$. So $\frac{1}{2} (1+\sqrt{5})$ is the fundamental unit in this case.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}

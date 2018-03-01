@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.19)  27 FEB 2018 09:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.19)  1 MAR 2018 09:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -843,7 +843,7 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 62.
 
-[5] [6] [7] <image/Rep_01.png, id=123, 722.7pt x 406.51875pt>
+[5] [6] [7] <image/Rep_01.png, id=199, 722.7pt x 406.51875pt>
 File: image/Rep_01.png Graphic file (type png)
 
 <use image/Rep_01.png>
@@ -854,7 +854,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 151--152
 [][] 
  []
 
-[8 <./image/Rep_01.png>] <image/Rep_02.png, id=128, 722.7pt x 406.51875pt>
+[8 <./image/Rep_01.png>] <image/Rep_02.png, id=204, 722.7pt x 406.51875pt>
 File: image/Rep_02.png Graphic file (type png)
 
 <use image/Rep_02.png>
@@ -865,7 +865,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 177--178
 [][] 
  []
 
-[9 <./image/Rep_02.png>] <image/Rep_03.png, id=133, 722.7pt x 406.51875pt>
+[9 <./image/Rep_02.png>] <image/Rep_03.png, id=209, 722.7pt x 406.51875pt>
 File: image/Rep_03.png Graphic file (type png)
 
 <use image/Rep_03.png>
@@ -900,7 +900,7 @@ Overfull \hbox (20.46075pt too wide) detected at line 824
 [] []
  []
 
-[25] <image/Rep_04.png, id=204, 722.7pt x 406.51875pt>
+[25] <image/Rep_04.png, id=279, 722.7pt x 406.51875pt>
 File: image/Rep_04.png Graphic file (type png)
  <use image/Rep_04.png>
 Package pdftex.def Info: image/Rep_04.png used on input line 851.
@@ -910,7 +910,7 @@ Overfull \hbox (88.62334pt too wide) in paragraph at lines 849--852
 [] 
  []
 
-[26 <./image/Rep_04.png>] <image/Rep_05.png, id=209, 722.7pt x 406.51875pt>
+[26 <./image/Rep_04.png>] <image/Rep_05.png, id=284, 722.7pt x 406.51875pt>
 File: image/Rep_05.png Graphic file (type png)
 
 <use image/Rep_05.png>
@@ -926,7 +926,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1091--1092
 
  []
 
-[32] <image/Rep_06.png, id=235, 722.7pt x 406.51875pt>
+[32] <image/Rep_06.png, id=311, 722.7pt x 406.51875pt>
 File: image/Rep_06.png Graphic file (type png)
  <use image/Rep_06.png>
 Package pdftex.def Info: image/Rep_06.png used on input line 1143.
@@ -936,7 +936,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 1143--1144
 [][] 
  []
 
-<image/Rep_07.png, id=236, 722.7pt x 406.51875pt>
+<image/Rep_07.png, id=312, 722.7pt x 406.51875pt>
 File: image/Rep_07.png Graphic file (type png)
  <use image/Rep_07.png>
 Package pdftex.def Info: image/Rep_07.png used on input line 1145.
@@ -956,7 +956,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1488--1494
 
  []
 
-[41] <image/Rep_08.png, id=274, 722.7pt x 406.51875pt>
+[41] <image/Rep_08.png, id=350, 722.7pt x 406.51875pt>
 File: image/Rep_08.png Graphic file (type png)
  <use image/Rep_08.png>
 Package pdftex.def Info: image/Rep_08.png used on input line 1540.
@@ -975,29 +975,22 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 1722.
 
-[48]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1751.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1751.
+[48] [49] [50] [51]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1852.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1852.
  (./Representation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1751.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1751.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1852.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1852.
 
-
-
-Package rerunfilecheck Warning: File `Representation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Representation.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  E7B7E216CB0A0A26EFA8777ED3D41714;1488.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1751.
+Package rerunfilecheck Info: File `Representation.out' has not changed.
+(rerunfilecheck)             Checksum: 876C7373C3BA74FAFA3CF263B6F07D2F;1543.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1852.
  ) 
 Here is how much of TeX's memory you used:
- 27968 strings out of 494953
- 665521 string characters out of 6180977
+ 27997 strings out of 494953
+ 665870 string characters out of 6180977
  888473 words of memory out of 5000000
- 30600 multiletter control sequences out of 15000+600000
+ 30625 multiletter control sequences out of 15000+600000
  15893 words of font info for 104 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  57i,17n,77p,1139b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1019,10 +1012,10 @@ texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive
 dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Representation.pdf (48 pages, 867364 bytes).
+Output written on Representation.pdf (51 pages, 877543 bytes).
 PDF statistics:
- 387 PDF objects out of 1000 (max. 8388607)
- 306 compressed objects within 4 object streams
- 73 named destinations out of 1000 (max. 500000)
- 14389 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 476 PDF objects out of 1000 (max. 8388607)
+ 392 compressed objects within 4 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 14581 words of extra memory for PDF output out of 17280 (max. 10000000)
 

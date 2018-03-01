@@ -1740,6 +1740,107 @@ C_i C_j = \sum_l a_{ijl} C_l
 These are called the class algebra constants for $Z(\C G)$.
 \end{prop}
 
+Remember last time we had $C_j = \sum_{g \in \mathcal{C}_j} g$ ($=\sum_{k=1}^r x_k^{-1} g_j x_k$). We claimed that $c_1,...,c_k$ are basis for $Z(\C G)$. Let's now prove it.
+\begin{proof}
+Check that $g C_j g^{-1} = C_j$ $\forall g \in G$. So $C_j \in Z(\C G)$. Clear that the $C_j$ are linearly independent (because the $\mathcal{C}_J$ are pairwise disjoint). Now suppose $z \in Z(\C G)$, $z = \sum_{g \in G} \alpha_g g$. Then $\forall h \in G$ we have $\alpha_{h^{-1}gh} = \alpha_g$. So the function $g \to \alpha_g$ is constant on $G$-conjugacy classes. Wrigting $\alpha_g = \alpha_j$ for $g \in \mathcal{C}_j$, then $z = \sum_1^k \alpha_j C_j$. Finally, $Z(\C G)$ is a $\C$-algebra, so $C_i C_j = \sum_{l=1}^k \underbrace{a_{ijl}}_{\in \C} C_l$, as the $C_l$ span. We claim $a_{ijl} \in \Z_{\geq 0}$ $\forall i,j,l$: Fix $g_l \in \mathcal{C}_l$. Then
+\begin{equation*}
+\begin{aligned}
+a_{ijl} = \text{number of} \{(x,y\in\mathcal{C}_i \times \mathcal{C}_j:xy = g_l\} \in \Z_{\geq 0}
+\end{aligned}
+\end{equation*}
+\end{proof}
+
+\begin{defi} (13.4)\\
+Let $\rho:G \to GL(V)$ be an irreducible representation over $\C$, affording character $\chi$. Extend by linearity to $\rho:A = \C G \to End_\C V$, an algebra homomorphism. Any homomorphism of algebras $A \to End V$ is called a representation of $A$. A \emph{central character} of $A$ is a ring homomorphism $Z(A) \to \C$. Let $z \in Z(\C G)$. Then $\rho(z)$ commutes with all $|rho(g)$ ($g \in \C G$), so by Schur's lemma, $\rho(z) = \lambda_z I$ for some $\lambda_z \in \C$. Now consider the algebra homomorphism $\omega_\chi =\omega: Z(\C G) \to \C$ by $z \to \lambda_z$. Now $\rho(C_i) = \omega(C_i) I$, so, taking traces,
+\begin{equation*}
+\begin{aligned}
+\chi(1) \omega(C_i) = \sum_{g \in \mathcal{C}_i} \chi(g) = |\mathcal{C}_i| \chi(g_i)
+\end{aligned}
+\end{equation*}
+where $g_i$ is a representation of $\mathcal{C}_i$. So $\omega(C_i) = \frac{\chi(g_i)}{\chi(1)} |\mathcal{C}_i|$.
+\end{defi}
+
+\begin{lemma} (13.5)\\
+The values $\omega(C_i) = \frac{\chi(g)}{\chi(1)} |\mathcal{C}_i|$ are algebraic integers.
+\begin{proof}
+Since $\omega$ is an algebra homomorphism and using (13.3),
+\begin{equation*}
+\begin{aligned}
+\omega(C_i) \omega(C_j) = \sum_{l=1}^k a_{ijl} \omega(C_l)
+\end{aligned}
+\end{equation*}
+where $a_{ijl} \in \Z_{\geq 0}$. Thus the span $\{\omega(C_l): 1 \leq l \leq k\}$ is a subring of $\C$ and is a finitely-generated abelian group, so by Fact 3, consists of algebraic integers.\\
+$[$A bit of explanations:
+\begin{equation*}
+\begin{aligned}
+\omega(C_i) \omega(C_j) = \sum a_{ijl} \omega(C_l)\\
+\omega(C_i) \begin{pmatrix}
+\omega(C_1)\\
+...\\
+\omega(C_k)
+\end{pmatrix} = (a_{ijk}) \begin{pmatrix}
+\omega(C_1)\\
+...\\
+\omega(C_k)
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+$\omega(C_i)$ is eigenvalue of the integer matrix $(a_{ijl})$ so an algebraic integer by definition.$]$
+\end{proof}
+\end{lemma}
+
+Exercise (Burnside, 1911):\\
+Show that $a_{ijl}$ can be obtained from the charcater table. In fact, $\forall i,j,l$,
+\begin{equation*}
+\begin{aligned}
+a_{ijl} = \frac{|G|}{|C_G(g_i)| |C_G(g_j)|} \sum_{s=1}^k \frac{\chi_s (g_i) \chi_s(g_j) \chi_s(g_l^{-1})}{\chi_s(1)}
+\end{aligned}
+\end{equation*}
+for $g_i \in \mathcal{C}_i$, $1 \leq i \leq l$.\\
+(proof uses column orthogonality, JL 30.4).
+
+\begin{thm} (13.6)\\
+The degree of any irreducible charcaters of $G$ divides $|G|$.
+\begin{proof}
+Given irreducible charcater $\chi$, apply orthogonality,
+\begin{equation*}
+\begin{aligned}
+\frac{|G|}{\chi(1)} &= \frac{1}{\chi(1)} \sum_{g \in G} \chi(g) \chi(g^{-1})\\
+&= \frac{1}{\chi(1)} \sum_{i=1}^k |\mathcal{C}_i| \chi(g_i) \chi(g_i^{-1})\\
+&= \sum_{i=1}^k \frac{|\mathcal{C}_i \chi(g_i)}{\chi(1)} \chi(g_i^{-1})
+\end{aligned}
+\end{equation*}
+where in the last summand, the first fraction is an algebraic integer by (13.5), and $\chi(g_i^{-1})$ is sum of roots of unity so an algebraic integer. LHS is clearly also rational, so it's an integer.
+\end{proof}
+\end{thm}
+
+\begin{eg} (13.7)\\
+(a) If $G$ is a $p$-group, then $\chi(1)$ is a $p$-power ($\chi$ irreducible). In particualr, if $|G| = p^2$, then $\chi(1) = 1$ (since we already have a trivial character -- the idea is actually similar to the proof in Groups 1A), hence $G$ abelian.\\
+(b) If $G = S_n$ then every prime dividing the degree of an irreducible charcater of $G$ also divides $n!$.
+\end{eg}
+
+\begin{thm} (13.8, Burnside, 1904)\\
+If $\chi$ is irreducible, then $\chi(1) | \frac{|G|}{|Z|}$.\\
+The proof is left as an exercise. As a hint, it uses tensor products.
+\end{thm}
+
+\newpage
+\section{Burnside's theorem}
+
+\begin{thm} (14.1)\\
+Let $p,q$ be primes, let $|G| = p^a q^b$, where $a,b \in \Z_{\geq 0}$, with $a+b \geq 2$. Then $G$ is not simple.
+\begin{proof}
+The theorem gollows from 2 lemmas. We will prove this on Saturday.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+(1) In fact, even more is true: $G$ is soluble.\\
+(2) Result is best possible, in the sense that $|A_5| = 60 = 2^2 \cdot 3 \cdot 5$ has 3 prime factors, and is simple (actually there are 8 non-soluble groups of order $p^aq^br^c$ for $p,q,r$ primes).\\
+(3) If either $a$ or $b$ is 0 then $G$ is a $p$ group, so is nilpotent, so soluble.\\
+(4) In 1963, Feit and Thompson proved that every group of odd order was soluble.
+\end{rem}
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
