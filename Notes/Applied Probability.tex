@@ -1048,6 +1048,55 @@ By (**), $\mu = H+H*m$, $\mu*F = H*F + H*m*F = H*m = \mu-H$, $\mu=H+\mu*F$, i.e.
 $\frac{m(t)}{t} \xrightarrow{t \to \infty} \frac{1}{\E(x)}$.
 \end{thm}
 
+Last time we had $X_1,X_2,...$ iid, $P(X>0) = 1$, $E(X) < \infty$, $T_n = \sum_1^n X_i$, $N(t) = \max \{n:T_n \leq t$.
+
+Limit theorems:\\
+\begin{thm} (1)\\
+$\frac{N(t)}{t} \xrightarrow{a.s.} \frac{1}{\mu}$ as $t \to \infty$. Here $|mu = \E[X]$.
+\begin{proof}
+$\frac{T_{N(t)}}{N(t)} \leq \frac{t}{N(t)} < \frac{t_{N(t)+1}}{N(t)+1} (\frac{N(t)+1}{N(t)})$\\
+as $t \to \infty$ $N(t) \to \infty$ a.s.. But $T_{N(t)}/N(t) \to \mu$, so $t/N(t) \to \frac{1}{\mu}$ a.s..
+\end{proof}
+\end{thm}
+
+\begin{thm} (2, Renewal theorem)\\
+$\frac{m(t)}{t} \to \frac{1}{\mu}$ as $t \to \infty$.\\
+Recall $X = (X_1,X_2,...)$ i.i.d., $M$ taking values in $\{1,2,...\}$ is a stopping time for $X$ if $\{M \leq m\} \in \sigma(X_1,X_2,...,X_m)$ i.e. the occurence of the event is determined by (?) of $X_1,...,X_m$.
+
+Claim: $M=N(t)+1$ is a stopping time. To prove this, just note $\{M \leq m\} = \{N(t) \leq m-1\} = \{\sum_1^m X_i>t\}$.\\
+Note: $N(t)$ is not a stopping time.
+
+Wald's equation: If $M$ is a stopping time for $X$, then $\E(\sum_{i=1}^M X_i) = \E(M) \mu$.
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+\E(\sum_1^M x_i) &= \E(\sum_1^\infty X_i 1_{M\geq i})\\
+&= \sum_1^\infty \E (X_i 1_{M \geq i} )\\
+&= \sum_1^\infty \mu \P(M \geq i)\\
+&= \mu \sum_1^\infty \P(M\geq i) = \mu\E(M)
+\end{aligned}
+\end{equation*}
+\end{proof}
+Proof of renewal theorem:\\
+$t < \E(T_{N(t)+1}) = \mu(m(t)+1)$ since $N(t)+1$ is a stopping time (and by Wald). Now$m(t)/t > 1/\mu - 1/t \to 1/\mu$ as $t \to \infty$. So $t \geq \E(T_{N(t)+1} - X_{N(t)+1}) = \mu(m(t)+1) - \E(X_{N(t)+1})$ (*).
+
+With $a>0$, $X_i^a = \min \{X_i,a\}$ (truncated rv). This leads to a new renewal process with $m^a,T_k^a$,... . Now use (*) to new process: $t \geq \mu^a (m^a (t)+1) - \E(X_{N(t)^a+1}^a ) \geq \mu^a (m^a(t)+1)-a$. So we get $m(t)/t \leq (\frac{t+a}{\mu^a}-1) \frac{1}{t} \to 1/\mu^a \xrightarrow{a \to \infty} \frac{1}{\mu}$, and $E(X^a) \to E(X)$ by MCT (as $a \to 1$?).
+\end{thm}
+
+Excess life:
+
+Excess life $E(t) = T_{N(t)+1} - t$: current life $C(t) = t-T_{N(t)}$, total life $T(t) = C(t) + E(t) = X_{N(t)+1}$.
+
+Waiting time paradox:
+
+Let $N$ be a Poisson process rate $\lambda$. Consider $E(E(t))$:\\
+(correct) (a) Since $N$ is a MC, $E(E(t)) = E(X_1) = \frac{1}{\lambda}$;\\
+(wrong) (b) $t$ is likely to be near the middle of the relevant interarrival time, so $E(E(t)) = \frac{1}{2} \frac{1}{\lambda}$.
+
+In fact $E(X_{N(t)+1} ) = (2-e^{-\lambda t}) \frac{1}{\lambda}$.
+
+The next thing we are going to study is about excess life, $\P(E(t)>y|X_1=x)$. It's obviously 0 if $t<x\leq t+y$. Now if $x<t$, then it is equal to $\P(E(t-x) > y)$.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
