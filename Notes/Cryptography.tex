@@ -993,7 +993,7 @@ Any two columns of $H$ are linearly independent (where $H$ is the parity check m
 
 New codes from old:
 
-The following construction is specefic to linear code.
+The following construction is specific to linear code.
 
 \begin{defi}
 Let $C_1$, $C_2$ linear codes of length $n$ with $C_2 \subseteq C_1$, i.e. $C_2$ is a subcode of $C_1$. The \emph{bar product} is 
@@ -1337,7 +1337,138 @@ The problems:\\
 Both involve recognisigin a power series as a quotient of polynomials.
 \end{rem}
 
+\subsection{Berlekamp-Massey algorithm}
+Let $x_0,x_1,...$ be thutput of a binary LFSR. We can find the unknown $d$ and $a_0,...,a_{d-1}$ s.t.
+\begin{equation*}
+\begin{aligned}
+x_n + \sum_{i=1}^d a_{d-i} x_{n-i} = 0 \forall n \geq d
+\end{aligned}
+\end{equation*}
 
+we look successively at the matrices
+\begin{equation*}
+\begin{aligned}
+A_0 = (x_0),\\
+A_1 = \begin{pmatrix}
+x_1 & x_0\\
+x_2 & x_1
+\end{pmatrix},\\
+A_2 =\begin{pmatrix}
+x_2 & x_1 & x_0\\
+x_3 & x_2 & x_1\\
+x_4 & x_3 & x_2
+\end{pmatrix}
+\end{aligned}
+\end{equation*}
+
+Starting at $A_5$, if you happen to know $d \geq 5$.
+
+For each $A_i$, compute $\det (A_i)$:\\
+If $\det(A_i) \neq 0$, then $d \neq 1$;\\
+if $\det(A_i) = 0$, we solve (*) on the assumption $d < i$.
+
+We then check our candidate for $a_0,...,a_{d-1}$ over as many terms of the sequence as we wish. If this fails, we know that $d>1$, start again with $A_{i+1}$.
+
+Remark: it's easier to use Gaussian elimination rather than expanding along rows/columns.
+
+\newpage
+\section{Cryptography}
+Idea: modify message to make them unintelligible to all but the intended recipient.
+
+Terminology: plain text = unencrypted message;\\
+cipher text = encrypted message.
+
+Before transmission, the parties share some secret information called the \emph{key}.
+
+We let $M$ be the set of all possible unecrypted message, $e$ be the encrypted ones, and $k$ be the keys.
+
+Some examples:\\
+Let's have $M=e=\{A,B,...,Z\} = \Sigma$.\\
+(1) Simple substitution: $K$ is a set of permutation of $\Sigma$. Each letter of the message is replaced by its image under the permutation.\\
+(2) Vigenere Cipher: $K = \Sigma^d$. Identify $\Sigma=\Z/26\Z$. Write out the key repeatedly below the message and add mod 26.
+
+Note if $d=1$, this is a substitution cipher. If $d>1$, a given letter is encrypted differently depending on its place in the message, so simple frequency analysis doesn't work.
+
+What does it mean to break a cryptosystem?
+
+We assume the enemy may know:\\
+the functions $d$ and $e$;\\
+probability distributions on $M$ and $K$;\\
+but not the key.
+
+The attacker seeks to read messages from intercepted ciphertext.
+
+We consider 3 possible levels of attack:\\
+1. Cipher text only: The enemy only knows some piece of cipher text;\\
+2. Known plain text: The enemy has a (considerable length) of ciphertext and corresponding plain text;\\
+3. Chosen plaintext: The enemy can generate ciphertext corresponding to any plaintext s/he chooses.
+
+\begin{rem}
+(i) Examples (1) and (2) encryption above fail at level 2 if plaintext is 'sufficiently random'. However, if message is in English (say) and sufficiently long, then thes systems also fail at level 1 (and enemy will find key and can read all future messages).\\
+(ii) For modern 'industrial scale' applications, level 3 is desirable. Note that exhaustive searches are always possible (systems are finite), but we want time taken to be prohibitively large.\\
+Also, note good cryptosystems require not just good maths but good engineering, good management and an ability to leanr from mistakes.
+\end{rem}
+
+Unicity distance:
+
+Let $(M,K,e)$ be a cryptosystem. Let $m,k$ be random variables taking values in $M$ and $K$, and let $c =e(m,k)$.
+\begin{defi}
+(i) The key equivocation is $H(K|C)$;\\
+(ii) The message equivocation is $H(M|C)$.
+\end{defi}
+
+\begin{lemma} (3.1)\\
+$H(M|C) \leq H(K|C)$.
+\begin{proof}
+Since $M=d(C,K)$, we know $H(M|K,C) = 0$. Then 
+\begin{equation*}
+\begin{aligned}
+H(K|C) &= H(K,C) - H(C)\\
+&= H(M,K,C) - H(M|K,C)-H(C)\\
+&= H(M,K,C)-H(C)\\
+&= H(K|M,C) + H(M,C) - H(C)\\
+&= H(K|M,C) + H(M|C) \geq H(M|C)
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{lemma}
+
+\begin{rem}
+$\bra M,K,e \ket$ has perfect secrecy if $H(M|C) = H(M)$.\\
+Suppose, we send a sequence of messages $M^{(n)} = (m_1,m_2,...,m_n)$ using the same key.
+\end{rem}
+
+\begin{defi}
+The unicity distance $U$ is the least $n \geq 0$ s.t. $H(K| C^{(n)})$.
+\end{defi}
+
+We hvae
+\begin{equation*}
+\begin{aligned}
+H(K|C^{(n)}) &= H(K,C^{(n)}) - H(C^{(n)})\\
+&= H(K,M^{(n)},C^{(n)}) - H(C^{(n)})\\
+&= H(K,M^{(n)}) - H(C^{(n)})\\
+&= H(K) + H(M^{(n)}) - H(C^{(n)})
+\end{aligned}
+\end{equation*}
+
+We assume:\\
+$\bullet$ all keys are equally likely so $H(K) = \log (K)$;
+$\bullet$ $H(M^{(n)})$, where $H=H(M)$ entropy for single message;\\
+$\bullet$ all assumed cipertext is equally likely, so $H(C^{(n)}) = n \log |\Sigma|$, where $e = \Sigma^*$.
+
+So $H(K|C^{(n)}) = \log |K| + nH - n\log |\sigma|$, and $U =\frac{|\log |K|}{\log |\Sigma|-H}$.
+
+In words,
+
+\begin{defi}
+The unitary distance $U$ of a cryptosystem is the least length of ciphertext required to uniquely deduce key.
+\end{defi}
+
+\begin{rem}
+(i) To make $U$ large, we can make key space large, or send messages with little redundancy;\\
+(ii) To be secure, we should not use a single key for more messages than the unicity distance.
+\end{rem}
 
 \iffalse
 \begin{equation*}

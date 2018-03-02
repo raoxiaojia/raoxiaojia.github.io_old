@@ -1002,7 +1002,7 @@ $L : \Omega = \{0,s,+,\times\}$, $\Pi = \phi$, axioms:\\
 4. $(\forall x) (x+0=x)$;\\
 5. $(\forall x)(\forall y) (x+s(y) = s(x+y))$;\\
 6. $(\forall x) (x+0=0)$;\\
-7. $(\forall x)(\forall y) (x\timess(y) = (x+y)+x)$.
+7. $(\forall x)(\forall y) (x\times(y) = (x+y)+x)$.
 
 These axioms are called Peano Arithmetic or Formal Number Theory.
 
@@ -1060,6 +1060,67 @@ $(\forall t_1) ... (\forall t_n) (\forall x)(\exists y) (\forall z) (z \in y \if
 This is actually an axiom scheme: for each formula $p$ and free variables $t_i$.
 
 Note: we do want parameters, e.g. to have $\{z \in x: t \in z\}$, $t$ chosen earlier.
+
+3. \emph{Axiom of empty-set}:\\
+There is a set with no members.\\
+$(\exists x) (\forall y) (\neg y \in x)$.
+
+We write $\phi$ for the unique (by extension axiom) such set $x$. This is just an abbreviation: so $p(\phi)$ means $(\exists x) ((\forall y) (\neg y \in x) \wedge p(x))$.
+
+Similarly, write $\{z \in x: p (z)\}$ for the set guaranteed by separation.
+
+4. \emph{Axiom of pair-set}:\\
+We can form $\{x,y\}$.\\
+$(\forall x)(\forall y)(\exists z) (\forall t) (t \in z \iff t = x \vee t = y)$.
+
+We write $\{x,y\}$ for this set, and $\{x\}$ for $\{x,x\}$.\\
+We can now define the 'ordered pair' $(x,y)$ to be $\{\{x\},\{x,y\}\}$.\\
+It's easy to check that $(x,y) = (t,u) \implies x=t \wedge y=u$ (follows from axiom so far).\\
+Say $x$ is an ordered pair if $(\exists y) (\exists z) (x=(y,z))$, and we say $f$ is a function to mean $(\forall x) (x \in f \implies x$ is an ordered pair) $\wedge (\forall x)(\forall y)(\forall z)((x,y) \in f \wedge (x,z) \in f \implies y=z)$.
+
+Can now define the domain of a function as follows: write $x = Dom f$ if $(f$ is a function) $\wedge (\forall z)(z \in x \iff (\exists t)((z,t) \in f)))$.
+
+And write $f:x \to y$ for $(f$ is a function) $\wedge (x=Dom f|\wedge (\forall z)((\exists t)((t,z) \in f) \implies z \in y))$.
+
+5. \emph{Axiom of union}:\\
+We can form unions.\\
+$(\forall x)(\exists y)(\forall z)(z \in y \iff (\exists t) (z \in t \wedge t \in x))$.
+
+6. \emph{Axiom of power-set}:\\
+We can form power-sets.\\
+$(\forall x)(\exists y) (\forall z) (z \in y \iff z \subset x)$.\\
+Here by $z \subset x$ we mean $(\forall t)(t \in z \implies t \in x)$.
+
+Notes:\\
+1. write $\cup x$ and $\mathcal{P}(x)$ for these two sets. We can write $x \cup y$, etc.\\
+2. No extra axiom needed for interseionts: we can form $\cap x$ ($x \neq \phi$) as a subset of $y$ any $y \in x$. So ok by separation.\\
+3. We can now form $x \times y$ as a suitable subset of $\mathcal{P}\mathcal{P}(x\cup y)$ -- since if $t \in x,u \in y$, then $(t,u) = \{\{t\},\{t,u\}\}\in\mathcal{P}\mathcal{P}(x \cup y)$. And then we can form the set of all functions from $x$ to $y$, as a subset of $\mathcal{P}(x \times y)$.
+
+The next three are more subtle:
+
+7. \emph{Axiom of infinity}:\\
+So far, $V$ (the branch symbol) must be inifinite. For example, write $x^+ = x \cup \{x\}$, then easy to check that $\phi,\phi^+,\phi^{++},...$ are all distinct. We often write $0$ for $\phi$, $1$ for $\phi^+$,$2$ for $\phi^{++}$, etc. So $1 = \{0\}, 2 = \{0,1\},3=\{0,1,2\}$,etc. But does the structure $(V,\epsilon)$ have an infinite set -- e.g. $x$ with $\phi \in x,\phi^+ \in x$, ...?
+
+We say $x$ is a successor set if $(\phi \in x) \wedge (\forall y) (y \in x \implies y^+ \in x)$.
+
+Now let's state the axiom:\\
+There is an infintie set/there is a successor set.\\
+$(\exists x) (x$ is a successor set$)$.
+
+Note that any intersection of successor sets is a successor set, so there exists a least one, called $\omega$. This will be our version, in $V$, of the natural numbers.
+
+Thus $(\forall x)(x \in \omega \iff (\forall y)(y$ a successor set $\implies x \in y))$.
+
+Note that if $x \subset \omega$ is a successor set then $x=\omega$ by definition:\\
+$(\forall x)(x \subset \omega \wedge \phi \in x \wedge (\forall y)(y \in x \implies y^+ \in x)) \implies x=\omega)$. This is induction: genuine induction, over all $x \subset \omega$ (as opposed to in PA).
+
+Also, it's easy to check $(\forall x \in \omega) (\neg x^+ = \phi)$, and $(\forall x \in \omega)(\forall y \in \omega)(x^+ = y^+ \implies x=y)$.
+
+Thus: $\omega$ satisfies (in $V$) all the usual axioms for the natural numbers.
+
+Say $x$ is finite if $(\exists y) (y \in \omega \wedge x$ bijects with $y$).
+
+And then $x$ is countable if $x$ is finite or $x$ bijects with $y$.
 
 \iffalse
 \begin{equation*}
