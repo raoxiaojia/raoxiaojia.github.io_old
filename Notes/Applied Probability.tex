@@ -1095,7 +1095,95 @@ Let $N$ be a Poisson process rate $\lambda$. Consider $E(E(t))$:\\
 
 In fact $E(X_{N(t)+1} ) = (2-e^{-\lambda t}) \frac{1}{\lambda}$.
 
-The next thing we are going to study is about excess life, $\P(E(t)>y|X_1=x)$. It's obviously 0 if $t<x\leq t+y$. Now if $x<t$, then it is equal to $\P(E(t-x) > y)$.
+The next thing we are going to study is about excess life, $\P(E(t)>y|X_1=x)$. It's obviously 0 if $t<x\leq t+y$. Now if $x<t$, then it is equal to $\P(E(t-x) > y)$; otherwise, if $x>t+y$, it's 1. We therefore have
+\begin{equation*}
+\begin{aligned}
+\P(E(t)>y) &= \int \P(E(t) >y | X_1=x) dF(x)\\
+&= \int_0^t \P(E(t-x)>y) dF(x)+ \int_{t+y}^\infty dF(x)
+\end{aligned}
+\end{equation*}
+Fix $y$, we then get
+\begin{equation*}
+\begin{aligned}
+\mu(t) = \P(E(t)>y)
+\end{aligned}
+\end{equation*}
+or $\mu(t)=1-F(t+y) + \int_0^t \mu(t-x) d F(x)$.
+
+Solution is $\mu(t) = H(t) + \int_0^t H(t-x) dm(x)$. Hence, in principle, the distribution of $E(t)$.
+
+Study the distribution of $E(t)$ in the limit as $t \to \infty$.
+
+A random variable $X$ is said to be arithmetic (or its distribution is arithmetic) if $\exists \lambda > 0$ s.t. $\P(X \in \lambda \Z) = 1$. In this case, $\lambda$ is the \emph{span} of the random variable/distribution, or more precisely, the span is the maximal such $\lambda$.
+
+\begin{thm}
+If $X_1$ is non-arithmetic, and $\mu = \E(X_1) < \infty$, then
+\begin{equation*}
+\begin{aligned}
+\P(E(t) \leq y) \xrightarrow{t \to \infty} \frac{1}{\mu} \int_0^y [1-F(x)] dx
+\end{aligned}
+\end{equation*}
+\begin{proof}
+Use key renewal theorem. (not done here)
+\end{proof}
+\end{thm}
+
+Example: Consider instead the case when $X_1$ is arithmetic with span 1. Then
+\begin{equation*}
+\begin{aligned}
+\P(X=n) = \alpha_n,n\geq 1, \sum_n \alpha_n = 1
+\end{aligned}
+\end{equation*}
+$E = (E(n):n \geq 0)$ is a discrete-time MC. $p_{i,i-1} = 1 (i \geq 2)$, $p_{i,n} = \alpha_n$ ($n \geq 1$).
+
+Invariant distribution $\pi$ satisfies
+\begin{equation*}
+\begin{aligned}
+\pi_n = \pi_{n+1} + \pi_1 \alpha_n ( n \geq 1),\\
+\pi_2 = \pi_1(1-\alpha_1),\\
+\pi_3 = \pi_2 - \pi_1\alpha_2 = \pi_1(1-\alpha-1-\alpha_2)
+\end{aligned}
+\end{equation*}
+hence $\pi_n = \pi_1 \P(X \geq n) = \sum_n^\infty \alpha_i$. So $\sum \pi_n=1=\pi_1 \mu$, i.e. $\pi_n = \frac{1}{\mu} \sum_{i=n}^\infty \alpha_i$.
+
+If $E(0)$ has distribution $\pi$, then $E(n)$ as well $\forall n$. And in this sense, the process is stationary.
+
+Renewal-reward processes: each $X_i$ corresponds to a reward $R_i$.
+
+Costs count as negative rewards.
+
+Assume the pairs ($X_i,R_i$) are independent of one another.
+
+Accumulated reward by time $t$ is
+\begin{equation*}
+\begin{aligned}
+C(t) = \sum_{i=1}^{N(t)} R_i
+\end{aligned}
+\end{equation*}
+Renewal function $m(t) = \E(N(t))$, reward function is $c(t) = \E(C(t))$ (note the different cases of $c$).
+
+Renewal-reward theorem: if $0 < \E(X_1) < \infty$, $\E|R_1| < \infty$, then
+\begin{equation*}
+\begin{aligned}
+\frac{C(T)}{t} \xrightarrow{a.s.} \frac{\E(R)}{\E(X)},\\
+\frac{c(t)}{t} \to \frac{\E(R)}{\E(X)}
+\end{aligned}
+\end{equation*}
+as $t \to \infty$.
+\begin{proof}
+$\frac{C(t)}{t} = \sum_1^{N(t)} R_i/N(t) \cdot N(t)/t$, while the two terms in RHS converge to $\E(R)$ and $\E(X)$ a.s
+$\frac{C(t)}{t} = \sum_1^{N(t)} R_i/N(t) \cdot N(t)/t$, while the two terms in RHS converge to $\E(R)$ and $1/\E(X)$ a.s., as $t \to \infty, N(t) \to \infty$. So LHS $\to \frac{\E(R)}{\E(X)}$ a.s..
+
+For the second part, 
+\begin{equation*}
+\begin{aligned}
+c(t) &= \E(\sum_1^{N(t)+1} R_i) - \E(R_{N(t)+1})\\
+&= (Wald) (m(t)+1) \E(R) - \E(R_{N(t)+1})
+\end{aligned}
+\end{equation*}
+Need that $\frac{\E(R_{N(t)+1})}{t} \to 0$.
+\end{proof}
+
 
 \iffalse
 \begin{equation*}
