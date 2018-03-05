@@ -12,3 +12,5 @@
 \BOOKMARK [2][-]{subsection.2.7}{Shift registers}{section.2}% 12
 \BOOKMARK [2][-]{subsection.2.8}{Berlekamp-Massey algorithm}{section.2}% 13
 \BOOKMARK [1][-]{section.3}{Cryptography}{}% 14
+\BOOKMARK [2][-]{subsection.3.1}{Stream Ciphers}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.2}{Public key cryptosystems \(asymmetric cryptosystems\)}{section.3}% 16

@@ -1470,6 +1470,75 @@ The unitary distance $U$ of a cryptosystem is the least length of ciphertext req
 (ii) To be secure, we should not use a single key for more messages than the unicity distance.
 \end{rem}
 
+\subsection{Stream Ciphers}
+We consider streams (sequences) in $\F_2$. Plain text: $p_0,p_1,...$, key stream: $k_0,k_1,...$, cipher text: $z_n = p_n + k_n \pmod 2$.
+
+One time pad: take a random key stream i.e. $k_0,k_1,k_2$, i.e. a sequence i.i.d. random variables with $P(k_j=0) = 1/2$. Then $z_j = p_j + k_j$ gives a sequence $z_0,z_1,...$ of i.i.d. random variables with $P(Z_j) = 0 = 1/2$. Without knowledge of the key stream, deciphering is impossible. A one time pad has perfect secrecy.
+
+Problems: (i) How do we construct a random sequence?\\
+(ii) How do we share knowledge of the key streams?
+
+It turns out that (i) is surprisingly tricky, and (ii) is the same problem that we started with. So this doesn't really help.
+
+In most applications one time pad is not practical. Instead, we'll share $k_0,...,k_{d-1}$ and construct the rest of the key stream using a general feedback register of length $d$.
+
+\begin{lemma} (3.2)\\
+Let $x_0,x_1,...$ be a sequence produced by a LFSR of length $d$. Then $\exists M,N \leq 2^d-1$ s.t $x_{r+N} = x_r$ $\forall r \geq M$.
+\begin{proof}
+Let $v_i = (x_i,x_{i+1},...,x_{i+d-1})$. So $f:\F_2^d \to \F_2^d$ by $v_i \to v_{i+1}$. If some $v_i = 0$, $0 \leq i \leq 2^d-1$, then sequence is eventually all zeros, so lemma is true. So assume $v_i \neq 0$, $0 \leq i \leq 2^d-1$, then $v_0,...,v_{2^d-1}$ are $2^d$ elements in $\F_2^d \setminus\{0\}$, which $2^d-1$ values. So $v_a = v_b$ for some $0 \leq a < b \leq 2^d-1$.
+
+Let $M=A$, $N=b-a$. Show by induction $v_{r+N} = v_r$ $\forall r \geq M$. By constructoin, $v_{M+N} = v_M$, then $v_{r+1+N} = f(v_{r+N}) = f(v_r) = v_{r+1}$ $\implies x_{r+N} = x_r$ $\forall r \geq M$.
+\end{proof}
+\end{lemma}
+
+\begin{rem}
+(i) Same result with $N,M \leq 2^d$ holds for a general feedback register.\\
+(ii) Berlekamp-Massey Method gives that stream ciphers using LFSR are unsafe at level 2 (known plaintext).\\
+(iii) Stream ciphers still get used: it's cheap and easy and encryption/decryption on the fly.
+
+New key streams from the old:\\
+Recall a stream produced by a LFSR of form $(x_0,...,x_{d-1}) \to (x_1,...,x_{d-1},a_0x_0+...+a_{d-1}x_{d-1})$ has feedback polynomial $P(x) = x^d + a_{d-1} x^{d-1} + ... + a_0$. The solutoins of this recurrence relation are linear comibnations of the powers of the roots of $P(x)$.
+\end{rem}
+
+\begin{lemma} (3.3)\\
+Let $x_n$ (resp. $y_n$) be the output of a LFSR with feed back polynomial $P(x)$ (resp $Q(x)$). Say $P(x)$, $Q(x)$ has roots $\alpha_1,...,\alpha_M$, $\beta_1,...,\beta_N$ respectively in some $K \supset \F_2$. \\
+(i) $(x_n+y_n)$ is the output from a LFSR with feedback polynomial $P(X)Q(X)$;\\
+(ii) $(x_ny_n)$ is the output from a LFSR with feedback polynomial
+\begin{equation*}
+\begin{aligned}
+\prod_{i=1}^M \prod_{j=1}^N (X-\alpha_i\beta_j)
+\end{aligned}
+\end{equation*}
+Sketch proof:\\
+Assume (for simplicity) that $P$ and $Q$ have distinct roots. Then $x_n = \sum_{i=1}^M \lambda_i \alpha_i^n$, $y_n = \sum_{j=1}^N \mu_j \beta_j^n$ for some $\lambda_i,\mu_j \in K$.\\
+(i) $x_n + y_n = \sum_{i=1}^M \lambda_i\alpha_i^n + \sum_{j=1}^N \mu_j \beta_j^n$, $(x_n+y_n)$ is a solution to a difference equation with polynomial $P(X)Q(X)$.\\
+(ii) $x_ny_n = \sum_{i=1}^M \sum_{j=1}^N \lambda_i \mu_j (\alpha_i\beta_j)^n$, $(x_n y_n)$ is a solution to difference equation with polynomial $\prod_{i=1}^M \prod_{j=1}^N (X-\alpha_i\beta_j)$. (Need to check this polynomial has coefficients in $\F_2$).
+
+So if $(x_n)$ output from a LFSR of length $M$, $(y_n)$, $(x_n+y_n)$, $(x_ny_n)$ ... of length $N,M+N,MN$ respectively.
+
+Conclusion:\\
+(i) Adding output streams gives no advantage over computing the same stream with a single register.\\
+(ii) Multiplying output streams gives $x_ny_n=0$ on $75\%$ of the time. This is not a desirable property for a key stream.
+\end{lemma}
+
+Example: suppose streams $x_n,y_n,z_n$ produced by LFSRs. Let $k_n=x_n$ if $z_n=0$, and $=y_n$ if $z_n=1$. Then $k_n = y_nz_n + (1+z_n) x_n = x_n + (x_n+y_n)z_n \pmod 2$. So by (3.3) $(k_n)$ is till the output of a LFSR.
+
+Stream ciphers are examples of symmetric cryptosystems, i.e. the decryption algorithm is the same as, or easily deduced from, the encryption algorithm.
+
+\subsection{Public key cryptosystems (asymmetric cryptosystems)}
+We divide the key in two:\\
+$\bullet$ public key used for encryption;\\
+$\bullet$ private key used for decryption.
+
+Aim: given you know the encryption/decryption algorithm and the public key, it should still be hard to find the private key and decrypt messages. If we achieve this aim, we get security at level 3 (chosen plaintext attack).
+
+Note, we avoid the problem of key exchange.
+
+Idea: base such crptosystems on mathematical problems which are believed to be hard.
+
+(1) Factoring: let $N=pq$ be the product of two primes. Given $N$, find $p$ and $q$.
+
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
