@@ -1122,6 +1122,51 @@ Say $x$ is finite if $(\exists y) (y \in \omega \wedge x$ bijects with $y$).
 
 And then $x$ is countable if $x$ is finite or $x$ bijects with $y$.
 
+8. \emph{Axiom of Foundation}:\\
+"Sets are build up from simpler sets". We want to disallow $x \in x$: note that $\{x\}$ has no $\varepsilon$-minimal member; and also disallow $x \in y \in x$: note $\{x,y\}$ has no $\varepsilon$-minimal element, etc. And we also want to disallow the infinite sequence $x_1 \in x_0$, $x_2 \in x_1$, $x_3 \in x_2$,..., in which case $\{x_0,x_1,...\}$ has no $\varepsilon$-minimal element.
+
+The axiom: every (non-empty) set has an $\varepsilon$-minimal element.\\
+$(\forall x) (x \neq \phi \implies (\exists y) (y \in x \wedge (\forall z) (z \in x \implies z \not\in y))$.
+
+Bonus lecture on next Wednesday 1pm (proof of incompleteness theorem, consistency of ZF)
+
+9. \emph{Axiom of Replacement}:\\
+We often say "for each $i \in I$ have $A_i$ -- take $\{A_i: i \in I\}$. However, how do we know they form a set? Alternatively, how do we know that $i \to A_i$ is a function?\\
+We want to say "the image of a set under something that looks like a function is a set".
+
+A digression on classes:\\
+Idea: $x \to \{x\}$ (for all $x$). This looks like a function, but it isn't: e.g. every function has a domain as functions are sets of ordered pairs, and the domain is just the left element of all those pairs. However, the 'domain' of $x \to \{x\}$ is not a set (the universal 'set').
+
+For an $L$-structure $V$, a collection $C$ of elements of $V$ is called a \emph{class} if there is a formula $p$, free variables $x$ (and maybe more) s.t. $x \in C$ $\iff p(x)$ holds in $V$. E.g. $V$ is a class: take $p(x)$ to be $x=x$.
+
+For any $t$, $\{x: t \in x\}$ is a class: take $p(x)$ to be $t \in x$.\\
+Note that every set $y$ is a class: take $p(x)$ to be $x \in y$.
+
+If $C$ is not a set (in $V$), i.e. $\not (\exists y)(\forall x)(x \in y \iff p(x))$, say $C$ is a proper class. E.g., $V$ is a proper class, as is $\{x:x$ infinite$\}$, where by infinite we mean not finite.
+
+Similarly, a function-class is a collection $F$ of ordered pairs from $V$, s.t. for some formula $p$, free variables $x,y$ (and maybe more), have $(x,y) \in F \iff p(x,y)$, and if $(x,y) \in F, (x,z) \in F$, then $y=z$.\\
+For example, $x \to \{X\}$ is a function class: take $p(x,y)$ to be $y=\{x\}$.
+
+---End of digression---
+
+Let's now state the axiom of replacement: "the image of a set under a function-class is a set.\\
+$(\forall t_1) ... (\forall t_n) ([(\forall x)(\forall y)(\forall z) ((p \wedge p[z/y] ) \implies y=z)] \implies [(\forall x)(\exists y) (\forall z) (z \in y \iff (\exists t) (t \in x \wedge p[t/x,z/y])])$\\
+For each formula $p$, free variables $x,y,t_1,...,t_n$, i.e., the image of $x$ under $p$ is a set.
+
+Eg. for any set $x$, we can form $\{\{t\}:t \in x\}$ using function class $t \to \{t\}$.
+
+This is a 'bad' example, as it didn't need replacement -- see later for 'good' examples.
+
+Those are the ZF axioms.
+
+Note:\\
+1: Sometimes separation is called 'comprehension', and sometimes fundation is called 'regularity'.\\
+2. ZF axioms do not include AC: ZF + AC is called ZFC, where axiom of choice is: "every family of (non-empty) sets has a choice function" -- $ (\forall f) (f$ is a function $\wedge (\forall x) (x \in Dom f \implies f(x) \neq \phi)) \implies (\exists y) (y$ is a function $ \wedge Dom y = Dom f \wedge (\forall x)(x \in Dom f \implies g(x) \in f(x))))$.
+
+Goal: what does a model $(V,\epsilon)$ of ZF look like?
+
+Remark: we haven't proved ZF consistent (i.e. $\exists$ model of ZF). Sadly, ZF $\not\vdash$ "ZF has a model", i.e. it cannot be proved in ordinary maths (ZF or ZFC).
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
