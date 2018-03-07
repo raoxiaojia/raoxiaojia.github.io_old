@@ -1537,7 +1537,51 @@ Note, we avoid the problem of key exchange.
 Idea: base such crptosystems on mathematical problems which are believed to be hard.
 
 (1) Factoring: let $N=pq$ be the product of two primes. Given $N$, find $p$ and $q$.
+(2) Discrete Logarithm: let $p$ be a large prime, and $g$ a primitive element mod $p$ (i.e. generates $F_p^*$). Given $x$, find $a$ s.t. $x \equiv g^a \pmod p$.
 
+Suppose $N$ is written in binarry with $B$ digits, then the algorithm for factorizing $N$ has input size $B = \log_2 N$. Some algorithms that run in polynomial time:\\
+operations of arithmetic on integers, i.e. addition, subtraction, multiplication, division with remainders;\\
+Computing gcds using Euclid's algorithm; modular exponentiation; testing primality (AKS, 2002).
+
+However, there's no polynomial time algorithms known for (1) and (2) above.
+
+Rabin-Willimans Cryptosystem (1979):\\
+Private key: $p,q$ large, distinct primes with $p \equiv q \equiv 3 \pmod 4$. Public key: $N=pq$. $m=e=\{0,1,...,N-1\}$. We encrypt $m \in M$ as $c = m^2 (\pmod N)$. The ciphertext is $c$ (we should avoid $m < \sqrt{n}$ and $gcd(m,N)>1$).
+
+\begin{lemma} (3.4)\\
+Suppose $p=4k-1$ is a prime and $d$ an integer. If $x^2 \equiv d \pmod p$ is soluble, then a solution is given by $x\equiv d^k \pmod p$.
+\begin{proof}
+If $d=0$ then done. Otherwise we have
+\begin{equation*}
+\begin{aligned}
+d^{2k-1} \equiv (x^2)^{2k-1} \equiv x^{p-1} \equiv 1 \pmod p
+\end{aligned}
+\end{equation*}
+by Fermat's Little theorem. So $(d^k)^2 \equiv d \pmod p$.
+\end{proof}
+\end{lemma}
+
+So if we know $p$ and $q$ and we receive $c$, then we can find $x_1,x_2$ such that $x_1^2 \equiv c \pmod p$, $x_2^2 \equiv c \pmod q$. Then by CRT we can find $x$ s.t. $x \equiv x_1 \pmod p$ and $x \equiv x_2 \pmod q$, so $x^2 \equiv c \pmod N$.
+
+Indeed, we can run Euclid's algorithm on $p$ and $q$ to find integers $r,s$ such that $rp+sq = 1$, then $x=(sq)x_1+(rp)x_2$.
+
+\begin{lemma} (3.5)\\
+(i) $p$ an odd prime, $d \equiv 0 \pmod p$. If $x^2 \equiv d \pmod p$ is soluble, then there are exactly 2 solutions.\\
+(ii) Suppose $N = pq$, $p,q$ distinct odd primes and $gcd(d,N) = 1$. If $x^2 \equiv d \pmod N$ is soluble, then there are exactly 4 solutions.
+\begin{proof}
+(i) If $x^2 = y^2 \pmod p$, then $p|(x-y)(z+y)$, so $x \equiv \pm y \pmod p$.\\
+(ii) Suppose $x_0$ is a solution. By CRT, there are solutions with $x=\pm x_0 \pmod p$, $x \equiv \pm x_0 \pmod q$.for any 4 choices of $\pm$ sign. By (i) these are all solutions.
+\end{proof}
+\end{lemma}
+
+To decrypt the Rabin-Williams code, we compute all 4 possible solutions. Our message should inovlve sufficient redundancy that only one of these solutions makes sense.
+
+\begin{thm} (3.6)\\
+Breaking the Rabin-Williams code is essentially as difficult as factoring $N$.
+\begin{proof}
+We have seen that if we can factor $N$, then we can decrypt the Rabin-Williams code. Conversely, suppose we have an algorithm for extracting square roots $\pmod N$ (which is decrpyting). We pick $x \pmod N$ at random. We use the algorithm to find $y$ s.t. $x^2 \equiv y^2 \pmod N$. Then Lemma 3.5 tells us that with probability 1/2, $y$ is not $\pm y \pmod N$. Then $gcd(x-y,N)$ is a non-trivial factor of $N$. If not then repeat with a new random $x$. Repeat.
+\end{proof}
+\end{thm}
 
 \iffalse
 \begin{equation*}

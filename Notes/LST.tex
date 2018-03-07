@@ -1167,6 +1167,46 @@ Goal: what does a model $(V,\epsilon)$ of ZF look like?
 
 Remark: we haven't proved ZF consistent (i.e. $\exists$ model of ZF). Sadly, ZF $\not\vdash$ "ZF has a model", i.e. it cannot be proved in ordinary maths (ZF or ZFC).
 
+Say $x$ is transitive if every member of $x$ is itself a member of $x$: $(\forall y)((\exists z)(y \in z \wedge z \in x) \implies (y \in x)$, i.e. $\cup x \subset x$.
+
+E.g. $2=\{\phi,\{\phi\}\}$ is transitive; $\omega$ is transitive as $n=\{0,1,...,n-1\}$ $\forall n \in \omega$.
+
+Lemma 1: every set $x$ is contained in a transitive set.
+
+Remarks: 1. Officially, let $(V,\epsilon)$ be a model of ZF. Then in $V$, ... holds, or equivalently, $ZF \vdash ...$.\\
+2. Any $\cap$ of transitive sets is transitive, so we'll then know that there exists a least transitive set containing $x$, called the transitive closure of $x$, written $TC(x)$.
+\begin{proof}
+We'll take $x \cup (\cup x) \cup(\cup\cup x) \cup)\cup\cup\cup x) \cup ...$ which is a set by union axiom, which is a set by replacement (a good example of replacement): $0 \to x, 1 \to \cup x$, etc. But why is this a function class?\\
+To show that, define $f$ is a an attempt to mean (recall we've done similar things before in chapter 2) $(f$ is a function $) \cap (Dom f \in \omega) \cap (Dom f \neq \phi) \cap (f (0) = x) \cap (\forall n) (n \in Dom f \cap n \neq 0 \implies f(n) = \cup f(n-1))$. Then $(\forall n\in\omega) (\forall f) (\forall f') ((f,f'$ attempts $\wedge n \in Dom f') \implies f(n) = f'(n))$ (by $\omega$-induction). And $(\forall n \in \omega) (\exists f) (f$ an attempt $\cap n \in Dom f)$ (again, by $\omega$-induction). So take $p(y,z)$ to be $(\exists f) (f$ an attempt $\cap$ $y \in Dom f \cap f(y) = z)$.
+\end{proof}
+
+We want foundation to be saying 'sets are built out of simpler sets'. If so, we would want: suppose $p(y) \forall y \in x$ implies $p(x)$, then $p(x) \forall x$.
+
+\begin{thm} (2, principle of $\epsilon$-induction): let $p$ be a formula with free variables $t_1,...,t_n,x$. Then $(\forall t_1)...(\forall t_n) ((\forall x) ((\forall y)(y \in x \implies p(y) \implies p(x)) \implies (\forall x) p(x))$. Note that formally, $p(y)$ should be $p[y/x]$, and $p(x)$ should just be $p$.
+\begin{proof}
+Given $t_1,...,t_n$, have $p(y) \forall y \in x \implies p(x)$, and suppose $(\forall x) p(x)$ not true. So $(\exists x) (\neg p(x))$. We want ot say 'choose $\epsilon$-minimal member of $\{x: \neg p(x))$, then contradiction'; however, this might not be a set -- e.g. if $p(x)$ is $x \neq x$.
+
+Let $t = TC(\{x\})$. So $x \in t$, and $\neg p(x)$. Let $u =\{y \in t: \neg p(y))$, and let $y$ be an $epsilon$-minimal element of $u$. Then $\neg p(y)$. But $(\forall z \in y) p(z)$ (as $z \in y \implies z \in t$ and $y$ is $\epsilon$-minimal in $u$).
+\end{proof}
+\end{thm}
+
+Remarks: 1. we used existence of transitive closures (i.e. lemma 1).\\
+2. In fact, $\epsilon$-induction equivalent to foundatoin: as can deduce foundation from $\epsilon$-induction (in the presence of the other ZF axioms): say $x$ is regular if $(\forall y) (x \in y \implies y$ has an $\epsilon$-minimal element$)$. Foundation says every set is regular. To prove this by $\epsilon$ induction, given $y$ regular $\forall y \in x$, we want to prove $x$ is regular. For $x \in z$, if $x$ minimal then done. Otherwise, some $y \in x$ has $y \in z$. But $y$ is regular. So $z$ has a minimal element.
+
+How about recursion? we want '$f(x)$ defined in terms of the $f(y)$, $y \in x$'.
+
+\begin{thm} (3, $\epsilon$-recursion theorem)\\
+Let $G$ be a function-class ($(x,y) \in G \iff p(x,y)$ for some formula $p$), everywhere defined. Then there is a function-class $F$ ($(x,y) \in F \iff q(x,y)$, for some formula $q$) s.t. $(\forall x) (F(x) = G(F|x))$. Moreover, $F$ is unique.\\
+Note: $F|x = \{(z,f(z)): z \in x\}$ is a set, by replacement.
+\begin{proof}
+Say $f$ is an attempt if: $(f$ is a function $) \wedge (Dom f$ transitive $) \wedge (\forall x) (x \in Dom f \implies f(x) = G(f|x))$ ($f|x$ is defined, as $Dom f$ is transitive).\\
+Then $(\forall x) (f,f'$ attempts defined at $x \implies f(x) = f'(x))$ by $\epsilon$-induction.\\
+Since, if $f,f'$ agree at all $y \in x$, then they agree at $x$.\\
+Also, $(\forall x) (\exists$ attempt $f$ defined at $x)$ by $\epsilon$-induction.\\
+Indeed, suppose $|forall y \in x$ $\exists$ attempt defined at $y$. So $\forall y \in x$ $\exists$ unique attempt $f_y$ defined on $TC(\{y\})$. Put $f = \cup_{y \in x} f_y$, and now put $f' = f \cup \{(x,G(f|x)\}$. So done: take $q(x,y)$ to be $(\exists f) (f$ an attempt $\wedge x \in Dom f \wedge f(x) = y)$.
+\end{proof}
+\end{thm}
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
