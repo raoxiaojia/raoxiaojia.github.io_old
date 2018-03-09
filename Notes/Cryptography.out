@@ -14,3 +14,5 @@
 \BOOKMARK [1][-]{section.3}{Cryptography}{}% 14
 \BOOKMARK [2][-]{subsection.3.1}{Stream Ciphers}{section.3}% 15
 \BOOKMARK [2][-]{subsection.3.2}{Public key cryptosystems \(asymmetric cryptosystems\)}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.3}{RSA encryption}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.4}{Diffie-Hellman Key Exchange}{section.3}% 18

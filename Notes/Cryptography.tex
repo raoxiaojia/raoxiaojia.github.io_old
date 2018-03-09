@@ -1583,6 +1583,61 @@ We have seen that if we can factor $N$, then we can decrypt the Rabin-Williams c
 \end{proof}
 \end{thm}
 
+\subsection{RSA encryption}
+
+Suppose $N=pq$ when $p,q$ large distinct primes. Recall $\phi(n)$ is the number of integers less than $n$ that are coprime to $n$, so $(p-1)(q-1)$. Euler-Fermat gives if $(x,N)=1$ then $x^{\phi(N)} \equiv 1 \pmod N$. We pick an integer $e$ s.t. $gcd(e,\phi(N))=1$. Solve for $d$ s.t. $de \equiv 1 \pmod {\phi(N))}$.
+
+So here the public key is $(N,e)$, private key $(N,d)$. Message $m$ is encrypted as $c=m^e \pmod N$. Ciphertext is decrypted as $m_1 \equiv c^d \pmod N$. Euler-Fermat tells us $m\equiv m_1 \pmod N$. (the probability that $(m,N) \neq 1$ is small, so we neglect that).
+
+Notation: $O_p(x)$ is the order of $x$ in $F_p^* = (\Z/p\Z)^*$.
+
+\begin{thm} (3.7)\\
+Let $N=pq$ with $p,q$ distinct odd primes. Suppose $\phi(N) | 2^a b$ for $b$ odd.\\
+Let $1 \leq x \leq N$ with $gcd(x,N) = 1$.\\
+(i) If $O_p(x^b) \neq O_q(x^b)$ then $\exists 0 \leq r < a$ s.t. $gcd(x^{2^r b}-1,N)$ is a non-trivial factor of $N$.\\
+(ii) The number of $x$ satisfying (i) is at lesat $\phi(N)/2$.
+\begin{proof}
+(i) Let $y=x^b \pmod N$. Euler-Fermat gives $y^{2^n} \equiv 1 \pmod p N$, so $O_p(y)$ and $O_q(y)$ are powers of 2.\\
+We're supposing $O_p(y) \neq O_q(y)$. Swapping $p$ and $q$ if necessary, we get $y^{2^r} \equiv 1 \pmod p$, $y^{2^r} \not \equiv 1 \pmod q$ for some $0 \leq r < a$. So $gcd(y^{2^r}-1,N) = p$ as required.\\
+(ii) Recall $(\Z/N\Z)^* = \{x+N\Z: 1\leq x \leq N, (x,N) = 1\}$. We want $X$ to be the number of $x \in (\Z/n\Z)^*$ s.t. $O_p(x^b) \neq O_q(x^b) \} \geq \frac{1}{2} |(\Z/N\Z)^*| = \phi(N)/2$. CRT gives a bijection $(\Z/N\Z)^* \leftrightarrow (\Z/p\Z)^* \times (\Z/q\Z)^*$. We show that if we partition $(\Z/p\Z)^*$ into subsets according to the value of $O_p(x^b)$ then each subset has size $\leq \frac{1}{2} |(\Z/p\Z)^*| = \frac{1}{2} (p-1)$. This suffices since if $y \in (\Z/p\Z)^*$ then number of $x \in (\Z/p\Z)^*:O_p(x^b) \neq O_p(y^b)$ is at least $\frac{1}{2} (p-1)$, so $X \geq \frac{1}{2} (p-1)(q-1)$.
+
+We exhibit a subset with size exactly $\frac{1}{2} |(\Z/p\Z)^*|$. Let $g$ be a primitive root $\pmod p$. Then $(g^b)^{2^a} \equiv 1\pmod p$, so $O_p(g^b)$ is a power of $2$. If $x=g^\delta$, then $(x^b) = (g^b)^\delta$, and $O_p(x^b) = O_p(g^b)$ if $\delta$ is odd, or $\leq \frac{1}{2} O_p(g^b)$ if $\delta$ is even. So $\{g^\delta \pmod p | \delta \ odd\}$ is the required subset.
+\end{proof}
+\end{thm}
+
+\begin{coro}
+Finding the RSA private key $(N,d)$ from the public key $(N,e)$ is essentially as difficult as factoring $N$: if we know how to factor $N$ we can compute $\phi(N)$ and then solve for $d$ s.t. $de \equiv 1 \pmod {\phi(N)}$; conversely, if we know $d$ and $e$ then $de\equiv 1 \pmod {\phi(N)}$, so $\phi(N) | de-1$. We write $de-1 = 2^a b$ and use (3.7) to factor $N$. The probability of failure after $r$ random choice of $x$ is less than $1/2^r$.
+\end{coro}
+
+We've shown that finding the private key from the public key is as hard as factoring $N$; however, it is not known whether decrypting messages sent using RSA is as hard as that.
+
+RSA avoids the issue of sharing a secret key, but it's slow. Symmetric cryptosystems are often faster, so we are still interested in sharing keys.
+
+Shamir proposed the following analogy of the 'padlock example':
+
+A chooses $a \in (\Z/p\Z)^*$ computes $a'$ s.t. $aa' \equiv 1 \pmod {p-1}$, and B chooses $b$ similarly and computes $b'$. Then we send messages as
+\begin{equation*}
+\begin{aligned}
+m \xrightarrow{A} m^a \xrightarrow{B} m^{ab} \xrightarrow{A} m^{aba'} \xrightarrow{B} m^{aba'b'} \equiv m \pmod p
+\end{aligned}
+\end{equation*}
+
+\subsection{Diffie-Hellman Key Exchange}
+
+Parties $A$ and $B$ wish to agree a secret key for communication. Let $p$ be a large prime and $g$ a primitive root $\pmod p$. A chooses a nuber $\alpha$ and sends $g^\alpha \pmod p$ to B, and B chooses $\beta$ and sends $g^\beta \pmod p$ to A. Both parties now compute $K = (g^{\alpha\beta})$, and use this as secret key.
+
+An eavesdropper is left with the problemn of computing $g^{\alpha \beta}$ from $g,g^\alpha$ and $g^\beta$. It is conjectured, but not proved, that this is as hard as the discrete log problem.
+
+Authenticity and signatures:
+
+A sends message to B. Possible aims include:\\
+Secrecy: A and B can be sure that no third party can read the message;\\
+Integirty: A and B can be sure that no third party can alter the message.\\
+Authenticity: B can be sure A sent the message.\\
+Non-repudiation: B can prove to a third party that A sent the message.
+
+So far we have only considered secrecy.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
