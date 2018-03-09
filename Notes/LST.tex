@@ -1207,6 +1207,64 @@ Indeed, suppose $|forall y \in x$ $\exists$ attempt defined at $y$. So $\forall 
 \end{proof}
 \end{thm}
 
+Note: $\epsilon$-induction and $\epsilon$-recursion proofs look very similar to induction and recursion from chapter 2.
+
+What properties of the 'relation-class' $\epsilon$ (i.e. the formula $p(x,y) = x\epsilon y$) have we used?
+
+1. $p$ is well-founded: every non-empty set has a $p$-minimal element;\\
+2. $p$ is local: $(y:p(y,x))$ is a set, for each $x$.
+
+So in fact we have $p$-induction and $p$-recursion for any $p(x,y)$ that is well-founde and local.
+
+For a relation $r$ on a set $a$, trivially $r$ is local (as $a$ is a set). So to have $r$-induction and $r$-recursion, just need $r$ to be well-founded.
+
+Thus induction and recursion from chapter 2 are special cases of this.
+
+Can we 'model' a relation by $\varepsilon$?
+
+E.g. let $a = \{a_1,a_2,a_3\}$ and $r=\{(a_1,a_2),(a_2,a_3)\}$.
+
+Put $b = \{b_1,b_2,b_3\}$, where $b_1 = \phi$, $b_2 = \{\phi\}$, $b_3 = \{\{\phi\}\}$. Then $a_i r a_j \iff b_i r b_j \forall i,j$. Moreover, $b$ transitive.
+
+Say relation $r$ on set $a$ is extensional if $(\forall x,y \in a) ((\forall z \in a)(zrx \iff zry) \implies x=y)$, e.g. above relation on above $a$, or relation $\epsilon$ on any transitive set.
+
+Analogue of subset collapse is:
+
+\begin{thm} (4, Mostowski's collapse theorem):\\
+Let $r$ be a relation on a set $a$ that is well-founded and extensional. Then $\exists$ transitive $b$ and bijection $f:a \to b$ s.t. $(\forall x,y \in a)(x \vee y \iff f(x) \in f(y))$. Moreover, $b$ and $f$ are unique.
+\begin{proof}
+Define $f(x)=\{f(y):yrx\}$ a definition by $r$-recursion on the set $a$. ($f$ is a function, not just a function-class, as it is an image of the set $a$).
+
+Let $b = \{f(x):x \in a\}$ (a set, by replacement).
+
+Then $b$ transitive (definition of $f$), and $f$ surjective (definition of $b$). We need $f$ injective, then also have $xry \iff f(x) \in f(y)$.
+
+We'll show that $(\forall y) (f(y) = f(x) \implies y=x)$ holds $\forall x \in a$, by $r$-induction on $x$.
+
+So given $y$ with $f(y) =f(x)$, we want $y=x$, and may assume that $(\forall t)(\forall n) ((t,n \in a \wedge trx \wedge f(y)=f(t) ) \implies n=t)$.
+
+From $f(y)=f(x)$, we have $\{f(n):nry\} = \{f(t):trx\}$, whence $\{n:nry\} = \{t:trx\}$.
+
+Thus $x=y$ as $r$ extensional.
+
+Existence: if $f,f'$ suitable then $(\forall x \in a) (f(x) = f''(x))$ by $r$-induction.
+\end{proof}
+\end{thm}
+
+An ordimal or Von Neumann ordinal is a transitive set that is well-orderd by $\epsilon$. (or 'totally ordered, thanks to foundation)
+
+e.g. $\phi,\{\phi\}$, any $n \in \omega$ (as $n=\{0,1,2,...,\{n-1\}$), $\omega$ itself.
+
+So mostowski tells us: any well-ordered $X$ is order-isomorphic to a unique ordinal $\alpha$. Say $X$ has order-type $\alpha$. (this was owed from chapter 2).
+
+Remark (irrelevant): we know that for any ordinal $\alpha$, have $\{\beta:\beta<\alpha\}$ is a well-ordered set of order-type $\alpha$.
+
+Hence, by definition of $f$ in theorem 4, we have: $\alpha<\beta \iff \alpha \in \beta$.
+
+So $\alpha = \{\beta:\beta<\alpha\}$.
+
+So e.g. $\alpha^+ = \alpha \cup \{\alpha\}$, and $\sup\{\alpha_i:i \in I\} = \cup\{\alpha_i:i\in I\}$.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
