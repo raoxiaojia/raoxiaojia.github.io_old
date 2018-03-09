@@ -1184,6 +1184,73 @@ c(t) &= \E(\sum_1^{N(t)+1} R_i) - \E(R_{N(t)+1})\\
 Need that $\frac{\E(R_{N(t)+1})}{t} \to 0$.
 \end{proof}
 
+(missing one lecture on 2018/03/07)
+
+Queueing system:
+
+Something happens at each $T_i$ ('regeneration'?)
+
+$t \geq 0$, $Q(t)$ (reward? lecturer didn't write anything here); Intervals $[T_i,T_{i+1})$ are called cycles.\\
+The processes $P_i = \{Q(t):T_i \leq t < T_{i+1}\}$ are iid.
+
+$N_i:=$number of arriving customers in $i$th cycle, $N_i$ iid with $N=N_0$. Write $T=T_1$.
+
+Assume $E(N) < \infty,E(T) < \infty, E(NT) < \infty$.
+
+(A) Consider renewal process with arrival times $T_1,T_2,...$. Reward $R_i = \int_{T_{i-1}}^{T_i} Q(t) dt$. Typical reward $R=R_1$, $E(R) \leq E(NT) < \infty$. By RR theorem,
+\begin{equation*}
+\begin{aligned}
+\frac{1}{t} \int_0^t Q(u) du \xrightarrow{a.s.} \frac{E(R)}{E(T)} := L
+\end{aligned}
+\end{equation*}
+and $L$ is known as the 'long-run average length'.
+
+(B) Arrival times $T_1,T_2,...$, Reward in $i$th cycle is $N_i$, $N(t)$ is the number of arrivals up to $t$. RR theorem:
+\begin{equation*}
+\begin{aligned}
+\frac{N(t)}{t} \to \frac{E(N)}{E(T)} := \lambda
+\end{aligned}
+\end{equation*}
+$\lambda$ is called the 'long-run arrival'.
+
+(C) Inter-arrival times $N_1,N_2,...$. Reward: the sum of the waiting times (includes any service time) of the $N_i$ customers in the $i$th cycle, i.e. $\sum_{j=1}^{N_i} V_j$, where $V_j$ is the waiting time of $j$th arrival in $i$th cycle. RR theorem:
+\begin{equation*}
+\begin{aligned}
+\frac{1}{n} \sum_{i=1}^{n} W_k \xrightarrow{a.s.} \frac{E(S)}{E(N)} := W
+\end{aligned}
+\end{equation*}
+where $S = \sum_{j=1}^N V_j$, and $W_k:=$ waiting time of the $k$th arrival in the entire process.
+
+Little's theorem: $L=\lambda W$.
+\begin{proof}
+\begin{equation*}
+\begin{aligned}
+\frac{L}{\lambda W} = \frac{E(R)}{E(T)}\frac{E(T)}{E(N)}\frac{E(N)}{E(S)}
+\end{aligned}
+\end{equation*}
+but
+\begin{equation*}
+\begin{aligned}
+E(\int_0^T \phi(n) dn) = E (\sum_1^N V_i)
+\end{aligned}
+\end{equation*}
+(two ways of counting the same thing).
+\end{proof}
+
+Example: Carwash.\\
+Cars arrive as a $PP(v)$. Space for $\leq k$ waiting cars (plus the one being washed). The wash time are iid with distribution function $F$, mean $\theta$. Let $p_i$ be the proportion of time that there are $i$ cars in the line waiting for washing. The existence of $p_i$ is immediate by renewal theory. Apply Little's theorem to the machine itself. Regeneration times are times of departing cars leaving no car behind.
+
+We have $L=1-p_0$, $\lambda = v(1-p_k)$, $W = \theta$. $L=\lambda W$, so $1-p_0 = v(1-p_k)\theta$. So $vp_k$ represents disappointment and $1-p_0$ represents cost.
+
+Population genetics:\\
+Wright-Fisher model: $X_n$ is number of $A$ at time $n$, the number of individuals is constantly $2N$. Note: $(n+1)$ th generation is obtained from $n$th by sampling $2N$ times with replacement. The genotypes are $A$ and $a$. So $(X_n)$ is a discrete time MC with transition probabilities 
+\begin{equation*}
+\begin{aligned}
+p_{ij} = {2N \choose j} \alpha_i^j (1-\alpha_i)^{2N-j}
+\end{aligned}
+\end{equation*}
+$P($get A on one sample is $i/2N = \alpha_i$ if we have $i$ copies of A at some time.
+
 
 \iffalse
 \begin{equation*}
