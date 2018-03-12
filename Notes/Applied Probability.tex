@@ -1251,6 +1251,58 @@ p_{ij} = {2N \choose j} \alpha_i^j (1-\alpha_i)^{2N-j}
 \end{equation*}
 $P($get A on one sample is $i/2N = \alpha_i$ if we have $i$ copies of A at some time.
 
+Recall that last itme we talked about Wright-Fisher model, and we had transition probabilities for the discrete MC $X_n$. "fixation" means hitting one of the two absorbing staes all $a$ or all $A$. Let $\tau$ be the time to fixation. Then $\P_i(\tau<\infty) =1 \forall i$.
+
+What is $\P_i(X_\tau = 2N) = \P_i($fixation in state $A^{2N}$?
+\begin{thm}
+$\P_i(X_i = A) = i/2N$.
+\begin{proof}
+$\E_i(X_i) = 2N p_i = i$, more generally, $\E_i (X_n) = \E_i(\E(X_n|X_{n-1})) =... = i$ (martingale). $\E_i(X_\tau) = \E_i(X_\tau 1_{\{\tau < n\}})+\E_i (X_n 1_{\{T \geq n\}}) \to \E_i(X_\tau) + 0$ as $n \to \infty$. So $\E_i(X_\tau) = i = 0$, $\P_i(X_i = 0) + 2N\P_i(X_i = 2N)$, so $\P_i(X_i = 2N) = i/2N$.
+
+We need a further explanation:
+\begin{equation*}
+\begin{aligned}
+0 &\leq \E_i(X_n 1_{\{\tau \geq N\}})\\
+&= \int_0^{2N} x 1_{\tau \geq n} dF(x)\\
+&= 2N \int_0^{2N} 1_\Theta dF(x)\\
+&= 2N\P_i(\tau\geq n)\\
+&\to 0
+\end{aligned}
+\end{equation*}
+as $n \to \infty$. Here $F$ is the distribution function of $X_n$.
+\end{proof}
+\end{thm}
+
+Moran model (without separation of generations):\\
+We have $N$ particles, and continuous time mutation. When an individual dies, every other particle compete for the place and replace it with a copy of the winning particle. For convenience we allow the dying particle to compete as well. Each individual is replaced at rate 1.\\
+Let $X_t = $unmber of $a$'s at time $t$. $X$ is a continuous-time MC with generator:\\
+$g_{i,i+1} = (N-i)\frac{i}{N}$, $g_{i,i-1} = i \frac{N-i}{N}$, and $g_{i,j} = 0$ for $|i-j| \geq 2$. The jump chain is symmetric RW on $\{0,1,...,N\}$. Let $T_k=$time of 1st passage to $k$. Then $\P_i(T_n<T_0 = i<N$.
+
+Let $\tau = \inf \{t:X_t \in \{0,N\}\}$, $k_i = \E_i(\tau)$. Then $(k_i)$ is the least non-negative solution to 
+\begin{equation*}
+\begin{aligned}
+k_i = 0 & i \in \{0,N\}\\
+\frac{i(N-i)}{N} k_{i+1} + \frac{i(N-i)}{N} k_{i-1} = -1 & i \neq 0,N\ \text{(maybe)}
+\end{aligned}
+\end{equation*}
+So the answer should be
+\begin{equation*}
+\begin{aligned}
+k_i = \sum_{j=1}^{i-1} \frac{N-i}{N-j} + \sum_{j=1}^{N-1} i/j
+\end{aligned}
+\end{equation*}
+
+Note: let $\tau_j:=$total time spent in state $j$. $\E_j(\tau_j) = 1$ for $1 \leq j \leq N-1$. Note: as $i,N \to \infty$ with $i/N = p \in (0,1)$, then $\E_i(\tau) \sim N(-p\log p - (1-p) \log(1-p))$ where $H(p)$ is entropy.
+
+The Moran model may be constructed in terms of indepnedent Poisson processes $\{N^{i,j}: i,j = 1,...,N\}$ with rates $1/N$. When there is an arrival in $N^{i,j}$, $j$ is replaced by a copy of $i$.
+
+Infinite sites model: "Moran model with mutation". $N$ individuals at any time $t$.
+
+Mutaiton rate $u>0$.
+
+Each individual suffers mutation at rate $u$. When mutation occurs, it changes the acid base at a locus of that individual that has never before been changed for any individual.
+
+At each time and given locus, either there is exactly one acid base present, or two.
 
 \iffalse
 \begin{equation*}

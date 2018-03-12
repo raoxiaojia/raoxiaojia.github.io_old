@@ -1638,6 +1638,51 @@ Non-repudiation: B can prove to a third party that A sent the message.
 
 So far we have only considered secrecy.
 
+Authenticity using RSA:
+
+Suppose A has private key $(N,d)$ and public key $(N,e)$. A now uses the private key $(N,d)$ for encryption. Anyone can decrypt using the public key $(N,e)$, but cannot forge messages sent by $A$. If $B$ send a random message $\mu$ and then receives back a message from $A$ which upon decryption ends in $\mu$, then $B$ knows s/he is in communication with $A$.
+
+Some examples to show integrity is important:
+
+Homomorphism attack: A bank creates a message of the form $(M_1,M_2)$ where $M_1$ is the client name and $M_2$ is the amount to be credited to their account. Messages are encoded using RSA as $(z_1,z_2) = (M_1^e \pmod N, M_2^e \pmod N)$. I enter into a transaction which credtis $100$ pounds to my account. I intercept resulting $(z_1,z_2)$a and then send $(z_1,z_2^3)$, therefore earning $1$ million without breaking RSA.
+
+Copying: even if I didn't know RSA was being used, I could still repeatedly transmit $(z_1,z_2)$ many times. We can stop this by time-stamping, i.e. add a time-signature to our message.
+
+\begin{rem}
+We consider the signature of a message, not the signature of a sender.\\
+We suppose all users have a private key and a public key. We have a map: $s: M \times K \to S$, where $M,K$ are all possible messages and keys, and $S$ is all possible signatures. A signs a message $m$ with $s(m,k_A)$ where $k_A$ is $A$'s private key. Then B checks the signature using A's public key. $s$ should be a trapdoor function (one-way), i.e. no one can sign a message from A without A's private-key.
+\end{rem}
+
+For example, using RSA, A has private key $(N,d)$ and public key $(N,e)$. A signs message $m$ with $s=m^d \pmod N$. Anyone can verify that $(m,s)$ is a valid signed message using A's public key.
+
+\begin{rem} (existential forgery)\\
+Anyone can sign a message of the form $(s^e \pmod N, s)$, but we hope such a message will not be meaningful. In practice, rather than sign a message $m$, we sign $h(m)$ where $h:M \to \{1,...,N-1\}$ is a collision-resistant hash function, i.e. a publicly known function chosen so that it is easy to verify that some input data maps to a given hash value, but if the input data is unknown  it is deliberately difficult to reconstruct it, or find another input that maps to same hash value.\\
+Thus if the mssage is changed then it is very likely that the hash value wii also change. So we can use the hash value to test the integirty of a message, e.g. combat homomorphism attack.
+\end{rem}
+
+The El-Gamal Signature Scheme:
+
+Let $p$ be a large prime, $g$ be primitive root mod $p$. A chooses a random integer $1 < n < p$.
+
+Public key: $p,g,yg^u \pmod p$. Private key: $u$.
+
+Let $h: M \to \{1,2,...,p-1\}$ be a collision-resistant hash function. To send a message, A chooses a random exponent $k$, with $(k,p) = 1$ and computes $1 \leq r \leq p-1$ and $1 \leq s \leq p-2$, satisfying (i) $r \equiv g^k \pmod p$; (ii) $h(m) = ur + ks \pmod {p-1}$. (Note: $(k,p-1) = 1$, so $k$ has an inverse mod $p-1$, so can solve for $s$). S/he signs message $m$ with $(r,s)$.
+
+B accepts the signature if $g^{h(m)} \equiv y^r r^s \pmod p$. Now,
+\begin{equation*}
+\begin{aligned}
+g^{h(m)} &\equiv g^{yr+ks} \pmod p\\
+&\equiv (g^n)^r (g^k)^s\\
+&\equiv y^r r^s \pmod p
+\end{aligned}
+\end{equation*}
+
+It is believed that the only way to forge signatures is to find $u$ from $y \equiv g^u \pmod p$, i.e. by solving the discrete log problem.
+
+Choice of $k$: It is essential that a different choice of $k$ is used to sign each message, otherwise messages $m_1,m_2$ are signed $(r,s_1),(r,s_2)$ with $h(m_1) \equiv ur + ks_1 \pmod {p-1}$, $h(m_2) \equiv ur + ks_2 \pmod {p-1}$, so $h(m_1) - h(m_2) \equiv k(s_1-s_2) \pmod {p-1}$. Let $d = (s_1-s_2,p-1)$. Put $h' \equiv \frac{h(m_1)-h(m_2)}{d}$, $s' \equiv \frac{s_1-s_2}{d}$, $p' \equiv \frac{p-1}{d}$. Then $h' \equiv ks' \pmod {p'}$.
+
+As $(s',p') =1$, we can solve for $k$ mod $p'$. So $k \equiv k_0 \pmod {p'}$ for some $k_0$, then $k \equiv k_0 + \lambda p' \pmod {p-1}$, where $0 \leq \lambda \leq d-1$ which we can check through each of them: just determine correct value of $k$ using $g^k \equiv r \pmod p$. Similarly, we can solve $h(m) \equiv ur + ks \pmod {p-1}$ for $u$, which is A's private key.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
