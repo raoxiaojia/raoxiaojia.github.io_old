@@ -1265,6 +1265,65 @@ So $\alpha = \{\beta:\beta<\alpha\}$.
 
 So e.g. $\alpha^+ = \alpha \cup \{\alpha\}$, and $\sup\{\alpha_i:i \in I\} = \cup\{\alpha_i:i\in I\}$.
 
+Picture of the universe:
+
+"start with $\phi$, and take $\P$ (power sets) many times. Define sets $V_\alpha$ for each ordinal $\alpha$ be recursion: $V_0 = \phi$, $V_{\alpha+1} = \P(V_\alpha)$, $V_\lambda = \cup_{\alpha < \lambda} V_\alpha$ for $\lambda$ a non-zero limit. We want every set $x$ to belong to some $V_\alpha$.
+
+\begin{lemma} (5)\\
+Each $V_\alpha$ is transitive.
+\begin{proof}
+Induction on $\alpha$: 0 is trivial.\\
+Successors: given $x \in y \in V_{\alpha+1}$, we have $y \in \P(V_\alpha)$, so $x \in V_\alpha$. So $x \subset V_\alpha$ (as $V_\alpha$ transitive), i.e. $x \in \P(V_\alpha) = V_{\alpha+1}$.\\
+Limits: any union of transitive sets is transitive.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (6)\\
+We have $V_\alpha \subset V_\beta$ whenever $\alpha \leq \beta$.
+\begin{proof}
+Induction on $\beta$ ($\alpha$ fixed):\\
+$\beta=\alpha$ is trivial.\\
+Successors ($\beta$): given $V_\alpha \subset V_\beta$, we want $V_\alpha \subset \P(V_\beta)$. But $V_\beta \subset \P(V_\beta)$, $x \in V_\beta \implies x \subset V_\beta$ as that is transitive.\\
+Limits are trivial as well as it is the union of all $V_\alpha$ below.
+\end{proof}
+\end{lemma}
+
+\begin{thm} (7)\\
+$(\forall x) (\exists \alpha) (x \in V_\alpha)$.\\
+Slogan: $V = \cup_{\alpha \in ON} V_\alpha$, where $ON$ is the class of ordinals. However that's not allowed, as we cannot take union over a class.\\
+Notes: 1. $x \subset V_\alpha \iff x \in V_{\alpha+1}$.\\
+2. If $x \subset V_\alpha$, then there exists least such $\alpha$ -- called the rank of $x$. For example, $rank(\phi) = 0$, $rank(\{\phi\}) = 1$, $rank(\omega) = \omega$, and $rank(\alpha) = \alpha$ for all ordinals $\alpha$ (by induction).
+\begin{proof}
+We'll show $(\forall x) (\exists \alpha) (x \subset V_\alpha)$ by $\epsilon$-induction. Given $x$, have $y \subset V_\alpha$ for some $\alpha$ (for each $y \in x)$, so $y \subset V_{rank(y)}$, i.e. $y \in V_{rank(y)+1}$ for each $y \in x$.\\
+Let $\alpha =\sup \{ rank(y) + 1: y \in x\}$. Then $x \subset V_\alpha$.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+1. The $V_\alpha$ are called the Von-Neumann Hierarchy.\\
+2. Proof gives: $rank(x) = \sup\{rank(y)+1: y \in x\}$ (this is the right way to think about rank). For example, what's the rank of $\{6\}$? For each ordinal the rank is itself, so $rank(6) = 6$. So $rank\{6\} =\sup\{rank(6)+1\} = 7$.\\
+3. (useless comment) Most of maths takes place in $V_{\omega+10}$, apart from order-types, etc. i.e. in this course.
+\end{rem}
+
+\section{Cardinals}
+Let's look at 'sizes' of sets. Work in ZFC.
+
+We want to define $Card(x)$ so that $Card(x) = Card(y) \iff x \leftrightarrow y$, which is a short hand for 'there is a bijection from $x$ to $y$'.
+
+(Note: We cannot take $Card(x) = \{y:y \leftrightarrow x\}$, as this may not be a set.)
+
+We do know $x \leftrightarrow \alpha$ for some ordinal $\alpha$, so can define $Card(x)$ to be the least such $\alpha$. Thus $Card(x) = Card(y) \iff x \leftrightarrow y$. 
+
+(In just ZF, use Scott trick: define the essential rank of $x$ to be $essrank(x)=$least rank of any $y \leftrightarrow x$, and then define $Card(x) = \{y \subset V_{essrank(x)}:y \leftrightarrow x\}$)
+
+Say $m$ is a cardinal or a cardinality if $m=Card(x)$ for some $x$.
+
+For cardinals $m,n$, say $m \leq n$ if $M$ injects into $N$ for some $M,N$ with $Card(M) = m$, $Card(N) = n$ (does not depend on choice of $M$ and $N$).
+
+Write $m<n$ if $m \leq n$ and $m \neq n$. For example, $Card(\omega) \leq Card(\P(\omega))$.
+
+Note that if $m \leq n$, $n \leq m$, then $m=n$ (Schr$\ddot{o}$der-Bernstein). So $\leq$ is a partial order, and even a total order (by well-ordering). However, in just ZF, this need not be a total ordering.
+
 \iffalse
 \begin{equation*}
 \begin{aligned}
