@@ -206,22 +206,22 @@ function l20()
 	else
 	if (m2 < l2p)
 	{
-		alertmessage = "距离3/2.2/2.1/1还需"+((l2p-m2)/35).toFixed(2)+"/"+((l3p-m2)/35).toFixed(2)+"/"+((l4p-m2)/35).toFixed(2)+"/"+((l5p-m1)/50).toFixed(2)+"个alpha。一个beta约等于0.45/0.3个alpha(对2.1及以下/first而言)。";
+		alertmessage = "距离3/2.2/2.1/1还需"+((l2p-m2)/35).toFixed(2)+"/"+((l3p-m2)/35).toFixed(2)+"/"+((l4p-m2)/35).toFixed(2)+"/"+((l5p-m1)/48).toFixed(2)+"个alpha。一个beta约等于0.45/0.3个alpha(对2.1及以下/first而言)。";
 		window.alert(alertmessage);
 	}
 	else if (m2<l3p)
 	{
-		alertmessage = "距离2.2/2.1/1还需"+((l3p-m2)/35).toFixed(2)+"/"+((l4p-m2)/35).toFixed(2)+"/"+((l5p-m1)/50).toFixed(2)+"个alpha。一个beta约等于0.45/0.3个alpha(对2.1及以下/first而言)。";
+		alertmessage = "距离2.2/2.1/1还需"+((l3p-m2)/35).toFixed(2)+"/"+((l4p-m2)/35).toFixed(2)+"/"+((l5p-m1)/48).toFixed(2)+"个alpha。一个beta约等于0.45/0.3个alpha(对2.1及以下/first而言)。";
 		window.alert(alertmessage);
 	}
 	else if (m2<l4p)
 	{
-		alertmessage = "距离2.1/1还需"+((l4p-m2)/35).toFixed(2)+"/"+((l5p-m1)/50).toFixed(2)+"个alpha。一个beta约等于0.45/0.3个alpha(对2.1及以下/first而言)。";
+		alertmessage = "距离2.1/1还需"+((l4p-m2)/35).toFixed(2)+"/"+((l5p-m1)/48).toFixed(2)+"个alpha。一个beta约等于0.45/0.3个alpha(对2.1及以下/first而言)。";
 		window.alert(alertmessage);
 	}
 	else
 	{
-		alertmessage = "距离1还需"+"/"+((l5p-m1)/50).toFixed(2)+"个alpha。一个beta约等于0.3个alpha。";
+		alertmessage = "距离1还需"+"/"+((l5p-m1)/48).toFixed(2)+"个alpha。一个beta约等于0.3个alpha。";
 		window.alert(alertmessage);
 	}
 }
