@@ -1,0 +1,67 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="Class.css" />
+	<title>Part II Tripos Class Predictor</title>
+</head>
+<body>
+<div class="container">
+	<div class="level_progress">
+		<div class="progress progress_1">
+			<div class="bar"></div>
+		</div>
+		<div class="progress progress_2">
+			<div class="bar"></div>
+		</div>
+		<div class="progress progress_3">
+			<div class="bar"></div>
+		</div>
+		<div class="progress progress_4">
+			<div class="bar"></div>
+		</div>
+		<div class="progress progress_5">
+			<div class="bar"></div>
+		</div>
+		<div class="level level_1 level_reached"><p>F</p></div>
+		<div class="level level_2"><p>3</p></div>
+		<div class="level level_3"><p>2.2</p></div>
+		<div class="level level_4"><p>2.1</p></div>
+		<div class="level level_5"><p>1</p></div>
+	</div>	
+	<div class="mask"></div>
+</div>
+
+<div class="content">
+<p id="test">预测 M1/M2:0/0</p>
+Catam<br>
+<button class="q_button" onclick="l17()">我做了catam，愉快</button>
+<button class="q_button" onclick="l18()">完了忘做catam了！！药丸！</button><br>
+Long Questions<br>
+<button class="q_button" onclick="l1()">获得一个稳稳的alpha</button>
+<button class="q_button" onclick="l2()">点错了，好像没那么稳</button><span id="l1a_text">(0)</span><br>
+<button class="q_button" onclick="l3()">感觉差不多是个alpha</button>
+<button class="q_button" onclick="l4()">点错了，好像没那么差不多</button><span id="l2a_text">(0)</span><br>
+<button class="q_button" onclick="l5()">获得一个beta</button>
+<button class="q_button" onclick="l6()">点错了，好像没那么beta</button><span id="l3a_text">(0)</span><br>
+<button class="q_button" onclick="l7()">估计勉强拿beta</button>
+<button class="q_button" onclick="l8()">点错了，好像没那么勉强</button><span id="l4a_text">(0)</span><br>
+<button class="q_button" onclick="l9()">获得一些生的分数</button>
+<button class="q_button" onclick="l10()">点错了，好像没那么生</button><span id="l5a_text">(0)</span><br>
+Short Questions<br>
+<button class="q_button" onclick="l11()">获得一个稳稳的beta</button>
+<button class="q_button" onclick="l12()">点错了，好像没那么稳</button><span id="s1a_text">(0)</span><br>
+<button class="q_button" onclick="l13()">差不多是个beta</button>
+<button class="q_button" onclick="l14()">点错了，好像没那么差不多</button><span id="s2a_text">(0)</span><br>
+<button class="q_button" onclick="l15()">获得一些生的分数</button>
+<button class="q_button" onclick="l16()">点错了，好像没那么生</button><span id="s3a_text">(0)</span><br>
+Others<br>
+<button class="q_button" onclick="l19()">刚才我是瞎按着玩的，麻烦清空一下</button>
+<button class="q_button" onclick="l20()">这些是我现在拿到的，大概还差多少够1/2.1/2.2/3?</button>
+
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSPlugin.min.js"></script>
+<script src="Class.js"></script>
+</html>

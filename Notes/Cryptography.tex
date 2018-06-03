@@ -662,19 +662,18 @@ H(X|Y) &= -\sum_{y \in \Sigma_2} \sum_{x \in \Sigma_1} P(X=x|Y=y) P(Y=y) \log P(
 &= -\sum_{y \in \Sigma_2} \sum_{x \in \Sigma_1} P(X=x,Y=y) \log \frac{P(X=x,Y=y)}{P(Y=y)}\\
 &= -\sum_{y \in \Sigma_2} \sum_{x \in \Sigma_1} P(X=x,Y=y) \log P(X=x,Y=y) +\\
 &\sum_{y \in \Sigma_2} (\sum_{x \in \Sigma_1} P(X=x,Y=y) ) \log P(Y=y)\\
-&= H(X,y) - H(y)
+&= H(X,Y) - H(Y)
 \end{aligned}
 \end{equation*}
 \end{proof}
 \end{lemma}
 
-Example: A fair six sided dice is thrown. $X$ is the value on the dice, $y=X mod 2$. So $H(X,Y) = H(X) =\log 6$, $H(y) = \log 2 = 1$, $H(X|Y) = H(X,Y)-H(Y)= \log 3$, and $H(Y|X) = 0$.
-
+Example: A fair six sided dice is thrown. $X$ is the value on the dice, $y=X mod 2$. So $H(X,Y) = H(X) =\log 6$, $H(Y) = \log 2 = 1$, $H(X|Y) = H(X,Y)-H(Y)= \log 3$, and $H(Y|X) = 0$.
 
 \begin{coro}
 $H(X|Y) \leq H(X)$ with equality iff $X$ and $Y$ are independent.
 \begin{proof}
-Since $H(X|Y) = H(X,Y) - H(Y)$, this is equivalent to $"H(X,Y) \leq H(X)+H(Y)$ with equality iff $X$ and $Y$ independent, which is true by (1.7).
+Since $H(X|Y) = H(X,Y) - H(Y)$, this is equivalent to $H(X,Y) \leq H(X)+H(Y)$ with equality iff $X$ and $Y$ independent, which is true by (1.7).
 \end{proof}
 \end{coro}
 
@@ -1305,19 +1304,19 @@ But these four polynomials have degree $\leq r$, so LHS and RHS are actually equ
 A general feedack shift register is a function $f:F_2^d \to F_2^d$ of the form
 \begin{equation*}
 \begin{aligned}
-f(x_0,...,x_{d=1}) = (x_1,...,x_{d-1},c(x_0,...,x_{d-1}))
+f(x_0,...,x_{d-1}) = (x_1,...,x_{d-1},c(x_0,...,x_{d-1}))
 \end{aligned}
 \end{equation*}
 where $c:F_2^d \to F_2^d$ is a function.
 \end{defi}
 
 \begin{defi}
-A linear feedback shift register is a function $f:F_2^d \to F_2^d$ as abovev with $c$ linear in $x_0,...,x_{d-1}$.
+A linear feedback shift register is a function $f:F_2^d \to F_2^d$ as above with $c$ linear in $x_0,...,x_{d-1}$.
 \end{defi}
 
-The stream associated to the initial fill $y_0,...,y_{d-1}$ is the sequence $y_0,y_1,...$ wher $y_n = a_{d-1} y_{n-1} + ... + a_0 y_{n-1}$ $\forall n \geq d$ or more generally, $y_n = c(y_{n-d},...,y_{n-1})$.
+The stream associated to the initial fill $y_0,...,y_{d-1}$ is the sequence $y_0,y_1,...$ where $y_n = a_{d-1} y_{n-1} + ... + a_0 y_{n-1}$ $\forall n \geq d$ or more generally, $y_n = c(y_{n-d},...,y_{n-1})$.
 
-The stream produced by a LFSR is a recurrence relation (difference relation). The feedback (auxilary) polynomial is $p(x) = x^d+a_{d-1} x^{d-1} + ... + a_0$.
+The stream produced by a LFSR is a recurrence relation (difference relation). The feedback (auxiliary) polynomial is $p(x) = x^d+a_{d-1} x^{d-1} + ... + a_0$.
 
 \begin{defi}
 A sequence of elements in $F_2$ has generating function $G(x) = \sum_{j=0}^\infty x_j X^j \in F_2[[x]]$.
@@ -1336,11 +1335,11 @@ So $A(X)G(X)$ is a polynomial of deg $<d$ iff coefficients of $X^r$ in $A(X)G(X)
 The problems:\\
 (i) Recover the LFSR from its sequence output;\\
 (ii) Decoding BCH codes;\\
-Both involve recognisigin a power series as a quotient of polynomials.
+Both involve recognising a power series as a quotient of polynomials.
 \end{rem}
 
 \subsection{Berlekamp-Massey algorithm}
-Let $x_0,x_1,...$ be thutput of a binary LFSR. We can find the unknown $d$ and $a_0,...,a_{d-1}$ s.t.
+Let $x_0,x_1,...$ be the output of a binary LFSR. We can find the unknown $d$ and $a_0,...,a_{d-1}$ s.t.
 \begin{equation*}
 \begin{aligned}
 x_n + \sum_{i=1}^d a_{d-i} x_{n-i} = 0 \forall n \geq d

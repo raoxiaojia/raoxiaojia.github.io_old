@@ -1,0 +1,187 @@
+@import 'https://fonts.googleapis.com/css?family=Acme';
+@import 'https://fonts.googleapis.com/earlyaccess/notosanssc.css';
+.container {
+	font-family:'Acme';
+	position:absolute;
+	width:90%;
+	height:200px;
+	left:0;
+	right:0;
+	margin:auto;
+	background-color: #f01060;
+	overflow:hidden;
+}
+.content {
+	position:absolute;
+	font-family:'Noto Sans SC', sans-serif;
+	margin:auto;
+	background-color: cfcfa8;
+	color: #108050;
+	width:90%;
+	left:0;
+	right:0;
+	top:205;
+}
+.q_button{
+	font-family:'Noto Sans SC', sans-serif;
+	color: #108050;
+}
+body
+{
+	background-color: #cfcfa8;
+	font-family:'Acme';
+}
+.container.level_2c {
+	background-color: #c04050;
+}
+.container.level_3c {
+	background-color: #907040;
+}
+.container.level_4c {
+	background-color: #709050;
+}
+.container.level_5c {
+	background-color: #30c060;
+}
+
+.mask {
+	position:absolute;
+	width:100%;
+	height:100%;
+	background: radial-gradient(ellipse at center, rgba(240,16,96,0) 0%, rgba(240,16,96,0.49) 41%, #f01060 50%, #f01060 94%);
+}
+.mask.level_2c {
+	background: radial-gradient(ellipse at center, rgba(192,64,80,0) 0%, rgba(192,64,80,0.49) 41%, #c04050 50%, #c04050 94%);
+}
+.mask.level_3c {
+	background: radial-gradient(ellipse at center, rgba(144,112,64,0) 0%, rgba(144,112,64,0.49) 41%, #907040 50%, #907040 94%);
+}
+.mask.level_4c {
+	background: radial-gradient(ellipse at center, rgba(112,144,80,0) 0%, rgba(112,144,80,0.49) 41%, #709050 50%, #709050 94%);
+}
+.mask.level_5c {
+	background: radial-gradient(ellipse at center, rgba(48,192,96,0) 0%, rgba(48,192,96,0.49) 41%, #30c060 50%, #30c060 94%);
+}
+.level_progress {
+	position:relative;
+	top:35%;
+	left:0;
+	width:75%;
+	right:0;
+	margin:auto;
+}
+
+.level {
+	position:absolute;
+	text-align: center;
+	border-radius: 50%;
+	background-color: white;
+	border: 3px solid white;
+	box-shadow: inset 0px 0px 0px 7px #1080a0;
+	color: #1080a0; 
+	width: 40px;
+	height: 40px;
+}
+.level p {
+	margin:0;
+	margin-top:9px;
+	padding:0;
+}
+
+.level_1 {}
+.level_2 {
+	left:20%;
+}
+.level_3 {
+	left:40%;
+}
+.level_4 {
+	left:60%;
+}
+.level_5 {
+	left:80%;
+}
+
+.level_1.level_reached {
+		background-color: white;
+		color:#f01060;
+	 border: 3px solid white;
+		box-shadow: inset 0px 0px 0px 7px #f01060;
+}
+
+.level_2.level_reached {
+		background-color: white;
+		color:#c04050;
+	 border: 3px solid white;
+		box-shadow: inset 0px 0px 0px 7px #c04050;
+}
+
+.level_3.level_reached {
+		background-color: white;
+		color:#907040;
+	  border: 3px solid white;
+		box-shadow: inset 0px 0px 0px 7px #907040;
+}
+
+.level_4.level_reached {
+		background-color: white;
+		color:#709050;
+	  border: 3px solid white;
+		box-shadow: inset 0px 0px 0px 7px #709050;
+}
+
+.level_5.level_reached {
+		background-color: white;
+		color:#30c060;
+	  border: 3px solid white;
+		box-shadow: inset 0px 0px 0px 7px #30c060;
+}
+
+.progress {
+	width:17.5%;
+	background-color: #0f7b9a;
+	height:10px;
+	border:4px solid white; 
+	position:absolute;
+	
+	top:15px;
+}
+
+.progress_1 {
+	left:2.5%;
+}
+.progress_2 {
+	left:22.5%;
+}
+.progress_3 {
+	left:42.5%;
+}
+.progress_4 {
+	left:62.5%;
+}
+.progress_5 {
+	left:82.5%;
+}
+
+.bar {
+	background-color: white;
+	height: 100%;
+	width:0;
+	transform: skew(-30deg)
+}
+
+.progress .bar.step1 {
+	width: 20%;
+}
+.progress .bar.step2 {
+	width: 40%;
+}
+.progress .bar.step3 {
+	width: 60%;
+}
+.progress .bar.step4 {
+	width: 80%;
+}
+.progress .bar.step5 {
+	width: 100%;
+}
