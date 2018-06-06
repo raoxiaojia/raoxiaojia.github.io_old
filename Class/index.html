@@ -31,7 +31,7 @@
 	<div class="mask"></div>
 </div>
 
-<div class="content">
+<div class="content" id="main_content">
 <p id="test">预测 M1/M2:0/0</p>
 Catam<br>
 <button class="q_button" onclick="l17()">我做了catam，愉快</button>
@@ -56,9 +56,25 @@ Short Questions<br>
 <button class="q_button" onclick="l16()">点错了，好像没那么生</button><span id="s3a_text">(0)</span><br>
 Others<br>
 <button class="q_button" onclick="l19()">刚才我是瞎按着玩的，麻烦清空一下</button>
-<button class="q_button" onclick="l20()">这些是我现在拿到的，大概还差多少够1/2.1/2.2/3?</button>
+<button class="q_button" onclick="l20()">这些是我现在拿到的，大概还差多少够1/2.1/2.2/3?</button><br>
+<button class="q_button" onclick="l21()">我知道我的期望class了，能估计一下拿各个class的概率吗？</button><br>
+<button class="q_button" onclick="l22()">帮我按照我填的信息随机生成一份成绩单吧！</button>
 
 </div>
+
+<div hidden class="content" id="report_generator">
+你的名字：<input type="text" id="name" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode == 32)"><br>
+你的学院：<input type="text" id="college" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode == 32)"><br>
+选择你学的方向：<input type="checkbox" id="pure"> Pure <input type="checkbox" id="applied"> Applied <input type="checkbox" id="physics"> Physics
+<button class="q_button" onclick="l23()">填好了，来一份成绩单！</button>
+</div>
+
+<div hidden class="content" id="report_div">
+<p id="report_content"> </p>
+<button class="q_button" onclick="l24()">不错不错，让我回去再改改我做的题...</button>
+</div>
+
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"></script>
