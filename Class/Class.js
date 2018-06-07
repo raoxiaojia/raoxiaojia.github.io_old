@@ -617,7 +617,10 @@ function l23()
 			else if (m2>l4p)
 			{
 					report = report + "Class II.1<br><br>";
-					tm = (m1-l4p)/(l5p-l4p)*10+60;
+					if (m1>m2)
+						tm = (m1-l4p)/(l5p-l4p)*10+60;
+					else 
+						tm = (m2-l4p)/(l5p-l4p)*10+60;
 			}
 			else if (m2 > l3p)
 			{
