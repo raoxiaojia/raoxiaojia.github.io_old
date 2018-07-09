@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>'World' Dynamite Federation</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="wrd.js"></script>
+    <script src="tab.js"></script>
+    <script src="genELOTable.js"></script>
+    <script src="elo.js"></script>
+</head>
+
+<body>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
+        <button class="tablinks" onclick="openTab(event, 'ELO Rating')">ELO Rating</button>
+        <button class="tablinks" onclick="openTab(event, 'Tournament')">Better Tournament</button>
+    </div>
+
+    <div id="About" class="tabcontent">
+        <h3>About this website</h3>
+        <p>This is an unofficial website of the game dynamite by
+            <i>Softwire</i>.</p>
+        <p> The aim of this site is to offer much more functions than the official website could, as the developers of the official
+            website are full-time employees hence have a lot of others things to deal with.</p>
+    </div>
+
+    <div id="ELO Rating" class="tabcontent">
+        <h3>ELO Rating</h3>
+        <p>This is an unofficial ELO rating (there is no official version currently) of bots on the official website. Only matches
+            that finished normally (by score) are taken into account.</p>
+        <p>For the parameters used,
+            <a href="elo_spec.html">click here</a>.
+        </p>
+        <h3>ELO Rating (20180708)</h3>
+        <div style="overflow-y:auto;overflow-x:auto;" id="ELOTable">
+
+        </div>
+    </div>
+
+    <div id="Tournament" class="tabcontent">
+        <h3>Better Tournament</h3>
+        <p>The tournament on the original website is very unreliable and inconvenient to use -- for example, there is no way
+            to stop a running tournament; bots are likely to throw errors due to inconsistent time limit and memory limit;
+            format of the tournament is limited (currently only a full round-robin tournament is possible).</p>
+        <p>This feature is under development.</p>
+    </div>
+
+</body>
+
+</html>
+<script>
+    document.getElementById("defaultOpen").click();
+    genELOTable();
+</script>

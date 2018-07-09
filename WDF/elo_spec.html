@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <title>'World' Dynamite Federation</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div>
+        <p>The score function is piecewise-linear, with the following turning points for the losing player:</p>
+        <table>
+            <tr>
+                <th>Match Score</th>
+                <th>Converted Score</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>900</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>950</td>
+                <td>0.10</td>
+            </tr>
+            <tr>
+                <td>980</td>
+                <td>0.25</td>
+            </tr>
+            <tr>
+                <td>999</td>
+                <td>0.40</td>
+            </tr>
+        </table>
+        <p>The converted score for the winning player is 1 minus that of the losing player.</p>
+        <p>The K-factor is chosen to be 30 for the first 20 matches, and 15 afterwards.</p>
+        <p>This ELO Rating is updated daily.</p>
+    </div>
+
+</body>
+
+</html>
