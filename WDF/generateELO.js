@@ -5,13 +5,13 @@ function convertScore(bot1score, bot2score) {
         loserConvertedScore = 0;
     }
     else if (loserScore < 950) {
-        loserConvertedScore = (loserScore - 900) / 50 * 0.10;
+        loserConvertedScore = (loserScore - 900) / 50 * 0.05;
     }
     else if (loserScore < 980) {
-        loserConvertedScore = 0.10 + (loserScore - 950) / 30 * 0.15;
+        loserConvertedScore = 0.05 + (loserScore - 950) / 30 * 0.1;
     }
     else {
-        loserConvertedScore = 0.25 + (loserScore - 980) / 19 * 0.15;
+        loserConvertedScore = 0.15 + (loserScore - 980) / 19 * 0.1;
     }
     if (bot1score >= 1000) return 1 - loserConvertedScore;
     return loserConvertedScore;
@@ -142,7 +142,7 @@ function convertScore(bot1score, bot2score) {
         }
         const fs = require('fs');
         const JSONstr = "elostr = '" + JSON.stringify({ elo: botELO }) + "';";
-        fs.writeFile("elo.txt", JSONstr, function (err) {
+        fs.writeFile("elo.js", JSONstr, function (err) {
             if (err) {
                 console.log(err);
             }
