@@ -57,7 +57,35 @@ Background assumption on behaviour of an agent:\\
 Say $c^2$ is preffered to $c^1$ iff $\E U(c_0^1,c_1^1,...) < \E U(c_0^2,c_1^2,...)$ where $U$ is some investor utility function, which is increasing in all $c_i$, concave (so risk-avert)
 
 \begin{defi}
-An arbitrage is a self-financing investment consumption strategy $(c,H)$ such that there exists a non-random time $T>0$ s.t. $c_0 = -H_1 \cdot P_0$, $c_t = (H_t - H_{t+1}) \cdot P_t$ for $1 \leq t \leq T-1$, and $c_T =H_T \cdot P_T$ (in words, with initial wealth $X_0 = 0$ and post-consumption wealth at $T$ $X_T-C_T=0$), that $\P(c_t \geq 0)$ for all $0 \leq t \leq T) = 1$, and $\P(c_t > 0$ for some $0 \leq t \leq T) > 0$.
+An arbitrage is a self-financing investment-consumption strategy $(c,H)$ such that there exists a non-random time $T>0$ s.t. $c_0 = -H_1 \cdot P_0$, $c_t = (H_t - H_{t+1}) \cdot P_t$ for $1 \leq t \leq T-1$, and $c_T =H_T \cdot P_T$ (in words, with initial wealth $X_0 = 0$ and post-consumption wealth at $T$ $X_T-C_T=0$), that $\P(c_t \geq 0)$ for all $0 \leq t \leq T) = 1$, and $\P(c_t > 0$ for some $0 \leq t \leq T) > 0$.
 \end{defi}
+
+Suppose $(c^1,H^1)$ is self-financing with iniital wealth $X_0$, $(c^2,H^2) = (c^1,H^1) + (c,H)$, where $(c,H)$ is an arbitrage. Then $c^2$ is preferred to $c^1$.
+
+The inverstor who believes there is an arbitrage would have no optimal investment-consumption policy.
+
+Even further background assumption: the market is in equillibrium (supply = demand).
+
+\begin{defi}
+Given the market model, a martingale deflator is positive adapted process $(Y_t)_{t \geq 0}$ such that $(Y_t \cdot P_t)_{t \geq 0}$ is a martingale.
+\end{defi}
+
+\begin{thm} (First fundamental theorem of asset pricing)\\
+The market has no arbitrage if and only if there exists a martingale deflator.
+\end{thm}
+
+\begin{defi}
+Given an $(\Omega,\mathcal{F},\P)$-integrable $X$ ($\E|X| < \infty$), and $\mathcal{G} \subseteq \mathcal{F}$) a sub-$\sigma$-algebra of $\mathcal{F}$, a conditional expectation of $X$ given $\mathcal{G}$ is an integrable $Y$ that is $\mathcal{G}$-measurable and such that $\E(X 1_G) = \E(Y 1_G)$ for all $G \in \mathcal{G}$.
+\end{defi}
+
+\begin{thm}
+The conditional expectations exist and are unique in the sense that, if $Y^1,Y^2$ are both conditional expecations, then $Y^1=Y^2$ almost surely.
+\end{thm}
+
+We'll use the notation $Y = \E(X|\mathcal{G})$.
+
+\begin{eg}
+Let $(G_n)_n$ be a partition of $\Omega$, $\mathcal{G} = \sigma({G_n})$. Then $\E(X|\mathcal{G})(\omega) = \frac{\E(X1_{G_n})}{\P(G_n)} = \E(X|G_n)$ if $\omega \in G_n$ and $\P(G_n>0$, or anything else if $\P(G_n) = 0$ is a valid conditional expectation.
+\end{eg}
 
 \end{document}
