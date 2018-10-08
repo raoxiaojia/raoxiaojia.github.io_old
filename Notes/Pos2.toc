@@ -1,3 +1,0 @@
-\contentsline {subsection}{\numberline {0.1}Monte-Carlo methods}{4}{subsection.0.1}
-\contentsline {subsection}{\numberline {0.2}Monte-Carlo methods}{5}{subsection.0.2}
-\contentsline {subsection}{\numberline {0.3}Nonparametric statistics}{6}{subsection.0.3}

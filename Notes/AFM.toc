@@ -1,2 +1,0 @@
-\contentsline {section}{\numberline {0}Introduction}{3}{section.0}
-\contentsline {section}{\numberline {1}Discrete time models}{4}{section.1}

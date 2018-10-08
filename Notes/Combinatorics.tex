@@ -2,7 +2,7 @@
 
 \input{temp}
 
-\setcounter{section}{-2}
+\setcounter{section}{-1}
 
 \begin{document}
 
@@ -16,26 +16,37 @@
 
 \newpage
 
-\section{-1}
+\section{Introduction}
 
-\begin{tikzpicture}
-  [scale=.8,auto=left,every node/.style={circle,fill=blue!20}]
-  \node (n6) at (1,10) {6};
-  \node (n4) at (4,8)  {4};
-  \node (n5) at (8,9)  {5};
-  \node (n1) at (11,8) {1};
-  \node (n2) at (9,6)  {2};
-  \node (n3) at (5,5)  {3};
+In this course we'll discuss three main aspects:\\
+$\bullet$ Set systems;\\
+$\bullet$ Isoperimetric Inequalities;\\
+$\bullet$ Projections (combinatorics in continuous settings).
 
-  \foreach \from/\to in {n6/n4,n4/n5,n5/n1,n1/n2,n2/n5,n2/n3,n3/n4}
-    \draw (\from) -- (\to);
-
-\end{tikzpicture}
+References:\\
+\emph{Combinatorics}, Bocabas, Cambridge University Press, 1986 (chapter 1,2);\\
+\emph{Combinatorics and finite sets}, Anderson, Oxford University Press, 1987 (chapter 1).
 
 \newpage
 
-\section{Introduction}
+\section{Set Systems}
 
-Some not very useful examples.
+Let $X$ be a set. A \emph{set system} on $X$ (or family of subsets of $X$) is a family $\mathcal{A} \subset \P(X)$.\\
+For example, we define $X^{(r)} = \{A \subset X: |A| = r\}$.
+
+Unless otherwise stated, $X=[n] = \{1,2,...,n\}$. For example, $|X^{(r)}| = {n \choose r}$ (assume finiteness). So $[4]^{(2)} = \{12,13,14,23,24,34\}$.
+
+We often make $\P(x)$ into a graph, called $Q_n$, by joining $A$ to $B$ if $|A \triangle B| = 1$ (symmetric difference).
+
+(examples of $Q_3,Q_n$)
+
+If we identify a set $A \subset X$ with a 0-1 sequence of length $n$ via $A \leftrightarrow 1_A$ (characteristic function), then $Q_3$ acn be thought of as a cube. In general, $Q_n$ is an $n$-dimensional cube (hypercube/discretecube/$n$-cube/...).
+
+\subsection{Chains and antichains}
+A family $\mathcal{A} \subset \P(X)$ is a \emph{chain} if $\forall A,B \in \mathcal{A}, A \subset B$ or $B \subset A$. It is an antichain if $\forall A \neq B \in \mathcal{A}$, $A \not\in B$.
+
+Obviously the maximum size of a chain in $X$ is $n+1$.
+
+For antichains, we can take $X^{\lfloor\frac{n}{2}\rfloor}$, which has size ${n \choose {\lfloor n/2 \rfloor}}$. The result is that wee can't beat this, but the proof is not trivial.
 
 \end{document}

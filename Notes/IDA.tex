@@ -1,0 +1,132 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Introduction to Discrete Analysis}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+asdasd
+
+\newpage
+
+\section{The discrete Fourier transform}
+
+Let $N$ be a fixed positive integer. Write $\omega$ for $e^{2\pi i/N}$, and $\Z_N$ for $\Z/n\Z$. Let $f:\Z_N \to \C$. Given $r \in \Z_N$, define $\hat{f}(r)$ to be
+\begin{equation*}
+\begin{aligned}
+\frac{1}{N} \sum_{x \in \Z_N} f(x) \omega^{-rx}
+\end{aligned}
+\end{equation*}
+From now on we use the notation $\E_{x \in \Z_N}$ for $\frac{1}{N}\sum_{x \in \Z_N}$, so $\hat{f}(r) = \E_x f(x) e^{-\frac{2\pi irx}{N}}$.
+
+If we write $\omega_r$ for the function $x \to \omega^{rx}$, and $\bra f,g\ket$ for $\E_x f(x) \overline{g(x)}$, then $\hat{f}(r) = \bra f,\omega_r \ket$. So the discrete fourier transforn is basically expanding the function $f$ in the set of orthonormal basis $\omega_r$.
+
+Let us write $||f||_p$ for $\E_x |f(x)|^p)^{1/p}$ (the $L_p$-norm), and call the resulting space $L_p(\Z_n)$.
+
+Important convention: we use \emph{averages} for the 'original functions' in 'physical spaces', and \emph{sums} for their Fourier transforms in 'frequency space' (referring to $\E$: $\bra,\ket$ is average in the original space but just $\sum$ in frequency space, i.e. for $\hat{f},\hat{g}$ etc.)
+
+\begin{lemma} (Parseval's identity)\\
+    If $f,g: \Z_n \to \C$, then $\bra \hat{f},\hat{g}\ket = \bra f,g\ket$.
+    \begin{proof}
+        \begin{equation*}
+            \begin{aligned}
+                \bra\hat{f},\hat{g}\ket &= \sum_r \hat{f}(r) \overline{\hat{g}(r)}\\
+                &= \sum_r (\E_x f(x) \omega^{-rx}) (\overline{\E_y g(y) \omega^{-ry}})\\
+                &= \E_x \E_y f(x) \overline{g(y)} \sum_r \omega^{-r(x-y)}\\
+                &= \E_x \E_y f(x) \overline{g(y)} n\delta_{xy}\\
+                &= \bra f,g\ket
+            \end{aligned}
+            \end{equation*}
+    \end{proof}
+\end{lemma}
+
+\begin{lemma} (Convolution identity)\\
+    \begin{equation*}
+        \begin{aligned}
+            \widehat{f*g}(r) = \hat{f}(r)\hat{g}(r)
+        \end{aligned}
+    \end{equation*}
+    where
+    \begin{equation*}
+        \begin{aligned}
+            (f*g)(x) = \E_{y+z=x}f(y)g(z) = \E_y f(y)g(x-y)
+        \end{aligned}
+    \end{equation*}
+    \begin{proof}
+        \begin{equation*}
+            \begin{aligned}
+                \widehat{f*g}(r) &= \E_x f*g(x)\omega^{-rx}\\
+                &=\E_x \E_{y+z=x}f(y)g(z)\omega^{-rx}\\
+                &=\E_x\E_{y+z=x} f(y)g(z) \omega^{-ry}\omega^{-rz}\\
+                &=\E_y\E_z f(y) \omega^{-ry} g(z) \omega^{-rz}\\
+                &=\hat{f}(r) \hat{g}(r)
+            \end{aligned}
+        \end{equation*}
+    \end{proof}
+
+\end{lemma}
+
+\begin{lemma} (Inversion formula)\\
+    \begin{equation*}
+        \begin{aligned}
+            f(x) = \sum_r \hat{f}(r) \omega^{rx}
+        \end{aligned}
+    \end{equation*}
+    (note the sign of $\omega^{rx}$).
+    \begin{proof}
+        \begin{equation*}
+            \begin{aligned}
+                \sum_r \hat{f}(r) \omega^{rx} &= \sum_r \E_y f(y) \omega^{r(x-y)}\\
+                &= \E_y f(y) \sum_r \omega^{r(x-y)}\\
+                &= \E_y f(y) n\delta_{xy}\\
+                &=f(x)
+            \end{aligned}
+        \end{equation*}
+        This is really just the statement that we get the original vector back when we sum up its components.
+    \end{proof}
+\end{lemma}
+
+Further observations: If $f$ is real-valued, then $\hat{f}(-r) = \E_x f(x) \omega^{rx} = \overline{\E_x f(x) \omega^{-rx}} = \overline{\hat{f}(r)}$.
+
+If $A \subset \Z_n$, write $A$ (instead of $1_A,\chi_A$) for the characteristic function of $A$. Then $\hat{A}(0) = \E_x A(x) = \frac{|A|}{N}$, the \emph{density} of $A$.
+
+Also, $||\hat{A}||^2_2 = \bra\hat{A},\hat{A}\ket = \bra A,A\ket = \E_x A(x)^2 = \E_x A(x) = \frac{|A|}{N}$, again the density.
+
+Let $f:\Z_n \to \C$. Given $\mu \in \Z_n$, define $f_\mu(x)$ to be $f(\mu^{-1}x)$ (so we need $(\mu,N) = 1$). Then
+\begin{equation*}
+    \begin{aligned}
+        \hat{f}_\mu(r) &= \E_x f_\mu (x) \omega^{-rx}\\
+        &= \E_x f(x/\mu) \omega^{-rx}\\
+        &=\E_x f(x) \omega^{-r\mu x}\\
+        ^= \hat{f}(\mu r)
+    \end{aligned}
+\end{equation*}
+
+\subsection{Roth's theorem}
+\begin{thm}
+    For every $\delta > 0$, $\exists N$ s.t. if $A \subset \{1,...,N\}$ is a set of size at least $\delta N$, then $A$ must contain an arithmetic progression of length 3.\\
+    This is also true for 4,5,..., but the proof is much harder -- Szemeredi's theorem.\\
+    Basic strategy of proof: show that if $A$ has density $\delta$ and no AP of length 3 (3AP), then there's a long AP in $P \subset \{1,2,...,n\}$ s.t.\begin{equation*}
+        \begin{aligned}
+            |A \cap P| \geq (\delta+c(\delta)) |p|
+        \end{aligned}
+    \end{equation*}
+    where $c(\delta)$ is some positive number. But then we can continue this argument to expand $A\cap P$ to infinity (note that $|A\cap P|$ is an integer, so each time increase by 1 at least).
+
+    The best known relationship between $\delta$ and the $N$ required is around $\delta \sim \frac{c}{\log\log N}$ for some constant $c$.
+\end{thm}
+
+
+\end{document}
