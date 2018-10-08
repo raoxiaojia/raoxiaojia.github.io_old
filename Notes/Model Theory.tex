@@ -1,0 +1,133 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Model Theory}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Reviews}
+
+\subsection{Langauges and structures}
+
+\begin{defi} (1.1)
+A language $L$ consists of:\\
+$\bullet$(i) a set $\mathcal{F}$ of function symbols, and for each $f \in \mathcal{F}$, a positive integer $n_f$, the arity of $f$;\\
+$\bullet$(ii) a set $\mathcal{R}$ of relation symbols, and for each $R \in \mathcal{R}$, a positive integer $n_R$, the arity of $R$;\\
+$\bullet$(iii) a set $\mathcal{C}$ of constant symbols.\\
+Note that each of the above three sets can be empty.
+\end{defi}
+
+\begin{eg}
+$L=\{\{\cdot,-1\},\{1\}\}$ where $\cdot$ is a binary function, $-1$ is a unary function, and $1$ is a constant. We call this $L_{gp}$ (language of groups);\\
+$L_{lo} = \{<\}$, where $<$ is a binary relation (linear order).
+\end{eg}
+
+\begin{defi} (1.2)
+Given a language $L$, say, an $L$-structure consists of:\\
+(i) a set $M$, the \emph{domain};\\
+(ii) for each $f \in \mathcal{F}$, a function $f^M:M^{n_f} \to M$;\\
+(iii) for each $R \in \mathcal{R}$, a relation $R^M \subseteq M^{n_R}$;\\
+(iv) for each $c \in \mathcal{C}$, an element $c^M \in M$.
+
+$f^M,R^M,c^M$ are called the \emph{interpretation} of $f,R,c$ respectively.
+\end{defi}
+
+\begin{notation} (1.3)\\
+We often fail to distinguish between the symbols in the language $L$ and their interpretations in a $L$-structure, if the context allows.
+
+We may write $\mathcal{M} = <M,\mathcal{F},\mathcal{R},\mathcal{C}>$.
+\end{notation}
+
+\begin{eg} (1.4)\\
+(a) $\mathcal{R} = <\R^+,\{\cdot,-1\},1>$ is an $L_{gp}$-structure.\\
+$\mathcal{Z} = <\Z,\{+,-\},0>$ is also an $L_{gp}$-structure (here $+$ is a binary and $-$ is the unary negation function).\\
+$\mathcal{Q} = <\Q,<>$ is an $L_{lo}$ structure ($<$ is the interpretation of relation).
+\end{eg}
+
+\begin{defi} (1.5)\\
+Let $L$ be a language, let $\mathcal{M}$ and $\mathcal{N}$ be $L$-structures.\\
+An \emph{embedding} of $\mathcal{M}$ into $\mathcal{N}$ is an injection $\alpha:M \to N$ that preserves the structure:\\
+(i) For all $f \in \mathcal{F}$, and $a_1,...,a_{n_f} \in M$,
+\begin{equation*}
+\begin{aligned}
+\alpha(f^M(a_1,...,a_{n_f})) = f^N(\alpha(a_1),...,\alpha(a_{n_f}))
+\end{aligned}
+\end{equation*}
+(ii) For all $R \in \mathcal{R}$, and $a_1,...,a_{n_R} \in M$,
+\begin{equation*}
+\begin{aligned}
+(a_1,...,a_{n_R}) \in R^M \iff (\alpha(a_1),...,\alpha(a_{n_R})) \in R^N
+\end{aligned}
+\end{equation*}
+Note that this is an if and only if.
+(iii) For all $c \in \mathcal{C}$, we need 
+\begin{equation*}
+\begin{aligned}
+\alpha(c^M) = c^N
+\end{aligned}
+\end{equation*}
+As anyone could expect, a surjective embedding $\mathcal{M} \to \mathcal{N}$ is also called an \emph{isomorphism} of $\mathcal{M}$ onto $\mathcal{N}$.
+\end{defi}
+
+(1.6) Exercise. Let $G_1,G_2$ be groups, regarded as $L_{gp}$-structures.\\
+Check that $G_1 \cong G_2$ in the usual algebra sense, if and only if there is an isomprhism $\alpha:G_1\ to G_2$ in the sense of above definition 1.5.
+
+\subsection{Terms, formulae, and their interpretations}
+In addition to the symbols of $L$, we also have:\\
+(i) infinitely many variables, $\{x_i\}_{i \in I}$;\\
+(ii) logical connectives, $\wedge,\neg$ (also express $\vee, \to, \leftrightarrow$);\\
+(iii) quantifier $\exists$ (also express $\forall$);\\
+(iv) punctuations $(,)$.
+
+\begin{defi} (2.1) \\
+\emph{$L$-terms} are defined recursively as follows:\\
+$\bullet$ any variable $x_i$ is a term;\\
+$\bullet$ any constant symbol is a term;\\
+$\bullet$ for any $f \in \mathcal{F}$, 
+\begin{equation*}
+\begin{aligned}
+f(t_1,...,t_{n_f})
+\end{aligned}
+\end{equation*}
+for any terms $t_1,...,t_{n_f}$ is a term;\\
+$\bullet$ nothing else is a term.
+\end{defi}
+
+Notation: we write $t(x_1,...,x_n)$ to mean that the variables appearing in $t$ are among $x_1,..,x_n$.
+
+\begin{eg}
+In $\mathcal{R} = <\R,\cdot,-1,1>$,\\
+$\bullet$ $(\cdot (x_1,x_2),x_3)$ is a term ($x_1 \cdot x_2) \cdot x_3$);\\
+$\bullet$ $(\cdot (1,x_1))^{-1}$ is a term ($1 \cdot x)^{-1}$.
+\end{eg}
+
+\begin{defi} (2.2)\\
+If $\mathcal{M}$ is an $L$-structure, to each $L$-term $t(x_1,...,x_k)$ we assign a function
+\begin{equation*}
+\begin{aligned}
+t^M: M^k \to M
+\end{aligned}
+\end{equation*}
+defined as follows:\\
+(i) If $t = x_i, t^M [a_1,...,a_k] = a_i$;\\
+(ii) If $t=c$ is a constant, $t^M [a_1,...,a_k] = c^m$;\\
+(iii) If $t=f(t_1(x_1,...,x_k),...,t_{n_f}(x_1,...,x_k))$, 
+\begin{equation*}
+\begin{aligned}
+t^M (a_1,...,a_k) = f^M(t_1^M(a_1,...,a_k),...,t_{n_f}^M(a_1,...,a_k))
+\end{aligned}
+\end{equation*}
+\end{defi}
+
+\end{document}

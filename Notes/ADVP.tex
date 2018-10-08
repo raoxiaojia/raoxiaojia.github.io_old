@@ -1,0 +1,130 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Advanced Probability}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Reviews}
+
+\subsection{Measure spaces}
+
+Let $E$ be a set. Let $\mathcal{E}$ be a set of subsets of $E$. We say that $\mathcal{E}$ is a $\sigma$-algebra on $E$ if:\\
+$\bullet$ $\phi \in \mathcal{E}$;\\
+$\bullet$ $\mathcal{E}$ is closed under countable unions and complements.\\
+In that case, $(E,\mathcal{E})$ is called a \emph{measurable space}.
+
+We call the elements of $\mathcal{E}$ \emph{measurable sets}.
+
+Let $\mu$ be a function $\mathcal{E} \to [0,\infty]$. We say $\mu$ is a measure if:\\
+$\bullet$ $\mu(\phi) = 0$;
+$\bullet$ $\mu$ is countably additive: for all sequences $(A_n)$ of disjoint elements of $\mathcal{E}$, then
+\begin{equation*}
+\begin{aligned}
+\mu(\bigcup_n A_n) = \sum_n \mu(A_n)
+\end{aligned}
+\end{equation*}
+In that case, the triple $(E,\mathcal{E},\mu)$ is called a \emph{measure space}.
+
+Given a topological space $E$, there is a smallest $\sigma$-algebra containing all the open sets in $E$. This is the \emph{Borel $\sigma$-algebra of $\mathcal{E}$}, denoted $\mathcal{B}(E)$.
+
+In particular, for the real line $\R$, we will just write $\mathcal{B} = \mathcal{B}(\R)$ for simplicity.
+
+\subsection{Integration of measurable functions}
+
+Let $(E,\mathcal{E})$ and $(E',\mathcal{E}')$ be measurable spaces. A function $f:E \to E'$ is \emph{measurable} if $f^{-1}(A) = \{x \in E: f(x) \in A\} \in \mathcal{E} \forall A \in \mathcal{E}'$.
+
+If we refer to a measurable function $f$ without specifying range, the default is $(\R,\mathcal{B})$.
+
+Similarly, if we refer to $f$ as a non-negative measurable function, then we mean $E'=[0,\infty]$, $\mathcal{E}' = \mathcal{B}([0,\infty])$.
+
+It is worth notice that under this set of definitions, a non-negative measurable function might not be $\R$-measurable (since we allowed $\infty$).
+
+We write $m\mathcal{E}^+$ for set of non-negative measurable functions.
+
+\begin{thm}
+Let $(E,\mathcal{E},\mu)$ be a measure space. There exists a unique map $\tilde{\mu}: m\mathcal{E}^+ \to [0,\infty]$ such that:\\
+$\bullet$(a) $\tilde{\mu}(1_A) = \mu(A)$ for all $A \in \mathcal{E}$, where $1_A$ is the indicator function;\\
+$\bullet$(b) $\tilde{\mu}(\alpha f + \beta g) = \alpha\tilde{\mu}(f) + \beta\tilde{\mu}(g)$ for all $\alpha,\beta \in [0,\infty)$, $f,g \in m\mathcal{E}^+$ (linearity);\\
+$\bullet$(c) $\tilde{\mu}(f) = \lim_{n \to \infty} \tilde{\mu}(f_n)$ for any non-decreasing sequence $(f_n:n \in \N)$ in $m\mathcal{E}^+$ such that $f_n(x) \to f(x)$ for all $x \in E$ (monotone-convergence).
+
+We'll only prove uniqueness. For existence, see II Probability and Measure notes.
+\end{thm}
+
+From now on, write $\mu$ for $\tilde{\mu}$.\\
+We'll call $\mu(f)$ the \emph{integral} of $f$ w.r.t. $\mu$.\\
+We also write $\int_E f d\mu = \int E f(x) \mu(dx)$.
+
+A \emph{simple function} is a finite linear combination of indicator functions of measurable sets with positive coefficients, i.e. $f$ is simple if 
+\begin{equation*}
+\begin{aligned}
+f =\sum_{k=1}^n \alpha_k 1_{A_k}
+\end{aligned}
+\end{equation*}
+for some $n \geq 0$, $\alpha_k \in (0,\infty), A_k \in \mathcal{E} \forall k = 1,...,n$.
+
+From (a) and (b), for $f$ simple,
+\begin{equation*}
+\begin{aligned}
+\mu(f) =\ sum_{k=1}^n \alpha_k \mu(A_k)
+\end{aligned}
+\end{equation*}
+Also, if $f,g \in m\mathcal{E}^+$ with $f \leq g$, then $f+h = g$ where $h = g - f \cdot 1_{f < \infty} \in m\mathcal{E}^+$. Then since $\mu(h) \geq 0$, (b) implies $\mu(f) \leq \mu(g)$.
+
+Take $f \in m\mathcal{E}^+$. Define for $x \in E$, $n \in \N$,
+\begin{equation*}
+\begin{aligned}
+f_n(x) = \left(2^{-n} \lfloor 2^n f(x)\rfloor \right) \wedge n
+\end{aligned}
+\end{equation*}
+where $\wedge$ means taking the minimum. Note that $(f_n)$ is a non-decreasing sequence of simple functions that converges to $f$ pointwise everywhere on $E$. Then by (c),
+\begin{equation*}
+\begin{aligned}
+\mu(f) = \lim_{n \to \infty} \mu(f_n)
+\end{aligned}
+\end{equation*}
+So we have shown uniqueness: $\mu$ is uniquely determined by the measure (provided that it exists, which we're not going to show).
+
+When is $\mu(f)$ zero (for $f \in m\mathcal{E}^+$)? For measurable functions $f,g$, we say $f=g$ \emph{almost everywhere} if 
+\begin{equation*}
+\begin{aligned}
+\mu(\{x \in E: f(x) \neq g(x) \}) = 0
+\end{aligned}
+\end{equation*}
+i.e. they only disagree on a measure-zero set.
+
+We can show, for $f \in m\mathcal{E}^+$, that $\mu(f)=0$ if and only if $f=0$ almost everywhere.
+
+Let $f$ be a measurable function. We say that $f$ is \emph{integrable} if $\mu(|f|) < \infty$.
+
+Write $L^1 = L^1(E,\mathcal{E},\mu)$ for the set of all integrable functions. We extend the integral to $L^1$ by setting $\mu(f) = \mu(f^+) - \mu(f^-)$, where 
+\begin{equation*}
+\begin{aligned}
+f^\pm (x) = 0 \vee (\pm f(x))
+\end{aligned}
+\end{equation*}
+where $\vee$ means the maximum (so $f = f^+ - f^-$). Note that now $f^+,f^-$ are both non-negative, with disjoint support. Then we can show that $L^1$ is a vector space, and $\mu:L^1 \to \R$ is linear.
+
+\begin{lemma} (Fatou's lemma)\\
+Let $(f_n:n \in \N)$ be any sequence in $m\mathcal{E}^+$. Then 
+\begin{equation*}
+\begin{aligned}
+\mu(\liminf_{n\to \infty} f_n) \leq \liminf_{n \to \infty} \mu(f_n)
+\end{aligned}
+\end{equation*}
+The proof is a straight forward application of monotone convergence.\\
+The only hard part is to remember which way the inequality is (consider a sliding block function to the right).
+\end{lemma}
+
+\end{document}

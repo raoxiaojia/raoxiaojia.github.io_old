@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Advanced Financial Models}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+$www.staslab.cam.ac.uk/~mike/AFM/$ for course material. However lecture notes only come after lectures, so taking notes is still necessary..
+
+$m.tehranchi@statslab.cam.ac.uk$
+
+Assumptions for this course:\\
+No dividends, zero tick size (continuous), no transaction costs, no short-selling constraints, infinitely divisible assets, no bid-ask spread, infinite market depth, agents have preferences for expected utility.
+
+\newpage
+
+\section{Discrete time models}
+
+We'll assume there are $n$ assets with price $P_t^i$ at time $t$ for asset $i$. Apparently $P_t^i$ is a random variable on some probability space $(\Omega,\mathcal{F},\P)$.
+
+We'll use the notation $P=(P_t^1,...,P_t^n)_{t \geq 0}$ which is a $n$-dimensional stochastic process.
+
+Information available at time $t$ is modelled by a $\sigma$-algebra $\mathcal{F}_t \subseteq \mathcal{F}$.
+
+The assumption will be $\mathcal{F}_s \subseteq \mathcal{F}_t$ for $s \leq t$ (in other words, $\mathcal{F}$ is a filtration):
+
+\begin{defi} (Filtration)\\
+A \emph{Filtration} is a collection of $\sigma$-algebra $(\mathcal{F}_t)_{t \geq 0}$ such that $\mathcal{F}_s \subseteq \mathcal{F}_t$ for $s \leq t$.
+\end{defi}
+
+We'll assume that $\mathcal{F}_0$ is trivial, i.e. if $A$ is $\mathcal{F}_0$ measure then $\mathbb{P} = 0$ or $1$.
+
+\end{document}
