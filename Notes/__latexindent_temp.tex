@@ -1,54 +1,5 @@
-\documentclass[a4paper]{article}
-
-\input{temp}
-
-\setcounter{section}{-1}
-
-\begin{document}
-
-\title{Introduction to Discrete Analysis}
-
-\maketitle
-
-\newpage
-
-\tableofcontents
-
-\newpage
-
-\section{Introduction}
-asdasd
-
-\newpage
-
-\section{The discrete Fourier transform}
-
-Let $N$ be a fixed positive integer. Write $\omega$ for $e^{2\pi i/N}$, and $\Z_N$ for $\Z/n\Z$. Let $f:\Z_N \to \C$. Given $r \in \Z_N$, define $\hat{f}(r)$ to be
 \begin{equation*}
-\begin{aligned}
-\frac{1}{N} \sum_{x \in \Z_N} f(x) \omega^{-rx}
-\end{aligned}
-\end{equation*}
-From now on we use the notation $\E_{x \in \Z_N}$ for $\frac{1}{N}\sum_{x \in \Z_N}$, so $\hat{f}(r) = \E_x f(x) e^{-\frac{2\pi irx}{N}}$.
-
-If we write $\omega_r$ for the function $x \to \omega^{rx}$, and $\bra f,g\ket$ for $\E_x f(x) \overline{g(x)}$, then $\hat{f}(r) = \bra f,\omega_r \ket$. So the discrete fourier transforn is basically expanding the function $f$ in the set of orthonormal basis $\omega_r$.
-
-Let us write $||f||_p$ for $\E_x |f(x)|^p)^{1/p}$ (the $L_p$-norm), and call the resulting space $L_p(\Z_n)$.
-
-Important convention: we use \emph{averages} for the 'original functions' in 'physical spaces', and \emph{sums} for their Fourier transforms in 'frequency space' (referring to $\E$: $\bra,\ket$ is average in the original space but just $\sum$ in frequency space, i.e. for $\hat{f},\hat{g}$ etc.)
-
-\begin{lemma} (Parseval's identity)\\
-    If $f,g: \Z_n \to \C$, then $\bra \hat{f},\hat{g}\ket = \bra f,g\ket$.
-    \begin{proof}
-        \begin{equation*}
-            \begin{aligned}
-                \bra\hat{f},\hat{g}\ket &= \sum_r \hat{f}(r) \overline{\hat{g}(r)}\\
-                &= \sum_r (\E_x f(x) \omega^{-rx}) (\overline{\E_y g(y) \omega^{-ry}})\\
-                &= \E_x \E_y f(x) \overline{g(y)} \sum_r \omega^{-r(x-y)}\\
-                &= \E_x \E_y f(x) \overline{g(y)} n\delta_{xy}\\
-                &=\bra f,g\ket
-            \end{aligned}
-            \end{equation*}
-    \end{proof}
-\end{lemma}
-\end{document}
+        \begin{aligned}
+        
+        \end{aligned}
+    \end{equation*}

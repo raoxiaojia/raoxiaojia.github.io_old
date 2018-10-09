@@ -49,4 +49,110 @@ Obviously the maximum size of a chain in $X$ is $n+1$.
 
 For antichains, we can take $X^{\lfloor\frac{n}{2}\rfloor}$, which has size ${n \choose {\lfloor n/2 \rfloor}}$. The result is that wee can't beat this, but the proof is not trivial.
 
+---Lecture 2---
+
+No lecture this thursday (11 Oct 2018)!
+
+Idea: inspired by \emph{each chain meets each level $X^{(r)}$ in at most one place} -- try to decompose $Q_n$ into chains.
+
+\begin{thm} (Sperner's Lemma)\\
+    Let $A \subset \P(X)$ be an antichain. Then $|A| \leq {n \choose {\lfloor n/2 \rfloor}}$.
+    \begin{proof}
+        It's sufficient to partitoin $\P(X)$ into that many chains (since an anti-chain and a chain can have at most one common vertex).\\
+        For this, it's sufficient to show:\\
+        $\bullet$ $\forall r < n/2$, there exists a matching (set of disjoint edges) from $X^{(r)}$ to $X^{(r+1)}$;\\
+        $\bullet$ $\forall r > n/2$, there exists a matching from $X^{(r)}$ to $X^{(r-1)}$.\\
+        (Then put these matchings together to form chains, each passing through $X^{(\lfloor n/2 \rfloor)})$, so the result.\\
+        By taking complements it's sufficient to prove (i).\\
+        Consider subgraph of $Q_n$ spanned by $X^{(r)} \cup X^{(r+1)}$ which is bipartite. For any $B \subset X^{(r)}$, we have:\\
+        $\bullet$ number of $B-\P(B)$ edges = $|B| (n-r)$; (each point in $X^{(r)}$ has degree $(n-r)$)\\
+        $\bullet$ number of $B-\P(B)$ edges $\leq$ $|\P(B)|(r+1)$. (each point in $X^{(r+1)})$ has degree $r+1$)\\
+        Thus $|\P(B)| \geq |B| \frac{n-r}{r+1} \geq |B|$, as $r < n/2$.\\
+        Hence by Hall's theorem there exists a matching.
+    \end{proof}
+\end{thm}
+
+\begin{rem}
+    $\bullet$ 1. ${n \choose {\lfloor n/2 \rfloor}}$ is achievable by just taking $X^{(\lfloor n/2 \rfloor)}$.\\
+    $\bullet$ 2. This proof says nothing about extremal cases: which antichains have size ${n \choose {\lfloor n/2 \rfloor}}$?
+\end{rem}
+
+Aim: For $\mathcal{A}$ an antichain, $\sum_{r=0}^n \frac{|\mathcal{A} \cap X^{(r)}}{{n \choose r}} \leq 1$. Note that this trivally implies Sperner's lemma.
+
+Let $\mathcal{A} \subset X^{(r)}$ for some $1 \leq r \leq n$. The \emph{shadow} or \emph{lower shadow} of $\mathcal{A}$ is
+\begin{equation*}
+    \begin{aligned}
+        \partial A = \partial^- A = \{A-\{i\}:A \in \mathcal{A},i \in A\}
+    \end{aligned}
+\end{equation*}
+So $\partial A \subset X^{(r-1)}$.
+
+For example, if $\mathcal{A} = \{123,124,134,135\} \subset X^{(3)}$, then $\partial A =\{12,13,23,14,24,34,15,35\} \subset X^{(2)}$.
+
+\begin{lemma} (Local LYM)\\
+    Let $\mathcal{A} \subset X^{(r)}$, $1 \leq r \leq n$. Then 
+    \begin{equation*}
+        \begin{aligned}
+            \frac{|\partial \mathcal{A}|}{{n \choose {r-1}}} \geq \frac{|\mathcal{A}|}{{n \choose r}}
+        \end{aligned}
+    \end{equation*}
+    (\emph{the fraction of the layer occupied increases when we take the shadow}.)
+    \begin{proof}
+        $\bullet$ Number of $\mathcal{A}-\partial\mathcal{A}$ edges (in $Q_n$) = $r|\mathcal{A}|$ (counting from above);\\
+        $\bullet$ Number of $\mathcal{A}-\partial\mathcal{A}$ edges $\leq$ $(n-r+1)|\partial \mathcal{A}|$ (counting from below).\\
+        So
+        \begin{equation*}
+        \begin{aligned}
+            \frac{|\partial \mathcal{A}|}{|\mathcal{A}|} \geq \frac{r}{n-r+1}
+        \end{aligned}
+        \end{equation*}
+        However RHS is the ratio of size between the two layers.
+    \end{proof}
+\end{lemma}
+Let's consider when is equality achieved in local LYM. we need $A-\{i\} \cup \{j\} \in \mathcal{A}$ $\forall a \in \mathcal{A}, i \in A, j \not\in A$.\\
+Hence $\mathcal{A} = X^{(r)}$ or $\phi$.
+
+\begin{thm} (Lubell-Yamamoto-Meshalkin inequality)\\
+    Let $\mathcal{A} \subset \P(X)$ be an antichain. Then $\sum_{r=0}^n \frac{|\mathcal{A} \cap X^{(r)}}{{n \choose r}} \leq 1$.
+    \begin{proof} (1, \emph{Bubble down with local LYM})\\
+        Let's start with $X^{(r)}$. Write $\mathcal{A}_r$ for $\mathcal{A} \cap X^{(r)}$.\\
+        We have $\frac{|\mathcal{A}_n|}{{n\choose n}} \leq 1$ (trivially).\\
+        Also, $\partial \mathcal{A}_n$ and $\mathcal{A}_{n-1}$ are disjoint (as $\mathcal{A}$ is an antichain). So 
+        \begin{equation*}
+        \begin{aligned}
+            \frac{|\partial \mathcal{A}_n|}{{n \choose {n-1}}} + \frac{|\mathcal{A}_{n-1}|}{{n \choose {n-1}}} = \frac{|\partial \mathcal{A}_n \cup \mathcal{A}_{n-1}}{{n \choose {n-1}}} \leq 1
+        \end{aligned}
+        \end{equation*}
+        So
+        \begin{equation*}
+        \begin{aligned}
+            \frac{|\mathcal{A}_n|}{{n \choose n}} + \frac{|\mathcal{A}_{n-1}|}{{n \choose {n-1}}} \leq 1
+        \end{aligned}
+        \end{equation*}
+        by local LYM. Note that we have successfully expanded LHS to two terms.\\
+        Also, $\partial (\partial \mathcal{A}_n \cup \mathcal{A}_{n-1})$ is disjoint from $\mathcal{A}_{n-2}$ again since $\mathcal{A}$ is an antichain. So 
+        \begin{equation*}
+            \begin{aligned}
+                \frac{|\partial(\partial \mathcal{A}_n \cup \mathcal{A}_{n-1})|}{{n \choose {n-2}}} + \frac{|\mathcal{A}_{n-2}|}{{n \choose {n-2}}} \leq 1
+            \end{aligned}
+        \end{equation*}
+        So
+        \begin{equation*}
+            \begin{aligned}
+                \frac{|\partial \mathcal{A}_n \cup \mathcal{A}_{n-1}|}{{n \choose {n-1}}} + \frac{|\mathcal{A}_{n-2}|}{{n \choose {n-2}}} \leq 1
+            \end{aligned}
+        \end{equation*}
+        So
+        \begin{equation*}
+            \begin{aligned}
+                \frac{|\mathcal{A}_n|}{{n \choose {n}}} + \frac{|\mathcal{A}_{n-1}|}{{n \choose {n-1}}} + \frac{|\mathcal{A}_{n-2}|}{{n \choose {n-2}}} \leq 1
+            \end{aligned}
+        \end{equation*}
+        Keep going and we obtain the desired result.
+    \end{proof}
+\end{thm}
+
+When is equality achieved in LYM? We must have equality in each use of local LYM, so the first $r$ with $\mathcal{A}_r \neq \phi$ must have $\mathcal{A}_r = X^{(r)}$, i.e. $\mathcal{A} = X^{(r)}$.
+
+Hence equality in Sperner's lemma is only achieved when $\mathcal{A} = X^{\lfloor n/2 \rfloor}$ for $n$ even, or also $X^{\lceil n/2 \rceil}$ when $n$ is odd.
 \end{document}
