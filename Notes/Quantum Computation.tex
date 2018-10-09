@@ -1,0 +1,78 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Quantum Computation}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+asdasd
+
+\newpage
+
+---Lecture 2---
+
+\section{1}
+
+Recall that we have an oracle $U_f$ for $f:\Z_M \to \Z_\N$ periodic, with period $r$, $A=M/r$. We want to find $r$ in $O(poly(m))$ time where $m=\log M$.
+
+\subsection{The quantum algorithm}
+Work on state space $\mathcal{H}_M \otimes \mathcal{N}$ with basis $\{|i\ket |k\ket\}_{i \in \Z_M, k \in \Z_N}$.\\
+$\bullet$ Step 1. Make staet $\frac{1}{\sqrt{M}}\sum_{i=0}^{M-1} |i\ket|0\ket$.\\
+$\bullet$ Step 2. Apply $U_f$ to get $\frac{1}{\sqrt{M}} \sum_{i=0}^{M-1} |i\ket |f(i)\ket$.\\
+$\bullet$ Step 3. Measure the 2nd register to get a result $y$. By Born rule, the first register collapses to all those $i$'s (and only those) with $f(i)$ equal to the seen $y$, i.e. $i=x_0,x_0+r,...,x_0+(A-1)r$, where $0 \leq x_0 < r$ in 1st period has $f(m)=y$.\\
+Discard 2nd register to get $|per\ket = \frac{1}{\sqrt{A}} \sum_{j=0}^{A-1}|x_0+jr\ket$.\\
+Note: each of the $r$ possible function values $y$ occurs with same probability $1/r$, so $0 \leq x_0 < r$ has been chosen uniformly at random.\\
+If we now measure $|per\ket$, we'd get a value $x_0+jr$ for uniformly random $j$, i.e. random element $(x_0^{th})$ of a random period $(j^{th})$, i.e. random element of $\Z_m$, so we could get no information about $r$.\\
+$\bullet$ Step 4. Apply quantum Fourier transform mod $M$ (QFT) to  $|per\ket$. Recall the definition of QFT: $QFT: |x\ket \to \sum_{y=0}^{M-1} \omega^{xy} |y\ket$ for all $x \in \Z_M$ where $\omega = e^{2\pi i/M}$ is the $M$th root of unity. The existing result is that QFT mod $M$ can be implemented in $O(M^2)$ time.\\
+Then we get 
+\begin{equation*}
+    \begin{aligned}
+    QFT |per\ket &= \frac{1}{\sqrt{MA}} \sum_{j=0}^{A-1} \left(\sum_{y=0}^{M-1} \omega^{(x_0+jr)y}|y\ket\right)\\
+    &= \frac{1}{\sqrt{MA}} \sum_{y=0}^{M-1} \omega^{x_0y} \left[\sum_{j=0}^{A-1} \omega^{jry}\right] |y\ket \ (*)
+    \end{aligned}
+\end{equation*}
+where we group all the terms with the same $|y\ket$ together. One good thing is that the sum inside the square bracket is a geometric series, with ratio $\alpha = \omega^{ry} = e^{2\pi iry/M} = (e^{2\pi i/A})^y$.\\
+Hence term inside bracket $=A$ if $\alpha=1$, i.e. $y=kA = k \frac{M}{r}$, $k=0,1,...,(r-1)$, and equals $0$ otherwise when $\alpha \neq 1$. Now\\
+\begin{equation*}
+    \begin{aligned}
+        QFT |per\ket = \sqrt{\frac{A}{M}} \sum_{k=0}^{r-1} \omega^{x_0 k \frac{M}{r}} |k \frac{M}{r}\ket
+    \end{aligned}
+\end{equation*}
+The random shift $x_0$ now appears only in phase, so measurement probabilities are now independent of $x_0$!
+
+Measuring $QFT |per\ket$ gives a value $c$, where $c = k_0 \frac{M}{r}$ with $0 \leq k_0 \leq r-1$ chosen uniformly at random. Thus $\frac{k_0}{r} = \frac{c}{M}$, note that $c,M$ are known, $r$ is unknown (what we want), and $k_0$ is unknown but uniformly random.
+
+So note that if we are lucky and get a $k_0$ that is coprime to $r$ then we could just simplify $\frac{c}{M}$ to get $r$. Obviously we cannot be always lucky every time, but by theorem in number theory, the number of integers $<r$ coprime to $r$ grows as $O(r/\log\log r)$ for large $r$, so we know probability of $k_0$ coprime to $r$ is $O(\frac{1}{\log\log r})$.
+
+Then by some probability calculation we know that $O(1/p)$ trials are enough to achieve $1-\varepsilon$ probability of success.
+
+So afer Step 4, cancel $c/M$ to the lowest terms $a/b$, giving $r$ as denominator $b$ (if $k_0$ is coprime to $r$). Check $b$ value by computing $f(0)$ and $f(b)$, since $b=r$ iff $f(0) = f(b)$.
+
+Repeating $K=O(\log\log r)$ times gives $r$ with any desired probability.
+
+Further insights into utility of QFT here:\\
+Write $R = \{0,r,2r,...,(A-1)r\} \subseteq \Z_M$. $|R\ket = \frac{1}{\sqrt{A}} \sum_{k=0}^{A-1} |kr\ket$, and $|per\ket = |x_0 + R\ket = \frac{1}{\sqrt{A}} \sum_{k=0}^{A-1} |x_0+br \ket$ where $x_0$ is the random shift that caused problem previously.\\
+For each $x_0 \in \Z_M$, consider mapping $k \to k+x_0$ (shift by $x_0$) on $\Z_M$, which is a 1-1 invertible map.
+
+So linear map $U(x_0)$ on $\mathcal{H}_M$ defined by $U(x_0): |k\ket \to |k+x_0\ket$ is unitary, and $|x_0+R \ket = U(x_0) |R\ket$.
+
+Since $(\Z_M,+)$ is abelian, $U(x_0)U(x_1) = U(x_0+x_1) =U(x_1)U(x_0)$ i.e. all $U(x_0)$'s commute as operators on $\mathcal{H}_M$.\\
+So we have orthonormal basis of common eigenvectors $|\chi_k\ket\}_{k \in \Z_M}$, called \emph{shift invariant states}.
+
+$U(x_0)|\chi_k\ket = \omega(x_0,k)|\chi_k\ket$ for all $x_0,k \in \Z_M$ with $|\omega(x_0,k)| = 1$. Now consider $|R\ket$ written in $|\chi\ket$ basis,\\
+$|R\ket = \sum_{k=0}^{M-1} a_k | \chi_k\ket$ where $a_k$'s depending on $r$ (not $x_0$).\\
+Then $|per\ket = U(x_0) |R\ket = \sum_{k=0}^{M-1}a_k \omega(x_0,k) |\chi_k\ket$, and measurement in the $\chi$-basis has $prob(k) = |a_k \omega(x_0,k)|^2 = |a_k|^2$ which is independent of $x_0$, i.e. giving information about $r$!
+
+\end{document}
