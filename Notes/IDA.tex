@@ -37,7 +37,7 @@ Let us write $||f||_p$ for $\E_x |f(x)|^p)^{1/p}$ (the $L_p$-norm), and call the
 
 Important convention: we use \emph{averages} for the 'original functions' in 'physical spaces', and \emph{sums} for their Fourier transforms in 'frequency space' (referring to $\E$: $\bra,\ket$ is average in the original space but just $\sum$ in frequency space, i.e. for $\hat{f},\hat{g}$ etc.)
 
-\begin{lemma} (Parseval's identity)\\
+\begin{lemma} (1, Parseval's identity)\\
     If $f,g: \Z_n \to \C$, then $\bra \hat{f},\hat{g}\ket = \bra f,g\ket$.
     \begin{proof}
         \begin{equation*}
@@ -52,7 +52,7 @@ Important convention: we use \emph{averages} for the 'original functions' in 'ph
     \end{proof}
 \end{lemma}
 
-\begin{lemma} (Convolution identity)\\
+\begin{lemma} (2, Convolution identity)\\
     \begin{equation*}
         \begin{aligned}
             \widehat{f*g}(r) = \hat{f}(r)\hat{g}(r)
@@ -78,7 +78,7 @@ Important convention: we use \emph{averages} for the 'original functions' in 'ph
 
 \end{lemma}
 
-\begin{lemma} (Inversion formula)\\
+\begin{lemma} (3, Inversion formula)\\
     \begin{equation*}
         \begin{aligned}
             f(x) = \sum_r \hat{f}(r) \omega^{rx}
@@ -114,11 +114,12 @@ Let $f:\Z_n \to \C$. Given $\mu \in \Z_n$, define $f_\mu(x)$ to be $f(\mu^{-1}x)
     \end{aligned}
 \end{equation*}
 
-\subsection{Roth's theorem}
+\subsection{4, Roth's theorem}
 \begin{thm}
     For every $\delta > 0$, $\exists N$ s.t. if $A \subset \{1,...,N\}$ is a set of size at least $\delta N$, then $A$ must contain an arithmetic progression of length 3.\\
     This is also true for 4,5,..., but the proof is much harder -- Szemeredi's theorem.\\
-    Basic strategy of proof: show that if $A$ has density $\delta$ and no AP of length 3 (3AP), then there's a long AP in $P \subset \{1,2,...,n\}$ s.t.\begin{equation*}
+    Basic strategy of proof: show that if $A$ has density $\delta$ and no AP of length 3 (3AP), then there's a long AP in $P \subset \{1,2,...,n\}$ s.t.
+    \begin{equation*}
         \begin{aligned}
             |A \cap P| \geq (\delta+c(\delta)) |p|
         \end{aligned}
@@ -128,5 +129,90 @@ Let $f:\Z_n \to \C$. Given $\mu \in \Z_n$, define $f_\mu(x)$ to be $f(\mu^{-1}x)
     The best known relationship between $\delta$ and the $N$ required is around $\delta \sim \frac{c}{\log\log N}$ for some constant $c$.
 \end{thm}
 
+---Lecture 2---
+
+\begin{lemma} (5)\\
+    Let $N$ be odd, $A,B,C \subset \Z_N$ have densties $\alpha,\beta,\gamma$.\\
+    If $\max_{r \neq 0} |\hat{A}(r)| \leq \frac{\alpha(\beta\gamma)^{1/2}}{2}$ and $\frac{\alpha\beta\gamma}{2} > \frac{1}{N}$, then there exists $x,d \in \Z_N$ with $d \neq 0$ s.t. $(x,x+d,x+2d) \in A \times B \times C$.
+    \begin{proof}
+        \begin{equation*}
+            \begin{aligned}
+                \E_{x,d} A(x) B(x+d) C(x+2d) &= \E_{x+z=2y} A(x)B(y)C(z)\\
+                &=\E_u (\E_{x+z=u}A(x)C(z)) \E_{2y=u} B(y)\\
+                &=\E_u A * C(u) B_2(u)\\
+                &=\bra A*C,B_2\ket\\
+                &=\bra\widehat{A*C},\hat{B}_2\ket\\
+                &=\bra \hat{A}\hat{C},\hat{B}_2\ket\\
+                &=\sum_r \hat{A}(r)\hat{C}(r)\hat{B}(-2r)\\
+                &=\alpha\beta\gamma + \sum_{r \neq 0} \hat{A}(r)\hat{C}(r)\hat{B}(-2r)
+            \end{aligned}
+        \end{equation*}
+        Recall here the notation is $B_2(u) = B(u/2)$. now
+        \begin{equation*}
+            \begin{aligned}
+                |\sum_{r\neq 0} \hat{A}(r)\hat{B}(-2r)\hat{C}(r)| &\leq \frac{\alpha(\beta\gamma)^{1/2}}{2}\sum_{r \neq 0} |\hat{B}(-2r)||\hat{C}(r)|\\
+                &\leq \frac{\alpha(\beta\gamma)^{1/2}}{2} \left(\sum_r |\hat{B}(-2r)^2\right)^{1/2}\left(\sum_r |\hat{C}(r)|^2\right)^{1/2} \ \text{By Cauchy-Schwarz}\\
+                &=\frac{\alpha(\beta\gamma)^{1/2}}{2} ||\hat{B}||_2 ||\hat{C}||_2\\
+                &= \frac{\alpha(\beta\gamma)^{1/2}}{2} ||B||_2||C||_2\\
+                &= \frac{\alpha\beta\gamma}{2}
+            \end{aligned}
+        \end{equation*}
+        The contribution to $\E_{x,d} A(x)B(x+d)C(x+2d)$ from $d=0$ is at most $\frac{1}{N}$, so if $\frac{\alpha\beta\gamma}{2} > \frac{1}{N}$, we are done.
+    \end{proof}
+\end{lemma}
+
+Now let $A$ be a subset of $\{1,...,N\}$ with density $\geq \delta$ and let $B=C=A \cap [\frac{N}{3},\frac{2N}{3})$. If $B$ has density $<\frac{\delta}{5}$ (??), then either $A \cap [1,\frac{N}{3}]$ or $A \cap [\frac{2N}{3},N]$ has density at least $\frac{2\delta}{5}$. In that case we find an AP $P$ of length about $N/3$ such that $|A \cap P| / |P| \geq \frac{6\delta}{5}$.\\
+Otherwise, ew find that if $\max_{r \neq 0}|\hat{A}(r)| \leq \frac{\delta}{10}$ and $\frac{\delta^3}{50} > \frac{1}{N}$, then $A \times B \times C$ contains a 3AP, so $A$ contains a 3AP.\\
+So if $A$ does not contain a 3AP, then either we find $P$ of length about $N/3$ with $|A\cap P| / |P| \geq \frac{6\delta}{5}$, or ther exists $r \neq 0$ s.t. $|\hat{A}(r)| \geq \frac{\delta}{10}$.
+
+\begin{defi}
+    If $X$ is a finite set and $f:X \to \C$, $Y \subset X$, write $osc(f|_Y)$ to mean $\max_{y_1,y_2 \in Y} |f(y_1)-f(y_2)|$.
+\end{defi}
+
+\begin{lemma} (6)\\
+    Let $r \in \Z_n$ and let $\varepsilon > 0$. Then there is a partition of $\{1,2,...,N\}$ into arithmetic progressions $P_i$ of length at least $c(\varepsilon)\sqrt{N}$ such that
+    \begin{equation*}
+        \begin{aligned}
+            osc(\omega_r|_{P_i}) \leq \varepsilon
+        \end{aligned}
+    \end{equation*}
+    for each $i$.
+    \begin{proof}
+        Let $t = \lfloor \sqrt{N}\rfloor$. Of the numbers $1,\omega^r,...,\omega^tr$, there must be two that differ by at most $\frac{2\pi}{t}$.\\
+        If $|\omega^{ar}-\omega^{br}| \leq \frac{2\pi}{t}$ with $a < b$, then $|1-\omega^{dr}| \leq \frac{2\pi}{t}$ where $d=b-a$. Then $|\omega^{urd}-\omega^{vrd}| \leq |\omega^{urd}-\omega^{(u+1)rd}| + ... + |\omega^{(v-1)rd}-\omega^{vrd}| \leq \frac{2\pi}{t}(v-u)$.\\
+        So if $P$ is a progression with common differnece $d$ and length $l$, then $osc(\omega_r|_P) \leq \frac{2\pi l}{t}$. So divide up $\{1,...,N\}$ into residue classes mod $d$, and partition each residue class into parts of length between $\frac{\varepsilon t}{4\pi}$ and $\frac{\varepsilon t}{2\pi}$ (possible, since $d \leq t \leq \sqrt{N}$).\\
+        We are done, with $c(\varepsilon) = \frac{\varepsilon}{16}$ (a casual choice).
+    \end{proof}
+\end{lemma}
+Now let us use the information that $r \neq 0$ and $|\hat{A}(r)| \geq \frac{\delta^2}{10}$.\\
+Define the \emph{balanced function} $f$ of $A$ by $f(x) = A(x)=\frac{|A|}{N}$ for each $x$.\\
+Note that $\hat{f}(0) = 0$ and $\hat{f}(r) = \hat{A}(r)$ for all $r \neq 0$.
+
+Now let $P_1,...,P_m$ be given by Lemma 6 with $\varepsilon = \delta^2/20$. Then
+\begin{equation*}
+    \begin{aligned}
+        \frac{\delta^2}{10} &\leq |\hat{f}(r)|\\
+        &= \frac{1}{N} |\sum_x f(x) \omega^{-rx}|\\
+        &\leq \frac{1}{N} \sum_{i=1}^m |\sum_{x \in P_i} f(x) \omega^{-rx}|\\
+        &\leq \frac{1}{N} \sum_{i=1}^N \left[\left|\sum_{x \in P_i} f(x) \omega^{-rx_i}\right| + \left|\sum_{x in P_i} f(x) (\omega^{-rx} - \omega^{-rx_i})\right|\right] \ x_i \in P_i \text{ arbitrary}\\
+        &\leq \frac{1}{N} \sum_{i=1}^m |\sum_{x \in P_i} f(x)| + \frac{\delta^2}{20}
+    \end{aligned}
+\end{equation*}
+Therefore $\sum_{i=1}^m |\sum_{x \in P_i} f(x)| \geq \frac{\delta^2 N}{20}$.
+
+We also have $\sum_{i=1}^m \sum_{x\in P_i} f(x) = 0$, so
+\begin{equation*}
+    \begin{aligned}
+        \sum_{i=1}^m \left(\left|\sum_{x \in P_i} f(x) \right| + \sum_{x \in P_i}f(x) \right) \geq \frac{\delta^2}{20} \sum_{i=1}^m |P_i|
+    \end{aligned}
+\end{equation*}
+Therefore, 
+\begin{equation*}
+    \begin{aligned}
+        &|\sum_{x \in P_i} f(x)| + \sum_{x \in P_i} f(x) \geq \frac{\delta^2}{20} |P_i|\\
+        &\implies \sum_{x \in P_i} f(x) \geq \frac{\delta^2}{40}|P_i|\\
+        &\implies |A \cap P_i| \geq (\delta+\frac{\delta^2}{40})|P_i|
+    \end{aligned}
+\end{equation*}
 
 \end{document}
