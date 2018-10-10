@@ -58,7 +58,7 @@ Idea: inspired by \emph{each chain meets each level $X^{(r)}$ in at most one pla
 \begin{thm} (Sperner's Lemma)\\
     Let $A \subset \P(X)$ be an antichain. Then $|A| \leq {n \choose {\lfloor n/2 \rfloor}}$.
     \begin{proof}
-        It's sufficient to partitoin $\P(X)$ into that many chains (since an anti-chain and a chain can have at most one common vertex).\\
+        It's sufficient to partition $\P(X)$ into that many chains (since an anti-chain and a chain can have at most one common vertex).\\
         For this, it's sufficient to show:\\
         $\bullet$ $\forall r < n/2$, there exists a matching (set of disjoint edges) from $X^{(r)}$ to $X^{(r+1)}$;\\
         $\bullet$ $\forall r > n/2$, there exists a matching from $X^{(r)}$ to $X^{(r-1)}$.\\
@@ -77,7 +77,7 @@ Idea: inspired by \emph{each chain meets each level $X^{(r)}$ in at most one pla
     $\bullet$ 2. This proof says nothing about extremal cases: which antichains have size ${n \choose {\lfloor n/2 \rfloor}}$?
 \end{rem}
 
-Aim: For $\mathcal{A}$ an antichain, $\sum_{r=0}^n \frac{|\mathcal{A} \cap X^{(r)}}{{n \choose r}} \leq 1$. Note that this trivally implies Sperner's lemma.
+Aim: For $\mathcal{A}$ an antichain, $\sum_{r=0}^n \frac{|\mathcal{A} \cap X^{(r)}|}{{n \choose r}} \leq 1$. Note that this trivally implies Sperner's lemma.
 
 Let $\mathcal{A} \subset X^{(r)}$ for some $1 \leq r \leq n$. The \emph{shadow} or \emph{lower shadow} of $\mathcal{A}$ is
 \begin{equation*}
