@@ -233,4 +233,100 @@ with obvious notations. This means
 Note that this also holds for just $f$ integrable.
 \end{thm}
 
+\subsection{Existence and uniqueness of conditional expectation}
+\begin{thm}
+    Let $X$ be an integrable random variable and let $\mathcal{G}$ be a sub-$\sigma$-algebra of $\mathcal{F}$. There exist a random variable $Y$ s.t.:\\
+    $\bullet$ (a) $Y$ is $\mathcal{G}$-measurable;\\
+    $\bullet$ (b) $Y$ is integrable;\\
+    $\bullet$ (c) For all $A \in \mathcal{G}$, $\E(Y1_A) = \E(X1_A)$.\\
+    Moreover, if $Y'$ is another random variable satisfying above, then $Y'=Y$ a.s..
+
+    We write $Y=\E(X|\mathcal{G})$ a.s., and we say that $Y$ is \emph{a version of} the conditional expectation of $X$ given $\mathcal{G}$.\\
+    In the case $X=1_A$, write $Y=\P(A|\mathcal{G})$ a.s., the \emph{probability} of event $A$ given $\mathcal{G}$.
+
+    An analogous statement holds with \emph{integrable} replaced by \emph{non-negative} throughout the statement.
+    \begin{proof}
+        Uniqueness: We'll actually prove something stronger. Suppose $Y$ satisfies the above conditions, and $Y'$ satisfies the above for some integrable $X'$, with $X \leq X'$. We'll show that $Y \leq Y'$ (That gives what we want by setting $X'=X$).\\
+        Consider the non-negative random variable $Z=(Y-Y')1_A$ where $A =\{Y \geq Y' \} \in \mathcal{G}$ (think about definition of measurable function here). Then $\E(Y 1_A) = \E(X 1_A) \leq \E(X' 1_A) = \E(Y' 1_A)$, so $\E(Z) \leq 0$, so $Z = 0$ a.s.. But that means $Y\leq Y'$ a.s..
+
+        Existence: Consider for now the case $X \in L^2(\mathcal{F})$ (means $\E(|X|^2) < \infty$). Since $L^2(\mathcal{F})$ is complete, every Cauchy sequence has a limit, and $L^2(\mathcal{G})$ is a closed subspace of $L^2(\mathcal{F})$, there exists orthogonal projection $Y$ of $X$ on $L^2(\mathcal{G})$. That is, $Y \in L^2(\mathcal{G})$ and for all $Z \in L^2(\mathcal{G})$, we have $\E((Y-X)Z) = 0$, i.e. the difference is orthogonal to the subspace.\\
+        For $A \in \mathcal{G}$, take $Z = 1_A$ to see $\E(Y1_A) = \E(X1_A)$. So $Y$ satisfies the above conditions (the key point here is that the orthogonal projection always exists, so we've in some sense converted the problem of existence of conditional probability to the existence of orthogonal projection).\\
+        Now suppose $X \geq 0$. Set $X_n = X \wedge n$, then $X_n \in L^2(\mathcal{F})$. We have shown ther exists $Y_n \in L^2(\mathcal{G})$, such that for all $A \in \mathcal{G}$, $\E(Y_n1_A) = \E(X_n1_A)$, and $0 \leq Y_n \leq Y_{n+1}$ a.s. for all $n$ (Note $0 \leq X_n \leq X_{n+1})$. Set $\Omega_0 = \{\omega \in \Omega: 0 \leq Y_n(\omega) \leq Y_{n+1}(\omega) \forall n\}$. Then $\P(\Omega_0) = 1$. Define a non-negative $\mathcal{G}$-measurable random variable $$Y_\infty = 1_{\Omega_0} \lim_{n \to \infty} Y_n$$
+        Then $0 \leq 1_|{\Omega_0 Y_n} \uparrow Y_\infty$ as $n \to \infty$.\\
+        So by monotone convergence, for all $A \in \mathcal{G}$,
+        \begin{equation*}
+            \begin{aligned}
+                \E(Y_\infty 1_A) &= \lim_{n \to \infty} \E(Y_n 1_A)\\
+                &= \lim_{n \to \infty} \E(X_n 1_A)\\
+                &= \E(X 1_A)
+            \end{aligned}
+        \end{equation*}
+        In particular, taking $A=\Omega$, we see $Y_\infty$ is integrable, so $\P(Y_\infty = \infty) = 0$.\\
+        So if we set $Y = Y_\infty 1_{Y_\infty < \infty}$, then $Y$ is a random variable and satisfies the above conditions. So we've done for the case $X \geq 0$.
+
+        In the general case, we use the usual trick: apply the preceding to $X^\pm = 0 \vee (\pm X)$ (so $X = X^+-X^-)$ to obtain $Y^\pm$, and the check $Y=Y^+-Y^-$ satisfies the above conditions similarly.
+    \end{proof}
+\end{thm}
+
+\subsection{Properties of conditional expectation}
+Fix an integrable random variable $X$ and a sub-$\sigma$-algebra $\mathcal{G}$. Theorem 1.4.1 has the following consequences:\\
+(i) $\E(\E(X|\mathcal{G})) = \E(X)$;\\
+(ii) if $X$ is $\mathcal{G}$-measurable, then $\E(X|\mathcal{G}) = X$ a.s.;\\
+(iii) If $X$ is independent of $\mathcal{G}$, then $\E(X|\mathcal{G}) = \E(X)$ a.s..
+
+Check for $A \in \mathcal{G}$, 
+\begin{equation*}
+    \begin{aligned}
+        \E(X 1_A) = \E(X)\P(A) = \E(\E(X)1_A)
+    \end{aligned}
+\end{equation*}
+so $\E(X)$ satisfies (b) and (c) in the previous theorem.
+
+(iv) if $X \geq Y$ a.s.., then $\E(X|\mathcal{G}) \geq \E(Y|\mathcal{G})$ a.s. (from the proof).\\
+(v) for all $\alpha,\beta \in \R$, all integrable random variables $X,Y$,
+\begin{equation*}
+    \begin{aligned}
+        \E(\alpha X + \beta Y | \mathcal{G}) = \alpha\E(X|\mathcal{G})+\beta\E(Y|\mathcal{G})
+    \end{aligned}
+\end{equation*}
+a.s..
+
+Consider a sequence of random variables $X_n$,\\
+(vi) if $0 \leq X_n \uparrow X$ pointwise, then 
+\begin{equation*}
+    \begin{aligned}
+        \E(X_n|\mathcal{G}) \to \E(X|\mathcal{G}) \ a.s.
+    \end{aligned}
+\end{equation*}
+(conditional monotone convergence).\\
+To see this, we know $\E(X_n|\mathcal{G}) \uparrow Y$ a.s. for some non-negative $\mathcal{G}$-measurable random variable $Y$.
+
+Take $A \in \mathcal{G}$, then by monotone convergence,
+\begin{equation*}
+    \begin{aligned}
+        \E(Y 1_A) &= \lim_{n \to \infty} \E(\E(X_n | \mathcal{G})1_A)\\
+        &= \lim_{n \to \infty} \E(X_n 1_A)\\
+        &= \E(X 1_A)
+    \end{aligned}
+\end{equation*}
+So $Y$ satisfies (b) and (c) in the above theorem for $X$.
+
+(vii) For any non-negative random variable $X_n$,
+\begin{equation*}
+    \begin{aligned}
+        \E(\liminf_{n \to \infty} X_n | \mathcal{G}) \leq \liminf_{n \to \infty} \E(X_n|\mathcal{G})
+    \end{aligned}
+\end{equation*}
+
+(viii) If $X_n(\omega) \to X(\omega)$ for all $\omega$ as $n \to \infty$ and there exist $Y$ integrable (so $|X_n| \leq Y$ for all $n$ (???)), then
+\begin{equation*}
+    \begin{aligned}
+        \E(X_n|\mathcal{G}) \to \E(X|\mathcal{G}) \ a.s.
+    \end{aligned}
+\end{equation*}
+For (vii), $(\inf_{m\geq n} X_n : n \in \N)$; (viii) apply Fatou to $(Y \pm X_n: n \in \N$).
+
+Find lecturer's webpage for everything!
+
+
 \end{document}
