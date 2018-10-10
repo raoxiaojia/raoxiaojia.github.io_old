@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.10.26)  10 OCT 2018 12:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.10.26)  10 OCT 2018 13:50
 entering extended mode
 **"./Model Theory.tex"
 ("Model Theory.tex"
@@ -850,7 +850,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 240.
 Here is how much of TeX's memory you used:
  28327 strings out of 493333
  681558 string characters out of 3139193
- 922060 words of memory out of 3000000
+ 923060 words of memory out of 3000000
  31350 multiletter control sequences out of 15000+200000
  13550 words of font info for 67 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -870,7 +870,7 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/amsfonts/symbols/msam10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/symbols/msbm10.pfb>
-Output written on "Model Theory.pdf" (6 pages, 199284 bytes).
+Output written on "Model Theory.pdf" (6 pages, 199271 bytes).
 PDF statistics:
  120 PDF objects out of 1000 (max. 8388607)
  11 named destinations out of 1000 (max. 500000)
