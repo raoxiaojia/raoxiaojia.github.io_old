@@ -81,7 +81,7 @@ As anyone could expect, a surjective embedding $\mathcal{M} \to \mathcal{N}$ is 
 \end{defi}
 
 (1.6) Exercise. Let $G_1,G_2$ be groups, regarded as $L_{gp}$-structures.\\
-Check that $G_1 \cong G_2$ in the usual algebra sense, if and only if there is an isomprhism $\alpha:G_1\ to G_2$ in the sense of above definition 1.5.
+Check that $G_1 \cong G_2$ in the usual algebra sense, if and only if there is an isomprhism $\alpha:G_1\ \to G_2$ in the sense of above definition 1.5.
 
 \subsection{Terms, formulae, and their interpretations}
 In addition to the symbols of $L$, we also have:\\
@@ -128,6 +128,113 @@ defined as follows:\\
 t^M (a_1,...,a_k) = f^M(t_1^M(a_1,...,a_k),...,t_{n_f}^M(a_1,...,a_k))
 \end{aligned}
 \end{equation*}
+\end{defi} 
+
+---Lecture 2---
+
+No lecture this friday (12th Oct)! Will have an extra one on Monday 22 Oct at 12 (MR12).
+
+First example class: Monday 29th Oct at 12.
+
+Info on course and notes on $http:\\users.mct.open.ac.uk/sb27627/MT.html$ (it seems that it only comes after lecture, and is hand-written, so this notes still continues), or google \emph{Silvia Barbina MCT} and follow link \emph{Part III Model Theory} on lecturer's homepage.
+
+\begin{rem}
+    (The lecture forgot about this last time) Any language $L$ includes an equality symbol $=$.
+\end{rem}
+
+Last time we assigned a function $t^m$. In $L_{gp}$, the term $x_2 \cdot x_3$ can be described as, say $t_1(x_1,x_2,x_3),t_2(x_1,x_2,x_3,x_4),...$.\\
+Then the term $x_2 \cdot x_3$ can be assigned to functions $t_1^M:M^3\to M:(a_1,a_2,a_3) \to (a_2 \cdot a_3)$, or $t_2^M: M^4 \to M: (a_1,a_2,a_3,a_4) \to (a_2 \cdot a_3)$. These syntactic things are not really important -- we just have to know that there is a corresponding action for each term.
+
+We now define the \emph{complexity} of a term $t$ to be the number of symbols of $L$ occuring in $t$.
+
+Fact (2.3): Let $\mathcal{M}$ and $\mathcal{N}$ be $L$-structures, and let $\alpha:\mathcal{M} \to \mathcal{N}$ be an embedding. For any $L$-term $t(x_1,...,x_k)$ and $a_1,...,a_k \in M$, we have
+\begin{equation*}
+    \begin{aligned}
+        \alpha(t^M(a_1,...,a_k)) = t^N(\alpha(a_1),...,\alpha(a_k))
+    \end{aligned}
+\end{equation*}
+\begin{proof}
+Prove by induction on complexity of $t$.\\
+Let $\bar{a} = (a_1,...,a_k)$ and $\bar{x} = (x_1,...,x_l)$. Then:\\
+(i) if $t=x_i$a a variable, then $t^M(\bar{a}) = a_i$, and $t^N(\alpha(a_1),...,\alpha(a_k)) = \alpha(a_i)$, so the conclusion holds;\\
+(ii) if $t=c$ is a constant, then $t^M(\bar{a}) = c^M$, and $t^N(\alpha(\bar{a})) = c^N$ by definition of a term. The key here is that, since $\alpha$ is an embedding we have $\alpha(c^M) = c^N$;\\
+(iii) if $t = f(t_1(\bar{x},...,t_{n_f}(\bar{x})))$, then
+\begin{equation*}
+    \begin{aligned}
+    \alpha(f^M(t_1^M(\bar{a}),...,t_{n_f}(\bar{a}))) &= f^N(\alpha (t_1^M(\bar{a})),...,\alpha(t_{n_f}^M(\bar{a})))
+    \end{aligned}
+\end{equation*}
+as $\alpha$ is an embedding. But $t_1(\bar{x}),...,t_{n_f}(\bar{x})$ have lower complexity than $t$, so the inductive hypothesis applies.
+\end{proof}
+
+Exercise (2.4): conclude the proof of the above fact.\\
+(Actually is it not done?)
+
+\begin{defi} (2.5)\\
+    The set of \emph{atmoic formulas} of $L$ is defined as follows:\\
+    (i) if $t_1,t_2$ are $L$-terms, then $t_1 = t_2$ is an atomic formula;\\
+    (ii) if $R$ is a relation symbol, and $t_1,...,t_{n_R}$ are $L$-terms, then $R(t_1,...,t_{n_R})$ is an atomic formula;\\
+    (iii) nothing else is an atomic formula.
 \end{defi}
+
+\begin{defi} (2.6)\\
+    The set of $L$-formulas is defined as follows:\\
+    (i) any atomic formula is an $L$-formula;\\
+    (ii) if $\phi$ is an $L$-formula, then so is $\neg \phi$;\\
+    (iii) if $\phi$ and $\psi$ are $L$-formulas, then so is $\phi \wedge \psi$;\\
+    (iv) if $\phi$ is an $L$-formula, for any $i \geq 1$, $\exists x_i \phi$ is a formula;\\
+    (v) nothing else is a formula (note that $\forall$ can be constructed by $\neg$ and $\exists$).
+\end{defi}
+
+\begin{eg}
+    In $L_{gp}$, $x_1\cdot x_1 = x_2$, or $x_1\cdot x_2=1$ are both atomic formulas;\\
+    $\exists x_1(x_1 \cdot x_2) = 1$ is an $L$-formula, but (obviously) not atomic.
+\end{eg}
+
+A variable occurs \emph{freely} in a formula if it does not occur within the scope of a quantifier $\exists$. We sometimes also say that the variable is \emph{free} (from Part II Logic and Sets). Otherwise we say the variable is \emph{bound}.
+
+We'll use the convention that no variable occurs both freely and as a bound variable in the same formula.
+
+A \emph{sentence} is a formula with no free variables. For example, $\exists x_1\exists x_2 (x_1\cdot x_2=1)$ is an $L_{gp}$-sentence.
+
+Notation: $\phi(x_1,...,x_k)$ means that the free variables in $\phi$ are among $x_1,...,x_k$.
+
+Now we introduce a long and inductive (and also in logic and sets) definition for which sentences are \emph{true}:
+\begin{defi} (2.7)\\
+    Let $\phi(x_1,...,x_k)$ be an $L$-formula, let $\mathcal{M}$ be an $L$-structure, and let $\bar{a} = a_1,...,a_k$ be elements of $\mathcal{M}$.\\
+    We define $\mathcal{M} \vDash \phi(\bar{a})$ (syntactic implication, read as \emph{M models $\phi(\bar{a})$}) as follows:\\
+    (i) if $\phi$ is $t_1=t_2$, then $\mathcal{M} \vDash \phi(\bar{a}) \iff t_1^M(\bar{a}) = t_2^M(\bar{a})$;\\
+    (ii) if $\phi$ is $R(t_1,...,t_{n_R})$, then $\mathcal{M} \vDash \phi(\bar{a})$ iff
+    \begin{equation*}
+        \begin{aligned}
+            \left(t_1^M(\bar{a}),...,t_{n_R}^M(\bar{a})\right) \in R^M
+        \end{aligned}
+    \end{equation*}
+    (iii) if $\phi$ is a conjunction, say $\psi \wedge \chi$, then $\mathcal{M} \vDash \phi(\bar{a})$ iff $\mathcal{M} \vDash \psi(\bar{a})$ and $\mathcal{M} \vDash \chi(\bar{a})$;\\
+    (iv) if $\phi$ is $\exists x_j \chi(x_1,...,x_k,x_j)$ (where we'll assume that $x_j$ is not one of the free variables $x_1,...,x_k$), then $\mathcal{M} \vDash \phi(\bar{a})$ iff there exists $b \in \mathcal{M}$ s.t. $\mathcal{M} \vDash \chi(a_1,...,a_k,b)$;\\
+    (v) (lecture forgets this, this should probably be more in front rather than in the end) if $\phi$ is $\neg \psi$, then $\mathcal{M} \vDash \phi(\bar{a})$ iff $\mathcal{M} \not\vDash \psi(\bar{a})$.
+\end{defi}
+
+\begin{eg}
+    Consider $\mathcal{R} = \bra \R^*,\cdot ,-1,1\ket$, the multiplicative group of non-negative reals, and suppose we have $\phi(x_1) = \exists x_2 (x_2 \cdot x_2 = x_1)$, then $\mathcal{R} \vDash \phi(1)$, but $\mathcal{R} \not\vDash \phi(-1)$.
+\end{eg}
+
+Notation (2.8) (useful abbreviations, closer to real life. The precise formulas are not that important -- the abbreviations mean what we expect in real life):\\
+$\bullet$ $\phi \vee \psi$ for $\neg(\neg\phi \wedge \neg \psi)$;\\
+$\bullet$ $\phi \to \psi$ for $\neg \phi \vee \psi$;\\
+$\bullet$ $\phi \leftrightarrow \psi$ for $(\phi \to \psi) \wedge (\psi \to \phi)$;\\
+$\bullet$ $\forall x_i \phi$ for $\neg \exists x_i (\neg \phi)$.
+
+\begin{prop} (2.9)\\
+    Let $\mathcal{M}$ and $\mathcal{N}$ be $L$-structures, and let $\alpha: \mathcal{M} \to \mathcal{N}$ be an embedding.\\
+    Let $\phi(\bar{x})$ be an atomic(!) formula, and $\bar{a} \in M^k$ (from now on, when we write a tuple like $\bar{a}$, we will assume that it has the correct length without explicitly stating that), then
+    \begin{equation*}
+        \begin{aligned}
+            \mathcal{M} \vDash \phi(\bar{a}) \iff \mathcal{N} \vDash \phi(\alpha(\bar{a}))
+        \end{aligned}
+    \end{equation*}
+\end{prop}
+
+Question: if $\phi$ is an $L$-formula, not necessarily atomic, does (2.9) still hold? (the answer is no!)
 
 \end{document}
