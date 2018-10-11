@@ -114,8 +114,8 @@ Let $f:\Z_n \to \C$. Given $\mu \in \Z_n$, define $f_\mu(x)$ to be $f(\mu^{-1}x)
     \end{aligned}
 \end{equation*}
 
-\subsection{4, Roth's theorem}
-\begin{thm}
+\subsection{Roth's theorem}
+\begin{thm} (4)
     For every $\delta > 0$, $\exists N$ s.t. if $A \subset \{1,...,N\}$ is a set of size at least $\delta N$, then $A$ must contain an arithmetic progression of length 3.\\
     This is also true for 4,5,..., but the proof is much harder -- Szemeredi's theorem.\\
     Basic strategy of proof: show that if $A$ has density $\delta$ and no AP of length 3 (3AP), then there's a long AP in $P \subset \{1,2,...,n\}$ s.t.
@@ -162,11 +162,11 @@ Let $f:\Z_n \to \C$. Given $\mu \in \Z_n$, define $f_\mu(x)$ to be $f(\mu^{-1}x)
 \end{lemma}
 
 Now let $A$ be a subset of $\{1,...,N\}$ with density $\geq \delta$ and let $B=C=A \cap [\frac{N}{3},\frac{2N}{3})$. If $B$ has density $<\frac{\delta}{5}$ (??), then either $A \cap [1,\frac{N}{3}]$ or $A \cap [\frac{2N}{3},N]$ has density at least $\frac{2\delta}{5}$. In that case we find an AP $P$ of length about $N/3$ such that $|A \cap P| / |P| \geq \frac{6\delta}{5}$.\\
-Otherwise, ew find that if $\max_{r \neq 0}|\hat{A}(r)| \leq \frac{\delta}{10}$ and $\frac{\delta^3}{50} > \frac{1}{N}$, then $A \times B \times C$ contains a 3AP, so $A$ contains a 3AP.\\
+Otherwise, we find that if $\max_{r \neq 0}|\hat{A}(r)| \leq \frac{\delta}{10}$ and $\frac{\delta^3}{50} > \frac{1}{N}$, then $A \times B \times C$ contains a 3AP, so $A$ contains a 3AP.\\
 So if $A$ does not contain a 3AP, then either we find $P$ of length about $N/3$ with $|A\cap P| / |P| \geq \frac{6\delta}{5}$, or ther exists $r \neq 0$ s.t. $|\hat{A}(r)| \geq \frac{\delta}{10}$.
 
 \begin{defi}
-    If $X$ is a finite set and $f:X \to \C$, $Y \subset X$, write $osc(f|_Y)$ to mean $\max_{y_1,y_2 \in Y} |f(y_1)-f(y_2)|$.
+    If $X$ is a finite set and $f:X \to \C$, $Y \subset X$, write $osc(f|_Y)$ to mean $\max_{y_1,y_2 \in Y} |f(y_1)-f(y_2)|$ (I think \emph{amplitude} is a better word for this).
 \end{defi}
 
 \begin{lemma} (6)\\
@@ -194,11 +194,11 @@ Now let $P_1,...,P_m$ be given by Lemma 6 with $\varepsilon = \delta^2/20$. Then
         \frac{\delta^2}{10} &\leq |\hat{f}(r)|\\
         &= \frac{1}{N} |\sum_x f(x) \omega^{-rx}|\\
         &\leq \frac{1}{N} \sum_{i=1}^m |\sum_{x \in P_i} f(x) \omega^{-rx}|\\
-        &\leq \frac{1}{N} \sum_{i=1}^N \left[\left|\sum_{x \in P_i} f(x) \omega^{-rx_i}\right| + \left|\sum_{x in P_i} f(x) (\omega^{-rx} - \omega^{-rx_i})\right|\right] \ x_i \in P_i \text{ arbitrary}\\
+        &\leq \frac{1}{N} \sum_{i=1}^N \left[\left|\sum_{x \in P_i} f(x) \omega^{-rx_i}\right| + \left|\sum_{x \in P_i} f(x) (\omega^{-rx} - \omega^{-rx_i})\right|\right] \ x_i \in P_i \text{ arbitrary}\\
         &\leq \frac{1}{N} \sum_{i=1}^m |\sum_{x \in P_i} f(x)| + \frac{\delta^2}{20}
     \end{aligned}
 \end{equation*}
-Therefore $\sum_{i=1}^m |\sum_{x \in P_i} f(x)| \geq \frac{\delta^2 N}{20}$.
+Therefore $\sum_{i=1}^m \left|\sum_{x \in P_i} f(x)\right| \geq \frac{\delta^2 N}{20}$.
 
 We also have $\sum_{i=1}^m \sum_{x\in P_i} f(x) = 0$, so
 \begin{equation*}
@@ -211,8 +211,87 @@ Therefore,
     \begin{aligned}
         &|\sum_{x \in P_i} f(x)| + \sum_{x \in P_i} f(x) \geq \frac{\delta^2}{20} |P_i|\\
         &\implies \sum_{x \in P_i} f(x) \geq \frac{\delta^2}{40}|P_i|\\
-        &\implies |A \cap P_i| \geq (\delta+\frac{\delta^2}{40})|P_i|
+        &\implies |A \cap P_i| \geq \left(\delta+\frac{\delta^2}{40}\right)|P_i|
     \end{aligned}
 \end{equation*}
+
+---Lecture 3---
+
+Now let $A \subset \Z_N$, $|A| \geq \delta N$. Then:\\
+$\bullet$ either $A$ contains a 3AP,\\
+$\bullet$ or $N$ is even,\\
+$\bullet$ or $\exists P \subset \{1,...,N\}$, $|P| \geq N/3$ s.t. $|A \cap P| \geq \frac{6\delta}{5} |P|$,\\
+$\bullet$ or $\exists P \subset \{1,...,N\}$, $|P|\geq \frac{\delta^2}{640}\sqrt{N}$ (casual) s.t. $|A\cap P| \geq (\delta+\frac{\delta^2}{40})|P|$.
+
+Note that the third case is strictly worse than the fourth.\\
+Well if the first is true then we're done. Suppose now the seconds hols. Write $N=N_1+N_2$ with $N_1,N_2$ odd, $N_1,N_2 \approx\frac{N}{2}$. Then $A$ has density at least $\delta$ in one of $\{1,...,N_1\}$ or $\{N_1+1,...,N_1+N_2\}$.\\
+If (4) holds (note (3) $\implies$ (4)), then we pass to $P$ and start to again. After $\frac{40}{\delta}$ iterations, the density at least doubles. Therefore the toatl number of iterations we can have is at most $\frac{40}{\delta} + \frac{40}{2\delta}+... \leq \frac{80}{\delta}$.\\
+If $\frac{\delta^2}{640} \sqrt{N} \geq N^{1/3}$ (to account for the above, and also for the possible use of (2)) at each iteration, and $\frac{\delta^3}{25} \geq N^{-1}$ (which follows from the first condition), then after $\frac{80}{\delta}$ iterations we have $N \geq N^{(1/3)^{80/\delta}}$, so the argument works provided
+\begin{equation*}
+    \begin{aligned}
+        N^{(1/3)^{80\delta}} \geq \left(\frac{640}{\delta^2}\right)^6
+    \end{aligned}
+\end{equation*}
+taking logs and simplify a bit, we need
+\begin{equation*}
+    \begin{aligned}
+        &-\frac{80}{\delta} \log 3 + \log \log N \geq \log 6 + \log (\log 640 + 2 \log \frac{1}{\delta}))\\
+        &\Leftarrow \log\log N \geq \frac{160}{\delta}\\
+        &\Leftarrow \delta \geq \frac{160}{\log\log N}
+    \end{aligned}
+\end{equation*}
+
+\subsection{Bogolyubov's method}
+Let $K \subset \hat{\Z}_N$ and let $\delta > 0$. The \emph{Bohr set} $B(K,\delta)$ has two definitions (not exactly equivalent, but quite equivalent):\\
+$\bullet$ (1) $B(K,\delta) = \{x \in \Z_N: rx \in [-\delta N,\delta N] \forall r \in K\}$ (arc-length definition);\\
+$\bullet$ (2) $B(K,\delta) = \{x \in \Z_N: |1-\omega^{rx}| \leq \delta \forall r \in K\}$ (chord-length definition).
+
+\begin{defi}
+    Let $G$ be an abelian group and let $A,B$ be subsets of $G$. Then write $A + B = \{a+b: a \in A, b \in B\}$ and the obvious definition for $A-B$. We also write $rA = \{a_1+...+a_r:a_1,...,a_r\in A\}$ (note this might be different than what you think this notation should mean).
+\end{defi}
+
+\begin{lemma} (7)\\
+    Let $A \subset \Z_N$ be a set of density $\alpha$. Then $2A-2A$ contains a Bohr set $B(K,1/4)$ (arc) with $|K| \leq \alpha^{-2}$.
+    \begin{proof}
+        Observe that $x \in 2A-2A$ iff $A*A*(-A)*(-A)(x) \neq 0$ (this makes more sense if we write it as $\E_{a+b-c-d=x} A(a)A(b)A(c)A(d) \neq 0$, i.e. we are basically just counting the number of ways $x$ can be written as $a+b-c-d$ where $a,b,c,d \in A$.)\\
+        But
+        \begin{equation*}
+            \begin{aligned}
+                A*A*(-A)*(-A)(x) &= \sum_r \widehat{A*A*(-A)*(-A)}(r) \omega^{rx} \text{ inversion formula}\\
+                &= \sum |\hat{A}(r)|^4 \omega^{rx}
+            \end{aligned}
+        \end{equation*}
+        Let $K = \{r: |\hat{A}(r)| \geq \alpha^{3/2}\}$. Then $\alpha = ||\hat{A}||_2^2 = \sum_r |\hat{A}(r)|^2 \geq \alpha^3 |K|$.\\
+        So $|K| \leq \alpha^{-2}$.\\
+        Now suppose that $x \in B(K,1/4)$. Then
+        \begin{equation*}
+            \begin{aligned}
+                \sum_r |\hat{A}(r)|^4 \omega^{rx} &= \alpha^4 + \sum_{r \in K, r \neq 0} |\hat{A}(r)|^4 \omega^{rx} + \sum_{r \not\in K} |\hat{A}(r)|^4 \omega^{rx}
+            \end{aligned}
+        \end{equation*}
+        The real part of the second term is non-negative since $rx \in [-N/4,N/4]$ when $r \in K$.\\
+        Also 
+        \begin{equation*}
+            \begin{aligned}
+                \left|\sum_{r \not\in K} |\hat{A}(r)|^4 \omega^{rx}\right| &\leq \sum_{r \not\in K} |\hat{A}(r)|^4\\
+                &< \alpha^3 \sum_{r \not\in K} |\hat{A}(r)|^2\\
+                &\leq \alpha^4
+            \end{aligned}
+        \end{equation*}
+        So it follows that the real part of $\sum_r |\hat{A}(r)|^4 \omega^{rx} > 0$, i.e. it is non-zero. So $x \in 2A - 2A$.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma} (8)\\
+    Let $K \subset \Z_N$ and let $\delta > 0$. Then:\\
+    (i) $B(K,\delta)$ (arc) has density at least $\delta^{|K|}$;\\
+    (ii) $B(K,\delta)$ contains a mod-$N$ artihmetic progression of length at least $\delta N^{1/|K|}$.
+    \begin{proof}
+        (i) Let $K = \{r_1,...,r_k\}$. Consider the $N$ $k$-tuples $(r_1x,...,r_kx) \in \Z_N^k$. If we intersect this set of $k$-tuples with a random 'box' $[t_1,t_1+\delta N] \times ... \times [t_k,t_k+\delta N]$ (here we are thinking $t_i$ as real numbers), then the expected number of the $k$-tuples in the box is $\delta^k N$ (since each one has a probability $\delta^k$).\\
+        But if $(r_1x,...,r_kx)$ and $(r_1y,...,r_ky)$ belong to this box, then $x-y \in B(K,\delta)$.\\
+        (ii) If we take $\eta > N^{-1/k}$, then by (i) we get that $|B(K,\eta)| > 1$, therefore at least 2. So $\exists x \in B(K,\eta)$ s.t. $x \neq 0$. But then $dx\in B(K,d\eta)$ for every $d$.\\
+        So if $d\eta \leq \delta$ then $dx \in B(K,\delta)$. That gives us an AP of length at least $\frac{\delta}{\eta}$. So we get one of length at least $\delta N^{1/k}$.
+    \end{proof}
+\end{lemma}
 
 \end{document}
