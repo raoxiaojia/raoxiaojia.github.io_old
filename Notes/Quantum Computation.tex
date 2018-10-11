@@ -75,4 +75,70 @@ $U(x_0)|\chi_k\ket = \omega(x_0,k)|\chi_k\ket$ for all $x_0,k \in \Z_M$ with $|\
 $|R\ket = \sum_{k=0}^{M-1} a_k | \chi_k\ket$ where $a_k$'s depending on $r$ (not $x_0$).\\
 Then $|per\ket = U(x_0) |R\ket = \sum_{k=0}^{M-1}a_k \omega(x_0,k) |\chi_k\ket$, and measurement in the $\chi$-basis has $prob(k) = |a_k \omega(x_0,k)|^2 = |a_k|^2$ which is independent of $x_0$, i.e. giving information about $r$!
 
+---Lecture 3---
+
+Exercise classes: Sat 3 Nov 11am MR4, Sat 24 Nov 11am MR4, early next term (tba).\\
+Thursday 8 November lecture is moved to Saturday 10 November 11am (still MR4).
+
+Recall last time we had $\mathcal{H}_M$: shift operations $U(x_0) |y \ket = |y+x_0\ket$ for $x_0,y \in \Z_M$, which all permute, so have a common eigenbasis (shift invariant states) $\{|\chi_k\ket \}_{k \in \Z_M}$, $U(x_0) | x_k\let = \omega(x_0,k) |\chi_k\ket$.\\
+Measurement of $|x_0+R \ket = \frac{1}{\sqrt{A}} \sum_{l=0}^{A-1} |x_0 + l_r \ket = U(x_0) |R\ket$ in $|\chi\ket$ basis has output distribution independent of $x_0$, therefore gives information about $r$.
+
+Introduce QFT as the unitary mapping that rotates $\chi$-basis to standard basis, i.e. define $QFT|\chi_k \ket = |k\ket$. So QFT followed by measurement implements $\chi$-basis measurement.
+
+Explicit form of $|\chi_k\ket$ eigenspaces (!): consider
+\begin{equation*}
+    \begin{aligned}
+        |\chi_k\ket = \frac{1}{\sqrt{M}}\sum_{l=0}^{M-1} e^{-2\pi i kl/M}|l\ket
+    \end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+    \begin{aligned}
+        U(x_0) |\chi_k \ket &= \frac{1}{\sqrt{M}} \sum_{l=0}^{M-1} e^{-2\pi i kl/M}|l+\x_0\ket \\
+        &= \frac{1}{\sqrt{M}} \sum_{\tilde{l}=0}^{M-1} e^{-2\pi i k (\tilde{l}-x_0)/M} | \tilde{l} \ket \text { where } \tilde{l} = l+x_0\\
+        &= e^{2\pi i k x_0 / M} \cdot |\chi_k\ket
+    \end{aligned}
+\end{equation*}
+i.e. these are the shift invariant staets, eigenvalues $\omega(x_0,k) = e^{2\pi i k x_0/M}$.
+
+Matrix of QFT: So
+\begin{equation*}
+    \begin{aligned}
+        [QFT^{-1}]_{lk} = \frac{1}{\sqrt{M}} e^{-2\pi i lk/M}
+    \end{aligned}
+\end{equation*}
+(componets of $|\chi_k \ket = QFT^{-1} |k\ket$ as $k^{th}$ column). So
+\begin{equation*}
+    \begin{aligned}
+        [QFT]_{kl} = \frac{1}{\sqrt{M}} e^{2\pi i lk / M}
+    \end{aligned}
+\end{equation*}
+as expected.
+
+\newpage
+
+\section{The hidden subgroup problem (HSP)}
+
+Let $G$ be a finite group of size $|G|$. Given (oracle for) function $f:G \to X$ ($X$ is some set), and promise that there is a subgroup $K < G$ such that $f$ is constant on (left) cosets of $K$ in $G$, and $f$ is distinct on distinct cosets.\\
+The problem: determine the \emph{hidden subgroup} $K$ (e.g. output a set of generators, or sample uniformly from $K$).\\
+We want to solve in time $O(poly(\log |G|))$ (an efficient algorithm) with any constant probability $1-\varepsilon$.
+
+Examples of problems that can be cast(?) as HSPs:\\
+(i) periodicity: $f:\Z_M \to X$, periodic with period $r$. Let $G=(\Z_m,+)$, the hidden subgroup is $K=\{0,r,2r,...\} < G$, cosets $x_0+K = \{x_0,x_0+r,x_0+2r,...\}$. The period $r$ is generator of $K$.\\
+(ii) discrete logarithm: for prime $p$, $\Z_p^* = \{1,2,...,p-1\}$ with multiplication mod $p$. $g \in \Z_p^*$ is a generator (or primitive root mod $p$). If powers generate all of $\Z_p^*$, $\Z_p^* = \{g^0 = 1,g^1,...,g^{p-2}\}$, then also $g^{p-1} \equiv 1 \pmod p$ (easy number theory).\\
+Fact: the generator always exists if $p$ is prime. So any $x \in \Z_p^*$ can be written $x = g^y$ for some $y \in \Z_{p-1}$, write $y=\log_g x$ called the discrete log of $x$ to base $g$.
+
+Discrete log problem: given a generator $g$ and $x \in \Z^*_p$, compute $y=\log_g x$ (classically hard).\\
+To express as HSP, consider $f:\Z_{p-1} \times \Z_{p-1} \to \Z_p^*$: $f(a,b) = g^a x^{-b} \ mod \ p = g^{a-yb} \ mod \ p$.\\
+Then check: $f(a_1,b_1) = f(a_2,b_2)$ iff $(a_2,b_2) = (a_1,b_1)+\lambda(y,1)$ where $\lambda \in \Z_{p-1}$.
+
+So if $G = \Z_{p-1} \times \Z_{p-1}$, $K=\{\lambda(y,1):\lambda \in \Z_{p-1}\} < G$. Then $f$ is constant and distinct on the cosets of $K$ in $G$, and generator $(y,1)$ gives $y=\log_g x$.\\
+
+(iii) graph problems ($G$ non-abelian now): consider undirected graph $A = \{V,E\}$, $|V| =n$, with at most one edge between any two vertices. Label vertices by $[n] = \{1,2,...,n\}$.\\
+Introduce the permutation group $\mathcal{P}_n$ of $[n]$. Define $Aut(A)$ to be the group of automorphisms of $A$, which is a subgroup of $\mathcal{P}_n$, containing exactly the permutations $\pi \in \mathcal{P}_n$ such that for all $i,j \in [n]$, $(i,j) \in E \iff (\pi(i),\pi(j)) \in E$, i.e. the labelled graph $\pi(A)$ obtained by permuting labels of $A$ by $\pi$ is the same \emph{labelled} graph as $A$.
+
+Associated HSP: Take $G = \mathcal{P}_n$. Let $X$ be set of all labelled graphs on $n$ vertices. Given $A$, consider $f_A: \mathcal{P}_n \to X$ by $f_A(\pi) = \pi(A)$, $A$ with labels permuted by $\pi$. The associated hiiden subroup is $Aut(A) = K$.
+
+Application: if we can sample uniformly from this $K$, then we can solve graph isomorphism problem (GI): two labelled graphs $A,B$ are isomorphic if there is 1-1 map $\pi:[n] \to [n]$ such that for all $i,j \in [n]$, $i,j$ is an edge in $A$ iff $\pi(i),\pi(j)$ is an edge in $B$, i.e. $A$ and $B$ are the same graph but just labelled differently.
+
 \end{document}
