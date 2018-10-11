@@ -80,7 +80,7 @@ Then $|per\ket = U(x_0) |R\ket = \sum_{k=0}^{M-1}a_k \omega(x_0,k) |\chi_k\ket$,
 Exercise classes: Sat 3 Nov 11am MR4, Sat 24 Nov 11am MR4, early next term (tba).\\
 Thursday 8 November lecture is moved to Saturday 10 November 11am (still MR4).
 
-Recall last time we had $\mathcal{H}_M$: shift operations $U(x_0) |y \ket = |y+x_0\ket$ for $x_0,y \in \Z_M$, which all permute, so have a common eigenbasis (shift invariant states) $\{|\chi_k\ket \}_{k \in \Z_M}$, $U(x_0) | x_k\let = \omega(x_0,k) |\chi_k\ket$.\\
+Recall last time we had $\mathcal{H}_M$: shift operations $U(x_0) |y \ket = |y+x_0\ket$ for $x_0,y \in \Z_M$, which all permute, so have a common eigenbasis (shift invariant states) $\{|\chi_k\ket \}_{k \in \Z_M}$, $U(x_0) | x_k\ket = \omega(x_0,k) |\chi_k\ket$.\\
 Measurement of $|x_0+R \ket = \frac{1}{\sqrt{A}} \sum_{l=0}^{A-1} |x_0 + l_r \ket = U(x_0) |R\ket$ in $|\chi\ket$ basis has output distribution independent of $x_0$, therefore gives information about $r$.
 
 Introduce QFT as the unitary mapping that rotates $\chi$-basis to standard basis, i.e. define $QFT|\chi_k \ket = |k\ket$. So QFT followed by measurement implements $\chi$-basis measurement.
@@ -94,7 +94,7 @@ Explicit form of $|\chi_k\ket$ eigenspaces (!): consider
 Then
 \begin{equation*}
     \begin{aligned}
-        U(x_0) |\chi_k \ket &= \frac{1}{\sqrt{M}} \sum_{l=0}^{M-1} e^{-2\pi i kl/M}|l+\x_0\ket \\
+        U(x_0) |\chi_k \ket &= \frac{1}{\sqrt{M}} \sum_{l=0}^{M-1} e^{-2\pi i kl/M}|l+x_0\ket \\
         &= \frac{1}{\sqrt{M}} \sum_{\tilde{l}=0}^{M-1} e^{-2\pi i k (\tilde{l}-x_0)/M} | \tilde{l} \ket \text { where } \tilde{l} = l+x_0\\
         &= e^{2\pi i k x_0 / M} \cdot |\chi_k\ket
     \end{aligned}
