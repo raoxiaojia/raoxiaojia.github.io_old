@@ -1,4 +1,0 @@
-\contentsline {section}{\numberline {0}Introduction}{3}{section.0}
-\contentsline {section}{\numberline {1}The discrete Fourier transform}{4}{section.1}
-\contentsline {subsection}{\numberline {1.1}Roth's theorem}{5}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Bogolyubov's method}{8}{subsection.1.2}

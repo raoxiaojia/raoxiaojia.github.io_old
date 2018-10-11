@@ -1,3 +1,0 @@
-\contentsline {section}{\numberline {0}Reviews}{3}{section.0}
-\contentsline {subsection}{\numberline {0.1}Langauges and structures}{3}{subsection.0.1}
-\contentsline {subsection}{\numberline {0.2}Terms, formulae, and their interpretations}{4}{subsection.0.2}
