@@ -44,7 +44,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     Strictly speaking, morphisms $A \to B$ are pairs $(f,B)$ where $f$ is a set-theoretic function. (?)\\
     (b) The category $Gp$ has all groups as objects, group homomorphisms as morphisms.\\
     Similarly, $Ring$ is the category of rings, $Mod_R$ is the category of $R$-modules.\\
-    (c) The cateogry $Top$ has all topological spaces as objects, and continuous functions as morphisms.\\
+    (c) The category $Top$ has all topological spaces as objects, and continuous functions as morphisms.\\
     Similarly, $Unif$ has all uniform spaces and uniformly continuous functions as morphisms, $Mf$ has all manifolds and smooth maps correspondingly.\\
     (d) The category $Htpy$ has the same objects as $Top$, but morphisms are homotopy classess of continuous functions. More generally, given $\mathcal{C}$, we call an equivalence relation $\simeq$ on $\mor \mathcal{C}$ a \emph{congruence} if $f \simeq g \implies \dom f = \dom g$ and $\cod f = \cod g$, and $f \simeq g \implies fh \simeq gh$ and $kf \simeq kg$ whenever the composites are defined. Then we have a category $\mathcal{C} / \simeq$ with the same objects as $\mathcal{C}$, but congruence classes as morphisms instead.\\
     (e) Given $\mathcal{C}$, the \emph{opposite category} $C^{op}$ has the same objects and morphisms as $\mathcal{C}$, but $\dom$ and $\cod$ are interchanged, and $fg$ in $\mathcal{C}^{op}$ is $gf$ in $\mathcal{C}$.\\
@@ -55,7 +55,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     A \emph{preorder} is a cat $\mathcal{C}$ in which, for any pair $(A,B)$, $\exists$ at most 1 morphism $A \to B$.\\
     A small preoder is a set equipped with a binary relation which is reflexive and transitive.\\
     In particular, a partially ordered set is a small preorder in which the only isomorphisms are identities.\\
-    (i) The category $Rel$ has the same objects a \emph{set} (???), but morphisms $A \to B$ are arbitrary relations $R \subseteq A \times B$. Given $R$ and $S \subseteq B\times C$, we define $S \cdot R = \{(a,c) \in A \times C | (\exists b \in B) ((a,b) \in R, (b,c) \in S)\}$.\\
+    (i) The category $Rel$ has the same objects as \emph{set}, but morphisms $A \to B$ are arbitrary relations $R \subseteq A \times B$. Given $R$ and $S \subseteq B\times C$, we define $S \cdot R = \{(a,c) \in A \times C | (\exists b \in B) ((a,b) \in R, (b,c) \in S)\}$.\\
     The identity $1_A:A \to A$ is $\{(a,a) | a \in A\}$.\\
     Similarly, the category $Part$ are for sets and partial functions (i.e. relations s.t. $(a,b) \in R$ and $(a,b') \in R \implies b = b'$).\\
     (j) Let $K$ be a field. The cateogry $Mat_K$ has natural numbers as objects, and morphism $n \to p$ are $(p \times n)$ matrices with entries from $K$. Composition is matrix multiplication.\\
@@ -65,15 +65,15 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \begin{defi} (1.4)\\
     Let $\mathcal{C}$ and $\mathcal{D}$ be categories. A \emph{functor} $F:\mathcal{C} \to \mathcal{D}$ consists of:\\
     (a) a mapping $A \to FA$ from $\ob \mathcal{C}$ to $\ob \mathcal{D}$;\\
-    (b) a mapping $f \to Ff$ from $\mor \mathcal{C}$ to $\mor \mathcal{D}$\\
+    (b) a mapping $f \to Ff$ from $\mor \mathcal{C}$ to $\mor \mathcal{D}$,\\
     such that $\dom(Ff) = F(\dom f)$, $\cod(Ff) = F(\cod f)$, $1_{FA} = F(1_A)$, and $(Ff)(Fg) = F(fg)$ whenever $fg$ is defined.
 \end{defi}
 
 \begin{eg} (1.5)\\
     (a) We have \emph{forgetful functors} $Gp \to Set$, $Ring\to Set$, $Top \to Set$, $Ring \to AbGp$ (forget $\times$), $Ring \to Monoid$ (forget $+$).\\
-    (b) Given a set $A$, the free group $FA$ has the property:\\
-    Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $FA \xrightarrow{F} G$ extending $f$.\\
-    $F$ is a functor $Set\to Gp$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$ Functionality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both momoms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
+    (b) Given a set $A$, the free group $F_A$ has the property:\\
+    Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $F_A \xrightarrow{F} G$ extending $f$.\\
+    $F$ is a functor $Set\to Gp$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. Functionality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
     (c) Given a set $A$, we write $PA$ for the set of all subsets of $A$.\\
     We can make $P$ into a functor $Set \to Set$, given $A \xrightarrow{f} B$, we defined $Pf(A') = \{f(a) | a \in A'\}$ for $A' \subseteq A$.\\
     But we also have a functor $P^* : Set \to Set^{op}$ defined on objects by $P$, but $P^* f(B') = \{a \in A | f(a) \in B'\}$ for $B' \subseteq B$.\\
