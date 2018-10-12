@@ -73,7 +73,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     (a) We have \emph{forgetful functors} $Gp \to Set$, $Ring\to Set$, $Top \to Set$, $Ring \to AbGp$ (forget $\times$), $Ring \to Monoid$ (forget $+$).\\
     (b) Given a set $A$, the free group $F_A$ has the property:\\
     Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $F_A \xrightarrow{F} G$ extending $f$.\\
-    $F$ is a functor $Set\to Gp$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. Functionality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
+    $F$ is a functor $Set\to Gp$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. Functorality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
     (c) Given a set $A$, we write $PA$ for the set of all subsets of $A$.\\
     We can make $P$ into a functor $Set \to Set$, given $A \xrightarrow{f} B$, we defined $Pf(A') = \{f(a) | a \in A'\}$ for $A' \subseteq A$.\\
     But we also have a functor $P^* : Set \to Set^{op}$ defined on objects by $P$, but $P^* f(B') = \{a \in A | f(a) \in B'\}$ for $B' \subseteq B$.\\
@@ -146,5 +146,58 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     We define $F:Mat_K \to fdMod_K$ by $F(n) = K^n$, and $F(A)$ is the linear map represented by $A$ w.r.t. the standard bases of $K^n$ and $K^p$.\\
     To define $G:fdMod_K \to Mat_K$, choose a basis for each finite dimensional vector space, and define $G(V) = \dim V$, $G(V \xrightarrow{f} W)$ to be the matrix representing $f$ w.r.t. chosen bases. $GF$ is the identity, provided we choose the standard bases for the spaces $K^n$; $FG \neq 1$, but the chosen bases give isomorphisms $FG(V) = K^{\dim V} \to V$ for each $V$, which form a natural isomorphism.
 \end{eg}
+
+---Lecture 4
+
+\begin{defi} (1.11)\\
+    Let $\mathcal{C} \xrightarrow{F} \mathcal{D}$ be a functor.\\
+    (a) We say $F$ is \emph{faithful} if, given $f,f' \in \mor \mathcal{C}$ with $\dom f = \dom f'$, $\cod f = \cod f'$, and $Ff = Ff'$, then $f=f'$ (injectivity on morphisms. The name comes more from representation theory);\\
+    (b) We say $F$ is \emph{full} if, given $FA \xrightarrow{g} FB$ in $\mathcal{D}$, ther exists $A \xrightarrow{f} B$ in $\mathcal{C}$ with $Ff = g$. (this is something like surjective, but see below);\\
+    (c) We say  $F$ is \emph{essentially surjective} if, forevery $B \in \ob \mathcal{D}$, there exists $A \in \ob \mathcal{C}$ and isomorphism $FA \to B$ in $\mathcal{D}$.\\
+    We say a subcategory $\mathcal{C}' \subseteq \mathcal{C}$ is full if the inclusion $\mathcal{C}' \to \mathcal{C}$ is a full functor. For example, $Gp$ is a full subcategory of $Mon$ (the category of all monoids), but $Mon$ is not a full subcategory of the category $SGp$ of semigroups.
+\end{defi}
+
+\begin{lemma} (1.12)\\
+    Assuming the axiom of choice, a functor $F \cdot \mathcal{C} \to \mathcal{D}$ is part of an equivalence $\mathcal{C} \simeq \mathcal{D}$ (see (1.9) for what an equivalence is. I think here it means one of the functors $F,G$) if it's full, faithful, and essentially surjective.
+    \begin{proof}
+        $\Rightarrow$: Suppose given $G,\alpha,\beta$ as in (1.9). Then for each $B \in \ob\mathcal{D}$, $\beta_B$ is an isomorphism $FGB \to B$, so $F$ is essentially surjective.\\
+        Given $A \xrightarrow{f} B$ in $\mathcal{C}$, we can recover $f$ from $Ff$ as composite $A \xrightarrow{\alpha_A} GFA \xrightarrow{GFf} GFB \xrightarrow{\alpha_b^{-1}} B$. Hence if $A \xrightarrow{f'}B$ satisfies $Ff = Ff'$, then $f=f'$. So $F$ is faithful;\\
+        Lastly, for fullness, given $FA \xrightarrow{g} FB$, define $f$ to be the composite $A \xrightarrow {\alpha_A} GFA \xrightarrow{Gg} \xrightarrow{GFB} \xrightarrow{\alpha_B^{-1}} B$. Then $GFf = \alpha_B f \alpha_A^{-1}$, which by construction is just $Gg$. But $G$ is faithful for the same reason as $f$, so $Ff = g$.
+
+        $\Leftarrow$: (need to find suitable $G,\alpha,\beta$ for $F$.) For each $B \in \ob \mathcal{D}$, choose $GB \in \ob \mathcal{C}$ and an isomorphism $\beta_B : FGB \to B$ in $\mathcal{D}$. Given $B \xrightarrow{g} B'$, define $Gg:GB \to GB'$ to be the unique morphism whose image under $F$ is $FGB \xrightarrow{\beta_B} B \xrightarrow{g} B' \xrightarrow{\beta_{B'}^{-1}} FGB'$.\\
+        Uniqueness implies functoriality (check what this means -- think it appeared somewhere before): given $B' \xrightarrow{g'} B''$, $(Gg')(Gg)$ and $G(g'g)$ have the same image under $F$, so they are equal.\\
+        By construction, $\beta$ is a natural trnasformation $FG \to 1_\mathcal{D}$.\\
+        Given $A \in \ob \mathcal{C}$, define $\alpha_A: A \to GFA$ to be the unique morphism whose image under $F$ is $FA \xrightarrow{\beta_{FA}^{-1}} FGFA$. $\alpha_A$ is an isomorphism, since $\beta_{FA}$ also has a unique pre-image under $F$. And $\alpha$ is a natural transformation, since any naturality square for $\alpha$ (???? oh I think the lecture means the commutative square when we defined natural transformation. check) is mapped by $F$ to a commutative square, and $F$ is faithful.
+    \end{proof}
+\end{lemma}
+
+\begin{defi} (1.13) \\
+    By a \emph{skeleton} of a category, we mean a full subcategory $\mathcal{C}_0$ containing one object from each isomorphism class. We say $\mathcal{C}$ is \emph{skeletal} if it's a skeleton of itself.\\
+    For example, $Mat_K$ is a skeletal, and the image of $F:Mat_K \to fdMod_K$ of 1.10(c) is a skeleton of $fdMod_K$.\\
+    (there are some examples on wikipedia)
+\end{defi}
+
+Warning: almost any assertion about skeletons is equivalent to axiom of choice (see q2 on example sheet 1).
+
+\begin{defi} (1.14)\\
+    Let $A \xrightarrow{f} B$ be a morphism in $\mathcal{C}$.\\
+    (a) We say $f$ is a \emph{monomorphism} (or $f$ is \emph{monic}) if, given any pair $C \rightrightarrows_h^g A$ (align this nicer later) , $fg=fh$ implies $g=h$.\\
+    (b) We say $f$ is an \emph{epimorphism} (or \emph{epic}) if it's a monomorphism in $\mathcal{C}^{op}$, i.e. if $gf = hf$ implies $g=h$.\\
+    We denote monomorphisms by $A \rightarrowtail^f B$ (put $f$ on top later), and epimorphisms by $A \twoheadrightarrow^f B$ (this as well).\\
+    Any isomorphism is monic and epic: more generally, if $f$ has a left inverse (i.e. $\exists g$ s.t. $gf$ is an identity), then it's monic. We call such monomorphisms \emph{split}.\\
+    We say $\mathcal{C}$ is a \emph{balanced} category if any morphism which is both monic and epic is an isomorphism.
+\end{defi}
+
+\begin{eg} (1.15)\\
+    (a) As usual we consider $Set$ first. In $Set$, monomorphisms correspond to injections ($\Leftarrow$ is easy (ok); for $\Rightarrow$, take $C = 1 = \{*\}$), and epimorphsims correspond to surjections ($\Leftarrow$ is easy; for $\Rightarrow$, use morphisms $B \rightrightarrows 2 = \{0,1\}$). So $Set$ is balanced.\\
+    (b) In $Gp$, monomorphisms again correspond to injections (for $\Rightarrow$ use homomorphisms $\Z \to A$); epimorphisms again correspond to surjections ($\Rightarrow$ use free products with amalgamation -- this is a non-trivial fact about groups, read more if free). So $Gp$ is also balanced.\\
+    (c) In $Rng$ (obvious notation), monomorphisms correspond to injections (proof is much like for $Gp$). However, not all epimorphisms are surjective. For example the inclusion $\Z \to \Q$ is an epimorphism, since if $\Q \rightrightarrows^f_g R$ (this one too) agree on all integers, they agree everywhere. So $Rng$ is not balanced.\\
+    (d) One final example is $Top$. Again, monomorphisms are injections and epimorphisms are surjections (and vice versa): proof is similar to $Set$ (check). However, $Top$ is not balanced since a continuous bijection need not have continuous inverse.
+\end{eg}
+
+\newpage
+
+\section{The Yoneda Lemma}
+Let's not start on the content this lecture. Why are we talking about one single lemma in a chapter? Well it's not really a lemma, even worse we're not even sure it should be credited to Yoneda. (wiki seems to have a more complete story on this)
 
 \end{document}
