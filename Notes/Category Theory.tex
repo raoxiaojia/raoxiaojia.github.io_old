@@ -24,13 +24,13 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \section{Definitions and examples}
 \begin{defi} (1.1)\\
     A category $\mathcal{C}$ consists of:\\
-    $\bullet$ (a) a collection $\ob\mathcal{C}$ of \emph{objects} $A,B,C$;\\
-    $\bullet$ (b) a collection $\mor\mathcal{C}$ of \emph{morphisms} $f,g,h$;\\
-    $\bullet$ (c) two operations domain, codomain assigining to each $f \in \mor\mathcal{C}$ a pair of objects, its \emph{domain} and \emph{codomain}; we write $A \xrightarrow{f} B$ to mean \emph{$f$ is a morphism and $\dom f = A, \cod f = B$};\\
-    $\bullet$ (d) an operation assigning to each $A \in \ob\mathcal{C}$ a morphism $A \xrightarrow{1_A} A$;\\
-    $\bullet$ (e) a partial binary operation $(f,g) \to fg$ on morphisms, such that $fg$ is defined iff $\dom f = \cod g$, and $\dom(fg) = \dom g$, $\cod(fg) = \cod(f)$ if $fg$ is defined, satisfying:\\
-    $\bullet$ (f) $f 1_A = f = 1_B f$ for any $A \xrightarrow{f} B$;\\
-    $\bullet$ (g) $(fg) h = f(gh)$ whenever $fg$ and $gh$ are defined.
+    (a) a collection $\ob\mathcal{C}$ of \emph{objects} $A,B,C$;\\
+    (b) a collection $\mor\mathcal{C}$ of \emph{morphisms} $f,g,h$;\\
+    (c) two operations domain, codomain assigining to each $f \in \mor\mathcal{C}$ a pair of objects, its \emph{domain} and \emph{codomain}; we write $A \xrightarrow{f} B$ to mean \emph{$f$ is a morphism and $\dom f = A, \cod f = B$};\\
+    (d) an operation assigning to each $A \in \ob\mathcal{C}$ a morphism $A \xrightarrow{1_A} A$;\\
+    (e) a partial binary operation $(f,g) \to fg$ on morphisms, such that $fg$ is defined iff $\dom f = \cod g$, and $\dom(fg) = \dom g$, $\cod(fg) = \cod(f)$ if $fg$ is defined, satisfying:\\
+    (f) $f 1_A = f = 1_B f$ for any $A \xrightarrow{f} B$;\\
+    (g) $(fg) h = f(gh)$ whenever $fg$ and $gh$ are defined.
 \end{defi}
 
 \begin{rem} (1.2)\\
@@ -40,13 +40,13 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \end{rem}
 
 \begin{eg} (1.3)\\
-    (a) The category $set$ has all sets as objects, and all functions between sets as morphisms.\\
+    (a) The category $\mathbf{Set}$ has all sets as objects, and all functions between sets as morphisms.\\
     Strictly speaking, morphisms $A \to B$ are pairs $(f,B)$ where $f$ is a set-theoretic function. (?)\\
-    (b) The category $Gp$ has all groups as objects, group homomorphisms as morphisms.\\
-    Similarly, $Ring$ is the category of rings, $Mod_R$ is the category of $R$-modules.\\
-    (c) The category $Top$ has all topological spaces as objects, and continuous functions as morphisms.\\
-    Similarly, $Unif$ has all uniform spaces and uniformly continuous functions as morphisms, $Mf$ has all manifolds and smooth maps correspondingly.\\
-    (d) The category $Htpy$ has the same objects as $Top$, but morphisms are homotopy classess of continuous functions. More generally, given $\mathcal{C}$, we call an equivalence relation $\simeq$ on $\mor \mathcal{C}$ a \emph{congruence} if $f \simeq g \implies \dom f = \dom g$ and $\cod f = \cod g$, and $f \simeq g \implies fh \simeq gh$ and $kf \simeq kg$ whenever the composites are defined. Then we have a category $\mathcal{C} / \simeq$ with the same objects as $\mathcal{C}$, but congruence classes as morphisms instead.\\
+    (b) The category $\mathbf{Gp}$ has all groups as objects, group homomorphisms as morphisms.\\
+    Similarly, $\mathbf{Ring}$ is the category of rings, $\mathbf{Mod_R}$ is the category of $R$-modules.\\
+    (c) The category $\mathbf{Top}$ has all topological spaces as objects, and continuous functions as morphisms.\\
+    Similarly, $\mathbf{Unif}$ has all uniform spaces and uniformly continuous functions as morphisms, $\mathbf{Mf}$ has all manifolds and smooth maps correspondingly.\\
+    (d) The category $\mathbf{Htpy}$ has the same objects as $\mathbf{Top}$, but morphisms are homotopy classess of continuous functions. More generally, given $\mathcal{C}$, we call an equivalence relation $\simeq$ on $\mor \mathcal{C}$ a \emph{congruence} if $f \simeq g \implies \dom f = \dom g$ and $\cod f = \cod g$, and $f \simeq g \implies fh \simeq gh$ and $kf \simeq kg$ whenever the composites are defined. Then we have a category $\mathcal{C} / \simeq$ with the same objects as $\mathcal{C}$, but congruence classes as morphisms instead.\\
     (e) Given $\mathcal{C}$, the \emph{opposite category} $C^{op}$ has the same objects and morphisms as $\mathcal{C}$, but $\dom$ and $\cod$ are interchanged, and $fg$ in $\mathcal{C}^{op}$ is $gf$ in $\mathcal{C}$.\\
     This leads to the \emph{duality principle}: if $P$ is a true statement about categories, so is the statement $P^*$ obtained from $P$ by reversing all arrows.\\
     (f) A small category with one object is a \emph{monoid}, i.e. a semigroup with $1$. In particular, a group is a small cat (nice abbreviation) with one object in which every morphism is an isomorphism (i.e. for all $f, \exists g$ s.t. $fg$ and $gf$ are identities).\\
@@ -55,11 +55,11 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     A \emph{preorder} is a cat $\mathcal{C}$ in which, for any pair $(A,B)$, $\exists$ at most 1 morphism $A \to B$.\\
     A small preoder is a set equipped with a binary relation which is reflexive and transitive.\\
     In particular, a partially ordered set is a small preorder in which the only isomorphisms are identities.\\
-    (i) The category $Rel$ has the same objects as \emph{set}, but morphisms $A \to B$ are arbitrary relations $R \subseteq A \times B$. Given $R$ and $S \subseteq B\times C$, we define $S \cdot R = \{(a,c) \in A \times C | (\exists b \in B) ((a,b) \in R, (b,c) \in S)\}$.\\
+    (i) The category $\mathbf{Rel}$ has the same objects as \emph{set}, but morphisms $A \to B$ are arbitrary relations $R \subseteq A \times B$. Given $R$ and $S \subseteq B\times C$, we define $S \cdot R = \{(a,c) \in A \times C | (\exists b \in B) ((a,b) \in R, (b,c) \in S)\}$.\\
     The identity $1_A:A \to A$ is $\{(a,a) | a \in A\}$.\\
-    Similarly, the category $Part$ are for sets and partial functions (i.e. relations s.t. $(a,b) \in R$ and $(a,b') \in R \implies b = b'$).\\
-    (j) Let $K$ be a field. The cateogry $Mat_K$ has natural numbers as objects, and morphism $n \to p$ are $(p \times n)$ matrices with entries from $K$. Composition is matrix multiplication.\\
-    (k) We write $Cat$ for the category whose objects are all small categories, and whose morphisms are functors between them. (see below for definition of functors)
+    Similarly, the category $\mathbf{Part}$ are for sets and partial functions (i.e. relations s.t. $(a,b) \in R$ and $(a,b') \in R \implies b = b'$).\\
+    (j) Let $K$ be a field. The cateogry $\mathbf{Mat_K}$ has natural numbers as objects, and morphism $n \to p$ are $(p \times n)$ matrices with entries from $K$. Composition is matrix multiplication.\\
+    (k) We write $\mathbf{Cat}$ for the category whose objects are all small categories, and whose morphisms are functors between them. (see below for definition of functors)
 \end{eg}
 
 \begin{defi} (1.4)\\
@@ -70,22 +70,22 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \end{defi}
 
 \begin{eg} (1.5)\\
-    (a) We have \emph{forgetful functors} $U$: $Gp \to Set$, $Ring\to Set$, $Top \to Set$, $Ring \to AbGp$ (forget $\times$), $Ring \to Mon$ (Category of all monoids) (forget $+$).\\
+    (a) We have \emph{forgetful functors} $U$: $\mathbf{Gp} \to \mathbf{Set}$, $\mathbf{Ring}\to \mathbf{Set}$, $\mathbf{Top} \to \mathbf{Set}$, $\mathbf{Ring} \to \mathbf{AbGp}$ (forget $\times$), $\mathbf{Ring} \to \mathbf{Mon}$ (Category of all monoids) (forget $+$).\\
     (b) Given a set $A$, the free group $F_A$ has the property:\\
     Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $F_A \xrightarrow{F} G$ extending $f$.\\
-    $F$ is a functor $Set\to Gp$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. Functorality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
+    $F$ is a functor $\mathbf{Set}\to \mathbf{Gp}$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. Functorality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
     (c) Given a set $A$, we write $PA$ for the set of all subsets of $A$.\\
-    We can make $P$ into a functor $Set \to Set$, given $A \xrightarrow{f} B$, we defined $Pf(A') = \{f(a) | a \in A'\}$ for $A' \subseteq A$.\\
-    But we also have a functor $P^* : Set \to Set^{op}$ defined on objects by $P$, but $P^* f(B') = \{a \in A | f(a) \in B'\}$ for $B' \subseteq B$.\\
+    We can make $P$ into a functor $\mathbf{Set} \to \mathbf{Set}$, given $A \xrightarrow{f} B$, we defined $Pf(A') = \{f(a) | a \in A'\}$ for $A' \subseteq A$.\\
+    But we also have a functor $P^* : \mathbf{Set} \to \mathbf{Set}^{op}$ defined on objects by $P$, but $P^* f(B') = \{a \in A | f(a) \in B'\}$ for $B' \subseteq B$.\\
     By a \emph{contravariant} functor $\mathcal{C} \to \mathcal{D}$, we mean a functor $\mathcal{C} \to \mathcal{D}^{op}$ (or $\mathcal{C}^{op} \to \mathcal{D}$). A \emph{covariant} functor is one that doesn't reverse arrows (in $op$ I guess?).\\
-    (d) Let $K$ be a field. We have a functor $*:Mod_K \to Mod_K^{op}$ defined by $V^* = \{ \text{ linear maps }  V \to K\}$, and if $V \xrightarrow{f} W$, $f^*(\theta:W \to K) = \theta f$.\\
-    (e) We have a functor $op: Cat \to Cat$, which is the identity on morphisms (note that this is a covariant).\\
+    (d) Let $K$ be a field. We have a functor $*:\mathbf{Mod_K} \to \mathbf{Mod_K}^{op}$ defined by $V^* = \{ \text{ linear maps }  V \to K\}$, and if $V \xrightarrow{f} W$, $f^*(\theta:W \to K) = \theta f$.\\
+    (e) We have a functor $op: \mathbf{Cat} \to \mathbf{Cat}$, which is the identity on morphisms (note that this is a covariant).\\
     (f) A functor between monoids is a monoid homomorphism.\\
     (g) A functor between posets is an order-preserving map.\\
-    (h) Let $G$ be a group. A functor $F \circ G \to Set$ consists of a set $A=F*$ together with an action of $G$ on $A$, i.e. a \emph{permutation representation} of $G$.\\
-    Similarly, a funcotr $G \to Mod_K$ is a $K$-linear representation of $G$.
-    (i) The construction of the fundamental group $\pi(X,X)$ of a space $X$ with basepoint $X$ is a functor $Top* \to Gp$ where $Top*$ is the category of spaces with a chosen basepoint.\\
-    Similarly, the fundamental groupoid is a functor $Top \to Gpd$, where $Gpd$ is the category of groupoids and functors between them.
+    (h) Let $G$ be a group. A functor $F \circ G \to \mathbf{Set}$ consists of a set $A=F*$ together with an action of $G$ on $A$, i.e. a \emph{permutation representation} of $G$.\\
+    Similarly, a funcotr $G \to \mathbf{Mod_K}$ is a $K$-linear representation of $G$.
+    (i) The construction of the fundamental group $\pi(X,X)$ of a space $X$ with basepoint $X$ is a functor $\mathbf{Top}* \to \mathbf{Gp}$ where $\mathbf{Top}*$ is the category of spaces with a chosen basepoint.\\
+    Similarly, the fundamental groupoid is a functor $\mathbf{Top} \to \mathbf{Gpd}$, where $\mathbf{Gpd}$ is the category of groupoids and functors between them.
 \end{eg}
 
 \begin{defi} (1.6)\\
@@ -105,15 +105,15 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 
 \begin{eg} (1.7)\\
     (a) Let $K$ be a field, $V$ a vector space over $K$. There is a linear map $\alpha_V : V \to V^{**}$ given by $\alpha_V (v) \theta = \theta(v)$ for $\theta \in V^*$.\\
-    This is the $V$-component of a natural transformation $1_{Mod_K} \to **: Mod_K \to Mod_K$.\\
-    (b) For any set $A$, we have a mapping $\sigma_A:A \to PA$ sending $a$ to $\{a\}$. If $f:A \to B$, then $Pf\{a\} = \{f(a)\}$. So $\sigma$ is a natural transformation $1_{Set} \to P$.\\
-    (c) Let $F$:$Set \to Gp$ be the free group functor (1.5(b)), and $U: Gp \to Set$ the forgetful functor. The inclusions $A \to UFA$ form a natural transformation $1_{Set} \to UF$.\\
+    This is the $V$-component of a natural transformation $1_{\mathbf{Mod_K}} \to **: \mathbf{Mod_K} \to \mathbf{Mod_K}$.\\
+    (b) For any set $A$, we have a mapping $\sigma_A:A \to PA$ sending $a$ to $\{a\}$. If $f:A \to B$, then $Pf\{a\} = \{f(a)\}$. So $\sigma$ is a natural transformation $1_{\mathbf{Set}} \to P$.\\
+    (c) Let $F$:$\mathbf{Set} \to \mathbf{Gp}$ be the free group functor (1.5(b)), and $U: \mathbf{Gp} \to \mathbf{Set}$ the forgetful functor. The inclusions $A \to UFA$ form a natural transformation $1_{\mathbf{Set}} \to UF$.\\
     (d) Let $G,H$ be groups and $f,g: G \rightrightarrows H$ be two homomorphisms. A natural transformation $\alpha: f \to g$ corresponds to an element $h=\alpha_*$ of $H$, s.t. $h f(x) \to g(x) h$ for all $x \in G$ or equivalently $f(x) = h^{-1} g(x) h$, i.e. $f$ and $g$ are conjugate group homomorphisms.\\
-    (e) Let $A$ and $B$ be two $G$-sets, regarded as functors: $G \rightrightarrows Set$. A natural transformation $A \to B$ is a function $f$ satisfying $f(g\cdot a) = g \cdot f(a)$ for all $a \in A$, i.e. a $G$-equivariant map.
+    (e) Let $A$ and $B$ be two $G$-sets, regarded as functors: $G \rightrightarrows \mathbf{Set}$. A natural transformation $A \to B$ is a function $f$ satisfying $f(g\cdot a) = g \cdot f(a)$ for all $a \in A$, i.e. a $G$-equivariant map.
 \end{eg}
 
 \begin{lemma} (1.8)\\
-    Let $F,G: \mathcal{C} \rightrightarrows \mathcal{D}$ be two functors, and $\alpha: F \to G$ a natural transforms. Then $\alpha$ is an isomorphism in $[\mathcal{C},\mathcal{D}]$ iff each $\alpha_A$ is an isomorphism in $\mathcal{D}$.
+    Let $F,G: \mathcal{C} \rightrightarrows \mathcal{D}$ be two functors, and $\alpha: F \to G$ a natural transformation. Then $\alpha$ is an isomorphism in $[\mathcal{C},\mathcal{D}]$ iff each $\alpha_A$ is an isomorphism in $\mathcal{D}$.
     \begin{proof}
         Forward is trivial (ok, I'll check this later). For backward, suppose each $\alpha_A$ has an inverse $\beta_A$. Given $f:A \to B$ in $\mathcal{C}$, we need to show that 
         \begin{equation*}
@@ -136,25 +136,25 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \end{defi}
 
 \begin{eg} (1.10)\\
-    (a) The category $Part$ is equivalent to the category $Set_*$ of pointed sets (and basepoint, pre(orders?) as functions):\\
-    $\bullet$ We define $F:Set_* \to Part$ by $F(A,a) = A \setminus \{a\}$, and if $f:(A,a) \to (B,b)$, then $Ff(x) = f(x)$ if $f(x) \neq b$, and undefined otherwise;\\
-    $\bullet$ and $G: Part \to Set_*$ by $G(A) = A^+ = A \cup \{A\}$, and if $f:A \to B$ is a partial function, we define $Gf:A^+ \to B^+$ by $Gf(x) = f(x)$ if $x \in A$ and $f(x)$ defined, and equals $B$ otherwise.\\
-    The composite $FG$ is the identity on $Part$, but $GF$ is not the identity. However, there is an isomoprhism $(A,a) \to ((A \setminus \{a\})^+,A \setminus\{a\})$ sending $a$ to $A \setminus \{a\}$ and everything else to itself and this is natural.\\
-    Note that there can be no isomoprhism from $Set_*$ to $Part$, since $Part $ has a 1-element isomorphism class $\{\phi\}$ but $Set_*$ doesn't.\\
-    (b) The category $fdMod_K$ of finite-dimensional vector spaces over $K$ is equivalent to $fdMod_K^{op}$, the functors in both directions are $(-1)^*$ (???) and both isomorphisms are the natural transformations of 1.7(a).\\
-    (c) $fdMod_K$ is also equivalent to $Mat_K$ (1.3(j)).\\
-    We define $F:Mat_K \to fdMod_K$ by $F(n) = K^n$, and $F(A)$ is the linear map represented by $A$ w.r.t. the standard bases of $K^n$ and $K^p$.\\
-    To define $G:fdMod_K \to Mat_K$, choose a basis for each finite dimensional vector space, and define $G(V) = \dim V$, $G(V \xrightarrow{f} W)$ to be the matrix representing $f$ w.r.t. chosen bases. $GF$ is the identity, provided we choose the standard bases for the spaces $K^n$; $FG \neq 1$, but the chosen bases give isomorphisms $FG(V) = K^{\dim V} \to V$ for each $V$, which form a natural isomorphism.
+    (a) The category $\mathbf{Part}$ is equivalent to the category $\mathbf{Set}_*$ of pointed sets (and basepoint, pre(orders?) as functions):\\
+    $\bullet$ We define $F:\mathbf{Set}_* \to \mathbf{Part}$ by $F(A,a) = A \setminus \{a\}$, and if $f:(A,a) \to (B,b)$, then $Ff(x) = f(x)$ if $f(x) \neq b$, and undefined otherwise;\\
+    $\bullet$ and $G: \mathbf{Part} \to \mathbf{Set}_*$ by $G(A) = A^+ = A \cup \{A\}$, and if $f:A \to B$ is a partial function, we define $Gf:A^+ \to B^+$ by $Gf(x) = f(x)$ if $x \in A$ and $f(x)$ defined, and equals $B$ otherwise.\\
+    The composite $FG$ is the identity on $\mathbf{Part}$, but $GF$ is not the identity. However, there is an isomoprhism $(A,a) \to ((A \setminus \{a\})^+,A \setminus\{a\})$ sending $a$ to $A \setminus \{a\}$ and everything else to itself and this is natural.\\
+    Note that there can be no isomoprhism from $\mathbf{Set}_*$ to $\mathbf{Part}$, since $\mathbf{Part}$ has a 1-element isomorphism class $\{\phi\}$ but $\mathbf{Set}_*$ doesn't.\\
+    (b) The category $\mathbf{fdMod_K}$ of finite-dimensional vector spaces over $K$ is equivalent to $\mathbf{fdMod_K}^{op}$, the functors in both directions are $(-1)^*$ (???) and both isomorphisms are the natural transformations of 1.7(a).\\
+    (c) $\mathbf{fdMod_K}$ is also equivalent to $Mat_K$ (1.3(j)).\\
+    We define $F:\mathbf{Mat_K} \to \mathbf{fdMod_K}$ by $F(n) = K^n$, and $F(A)$ is the linear map represented by $A$ w.r.t. the standard bases of $K^n$ and $K^p$.\\
+    To define $G:\mathbf{fdMod_K} \to \mathbf{Mat_K}$, choose a basis for each finite dimensional vector space, and define $G(V) = \dim V$, $G(V \xrightarrow{f} W)$ to be the matrix representing $f$ w.r.t. chosen bases. $GF$ is the identity, provided we choose the standard bases for the spaces $K^n$; $FG \neq 1$, but the chosen bases give isomorphisms $FG(V) = K^{\dim V} \to V$ for each $V$, which form a natural isomorphism.
 \end{eg}
 
----Lecture 4
+---Lecture 4---
 
 \begin{defi} (1.11)\\
     Let $\mathcal{C} \xrightarrow{F} \mathcal{D}$ be a functor.\\
     (a) We say $F$ is \emph{faithful} if, given $f,f' \in \mor \mathcal{C}$ with $\dom f = \dom f'$, $\cod f = \cod f'$, and $Ff = Ff'$, then $f=f'$ (injectivity on morphisms. The name comes more from representation theory);\\
     (b) We say $F$ is \emph{full} if, given $FA \xrightarrow{g} FB$ in $\mathcal{D}$, ther exists $A \xrightarrow{f} B$ in $\mathcal{C}$ with $Ff = g$. (this is something like surjective, but see below);\\
     (c) We say  $F$ is \emph{essentially surjective} if, forevery $B \in \ob \mathcal{D}$, there exists $A \in \ob \mathcal{C}$ and isomorphism $FA \to B$ in $\mathcal{D}$.\\
-    We say a subcategory $\mathcal{C}' \subseteq \mathcal{C}$ is full if the inclusion $\mathcal{C}' \to \mathcal{C}$ is a full functor. For example, $Gp$ is a full subcategory of $Mon$ (the category of all monoids), but $Mon$ is not a full subcategory of the category $SGp$ of semigroups.
+    We say a subcategory $\mathcal{C}' \subseteq \mathcal{C}$ is full if the inclusion $\mathcal{C}' \to \mathcal{C}$ is a full functor. For example, $\mathbf{Gp}$ is a full subcategory of $\mathbf{Mon}$ (the category of all monoids), but $\mathbf{Mon}$ is not a full subcategory of the category $\mathbf{SGp}$ of semigroups.
 \end{defi}
 
 \begin{lemma} (1.12)\\
@@ -167,13 +167,13 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
         $\Leftarrow$: (need to find suitable $G,\alpha,\beta$ for $F$.) For each $B \in \ob \mathcal{D}$, choose $GB \in \ob \mathcal{C}$ and an isomorphism $\beta_B : FGB \to B$ in $\mathcal{D}$. Given $B \xrightarrow{g} B'$, define $Gg:GB \to GB'$ to be the unique morphism whose image under $F$ is $FGB \xrightarrow{\beta_B} B \xrightarrow{g} B' \xrightarrow{\beta_{B'}^{-1}} FGB'$.\\
         Uniqueness implies functoriality (check what this means -- think it appeared somewhere before): given $B' \xrightarrow{g'} B''$, $(Gg')(Gg)$ and $G(g'g)$ have the same image under $F$, so they are equal.\\
         By construction, $\beta$ is a natural trnasformation $FG \to 1_\mathcal{D}$.\\
-        Given $A \in \ob \mathcal{C}$, define $\alpha_A: A \to GFA$ to be the unique morphism whose image under $F$ is $FA \xrightarrow{\beta_{FA}^{-1}} FGFA$. $\alpha_A$ is an isomorphism, since $\beta_{FA}$ also has a unique pre-image under $F$. And $\alpha$ is a natural transformation, since any naturality square for $\alpha$ (???? oh I think the lecture means the commutative square when we defined natural transformation. check) is mapped by $F$ to a commutative square, and $F$ is faithful.
+        Given $A \in \ob \mathcal{C}$, define $\alpha_A: A \to GFA$ to be the unique morphism whose image under $F$ is $FA \xrightarrow{\beta_{FA}^{-1}} FGFA$. $\alpha_A$ is an isomorphism, since $\beta_{FA}$ also has a unique pre-image under $F$. And $\alpha$ is a natural transformation, since any naturality square for $\alpha$ (the commutative square when we defined natural transformation. check) is mapped by $F$ to a commutative square, and $F$ is faithful.
     \end{proof}
 \end{lemma}
 
 \begin{defi} (1.13) \\
     By a \emph{skeleton} of a category, we mean a full subcategory $\mathcal{C}_0$ containing one object from each isomorphism class. We say $\mathcal{C}$ is \emph{skeletal} if it's a skeleton of itself.\\
-    For example, $Mat_K$ is a skeletal, and the image of $F:Mat_K \to fdMod_K$ of 1.10(c) is a skeleton of $fdMod_K$.\\
+    For example, $\mathbf{Mat_K}$ is a skeletal, and the image of $F:\mathbf{Mat_K} \to \mathbf{fdMod_K}$ of 1.10(c) is a skeleton of $\mathbf{fdMod_K}$.\\
     (there are some examples on wikipedia)
 \end{defi}
 
@@ -189,10 +189,10 @@ Warning: almost any assertion about skeletons is equivalent to axiom of choice (
 \end{defi}
 
 \begin{eg} (1.15)\\
-    (a) As usual we consider $Set$ first. In $Set$, monomorphisms correspond to injections ($\Leftarrow$ is easy (ok); for $\Rightarrow$, take $C = 1 = \{*\}$), and epimorphsims correspond to surjections ($\Leftarrow$ is easy; for $\Rightarrow$, use morphisms $B \rightrightarrows 2 = \{0,1\}$). So $Set$ is balanced.\\
-    (b) In $Gp$, monomorphisms again correspond to injections (for $\Rightarrow$ use homomorphisms $\Z \to A$); epimorphisms again correspond to surjections ($\Rightarrow$ use free products with amalgamation -- this is a non-trivial fact about groups, read more if free). So $Gp$ is also balanced.\\
-    (c) In $Rng$ (obvious notation), monomorphisms correspond to injections (proof is much like for $Gp$). However, not all epimorphisms are surjective. For example the inclusion $\Z \to \Q$ is an epimorphism, since if $\Q \stackrel[g]{f}{\rightrightarrows} R$ agree on all integers, they agree everywhere. So $Rng$ is not balanced.\\
-    (d) One final example is $Top$. Again, monomorphisms are injections and epimorphisms are surjections (and vice versa): proof is similar to $Set$ (check). However, $Top$ is not balanced since a continuous bijection need not have continuous inverse.
+    (a) As usual we consider $\mathbf{Set}$ first. In $\mathbf{Set}$, monomorphisms correspond to injections ($\Leftarrow$ is easy (ok); for $\Rightarrow$, take $C = 1 = \{*\}$), and epimorphsims correspond to surjections ($\Leftarrow$ is easy; for $\Rightarrow$, use morphisms $B \rightrightarrows 2 = \{0,1\}$). So $\mathbf{Set}$ is balanced.\\
+    (b) In $\mathbf{Gp}$, monomorphisms again correspond to injections (for $\Rightarrow$ use homomorphisms $\Z \to A$); epimorphisms again correspond to surjections ($\Rightarrow$ use free products with amalgamation -- this is a non-trivial fact about groups, read more if free). So $\mathbf{Gp}$ is also balanced.\\
+    (c) In $\mathbf{Rng}$ (obvious notation), monomorphisms correspond to injections (proof is much like for $\mathbf{Gp}$). However, not all epimorphisms are surjective. For example the inclusion $\Z \to \Q$ is an epimorphism, since if $\Q \stackrel[g]{f}{\rightrightarrows} R$ agree on all integers, they agree everywhere. So $\mathbf{Rng}$ is not balanced.\\
+    (d) One final example is $\mathbf{Top}$. Again, monomorphisms are injections and epimorphisms are surjections (and vice versa): proof is similar to $\mathbf{Set}$ (check). However, $\mathbf{Top}$ is not balanced since a continuous bijection need not have continuous inverse.
 \end{eg}
 
 \newpage
