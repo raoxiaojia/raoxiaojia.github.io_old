@@ -2,6 +2,8 @@
 
 \input{temp}
 
+\usepackage{tikzsymbols}
+
 \setcounter{section}{-1}
 
 \begin{document}
@@ -49,7 +51,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     (d) The category $\mathbf{Htpy}$ has the same objects as $\mathbf{Top}$, but morphisms are homotopy classess of continuous functions. More generally, given $\mathcal{C}$, we call an equivalence relation $\simeq$ on $\mor \mathcal{C}$ a \emph{congruence} if $f \simeq g \implies \dom f = \dom g$ and $\cod f = \cod g$, and $f \simeq g \implies fh \simeq gh$ and $kf \simeq kg$ whenever the composites are defined. Then we have a category $\mathcal{C} / \simeq$ with the same objects as $\mathcal{C}$, but congruence classes as morphisms instead.\\
     (e) Given $\mathcal{C}$, the \emph{opposite category} $C^{op}$ has the same objects and morphisms as $\mathcal{C}$, but $\dom$ and $\cod$ are interchanged, and $fg$ in $\mathcal{C}^{op}$ is $gf$ in $\mathcal{C}$.\\
     This leads to the \emph{duality principle}: if $P$ is a true statement about categories, so is the statement $P^*$ obtained from $P$ by reversing all arrows.\\
-    (f) A small category with one object is a \emph{monoid}, i.e. a semigroup with $1$. In particular, a group is a small cat with one object in which every morphism is an isomorphism (i.e. for all $f, \exists g$ s.t. $fg$ and $gf$ are identities).\\
+    (f) A small category with one object is a \emph{monoid}, i.e. a semigroup with $1$. In particular, a group is a small cat ($\Cat$) with one object in which every morphism is an isomorphism (i.e. for all $f, \exists g$ s.t. $fg$ and $gf$ are identities).\\
     (g) A \emph{groupoid} is a category in which every morphism is an isomorphism. For example, for a topological space $X$, the \emph{fundamental groupoid} $\pi(x)$ has all points of $X$ as objects, and morphisms $x \to y$ are homotopy classes $rel\{0,1\}$ of paths $u:[0,1] \to X$ with $u(0) = x$, $u(1) = y$ (if you know how to prove that the fundamental group is a group, you can prove that $\pi(x)$ is a groupoid).\\
     (h) A \emph{discrete} cat is one whose only morphism are identities.\\
     A \emph{preorder} is a cat $\mathcal{C}$ in which, for any pair $(A,B)$, $\exists$ at most 1 morphism $A \to B$.\\
