@@ -34,7 +34,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \end{defi}
 
 \begin{rem} (1.2)\\
-    (a) This definition is independent of any model of set theory. If we're given a particular model of set theory, we call $\mathcal{C}$ \emph{small} (nice name?) if $\ob \mathcal{C}$ and $\mor\mathcal{C}$ are sets.\\
+    (a) This definition is independent of any model of set theory. If we're given a particular model of set theory, we call $\mathcal{C}$ \emph{small} if $\ob \mathcal{C}$ and $\mor\mathcal{C}$ are sets.\\
     (b) Some texts say $fg$ means $f$ followed by $g$, i.e. $fg$ is defined iff $\cod f = \dom g$.\\
     (c) Note that a morphism $f$ is an identity iff $fg = g$ and $hf = h$ whenever the composites are defined. So we could formulate the definition entirely in terms of morphisms.
 \end{rem}
@@ -49,7 +49,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     (d) The category $\mathbf{Htpy}$ has the same objects as $\mathbf{Top}$, but morphisms are homotopy classess of continuous functions. More generally, given $\mathcal{C}$, we call an equivalence relation $\simeq$ on $\mor \mathcal{C}$ a \emph{congruence} if $f \simeq g \implies \dom f = \dom g$ and $\cod f = \cod g$, and $f \simeq g \implies fh \simeq gh$ and $kf \simeq kg$ whenever the composites are defined. Then we have a category $\mathcal{C} / \simeq$ with the same objects as $\mathcal{C}$, but congruence classes as morphisms instead.\\
     (e) Given $\mathcal{C}$, the \emph{opposite category} $C^{op}$ has the same objects and morphisms as $\mathcal{C}$, but $\dom$ and $\cod$ are interchanged, and $fg$ in $\mathcal{C}^{op}$ is $gf$ in $\mathcal{C}$.\\
     This leads to the \emph{duality principle}: if $P$ is a true statement about categories, so is the statement $P^*$ obtained from $P$ by reversing all arrows.\\
-    (f) A small category with one object is a \emph{monoid}, i.e. a semigroup with $1$. In particular, a group is a small cat (nice abbreviation) with one object in which every morphism is an isomorphism (i.e. for all $f, \exists g$ s.t. $fg$ and $gf$ are identities).\\
+    (f) A small category with one object is a \emph{monoid}, i.e. a semigroup with $1$. In particular, a group is a small cat with one object in which every morphism is an isomorphism (i.e. for all $f, \exists g$ s.t. $fg$ and $gf$ are identities).\\
     (g) A \emph{groupoid} is a category in which every morphism is an isomorphism. For example, for a topological space $X$, the \emph{fundamental groupoid} $\pi(x)$ has all points of $X$ as objects, and morphisms $x \to y$ are homotopy classes $rel\{0,1\}$ of paths $u:[0,1] \to X$ with $u(0) = x$, $u(1) = y$ (if you know how to prove that the fundamental group is a group, you can prove that $\pi(x)$ is a groupoid).\\
     (h) A \emph{discrete} cat is one whose only morphism are identities.\\
     A \emph{preorder} is a cat $\mathcal{C}$ in which, for any pair $(A,B)$, $\exists$ at most 1 morphism $A \to B$.\\
@@ -198,6 +198,6 @@ Warning: almost any assertion about skeletons is equivalent to axiom of choice (
 \newpage
 
 \section{The Yoneda Lemma}
-Let's not start on the content this lecture. Why are we talking about one single lemma in a chapter? Well it's not really a lemma, even worse we're not even sure it should be credited to Yoneda. (wiki seems to have a more complete story on this)
+Let's not start on the content this lecture. Why are we talking about one single lemma in a chapter? Well it's not really a lemma. There's some story behind this, check here for an \href{https://www.mta.ca/~cat-dist/catlist/1999/yoneda}{obituary} which probably has the story that lecture was talking about in class.
 
 \end{document}
