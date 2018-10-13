@@ -55,7 +55,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     (g) A \emph{groupoid} is a category in which every morphism is an isomorphism. For example, for a topological space $X$, the \emph{fundamental groupoid} $\pi(x)$ has all points of $X$ as objects, and morphisms $x \to y$ are homotopy classes $rel\{0,1\}$ of paths $u:[0,1] \to X$ with $u(0) = x$, $u(1) = y$ (if you know how to prove that the fundamental group is a group, you can prove that $\pi(x)$ is a groupoid).\\
     (h) A \emph{discrete} cat is one whose only morphism are identities.\\
     A \emph{preorder} is a cat $\mathcal{C}$ in which, for any pair $(A,B)$, $\exists$ at most 1 morphism $A \to B$.\\
-    A small preoder is a set equipped with a binary relation which is reflexive and transitive.\\
+    A small preorder is a set equipped with a binary relation which is reflexive and transitive.\\
     In particular, a partially ordered set is a small preorder in which the only isomorphisms are identities.\\
     (i) The category $\mathbf{Rel}$ has the same objects as \emph{set}, but morphisms $A \to B$ are arbitrary relations $R \subseteq A \times B$. Given $R$ and $S \subseteq B\times C$, we define $S \cdot R = \{(a,c) \in A \times C | (\exists b \in B) ((a,b) \in R, (b,c) \in S)\}$.\\
     The identity $1_A:A \to A$ is $\{(a,a) | a \in A\}$.\\
@@ -74,7 +74,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \begin{eg} (1.5)\\
     (a) We have \emph{forgetful functors} $U$: $\mathbf{Gp} \to \mathbf{Set}$, $\mathbf{Ring}\to \mathbf{Set}$, $\mathbf{Top} \to \mathbf{Set}$, $\mathbf{Ring} \to \mathbf{AbGp}$ (forget $\times$), $\mathbf{Ring} \to \mathbf{Mon}$ (Category of all monoids) (forget $+$).\\
     (b) Given a set $A$, the free group $F_A$ has the property:\\
-    Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $F_A \xrightarrow{F} G$ extending $f$.\\
+    Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $F_A \xrightarrow{\bar{f}} G$ extending $f$.\\
     $F$ is a functor $\mathbf{Set}\to \mathbf{Gp}$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. Functorality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
     (c) Given a set $A$, we write $PA$ for the set of all subsets of $A$.\\
     We can make $P$ into a functor $\mathbf{Set} \to \mathbf{Set}$, given $A \xrightarrow{f} B$, we defined $Pf(A') = \{f(a) | a \in A'\}$ for $A' \subseteq A$.\\
