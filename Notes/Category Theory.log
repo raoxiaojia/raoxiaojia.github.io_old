@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  14 OCT 2018 18:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  14 OCT 2018 18:09
 entering extended mode
 **"./Category Theory.tex"
 ("Category Theory.tex"
@@ -1614,11 +1614,11 @@ Package rerunfilecheck Info: File `"Category Theory".out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
- 38796 strings out of 492970
- 898982 string characters out of 3135855
+ 38798 strings out of 492970
+ 898998 string characters out of 3135855
  1123278 words of memory out of 3000000
  42056 multiletter control sequences out of 15000+200000
- 548725 words of font info for 117 fonts, out of 3000000 for 9000
+ 548776 words of font info for 118 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,17n,96p,755b,673s stack positions out of 5000i,500n,10000p,200000b,50000s
 <E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Pr
@@ -1639,7 +1639,7 @@ fonts/cm/cmsy7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmti10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msa
 m10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10
 .pfb>
-Output written on "Category Theory.pdf" (10 pages, 249162 bytes).
+Output written on "Category Theory.pdf" (10 pages, 249179 bytes).
 PDF statistics:
  153 PDF objects out of 1000 (max. 8388607)
  15 named destinations out of 1000 (max. 500000)
