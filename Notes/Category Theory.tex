@@ -43,7 +43,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 
 \begin{eg} (1.3)\\
     (a) The category $\mathbf{Set}$ has all sets as objects, and all functions between sets as morphisms.\\
-    Strictly speaking, morphisms $A \to B$ are pairs $(f,B)$ where $f$ is a set-theoretic function. (?)\\
+    Strictly speaking, morphisms $A \to B$ are pairs $(f,B)$ where $f$ is a set-theoretic function. (See part II logic and sets)\\
     (b) The category $\mathbf{Gp}$ has all groups as objects, group homomorphisms as morphisms.\\
     Similarly, $\mathbf{Ring}$ is the category of rings, $\mathbf{Mod_R}$ is the category of $R$-modules.\\
     (c) The category $\mathbf{Top}$ has all topological spaces as objects, and continuous functions as morphisms.\\
@@ -91,7 +91,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 
 \begin{defi} (1.6)\\
     Let $\mathcal{C}$ and $\mathcal{D}$ be categories and $F, G: \mathcal{C}\rightrightarrows \mathcal{D}$ (why two arrows?) two functors.\\
-    A \emph{natural transformation} $\alpha:F \to G$ consists of an assignment $A \to \alpha_A$ from $\ob C$ to $\mor \mathcal{D}$, such that $\dom_{\alpha_A} = FA$ and $\cod_{\alpha A} = G A$ for all $A$, and for all $A \xrightarrow{f} B$ in $\mathcal{C}$, the square 
+    A \emph{natural transformation} $\alpha:F \to G$ consists of an assignment $A \to \alpha_A$ from $\ob \mathcal{C}$ to $\mor \mathcal{D}$ (think about this), such that $\dom_{\alpha_A} = FA$ and $\cod_{\alpha A} = G A$ for all $A$, and for all $A \xrightarrow{f} B$ in $\mathcal{C}$, the square 
     \begin{equation*}
         \begin{aligned}
             &FA &\xrightarrow{Ff} &FB\\
@@ -137,7 +137,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \end{defi}
 
 \begin{eg} (1.10)\\
-    (a) The category $\mathbf{Part}$ is equivalent to the category $\mathbf{Set}_*$ of pointed sets (and basepoint preserving functions):\\
+    (a) The category $\mathbf{Part}$ is equivalent to the category $\mathbf{Set}_*$ of pointed sets (and basepoint preserving functions (as morphisms?)):\\
     $\bullet$ We define $F:\mathbf{Set}_* \to \mathbf{Part}$ by $F(A,a) = A \setminus \{a\}$, and if $f:(A,a) \to (B,b)$, then $Ff(x) = f(x)$ if $f(x) \neq b$, and undefined otherwise;\\
     $\bullet$ and $G: \mathbf{Part} \to \mathbf{Set}_*$ by $G(A) = A^+ = A \cup \{A\}$, and if $f:A \to B$ is a partial function, we define $Gf:A^+ \to B^+$ by $Gf(x) = f(x)$ if $x \in A$ and $f(x)$ defined, and equals $B$ otherwise.\\
     The composite $FG$ is the identity on $\mathbf{Part}$, but $GF$ is not the identity. However, there is an isomoprhism $(A,a) \to ((A \setminus \{a\})^+,A \setminus\{a\})$ sending $a$ to $A \setminus \{a\}$ and everything else to itself and this is natural.\\
