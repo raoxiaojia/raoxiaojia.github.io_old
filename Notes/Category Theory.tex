@@ -73,9 +73,8 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 
 \begin{eg} (1.5)\\
     (a) We have \emph{forgetful functors} $U$: $\mathbf{Gp} \to \mathbf{Set}$, $\mathbf{Ring}\to \mathbf{Set}$, $\mathbf{Top} \to \mathbf{Set}$, $\mathbf{Ring} \to \mathbf{AbGp}$ (forget $\times$), $\mathbf{Ring} \to \mathbf{Mon}$ (Category of all monoids) (forget $+$).\\
-    (b) Given a set $A$, the free group $F_A$ has the property:\\
-    Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $F_A \xrightarrow{\bar{f}} G$ extending $f$.\\
-    $F$ is a functor $\mathbf{Set}\to \mathbf{Gp}$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. Functorality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
+    (b) Given a set $A$, the free group $FA$ has the property:\\
+    Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $FA \xrightarrow{\bar{f}} G$ extending $f$. Here $F$ is a functor $\mathbf{Set}\to \mathbf{Gp}$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. Functorality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
     (c) Given a set $A$, we write $PA$ for the set of all subsets of $A$.\\
     We can make $P$ into a functor $\mathbf{Set} \to \mathbf{Set}$, given $A \xrightarrow{f} B$, we defined $Pf(A') = \{f(a) | a \in A'\}$ for $A' \subseteq A$.\\
     But we also have a functor $P^* : \mathbf{Set} \to \mathbf{Set}^{op}$ defined on objects by $P$, but $P^* f(B') = \{a \in A | f(a) \in B'\}$ for $B' \subseteq B$.\\
@@ -85,7 +84,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     (f) A functor between monoids is a monoid homomorphism.\\
     (g) A functor between posets is an order-preserving map.\\
     (h) Let $G$ be a group. A functor $F \circ G \to \mathbf{Set}$ consists of a set $A=F*$ together with an action of $G$ on $A$, i.e. a \emph{permutation representation} of $G$.\\
-    Similarly, a funcotr $G \to \mathbf{Mod_K}$ is a $K$-linear representation of $G$.
+    Similarly, a functor $G \to \mathbf{Mod_K}$ is a $K$-linear representation of $G$.\\
     (i) The construction of the fundamental group $\pi(X,X)$ of a space $X$ with basepoint $X$ is a functor $\mathbf{Top}* \to \mathbf{Gp}$ where $\mathbf{Top}*$ is the category of spaces with a chosen basepoint.\\
     Similarly, the fundamental groupoid is a functor $\mathbf{Top} \to \mathbf{Gpd}$, where $\mathbf{Gpd}$ is the category of groupoids and functors between them.
 \end{eg}
@@ -131,14 +130,14 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \end{lemma}
 
 \begin{defi} (1.9)\\
-    Let $\mathcal{C}$ and $\mathcal{D}$ be categories. By an \emph{equivalence} between $\mathcal{C}$ and $\mathcal{D}$, we mean a pair of functors $F:\mathcal{C} \to \mathcal{D}$, $G:\mathcal{D} \to \mathcal{C}$ together wish natural isomorphisms $\alpha: 1_\mathcal{C} \to GF$ and $\beta: FG \to 1_\mathcal{D}$.\\
+    Let $\mathcal{C}$ and $\mathcal{D}$ be categories. By an \emph{equivalence} between $\mathcal{C}$ and $\mathcal{D}$, we mean a pair of functors $F:\mathcal{C} \to \mathcal{D}$, $G:\mathcal{D} \to \mathcal{C}$ together with natural isomorphisms $\alpha: 1_\mathcal{C} \to GF$ and $\beta: FG \to 1_\mathcal{D}$.\\
     We write $\mathcal{C} \cong \mathcal{D}$ if $\mathcal{C}$ and $\mathcal{D}$ are equivalent.\\
     We say a property $P$ of categories is a \emph{categorical property} if whenever $\mathcal{C}$ has $P$ and $\mathcal{C} \cong \mathcal{D}$, then $\mathcal{D}$ has $P$.\\
     For example, being a groupoid or a preorder are categorical properties, but being a group or a partial order are not.
 \end{defi}
 
 \begin{eg} (1.10)\\
-    (a) The category $\mathbf{Part}$ is equivalent to the category $\mathbf{Set}_*$ of pointed sets (and basepoint, pre(orders?) as functions):\\
+    (a) The category $\mathbf{Part}$ is equivalent to the category $\mathbf{Set}_*$ of pointed sets (and basepoint preserving functions):\\
     $\bullet$ We define $F:\mathbf{Set}_* \to \mathbf{Part}$ by $F(A,a) = A \setminus \{a\}$, and if $f:(A,a) \to (B,b)$, then $Ff(x) = f(x)$ if $f(x) \neq b$, and undefined otherwise;\\
     $\bullet$ and $G: \mathbf{Part} \to \mathbf{Set}_*$ by $G(A) = A^+ = A \cup \{A\}$, and if $f:A \to B$ is a partial function, we define $Gf:A^+ \to B^+$ by $Gf(x) = f(x)$ if $x \in A$ and $f(x)$ defined, and equals $B$ otherwise.\\
     The composite $FG$ is the identity on $\mathbf{Part}$, but $GF$ is not the identity. However, there is an isomoprhism $(A,a) \to ((A \setminus \{a\})^+,A \setminus\{a\})$ sending $a$ to $A \setminus \{a\}$ and everything else to itself and this is natural.\\
