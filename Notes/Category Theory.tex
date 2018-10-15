@@ -202,4 +202,76 @@ Warning: almost any assertion about skeletons is equivalent to axiom of choice (
 \section{The Yoneda Lemma}
 Let's not start on the content this lecture. Why are we talking about one single lemma in a chapter? Well it's not really a lemma. There's some story behind this, check here for an \href{https://www.mta.ca/~cat-dist/catlist/1999/yoneda}{obituary} which probably has the story that lecture was talking about in class.
 
+---Lecture 5---
+\begin{defi} (2.1)\\
+    We say a category $\mathcal{C}$ is \emph{locally small} if, for any two objects $A,B$, the morphisms $A\to B$ in $\mathcal{C}$ form a set $\mathcal{C}(A,B)$.\\
+    If we fix $A$ and let $B$ vary, the assignment $B \to \mathcal{C}(A,B)$ becomes a functor $\mathcal{C}(A,-):\mathcal{C} \to \mathbf{Set}$: given $B \xrightarrow{f} C$, $\mathcal{C}(A,f)$ is the mapping $g \to fg$. Similarly, $A \to \mathcal{C}(A,B)$ defines a functor $\mathcal{C}(-,B):C^{op} \to \mathbf{Set}$.
+\end{defi}
+
+\begin{lemma} (2.2)\\
+    (i) Let $\mathcal{C}$ be a locally small category, $A \in \ob \mathcal{C}$ and $F:\mathcal{C} \to \mathbf{Set}$ a functor. Then natural transformations $\mathcal{C}(A,-) \to F$ are in bijection with elements of $FA$;\\
+    (ii) Moreover, this bijection is natural in both $A$ and $F$.
+    \begin{proof}
+        (i) Given $\alpha$:$\mathcal{C}(A,-) \to F$, we define $\Phi(x) = \alpha_A(1_A) \in FA$. Given $x \in FA$, we define $\Psi(x): \mathcal{C}(A,-) \to F$ by $\Psi(x)_B (A \xrightarrow{f} B) = Ff(x) \in FB$.\\
+        $\Psi(x)$ is natural: given $g:B \to C$, we have
+        \begin{equation*}
+            \begin{aligned}
+                \Psi(x)_C \mathcal{C}(A,g) (f) &= \Psi(x)_C (gf) = F(gf)(x),\\
+                (Fg) \Psi(x)_B(f) &= (Fg)(Ff)(x) = F(gf)(x),\\
+                \Phi\Psi(x) &= \Psi(X)_A (1_A) = F(1_A)(x) = x
+            \end{aligned}
+        \end{equation*}
+        Given $\alpha$,
+        \begin{equation*}
+            \begin{aligned}
+                \Psi\Phi(\alpha)_B(f) \Psi(\alpha_A(1_A))_B(f) &= Ff(\alpha_A(1_A))\\
+                &= \alpha_B\mathcal{C}(A,f)(1_A) = \alpha_B(f)
+            \end{aligned}
+        \end{equation*}
+        So $\Psi\Phi(\alpha)=\alpha$.
+    \end{proof}
+\end{lemma}
+
+\begin{coro} (2.3)\\
+    The assignment $A \to \mathcal{C}(A,-)$ defines a full and faithful functor $\mathcal{C}^{op} \to [\mathcal{C},\mathbf{Set}]$.
+    \begin{proof}
+        Put $F = \mathcal{C}(B,-)$ in 2.2(i): we get a bijection between $\mathcal{C}(B,A)$ and morphisms $\mathcal{C}(A,-) \to \mathcal{C}(B,-)$ in $[\mathcal{C},\mathbf{Set}]$. We need to verify this is functorial: but it sends $f:B \to A$ to the natural transformation $g \to gf$. So functoriality follows from associativity.
+    \end{proof}
+\end{coro}
+
+We call this functor (or the functor $\mathcal{C} \to [\mathcal{C}^{op}, \mathbf{Set}]$ sending $A$ to $\mathcal{C}(-,A)$) the \emph{Yoneda embedding} of $\mathcal{C}$, and denote it by $Y$.
+
+Now let's go back to prove 2.2(ii):
+\begin{proof}
+    (ii) Suppose for the moment that $\mathcal{C}$ is small, so that $[\mathcal{C},\mathbf{Set}]$ is locally small. Then we have two functors $\mathcal{C} \times [\mathcal{C},\mathbf{Set}] \to \mathbf{Set}$: one sends $(A,F)$ to $FA$, and the other is the composite: $\mathcal{C} \times [\mathcal{C},\mathbf{Set}] \xrightarrow{Y \times 1} [\mathcal{C},\mathbf{Set}]^{op} \times [\mathcal{C},\mathbf{Set}] \xrightarrow{[\mathcal{C},\mathbf{Set}](-;-)} \mathbf{Set}$.\\
+    2.2(ii) says that these are naturally isomorphic. We can translate this into an elementary statement, making sense even when $\mathcal{C}$ isn't small. Given $A \xrightarrow{f} B$ and $F \xrightarrow{\alpha}G$, the two ways of producing an element of $GB$ from a natural transformation $\beta:\mathcal{C}(A,-) \to F$ give the same result, namely $$\alpha_B(Ff)\beta_A(1_A) = (Gf)\alpha_A\beta_A(1_A)$$ which is equal to $\alpha_B\beta_B(f)$.
+\end{proof}
+
+\begin{defi} (2.4)\\
+    We say a functor $F:\mathcal{C} \to \mathbf{Set}$ is \emph{representable} if it's isomorphic to $\mathcal{C}(A,-)$ for some $A$. By a representation of $F$, we mean a pair $(A,x)$ where $x \in FA$ is such that $\Psi(x)$ is an isomorphism.\\
+    We also call $x$ a \emph{universal element} of $F$.
+\end{defi}
+
+\begin{coro} (2.5)\\
+    If $(A,x)$ and $(B,y)$ are both representations of $F$, then there's a unique isomorphism $f:A \to B$ such that $(Ff)(x) = y$.
+    \begin{proof}
+        Consider the composite $\mathcal{C}(B,-) \xrightarrow{\Psi(y)^{-1}}F \xrightarrow{\Psi(x)} \mathcal{C}(A,-)$. By (2.3) this is of the form $Y(f)$ for a unique isomorphism $f:A \to B$, and the diagram
+
+        \includegraphics[scale=0.5]{image/Cat_01.png}
+
+        commutes iff $(Ff)(x) = y$.
+    \end{proof}
+\end{coro}
+
+\begin{eg} (2.6)\\
+    (a) The forgetful functor $\mathbf{Gp} \to \mathbf{Set}$ is representable by $(\Z,1)$, $\mathbf{Rng} \to \mathbf{Set}$ by $(\Z[X],X])$, and $\mathbf{Top} \to \mathbf{Set}$ by $(\{*\},*)$.\\
+    (b) The functor $P^*: \mathbf{Set}^{op} \to \mathbf{Set}$ is representable by $(\{0,1\},\{\mathbf{1}\})$: this is the bijection between subsets and characteristic functions.\\
+    (c) Let $G$ be a group. The unique (up to isomorphism) representable functor $G(*,-): G \to \mathbf{Set}$ is the \emph{Cayley representation} of $G$, i.e. the set $\cup G$ with $G$ acting by left multiplication.\\
+    (d) Let $A$ and $B$ be two objects of a small category $\mathcal{C}$. We have a functor $\mathcal{C}^{op} \to \mathbf{Set}$ sending $C$ to $\mathcal{C}(C,A) \times \mathcal{C}(C,B)$. A representation of this, if it exists, is called a (categorical) \emph{product} of $A$ and $B$, and denoted $(A \times B,(A \times B \xrightarrow{\pi_1} A, A \times B \xrightarrow{\pi_2}_B))$.\\
+    This pair has the property that, for any pair $(C \xrightarrow{f}A,C\xrightarrow{g}B)$, there's a unique $C \xrightarrow{h} A \times B$ with $\pi_1 h = f$ and $\pi_2 h = g$.\\
+    Products exist in many categories of interest: in $\mathbf{Set}$, $\mathbf{Gp}$, $\mathbf{Rng}$, $\mathbf{Top}$,..., they are \emph{just} cartesian products, in posets they are binary meets (??).\\
+    Dually, we have the notion of \emph{coproduct} $(A+B,A \xrightarrow{\mu_1} A + B, B \xrightarrow{\mu_2}A+B)$.\\
+    These also exist in many categories of interest.
+\end{eg}
+
 \end{document}
