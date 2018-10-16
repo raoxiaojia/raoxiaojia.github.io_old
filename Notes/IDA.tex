@@ -294,4 +294,60 @@ $\bullet$ (2) $B(K,\delta) = \{x \in \Z_N: |1-\omega^{rx}| \leq \delta \forall r
     \end{proof}
 \end{lemma}
 
+\begin{defi}
+    Let $A,b$ be subsets of Abelian groups and let $\phi:A \to B$. Then $\phi$ is a \emph{Freiman homomorphism of order $k$} if 
+    \begin{equation*}
+        \begin{aligned}
+            a_1+...+a_k=a_{k+1}+...+a_{2k} \implies \phi(a_1)+...+\phi(a_k) = \phi(a_{k+1})+...+\phi(a_{2k})
+        \end{aligned}
+    \end{equation*}
+    If $k=2$, we call this just a \emph{Freiman homomorphism}. In that case, the condition is equivalent to $a-b=c-d \implies \phi(a)-\phi(b)=\phi(c)-\phi(d)$.\\
+    If $\phi$ has an inverse which is also a F-homomorphism of order $k$, then $\phi$ is a F-\emph{isomorphism} of order $k$.
+\end{defi}
+
+\begin{lemma} (9)\\
+    Assume $0 \not \in K$, and $N$ is prime. If $\delta < 1/4$, then $B(K,\delta)$ (arc) is Freiman isomorphic to the intersection in $\R^{|K|}$ of $[-\delta N, \delta N]^{|K|}$ with some lattice $\Lambda$.
+    \begin{proof}
+        Let $K = \{r_1,...,r_k\}$, and let $\Lambda = N\Z^k + \{(r_1 x,...,r_kx):x \in \Z\}$. Write $\mathbf{r}$ for $(r_1,...,r_k)$. Claim that $B(K,\delta) \cong \Lambda \cap [-\delta N, \delta N]^k$.\\
+        Define a map $\phi:B(K,\delta) \to \Lambda \cap [-\delta N, \delta N]^k$ by sending $x$ to $(\bra r_1 x\ket, ...,\bra r_k x\ket)$ where $\bra u\ket$ means the least-modulus residue $u$ mod $N$.\\
+        If $x+y = z+w$, then $\mathbf{r} x +\mathbf{r} y = \mathbf{r}z+\mathbf{r}w$ in $\Z_N^k$. But for each $i$, $\bra r_ix\ket+\bra r_iy\ket-\bra r_iz\ket-\bra r_iw\ket \in [-4\delta N, 4\delta N]$. Since $\delta< 1/4$, that implies that $\bra r_ix\ket +\bra r_iy\ket-\bra r_iz\ket-\bra r_iw\ket =0$. So $\bra\mathbf{r}x\ket+\bra\mathbf{r}y\ket=\bra\mathbf{r}z\ket+\bra\mathbf{r}w\ket$.\\
+        That already implies that $\phi$ is an injection.\\
+        If $\mathbf{r}x + \mathbf{a} N \in [-\delta N,\delta N]^k$, then $r_i x \in [-\delta N,\delta N]$ mod $N$ for each $i$. So $x \in B(K,\delta)$ and $\phi(x) = \mathbf{r}x + \mathbf{a} N$. So $\phi$ is a surjection as well.\\
+        If $\mathbf{r}x+\mathbf{a}N + \mathbf{r}y+\mathbf{b}N = \mathbf{r}z+\mathbf{c}N+\mathbf{r}w+\mathbf{d}N$, then $r_1(x+y) = r_1(z_w)$ mod $N$, so $x+y=z+w$ mod $N$. So the inverse of $\phi$ is also a Freiman homomorphism.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma} (10)\\
+    Let $\Lambda$ be a lattice and $C$ be a symmetric convex body, both in $\R^k$. Then $|\Lambda \cap C| \leq 5^k |\Lambda \cap \frac{C}{2}$|.
+    \begin{proof}
+        let $x_1,...,x_m$ be a maximal subset of $\Lambda \cap C$ such that for all $i \neq j$, $x_j \not\in x_i + \frac{C}{2}$. Then by maximality, the sets $x_i+\frac{C}{2}$ over(are?) all of $\Lambda \cap C$. Also, the sets $x_i+\frac{C}{4}$ are disjoint subsets of $\R^k$, and they are all contained in $C+\frac{C}{4} = \frac{5}{4} C$. So $m \leq \frac{vol(\frac{5}{4}C)}{vol(\frac{1}{4}C)} = 5^k$.
+    \end{proof}
+\end{lemma}
+
+\begin{coro} (11)\\
+    If $N$ is prime, $0 \not \in K$, $|K| = k$, $\delta < 1/4$, then $|B(K,\delta)| \leq 5^k |B(K,\frac{\delta}{2})|$.
+\end{coro}
+
+\newpage
+
+\section{Sumsets and their structure}
+It's to be shown that $|A+A| \leq K|A|$ $\implies$ $|rA-sA| \leq K^{r+s}|A|$ (Ruzsa).
+
+\begin{lemma} (1, Petridis)\\
+    Let $A_0,B$ be finite subsets of an Abelian group such that $|A_0+B| \leq K_0|A_0|$. Then there exist a non-empty subset $A \subset A_0$ and $K \leq K_0$ s.t. $|A+B+C| \leq K|A+C|$ for every finite subset $C$ of the group.
+    \begin{proof}
+        Let $A$ minimize the ratio $\frac{|A+B|}{|A|}$, and let the minimal ratio be $K$.\\
+        Claim: this works. We prove this by induction on $C$.\\
+        If $C =\phi$, then the result holds. Now assume it for $C$ and let $x \not\in C$. Then $A+(C \cup \{x\}) = (A+C) \cup [(A+x) \setminus (A'+x)]$ where $A' = \{a \in A:a+x \in A+C\}$.\\
+        This is a disjoint union, so $|A+(C\cup \{x\})| = |A+C|+|A|-|A'|$, $A+B+(C\cup\{x\}) = (A+B+C) \cup ((A+B+x)\setminus (A'+B+x))$, since if $a+x \in A+C$ then $a+B+x \subset A+B+C$. So
+        \begin{equation*}
+            \begin{aligned}
+                |A+B+(C\cup\{x\})| &\leq |A+B+C|+|A+B|-|A'+B|\\
+                &\leq K|A+C|+K|A|-K|A'|
+            \end{aligned}
+        \end{equation*}
+        by induction and minimality property of $A$.
+    \end{proof}
+\end{lemma}
+
 \end{document}
