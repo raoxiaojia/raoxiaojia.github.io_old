@@ -21,6 +21,9 @@ asdasd
 
 \newpage
 
+Exercise classes: Sat 3 Nov 11am MR4, Sat 24 Nov 11am MR4, early next term (tba).\\
+Thursday 8 November lecture is moved to Saturday 10 November 11am (still MR4).
+
 ---Lecture 2---
 
 \section{1}
@@ -77,8 +80,7 @@ Then $|per\ket = U(x_0) |R\ket = \sum_{k=0}^{M-1}a_k \omega(x_0,k) |\chi_k\ket$,
 
 ---Lecture 3---
 
-Exercise classes: Sat 3 Nov 11am MR4, Sat 24 Nov 11am MR4, early next term (tba).\\
-Thursday 8 November lecture is moved to Saturday 10 November 11am (still MR4).
+
 
 Recall last time we had $\mathcal{H}_M$: shift operations $U(x_0) |y \ket = |y+x_0\ket$ for $x_0,y \in \Z_M$, which all permute, so have a common eigenbasis (shift invariant states) $\{|\chi_k\ket \}_{k \in \Z_M}$, $U(x_0) | x_k\ket = \omega(x_0,k) |\chi_k\ket$.\\
 Measurement of $|x_0+R \ket = \frac{1}{\sqrt{A}} \sum_{l=0}^{A-1} |x_0 + l_r \ket = U(x_0) |R\ket$ in $|\chi\ket$ basis has output distribution independent of $x_0$, therefore gives information about $r$.
@@ -140,5 +142,68 @@ Introduce the permutation group $\mathcal{P}_n$ of $[n]$. Define $Aut(A)$ to be 
 Associated HSP: Take $G = \mathcal{P}_n$. Let $X$ be set of all labelled graphs on $n$ vertices. Given $A$, consider $f_A: \mathcal{P}_n \to X$ by $f_A(\pi) = \pi(A)$, $A$ with labels permuted by $\pi$. The associated hiiden subroup is $Aut(A) = K$.
 
 Application: if we can sample uniformly from this $K$, then we can solve graph isomorphism problem (GI): two labelled graphs $A,B$ are isomorphic if there is 1-1 map $\pi:[n] \to [n]$ such that for all $i,j \in [n]$, $i,j$ is an edge in $A$ iff $\pi(i),\pi(j)$ is an edge in $B$, i.e. $A$ and $B$ are the same graph but just labelled differently.
+
+---Lecture 4---
+
+Let's come back to the graph isomorphism problem.
+
+Problem: given $A,B$, decide if $A \cong B$ or not. This can be expressed as anon-abelian HSP (on example sheet), no known classical polynomial time algorithm. However it is in NP, but it is not believed to be NP-complete.\\
+Recent result (2017): a quasi-poly time classical algorithm (L.Babai).
+
+Quantum algorithm for finite \emph{abelian} HSP:\\
+Write group $(G,+)$ additively.
+
+Construction of shift invariant states and FT for $G$:\\
+Let's introduce some representation theory for abelian group $G$. Consider mapping $\chi:G \to \C^* = (\C \setminus \{0\}, \cdot)$ satisfying $\chi(g_1+g_2) = \chi(g_1)\chi(g_2)$, i.e. $\chi$ is a group homomorphism. Such $\chi$'s are called \emph{irreducible} representations of $G$.\\
+We have the following properties (without proof), which we'll call Theorem A later when we refer to it:\\
+(i) any value $\chi(g)$ is a $|G|^{th}$ root of unity (so $\chi$: $G \to S^1$ = unit circle in $\C$);\\
+(ii) (Schur's lemma, orthogonality): If $\chi_i$ and $\chi_j$ are representations, then $\sum_{g \in G} \chi_i (g) \bar{\chi}_j(g) =\delta_{ij}|G|$;\\
+(iii) there are always exactly $|G|$ different representations $\chi$ (well, this is a special case of general representation theory).
+
+By (iii), we can label $\chi$'s as $\chi_g$ for $g \in G$. For example, $\chi(g) = 1$ for all $g \in G$ is always an irreducible representation (the trivial representation), labelled $\chi_0$;\\
+Then by orthogonality (ii) for any $\chi \neq \chi_0$ gives $\sum_{g \in G} \chi(g) = 0$.
+
+Shift invariant states: in space $\mathcal{H}_{|G|}$ with basis $\{|g\ket\}_{g \in G}$, introduce \emph{shift operators} $U(k)$ for $k \in G$ defined by $U(k): |g\ket \to |g+k\ket$. Clearly these all commute, so there is simultaneous eigenbasis:\\
+For each $\chi_k$, $k\in G$, consider state $|\chi_k \ket = \frac{1}{\sqrt{|G|}} \sum_{g \in G} \bar{\chi}_k (g)|g\ket$. Then theorem A(ii) implies these form orthonormal basis, and $U(g) |\chi_k\ket = \chi_k(g)|\chi_k\ket$.
+\begin{proof}
+    \begin{equation*}
+        \begin{aligned}
+            U(g)|\chi_k\ket &= \frac{1}{\sqrt{|G|}} \sum_{h \in G} \bar {\chi_k(h)} |h+g\ket\\
+            &\stackrel{h'=h+g}{=} \frac{1}{\sqrt{|G}} \sum_{h' \in G} \bar{\chi_k(h'-g)} |h' \ket
+        \end{aligned}
+    \end{equation*}
+    This implies that 
+    \begin{equation*}
+        \begin{aligned}
+            \chi_k*-g) = (\chi_k(g))^{-1} = \bar{\chi_k(g)},\\
+            \bar{\chi_k(h'-g)} = \bar{\chi_k(h')}\bar{\chi_k(-g)} = \chi_k(h')\chi_k(g)
+        \end{aligned}
+    \end{equation*}
+    So
+    \begin{equation*}
+        \begin{aligned}
+            U(g) | \chi_k \ket = \frac{1}{\sqrt{|G|}} = \sum_{h' \in G} \chi_k(g) \bar{\chi}_k (h') | h' \ket = \chi_k (g) | \chi_k \ket
+        \end{aligned}
+    \end{equation*}
+\end{proof}
+
+So $|\chi_k \ket$'s are common eigenspaces, called \emph{shift-invariant states}.\\
+    Introduce (define) Fourier transform QFT for group $G$ as the unitary that $QFT|\chi_g\ket = |g\ket$ for all $g \in G$.\\
+    In $|g\ket-$basis matrices, $k^{th}$ column of $(QFT^{-1}) = $components of $|\chi_k\ket$, i.e. $\frac{1}{\sqrt{|G|}} \bar{\chi_k}(g) = [QFT^{-1}]_{gk}$.\\
+    So $[QFT]_{kg}^\dagger = \frac{1}{\sqrt{|G|}}\chi_k(g)$, and so $QFT|g\ket = \frac{1}{\sqrt{|G|}} \sum_{k \in G} \chi_k (g) |k\ket$.
+
+\begin{eg}
+    $G=\Z_M$. Check $\chi_a(b) = e^{2\pi iab/M}$, $a,b \in \Z_M$ is a representation.\\
+    Similarly, for $G=\Z_{M_1} \times ... \times \Z_{M_r}$, $(a_1,...,a_r) = g_1, (b_1,...,b_r) = g_2$ where $g_1,g_2 \in G$, $$\chi_{g_1}(g_2) \stackrel{def}{=} e^{2\pi i \left(\frac{a_1b_1}{M_1} + ... + \frac{a_rb_r}{M_r}\right)}$$ is a representation of $G$. And we get $$QFT_G =QFT_{M_1} \otimes ... \otimes QFT_{M_r}$$ on $\mathcal{H}_{|G|} = \mathcal{H}_{M_1} \otimes ... \otimes \mathcal{H}_{M_r}$.\\
+    This is exhaustive, since by classification theorem, every finite abelian group $G$ is isomorphic to a direct product of the form $G \cong \Z_{M_1} \times ... \times \Z_{M_r}$. Furthermore, we can insist that $M_i$ are prime powers $p_i^{s_i}$, where $p_i$ are not necessarily distinct.
+\end{eg}
+
+Quantum algorithm for finite abelian HSP:\\
+Let $f:G \to X$, hidden subgroup $K<G$. We have cosets $K=0+K,g_2+K,...,g_m+K$, where $m=|G|/|K|$. State space as usual, with basis $\{|g\ket, |x\ket \}_{g \in G, x \in X}$.\\
+$\bullet$ make the state $\frac{1}{\sqrt{|G|}} \sum_{g \in G} |g\ket |0\ket$;\\
+$\bullet$ Apply oracle $U_f$, get $\frac{1}{\sqrt{|G|}} \sum_{g \in G} |g\ket |f(g)\ket$;\\
+measure second register to see a value $f(g_0)$.\\
+Then first register gives coset state (remember the function is constant on each coset). $|g_0+K \ket = \frac{1}{\sqrt{|K|}} \sum_{k \in K} |g_0 + K \ket = U(g_0) |K\ket$.\\
+Apply QFT and measure to obtain result $g \in G$.
 
 \end{document}
