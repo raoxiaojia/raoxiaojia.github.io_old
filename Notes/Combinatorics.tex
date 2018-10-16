@@ -155,4 +155,40 @@ Hence $\mathcal{A} = X^{(r)}$ or $\phi$.
 When is equality achieved in LYM? We must have equality in each use of local LYM, so the first $r$ with $\mathcal{A}_r \neq \phi$ must have $\mathcal{A}_r = X^{(r)}$, i.e. $\mathcal{A} = X^{(r)}$.
 
 Hence equality in Sperner's lemma is only achieved when $\mathcal{A} = X^{\lfloor n/2 \rfloor}$ for $n$ even, or also $X^{\lceil n/2 \rceil}$ when $n$ is odd.
+
+Now let's look at another proof to LYM inequality:
+\begin{proof} (2) \\
+    Choose, uniformly at random, a maximal chain $\mathcal{C}$ (i.e. $C_0 \subset C_1 \subset ... \subset C_n$ with $|C_i| =i \forall i$). For a given $r$-set $A$ (which is just one vertex in our graph, if you rememeber what our vertices mean), $\P(A \in \mathcal{C}) = \frac{1}{{n \choose r}}$. So $\P(\mathcal{A}_r \text{ meets } \mathcal{C}) = \frac{|\mathcal{A}_r|}{{n \choose r}}$ (events are disjoint).\\
+    So $\P(\mathcal{A} \text{ meets } \mathcal{C}) = \sum_{r=0}^n \frac{|\mathcal{A}_r}{{n \choose r}}$, but that can be no greater than 1.
+\end{proof}
+
+\begin{rem}
+    Equivalently, we could also do counting: the number of maximal chains is $n!$, and the number containing a given $r$-sets is $r!(n-r)!$. So we get $\sum|\mathcal{A}_r|r!(n-r)! \leq n!$ -- we can rearrange to get LYM as well.
+\end{rem}
+
+\subsection{Shadows}
+For $\mathcal{A} \subset X^{(r)}$, we know $|\partial A| \geq |\mathcal{A}| \frac{r}{n-r+1}$, but equality is rare (only for extreme cases $\phi$ or $X^{(r)}$).\\
+It then comes to our interests how we should choose $\mathcal{A} \subset X^{(r)}$ to minimize $|\partial A|$ for any fixed given $|\mathcal{A}|$, which is in some sense, how \emph{tightly} can we \emph{pack} some $r$-sets.\\
+One trivial observation: if $|\mathcal{A}| = {k \choose r}$, it's believable that we would take $\mathcal{A} = [k]^{(r)}$ which gives $\partial A =[k]^{(r-1)}$.\\
+What if ${k \choose r} < |\mathcal{A}| < {{k+1} \choose r}$? Naturally we expect to take $[k]^{(r)}$ with some others. For example, if $\mathcal{A} \subset X^{(3)}$ with $|\mathcal{A}| = {7 \choose 3} + {4 \choose 2}$, we'd take $\mathcal{A} = [7]^{(3)} \cup \{A \cup \{8\}: A \in [4]^{(2)}\}$. If we play around with this method and look at the $\mathcal{A}$ we choose each time, we note that there seems to be some order in $X^{(r)}$ that, whenever we are given $|\mathcal{A}| = m$, we should just pick the first $m$ $r-$sets in that order.
+
+\subsubsection{Total orderings on $X^{(r)}$}
+\begin{defi}
+Given $A,B \in X^{(r)}$, say $A = a_1...a_r,B=b_1...b_r$ where $a_1<...<a_r$ and same for $b_i$. We say $A<B$ in the \emph{lexicographic} (or \emph{lex}) order, if for some $i$ we have $a_i < b_i$ and $a_j = b_j$ $\forall j < i$. Equivalently, $a_i<b_i$, where $i=\min\{j: a_j \neq b_j\}$ (use small numbers).\\
+Given $A<B$ in the \emph{colexicographic} or \emph{colex} order if, for some $i$ have $a_i<b_i$, and $a_j=b_j$ $\forall j>i$. Equivalently, $a_i < b_i$ where $i = \max\{j:a_j \neq b_j\}$ (avoid large numbers). State it in a cooler way, $A<B$ if $\sum_{i \in A} 2^i < \sum_{i \in B} 2^i$.\\
+(some useless examples)
+\end{defi}
+
+Note: in colex, $[k]^{(r)}$ is an initial segment of $[k+1]^{(r)}$, so we could view colex as an enumeration of $\N^{(r)}$d (but not for lex -- we'll have to know the size of the ground set first before deciding what's coming next)!\\
+Indeed, the colex order is what we need to use for the shadow problem, i.e. if $\mathcal{A} \subset X^{(r)}$, and $\mathcal{C} \subset X^{(r)}$ is the first $|\mathcal{A}|$ $r$-sets in colex, then $|\partial \mathcal{A}| \geq |\partial \mathcal{C}|$ (\href{https://en.wikipedia.org/wiki/Kruskal%E2%80%93Katona_theorem}{Kruskal-Katona theorem}). In particular, $|\mathcal{A}| = {k \choose r} \implies |\partial \mathcal{A}| \geq {k \choose {r-1}}$).
+
+\subsubsection{Compressions}
+Idea: we want to \emph{replace} $\mathcal{A} \subset X^{(r)}$ with some $A' \subset X^{(r)}$, such that\\
+(i) $|\mathcal{A}'| = |\mathcal{A}|$;\\
+(ii) $|\partial \mathcal{A}'| \leq |\partial \mathcal{A}|$;\\
+(iii) $\mathcal{A}'$ \emph{looks more like $\mathcal{C}$} then $\mathcal{A}$ did.
+
+Ideally, we'd compress $\mathcal{A} \to \mathcal{A}' \to \mathcal{A}'' \to ... \to \mathcal{B}$ where either $\mathcal{B} = \mathcal{C}$, or $\mathcal{B}$ is so similar to $\mathcal{C}$ that we can see directly that $|\partial \mathcal{B}| \geq |\partial \mathcal{C}|$.
+
+
 \end{document}
