@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  17 OCT 2018 11:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  17 OCT 2018 14:55
 entering extended mode
 **"./Category Theory.tex"
 ("Category Theory.tex"
@@ -1556,7 +1556,7 @@ LaTeX Warning: No \author given.
  [2] [3]
 \g__tikzsymbols_savebox_F_0 g 0 G_10_Cat_1_box=\box59
  [4] [5] [6] [7] [8] [9] [10]
-<image/Cat_01.png, id=88, 722.7pt x 406.51875pt>
+<image/Cat_01.png, id=89, 722.7pt x 406.51875pt>
 File: image/Cat_01.png Graphic file (type png)
 <use image/Cat_01.png>
 Package pdftex.def Info: image/Cat_01.png  used on input line 260.
@@ -1602,9 +1602,9 @@ sfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Category Theory.pdf" (14 pages, 325931 bytes).
+Output written on "Category Theory.pdf" (14 pages, 326161 bytes).
 PDF statistics:
- 176 PDF objects out of 1000 (max. 8388607)
+ 177 PDF objects out of 1000 (max. 8388607)
  19 named destinations out of 1000 (max. 500000)
  16426 words of extra memory for PDF output out of 17280 (max. 10000000)
 

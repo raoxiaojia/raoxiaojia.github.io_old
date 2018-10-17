@@ -74,7 +74,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \begin{eg} (1.5)\\
     (a) We have \emph{forgetful functors} $U$: $\mathbf{Gp} \to \mathbf{Set}$, $\mathbf{Ring}\to \mathbf{Set}$, $\mathbf{Top} \to \mathbf{Set}$, $\mathbf{Ring} \to \mathbf{AbGp}$ (forget $\times$), $\mathbf{Ring} \to \mathbf{Mon}$ (Category of all monoids) (forget $+$).\\
     (b) Given a set $A$, the free group $FA$ has the property:\\
-    Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $FA \xrightarrow{\bar{f}} G$ extending $f$. Here $F$ is a functor $\mathbf{Set}\to \mathbf{Gp}$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. Functorality follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
+    Given any group $G$ and any function $A \xrightarrow{f} UG$ (?), there's a unique homomorphism $FA \xrightarrow{\bar{f}} G$ extending $f$. Here $F$ is a functor $\mathbf{Set}\to \mathbf{Gp}$: given $A \xrightarrow{f} B$, we define $Ff$ to be the unique homomorphism extending $A \xrightarrow{f} B \leftrightarrow UFB$. \href{https://math.stackexchange.com/questions/1922113/what-exactly-is-functoriality}{Functoriality} follows from uniqueness given $B \xrightarrow{f} C$. $F(gf)$ and $(Fg)(Ff)$ are both homomorphisms extending $A \xrightarrow{f} B \xrightarrow{g} C \rightarrow UFC$.\\
     (c) Given a set $A$, we write $PA$ for the set of all subsets of $A$.\\
     We can make $P$ into a functor $\mathbf{Set} \to \mathbf{Set}$, given $A \xrightarrow{f} B$, we defined $Pf(A') = \{f(a) | a \in A'\}$ for $A' \subseteq A$.\\
     But we also have a functor $P^* : \mathbf{Set} \to \mathbf{Set}^{op}$ defined on objects by $P$, but $P^* f(B') = \{a \in A | f(a) \in B'\}$ for $B' \subseteq B$.\\
@@ -167,7 +167,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
         Lastly, for fullness, given $FA \xrightarrow{g} FB$, define $f$ to be the composite $A \xrightarrow {\alpha_A} GFA \xrightarrow{Gg} GFB \xrightarrow{\alpha_B^{-1}} B$. Then $GFf = \alpha_B f \alpha_A^{-1}$, which by construction is just $Gg$. But $G$ is faithful for the same reason as $f$, so $Ff = g$.
 
         $\Leftarrow$: (need to find suitable $G,\alpha,\beta$ for $F$.) For each $B \in \ob \mathcal{D}$, choose $GB \in \ob \mathcal{C}$ and an isomorphism $\beta_B : FGB \to B$ in $\mathcal{D}$. Given $B \xrightarrow{g} B'$, define $Gg:GB \to GB'$ to be the unique morphism whose image under $F$ is $FGB \xrightarrow{\beta_B} B \xrightarrow{g} B' \xrightarrow{\beta_{B'}^{-1}} FGB'$.\\
-        Uniqueness implies functoriality (check what this means -- think it appeared somewhere before): given $B' \xrightarrow{g'} B''$, $(Gg')(Gg)$ and $G(g'g)$ have the same image under $F$, so they are equal.\\
+        Uniqueness implies functoriality: given $B' \xrightarrow{g'} B''$, $(Gg')(Gg)$ and $G(g'g)$ have the same image under $F$, so they are equal.\\
         By construction, $\beta$ is a natural trnasformation $FG \to 1_\mathcal{D}$.\\
         Given $A \in \ob \mathcal{C}$, define $\alpha_A: A \to GFA$ to be the unique morphism whose image under $F$ is $FA \xrightarrow{\beta_{FA}^{-1}} FGFA$. $\alpha_A$ is an isomorphism, since $\beta_{FA}$ also has a unique pre-image under $F$. And $\alpha$ is a natural transformation, since any naturality square for $\alpha$ (the commutative square when we defined natural transformation. check) is mapped by $F$ to a commutative square, and $F$ is faithful.
     \end{proof}
@@ -273,7 +273,7 @@ Now let's go back to prove 2.2(ii):
     Dually, we have the notion of \emph{coproduct} $(A+B,A \xrightarrow{\mu_1} A + B, B \xrightarrow{\mu_2}A+B)$.\\
     These also exist in many categories of interest.\\
     ---Lecture 6---\\
-    (f) (Did I miss (e)?) Let $A \stackrel[g]{f}{\rightrightarrows} B$ be morphisms in locally small category $\mathcal{C}$. We have a functor $F:\mathcal{C}^{op} \to \mathbf{Set}$ defined by 
+    (f) (Lecturer didn't like (e) so jumped to (f) directly) Let $A \stackrel[g]{f}{\rightrightarrows} B$ be morphisms in locally small category $\mathcal{C}$. We have a functor $F:\mathcal{C}^{op} \to \mathbf{Set}$ defined by 
     \begin{equation*}
         \begin{aligned}
             F(C) = \{h \in \mathcal{C}(C,A) | fh = gh\}
@@ -316,7 +316,7 @@ Now let's go back to prove 2.2(ii):
     Also, $2 = \{0,1\}$ is a coseparator and a codetector in $\mathbf{Set}$, since it represents $P^*: \mathbf{Set}^{op} \to \mathbf{Set}$.\\
     (c) In $\mathbf{Top}$, $1=\{*\}$ is a separator since it represents the forgetful functor $\mathbf{Top} \to \mathbf{Set}$, but not a detector.\\
     In fact, $\mathbf{Top}$ has no detecting \emph{set} of objects (note that this doesn't mean it has no detecting family).\\
-    For any infinite cardinal $\kappa$, let $X$ be a discrete space of cardinality $\kappa$, and $Y$ the same set with \emph{co-$<\kappa$} topology, i.e. $F \subseteq Y$ is closed iff $F=Y$ or $\Card F < \kappa$ (think about, e.g. cocountable topology, this name then makes sense).\\
+    For any infinite cardinal $\kappa$, let $X$ be a discrete space of cardinality $\kappa$, and $Y$ the same set with \emph{co-$<\kappa$} topology, i.e. $F \subseteq Y$ is closed iff $F=Y$ or $\Card F < \kappa$ (think about, e.g. cocountable topology, then this name makes sense).\\
     The identity $X \to Y$ is continuous, but not a homeomorphism (topologically). So if $\{G_i|i \in I\}$ is any set of spaces, taking $\kappa > \Card G_i$ for all $i$ yields an example to show that the set is not detecting.\\
     (d) (some Algebraic Topology stuff) Let $\mathcal{C}$ be the category of pointed connected $CW$-complexes and homotopy classes of (basepoint-preserving) continuous mappings.\\
     JHC Whitehead proved that $X \xrightarrow{f} Y$ in this category induces isomorphisms $\pi_n(X) \to \pi_n(Y)$ for all $n$, then it's an isomorphism in $\mathcal{C}$.\\
