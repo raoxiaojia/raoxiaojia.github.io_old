@@ -2,7 +2,7 @@
 
 \input{temp}
 
-\setcounter{section}{-1}
+\setcounter{section}{0}
 
 \begin{document}
 
@@ -16,9 +16,7 @@
 
 \newpage
 
-\section{Reviews}
-
-\subsection{Langauges and structures}
+\section{Langauges and structures}
 
 \begin{defi} (1.1)
 A language $L$ consists of:\\
@@ -83,7 +81,9 @@ As anyone could expect, a surjective embedding $\mathcal{M} \to \mathcal{N}$ is 
 (1.6) Exercise. Let $G_1,G_2$ be groups, regarded as $L_{gp}$-structures.\\
 Check that $G_1 \cong G_2$ in the usual algebra sense, if and only if there is an isomprhism $\alpha:G_1\ \to G_2$ in the sense of above definition 1.5.
 
-\subsection{Terms, formulae, and their interpretations}
+\newpage
+
+\section{Terms, formulae, and their interpretations}
 In addition to the symbols of $L$, we also have:\\
 (i) infinitely many variables, $\{x_i\}_{i \in I}$;\\
 (ii) logical connectives, $\wedge,\neg$ (also express $\vee, \to, \leftrightarrow$);\\
@@ -227,7 +227,7 @@ $\bullet$ $\forall x_i \phi$ for $\neg \exists x_i (\neg \phi)$.
 
 \begin{prop} (2.9)\\
     Let $\mathcal{M}$ and $\mathcal{N}$ be $L$-structures, and let $\alpha: \mathcal{M} \to \mathcal{N}$ be an embedding.\\
-    Let $\phi(\bar{x})$ be an atomic(!) formula, and $\bar{a} \in M^k$ (from now on, when we write a tuple like $\bar{a}$, we will assume that it has the correct length without explicitly stating that), then
+    Let $\phi(\bar{x})$ be an atomic(!) formula, and $\bar{a} \in M^{|\bar{x}|}$, here $|\bar{x}|$ means the length of the tuple $\bar{x}$ (from now on, when we write a tuple like $\bar{a}$, we will assume that it has the correct length without explicitly stating that), then
     \begin{equation*}
         \begin{aligned}
             \mathcal{M} \vDash \phi(\bar{a}) \iff \mathcal{N} \vDash \phi(\alpha(\bar{a}))
@@ -236,5 +236,123 @@ $\bullet$ $\forall x_i \phi$ for $\neg \exists x_i (\neg \phi)$.
 \end{prop}
 
 Question: if $\phi$ is an $L$-formula, not necessarily atomic, does (2.9) still hold? (the answer is no!)
+
+---Lecture 3---
+
+Lecturer wants to reiterate that her email address is $silvia.barbina@open.ac.uk$.\\
+Just bring the work along. Unfortunately lecturer doesn't have an office here, so no pigeonhole.\\
+Check website for example sheet 1!
+
+Additional assumption: assume the set of variables in a language are indexed by a linearly ordered set.\\
+In definition 2.7 we defined what it means for $\mathcal{M} \vDash\phi(\bar{a})$, in particular we defined: if $\phi \equiv \neg \chi$, then $\mathcal{M} \vDash \phi(\bar{a})$ iff $\mathcal{M} \not\vDash \chi(\bar{a})$. Here by $\mathcal{M} \vDash \phi(\bar{a})$ we mean $\mathcal{M} \vDash \neg\chi(\bar{a})$, and $\chi(\bar{a})$ is \emph{shorter} than $\phi(\bar{a})$, so this definition by induction works.
+
+Now let's go back to a sketch proof of (2.9).
+\begin{proof}
+    There are two cases:\\
+    $\bullet$ $\phi(\bar{x})$ is of the form $t_1(\bar{x}) = t_2(\bar{x})$ where $t_1,t_2$ are terms. Use Fact (2.3). (exercise on example sheet)\\
+    $\bullet$ $\phi(\bar{x})$ is of the form $R(t_1(\bar{x}),...,t_{n_R} (\bar{x}))$. Then $\mathcal{M} \vDash R(t_1(\bar{a}),...,t_{n_R}(\bar{a}))$ if and only if ... (lecturer says work this out by yourself. Basically the induction step).
+\end{proof}
+
+\begin{prop} (2.10)\\
+    Exercise: show that prop (2.9) holds if $\phi(\bar{x})$ is a formula without quantifiers (a quantifier-free formula).\\
+    (I guess that also suggests when does it not hold for general formulas -- see below).
+\end{prop}
+
+\begin{eg} (2.11, Do embeddings preserve all formulas? No.)\\
+Let $\mathcal{Z} = (\Z,<)$ an $L_{lo}-$structure, $\mathcal{Q}=(\Q,<)$ also an $L_{lo}-$structure. Then
+\begin{equation*}
+    \begin{aligned}
+        \alpha: &\Z \to \Q\\
+        &n \to n
+    \end{aligned}
+\end{equation*}
+is an embedding (check). But:
+\begin{equation*}
+    \begin{aligned}
+        \phi(x_1,x_2) \equiv \exists x_3(x_1<x_3 \wedge x_3 < x_2)
+    \end{aligned}
+\end{equation*}
+Now $\mathcal{Q} \vDash \phi(1,2)$ but $\mathcal{Z} \not\vDash \phi(1,2)$.
+\end{eg}
+
+Fact (2.12) (From now on we'll stop saying that $\mathcal{M},\mathcal{N}$ are $L$-structures etc to save time) Let $\alpha: \mathcal{M} \to \mathcal{N}$ be an isomorphism. Then if $\phi(\bar{x})$ is an $L$-formula, and $\bar{a} \in M^{|\bar{x}|}$, then
+\begin{equation*}
+    \begin{aligned}
+        \mathcal{M} \vDash \phi(\bar{a}) \iff \mathcal{N} \vDash \phi(\alpha(\bar{a}))
+    \end{aligned}
+\end{equation*}
+The proof is left as an exercise (another one).
+
+\newpage
+
+\section{Theories and Elementarity}
+
+This is where the core materials begin.
+
+Throughout this chapter, let $L$ be a language, $\mathcal{M},\mathcal{N}$ be $L$-structures.
+
+\begin{defi} (3.1)\\
+    An \emph{$\mathcal{L}$-theory} $T$ is a set of $L$-sentences.\\
+    $\mathcal{M}$ is a \emph{model} of $T$ if $\mathcal{M} \vDash \sigma$ for all $\sigma \in T$. We write $\mathcal{M} \vDash T$.\\
+    The class of all the models of $T$ is written $Mod(T)$.\\
+    The \emph{theory of $\mathcal{M}$} is the set 
+    \begin{equation*}
+        \begin{aligned}
+            Th(\mathcal{M}) = \{\sigma:\sigma \text{ is an } L-\text{structure and } \mathcal{M} \vDash \sigma\}
+        \end{aligned}
+    \end{equation*}
+\end{defi}
+
+\begin{eg} (3.2)\\
+    Let $T_{gp}$ be the set of $L_{gp}$-sentences:\\
+    (i) $\forall x_1x_2x_3 (x_1 \cdot (x_2 \cdot x_3) = (x_1\cdot x_2) \cdot x_3)$;\\
+    (ii) $\forall x_1 (x_1 \cdot 1 = 1 \cdot x_1 = x_1)$;\\
+    (iii) $\forall x_1 (x_1 \cdot x_1^{-1} = x_1^{-1} \cdot x_1 = 1)$.\\
+    Clearly, for a group $G$, $G \vDash T_{gp}$ (as they are just the group axioms). However, for a specific group $G$, clearly the theory of it, $Th(G)$ is lartger than $T_{gp}$.
+\end{eg}
+
+\begin{defi} (3.3)\\
+    $\mathcal{M}$ and $\mathcal{N}$ are \emph{elementarily equivalent} if $Th(\mathcal{M}) = Th(\mathcal{N})$.\\
+    We write $\mathcal{M} \equiv \mathcal{N}$.\\
+    Clearly, if $\mathcal{M} \simeq \mathcal{N}$ ($\simeq$ means isomorphism), then $\mathcal{M} \equiv \mathcal{N}$.\\
+    But if $\mathcal{M}$ and $\mathcal{N}$ are not isomorphic, establishing whether $\mathcal{M} \equiv \mathcal{N}$ can be highly non-trivial!\\
+    We'll see $(\mathcal{Q},<) \equiv (\mathcal{R},<)$ as $L_{lo}-$structures(!).
+\end{defi}
+
+\begin{defi} (3.4)\\
+    (i) An embedding $\beta: \mathcal{M} \to \mathcal{N}$ is \emph{elementary} if for all formulas $\phi(\bar{x})$ and $\bar{a} \in M^{|\bar{x}|}$,
+    \begin{equation*}
+        \begin{aligned}
+            \mathcal{M} \vDash \phi(\bar{a}) \iff \mathcal{N} \vDash \phi(\beta(\bar{a}))
+        \end{aligned}
+    \end{equation*}
+    (ii) If $M \subseteq N$, and $id:\mathcal{N} \to \mathcal{N}$ is an embedding, then $\mathcal{M}$ is a \emph{substructure} of $\mathcal{N}$.\\
+    (iii) If $M \subseteq N$ and $id:\mathcal{M} \to \mathcal{N}$ is an \emph{elementary embedding} (just accept it without thinking of what it actually means in reality), then $\mathcal{M}$ is said to be an \emph{elementary substructure} of $\mathcal{N}$, written as $\mathcal{M} \preccurlyeq \mathcal{N}$.
+\end{defi}
+
+\begin{eg} (3.5)\\
+    Let $\mathcal{M} = [0,1] \subseteq \R$, an $L_{lo}-$structure where $<$ is the usual order;\\
+    Let $\mathcal{N} = [0,2] \subseteq \R$, also an $L_{lo}-$structure with the same $<$.\\
+    Then $\mathcal{M} \simeq \mathcal{N}$ as $L_{lo}-$structures. So $\mathcal{M} \equiv \mathcal{N}$ (since they are isomoprhic).\\
+    Also, $\mathcal{M} \subseteq \mathcal{N}$ (read as \emph{is a substructure of}), since the ordering $<$ coincides on $\mathcal{M}$ and $\mathcal{N}$. \emph{However}, $\mathcal{M} \not\preccurlyeq \mathcal{N}$, since if we pick the formula $\phi(x) \equiv \exists y (x<y)$, then $\mathcal{N} \vDash \phi(1)$, but $\mathcal{M} \not\vDash \phi(1)$.
+\end{eg}
+
+\begin{defi} (3.6)\\
+    Let $\mathcal{M}$ be an $L$-structure, $A \subseteq M$, then
+    \begin{equation*}
+        \begin{aligned}
+            L(A) = L \cup \{c_a:a \in A\}
+        \end{aligned}
+    \end{equation*}
+    (where $c_a$ are constant symbols). An interpretation of $\mathcal{M}$ as an $L$-structure extends to an interpretation of $\mathcal{M}$ as an $L(A)$-structure in the obvious way, i.e. $c_a^M = a$.\\
+    In this context, the elements of $A$ are called \emph{parameters}.\\
+    If $\mathcal{M}$ and $\mathcal{N}$ are two structures, and $A \subseteq M \cap N$, then
+    \begin{equation*}
+        \begin{aligned}
+            \mathcal{M} \equiv_A \mathcal{N}
+        \end{aligned}
+    \end{equation*}
+    where we mean $\mathcal{M},\mathcal{N}$ satisfy exactly the same $L(A)$ structures.
+\end{defi}
 
 \end{document}
