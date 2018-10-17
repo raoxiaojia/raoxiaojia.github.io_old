@@ -269,9 +269,90 @@ Now let's go back to prove 2.2(ii):
     (c) Let $G$ be a group. The unique (up to isomorphism) representable functor $G(*,-): G \to \mathbf{Set}$ is the \emph{Cayley representation} of $G$, i.e. the set $\cup G$ with $G$ acting by left multiplication.\\
     (d) Let $A$ and $B$ be two objects of a small category $\mathcal{C}$. We have a functor $\mathcal{C}^{op} \to \mathbf{Set}$ sending $C$ to $\mathcal{C}(C,A) \times \mathcal{C}(C,B)$. A representation of this, if it exists, is called a (categorical) \emph{product} of $A$ and $B$, and denoted $(A \times B,(A \times B \xrightarrow{\pi_1} A, A \times B \xrightarrow{\pi_2}_B))$.\\
     This pair has the property that, for any pair $(C \xrightarrow{f}A,C\xrightarrow{g}B)$, there's a unique $C \xrightarrow{h} A \times B$ with $\pi_1 h = f$ and $\pi_2 h = g$.\\
-    Products exist in many categories of interest: in $\mathbf{Set}$, $\mathbf{Gp}$, $\mathbf{Rng}$, $\mathbf{Top}$,..., they are \emph{just} cartesian products, in posets they are binary meets (??).\\
+    Products exist in many categories of interest: in $\mathbf{Set}$, $\mathbf{Gp}$, $\mathbf{Rng}$, $\mathbf{Top}$,..., they are \emph{just} cartesian products, in posets they are binary meets (see sheet 1 Q1).\\
     Dually, we have the notion of \emph{coproduct} $(A+B,A \xrightarrow{\mu_1} A + B, B \xrightarrow{\mu_2}A+B)$.\\
-    These also exist in many categories of interest.
+    These also exist in many categories of interest.\\
+    ---Lecture 6---\\
+    (f) (Did I miss (e)?) Let $A \stackrel[g]{f}{\rightrightarrows} B$ be morphisms in locally small category $\mathcal{C}$. We have a functor $F:\mathcal{C}^{op} \to \mathbf{Set}$ defined by 
+    \begin{equation*}
+        \begin{aligned}
+            F(C) = \{h \in \mathcal{C}(C,A) | fh = gh\}
+        \end{aligned}
+    \end{equation*}
+    A representation (see (2.4)) of $F$, if it exists, is called an \emph{equalizer} of $(f,g)$: It consists of an object $E$ and a morphism $E \xrightarrow{e} A$ s.t. $fe=ge$, and every $h$ with $fh=gh$ factors uniquely (see proof of 2.9(i) which gives an insight of what this means) through $e$.\\
+    In $\mathbf{Set}$, we take $E = \{x \in A | f(x) = g(x) \}$ and $e=$inclusion. Similar constructions work in $\mathbf{Gp},\mathbf{Rng},\mathbf{Top}$,...\\
+    Dually, we have the notion of \emph{coequalizer}.
 \end{eg}
+
+\begin{rem} (2.7)\\
+    If $e$ occurs as an equalizer, then it is a monomorphism, since any $h$ factors through it in at most one way. We say a monomorphism is \emph{regular} if it occurs as an equalizer.\\
+    Split monomorphisms are regular (cf sheet1 Q6(i)).\\
+    Note that regular epic monomorphisms are isomorphisms: if the equalizer $e$ of $(f,g)$ is epic, then $f=g$, so $e \cong 1_{\cod e}$.
+\end{rem}
+
+\begin{defi} (2.8)\\
+    Let $\mathcal{C}$ be a category, $\mathcal{G}$ a class of objects of $\mathcal{C}$.\\
+    (a) We say $\mathcal{G}$ is a \emph{separating family} for $\mathcal{C}$, if given $A \stackrel[g]{f}{\rightrightarrows} B$ such that $fh=gh$ for all $G \xrightarrow{h} A$ with $G \in \mathcal{G}$, then $f=g$.\\
+    (i.e. the functors $\mathcal{C}(G,-),G \in \mathcal{G}$, are collectively faithful.)\\
+    (b) We say $\mathcal{G}$ is a \emph{detecting family} if, given $A \xrightarrow{f} B$ such that every $G \xrightarrow{h} B$ with $G \in \mathcal{G}$ factors uniquely through $f$, then $f$ is an isomorphism.\\
+    If $\mathcal{G} =\{G\}$, we call $G$ a \emph{separator/detector}.
+\end{defi}
+
+\begin{lemma} (2.9)\\
+    (i) If $\mathcal{C}$ is a balanced category, then any saparating fmamily is detecting.\\
+    (ii) If $\mathcal{C}$ has equalizers, then any detecting family is separating.
+    \begin{proof}
+        (i) Suppose $\mathcal{G}$ is separating and $A \xrightarrow{f} B$ satisfies the condition of 2.8(b). If $B \stackrel[h]{g}{\rightrightarrows} C$ satisfy $gf=hf$, then $gx=hx$ for every $G \xrightarrow{x} B$, so $g=h$, i.e. $f$ is epic.\\
+        Similarly if $D \stackrel[l]{k}{\rightrightarrows} A$ satisfy $fk=fl$, then $ky=ly$ for any $G \xrightarrow{y} D$, since both are factorizations of $fky$ through $f$. So $k=l$, i.e. $f$ is monic.\\
+        But $\mathcal{C}$ is balanced. So $f$ is an isomorphism.\\
+        (ii) Suppose $\mathcal{G}$ is detecting and $A \stackrel[g]{f}{\rightrightarrows} B$ satisfies the condition of 2.8(a). Then the equalizer $E \xrightarrow{e} A$ of $(f,g)$ is isomorphism, so $f=g$.
+    \end{proof}
+\end{lemma}
+
+\begin{eg} (2.10)\\
+    (a) In $[\mathcal{C},\mathbf{Set}]$, the family $\{\mathcal{C}(A,-)|A \in \ob\mathcal{C}\}$ is both separating and detecting (just a restatement of Yoneda Lemma).\\
+    (b) In $\mathbf{Set}$. $1=\{*\}$ (any one element set) is both a separator and a detector, since it represents the identity functor $\mathbf{Set} \to \mathbf{Set}$.\\
+    Similarly, $\Z$ is both in $\mathbf{Gp}$, since it represents the forgetful functor $\mathbf{Gp} \to \mathbf{Set}$.\\
+    Also, $2 = \{0,1\}$ is a coseparator and a codetector in $\mathbf{Set}$, since it represents $P^*: \mathbf{Set}^{op} \to \mathbf{Set}$.\\
+    (c) In $\mathbf{Top}$, $1=\{*\}$ is a separator since it represents the forgetful functor $\mathbf{Top} \to \mathbf{Set}$, but not a detector.\\
+    In fact, $\mathbf{Top}$ has no detecting \emph{set} of objects (note that this doesn't mean it has no detecting family).\\
+    For any infinite cardinal $\kappa$, let $X$ be a discrete space of cardinality $\kappa$, and $Y$ the same set with \emph{co-$<\kappa$} topology, i.e. $F \subseteq Y$ is closed iff $F=Y$ or $\Card F < \kappa$ (think about, e.g. cocountable topology, this name then makes sense).\\
+    The identity $X \to Y$ is continuous, but not a homeomorphism (topologically). So if $\{G_i|i \in I\}$ is any set of spaces, taking $\kappa > \Card G_i$ for all $i$ yields an example to show that the set is not detecting.\\
+    (d) (some Algebraic Topology stuff) Let $\mathcal{C}$ be the category of pointed connected $CW$-complexes and homotopy classes of (basepoint-preserving) continuous mappings.\\
+    JHC Whitehead proved that $X \xrightarrow{f} Y$ in this category induces isomorphisms $\pi_n(X) \to \pi_n(Y)$ for all $n$, then it's an isomorphism in $\mathcal{C}$.\\
+    This says that $\{S^n | n \geq 1\}$ is a detecting set of $\mathcal{C}$.\\
+    But PJ Freyd showed there is no faithful functor $\mathcal{C} \to \mathbf{Set}$, so no separating \emph{set}: if $\{ G_i | i \in I\}$ were separating, then $x \to \coprod \mathcal{C}(G_i,x)$ (disjoint unions?) would be faithful.\\
+    Note that any functor of the form $\mathcal{C}(A,-)$ preserves monomorphisms, but they don't normally preserves epimorphisms.
+\end{eg}
+
+\begin{defi} (2.11)\\
+    We say an object $P$ is \emph{Projective} if, given 
+    \begin{equation*}
+        \begin{aligned}
+            & & P\\
+            & & \downarrow f\\
+            A& \stackrel{e}{\twoheadrightarrow}& B
+        \end{aligned}
+    \end{equation*}
+    (recall the two head right arrow means epimorphisms) there exists $P \xrightarrow{g} A$ with $eg = f$.\\
+    (If $\mathcal{C}$ is locally small, this says $\mathcal{C}(P,-)$ preserves epimorphisms).\\
+    Dually, an \emph{injective} object of $\mathcal{C}$ is a projective object of $\mathcal{C}^{op}$.\\
+    Given a class $\mathcal{E}$ of epimorphisms, we say $P$ is $\mathcal{E}$-\emph{projective} if it satisfies the condition for all $e \in \mathcal{E}$.
+\end{defi}
+
+\begin{lemma} (2.12)\\
+    Representable functors are (pointwise)(?) projective in $[\mathcal{C},\mathbf{Set}]$.
+    \begin{proof}
+        Suppose given 
+        \begin{equation*}
+            \begin{aligned}
+                & & \mathcal{C}(A,-)\\
+                & & \downarrow \beta\\
+                F& \stackrel{\alpha}{\twoheadrightarrow}& G
+            \end{aligned}
+        \end{equation*}
+        where $\alpha$ is pointwise surjective. By Yoneda, $\beta$ corresponds to some $y \in GA$, and we can find $x \in FA$ with $\alpha_A(x) = y$. Now if $\gamma:\mathcal{C}(A,-) \to F$ corresponds to $x$, then naturality of the Yoneda bijection yields $\alpha\gamma =\beta$.
+    \end{proof}
+\end{lemma}
 
 \end{document}
