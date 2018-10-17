@@ -31,7 +31,7 @@ $L=\{\{\cdot,-1\},\{1\}\}$ where $\cdot$ is a binary function, $-1$ is a unary f
 $L_{lo} = \{<\}$, where $<$ is a binary relation (linear order).
 \end{eg}
 
-\begin{defi} (1.2)
+\begin{defi} (1.2)\\
 Given a language $L$, say, an $L$-structure consists of:\\
 (i) a set $M$, the \emph{domain};\\
 (ii) for each $f \in \mathcal{F}$, a function $f^M:M^{n_f} \to M$;\\
@@ -292,13 +292,13 @@ This is where the core materials begin.
 Throughout this chapter, let $L$ be a language, $\mathcal{M},\mathcal{N}$ be $L$-structures.
 
 \begin{defi} (3.1)\\
-    An \emph{$\mathcal{L}$-theory} $T$ is a set of $L$-sentences.\\
+    An \emph{$L$-theory} $T$ is a set of $L$-sentences.\\
     $\mathcal{M}$ is a \emph{model} of $T$ if $\mathcal{M} \vDash \sigma$ for all $\sigma \in T$. We write $\mathcal{M} \vDash T$.\\
     The class of all the models of $T$ is written $Mod(T)$.\\
     The \emph{theory of $\mathcal{M}$} is the set 
     \begin{equation*}
         \begin{aligned}
-            Th(\mathcal{M}) = \{\sigma:\sigma \text{ is an } L-\text{structure and } \mathcal{M} \vDash \sigma\}
+            Th(\mathcal{M}) = \{\sigma:\sigma \text{ is an } L-\text{sentence and } \mathcal{M} \vDash \sigma\}
         \end{aligned}
     \end{equation*}
 \end{defi}
