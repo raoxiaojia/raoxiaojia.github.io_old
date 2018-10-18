@@ -350,4 +350,67 @@ It's to be shown that $|A+A| \leq K|A|$ $\implies$ $|rA-sA| \leq K^{r+s}|A|$ (Ru
     \end{proof}
 \end{lemma}
 
+---Lecture 5---
+
+\begin{coro} (2)\\
+    If $A,B$ are finite subsets of an abelian group, and $|A+B| \leq K^r|A|$, then there exists $A'\subset A$, $A' \neq \phi$ such that $|A'+rB| \leq K|A'|$ for every positive integer $r$.
+    \begin{proof}
+        Choose $A'$ as we choose $A$ in lemma 1. Then $|A'+rB| = |A'+B+(r-1)B| \leq K|A'+(r-1)B|$.\\
+        And $|A'+B| \leq K|A'|$, so we are done by induction.
+    \end{proof}
+\end{coro}
+
+\begin{coro} (3)\\
+    If $|A+A| \leq K|A|$ or $|A-A| \leq K|A|$, then $|rA| \leq K^r|A|$.
+    \begin{proof}
+        Set $B=A$ or $-A$ in corollary 2. (think about this)
+    \end{proof}
+\end{coro}
+
+\begin{lemma} (4, Ruzsa triangle inequality)\\
+    Let $A,B,C$ be finite subsets of an abliean group. Then $|A||B-C| \leq |A-B||A-C|$.
+    \begin{proof}
+        Define a map $\phi: A\times(B-C) \to (A-B) \times (A-C)$. Given $(a,x)$ with $a\in A, x \in B-C$, choose, \emph{somehow}, $b(x) \in B$ and $c(x) \in C$ s.t. $b(x) - c(x) = x$, and set $\phi(a,x) = (a-b(x),a-c(x))$. Note that $(a-c(x)) - (a-b(x)) = b(x)-c(x) = x$ (!). And then, having worked out $x$, we know $b(x)$, and $a=a-b(x)+b(x)$, so $a$ is determined too. So $\phi$ is an injection.
+    \end{proof}
+\end{lemma}
+
+The proof was easy, but why is this called the triangle inequality? We can rewrite it as 
+\begin{equation*}
+    \begin{aligned}
+        \frac{|B-C|}{|B|^{1/2}|C|^{1/2}} \leq \frac{|A-B|}{|A|^{1/2}|B|^{1/2}} \cdot \frac{|A-C|}{|A|^{1/2}|C|^{1/2}}
+    \end{aligned}
+\end{equation*}
+So if we define the \emph{Ruzsa distance} $d(A,B) = \frac{|A-B|}{|A|^{1/2}|B|^{1/2}}$, then the inequality says $d(B,C) \leq d(A,B) d(A,C)$.
+
+\begin{coro} (5)\\
+    If $|A+B| \leq K|A|$, then $|rB-sB| \leq K^{r+s}|A|$ for all $r,s$.
+    \begin{proof}
+        Pick $a'$ as before. Then by corollary 2 with $B$ replaced by $-B$, $|A'-rB| \leq K^r|A'|$ and $|A'-sB| \leq K^s|A'|$.\\
+        Therefore, by Rusza triangle inequality (lemma 4), $|A'||rB-sB| \leq K^{r+s}|A'|^2$, so $|rB-sB| \leq K^{r+s} |A|$.
+    \end{proof}
+\end{coro}
+
+One finally corollary:
+\begin{coro} (6, Plunnecke's theorem)\\
+    If $|A+A| \leq K|A|$ or $|A-A| \leq K|A$, then $|rA-sA| \leq K^{r+s} |A|$.
+    \begin{proof}
+        Just apply corollary 5 with $B=-A$ or $B=A$.
+    \end{proof}
+\end{coro}
+
+\begin{lemma} (7, Ruzsa's embedding lemma)\\
+    Let $A \subset \Z$ be finite and suppose that $|kA-kA| \leq C|A|$. Then there exists a prime $p \leq 4C|A|$ and a subset $A'\subset A$ of size at least $|A|/k$ such that $A'$ is Freiman isomorphic of order $k$ to a subset of $\Z_p$.
+    \begin{proof}
+        Consider the following composition of maps $\Z \xrightarrow{\text{ reduce mod }q}\Z_q \xrightarrow{\times \text{ by random non-zero } r} \Z_q \xrightarrow{\text{least non-negative residue}} \Z \xrightarrow{\text{reduce mod }p} \Z_p$, where $q$ is a prime bigger than $diam A$ and $p$ is a prime $\in (2C|A|,4C|A|]$ by Bertrand's postulate.\\
+        Let $|phi$ be the composition. THe first, second and fourth parts are group homomorphisms, and thus Freiman homomorphisms of all order. Also, the third map is a Freiman homomorphism of order $k$ if you restrict to a subinterval of $[0,q-1]$ of lemgth $\leq q/k$. To see this, write $\bra u \ket$ for least non-negative residue. Then if $I$ has length $\leq q/k$ (and therefore $<q/k$) and $u_{1},...,u_{2k} \in I$, then if $i_1+...+u_k-u_{k+1}-...-k_{2k} = 0$, then $\bra u_1 \ket + ... + \bra u_k \ket - \bra u_{k+1} \ket - ... - \bra u_{2k} \ket \equiv 0 \pmod q$, and also has modulus less than $q$. So it is zero.\\
+        By the pigeonhole principle, for any $r$ we can find $I$ of length $\leq q/k$ such that $A' = \{a \in A: ra \in I\}$ has size at least $|A| / k$.\\
+        Then $\phi|_{A'}$ is a Freiman homomorphism of order $k$. It's now remain to prove that $\phi$ is an isomorphism to its image, i.e. we must show that if $a_1+...+a_k-a_{k+1}-...-a_{2k} \neq 0 (a_i \in A)$, then
+        $$ \bra ra_1\ket + ... + \bra ra_k\ket - \bra ra_{k+1} \ket - ... - \bra ra_{2k} \ket \not\equiv 0 \pmod p$$
+        But if the $a_i$ are chosen sucth that the $ra_i$ all belong to the same interval of length $\leq q/k$, then 
+        $$|\bra ra_1\ket + ... + \bra ra_k\ket - \bra ra_{k+1} \ket - ... - \bra ra_k\ket| < q$$
+        and is congruent to $r(a_1+...+a_k-a_{k+1}-...-a_{2k}) \pmod q$.\\
+        So all that can go wrong is if $r(a_1+...+a_k-a_{k+1} - ... - a_{2k}$ is $xp$ for some $x \neq 0$, with $|x| < q/p$. The number of values to avoid is at most $2q/p$, so for each $a_1+...+a_k-a_{k+1} - ... - a_{2k}$, the probability of going wrong if $r$ is chosen randomly is at most $2/p$. So since $|kA-kA| \leq C|A|$, the probability of going wrong is at most $\frac{2}{p} C|A|$. Since $p > 2C|A|$, there exists $r$ s.t. we get an Freiman isomorphism of order $k$.
+    \end{proof}
+\end{lemma}
+
 \end{document}
