@@ -156,6 +156,8 @@ When is equality achieved in LYM? We must have equality in each use of local LYM
 
 Hence equality in Sperner's lemma is only achieved when $\mathcal{A} = X^{\lfloor n/2 \rfloor}$ for $n$ even, or also $X^{\lceil n/2 \rceil}$ when $n$ is odd.
 
+---Lecture 3---
+
 Now let's look at another proof to LYM inequality:
 \begin{proof} (2) \\
     Choose, uniformly at random, a maximal chain $\mathcal{C}$ (i.e. $C_0 \subset C_1 \subset ... \subset C_n$ with $|C_i| =i \forall i$). For a given $r$-set $A$ (which is just one vertex in our graph, if you rememeber what our vertices mean), $\P(A \in \mathcal{C}) = \frac{1}{{n \choose r}}$. So $\P(\mathcal{A}_r \text{ meets } \mathcal{C}) = \frac{|\mathcal{A}_r|}{{n \choose r}}$ (events are disjoint).\\
@@ -190,5 +192,81 @@ Idea: we want to \emph{replace} $\mathcal{A} \subset X^{(r)}$ with some $A' \sub
 
 Ideally, we'd compress $\mathcal{A} \to \mathcal{A}' \to \mathcal{A}'' \to ... \to \mathcal{B}$ where either $\mathcal{B} = \mathcal{C}$, or $\mathcal{B}$ is so similar to $\mathcal{C}$ that we can see directly that $|\partial \mathcal{B}| \geq |\partial \mathcal{C}|$.
 
+---Lecture 4---
+
+We'll follow two general ideas to obtain our desired result:
+
+$\bullet$ \emph{Colex prefers 1 to 2} inspires:\\
+For $1 \leq i < j \leq n$, the $ij-$compression $C_{ij}$ is defined by: for $A \subset X$,
+\begin{equation*}
+    \begin{aligned}
+        C_{ij}(A) = \left\{
+            \begin{array}{ll}
+                A-j \cup i & \text{ if } j \in A, i \not\in A\\
+                A & \text{ otherwise}
+            \end{array}
+        \right.
+    \end{aligned}
+\end{equation*}
+and for $\mathcal{A} \subset \P(X)$, $C_{ij}(\mathcal{A}) = \{C_{ij}(A):A \in \mathcal{A}\} \cup \{A \in \mathcal{A}:C_{ij}(A) \in \mathcal{A}\}$.\\
+Note that $|C_{ij}(\mathcal{A})| = |\mathcal{A}|$.
+
+We say $\mathcal{A}$ is \emph{$ij$-compressed} if $C_{ij}(\mathcal{A}) = \mathcal{A}$.
+
+\begin{prop} (4)\\
+    Let $\mathcal{A} \subset X^{(r)}$, $1 \leq i < j \leq n$. Then $|\partial C_{ij}(\mathcal{A}) | \leq |\partial \mathcal{A}|$.\\
+    (Shadow of a compressed set is no larger than that of the original.)
+    \begin{proof}
+        Write $\mathcal{A'}$ for $C_{ij}(\mathcal{A})$. We'll show that if $B \in \partial \mathcal{A}' - \partial A$, then $i \in B, j \not \in B$, and $B \cup j - i \in \partial \mathcal{A} - \partial{A'}$, then we are done since for each new elememt that we probably introduced, there's one element removed.\\
+        We have $B \cup x \in \mathcal{A}'$ for some $x \not\in B$, and $B \cup x \not\in \mathcal{A}$ (as $B \not\in \partial \mathcal{A}$).\\
+        Hence $i \in B \cup x$, $j \not\in B \cup x$, and $(B \cup x ) \cup j - i \in \mathcal{A}$. Note that $i \neq x$, since otherwise $B \cup j \in \mathcal{A}$.\\
+        Certainly $B \cup j - i \in \partial \mathcal{A}$. Now we claim that $B \cup j - i \not\in \partial \mathcal{A}'$: suppose $(B \cup j - i) \cup y \in \mathcal{A}'$. We cannot have $y=i$ for else $B \cup j \in \mathcal{A}'$, then $B\cup j$ have to be in $\mathcal{A}$ by definition of compression; but that's not allowed.\\
+        Thus $j \in (B\cup j - i) \cup y$, $i \not\in (B \cup j - i) \cup y$. So $(B \cup j - i) \cup y \in \mathcal{A}$, so $B \cup y \in \mathcal{A}$ by definition of compression; but that's similarly a contraditction.
+    \end{proof}
+\end{prop}
+
+\begin{rem}
+    We've actually shown that $\partial C_{ij}(\mathcal{A}) \subset C_{ij}(\partial \mathcal{A})$.
+\end{rem}
+
+We say $\mathcal{A} \subset X^{(r)}$ is \emph{left-compressed} if $C_{ij}(\mathcal{A}) = \mathcal{A}$ $\forall i < j$.
+
+\begin{prop}
+    Let $\mathcal{A} \subset X^{(r)}$. Then there is a left-compressed $\mathcal{B} \in X^{(r)}$ with $|\mathcal{B}| = |\mathcal{A}|$, and $|\partial \mathcal{B}| \leq |\partial \mathcal{A}|$.
+    \begin{proof}
+        Among all $\mathcal{B} \subset X^{(r)}$ with $|\mathcal{B}| = |\mathcal{A}|$ and $|\partial \mathcal{B}| \leq |\partial \mathcal{A}|$, choose one with $\sum_{A \in \mathcal{B}} \sum_{x \in A} x$ minimal.\\
+        Then $\mathcal{B}$ is left-compressed, else we can compress it to reduce the above sum.
+    \end{proof}
+\end{prop}
+
+Note: we can also apply $C_{ij}$ repeatedly -- this must terminate (by counting on the above sum). In fact, we can apply each $C_{ij}$ at most once if we choose a sensible order.
+
+Certainly, initial segments of colex are left-compressed. However the converse can be very false (consider $\{123,124,125,126,127\}$).
+
+$\bullet$ \emph{Colex prefers 23 to 14} inspires:\\
+For $U,V \subset X$ with $|U| = |V|$, and $U \cap V = \phi$, the $UV$-compression $C_{UV}$ is defined by: for $A \subset X$,
+\begin{equation*}
+    \begin{aligned}
+        C_{UV}(A) = \left\{
+            \begin{array}{ll}
+                A\cup U - V & \text{ if } V \subset A, U \cap A = \phi\\
+                A & \text{ otherwise}
+            \end{array}
+        \right.
+    \end{aligned}
+\end{equation*}
+and for $\mathcal{A} \subset X^{(r)}$, $C_{UV}(A) = \{C_{UV}(A):A \in \mathcal{A}\} \cup \{A \in \mathcal{A}: C_{UV}(A)\in \mathcal{A}\}$.
+
+Note that also the two sets have equal size. We say $\mathcal{A}$ is \emph{$UV$-compressed} if $C_{UV}(\mathcal{A}) = \mathcal{A}$.
+
+Sadly $C_{UV}$ doesn't necessarily decrease the shadow.
+
+However, it turns out to be fine if we have done the smaller ones.
+
+\begin{prop}
+    Let $\mathcal{A} \subset X^{(r)}$ and $U,V \subset X$ with $|U|=|V|$ and $U \cap V = \phi$. Suppose that\\
+    (*) $\forall x \in U, \exists y \in V$ s.t. $\mathcal{A}$ is $(U-x,V-y)$-compressed.\\
+    Then $|\partial C_{UV}(\mathcal{A})|\leq |\partial \mathcal{A}|$.
+\end{prop}
 
 \end{document}
