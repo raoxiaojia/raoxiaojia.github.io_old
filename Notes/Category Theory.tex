@@ -127,6 +127,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
     \end{proof}
     commutes. But as $\alpha$ is natural, 
     $$(Ff)\beta_A = \beta_B \alpha_B (Ff)\beta_A = \beta_B (Gf) \alpha_A \beta_A = \beta_B (Gf)$$
+    So $\beta$ is a natural transformation as well.
 \end{lemma}
 
 \begin{defi} (1.9)\\
@@ -154,8 +155,8 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \begin{defi} (1.11)\\
     Let $\mathcal{C} \xrightarrow{F} \mathcal{D}$ be a functor.\\
     (a) We say $F$ is \emph{faithful} if, given $f,f' \in \mor \mathcal{C}$ with $\dom f = \dom f'$, $\cod f = \cod f'$, and $Ff = Ff'$, then $f=f'$ (injectivity on morphisms. The name comes more from representation theory);\\
-    (b) We say $F$ is \emph{full} if, given $FA \xrightarrow{g} FB$ in $\mathcal{D}$, there exists $A \xrightarrow{f} B$ in $\mathcal{C}$ with $Ff = g$. (this is something like surjective, but see below);\\
-    (c) We say  $F$ is \emph{essentially surjective} if, forevery $B \in \ob \mathcal{D}$, there exists $A \in \ob \mathcal{C}$ and isomorphism $FA \to B$ in $\mathcal{D}$.\\
+    (b) We say $F$ is \emph{full} if, given $FA \xrightarrow{g} FB$ in $\mathcal{D}$, there exists $A \xrightarrow{f} B$ in $\mathcal{C}$ with $Ff = g$. (this is something like surjectivivity on morphisms, but see below);\\
+    (c) We say  $F$ is \emph{essentially surjective} if, for every $B \in \ob \mathcal{D}$, there exists $A \in \ob \mathcal{C}$ and isomorphism $FA \to B$ in $\mathcal{D}$.\\
     We say a subcategory $\mathcal{C}' \subseteq \mathcal{C}$ is full if the inclusion $\mathcal{C}' \to \mathcal{C}$ is a full functor. For example, $\mathbf{Gp}$ is a full subcategory of $\mathbf{Mon}$ (the category of all monoids), but $\mathbf{Mon}$ is not a full subcategory of the category $\mathbf{SGp}$ of semigroups.
 \end{defi}
 
