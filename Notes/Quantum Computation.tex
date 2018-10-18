@@ -206,4 +206,66 @@ measure second register to see a value $f(g_0)$.\\
 Then first register gives coset state (remember the function is constant on each coset). $|g_0+K \ket = \frac{1}{\sqrt{|K|}} \sum_{k \in K} |g_0 + K \ket = U(g_0) |K\ket$.\\
 Apply QFT and measure to obtain result $g \in G$.
 
+---Lecture 5---
+
+Last time we disccused how to solve the abelian HSP problem. Now how does the output $g$ related to $K$?\\
+$\bullet$ the output distribution of $g$ is independent of $g_0$, so same as that obtained from $QFT|K \ket$ (i.e. $g_0 = 0$) since:\\
+write $|K \ket $ in shift invariant basis $|\chi_g \ket$'s, $|K\ket = \sum_{g} a_g | \chi_g \ket$, then $|g_0+K \ket = U(g_0) |K\ket = \sum a_g \underbrace{\chi_g(g_0) | \chi_g \ket}_{ = U(g_0) | \chi_g \ket}$; but $QFT|\chi_g \ket = |g\ket$, so $Prob(g) = |a_g \chi_g (g_0)|^2 = |a_g|^2$ as $\chi_g(g_0)| = 1$.
+
+Thus look at $QFT|K \ket$. Recall $QFT|k \ket = \frac{1}{\sqrt{|G|}} \sum_{l \in G} \chi_l(k) |l\ket$, so $QFT |K\ket = \frac{1}{\sqrt{|G|}} \frac{1}{\sqrt{|K|}} \sum_{l \in G} \left[\sum_{k \in K} \chi_l(k) \right] |l\ket$.\\
+The terms in $[...]$ involves irreducible representation $\chi_l$ of $G$ restricted to subgroup $K < G$, which is an irreducible representation of $K$. Hence 
+\begin{equation*}
+    \begin{aligned}
+        \sum_{k \in K} \chi_l(k) = \left\{
+            \begin{array}{ll}
+                |K| & \chi_l \text{ restricts to trivial irreducible representation on } K\\
+                0 & \text{ otherwise}
+            \end{array}
+        \right.
+    \end{aligned}
+\end{equation*}
+and
+$$QFT|K\ket = \sqrt{\frac{|K|}{|G|}} \sum_{l \in G \text{ with }\chi_l\text{ reducing to trivial irreducible representation of }K} |l\ket$$
+So measurement gives a uniformly random choice of $l$ such that $\chi_l(k) = 1$  for all $k \in K$.\\
+e.g. If $K$ has generators $k_1,k_2,...,k_M$, $M=O(\log |K|) = O(\log |G|)$, then output has $\chi_l(k_i) = 1$ for all $i$.
+
+It can be shown that if $O(\log|G|)$ such $l$'s are chosen uniformly at random, then with probability $>2/3$ they suffice to determine a generating set for $K$ via equations $\chi_l(k) = 1$.\\
+(see example sheet 1 for particular examples).
+
+\begin{eg}
+    If $G = \Z_{M_1} \times ... \times \Z_{M_q}$.\\
+    We had for $l=(l_1,...,l_q)$, $g \in (b_1,...,b_q) \in G$,
+    $$\chi_l(g) = e^{2\pi i (\frac{l_1k_1}{M_1} + ... + \frac{l_qb_q}{M_q})}$$
+    So for $k=(k_1,...,k_q)$, $\chi_l(k) = 1$ becomes
+    $$\frac{l_1k_1}{M_1} + ... + \frac{l_qk_q}{M_q} \equiv 0 \pmod 1$$
+    (i.e. is an integer), a homogeneous linear equation on $K$, and $O(\log |K|)$ is independent such that equations determine $K$ as null space.
+\end{eg}
+
+Some remarks on HSP for non-abelian groups $G$ (write multiplicatively):\\
+As before, can easily generate coset states 
+$$ |g_0 K \ket = \frac{1}{\sqrt{|K|}} \sum_{k \in K} |g_0 K\ket$$
+where $g_0$'s are randomly chosen. But problems arise with QFT construction, because now there's no basis of shift-invariant states exists! (this is since $U(g_0)$'s don't commute anymore, so no common full eigenbasis).
+
+Construction of non-abelian Fourier Transform (some more representation theory):\\
+$\bullet$ $d$-dimensional representation of $G$ is a group homomorphism $\chi: G \to U(d)$ where $U(d)$ is the space of $d \times d$ unitary matrices acting on $\C^d$, by $\chi(g_1 g_2) \chi(g_1)\chi(g_2)$. (see part II representation theory for the general form)\\
+$\bullet$ $\chi$ is irreducible representation if no subspace of $\C^d$ is left invariant under $\chi(g)$ for all $g \in G$ (i.e. cannot simultaneously block diagonalise all $\chi(g)$'s by a basis change).\\
+$\bullet$ a complete set of irreducible representation: set $\chi_1,...,\chi_m$ such that any irreducible representation is unitarily equivalent to one of them (equivalence $\chi \to \chi' = V\chi V^T$).
+
+\begin{thm} (non-abelian version of theorem A -- properties of representations)\\
+    If $d_1,...,d_m$ are dimensions of a complete set of irreducible representations $\chi_1,...,\chi_m$, then:\\
+    (i) $d_1^2+...+d_m^2 = |G|$;\\
+    (ii) Write $\chi_i(g)_{jk}$ for the $(j,k)^{th}$ entry of matrix $\chi_i(g)$, where $j,k = 1,...,d_i$. Then (Schur orthogonality):
+    $$\sum_g \chi_i(g)_{jk} \bar{\chi}_{i'}(g)_{j'k'} = |G| \delta_{ii'} \delta{jj'}\delta{kk'}$$
+    Hence states
+    $$|\chi_{i,jk} \ket \equiv \frac{1}{\sqrt{|G|}} \sum_{g \in G} \bar{\chi}_i(g)_{jk} |g\ket$$
+    is an orthonomal basis.
+\end{thm}
+
+$\bullet$ QFT on $G$ \emph{defined} to be the unitary that rotates $\{|\chi_{ijk}\ket\}$ basis into standard basis $\{|g\ket\}$. However, $|\chi_{ijk}\ket$ are \emph{not} shift invariant for all $U(g_0)$'s, and consequently measurement of coset state $|g_0 K\ket$ in $|\chi \ket$-basis gives an output distribution \emph{not} independent of $g_0$.
+
+However, \emph{partial} shift invariance survives: Consider the incomplete measurement $M_{rep}$ on $|g_0 K\ket$ that distinguishes only the irreducible representations (i.e. $i$ values) and not all $(i,j,k)$'s.\\
+i.e. with measurement outcome $i$ associated to $d_i^2$-dimensional orthogonal subspaces spanned by $\{|\chi_{(i),jk}\ket\}_{j,k = 1,...,d_i}$.\\
+Then $\chi_i(g_1,g_2) = \chi_i(g_1) \chi_i(g_2)$ implies output distribution of $i$ values is independent of $g_0$, giving direct, albeit imcomplete, information about $K$.\\
+E.g. conjugate subgroups $K$ and $ = g_0 K g_0^{-1}$ for some $g_0 \in G$ give \emph{same} output distribution.
+
 \end{document}
