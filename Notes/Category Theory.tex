@@ -192,7 +192,7 @@ Warning: almost any assertion about skeletons is equivalent to axiom of choice (
 \end{defi}
 
 \begin{eg} (1.15)\\
-    (a) As usual we consider $\mathbf{Set}$ first. In $\mathbf{Set}$, monomorphisms correspond to injections ($\Leftarrow$ is easy (ok); for $\Rightarrow$, take $C = 1 = \{*\}$), and epimorphsims correspond to surjections ($\Leftarrow$ is easy; for $\Rightarrow$, use morphisms $B \rightrightarrows 2 = \{0,1\}$). So $\mathbf{Set}$ is balanced.\\
+    (a) As usual we consider $\mathbf{Set}$ first. In $\mathbf{Set}$, monomorphisms correspond to injections ($\Leftarrow$ is easy (ok); for $\Rightarrow$, take $C \rightrightarrows 1 = \{*\}$), and epimorphsims correspond to surjections ($\Leftarrow$ is easy; for $\Rightarrow$, use morphisms $B \rightrightarrows 2 = \{0,1\}$). So $\mathbf{Set}$ is balanced.\\
     (b) In $\mathbf{Gp}$, monomorphisms again correspond to injections (for $\Rightarrow$ use homomorphisms $\Z \to A$); epimorphisms again correspond to surjections ($\Rightarrow$ use free products with amalgamation -- this is a non-trivial fact about groups, read more if free). So $\mathbf{Gp}$ is also balanced.\\
     (c) In $\mathbf{Rng}$ (obvious notation), monomorphisms correspond to injections (proof is much like for $\mathbf{Gp}$). However, not all epimorphisms are surjective. For example the inclusion $\Z \to \Q$ is an epimorphism, since if $\Q \stackrel[g]{f}{\rightrightarrows} R$ agree on all integers, they agree everywhere. So $\mathbf{Rng}$ is not balanced.\\
     (d) One final example is $\mathbf{Top}$. Again, monomorphisms are injections and epimorphisms are surjections (and vice versa): proof is similar to $\mathbf{Set}$ (check). However, $\mathbf{Top}$ is not balanced since a continuous bijection need not have continuous inverse.
@@ -399,7 +399,7 @@ Lecture is happy to mark any question we hand in!
     Let $G:\mathcal{D} \to \mathcal{C}$ be a functor. Then specifying a left adjoint for $G$ is equivalent to specifying an initial object of $(A \downarrow G)$ for each $A \in \ob \mathcal{C}$, where $(A \downarrow G)$ has objects pairs $(B,f)$ with $A \xrightarrow{f} GB$, and morphisms $(B,f) \to (B',f')$ are morphisms $B \xrightarrow{g} B'$ such that 
 
     \includegraphics[scale=0.4]{image/Cat_02.png}
-    
+
     commutes.
     \begin{proof}
         Suppose given $(F \dashv G)$. Consider the morphism $\eta_A:A \to GFA$ correspond to $FA \xrightarrow{\eta} FA$. Then $(FA,\eta_A)$ is an object of $(A \downarrow G)$. Moreover, given $g:FA \to B$ and $f:A \to GB$, the diagram 
