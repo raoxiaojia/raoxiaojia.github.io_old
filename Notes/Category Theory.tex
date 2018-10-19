@@ -397,13 +397,17 @@ Lecture is happy to mark any question we hand in!
 \begin{thm} (3.3)\\
     (sorry I forgot to charge the other laptop today, the diagrams don't look very nice)\\
     Let $G:\mathcal{D} \to \mathcal{C}$ be a functor. Then specifying a left adjoint for $G$ is equivalent to specifying an initial object of $(A \downarrow G)$ for each $A \in \ob \mathcal{C}$, where $(A \downarrow G)$ has objects pairs $(B,f)$ with $A \xrightarrow{f} GB$, and morphisms $(B,f) \to (B',f')$ are morphisms $B \xrightarrow{g} B'$ such that 
-    \includegraphics[scale=0.5]{image/Cat_02.png}
+    \includegraphics[scale=0.4]{image/Cat_02.png}
     commutes.
     \begin{proof}
         Suppose given $(F \dashv G)$. Consider the morphism $\eta_A:A \to GFA$ correspond to $FA \xrightarrow{\eta} FA$. Then $(FA,\eta_A)$ is an object of $(A \downarrow G)$. Moreover, given $g:FA \to B$ and $f:A \to GB$, the diagram 
-        \includegraphics[scale=0.5]{image/Cat_03.png}
+
+        \includegraphics[scale=0.4]{image/Cat_03.png}
+
         commutes iff
-        \includegraphics[scale=0.5]{image/Cat_04.png}
+
+        \includegraphics[scale=0.4]{image/Cat_04.png}
+
         commutes, i.e. $g=\hat{f}$.\\
         So $(FA,\eta_A)$ is initial in $(A \downarrow G)$.\\
         Conversely, suppose given an initial object $(FA,\eta_A)$ for each $(A \downarrow G)$. Given $A \xrightarrow{f} A'$, we define $Ff : FA \to FA'$ to be the unique morphism making 
