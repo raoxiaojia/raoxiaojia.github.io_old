@@ -355,4 +355,70 @@ Throughout this chapter, let $L$ be a language, $\mathcal{M},\mathcal{N}$ be $L$
     where we mean $\mathcal{M},\mathcal{N}$ satisfy exactly the same $L(A)$ structures.
 \end{defi}
 
+---Lecture 4---
+
+Reminder: we have a lecture next Monday (22nd Oct)!
+
+\begin{prop}
+    It turns out that, $\mathcal{M} \preccurlyeq \mathcal{N} \iff \mathcal{M} \equiv_M \mathcal{N}$ (where $M$ is the domain of $\mathcal{M}$).
+\end{prop}
+
+\begin{lemma} (3.8, Tarski-Vaught test)\\
+    Let $\mathcal{N}$ be an $L$-structure, let $A \subseteq N$. The follwing are equivalent:\\
+    (i) $A$ is the domain of a structure $\mathcal{M}$ s.t. $\mathcal{M} \preccurlyeq \mathcal{N}$;\\
+    (ii) if $\phi(x) \in L(A)$ (with an abuse of notations $\phi(x,c_{a_1},...,c_{a_n}) = \phi(x,a_1,...,a_n)$), if $\mathcal{N} \vDash \exists x \phi(x)$, then $\mathcal{N} \vDash \phi(b)$ for some $b \in A$.
+    \begin{proof}
+        (i) $\implies$ (ii): Suppose $\mathcal{N} \vDash \exists x \phi(x)$. Then by elementarity, $\mathcal{M} \vDash \exists x \phi(x)$, and so $\mathcal{M} \vDash \phi(b)$ for $b \in \mathcal{M}$. So (again by elementarity), $\mathcal{N} \vDash \phi(b)$.\\
+        (ii) $\implies$ (i): This is the harder direction. First we prove that $A$ is the domain of a substructure $\mathcal{M} \subseteq \mathcal{N}$.\\
+        By Sheet 1 Q4, it suffices to check:\\
+        (a) For each constant $c$, $c^N \in A$;\\
+        (b) For each function symbol $f$, $f^N(\bar{a}) \in A$ (for all $\bar{a} \in A^{n_R}$);\\
+        For (a), use property (ii) with $\exists x (x=c)$.\\
+        For (b), use property (ii) with the formula $\exists x ((\bar{a}) = x)$.\\
+        So we now have $\mathcal{M} \subseteq \mathcal{N}$, and domain of $\mathcal{M}$ is $A$. But we actually want to prove that $\mathcal{M} \preccurlyeq \mathcal{N}$. Now let $\chi(\bar{x})$ be an $L$-formula.\\
+        We want to show that for $\bar{a} \in A^{|\bar{x}|}$ $\mathcal{M} \vDash \chi(\bar{a}) \iff \mathcal{N} \vDash \chi(\bar{a})$ (*).\\
+        By induction on the complexity of $\chi(\bar{x})$:\\
+        $\bullet$ if $\chi(\bar{x})$ is atomic, (*) follows from $\mathcal{M} \subseteq \mathcal{N}$ (since $\mathcal{M}$ is a substructure!);\\
+        $\bullet$ if $\chi(\bar{x})$ is $\neg \psi(\bar{x})$ or $\chi(\bar{x})$ is $\psi(\bar{x})\wedge \xi(\bar{x})$, it's a straightforward induction;\\
+        $\bullet$ (interesting case) if $\chi(\bar{x}) = \exists y \psi(\bar{x},y)$ where $\psi(\bar{x},y)$ is an $L$-formula, suppose that $\mathcal{M} \vDash \chi(\bar{a})$, then $\mathcal{M} \vDash \exists y \psi(\bar{a},y)$, hence $\mathcal{M} \vDash \psi(\bar{a},b)$ for some $b \in A = \dom (\mathcal{M})$ (this is the definition of truth).\\
+        But then $\mathcal{N} \vDash \psi(\bar{a},b)$ by inductive hypothesis, so $\mathcal{N} \vDash \chi(\bar{a})$.\\
+        Now let $\mathcal{N} \vDash \chi(\bar{a})$, i.e. $\mathcal{N} \vDash \exists y \psi (\bar{a},y)$ (we find a \emph{witness} for it). By property (ii), $\mathcal{N} \vDash \psi(\bar{a},b)$ for some $b \in A = \dom(\mathcal{M})$.\\
+        Again by inductive hypothesis, we have $\mathcal{M} \vDash \psi(\bar{a},b)$, and so in particular, $\mathcal{M} \vDash \chi(\bar{a})$ as it has got a witness there.
+    \end{proof}
+\end{lemma}
+
+\begin{rem} (3.9)\\
+    Even more assumptions: let's assume that the set of variables is countably infinite. Then:\\
+    $\bullet$ the cardinality of the set of $L$-formulas is $|L|+\omega$ (what is $|L|$ here -- size of symbol/fuction/constant sets?), where we abuse another notation that we use $\omega$ as cardinals (rather than ordinals) (note that the formulas are just strings of finite length);\\
+    $\bullet$ if $A$ is a set of parameters in some structure, the cardinality of the set $L(A)$ is $|A|+|L|+\omega$.
+\end{rem}
+
+\begin{defi} (3.10)\\
+    Let $\lambda$ be an ordinal. Then \emph{a chain of length} $\lambda$ of sets is a sequence $\bra M_i : i < \lambda \ket$, where $M_i \subseteq M_j$ for all $i \leq j < \lambda$.\\
+    A chain of $L$-structures is a seequence: $\bra \mathcal{M}_i: i < \lambda \ket$ s.t. $\mathcal{M}_i \subseteq \mathcal{M}_j$ (note that it's substructure here) for $i \leq j < \lambda$.\\
+    The \emph{union} of this chain is the $L$-structure $\mathcal{M}$ defined as follows:\\
+    $\bullet$ the domain is $\bigcup_{i<\lambda} M_i$ (when you think of this, you can always start with the case $\lambda = \omega$);\\
+    $\bullet$ for constants $c$, $c^M = c^{M_i}$ for any $i<\lambda$ (this is well defined, because of the substructure condition above);\\
+    $\bullet$ if $f$ is a function symbol, $\bar{a} \in M^{|n_f|}$ (why the mod sign here), $f^M \bar{a} = f^{M_i} \bar{a}$ where $i$ is s.t. $\bar{a} \in M_i^{|n_f|}$;\\
+    $\bullet$ if $R$ is a relation synbol, then $R^M = \bigcup_{i < \lambda} R^{M_i}$.
+\end{defi}
+
+\begin{thm} (3.11, Downward L$\ddot{o}$wenheim-Skolem theorem)\\
+    (Recall that in part II Logic and Set Theory we had the countable version of this)\\
+    Let $\mathcal{N}$ be an $L$-structure, and $|\mathcal{N}| \geq |L| + \omega$. Let $A \subseteq N$. Then for every cardinal $\lambda$ s.t. $|L|+|A|+\omega \leq \lambda \leq |\mathcal{N}$, there is $\mathcal{M} \preccurlyeq \mathcal{N}$ s.t.\\
+    (i) $A \subseteq M$;\\
+    (ii) $|\mathcal{M}| = \lambda$.\\
+    (It helps to think about the case $|A| = \omega$ and $|N|$ is uncountable.)\\
+    A quick example how this could be useful (we'll go very sloppy here): think of $(\C,+,\cdot,-,\cdot^{-1},0,1)$ as a field. Consider $\Q \subseteq \C$ (both as subset and substructure). Note that algebraic closeness is a property of $\C$. By downward L$\ddot{o}$ wenheim-Skolem, there is a substructure in $\mathcal{C}$ that contains $\Q$ that is also algebraically closed (apparently, the set of algebraic numbers).
+    \begin{proof}
+        We build a chain $\bra A_i : i < \lambda \ket$, with $A_i \subseteq N$, s.t. $|A_i| = \lambda$.\\
+        (our goal: define an elementary substructure with domain $M=\bigcup_{i < \omega} A_i$).\\
+        Base case: Let $A_0 \subseteq N$ be such that $A \subseteq A_0$ and $|A_0| = \lambda$.\\
+        Successors: At stage $i+1$, assume $A_i$ has been built, with $|A_i| = \lambda$.\\
+        Let $\bra \phi_k(x): k < \lambda \ket$ be an enumeration of those $L(A_i)$-formulas such that $\mathcal{N} \vDash \exists x \phi_k(x)$. Let $a_k$ be such that $\mathcal{N} \vDash \phi_k(a_k)$, and let $A_{i+1} = A_i \cup \{a_k: k < \lambda\}$ (basically, with those witnesses added). Then $|A_{i+1}| = \lambda$ (note that we haven't increased the size).\\
+        Now let $M = \bigcup_{i < \omega} A_i$ (note the subscript range). We use lemma (3.8) to show that $M$ is the domain of $\mathcal{M} \preccurlyeq \mathcal{N}$, and $|M| = \lambda$.
+        We're running out of time, so we'll continue next Monday.
+    \end{proof}
+\end{thm}
+
 \end{document}
