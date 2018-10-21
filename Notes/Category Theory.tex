@@ -205,7 +205,7 @@ Warning: almost any assertion about skeletons is equivalent to axiom of choice (
 ---Lecture 5---
 \begin{defi} (2.1)\\
     We say a category $\mathcal{C}$ is \emph{locally small} if, for any two objects $A,B$, the morphisms $A\to B$ in $\mathcal{C}$ form a set $\mathcal{C}(A,B)$.\\
-    If we fix $A$ and let $B$ vary, the assignment $B \to \mathcal{C}(A,B)$ becomes a functor $\mathcal{C}(A,-):\mathcal{C} \to \mathbf{Set}$: given $B \xrightarrow{f} C$, $\mathcal{C}(A,f)$ is the mapping $g \to fg$. Similarly, $A \to \mathcal{C}(A,B)$ defines a functor $\mathcal{C}(-,B):C^{op} \to \mathbf{Set}$.
+    If we fix $A$ and let $B$ vary, the assignment $B \to \mathcal{C}(A,B)$ becomes a functor $\mathcal{C}(A,-):\mathcal{C} \to \mathbf{Set}$: given $B \xrightarrow{f} C$, $\mathcal{C}(A,f)$ is the mapping $g \to fg$ for all $g \in \mathcal{C}(A,B)$. Similarly, $A \to \mathcal{C}(A,B)$ defines a functor $\mathcal{C}(-,B):\mathcal{C}^{op} \to \mathbf{Set}$ (for $A \xrightarrow{f} C \in \mor \mathcal{C}^{op}$, maps $g \to gf$).
 \end{defi}
 
 \begin{lemma} (2.2)\\
