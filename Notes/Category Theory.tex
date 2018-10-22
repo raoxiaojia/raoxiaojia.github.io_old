@@ -515,13 +515,12 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
         We define $\alpha'=\alpha$ and, in attempt to fix $\beta'$, define $\beta'$ to be the composite
         $$FG \xrightarrow{(FGB)^{-1}} FGFG \xrightarrow{(F\alpha_G)^{-1}} FG \xrightarrow{\beta} 1_{\mathcal{D}}$$
         Note that $FGB = \beta_{FG}$, since
-        \begin{equation*}
-            \begin{aligned}
-                &FGFG\xrightarrow{FGB} &FG\\
-                &\downarrow \beta_{FG} & \downarrow B\\
-                &FG \xrightarrow{\beta} & 1_{\mathcal{D}}
-            \end{aligned}
-        \end{equation*}
+
+        \begin{tikzcd}
+            FGFG \arrow[r,"FGB"] \arrow[d,"\beta_{FG}"] &FG \arrow[d,"B"]\\
+            FG \arrow[r,"\beta"] & 1_{\mathcal{D}}
+        \end{tikzcd}
+
         commutes by naturality of $\beta$, and $\beta$ is monic. So it doesn't matter which way we choose above.\\
         Now $(\beta'_F)(F\alpha')$ is the composite
         \begin{equation*}
