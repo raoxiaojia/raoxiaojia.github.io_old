@@ -4,6 +4,9 @@
 
 \usepackage{tikzsymbols}
 
+\usepackage{tikz-cd}
+
+
 \setcounter{section}{-1}
 
 \begin{document}
@@ -257,7 +260,10 @@ Now let's go back to prove 2.2(ii):
     \begin{proof}
         Consider the composite $\mathcal{C}(B,-) \xrightarrow{\Psi(y)^{-1}}F \xrightarrow{\Psi(x)} \mathcal{C}(A,-)$. By (2.3) this is of the form $Y(f)$ for a unique isomorphism $f:A \to B$, and the diagram
 
-        \includegraphics[scale=0.5]{image/Cat_01.png}
+        \begin{tikzcd}
+            \mathcal{C}(B,-) \arrow[rd,"\Psi(y)"'] \arrow[rr,"Y(f)"] & & \mathcal{C}(A,-) \arrow[dl,"\Psi(x)"]\\
+            &F &
+        \end{tikzcd}
 
         commutes iff $(Ff)(x) = y$.
     \end{proof}
@@ -396,17 +402,26 @@ Lecture is happy to mark any question we hand in!
 \begin{thm} (3.3)\\
     Let $G:\mathcal{D} \to \mathcal{C}$ be a functor. Then specifying a left adjoint for $G$ is equivalent to specifying an initial object of $(A \downarrow G)$ for each $A \in \ob \mathcal{C}$, where $(A \downarrow G)$ has objects pairs $(B,f)$ with $A \xrightarrow{f} GB$, and morphisms $(B,f) \to (B',f')$ are morphisms $B \xrightarrow{g} B'$ such that 
 
-    \includegraphics[scale=0.4]{image/Cat_02.png}
+    \begin{tikzcd}
+        A \arrow[rd,"f'"'] \arrow[rr,"f"] & & GB \arrow[dl,"Gg"]\\
+        &GB' &
+    \end{tikzcd}
 
     commutes.
     \begin{proof}
         Suppose given $(F \dashv G)$. Consider the morphism $\eta_A:A \to GFA$ correspond to $FA \xrightarrow{\eta} FA$. Then $(FA,\eta_A)$ is an object of $(A \downarrow G)$. Moreover, given $g:FA \to B$ and $f:A \to GB$, the diagram 
 
-        \includegraphics[scale=0.4]{image/Cat_03.png}
+        \begin{tikzcd}
+            A \arrow[rd,"f"'] \arrow[rr,"\eta_A"] & & GFA \arrow[dl,"Gg"]\\
+            &GB &
+        \end{tikzcd}
 
         commutes iff
 
-        \includegraphics[scale=0.4]{image/Cat_04.png}
+        \begin{tikzcd}
+            FA \arrow[rd,"\hat{f}"'] \arrow[rr,"1_A"] & & FA \arrow[dl,"g"]\\
+            &B &
+        \end{tikzcd}
 
         commutes, i.e. $g=\hat{f}$.\\
         So $(FA,\eta_A)$ is initial in $(A \downarrow G)$.\\
@@ -464,11 +479,15 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
 \begin{thm} (3.7)\\
     Given functors $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$, specifyig an adjunction $(F \dashv G)$ is equivalent to specifying natural transformations $\eta: 1_{\mathcal{C}} \to GF$, $\varepsilon:FG \to 1_{\mathcal{D}}$ satisfying the commutative diagrams,
 
-    \includegraphics[scale=0.4]{image/Cat_05.png}
-
+    \begin{tikzcd}
+        F \arrow[rd,"1_F"'] \arrow[r,"F_\eta"] & FGF \arrow[d,"\varepsilon_F"]\\
+        &F
+    \end{tikzcd}
     and
-
-    \includegraphics[scale=0.4]{image/Cat_06.png}
+    \begin{tikzcd}
+        G \arrow[rd,"1_G"'] \arrow[r,"\eta_G"] & GFG \arrow[d,"G_\varepsilon"]\\
+        &G
+    \end{tikzcd}
 
     which are sometimes called the \emph{triangular identities} (for obvious reason).
     \begin{proof}
