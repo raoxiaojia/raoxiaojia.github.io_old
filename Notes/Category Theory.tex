@@ -370,7 +370,7 @@ Lecture is happy to mark any question we hand in!
 \end{defi}
 
 \begin{eg} (3.2)\\
-    (a) The free functor $\mathbf{Set} \xrightarrow{F} \mathbf{Gp}$ is left adjoint to the forgetful functor $\mathbf{Gp} \xrightarrow{U} \mathbf{Set}$, since any functoin $f:A \to UB$ extends uniquely to a homomorphisms $\hat{f}: FA \to B$.\\
+    (a) The free functor $\mathbf{Set} \xrightarrow{F} \mathbf{Gp}$ is left adjoint to the forgetful functor $\mathbf{Gp} \xrightarrow{U} \mathbf{Set}$, since any function $f:A \to UB$ extends uniquely to a homomorphisms $\hat{f}: FA \to B$.\\
     Naturality in $B$ is \emph{easy} (lecturer says so), naturality in $A$ follows from the definition of $F$ as a functor.\\
     (b) The forgetful functor $\mathbf{Top} \xrightarrow{U} \mathbf{Set}$ has a left adjoint $D$ which equips any set with the discrete topology, \emph{and} also a right adjoint $I$ which equips a set $A$ with the discrete (lecturer had \emph{indiscrete} here?) topology $\{\phi,A\}$.\\
     (c) The functor $\ob: \mathbf{Cat} \to \mathbf{Set}$ (recall $\mathbf{Cat}$ is the category of small categories) has a left adjoint $D$ sending $A$ to the \emph{discrete} category with $\ob(DA) = A$ and only identity morphisms, and a right adjoint $I$ sending $A$ to the category with $\ob(IA) = A$ and one morphism $x \to y$ for each $(x,y) \in A \times A$. In this case $D$ in turn has a left adjoint $\pi_0$ sending a small category $\mathcal{C}$ to its set of \emph{connected components}, i.e. the quotient of $\ob\mathcal{C}$ by the smallest equivalence relation identifying $\dom f$ with $\cod f$ for all $f \in \mor \mathcal{C}$.\\
@@ -394,7 +394,6 @@ Lecture is happy to mark any question we hand in!
 \end{eg}
 
 \begin{thm} (3.3)\\
-    (sorry I forgot to charge the other laptop today, the diagrams don't look very nice)\\
     Let $G:\mathcal{D} \to \mathcal{C}$ be a functor. Then specifying a left adjoint for $G$ is equivalent to specifying an initial object of $(A \downarrow G)$ for each $A \in \ob \mathcal{C}$, where $(A \downarrow G)$ has objects pairs $(B,f)$ with $A \xrightarrow{f} GB$, and morphisms $(B,f) \to (B',f')$ are morphisms $B \xrightarrow{g} B'$ such that 
 
     \includegraphics[scale=0.4]{image/Cat_02.png}
