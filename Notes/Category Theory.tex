@@ -355,7 +355,7 @@ Now let's go back to prove 2.2(ii):
     \end{proof}
 \end{lemma}
 
----Leture 7---
+---Leture 7---\\
 First example class: Friday 26th October, 2pm MR3.
 
 Lecture is happy to mark any question we hand in!
@@ -377,7 +377,7 @@ Lecture is happy to mark any question we hand in!
     (d) Let $M$ be the monoid $\{1,e\}$ with $e^2=e$. An object of $[M,\mathbf{Set}]$ is a pair $(A,e)$ (the images of the functor?), where $e:A \to A$ satisfies $e^2=e$.\\
     We have a functor $G:[M,\mathbf{Set}] \to \mathbf{Set}$ sending $(A,e)$ to $\{x \in A | e(x) = x \} = \{e(x) | x \in A\}$ and a functor $F: \mathbf{Set} \to [M,\mathbf{Set}]$ sending $A$ to $(A,1_A)$.\\
     I claim $(F \dashv G \dashv F)$: given $f:(A,1_A) \to (B,e)$, it must take values in $G(B,e)$, and any $g:(B,e) \to (A,1_A)$ is determined by its values on the image of $e$.\\
-    (e) Let $\mathbf{1}$ be the discrete category with one object $*$. For any $\mathcal{C}$, there's a unique functor $\mathcal{C} \to \mathbf{1}$: a left adjoint for this picks out an \emph{initial} object of $\mathcal{C}$, i.e. and object $I$ s.t. there exists a unique $I \to A$ for each $A \in \ob \mathcal{C}$.\\
+    (e) Let $\mathbf{1}$ be the discrete category with one object $*$. For any $\mathcal{C}$, there's a unique functor $\mathcal{C} \to \mathbf{1}$: a left adjoint for this picks out an \emph{initial} object of $\mathcal{C}$, i.e. an object $I$ s.t. there exists a unique $I \to A$ for each $A \in \ob \mathcal{C}$.\\
     Dually, a right adjoint for $\mathcal{C} \to \mathbf{1}$ corresponds to a \emph{terminal} object of $\mathcal{C}$ (think about what this means).\\
     (f) Let $A \xrightarrow{f} B$ be a morphism in $\mathbf{Set}$. We can regard $PA$ and $PB$ as posets, and we have functors $PA \stackrel[P^*f]{Pf}{\rightleftarrows} PB$.\\
     I claim $(PF \dashv P^*f)$: we have $Pf(A') \subseteq B' \iff f(x) \in B'$ for all $x \in A' \iff A' \subseteq P^* f(B')$.\\
@@ -421,7 +421,120 @@ Lecture is happy to mark any question we hand in!
         commute.\\
         Functoriality follows from uniqueness: given $f': A' \to A''$, $F(f'f)$ and $(Ff')(Ff)$ are both morphisms $(FA,\eta_A) \to (FA'',\eta_{A''}F'f)$ in $(A \downarrow G)$.\\
         Note that we haven't finished: we still have to verify natural adjunctions. We'll finish off this next monday. 
+
+        ---Lecture 8---\\
+        It's next monday now! Let's finish the proof:\\
+        To show $F \dashv G$: given $A \xrightarrow{f} GB$, we define $\hat{f}:FA \to B$ to be the unique morphism $(FA,\eta_A) \to (B,f)$ in $(a \downarrow G)$. This is a bijection with inverse $(FA \xrightarrow{g} B) \to (A \xrightarrow{\eta_a} GFA \xrightarrow{Gg} GB)$. The latter mapping is natural in $B$, as $G$ is a functor; and also in $A$, since by construction, $\eta$ is a natural transformation $1_{\mathcal{C}} \to GF$.
     \end{proof}
 \end{thm}
+
+Given an adjunction $(F \dashv G)$, the natural transformation $\eta:1_{\mathcal{C}} \to GF$ emergin in the above proof (3.3) is called the \emph{unit} of the adjunction.\\
+Dually, we have a natural transformation traditionally denoted $\varepsilon: FG \to 1_{\mathcal{D}}$ s.t. $\varepsilon_B:FGB \to B$ corresponds to $GB \xrightarrow{1_{GB}} GB$, is called the \emph{counit}.
+
+\begin{coro} (3.4)\\
+    If $F$ and $F'$ are both left adjoint to $G:\mathcal{D} \to \mathcal{C}$, then they are naturally isomorphic.
+    \begin{proof}
+        For any $A$, $(FA,\eta_A)$ and $(F'A,\eta'_A)$ are both initial in $(A\downarrow G)$, so there's a unique isomorphism $\alpha_A:(FA,\eta_A) \to (F'A,\eta'_A)$.\\
+        In any naturality square for $\alpha$, the two ways round are both morphisms in $(A\downarrow G)$ whose domain is initial, so they are equal. So $\alpha$ is not only just an isomorphism (but also natural).
+    \end{proof}
+\end{coro}
+
+\begin{lemma} (3.5)\\
+    Given $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D} \stackrel[K]{H}{\rightleftarrows} \mathcal{E}$, with $(F \dashv G)$ and $(H \dashv K)$, we have $(HF \dashv GK)$.
+    \begin{proof}
+        We have bijections between morphisms $A \to GKC$, morphisms $FA \to KC$ and morphisms $HFA \to C$, which are both natural in $A$ and $C$.
+    \end{proof}
+\end{lemma}
+
+\begin{coro} (3.6)\\
+    Given a commutative square
+    \begin{equation*}
+        \begin{aligned}
+            &\mathcal{C}\to &\mathcal{D}\\
+            &\downarrow & \downarrow\\
+            &\mathcal{E} \to &\mathcal{F}
+        \end{aligned}
+    \end{equation*}
+    of categories and functors, if the functors all have left adjoints, then the diagram of left adjoinst commutes up to natural isomorphisms (?).
+    \begin{proof}
+        By (3.5), both ways round the diagram of left adjoinst are left adjoint to the composite $\mathcal{C} \to \mathcal{F}$, so by (3.4) they are isomorphic.
+    \end{proof}
+\end{coro}
+
+\begin{thm} (3.7)\\
+    Given functors $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$, specifyig an adjunction $(F \dashv G)$ is equivalent to specifying natural transformations $\eta: 1_{\mathcal{C}} \to GF$, $\varepsilon:FG \to 1_{\mathcal{D}}$ satisfying the commutative diagrams,
+
+    \includegraphics[scale=0.4]{image/Cat_05.png}
+
+    and
+
+    \includegraphics[scale=0.4]{image/Cat_06.png}
+
+    which are sometimes called the \emph{triangular identities} (for obvious reason).
+    \begin{proof}
+        First suppose we are given $(F \dashv G)$. Define $\eta$ and $\varepsilon$ as in (3.3) and its dual; now consider the composite
+        $$FA \xrightarrow{F_{\eta_A}} FGFA \xrightarrow{\varepsilon_{FA}} FA$$
+        under the adjunction, this corresponds to
+        $$A \xrightarrow{\eta_A} GFA \xrightarrow{1_{GFA}} GFA$$
+        But this also corresponds to $1_{FA}$, so $\varepsilon_{FA} \cdot F_{\eta_A} = 1_FA$.\\
+        The other identity is dual to this one (check).\\
+        Conversely, suppose we are given $\eta$ and $\varepsilon$ satisfying the trianglular identities. Given $A \xrightarrow{f} GB$, let $\Phi(f)$ be the composite $FA \xrightarrow{Ff} FGB \xrightarrow{\varepsilon_B} B$; and given $FA \xrightarrow{g} B$, let $\Psi(g)$ be $A \xrightarrow{\eta_A} GFA \xrightarrow{Gg} GB$. Then $\Phi$ and $\Psi$ are both natural; we now need to show they are inverse to each other. Let's do $\Psi\Phi$, say: now 
+        \begin{equation*}
+            \begin{aligned}
+                \Psi\Phi(A \xrightarrow{f} GB) &= A \xrightarrow{\eta_A} GFA \xrightarrow{GFf} GFGB \xrightarrow{G\varepsilon_B} GB\\
+                &= A \xrightarrow{f} FB \xrightarrow{\eta_{GB}} GFGB \xrightarrow{G_{\varepsilon_B}} GB\\
+                &= f
+            \end{aligned}
+        \end{equation*}
+        and dually, $\Phi\Psi(g) = g$.
+    \end{proof}
+\end{thm}
+
+\begin{lemma} (3.8)\\
+    Suppose given $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$ and natural isomorphisms $\alpha:1_{\mathcal{C}} \to GF$, $\beta: FG \to 1_{\mathcal{D}}$. Then there are isomorphisms $\alpha': 1_{\mathcal{C}} \to GF$, $\beta':FG \to 1_{\mathcal{D}}$ which satisfy the triangular identities. So $(F \dashv G)$ (and $(G \dashv F)$ ).
+    \begin{proof}
+        We define $\alpha'=\alpha$ and, in attempt to fix $\beta'$, define $\beta'$ to be the composite
+        $$FG \xrightarrow{(FGB)^{-1}} FGFG \xrightarrow{(F\alpha_G)^{-1}} FG \xrightarrow{\beta} 1_{\mathcal{D}}$$
+        Note that $FGB = \beta_{FG}$, since
+        \begin{equation*}
+            \begin{aligned}
+                &FGFG\xrightarrow{FGB} &FG\\
+                &\downarrow \beta_{FG} & \downarrow B\\
+                &FG \xrightarrow{\beta} & 1_{\mathcal{D}}
+            \end{aligned}
+        \end{equation*}
+        commutes by naturality of $\beta$, and $\beta$ is monic. So it doesn't matter which way we choose above.\\
+        Now $(\beta'_F)(F\alpha')$ is the composite
+        \begin{equation*}
+            \begin{aligned}
+                &F \xrightarrow{F\alpha} FGF \xrightarrow{(\beta_{FGF})^{-1}} FGFGF \xrightarrow{(F\alpha_{GF})^{-1}} FGF \xrightarrow{\beta_F} F\\
+                &=F\xrightarrow{(\beta_F)^{-1}} FGF \xrightarrow{FGF\alpha} FGFGF \xrightarrow{(F\alpha_{GF})^{-1}} FGF \xrightarrow{\beta_F} F\\
+                &= F \xrightarrow{(\beta_F)^{-1}} FGF \xrightarrow{\beta_F} F\\
+                &= 1_F
+            \end{aligned}
+        \end{equation*}
+        Since $GF\alpha = \alpha_{GF}$ (similar reasoning as previous).\\
+        Now similarly $(G\beta')(\alpha'G)$ is
+        \begin{equation*}
+            \begin{aligned}
+                &G \xrightarrow{\alpha_G} GFG \xrightarrow{(GFG\beta)^{-1}} GFGFG\xrightarrow{(GF\alpha_G)^{-1}} GFG \xrightarrow{G\beta} G\\
+                &= G \xrightarrow{(G\beta)^{-1}} GFG \xrightarrow{\alpha_{GFG}} GFGFG \xrightarrow{(GF\alpha_G)^{-1}} GFG \xrightarrow{G\beta} G\\
+                &= G\xrightarrow{(G\beta)^{-1}} GFG \xrightarrow{G\beta} G\\
+                &= 1_G
+            \end{aligned}
+        \end{equation*}
+    \end{proof}
+\end{lemma}
+
+\begin{lemma} (3.9)\\
+    Suppose $G:\mathcal{D} \to \mathcal{C}$ has a left adjoint $F$ with counit $\varepsilon:FG \to 1_{\mathcal{D}}$, then:\\
+    (i) $G$ is faithful iff $\varepsilon$ is pointwise epic;\\
+    (ii) $G$ is full and faithful iff $\varepsilon$ is an isomorphism.\\
+    (and of course the dual results for unit -- change epic to monic).\\
+    \begin{proof}
+        (i) Given $B \xrightarrow{g} B'$, $Gg$ corresponds, under the adjunction, to the composite $FGB \xrightarrow{\varepsilon_B} B \xrightarrow{g} B'$. Hence the mapping $g \to Gg$ is injective on morphisms with domain $B$ (and specified codomain) iff $g \to g\varepsilon_B$ is injecctive, i.e. iff $\varepsilon_B$ is an epimorphism.\\
+        (ii) The proof of this is actually very similar: $G$ is full and faithful iff $g \to g\varepsilon_B$ is bijective, but that forces $\varepsilon$ to be an isomorphism: if $\alpha:B \to FGB$ is such that $\alpha\varepsilon_B = 1_{FGB}$, then this must be a two sided inverse as $\varepsilon_B \alpha \varepsilon_B = \varepsilon_B$, whence $\varepsilon_B \alpha = 1_B$. So $\varepsilon_B$ is an isomorphism, for all $B$.
+    \end{proof}
+\end{lemma}
 
 \end{document}
