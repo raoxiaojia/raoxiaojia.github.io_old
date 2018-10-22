@@ -1,3 +1,4 @@
 \contentsline {section}{\numberline {1}Langauges and structures}{3}{section.1}
 \contentsline {section}{\numberline {2}Terms, formulae, and their interpretations}{5}{section.2}
 \contentsline {section}{\numberline {3}Theories and Elementarity}{9}{section.3}
+\contentsline {section}{\numberline {4}Two relational structures}{14}{section.4}

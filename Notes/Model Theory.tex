@@ -389,8 +389,8 @@ Reminder: we have a lecture next Monday (22nd Oct)!
 
 \begin{rem} (3.9)\\
     Even more assumptions: let's assume that the set of variables is countably infinite. Then:\\
-    $\bullet$ the cardinality of the set of $L$-formulas is $|L|+\omega$ (what is $|L|$ here -- size of symbol/fuction/constant sets?), where we abuse another notation that we use $\omega$ as cardinals (rather than ordinals) (note that the formulas are just strings of finite length);\\
-    $\bullet$ if $A$ is a set of parameters in some structure, the cardinality of the set $L(A)$ is $|A|+|L|+\omega$.
+    $\bullet$ the cardinality of the set of $L$-formulas is $|L|+\omega$ (where by $|L|$ we mean the number of symbols. For example, $|L_{gp}| = 3$, $|L_{lo}| = 1$), where we abuse another notation that we use $\omega$ as cardinals (rather than ordinals) (note that the formulas are just strings of finite length);\\
+    $\bullet$ if $A$ is a set of parameters in some structure, the cardinality of the set $L(A)$ is $|A|+|L|+\omega$, where by $+$ here we merely mean $\max\{|L|,|A|,\omega\}$ (instead of addition), and same for the $+$ above.
 \end{rem}
 
 \begin{defi} (3.10)\\
@@ -405,11 +405,14 @@ Reminder: we have a lecture next Monday (22nd Oct)!
 
 \begin{thm} (3.11, Downward L$\ddot{o}$wenheim-Skolem theorem)\\
     (Recall that in part II Logic and Set Theory we had the countable version of this)\\
-    Let $\mathcal{N}$ be an $L$-structure, and $|\mathcal{N}| \geq |L| + \omega$. Let $A \subseteq N$. Then for every cardinal $\lambda$ s.t. $|L|+|A|+\omega \leq \lambda \leq |\mathcal{N}$, there is $\mathcal{M} \preccurlyeq \mathcal{N}$ s.t.\\
+    Let $\mathcal{N}$ be an $L$-structure, and $|\mathcal{N}| \geq |L| + \omega$. Let $A \subseteq N$. Then for every cardinal $\lambda$ s.t. $|L|+|A|+\omega \leq \lambda \leq |\mathcal{N}|$, there is $\mathcal{M} \preccurlyeq \mathcal{N}$ s.t.\\
     (i) $A \subseteq M$;\\
-    (ii) $|\mathcal{M}| = \lambda$.\\
+    (ii) $|\mathcal{M}| = \lambda$.
+
+    \includegraphics[scale=0.5]{image/Model_01.png}
+
     (It helps to think about the case $|A| = \omega$ and $|N|$ is uncountable.)\\
-    A quick example how this could be useful (we'll go very sloppy here): think of $(\C,+,\cdot,-,\cdot^{-1},0,1)$ as a field. Consider $\Q \subseteq \C$ (both as subset and substructure). Note that algebraic closeness is a property of $\C$. By downward L$\ddot{o}$ wenheim-Skolem, there is a substructure in $\mathcal{C}$ that contains $\Q$ that is also algebraically closed (apparently, the set of algebraic numbers).
+    A quick example how this could be useful (we'll go very sloppy here): think of $(\C,+,\cdot,-,\cdot^{-1},0,1)$ as a field. Consider $\Q \subseteq \C$ (both as subset and substructure). Note that algebraic closeness is a property of $\C$. By downward L$\ddot{o}$wenheim-Skolem, there is a substructure in $\mathcal{C}$ that contains $\Q$ that is also algebraically closed (apparently, the set of algebraic numbers).
     \begin{proof}
         We build a chain $\bra A_i : i < \lambda \ket$, with $A_i \subseteq N$, s.t. $|A_i| = \lambda$.\\
         (our goal: define an elementary substructure with domain $M=\bigcup_{i < \omega} A_i$).\\
@@ -417,8 +420,88 @@ Reminder: we have a lecture next Monday (22nd Oct)!
         Successors: At stage $i+1$, assume $A_i$ has been built, with $|A_i| = \lambda$.\\
         Let $\bra \phi_k(x): k < \lambda \ket$ be an enumeration of those $L(A_i)$-formulas such that $\mathcal{N} \vDash \exists x \phi_k(x)$. Let $a_k$ be such that $\mathcal{N} \vDash \phi_k(a_k)$, and let $A_{i+1} = A_i \cup \{a_k: k < \lambda\}$ (basically, with those witnesses added). Then $|A_{i+1}| = \lambda$ (note that we haven't increased the size).\\
         Now let $M = \bigcup_{i < \omega} A_i$ (note the subscript range). We use lemma (3.8) to show that $M$ is the domain of $\mathcal{M} \preccurlyeq \mathcal{N}$, and $|M| = \lambda$.
-        We're running out of time, so we'll continue next Monday.
+        We're running out of time, so we'll continue next Monday.\\
+        
+        ---Lecture 5---\\
+        Solutions to worksheet 1: either take along to lecture on Friday, or email them to $silvia.barbina@open.ac.uk$.
+
+        Let's continue with the proof:
+
+        \includegraphics[scale=0.5]{image/Model_02.png}
+
+        Start with $A_0 \subset N$, $A \subseteq A_0$, $|A_0| = l$. The idea is to define $\bra A_i: i <\omega \ket$ so that $M = \cup_{i < \omega}A_i$ satisfies (ii) via the TV test (3.8).\\
+        List all formulas $\phi(x,\bar{a})$ ($\bar{a}$ is a tuple in $A_0$), and $\mathcal{N} \vDash \phi(b,\bar{a})$ for some $b$.\\
+        Add each such $b$ to $A_0$ (one for each such $\phi$).\\
+        Let $A_1 =A_0 \cup \{$ all thes $b$'s$\}$.\\
+        Repeat for formulas $\phi(x,\bar{a})$ where $\bar{a}$ is in $A_1$,...\\
+        Eventually, $\bra A_i: i<\omega\ket$ is such that $M = \cup_{i < \omega} A_i$ is as required (i.e. $M$ is the domain of some elementary substrucutre of $\mathcal{N}$ that we need).\\
+        We claim that $M$ satisfies condition (ii) in Lemma (3.8): Let $\mathcal{N} \vDash \exists x \psi(x,\bar{a})$, where $\bar{a}$ is a tuple in $M$. Then $\bar{a}$ is a \emph{finite} tuple, so there is an $i$ s.t. $\bar{a}$ is in $A_i$.\\
+        Then $A_{i+1}$, by construction, contains $b$ s.t. $\mathcal{N} \vDash \phi(b,\bar{a})$. But $A_{i+1} \subseteq M, b \in M$.\\
+        Then apply (3.8) we're done.
     \end{proof}
 \end{thm}
+
+\newpage
+
+\section{Two relational structures}
+
+\begin{defi} (4.1, dense linear orders)\\
+    A \emph{linear order} is an $L_{lo} = \{<\}$-structure such that:\\
+    (i) $\forall x \neg (x<x)$;\\
+    (ii) $\forall xyz ((x<y \wedge y<z) \to x<z)$;\\
+    (iii) $\forall xy((x<y) \vee (y<x) \vee x=y)$ (total).\\
+    A linear order is \emph{dense} if, in addition, it also satisfies:\\
+    (iv) $\exists xy (x<y)$;\\
+    (v) $\forall xy, (x<y \to \exists z (x<z \wedge z<y))$ (density).\\
+    A linear order has no endpoints if, in addition, \\
+    (vi) $\forall x (\exists y(x<y) \wedge \exists z(z<x))$.\\
+    We use $T_{dlo}$ to denote the theory that includes all axioms (i) to (vi), and $T_{lo}$ is the theory that includes axioms (i) to (iii) only.
+\end{defi}
+
+\begin{rem}
+    (iv) and (v) imply that if $\mathcal{M} \vDash T_{dlo}$, then $|\mathcal{M}| \geq \omega$.
+\end{rem}
+
+\begin{defi} (4.2)\\
+    If $\mathcal{M},\mathcal{N} \vDash T_{lo}$, then an \emph{injective} map $p:A \subseteq M \to N$ is a \emph{partial embedding} if $\mathcal{M} \vDash a<b \implies \mathcal{N} \vDash p(a) < p(b)$.\\
+    In particular, if $|\dom(p)| < \omega$, then $p$ is a \emph{finite} partial embedding.
+\end{defi}
+
+\begin{lemma} (4.3, extension lemma)\\
+    Take a linear order $\mathcal{M} \vDash T_{lo}$, and a dense linear endpoints $\mathcal{N} \vDash T_{dlo}$, and let $p: M \to N$ be a finite partial embedding. Then if $c \in \mathcal{M}$, there is a finite partial embedding $\hat{p}$ s.t. $p \subseteq \hat{p}$ and $c \in \dom(\hat{p})$.\\
+    (\emph{we can always add one extra element in our embedding}.)
+    \begin{proof}
+        \includegraphics[scale=0.5]{image/Model_03.png}
+
+        Case 1: $c$ is greater than all elements in $\dom(p)$. In that case, pick an element $d \in \mathcal{N}$ s.t. $d>b$ for all $b \in img(p)$;\\
+        Case 2: $a_i<c<a_{i+1}$ where $a_i,a_{i+1} \in \dom(p)$. Then we choose $\mathcal{N} \vDash p(a_i) < d < p(a_{i+1})$, where $d$ is chosen appropriately by density (here's the case why we need $\mathcal{N}$ to be dense;\\
+        Case 3: $c$ is less than all elements in $\dom(p)$. This is similar to case 1.
+
+        Note that the ability to extend by one point allows us to embed any finite linear order into a dense linear order without endpoints.
+    \end{proof}
+\end{lemma}
+
+\begin{thm} (4.4)\\
+    Let $\mathcal{M},\mathcal{N} \vDash T_{dlo}$ s.t. $|\mathcal{M}| = |\mathcal{N}| = \omega$. Let $p:A \subseteq M \to N$ be a finite partial embedding.\\
+    Then there is an isomorphism $\pi:\mathcal{M} \to \mathcal{N}$ s.t. $p \subseteq \pi$.
+    \begin{proof}
+        Enumerate $M,N$, say $M=\bra a_i:i < \omega\ket$, $N=\bra b_i:i < \omega\ket$ (sequences of elements).\\
+        We define, inductively, a chain of finite partial embedding $\bra p_i:i<\omega\ket$ (idea: $\pi = \cup_{i<\omega} p_i$).\\
+        Let's start with $p_0 = p$. At stage $i+1$, suppose we are given $p_i$. We want to include $a_i$ in $\dom p_{i+1}$, and $b_i$ in the $img(p_{i+1})$.\\
+        (Lecturer calls this a \emph{back and forth} method) Forth step: By lemma 4.3, we can extend $p_i$ to $p_{i+\frac{1}{2}}$ such that $a_i \in \dom(p_{i+\frac{1}{2}})$;\\
+        Back step: By lemma 4.3 again applied to $(p_{i+\frac{1}{2}})^{-1}$ to include $b_i \in \dom (p_{i+1}^{-1})$ (i.e. in the range of $p_{i+1}$).\\
+        We claim that $p_{i+1}$ extends $p_i$ as required.\\
+        Let $\pi = \cup_{i < \omega} p_i$. Then (check) $\pi$ is an isomorphism (i.e. order-preserving bijection).
+    \end{proof}
+\end{thm}
+
+\begin{defi} (4.5)\\
+    An $L$-theory is \emph{consistent} if it there is $L$-structure $\mathcal{M}$ s.t. $\mathcal{M} \vDash T$.\\
+    If $T$ is a theory in $L$ and $\phi$ is an $L$-sentence, then $T \vdash \phi$ (read as \emph{$T$ entails $\phi$}, note that this has nothing to do with syntactic implication) if for all $\mathcal{M}$ such that $\mathcal{M} \vDash T$, we have $\mathcal{M} \vDash \phi$.\\
+    Finally, an $L$-theory $T$ is \emph{complete} if for all $L$-sentences $\phi$, either $T \vdash \phi$ or $T \vdash \neg\phi$ (see part II Logic and Set Theory).\\
+    For example, $T_{dlo}$ is complete.
+\end{defi}
+
+
 
 \end{document}
