@@ -116,7 +116,7 @@ I didn't go to the first 3 lectures, so no intro -- sorry. I have no idea on wha
 \begin{lemma} (1.8)\\
     Let $F,G: \mathcal{C} \rightrightarrows \mathcal{D}$ be two functors, and $\alpha: F \to G$ a natural transformation. Then $\alpha$ is an isomorphism in $[\mathcal{C},\mathcal{D}]$ iff each $\alpha_A$ is an isomorphism in $\mathcal{D}$.
     \begin{proof}
-        Forward is trivial (ok, I'll check this later). For backward, suppose each $\alpha_A$ has an inverse $\beta_A$. Given $f:A \to B$ in $\mathcal{C}$, we need to show that 
+        Forward is trivial. For backward, suppose each $\alpha_A$ has an inverse $\beta_A$. Given $f:A \to B$ in $\mathcal{C}$, we need to show that 
         \begin{equation*}
             \begin{aligned}
                 &GA &\xrightarrow{Gf} &GB\\
@@ -210,32 +210,32 @@ Warning: almost any assertion about skeletons is equivalent to axiom of choice (
 
 \begin{lemma} (2.2)\\
     (i) Let $\mathcal{C}$ be a locally small category, $A \in \ob \mathcal{C}$ and $F:\mathcal{C} \to \mathbf{Set}$ a functor. Then natural transformations $\mathcal{C}(A,-) \to F$ are in bijection with elements of $FA$;\\
-    (ii) Moreover, this bijection is natural in both $A$ and $F$.
+    (ii) Moreover, this bijection is natural in $A$ and $F$.
     \begin{proof}
-        (i) Given $\alpha$:$\mathcal{C}(A,-) \to F$, we define $\Phi(x) = \alpha_A(1_A) \in FA$. Given $x \in FA$, we define $\Psi(x): \mathcal{C}(A,-) \to F$ by $\Psi(x)_B (A \xrightarrow{f} B) = Ff(x) \in FB$.\\
+        (i) Given $\alpha$:$\mathcal{C}(A,-) \to F$, we define $\Phi(\alpha) = \alpha_A(1_A) \in FA$.\footnote{Note $1_A \in \mathcal{C}(A,A)$, and $\alpha_A \in \mor \mathbf{Set}$ but $\mor \mathbf{Set}$ are just functions between sets, so this makes sense.}\\
+        Conversely, given $x \in FA$, we define $\Psi(x): \mathcal{C}(A,-) \to F$ by $\Psi(x)_B (A \xrightarrow{f} B) = (Ff)(x) \in FB$.\\
         $\Psi(x)$ is natural: given $g:B \to C$, we have
         \begin{equation*}
             \begin{aligned}
                 \Psi(x)_C \mathcal{C}(A,g) (f) &= \Psi(x)_C (gf) = F(gf)(x),\\
-                (Fg) \Psi(x)_B(f) &= (Fg)(Ff)(x) = F(gf)(x),\\
-                \Phi\Psi(x) &= \Psi(X)_A (1_A) = F(1_A)(x) = x
+                (Fg) \Psi(x)_B(f) &= (Fg)(Ff)(x) = F(gf)(x)
             \end{aligned}
         \end{equation*}
-        Given $\alpha$,
+        Now given $x \in FA$, $\Phi\Psi(x) = \Psi(X)_A (1_A) = F(1_A)(x) = x$; given $\alpha$,
         \begin{equation*}
             \begin{aligned}
                 \Psi\Phi(\alpha)_B(f) \Psi(\alpha_A(1_A))_B(f) &= Ff(\alpha_A(1_A))\\
                 &= \alpha_B\mathcal{C}(A,f)(1_A) = \alpha_B(f)
             \end{aligned}
         \end{equation*}
-        So $\Psi\Phi(\alpha)=\alpha$.
+        So $\Psi\Phi(\alpha)=\alpha$. So $\Psi\Phi$ and $\Phi\Psi$ are both identities on their respective domain (so we have a bijection).
     \end{proof}
 \end{lemma}
 
 \begin{coro} (2.3)\\
     The assignment $A \to \mathcal{C}(A,-)$ defines a full and faithful functor $\mathcal{C}^{op} \to [\mathcal{C},\mathbf{Set}]$.
     \begin{proof}
-        Put $F = \mathcal{C}(B,-)$ in 2.2(i): we get a bijection between $\mathcal{C}(B,A)$ and morphisms $\mathcal{C}(A,-) \to \mathcal{C}(B,-)$ in $[\mathcal{C},\mathbf{Set}]$. We need to verify this is functorial: but it sends $f:B \to A$ to the natural transformation $g \to gf$. So functoriality follows from associativity.
+        Put $F = \mathcal{C}(B,-)$ in 2.2(i): we get a bijection between $\mathcal{C}(B,A)$ and morphisms $\mathcal{C}(A,-) \to \mathcal{C}(B,-)$ in $[\mathcal{C},\mathbf{Set}]$\footnote{Think very carefully about this... Given a morphism in $\mathcal{C}(A,-) \to \mathcal{C}(B,-)$, the above gives us a way to identify it uniquelly with an element in $\mathcal{C}(B,A)$ which is in $\mor \mathcal{C}^{op}$. But that alone is not enough; we also need the above functor to take that morphism \emph{directly} to the original morphism. Luckily this is the case by the proof of 2.2(i), which is also explained in the later half of the sentence above.}. We need to verify this is functorial: but it sends $f:B \to A$ to the natural transformation $g \to gf$. So functoriality follows from associativity.
     \end{proof}
 \end{coro}
 
@@ -243,7 +243,7 @@ We call this functor (or the functor $\mathcal{C} \to [\mathcal{C}^{op}, \mathbf
 
 Now let's go back to prove 2.2(ii):
 \begin{proof}
-    (ii) Suppose for the moment that $\mathcal{C}$ is small, so that $[\mathcal{C},\mathbf{Set}]$ is locally small. Then we have two functors $\mathcal{C} \times [\mathcal{C},\mathbf{Set}] \to \mathbf{Set}$: one sends $(A,F)$ to $FA$, and the other is the composite: $\mathcal{C} \times [\mathcal{C},\mathbf{Set}] \xrightarrow{Y \times 1} [\mathcal{C},\mathbf{Set}]^{op} \times [\mathcal{C},\mathbf{Set}] \xrightarrow{[\mathcal{C},\mathbf{Set}](-;-)} \mathbf{Set}$.\\
+    (ii) Suppose for the moment that $\mathcal{C}$ is small, so that $[\mathcal{C},\mathbf{Set}]$ is locally small.\footnote{Elements in $\mor [\mathcal{C},\mathbf{Set}]$ correspond to those in $\mor \mathcal{C}^{op}$ by Yoneda.} Then we have two functors $\mathcal{C} \times [\mathcal{C},\mathbf{Set}] \to \mathbf{Set}$: one sends $(A,F)$ to $FA$, and the other is the composite: $\mathcal{C} \times [\mathcal{C},\mathbf{Set}] \xrightarrow{Y \times 1} [\mathcal{C},\mathbf{Set}]^{op} \times [\mathcal{C},\mathbf{Set}] \xrightarrow{[\mathcal{C},\mathbf{Set}](-;-)} \mathbf{Set}$.\footnote{The second operator maps two functors two the set of natural transformations between them?}\\
     2.2(ii) says that these are naturally isomorphic. We can translate this into an elementary statement, making sense even when $\mathcal{C}$ isn't small. Given $A \xrightarrow{f} B$ and $F \xrightarrow{\alpha}G$, the two ways of producing an element of $GB$ from a natural transformation $\beta:\mathcal{C}(A,-) \to F$ give the same result, namely $$\alpha_B(Ff)\beta_A(1_A) = (Gf)\alpha_A\beta_A(1_A)$$ which is equal to $\alpha_B\beta_B(f)$.
 \end{proof}
 
