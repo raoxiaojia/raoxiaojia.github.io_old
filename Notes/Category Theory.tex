@@ -216,7 +216,7 @@ Warning: almost any assertion about skeletons is equivalent to axiom of choice (
     (ii) Moreover, this bijection is natural in $A$ and $F$.
     \begin{proof}
         (i) Given $\alpha$:$\mathcal{C}(A,-) \to F$, we define $\Phi(\alpha) = \alpha_A(1_A) \in FA$.\footnote{Note $1_A \in \mathcal{C}(A,A)$, and $\alpha_A \in \mor \mathbf{Set}$ but $\mor \mathbf{Set}$ are just functions between sets, so this makes sense.}\\
-        Conversely, given $x \in FA$, we define $\Psi(x): \mathcal{C}(A,-) \to F$ by $\Psi(x)_B (A \xrightarrow{f} B) = (Ff)(x) \in FB$.\\
+        Conversely, given $x \in FA$, we define $\Psi(x): \mathcal{C}(A,-) \to F$ by $\Psi(x)_B (A \xrightarrow{f} B) = (Ff)(x) \in FB$.\footnote{It seems a bit confusing why this is a natural transformation, but looking carefully it basicallly defines a function between sets, i.e. is in $\mor \mathbf{Set}$.}\\
         $\Psi(x)$ is natural: given $g:B \to C$, we have
         \begin{equation*}
             \begin{aligned}

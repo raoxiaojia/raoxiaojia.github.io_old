@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  22 OCT 2018 20:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  22 OCT 2018 20:41
 entering extended mode
 **"./Category Theory.tex"
 ("Category Theory.tex"
@@ -1640,8 +1640,8 @@ Package rerunfilecheck Info: File `"Category Theory".out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 558.
  ) 
 Here is how much of TeX's memory you used:
- 40039 strings out of 492970
- 935628 string characters out of 3135855
+ 40040 strings out of 492970
+ 935639 string characters out of 3135855
  1157819 words of memory out of 3000000
  43224 multiletter control sequences out of 15000+200000
  550728 words of font info for 139 fonts, out of 3000000 for 9000
@@ -1672,9 +1672,9 @@ ic/amsfonts/cm/cmti10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
 nts/cm/cmti8.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbo
 ls/msam10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/
 msbm10.pfb>
-Output written on "Category Theory.pdf" (19 pages, 387695 bytes).
+Output written on "Category Theory.pdf" (19 pages, 389206 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 29 named destinations out of 1000 (max. 500000)
+ 243 PDF objects out of 1000 (max. 8388607)
+ 30 named destinations out of 1000 (max. 500000)
  18477 words of extra memory for PDF output out of 20736 (max. 10000000)
 
