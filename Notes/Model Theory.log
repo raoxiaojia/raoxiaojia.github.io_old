@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  22 OCT 2018 12:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  23 OCT 2018 10:19
 entering extended mode
 **"./Model Theory.tex"
 ("Model Theory.tex"
@@ -591,6 +591,759 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 librarytopaths.code.tex"
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
+("C:\Program Files\MiKTeX 2.9\tex\latex\tikz-cd\tikz-cd.sty"
+Package: tikz-cd 2014/10/30 v0.9e Commutative diagrams with tikz
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\tikz-cd\tikzlibrarycd.code.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+librarymatrix.code.tex"
+File: tikzlibrarymatrix.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.4)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+libraryquotes.code.tex"
+File: tikzlibraryquotes.code.tex 2014/03/21 v3.0.1a (rcs-revision 1.4)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.meta.c
+ode.tex"
+File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
+\pgfarrowinset=\dimen174
+\pgfarrowlength=\dimen175
+\pgfarrowwidth=\dimen176
+\pgfarrowlinewidth=\dimen177
+))) ("C:\Program Files\MiKTeX 2.9\tex\latex\tikzsymbols\tikzsymbols.sty" ("C:\P
+rogram Files\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty"
+Package: expl3 2018-09-24 L3 programming layer (loader) 
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3-code.tex"
+Package: expl3 2018-09-24 L3 programming layer (code)
+\c_max_int=\count135
+\l_tmpa_int=\count136
+\l_tmpb_int=\count137
+\g_tmpa_int=\count138
+\g_tmpb_int=\count139
+\g__kernel_prg_map_int=\count140
+\c_log_iow=\count141
+\l_iow_line_count_int=\count142
+\l__iow_line_target_int=\count143
+\l__iow_one_indent_int=\count144
+\l__iow_indent_int=\count145
+\c_zero_dim=\dimen178
+\c_max_dim=\dimen179
+\l_tmpa_dim=\dimen180
+\l_tmpb_dim=\dimen181
+\g_tmpa_dim=\dimen182
+\g_tmpb_dim=\dimen183
+\c_zero_skip=\skip55
+\c_max_skip=\skip56
+\l_tmpa_skip=\skip57
+\l_tmpb_skip=\skip58
+\g_tmpa_skip=\skip59
+\g_tmpb_skip=\skip60
+\c_zero_muskip=\muskip12
+\c_max_muskip=\muskip13
+\l_tmpa_muskip=\muskip14
+\l_tmpb_muskip=\muskip15
+\g_tmpa_muskip=\muskip16
+\g_tmpb_muskip=\muskip17
+\l_keys_choice_int=\count146
+\l__intarray_loop_int=\count147
+\c__intarray_sp_dim=\dimen184
+\g__intarray_font_int=\count148
+\c__fp_leading_shift_int=\count149
+\c__fp_middle_shift_int=\count150
+\c__fp_trailing_shift_int=\count151
+\c__fp_big_leading_shift_int=\count152
+\c__fp_big_middle_shift_int=\count153
+\c__fp_big_trailing_shift_int=\count154
+\c__fp_Bigg_leading_shift_int=\count155
+\c__fp_Bigg_middle_shift_int=\count156
+\c__fp_Bigg_trailing_shift_int=\count157
+\c__kernel_randint_max_int=\count158
+\g__fp_array_int=\count159
+\l__fp_array_loop_int=\count160
+\l__sort_length_int=\count161
+\l__sort_min_int=\count162
+\l__sort_top_int=\count163
+\l__sort_max_int=\count164
+\l__sort_true_max_int=\count165
+\l__sort_block_int=\count166
+\l__sort_begin_int=\count167
+\l__sort_end_int=\count168
+\l__sort_A_int=\count169
+\l__sort_B_int=\count170
+\l__sort_C_int=\count171
+\l__tl_analysis_normal_int=\count172
+\l__tl_analysis_index_int=\count173
+\l__tl_analysis_nesting_int=\count174
+\l__tl_analysis_type_int=\count175
+\l__regex_internal_a_int=\count176
+\l__regex_internal_b_int=\count177
+\l__regex_internal_c_int=\count178
+\l__regex_balance_int=\count179
+\l__regex_group_level_int=\count180
+\l__regex_mode_int=\count181
+\c__regex_cs_in_class_mode_int=\count182
+\c__regex_cs_mode_int=\count183
+\l__regex_catcodes_int=\count184
+\l__regex_default_catcodes_int=\count185
+\c__regex_catcode_D_int=\count186
+\c__regex_catcode_S_int=\count187
+\c__regex_catcode_L_int=\count188
+\c__regex_catcode_O_int=\count189
+\c__regex_catcode_A_int=\count190
+\c__regex_all_catcodes_int=\count191
+\l__regex_show_lines_int=\count192
+\l__regex_min_state_int=\count193
+\l__regex_max_state_int=\count194
+\l__regex_left_state_int=\count195
+\l__regex_right_state_int=\count196
+\l__regex_capturing_group_int=\count197
+\l__regex_min_pos_int=\count198
+\l__regex_max_pos_int=\count199
+\l__regex_curr_pos_int=\count266
+\l__regex_start_pos_int=\count267
+\l__regex_success_pos_int=\count268
+\l__regex_curr_char_int=\count269
+\l__regex_curr_catcode_int=\count270
+\l__regex_last_char_int=\count271
+\l__regex_case_changed_char_int=\count272
+\l__regex_curr_state_int=\count273
+\l__regex_step_int=\count274
+\l__regex_min_active_int=\count275
+\l__regex_max_active_int=\count276
+\l__regex_replacement_csnames_int=\count277
+\l__regex_match_count_int=\count278
+\l__regex_min_submatch_int=\count279
+\l__regex_submatch_int=\count280
+\l__regex_zeroth_submatch_int=\count281
+\g__regex_trace_regex_int=\count282
+\c_empty_box=\box39
+\l_tmpa_box=\box40
+\l_tmpb_box=\box41
+\g_tmpa_box=\box42
+\g_tmpb_box=\box43
+\l__box_top_dim=\dimen185
+\l__box_bottom_dim=\dimen186
+\l__box_left_dim=\dimen187
+\l__box_right_dim=\dimen188
+\l__box_top_new_dim=\dimen189
+\l__box_bottom_new_dim=\dimen190
+\l__box_left_new_dim=\dimen191
+\l__box_right_new_dim=\dimen192
+\l__box_internal_box=\box44
+\l__coffin_internal_box=\box45
+\l__coffin_internal_dim=\dimen193
+\l__coffin_offset_x_dim=\dimen194
+\l__coffin_offset_y_dim=\dimen195
+\l__coffin_x_dim=\dimen196
+\l__coffin_y_dim=\dimen197
+\l__coffin_x_prime_dim=\dimen198
+\l__coffin_y_prime_dim=\dimen199
+\c_empty_coffin=\box46
+\l__coffin_aligned_coffin=\box47
+\l__coffin_aligned_internal_coffin=\box48
+\l_tmpa_coffin=\box49
+\l_tmpb_coffin=\box50
+\l__coffin_display_coffin=\box51
+\l__coffin_display_coord_coffin=\box52
+\l__coffin_display_pole_coffin=\box53
+\l__coffin_display_offset_dim=\dimen256
+\l__coffin_display_x_dim=\dimen257
+\l__coffin_display_y_dim=\dimen258
+\g__file_internal_ior=\read2
+\l__coffin_bounding_shift_dim=\dimen259
+\l__coffin_left_corner_dim=\dimen260
+\l__coffin_right_corner_dim=\dimen261
+\l__coffin_bottom_corner_dim=\dimen262
+\l__coffin_top_corner_dim=\dimen263
+\l__coffin_scaled_total_height_dim=\dimen264
+\l__coffin_scaled_width_dim=\dimen265
+\l__seq_internal_a_int=\count283
+\l__seq_internal_b_int=\count284
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3pdfmode.def"
+File: l3pdfmode.def 2018-09-24 v L3 Experimental driver: PDF mode
+\l__driver_color_stack_int=\count285
+))
+Package: xparse 2018-09-24 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count286
+\g__xparse_grabber_int=\count287
+\l__xparse_m_args_int=\count288
+\l__xparse_mandatory_args_int=\count289
+\l__xparse_v_nesting_int=\count290
+)
+Package: tikzsymbols 2018/05/16 v4.10a Some symbols created using tikz and LaTe
+X3.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\xspace.sty"
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\l3keys2e\l3keys2e.sty"
+Package: l3keys2e 2018-09-24 LaTeX2e option processing using LaTeX3 keys
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+libraryarrows.code.tex"
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.code.t
+ex"
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
+\arrowsize=\dimen266
+))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+librarydecorations.pathmorphing.code.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+librarydecorations.code.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduledecorations.code
+.tex"
+\pgfdecoratedcompleteddistance=\dimen267
+\pgfdecoratedremainingdistance=\dimen268
+\pgfdecoratedinputsegmentcompleteddistance=\dimen269
+\pgfdecoratedinputsegmentremainingdistance=\dimen270
+\pgf@decorate@distancetomove=\dimen271
+\pgf@decorate@repeatstate=\count291
+\pgfdecorationsegmentamplitude=\dimen272
+\pgfdecorationsegmentlength=\dimen273
+)
+\tikz@lib@dec@box=\box54
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibraryd
+ecorations.pathmorphing.code.tex"))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+librarytrees.code.tex"
+File: tikzlibrarytrees.code.tex 2008/02/24 v3.0.1a (rcs-revision 1.2)
+)
+\l__tikzsymbols_Moai_thickness_dim=\dimen274
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Kochtopf with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Kochtopf}{1}}O{1}' on line 572.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Bratpfanne with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Bratpfanne}{1}}O{1}' on line 605.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Schneebesen with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Schneebesen}{1}}O{1}' on line 634.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Sieb with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Sieb}{1}}O{1}' on line 663.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Purierstab with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Purierstab}{1}}O{1}' on line 688.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Dreizack with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Dreizack}{1}}O{1}' on line 713.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Backblech with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Backblech}{1}}O{1}' on line 740.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Ofen with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Ofen}{1}}O{1}' on line 766.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Pfanne with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Pfanne}{1}}O{1}' on line 800.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Herd with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Herd}{1}}O{1}' on line 826.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Saftpresse with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Saftpresse}{1}}O{1}' on line 861.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Schussel with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Schussel}{1}}O{1}' on line 885.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Schaler with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Schaler}{1}}O{1}' on line 910.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Reibe with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Reibe}{1}}O{1}' on line 935.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Flasche with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Flasche}{1}}O{1}' on line 959.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Nudelholz with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Nudelholz}{1}}O{1}' on line 989.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Knoblauchpresse with sig.
+. '>{\__tikzsymbols_scale_if_empty:nTn {Knoblauchpresse}{1}}O{1}' on line
+. 1018.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Sadey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Sadey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1040.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dSadey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dSadey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 1062.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Changey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Changey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {white}}O{white}m' on line
+. 1092.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dChangey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dChangey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}m' on line
+. 1122.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \cChangey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {cChangey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {red}}O{red}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {green}}O{green}m' on line
+. 1176.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dcChangey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dcChangey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {red}}O{red}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {green}}O{green}m' on line
+. 1230.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Annoey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Annoey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1252.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dAnnoey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dAnnoey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 1274.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Smiley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Smiley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1299.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dSmiley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dSmiley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 1321.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Laughey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Laughey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1345.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dLaughey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dLaughey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {red}}O{red}' on line 1373.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Neutrey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Neutrey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1395.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dNeutrey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dNeutrey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 1417.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Winkey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Winkey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1439.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \oldWinkey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {oldWinkey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line
+. 1461.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dWinkey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dWinkey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 1483.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \olddWinkey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {olddWinkey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 1505.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Sey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Sey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1527.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dSey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dSey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1549.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Xey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Xey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1571.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dXey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dXey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1595.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Innocey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Innocey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1628.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \wInnocey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {wInnocey}{1}}O{1}' on line 1635.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dInnocey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dInnocey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 1666.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Cooley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Cooley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1692.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dCooley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dCooley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 1718.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Tongey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Tongey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1747.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dTongey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dTongey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {red}}O{red}' on line 1776.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Nursey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Nursey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {}}O{}' on line 1807.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dNursey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dNursey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn
+. {white}}O{white}>{\__tikzsymbols_if_empty:Tn {red}}O{red}' on line 1843.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Vomey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Vomey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {opacity=0}}O{opacity=0}' on line
+. 1880.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dVomey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dVomey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn
+. {brown!10!olive}}O{brown!10!olive}' on line 1919.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Walley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Walley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1960.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \rWalley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {rWalley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1993.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dWalley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dWalley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 2030.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \drWalley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {drWalley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 2063.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Cat with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Cat}{1}}O{1}' on line 2169.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \SchrodingersCat with sig.
+. '>{\__tikzsymbols_scale_if_empty:nTn {SchrodingersCat}{1}}O{1}m' on line
+. 2196.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Ninja with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Ninja}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {black}}O{black}>{\__tikzsymbols_if_empty:Tn
+. {red}}O{red}>{\__tikzsymbols_if_empty:Tn {white}}O{white}' on line 2251.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dNinja with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dNinja}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {black}}O{black}>{\__tikzsymbols_if_empty:Tn
+. {red}}O{red}>{\__tikzsymbols_if_empty:Tn {white}}O{white}' on line 2303.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Sleepey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Sleepey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {black}}O{black}' on line 2352.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dSleepey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {dSleepey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn
+. {blue}}O{blue}>{\__tikzsymbols_if_empty:Tn {black}}O{black}' on line 2401.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \NiceReapey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {NiceReapey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {black!20!white}}O{black!20!white}' on line 2435.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Strichmaxerl with sig.
+. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Strichmaxerl}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {-22}}O{-22}>{\__tikzsymbols_if_empty:Tn
+. {22}}O{22}>{\__tikzsymbols_if_empty:Tn
+. {27}}O{27}>{\__tikzsymbols_if_empty:Tn {-27}}O{-27}' on line 2536.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Person with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Person}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {-22}}O{-22}>{\__tikzsymbols_if_empty:Tn
+. {22}}O{22}>{\__tikzsymbols_if_empty:Tn
+. {27}}O{27}>{\__tikzsymbols_if_empty:Tn {-27}}O{-27}' on line 2545.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Candle with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Candle}{1}}O{1}' on line 2571.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Fire with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Fire}{1}}O{1}' on line 2616.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Coffeecup with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Coffeecup}{1}}O{1}' on line 2651.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Chair with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Chair}{1}}O{1}' on line 2680.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Bed with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Bed}{1}}O{1}' on line 2706.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Tribar with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Tribar}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {opacity=0}}O{opacity=0}>{\__tikzsymbols_if_empty:Tn
+. {opacity=0}}O{opacity=0}>{\__tikzsymbols_if_empty:Tn
+. {opacity=0}}O{opacity=0}' on line 2741.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Moai with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Moai}{1}}O{1}' on line 2791.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Snowman with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Snowman}{1}}O{1}' on line 2843.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \BasicTree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {BasicTree}{1}}O{1}mmmm' on line 2860.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \WorstTree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {WorstTree}{1}}O{1}' on line 2896.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Springtree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Springtree}{1}}O{1}' on line 2905.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Summertree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Summertree}{1}}O{1}' on line 2914.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Autumntree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Autumntree}{1}}O{1}' on line 2923.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Wintertree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
+. {Wintertree}{1}}O{1}' on line 2932.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \tikzsymbolsuse with sig. 'm' on line 2953.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \tikzsymbolsset with sig. 'm' on line 2964.
+.................................................
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgfplots\pgfplots.sty"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.revision.tex")
 Package: pgfplots 2018/03/28 v1.16 Data Visualization (1.16)
@@ -600,9 +1353,9 @@ Package: pgfplots 2018/03/28 v1.16 Data Visualization (1.16)
 \t@pgfplots@toka=\toks40
 \t@pgfplots@tokb=\toks41
 \t@pgfplots@tokc=\toks42
-\pgfplots@tmpa=\dimen174
-\c@pgfplots@coordindex=\count135
-\c@pgfplots@scanlineindex=\count136
+\pgfplots@tmpa=\dimen275
+\c@pgfplots@coordindex=\count292
+\c@pgfplots@scanlineindex=\count293
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\sys\pgfplotssysgeneric.code.
 tex"))
@@ -618,7 +1371,7 @@ Package pgfplots: loading complementary arithmetics for your pgf version...
 fsupp_pgflibraryfpu.code.tex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpg
 fsupp_pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count137
+\c@pgfmathroundto@lastzeros=\count294
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpg
 fsupp_leq.code.tex"))
@@ -629,13 +1382,13 @@ ructure.code.tex")
 ructureext.code.tex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsarray.
 code.tex"
-\c@pgfplotsarray@tmp=\count138
+\c@pgfplotsarray@tmp=\count295
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsmatrix
 .code.tex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\numtable\pgfplotstableshared
 .code.tex"
-\c@pgfplotstable@counta=\count139
+\c@pgfplotstable@counta=\count296
 \t@pgfplotstable@a=\toks43
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsdeque.
@@ -648,7 +1401,7 @@ e.tex"))
 tex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\libs\pgflibrarypgfplots.surf
 shading.code.tex"
-\c@pgfplotslibrarysurf@no=\count140
+\c@pgfplotslibrarysurf@no=\count297
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\sys\pgflibrarypgfplots.surfs
 hading.pgfsys-pdftex.def")))
@@ -672,35 +1425,16 @@ ex")))
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsticks.code.tex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.paths.code.tex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
-librarydecorations.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduledecorations.code
-.tex"
-\pgfdecoratedcompleteddistance=\dimen175
-\pgfdecoratedremainingdistance=\dimen176
-\pgfdecoratedinputsegmentcompleteddistance=\dimen177
-\pgfdecoratedinputsegmentremainingdistance=\dimen178
-\pgf@decorate@distancetomove=\dimen179
-\pgf@decorate@repeatstate=\count141
-\pgfdecorationsegmentamplitude=\dimen180
-\pgfdecorationsegmentlength=\dimen181
-)
-\tikz@lib@dec@box=\box39
-)
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
-librarydecorations.pathmorphing.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibraryd
-ecorations.pathmorphing.code.tex"))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
 librarydecorations.pathreplacing.code.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibraryd
 ecorations.pathreplacing.code.tex"))
-\pgfplots@numplots=\count142
-\pgfplots@xmin@reg=\dimen182
-\pgfplots@xmax@reg=\dimen183
-\pgfplots@ymin@reg=\dimen184
-\pgfplots@ymax@reg=\dimen185
-\pgfplots@zmin@reg=\dimen186
-\pgfplots@zmax@reg=\dimen187
+\pgfplots@numplots=\count298
+\pgfplots@xmin@reg=\dimen276
+\pgfplots@xmax@reg=\dimen277
+\pgfplots@ymin@reg=\dimen278
+\pgfplots@ymax@reg=\dimen279
+\pgfplots@zmin@reg=\dimen280
+\pgfplots@zmax@reg=\dimen281
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
 libraryplotmarks.code.tex"
@@ -719,15 +1453,15 @@ tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\numtable\pgfplotstable.colty
 pe.code.tex")) ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
 Package: array 2018/04/30 v2.4h Tabular extension package (FMi)
-\col@sep=\dimen188
-\ar@mcellbox=\box40
-\extrarowheight=\dimen189
+\col@sep=\dimen282
+\ar@mcellbox=\box55
+\extrarowheight=\dimen283
 \NC@list=\toks44
-\extratabsurround=\skip55
-\backup@length=\skip56
-\ar@cellbox=\box41
+\extratabsurround=\skip61
+\backup@length=\skip62
+\ar@cellbox=\box56
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 39.
+Package hyperref Info: Option `colorlinks' set `true' on input line 41.
 )
 ("Model Theory.aux")
 \openout1 = `"Model Theory.aux"'.
@@ -749,16 +1483,16 @@ LaTeX Font Info:    ... okay on input line 7.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count143
-\scratchdimen=\dimen190
-\scratchbox=\box42
-\nofMPsegments=\count144
-\nofMParguments=\count145
+\scratchcounter=\count299
+\scratchdimen=\dimen284
+\scratchbox=\box57
+\nofMPsegments=\count300
+\nofMParguments=\count301
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count146
-\MPscratchDim=\dimen191
-\MPnumerator=\count147
-\makeMPintoPDFobject=\count148
+\MPscratchCnt=\count302
+\MPscratchDim=\dimen285
+\MPnumerator=\count303
+\makeMPintoPDFobject=\count304
 \everyMPtoPDFconversion=\toks46
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -773,7 +1507,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\AtBeginShipoutBox=\box43
+\AtBeginShipoutBox=\box58
 Package hyperref Info: Link coloring ON on input line 7.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
@@ -782,7 +1516,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count149
+\c@section@level=\count305
 )
 LaTeX Info: Redefining \ref on input line 7.
 LaTeX Info: Redefining \pageref on input line 7.
@@ -887,11 +1621,11 @@ Package rerunfilecheck Info: File `"Model Theory".out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 507.
  ) 
 Here is how much of TeX's memory you used:
- 28527 strings out of 492970
- 686339 string characters out of 3135854
- 931847 words of memory out of 3000000
- 31827 multiletter control sequences out of 15000+200000
- 19499 words of font info for 100 fonts, out of 3000000 for 9000
+ 39660 strings out of 492970
+ 923449 string characters out of 3135854
+ 1177465 words of memory out of 3000000
+ 42905 multiletter control sequences out of 15000+200000
+ 548197 words of font info for 110 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,9n,96p,752b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
@@ -910,7 +1644,7 @@ ts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
 msfonts/symbols/msam10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
 onts/symbols/msbm10.pfb>
-Output written on "Model Theory.pdf" (15 pages, 415395 bytes).
+Output written on "Model Theory.pdf" (15 pages, 415544 bytes).
 PDF statistics:
  174 PDF objects out of 1000 (max. 8388607)
  21 named destinations out of 1000 (max. 500000)
