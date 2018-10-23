@@ -268,4 +268,67 @@ i.e. with measurement outcome $i$ associated to $d_i^2$-dimensional orthogonal s
 Then $\chi_i(g_1,g_2) = \chi_i(g_1) \chi_i(g_2)$ implies output distribution of $i$ values is independent of $g_0$, giving direct, albeit imcomplete, information about $K$.\\
 E.g. conjugate subgroups $K$ and $ = g_0 K g_0^{-1}$ for some $g_0 \in G$ give \emph{same} output distribution.
 
+---Lecture 6---\\
+Non-abelian HSP/FT remarks:\\
+For efficient HSP algorithm, we also need QFT to be efficiently implementable, i.e. $poly(\log|G|)$-time.\\
+This is true for any abelian $G$ and some non-ablien $G$'s (such as $\mathcal{P}_n$), but even in latter case there's no known efficient HSP algorithm.
+
+Some known result:\\
+for normal subgroups, i.e. $gK= Kg$ for all $g \in G$:
+\begin{thm} (Hallgrer, Russell, Tashma, SIAM J.Comp 32 p916-934 (2003))\\
+    Suppose $G$ has efficient QFT. Then if hidden subgroup $K$ is normal, then there is an efficient HSP quantum algorithm.\\
+    (Construct coset state $|g_0 K\ket$, perform $M_{rep}$ on it.)\\
+    Repeat $O(\log|G|)$ times. Then $K$ normal implies outputs suffice to determine $K$.
+\end{thm}
+
+\begin{thm} (Ettinger, Hoyer, Knill)\\
+    For general non-abelian HSP, $M=O(poly(\log|G|))$ random coset states $|g_1K\ket$,...,$g_M K\ket$ suffice to determine $K$ from $M$ coset states, but it's not efficient.\\
+    See example sheet for a proof -- construct a measurement procedure on $|g_1K\ket \otimes ... \otimes g_MK\ket$ to determine $K$, but it takes exponential time in $\log|G|$.
+\end{thm}
+
+The phase estimation algorithm:\\
+$\bullet$ a unifying principle for quantum algorithms, uses $QFT_{2^n}$ again.\\
+$\bullet$ many applications, e.g. an alternative efficient factoring algorithm (A.Kitaev).
+
+Given unitary operator $\mathcal{U}$ and eigenstaet $|v_\phi \ket \cdot \mathcal{U} | v_{\phi}\ket = e^{2\pi i\phi} | v_\phi\ket$, we want to estimate phase $\phi$, where $0 \leq \phi < 1$ (to some precision, say to $n$ binary digits).
+
+We'll need \emph{controlled-$U^k$} for integers $k$, writte $C-U^k$, which satisfies $c-U^k |0\ket |\xi\ket = |0\ket |\xi\ket$, $C-U^k |1\ket |\xi\ket = |1\ket U^k|\xi\ket$, where $|\xi\ket$ in general has dimension $d$.\\
+Note $U^k |v_\phi\ket = e^{2\pi ik\phi} | v_\phi\ket$, $C-(U^k) = (C-U)^k$.
+
+\begin{rem}
+    Given $U$ as a formula or (arant?) description, we can readily implement $C-U$, e.g. just control each gate of $U$'s circuit.\\
+    However, if $U$ is given as a \emph{black box}, we need further info:\\
+    $\bullet$ it suffices to have an eigenstate $|\alpha\ket$ with known eigenvalue $U|\alpha\ket = e^{i\alpha} |\alpha\ket$:\\
+    We can consider
+
+    \includegraphics[scale=0.5]{image/QC_01.png}
+    Where we get $CU|a\ket |\xi\ket$ at the first two row and the third row $|\alpha\ket$ is always unchanged.\\
+    To see how it works, just check circuit action. (...)
+\end{rem}
+
+We'll actually want \emph{generalised controlled-$U$} with $|x\ket |\xi\ket \to |x\ket U^x |\xi\ket$, where $|x\ket$ has $n$ qubits, i.e. $x \in \Z_{2^n}$.\\
+We can make this thing from $C-(U^k)$ as follows:
+
+\includegraphics[scale=0.5]{image/QC_02.png}
+
+We get $|x\ket U^x |\xi\ket$, where $x=x_{n-1}...x_1x_0$ binary, $U^x = U^{2^{x_{n-1}}} ... U^{2^{x_1}}U^{2^{x_0}}$.\\
+Note: if input $|\xi\ket = |v_\phi\ket$, then get $e^{2\pi i \phi x}|v_\phi\ket$.
+
+Now suppose over all $x=0,1,...,2^{n-1}$ and use $|\xi\ket = |v_\phi\ket$,
+
+\includegraphics[scale=0.5]{image/QC_03.png}
+
+Where the output is $\frac{1}{\sqrt{2^n}} \sum_x e^{2\pi i\phi x} |x\ket$, we call this state $|A\ket$.
+
+Finally apply $QFT_{2^n}^{-1}$ to $|A\ket$ and measure to see $y_0,...,y_{n-1}$ on lines $0,1,...,n-1$. Then output $0.y_0...y_{n-1} = \frac{y_0}{2}+...+\frac{y_{n-1}}{2^{n-1}}$, as the estimate of $\phi$.\\
+That's the phase estimation algorithm (for given $U$ and $V_\phi\ket$).
+
+Suppose $\phi$ actually had only $n$ binary digits, i.e. $\phi$ exactly equals $0.z_0z_1...z_{n-1}$ for some $z_k=0,1$ for all $k$.
+
+Then $\phi = \frac{z_0...z_{n-1}}{2^n} = \frac{z}{2^n}$ where $z$ is $n$-bit integer in $\Z_{2^n}$, and
+$$ |A\ket = \frac{1}{\sqrt{2^n}} \sum_x e^{2\pi ixz/2^n} |x\ket$$
+ \emph{is} $QFT_{2^n}$ of $|z\ket$.\\
+ So $QFT^{-1} |A\ket = |z\ket$ and get $\phi$ exactly, with certainty.\\
+ In this case the algorithm up to (not including) final measurements is a unitary operation, mapping $|0\ket ... |0\ket |v_\phi \ket \to |z_0 \ket ... |z_{n-1} \ket |v_\phi\ket$.
+
 \end{document}
