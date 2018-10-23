@@ -2,11 +2,6 @@
 
 \input{temp}
 
-\usepackage{tikzsymbols}
-
-\usepackage{tikz-cd}
-
-
 \setcounter{section}{-1}
 
 \begin{document}
@@ -272,7 +267,7 @@ Now let's go back to prove 2.2(ii):
 \begin{eg} (2.6)\\
     (a) The forgetful functor $\mathbf{Gp} \to \mathbf{Set}$ is representable by $(\Z,1)$, $\mathbf{Rng} \to \mathbf{Set}$ by $(\Z[X],X])$, and $\mathbf{Top} \to \mathbf{Set}$ by $(\{*\},*)$.\\
     (b) The functor $P^*: \mathbf{Set}^{op} \to \mathbf{Set}$ is representable by $(\{0,1\},\{\mathbf{1}\})$: this is the bijection between subsets and characteristic functions.\\
-    (c) Let $G$ be a group. The unique (up to isomorphism) representable functor $G(*,-): G \to \mathbf{Set}$ is the \emph{Cayley representation} of $G$, i.e. the set $\cup G$ with $G$ acting by left multiplication.\\
+    (c) Let $G$ be a group. The unique (up to isomorphism) representable functor $G(*,-): G \to \mathbf{Set}$ is the \emph{Cayley representation} of $G$, i.e. the set $UG$ with $G$ acting by left multiplication.\\
     (d) Let $A$ and $B$ be two objects of a small category $\mathcal{C}$. We have a functor $\mathcal{C}^{op} \to \mathbf{Set}$ sending $C$ to $\mathcal{C}(C,A) \times \mathcal{C}(C,B)$. A representation of this, if it exists, is called a (categorical) \emph{product} of $A$ and $B$, and denoted $(A \times B,(A \times B \xrightarrow{\pi_1} A, A \times B \xrightarrow{\pi_2}_B))$.\\
     This pair has the property that, for any pair $(C \xrightarrow{f}A,C\xrightarrow{g}B)$, there's a unique $C \xrightarrow{h} A \times B$ with $\pi_1 h = f$ and $\pi_2 h = g$.\\
     Products exist in many categories of interest: in $\mathbf{Set}$, $\mathbf{Gp}$, $\mathbf{Rng}$, $\mathbf{Top}$,..., they are \emph{just} cartesian products, in posets they are binary meets (see sheet 1 Q1).\\

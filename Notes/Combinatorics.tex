@@ -267,7 +267,66 @@ However, it turns out to be fine if we have done the smaller ones.
     Let $\mathcal{A} \subset X^{(r)}$ and $U,V \subset X$ with $|U|=|V|$ and $U \cap V = \phi$. Suppose that\\
     (*) $\forall x \in U, \exists y \in V$ s.t. $\mathcal{A}$ is $(U-x,V-y)$-compressed.\\
     Then $|\partial C_{UV}(\mathcal{A})|\leq |\partial \mathcal{A}|$.
+    \begin{proof}
+        Write $\mathcal{A}'$ for $C_{UV}(\mathcal{A})$.\\
+        Given $B \in \partial \mathcal{A}' - \partial \mathcal{A}$, we'll show that $U \cup B, V \cap P = \phi$, and $B \cup V - U \in \partial \mathcal{A} - \partial \mathcal{A}'$ (then we are done similar to the proof above).\\
+        We have $B \cup x \in \mathcal{A}'$ for some $x \not\in B$, with $B \cup x \not\in \mathcal{A}$.\\
+        So $U \subset B \cup x$, $V \cap (B \cup x) = \phi$,and $(B \cup x) \cup V - U \in \mathcal{A}$.\\
+        Thus certainly $V \cap B = \phi$.\\
+        If $x \in U$: We have $\mathcal{A}$ is $(U-x,V-y)$ compressed for some $y \in V$. So from $(B \cup x) \cup V - U \in \mathcal{A}$, we obtain $B \cup y \in \mathcal{A}$, contradicting $B \not\in \partial \mathcal{A}$.\\
+        Hence $x \not\in U$, and so $U \subset B$.\\
+        Lastly, $B \cup V - U \in \partial \mathcal{A}$ as $(B \cup x) \cup V - U \in \mathcal{A}$ (so the first is in the shadow by removing $x$);\\
+        Suppose $B \cup V- \in \partial \mathcal{A}'$. Then $(B \cup V - U) \cup w \in \mathcal{A}'$ for some $w$. If $w \not\in U$, then $V \subset (B \cup V - U) \cup w$, and $U \cap (B\cup V-U) \cup w = \phi$, so from $(B\cup V - U) \cup w \in \mathcal{A}'$ we conclude that both $(B-V-U) \cup W \in \mathcal{A}$, and $B \cup w \in \mathcal{A}$; however then $B \in \partial \mathcal{A}$, contradiction.\\
+        Otherwise, if $w \in U$, we have $\mathcal{A}$ is $(U-w,V-z)$-compressed for some $z \in V$ by our assumption. Now from $(B \cup V-U) \cup w \in\mathcal{A}$, since it is in $\mathcal{A}'$ and contains $V$ so we could not have moved by compression. So we get $B \cup z \in \mathcal{A}$, but then $B \in \partial \mathcal{A}$; contradiction.
+    \end{proof}
 \end{prop}
 
+With this tool, we can finally begin the proof of:
+\begin{thm} (7, Kruskal-Katona)\\
+    Let $\mathcal{A} \subset X^{(r)}$ $(1 \leq r \leq n)$, and let $\mathcal{C}$ be the initial segment of colex on $X^{(r)}$ with $|\mathcal{C}| = |\mathcal{A}|$. Then $|\partial \mathcal{A}| \geq |\partial \mathcal{C}|$.\\
+    In particular, if $|\mathcal{A}| = {k \choose r}$, then $|\partial \mathcal{A}| \geq {k \choose {r-1}}$.
+    \begin{proof}
+        Let $\Gamma = \{(U,V): U,V \subset X, |U| = |V| > 0, U \cap V = \phi, \max U < \max V\}$.\\
+        Define a sequence of set systems $\mathcal{A}_0,\mathcal{A}_1,...$ in $X^{(r)}$ as follows:\\
+        Let $\mathcal{A}_0 = \mathcal{A}$. Having defined $\mathcal{A}_{k_1}$, if $\mathcal{A})k$ is $(U,V)-$compressed $\forall (U,V) \in \Gamma$, then stop the sequence with $\mathcal{A}_k$. If not, choose $(U,V) \in \Gamma$ s.t. $\mathcal{A}_k$ \emph{not} $(U,V)$-compressed, with $|U|$ minimal. Set $\mathcal{A}_{k+1} = C_{UV}(\mathcal{A}_k)$.\\
+        Note that $\forall x \in U$, we have $(U-x,V-y) \in \Gamma \cup \{(\phi,\phi)\}$ for $y = \min V$. So by proposition 6, $|\partial \mathcal{A}_{k+1}| \leq |\partial \mathcal{A}_k|$. Continue.\\
+        This sequence must terminate, as, for example, $\sum){A \in \mathcal{A}_k} \sum_{i \in A} 2^i$ is decreasing in $k$ (not important, just something that is monotonically decreasing).\\
+        The final sysem $\mathcal{B} = \mathcal{A}_k$ satisfies $|\mathcal{B}| = |\mathcal{A}|$, and $|\partial \mathcal{B}| \leq |\partial \mathcal{A}|$, and is $(U,V)$-compressed for every $(U,V) \in \Gamma$.\\
+        Now we claim $\mathcal{B} = \mathcal{C}$: suppose otherwise, that $\mathcal{B}$ is not an initial segment of colex. Then $\exists A < B$ in colex with $A \not\in \mathcal{B}$ and $B \in \mathcal{B}$.\\
+        But then $U = A-B$ and $V=B-A$. We have $(U,V) \in \Gamma$, and $C_{UV}(B) = A$, so $\mathcal{B}$ is not $(U,V)$-compressed. Contradiction.
+    \end{proof}
+\end{thm}
+
+\begin{rem}
+    1. Equivalently: if $\mathcal{A} \subset X^{(r)}$ with $|\mathcal{A}| = {k_r \choose r} + {k_{r-1} \choose {r-1}} + ... + {k_s \choose s}$, where $k_r>k_{r-1}>...>k_s$ and $s>0$. Then $|\partial \mathcal{A}| \geq {k_r \choose {r-1}} + ... +{k_s \choose {s-1}}$ (Nice to know, but this is not important).\\
+    2. In proof of K-K theorem we only used the above proposition 6 but not the simplfied $ij$-compression case; but the simplified case provides some useful intuition on how we might probably prove the theorem.\\
+    3. Uniqueness: can we check that if $|\partial \mathcal{A}| = |\partial \mathcal{C}|$ and $|\mathcal{A}| = {k \choose r}$, then $\mathcal{A} = Y^{(r)}$for some $k-$set $Y$? Unfortunately, this is not true in general.
+\end{rem}
+
+Let's now consider something similar:
+
+\begin{defi}
+    For $\mathcal{A} \subset X^{(r)}$ $(0 \leq r \leq n-1$), the \emph{upper shadow} of $\mathcal{A}$ is $\partial^+ \mathcal{A} = \{A \cup x: A \in \mathcal{A}, x \not\in A\}$.\\
+\end{defi}
+
+Note that $A<B$ in colex $\implies$ if $A^c < B^c$ in less, with the ground-set order reversed (so from $1$ to $n$ to $n$ to $1$).
+
+\begin{coro} (8)\\
+    Let $\mathcal{A} \subset X^{(r)}$ ($0 \leq r \leq n-1$), and let $\mathcal{C}$ be the initial segment of lex with $|\mathcal{C}| = |\mathcal{A}|$. Then $|\partial^+ \mathcal{A}| \geq |\partial^+ \mathcal{C}|$.\\
+    \begin{proof}
+        Take complements.
+    \end{proof}
+\end{coro}
+
+Also, the shadow of an initial segment of colex is again an initial segment in colex (in their corresponding ground set): If $\mathcal{C} = \{A \in X^{(r): A \leq a_1a_2...a_r}\}$. Then $\partial \mathcal{C} = \{B \in X^{(r-1)}: B \leq a_2...a_r\}$. So:
+
+\begin{coro} (9)\\
+    Let $\mathcal{A} \subset X^{(r)}$, and let $\mathcal{C} \subset X^{(r)}$ be the initial segment of colex in $X^{(r)}$ of the same size.\\
+    Then $|\partial^t \mathcal{A}| \geq |\partial^t \mathcal{C}|$ $\forall 1 \leq t \leq r$.\\
+    In particular, if $|\mathcal{A}| = {k \choose r}$, then $|\partial^t \mathcal{A}| \geq {k \choose {r-t}}|$.
+    \begin{proof}
+        Apply above and use K-K theorem.
+    \end{proof}
+\end{coro}
 
 \end{document}
