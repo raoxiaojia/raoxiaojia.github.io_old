@@ -496,12 +496,112 @@ Reminder: we have a lecture next Monday (22nd Oct)!
 \end{thm}
 
 \begin{defi} (4.5)\\
-    An $L$-theory is \emph{consistent} if it there is $L$-structure $\mathcal{M}$ s.t. $\mathcal{M} \vDash T$.\\
+    An $L$-theory is \emph{consistent} if there is $L$-structure $\mathcal{M}$ s.t. $\mathcal{M} \vDash T$.\\
     If $T$ is a theory in $L$ and $\phi$ is an $L$-sentence, then $T \vdash \phi$ (read as \emph{$T$ entails $\phi$}, note that this has nothing to do with syntactic implication) if for all $\mathcal{M}$ such that $\mathcal{M} \vDash T$, we have $\mathcal{M} \vDash \phi$.\\
     Finally, an $L$-theory $T$ is \emph{complete} if for all $L$-sentences $\phi$, either $T \vdash \phi$ or $T \vdash \neg\phi$ (see part II Logic and Set Theory).\\
     For example, $T_{dlo}$ is complete.
 \end{defi}
 
+---Lecture 6---
 
+\begin{defi} (4.6)\\
+    A theory $T$ in a countable language with a (infinitely) countable model is \emph{$\omega$-categorical} if any two countable models of $T$ are isomorphic.
+\end{defi}
+
+\begin{coro} (4.7 of theorem (4.4))\\
+    $T_{dlo}$ is $\omega$-categorical.
+    \begin{proof}
+        If $\mathcal{M}, \mathcal{N} \vDash T_{dlo}$, $|\mathcal{M}| = |\mathcal{N}| = \omega$, then $\phi$ (the empty map) is a finite partial embedding. But by theorem (4.4) we get $\mathcal{M} \simeq \mathcal{N}$.\\
+        (We can also use any $\{\bra a,b\ket\}$ where $a \in \mathcal{M}$ and $b \in \mathcal{M}$ as initial finite partial embedding).
+    \end{proof}
+\end{coro}
+
+\begin{thm} (4.8)\\
+    If $T$ is an $\omega$-categorical theory in a countable language, then $T$ is complete.
+    \begin{proof}
+        Let $\mathcal{M} \vDash T$ and $\phi$ be an $L$-sentence.\\
+        If $\mathcal{M} \vDash \phi$, suppose $\mathcal{N} \vDash T$. Then by theorem (3.11) (Downward Lowenheim-Skolem), there are $\mathcal{M}' \preccurlyeq \mathcal{M}$, $\mathcal{N}' \preccurlyeq\mathcal{N}$ s.t. $|\mathcal{M}'| = |\mathcal{N}'| = \omega$.\\
+        But $\mathcal{M}' \simeq \mathcal{N}'$ (by $\omega$-categoricity), so in particular $\mathcal{M}' \equiv \mathcal{N}'$, and so $\mathcal{N}' \vDash \phi$. By elementarity, $\mathcal{N} \vDash \phi$.\\
+        The case $\mathcal{M} \vDash \neg\phi$ is similar.\\
+        (Think about if $T$ could have a finite model.)
+    \end{proof}
+\end{thm}
+
+\begin{coro} (4.9)\\
+    $T_{dlo}$ is complete.
+\end{coro}
+
+\begin{defi} (4.10)\\
+    If $\mathcal{M}$, $\mathcal{N}$ are $L$-structures, a map $f$ such that $\dom (f) \subseteq M$ (the domain of $\mathcal{M}$), and $img(f) \subseteq N$ is a (partial) \emph{elementary map} if for all $L$-formulas $\phi(\bar{x})$ and $\bar{a} \in (\dom(f))^{|\bar{x}|}$, then
+    $$\mathcal{M} \vDash \phi(\bar{a}) \iff \mathcal{N} \vDash \phi(f(\bar{a}))$$
+\end{defi}
+
+\begin{rem} (4.11)\\
+    A map $f$ is elementary iff every finite restriction of $f$ is elementary.\\
+    (Why? For forward, if $f_0 \subseteq f$ is a finite restriction that is not elementary, then for some formula $\phi(\bar{x})$, $\bar{a} \in \dom (f_0)$, the above equivalence doesn't hold; but then that equivalence doesn't hold for $f$ either; contradiction; for backward, if $f$ is not elementary, then the above equivalence fails on a finite tuple, so the above equivalence fails on some finite restriction.)
+\end{rem}
+
+\begin{prop} (4.12)\\
+    Let $\mathcal{M},\mathcal{N} \vDash T_{dlo}$, and let $p: A \subseteq M \to N$ be a partial embedding. Then $p$ is elementary.\\
+    \begin{proof}
+        By remark (4.11), it suffices to consider $p$ finite.\\
+        By Downward L-S theoem (3.11), we choose $\mathcal{M}',\mathcal{N}'$ such that\\
+        (i) $|\mathcal{M}'| = |\mathcal{N}'| = \omega$;\\
+        (ii) $\mathcal{M}' \preccurlyeq\mathcal{M}$, $\mathcal{N}' \preccurlyeq\mathcal{N}$;\\
+        (iii) $\dom (p) \subseteq M', img(p) \subseteq N'$.
+
+        \includegraphics[scale=0.5]{image/Model_04.png}
+
+        Now $p$ is a finite partial embedding between countable models, so $p$ extends to an isomorphism $\pi:\mathcal{M}' \to \mathcal{N}'$.\\
+        In particular, $\pi$ is an elemntary map between $\mathcal{M}$ and $\mathcal{N}$.
+    \end{proof}
+\end{prop}
+
+\begin{coro} (4.13)\\
+    $(\Q,<) \preccurlyeq (\R,<)$.\\
+    \begin{proof}
+        Use proposition (4.12) with $id:\Q \to \R$.
+    \end{proof}
+\end{coro}
+
+\begin{defi} (4.14)\\
+    (See Part II Logic and Set Theory)\\
+    Let $L_{gph} = \{R\}$, where $R$ is a binary relation symbol.\\
+    An $L_{gph}$-structure is a graph if\\
+    (i) $\forall x$ $\neg R(x,x)$;\\
+    (ii) $\forall xy (R(x,y) \leftrightarrow R(y,x))$.
+
+    An $L_{gph}$-structure is a \href{http://modeltheory.wikia.com/wiki/Random_graph}{random graph} if it is a graph such that the following axiom-schema $(r_n)$ hold:
+
+    \includegraphics[scale=0.5]{image/Model_05.png}
+
+    $$\forall x_0...x_n,y_0...y_n, (\bigwedge_{i,j=0}^n x_i \neq y_j \to \exists z(\bigwedge_{i = 0}^n (z \neq x_i) \wedge (z \neq y_i) \wedge R(z,x_i) \wedge \neg R(z,y_i)))$$
+
+    (iii) $\exists xy (x\neq y)$.
+\end{defi}
+
+\begin{rem} (similar to what is mentioned in the link above)\\
+    A random graph is infinite. Given a finite subset, we can always find a vertex that is connected to every vertex in the subset (likewise for not connected).
+\end{rem}
+
+\begin{fact} (4.15)\\
+    There is a random graph.
+    \begin{proof}
+        Let the domain be $\omega$, let $i,j \in \omega$ such that $i < j$. Write $j$ as a sum of distinct powers of $2$. Then $\{i,j\}$ is an edge iff $2^i$ appears in the sum.\\
+        As an exercise, prove that $\omega$ with this definition of $R$ is indeed a random graph.
+    \end{proof}
+\end{fact}
+
+\begin{defi} (4.16, or more precisely just notations)\\
+    $T_{gph} = \{$ axioms (i), (ii)$\}$, $T_{rg} = T_{gph} \cup \{$ (iii), ($r_n$) $:n \in \omega\}$.\\
+    If $\mathcal{M},\mathcal{N} \vDash T_{gph}$, a partial embedding is an injection $p: A \subseteq M \to N$ s.t. $\mathcal{M} \vDash R(p(a),p(b)) \iff \mathcal{N} \vDash R(a,b)$ for all $a,b$ in the domain.
+\end{defi}
+
+\begin{lemma} (4.17)\\
+    Let $\mathcal{M} \vDash T_{gph},\mathcal{N} \vDash T_{rg}$, let $p:A \subseteq M \to N$ be a finite partial embedding, and let $c \in M$.\\
+    Then there is a map $\hat{p}:\hat{A} \subseteq M \to N$ such that $\hat{p}$ is a partial embedding, $c \in \dom \hat{p}$, $p\subseteq \hat{p}$.\\
+    (This is like another extension lemma.)\\
+    We'll prove this next time.
+\end{lemma}
 
 \end{document}
