@@ -290,7 +290,7 @@ The phase estimation algorithm:\\
 $\bullet$ a unifying principle for quantum algorithms, uses $QFT_{2^n}$ again.\\
 $\bullet$ many applications, e.g. an alternative efficient factoring algorithm (A.Kitaev).
 
-Given unitary operator $\mathcal{U}$ and eigenstaet $|v_\phi \ket \cdot \mathcal{U} | v_{\phi}\ket = e^{2\pi i\phi} | v_\phi\ket$, we want to estimate phase $\phi$, where $0 \leq \phi < 1$ (to some precision, say to $n$ binary digits).
+Given unitary operator $\mathcal{U}$ and eigenstate $|v_\phi \ket \cdot \mathcal{U} | v_{\phi}\ket = e^{2\pi i\phi} | v_\phi\ket$, we want to estimate phase $\phi$, where $0 \leq \phi < 1$ (to some precision, say to $n$ binary digits).
 
 We'll need \emph{controlled-$U^k$} for integers $k$, writte $C-U^k$, which satisfies $c-U^k |0\ket |\xi\ket = |0\ket |\xi\ket$, $C-U^k |1\ket |\xi\ket = |1\ket U^k|\xi\ket$, where $|\xi\ket$ in general has dimension $d$.\\
 Note $U^k |v_\phi\ket = e^{2\pi ik\phi} | v_\phi\ket$, $C-(U^k) = (C-U)^k$.
@@ -327,8 +327,100 @@ Suppose $\phi$ actually had only $n$ binary digits, i.e. $\phi$ exactly equals $
 
 Then $\phi = \frac{z_0...z_{n-1}}{2^n} = \frac{z}{2^n}$ where $z$ is $n$-bit integer in $\Z_{2^n}$, and
 $$ |A\ket = \frac{1}{\sqrt{2^n}} \sum_x e^{2\pi ixz/2^n} |x\ket$$
- \emph{is} $QFT_{2^n}$ of $|z\ket$.\\
- So $QFT^{-1} |A\ket = |z\ket$ and get $\phi$ exactly, with certainty.\\
- In this case the algorithm up to (not including) final measurements is a unitary operation, mapping $|0\ket ... |0\ket |v_\phi \ket \to |z_0 \ket ... |z_{n-1} \ket |v_\phi\ket$.
+\emph{is} $QFT_{2^n}$ of $|z\ket$.\\
+So $QFT^{-1} |A\ket = |z\ket$ and get $\phi$ exactly, with certainty.\\
+In this case the algorithm up to (not including) final measurements is a unitary operation, mapping $|0\ket ... |0\ket |v_\phi \ket \to |z_0 \ket ... |z_{n-1} \ket |v_\phi\ket$.
+
+---Lecture 7---
+Phase Estimation (continued):\\
+
+$U$ is a $d \times d$ unitary operation/matrix with eigenstate $U|v_\phi \ket = 2^{2\pi i\phi} | v_\phi \ket$, and we want to estimate $\phi$.\\
+$U$ as a quantum physical operation is equivalent to $\tilde{U} = e^{i \alpha} U$ for any $\alpha$ and $\tilde{U}$ has $\phi \to \phi+\alpha/2\pi$.\\
+So if $U$ given as quantum physical operation alone, we cannot determine $\phi$.\\
+But controlled versions different: $C-U$ and $C-\tilde{U}$ are different as physical operations (set $\{e^{i\alpha} C-U\}_\alpha \neq \{e^{i\alpha} C-\tilde{U}\}_\alpha$), and $C-U/\tilde{U}$ \emph{does} fix $\phi$ associatied to choice of phase $\alpha$.\\
+So quantum phase estimation algorithm use $C-U$ ($C-U^{2^k}$) physical operations (not just $U$'s).
+
+We had $\underbrace{|0\ket...|0\ket}_{n} |v_\phi\ket \stackrel[C-U's]{\text{unitary}}{\rightarrow} |A\ket = \frac{1}{\sqrt{2^n}} \sum_{x=0}^{2^n-1} e^{2\pi i\phi x} |x\ket$ ($n$ qubits).\\
+Apply $QFT^{-1}$ we get $QFT^{-1}|A\ket$, measure to see $y_0,...,y_{n-1}$; output $\phi = \frac{(y_0y_1...y_{n-1})}{2^n}$, $0 \leq y < 2^{n-1}$, where the numerator is a $n$-bit integer.\\
+If $\phi = \frac{z}{2^n}$ for integer $0 \leq z < 2^n$, i.e. $\phi$ has exactly $n$ binary digits, then $|A\ket = QFT|z\ket$, so we get $z$ with certainty in the measurement.
+
+Now suppose $\phi$ has \emph{more} than $n$ bits, say $\phi = 0.z_0z_1z_2...z_{n-1} | z_nz_{n+1}...$. Then we have:
+
+\begin{thm} (PE)
+    If measurement in above algorithm give $y_0,...y_{n-1}$ (so output is $\theta = 0.y_0...y_{n-1}$), then\\
+    (a) $\P(\theta$ is closet $n$ binary digit approximate to $\phi) \geq {4}{\pi^2}$;\\
+    (b) $\P(|\theta-\phi| \geq \varepsilon)$ is at most $P(\frac{1}{2^n \varepsilon})$ (we'll show it's at most $\frac{1}{2^{n+1} \varepsilon}$).
+
+    \begin{rem}
+        In (a), we have probability $\frac{4}{\pi^2}$ that all $n$ lines of $n$-line QPE process are \emph{good}.\\
+        But, if we want $\phi$ accurate to $m$ bits with probability $1-\eta$, then we use theorem (PE) (b) with $\varepsilon = 1/2^m$. Then we'll use $n>m$ lines with
+        $$\frac{1}{2^{n+1}} \varepsilon = \eta, \varepsilon = \frac{1}{2^m}$$
+        i.e. $n=m+\log(1/\eta)+1$. In words, number of lines needed is only number of bits wanted with good probability $1-\eta$ plus a modest polynomial increase for exponetial reduction in $\eta$.
+    \end{rem}
+
+    \begin{proof}
+        We have
+        \begin{equation*}
+            \begin{aligned}
+                QFT^{-1}|x\ket = \frac{1}{\sqrt{2^n}} \sum_{y=0}^{2^n-1} e^{-2\pi i yx / 2^n} |y\ket
+            \end{aligned}
+        \end{equation*}
+        So
+        \begin{equation*}
+            \begin{aligned}
+                QFT^{-1} |A\ket =\frac{1}{2^n} \sum_y \left[\sum_x e^{2\pi i(\phi - y/2^n)x}\right] |y\ket
+            \end{aligned}
+        \end{equation*}
+        So for measurement,
+        \begin{equation*}
+            \begin{aligned}
+                \P(\text{see } n- \text{ bit integer } y=y_0y_1...y_{n-1}) = \frac{1}{2^{2n}} \left|\sum_{x=0}^{2^n-1} e^{2\pi i \underbrace{(\phi-\frac{y}{2^n})}_{:=\delta(y)} x}\right|^2
+            \end{aligned}
+        \end{equation*}
+        Note that this is a geometric series $e^{2\pi i \delta(y)}$, so 
+        \begin{equation*}
+            \begin{aligned}
+                \P(\text{see } y) = \frac{1}{2^{2n}} \left|\frac{1-e^{2^n 2\pi i \delta(y)}}{1-e^{2\pi i\delta(y)}} \right|^2
+            \end{aligned}
+        \end{equation*}
+        Let's call this equation (P) (maybe for \emph{phase}).\\
+        We want to bound/estimate this expression.\\
+        For (a): Let $y=a=a_0a_1...a_{n-1}$ give \emph{closest} $n$-bit approximation to $\phi$, i.e. $|\phi-\frac{a}{2^n}| \leq \frac{1}{2^{n+1}}$, i.e. $\delta(a) \leq \frac{1}{2^{n+1}}$.\\
+        Now we bounds:\\
+        (i) $|1-e^{i\alpha}| = |2\sin \frac{\alpha}{2}| \geq \frac{2}{\pi} |\alpha|$ if $|\alpha| < \pi$;\\
+        (ii) $|1 - e^{2\pi i \beta}| \leq 2\pi \beta$.
+
+        In equation (P), use (i) with $\alpha =2^n \cdot 2\pi \delta(a) \leq 2^n 2\pi \frac{1}{2^{n+1}} \leq \pi$ to lower bound top line, and (ii) with $\beta = \delta(a)$ to upper bound bottom line, get
+        \begin{equation*}
+            \begin{aligned}
+                \P(\text{see } a) \geq \frac{1}{2^{2n}} \left(\frac{2^{n+1}\delta(a)}{2\pi \delta(a)}\right)^2 = \frac{4}{\pi^2}
+            \end{aligned}
+        \end{equation*}
+        For (b), we want to upper bound equaiton (P): for top line, $|1-e^{i\alpha}| \leq 2$ for any $\alpha$; for bottom, use (i) get $|1-e^{2\pi i\delta(y)} | \geq 4\delta(y)$. So
+        \begin{equation*}
+            \begin{aligned}
+                \P(y) \leq \frac{1}{2^{2n}} \left(\frac{2}{4\delta(y)}\right)^2 = \frac{1}{2^{2n+2}} \delta(y)^2
+            \end{aligned}
+        \end{equation*}
+        Now sum this for all $|\delta(y)| > \varepsilon$, $\delta(y)$ values spaced by $1/2^n$'s. Let $\delta_+$ be first $\delta(y)$ (jumps?) with $\delta(y) \geq \varepsilon$, $\delta_-$ be that with $\delta(y) \leq -\varepsilon$. So $|\delta_+|,|\delta_-| \geq \varepsilon$.\\
+        Then if $|\delta(y)| \geq \varepsilon$, we have $\delta(y) = \delta_+ + \frac{k}{2^n}$, $k=0,1,...$, or $=\delta_- - \frac{k}{2^n}$, $k=0,1,...$.\\
+        So $|\delta(y)| \geq \varepsilon + \frac{k}{2^n}$ with $k=0,1,2,...$ in each case.\\
+        So
+        \begin{equation*}
+            \begin{aligned}
+                \P(|\delta(y) > \varepsilon) &\leq 2 \sum_{k=0}^\infty \frac{1}{2^{2n+2}} \frac{1}{(\varepsilon+\frac{k}{2^n})^2}\\
+                &\leq \frac{1}{2} \int_0^\infty \frac{1}{(2^n \varepsilon+k)^2} dk\\
+                &= \int_{2^n \varepsilon}^\infty \frac{dk}{k^2}\\
+                &= \frac{1}{2^{n+1} \varepsilon}
+            \end{aligned}
+        \end{equation*}
+    \end{proof}
+\end{thm}
+
+Further remarks on QPE algorithm:\\
+(1) If $C-U^{2^k}$ is implemented as $(C-U)^{2^k}$, the QPE algorithm needs exponential time in $n$ as we have $1+2+...+2^{n-1} = 2^n-1$ $(C-U)$ gates.\\
+However, for some special $U$'s, $C-U^{2^k}$ can be implemented in $poly(k)$ time, so we get a poly time QPE algorithm.\\
+It can be used to provide alternative facoring (order finding) algorithm (due to A. Kitaer) using PE.
+
 
 \end{document}
