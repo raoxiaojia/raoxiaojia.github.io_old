@@ -270,6 +270,9 @@ However, it turns out to be fine if we have done the smaller ones.
     \begin{proof}
         Write $\mathcal{A}'$ for $C_{UV}(\mathcal{A})$.\\
         Given $B \in \partial \mathcal{A}' - \partial \mathcal{A}$, we'll show that $U \cup B, V \cap P = \phi$, and $B \cup V - U \in \partial \mathcal{A} - \partial \mathcal{A}'$ (then we are done similar to the proof above).\\
+
+---Lecture 5---
+
         We have $B \cup x \in \mathcal{A}'$ for some $x \not\in B$, with $B \cup x \not\in \mathcal{A}$.\\
         So $U \subset B \cup x$, $V \cap (B \cup x) = \phi$,and $(B \cup x) \cup V - U \in \mathcal{A}$.\\
         Thus certainly $V \cap B = \phi$.\\
@@ -329,6 +332,74 @@ Also, the shadow of an initial segment of colex is again an initial segment in c
     \end{proof}
 \end{coro}
 
+---Lecture 6---\\
+Let's have a vote on the time of example class. Sat 3rd Nov 9am is the last in our list, but we'll have to use that if we can't do it on the other times.\\
+Who can't make Wed 31st 6pm? $\infty$\\
+Who can't make Thu 1st 4pm? $4$\\
+Who can't make Thu 1st 5pm? $2$\\
+Who can't make Fri 2st 3pm? $4$\\
+Who can't make Fri 2st 4pm? $2$\\
+Who can't make Fri 2st 5pm? $3$\\
+Ok it seems we'll have to try saturday... Who can't make Saturday? (only 1 raises hand). Ok we'll have to put it at 3rd Sat 9am then. Sorry\\
+You just need to hand in Q2 and Q3 on thursday \emph{at the start of lecture}, but it's nice to at least have looked at the others.
 
+\subsection{Intersecting families}
+
+A family $\mathcal{A} \subset \P(X)$ is \emph{intersecting} if $A \cap B \neq \phi$ $\forall A,B \in \mathcal{A}$.\\
+How large can $|\mathcal{A}|$ be?\\
+We can achieve $|\mathcal{A}| = 2^{n-1}$, by taking e.g. $\mathcal{A} = \{A \subset X: 1 \in A\}$.
+
+\begin{prop} (10)\\
+    Let $\mathcal{A} \subset \P(X)$ be intersecting. Then $|\mathcal{A}| \leq 2^{n-1}$.\\
+    \begin{proof}
+        For each $A \subset X$, we can have at most one of $A$ or $A^c$ in $\mathcal{A}$.
+    \end{proof}
+\end{prop}
+
+Note: there exists many examples with $|\mathcal{A}| = 2^{n-1}$. For $n$ odd, we can take $\{A \subset X: |A| > \frac{n}{2}\}$.\\
+What if $A \subset X^{(r)}$?\\
+If $r > \frac{n}{2}$, it's silly as we can just atke $\mathcal{A} = X^{(r)}$.\\
+If $r = \frac{n}{2}$, the maximum is $\frac{1}{2} {n \choose r}$ -- just choose \emph{one} of $A,A^c$ for each $A \in X^{(r)}$.\\
+These cases are less interesting. So we'll assume now $r<\frac{n}{2}$.\\
+Taking $\mathcal{A} = \{A \in X^{(r)} : 1 \in A\}$ guves $|\mathcal{A}| = {{n-1} \choose {r-1}} =\frac{r}{n} {n \choose r}$.\\
+We could also try, e.g. $\mathcal{B} = \{A \in X^{(r)}: |A \cap \{1,2,3\} | \geq 2\}$ (a random choice)\\
+Now consider a specific case $[8]^{(3)}$. In this case we have $|\mathcal{A}| = {7 \choose 2} = 21$. $|\mathcal{B}| = 1+{3 \choose 2} {5 \choose 1} = 16 < 21$.
+
+\begin{thm} (11, Erd$\ddot{o}$s-Ko-Rado theorem)\\
+    Let $r < \frac{n}{2}$, and let $\mathcal{A} \subset X^{(r)}$ be intersecting. Then $|\mathcal{A}| \leq {{n-1} \choose {r-1}}$.\\
+    (Note that this also holds for $r = \frac{n}{2}$ from our example above, but that's only true for silly reason (by chance)).
+    \begin{proof}
+        We'll present multiple proofs.\\
+        (1) \emph{Bubble down with Kruskal-Katona}:\\
+        For $A,B \in \mathcal{A}$, we have $A \cap B \neq \phi$, i.e. $A \not\subset B^c$.\\
+        Writing $bar{\mathcal{A}}$ for $\{A^c:A \in \mathcal{A}\} \subset X^{(n-r)}$.\\
+        Then $\mathcal{A}$ is intersecting basically says that $\partial^{n-2r} \bar{\mathcal{A}}$ is disjoint from $\mathcal{A}$.\\
+        Now suppose $|\mathcal{A}| > {{n-1} \choose {r-1}}$. Then $|\mathcal{A}^c| > {{n-1} \choose {r-1}} = {{n-1} \choose {n-r}}$.\\
+        So by (the iterated form of) K-K theorem, as given in corollary (9), we have $|\partial^{n-2r} \bar{\mathcal{A}}| \geq {{n-1} \choose r}$.\\
+        But ${{n-1} \choose {r-1}} + {{n-1} \choose r} = {n \choose r}$, i.e. $|\partial^{n-2r} \bar{\mathcal{A}}| + |\mathcal{A}| > |X^{(r)}|$.
+    \end{proof}
+
+    \begin{rem}
+        The numbers \emph{had} to work, as we get equality for $\mathcal{A} = \{A \in X^{(r)} : 1 \in A\}$. So the fact that the above was not just pure luck.
+    \end{rem}
+
+    \begin{proof}
+        (2) Consider a cyclic ordering $c$ of $[n]$, i.e. a bijection $c:[n] \to \Z_n$. How many $A \in \mathcal{A}$ are intervals (sets of $r$ consecutive elemnts in our ordering)?\\
+        The answer is at most $r$. Indeed, suppose $c_1,...,c_r \in \mathcal{A}$. Then for each $1 \leq i \leq r-1$, at most one of the two intervals $...C_{i-1}{c_i}$ and $C_{i+1}C_{i+2}...$ can belong to $\mathcal{A}$.\\
+        Also, a given $r$-set $A$ is an interval is exactly $n r! (n-r)!$ of the $n!$ cyclic orderings. Hence $|\mahtcal{A}| n r! (n-r)! \leq n! r$, i.e. $|\mathcal{A} \leq \frac{(n-1)!}{(r-1)!(n-r)!} = {{n-1} \choose {r-1}}$.
+    \end{proof}
+
+    \begin{rem}
+        (1) Equivalently, we are double-counting the edges in the bipartite graph, vertex classes and all cyclic orderings, in which $A$ is joined to $C$ if $A$ is an interval of $C$.\\
+        (2) This method is called \emph{averaging}, or \emph{Katona's method} (as Katona used this first).
+    \end{rem}
+\end{thm}
+
+When is equality achieved in EKR theorem? We can check equality holds iff $\mathcal{A} = \{A \in X^{(r)}: i \in A\}$ for some $i$. This follows from proof 1, from euqality case of K-K theorem (when size is nice); or from proof 2, by considering chaining the cyclic ordering bit by bit.
+
+\newpage
+
+\section{Isoperimetric inequalities}
+The focus of this chapter: \emph{How tightly can we pack a subset of given size in a space?}
 
 \end{document}
