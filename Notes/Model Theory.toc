@@ -2,3 +2,4 @@
 \contentsline {section}{\numberline {2}Terms, formulae, and their interpretations}{5}{section.2}
 \contentsline {section}{\numberline {3}Theories and Elementarity}{9}{section.3}
 \contentsline {section}{\numberline {4}Two relational structures}{14}{section.4}
+\contentsline {section}{\numberline {5}Compactness}{20}{section.5}

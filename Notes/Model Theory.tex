@@ -517,6 +517,7 @@ Reminder: we have a lecture next Monday (22nd Oct)!
 \end{coro}
 
 \begin{thm} (4.8)\\
+    (erratum 26th Oct 2018: lecturer wants to add a condition \emph{$T$ has no finite models}. Then the problem with (4.11) is fixed.)\\
     If $T$ is an $\omega$-categorical theory in a countable language, then $T$ is complete.
     \begin{proof}
         Let $\mathcal{M} \vDash T$ and $\phi$ be an $L$-sentence.\\
@@ -602,6 +603,79 @@ Reminder: we have a lecture next Monday (22nd Oct)!
     Then there is a map $\hat{p}:\hat{A} \subseteq M \to N$ such that $\hat{p}$ is a partial embedding, $c \in \dom \hat{p}$, $p\subseteq \hat{p}$.\\
     (This is like another extension lemma.)\\
     We'll prove this next time.
+    
+    ---Lecture 7---
+
+    Last time we defined what a random graph is (in this course). We also defined what is a partial embedding in this theory (just preserves all edges).\\
+    Let's continue with the proof of the lemma now. Let $c \in M$, $c \neq \dom(p)$.
+
+    \includegraphics[scale=0.5]{image/Model_06.png}
+
+    Find $d \in N$ such that $\mathcal{N} \vDash R(d,p(a)) \iff \mathcal{M} \vDash R(c,a)$.
+\end{lemma}
+
+\begin{proof} (4.18)\\
+    Let $\mathcal{M},\mathcal{N} \vDash T_{rg}$ and $|\mathcal{M}| = |\mathcal{N}| = \omega$, adnd $P:A \subseteq M \to N$ is a finite partial embedding.\\
+    Then $\mathcal{M} \simeq \mathcal{N}$, by an isomorphism that extends $p$.
+    \begin{proof}
+        Same as proof of Theorem (4.4) (there is only one model of $T_{dlo}$ up to isomorphism), but with lemma (4.17) instead of lemma (4.3).
+    \end{proof}
+\end{proof}
+
+\begin{coro} (4.19)\\
+    $T_{rg}$ is $\omega$-categorical (see definition (4.6) -- this is just a restatement of the theorem above) and complete.\\
+    In particular, every finite partial embedding between models of $T_{rg}$ is an elementary map.
+\end{coro}
+
+\begin{rem}
+    The unique (up to isomorphism) model of $T_{rg}$ is \emph{the} countable random graph, or the \emph{Rado} graph.\\
+    It is universal w.r.t. finite and countable graphs (i.e. it embeds all).\\
+    Another nice property (which you are not required to see this immediately -- it is far from trivial) \emph{ultrahomogeneous}, i.e. every isomorphism between finite substructures extends to an automorphism of the whole graph.\\
+    Google \emph{David Marker's} book, or \emph{Tent-Ziegler}. Warning: both of them contain a lot of typos.
+\end{rem}
+
+\newpage
+
+\section{Compactness}
+
+\begin{defi} (5.1)\\
+    Suppose we have a $L$-theory $T$.\\
+    (i) $T$ is \emph{finitely satisfiable} if every finite subset of sentences in $T$ has a model.\\
+    (ii) $T$ is \emph{maximal} if for all $L$-sentences $\sigma$, either $\sigma \in T$ or $\neg\sigma \in T$.\\
+    (iii) $T$ has the \emph{witness property} (WP): if for all $\phi(x)$ ($L$-formula with $1$ free variable), there is a constant $c \in \mathcal{C}$ s.t.
+    $$(\exists x \phi(x) \to \phi(c)) \in T$$
+\end{defi}
+
+\begin{lemma} (5.2)\\
+    If $T$ is maximal and finitely satisfiable (we'll sometimes use \emph{f.s.} from now onwards), and $\phi$ is an $L$-sentence, and $\triangle \stackrel{fin}{\subseteq} T$ and $\triangle \vdash \phi$, then $\phi \in T$.\\
+    (Prove it by yourself)
+\end{lemma}
+
+\begin{lemma} (5.3)\\
+    Let $T$ be a maximal, f.s. theory with WP. Then $T$ has a model.\\
+    Moreover, if $\lambda$ is a cardinal and $|\mathcal{C}| \leq L$ ($\mathcal{C}$ is the set of constants in $L$), then $T$ has a model of size at most $\lambda$.
+    \begin{proof}
+        Let $\mathcal{C}$ be the constants of $L$. Let $c,d \in \mathcal{C}$, define $c \sim d$ iff $c=d \in T$.\\
+        We claim that $\sim$ is an equivalence relation: reflexivity and symmetry are trivial; for transitivity, let $c \sim d$ and $d \sim e$. Then $c=d \in T$ and $d=e \in T$. Then by the lemma $c=e\in T$ as it is implied by the two sentences. So $c \sim e$.\\
+        Notation: we'll use $c/\sim = c^*$ to denote the equivalence class of $c$.\\
+        Now define a structure $\mathcal{M}$ whose domain is $\mathcal{C}/\sim = M$. Clearly, $|M| \leq \lambda$ if $|\mathcal{C}| \leq \lambda$.\\
+        We must define interpretations in $\mathcal{M}$ for symbols for $L$:\\
+        $\bullet$ If $c \in \mathcal{C}$, then $c^m = c^* (=c/\sim$);\\
+        $\bullet$ If $R \in \mathcal{R}$ is a relation symbol, we define $R^{\mathcal{M}} = \{(c_1^*,...,c_{n_R}^*):R(c_1,...,c_{n_R}) \in T\}$.\\
+        We have to check that $R^{\mathcal{M}}$ is well-defined: suppose $\bar{c},\bar{d} \in \mathcal{C}^{n_R}$ and suppose $c_i \sim d_i$ for each $i$, i.e. $c_i = d_i \in T$ for every $i=1,...,n_R$. However, now
+        $$R(\bar{c}) \in T \iff R(\mathbf{d}) \in T$$
+        by maximality of $T$ and the previous lemma. So that $R^{\mathcal{M}}$ is well defined.\\
+        $\bullet$ If $f \in \mathcal{F}$ is a function symbol, then $f\bar{c} = d \in T$ for some $d \in \mathcal{C}$: this is because $\exists x(f(\bar{c}=x) \in T$ by maximality and f.s..\\
+        Then define $f^{\mathcal{M}}(\bar{c}^*) = \bar{d}^*$ (obvious notation).\\
+        We also have to check this is well-defined. Lecturer decides to left this to us.\\
+        Now we claim that the terms behave nicely as what the theory says, i.e. if $t(x_1,...,x_n)$ is an $L$-term and $c_1,...,c_n,d \in \mathcal{C}$, then $t(c_1,...,c_n) = d \in T \iff t^{\mathcal{M}} (c_1^*,...,c_n^*) = d^*$.\\
+        $\bullet$ $\implies$: by induction on the complexity of $T$ (lecturer decidse to leave this as another exercise).\\
+        $\bullet$ $\Leftarrow$: Assume $t^{\mathcal{M}} (c_1^*,...,c_n^*) = d^*$. Then $t(c_1,...,c_n) = e \in T$ for some constant $e$ (why? As our theory is maximal, it has to say what the result is when we apply $t$ to these terms). We then use $\implies$ to get that $t^{\mathcal{M}}(c_1^*,...,c_n^*) = e^*$.\\
+        But then $d^* = e^*$, i.e. $d = e \in T$. So by lemma (5.2), the sentence implied by these two sentences, $t(c_1,...,c_n) = d \in T$.\\
+        The last massive claim: for all $L$-formulas $\phi(\bar{x})$ and $\bar{c} \in \mathcal{C}^{|\bar{x}|}$, we have
+        $$\mathcal{M} \vDash \phi(\bar{c}) \iff \phi(\bar{c}) \in T$$
+        The proof is by induction on complexity of $\phi(\bar{x})$ (The lecturer decided to leave yet another proof to us -- lots of work to be done here. Lecturer is speeding up!).
+    \end{proof}
 \end{lemma}
 
 \end{document}
