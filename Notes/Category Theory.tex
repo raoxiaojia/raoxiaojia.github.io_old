@@ -693,7 +693,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
         We have morphisms $P \stackrel[g]{f}{\rightrightarrows} Q$ defined by $\pi_\alpha f = \pi_{\cod(\alpha)}$, $\pi_\alpha g = D(\alpha) \pi_{\dom \alpha}$ for all $\alpha$.\\
         Let $E \xrightarrow{e} P$ be an equalizer of $(f,g)$. The composites $\lambda_j = \pi_j e: E \to D(j)$ form a cone over $D$: given $\alpha: j \to j'$ in $\mathcal{J}$, 
         $$D(\alpha) \lambda_j = D(\alpha) \pi_j e = \pi_\alpha ge = \pi_\alpha fe = \pi_{j'} e = \lambda_{j'}$$
-        Given any cone $(A,(\mu_j | j \in \ob\mathcal{J}))$ over $D$, there's a unique $\mu:A \to P$ with $\pi_j \mu = \mu_j$ for each $j$, and $\pi_\alpha f \mu = \mu_{\cod \alpha} = D(\alpha) \mu_{\dom \alpha} = \\pi_\alpha g\mu$ for all $\alpha$, and hence $f\mu = g\mu$. So there is a unique $\nu:A \to E$ with $e\nu = \u$. So $(E,(\lambda_j | j \in \ob \mathcal{J}))$ is a limit cone.
+        Given any cone $(A,(\mu_j | j \in \ob\mathcal{J}))$ over $D$, there's a unique $\mu:A \to P$ with $\pi_j \mu = \mu_j$ for each $j$, and $\pi_\alpha f \mu = \mu_{\cod \alpha} = D(\alpha) \mu_{\dom \alpha} = \pi_\alpha g\mu$ for all $\alpha$, and hence $f\mu = g\mu$. So there is a unique $\nu:A \to E$ with $e\nu = \nu$. So $(E,(\lambda_j | j \in \ob \mathcal{J}))$ is a limit cone.
 
         (ii) It's enough to construct finite products and equalizers. But if $1$ is the terminal object, then a pullback for 
         \begin{tikzcd}
@@ -703,8 +703,8 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
         has the universal property of a product $A \times B$, and we can form $\prod_{i=1}^n A_i$ inductively as $A_1 \times (A_2 \times (A_3 \times ... (A_{n-1} \times A_n)))$.\\
         Now, to form the equalizer of $A \stackrel[g]{f}{\rightrightarrows} B$, consider the cospan
         \begin{tikzcd}
-        & A \arrow[d,"(1_A,f)"]\\
-        A \arrow[r,"(1_A,g)"] & A \times B
+            & A \arrow[d,"{(1_A,f)}"]\\
+            A \arrow[r,"{(1_A,g)}"] & A \times B
         \end{tikzcd}
         . A cone over this consists of 
         \begin{tikzcd}
@@ -722,7 +722,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     Let $F: \mathcal{C} \to \mathcal{D}$ be a functor.\\
     (a) We say $F$ \emph{preserves limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a limit cone $(L,(\lambda_j|j \in \ob\mathcal{J}))$ in $\mathcal{C}$, $(FL, (F\lambda_j | j \in \ob \mathcal{J}))$ is a limit for $FD$.\\
     (b) We say $F$ \emph{reflects limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a cone $(L,(\lambda_j)_j)$ s.t. $(FL,(F\lambda_j)_j)$ is a limit for $FD$, then $(L,(\lambda_j)_j)$ is a limit for $D$.\\
-    (c) (this is stronger than both of above and implies them. Note that a lot of textbook gets this wrong; those definitions aren't categorical) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathacl{J} \to \mathcal{C}$ and (lecturer had \emph{and and} here; if this is any other course I won'd bother put this, but this is Category Theory) a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$.
+    (c) (this is stronger than both of above and implies them. Note that a lot of textbook gets this wrong; those definitions aren't categorical) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and (lecturer had \emph{and and} here; if this is any other course I won'd bother put this, but this is Category Theory) a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$.
 \end{defi}
 
 \end{document}
