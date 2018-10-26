@@ -762,6 +762,159 @@ But then by assumption we have an equivalence $\mathcal{C}_0 \stackrel[G]{F}{\ri
 (i) Quite a lot of people forgot to verify that it is actually a subgroup! Suppose given automorphisms $F,G,H$ with isomorphisms $\alpha:F \to 1_{\mathcal{C}},\beta:G \to 1_{\mathcal{C}}$. Then $(F^{-1} \alpha)^{-1} : F^{-1} \to F^{-1}F = 1_{\mathcal{C}}$ is an isomorphism, so $F^{-1}$ is inner. Now $FG\xrightarrow{F\beta} F \xrightarrow{\alpha} 1_\mathcal{C}$ is isomorphism, so $FG$ is inner.\\
 Now we have to verify normality: $HFH^{-1} \xrightarrow{H \alpha_{H^{-1}}} HH^{-1} = 1_{\mathcal{C}}$ is iso, so $HFH^{-1}$ is inner.\\
 You don't have to spend a lot of time to verify that all these are nat transforms (ok).\\
-(ii) Note that an isomorphism is in particular an equivalence. Now if $F$ is an automorphism, it is full and faithful, so for any $A$, morphism $A \to F1$ are in bijection with morphisms $F^{-1} A \to 1$, so there's just one of them.
+(ii) Note that an isomorphism is in particular an equivalence. Now if $F$ is an automorphism, it is full and faithful, so for any $A$, morphism $A \to F1$ are in bijection with morphisms $F^{-1} A \to 1$, so there's just one of them.\\
+Hence if $F$ is an isomorphism of $\mathbf{Set}$, $F(1) = 1$, and henec there's a unique $\alpha: \mathbf{Set} (1,-) \to F$ (this is just Yoneda).\\
+We need to show $\alpha$ is iso: but for any $A$, and any $1 \xrightarrow{x} A$, 
+\begin{tikzcd}
+    1 \arrow[r,"\alpha_1"] \arrow[d,"x"] & F1 \arrow[d,"Fx"]\\
+    A \arrow[r,"\alpha_A"] & FA
+\end{tikzcd}
+commutes, but $F$ is full and faithful, so $\alpha_A$ is bijective. Hence by (1.8), $\alpha$ is an isomorphism.\\
+(iii) Note that if $X$ has $\geq 3$ points, then it has $\geq 4$ continuous endo maps (constants and identity). If $X$ has $\leq 1$ point, then its only endo is $1_X$. So the only possibility is $X$ having 2 points. Say $X = \{0,1\}$ wit discrete or indiscrete topology, all 4 maps $X \to X$ are continuous. So the only possible topology is the Sierpinski space given in the question (or the other way), which there are 3 continuous maps $X \to X$.\\
+Hence if $F$ is an autom of $\mathcal{C} \subseteq \mathbf{Top}$, we must have $FS \cong S$.\\
+We also have $F1 \cong 1$, and $U:\mathcal{C} \to \mathbf{Set}$ is iso to $\mathcal{C} (1,-)$. So there's a unique nat $\alpha: U \to UF$, and $\alpha_X$ is bijective for all $X$, as before. Now we don't know if $\alpha_X$ is continuous or not for a given $X$. So we consider naturality squares
+\begin{tikzcd}
+    UX \arrow[r,"\alpha_X"] \arrow[d,"Uf"] & UFX \arrow[d,"UFf"]\\
+    US \arrow[r,"\alpha_S"] & UFS
+\end{tikzcd}
+If $\alpha_S$ is discontinuous, the nfor any $X$, $\alpha_X$ maps open subsets of $X$ bijecively to closed subsets of $FX$, but this is impossible if not every intersection of open sets in $X$ is open.\\
+So then $\alpha_S$ is a homeomorphism, and $\alpha_X$ is a homeomorphism for all $X$.\\
+(iv) This basically says that if we restrict to finite topological spaces, then we do have the other case in the above happening. Let $F:\mathbf{Top}_f \to\mathbf{Top}_f$ sending $X$ to the same set with closed sets as new opens.\\
+Then $FF = 1_{\mathbf{Top}_f}$, so $F$ is an automorphism, and it is not isomorphic to the identity as there exists finite spaces $X$ with $X \not\cong FX$ (we could find one with 3 points -- lecturer didn't give the explicit example). So $F$ is not inner.\\
+Now if $G$ is any non-inner autom, then $GF$ is inner(?????); so $\Aut(\mathbf{Top}_f):Inn(Top_f)| = 2$.
+
+\subsection{Question 4}
+(i) Suppose we are given 
+\begin{tikzcd}
+    C \arrow[r,"h"] \arrow[d,"g", two heads] & A \arrow[d,tail,"f"]\\
+    D \arrow[r,"k"] & B \arrow[d,"p",shift right] \arrow[d,"q", shift left]\\
+    & E
+\end{tikzcd}
+where $f$ is an equalizer of $(p,q)$.\\
+Then $pfh = pkg = qkg = qfh$, and $g$ is epic, so $pk = qk$, so exists unique $t$ with $ft=k$. Then $ftg = kg = fh$, and $f$ is monic, so $tg = h$.\\
+(ii) 
+\begin{tikzcd}
+    A \arrow[dr,"k"] \arrow[r,"f"] & B \arrow[d,"g",shift right] \arrow[d,"h", shift left] & D \arrow[l,"l"] \arrow[dl,"m"]\\
+    & C &
+\end{tikzcd}
+Note that $f$ isn't regular monic. Why not? Because it is not iso and not an equalizer of $(g,h)$, since $l$ doesn't factor through it. It is trivially monic and strong monic: the only squares with $f$ on RHS is to put the identity before $f$, but it's trivial to verify those cases.\\
+In some sense we can see that this is a minimal counter-example to the statement (think a bit, there's not anything better you can do).\\
+(iii) This actually has nothing to do with the previous two parts. We have 
+\begin{tikzcd}
+    A \arrow[r,"f"] \arrow[rd,"k"] & B \arrow[d,"g",shift right] \arrow[d,"h",shift left]\\
+    & C
+\end{tikzcd}
+We want a commutative square
+\begin{tikzcd}
+    \cdot \arrow[r] \arrow[d] & \cdot \arrow[d]\\
+    \cdot \arrow[r] & \cdot
+\end{tikzcd}
+with one vertical edge $f$ and the other one not. There are still a lot of possibilities, but almost any of it work. Say we pick
+\begin{tikzcd}
+    \cdot \arrow[r,"f"] \arrow[d,"f"] & \cdot \arrow[d,"g"]\\
+    \cdot \arrow[r,"h"] & \cdot
+\end{tikzcd}
+Try $f,f,g,h$: the only possible composites are with 
+\begin{tikzcd}
+    \cdot \arrow[r,"h"] \arrow[d,"1_B"] & \cdot \arrow[d,"1_C"]\\
+    \cdot \arrow[r,"h"] & \cdot
+\end{tikzcd}
+or 
+\begin{tikzcd}
+    \cdot \arrow[r,"h"] \arrow[d,"h"] & \cdot \arrow[d,"1_C"]\\
+    \cdot \arrow[r,"1_C"] & \cdot
+\end{tikzcd}
+So $(f,g)$ is vacuously epic.
+
+\subsection{Question 5}
+This question has a lots of boring parts so lecturer is not going to write out all of it. The only a little bit tricky part is the strong part of (ii). We'll do that: suppose $gf$ is strong monic, and suppose we are given
+\begin{tikzcd}
+    \cdot \arrow[r,"l"] \arrow[d,"h", two heads] & \cdot \arrow[d,"f"]\\
+    \cdot \arrow[r,"k"] & \cdot \arrow[d,"g"]\\
+    & \cdot
+\end{tikzcd}
+. Then
+\begin{tikzcd}
+    \cdot \arrow[r,"l"] \arrow[d, "k", two heads] & \cdot \arrow[d,"gf", tail]\\
+    \cdot \arrow[ru,"t", dashed] \arrow[r,"gk"] & \cdot
+\end{tikzcd}
+commutes. A lot of people used $g$ is monic, but we weren't given it here(oops)! Here $\exists t$ with $th = l$ (and $gft = gk$). Then $fth = fl = kh$ and $h$ is epic, so $ft = k$.\\
+Suppose $gf$ is regular monic, say it's the equalizer of $\cdot \stackrel[l]{k}{\rightrightarrows} \cdot$. To show that $f$ is an equalizer of $(kg,fg)$, suppose we are given 
+\begin{tikzcd}
+    \cdot \arrow[r,"m"] & \cdot
+\end{tikzcd}
+with $kgm = lgm$. Then $\exists ! n$ with $gm = gfn$. But now $g$ is monic. So $m = fn$.\\
+(iv) This part is also fairly problematic. The first thing we need to work out is what equalizers look like in this category. Given $A \stackrel[g]{f}{\rightrightarrows} B$ in $\mathcal{C}$, their equalizer in $\mathbf{AbGp}$ is the subgroup of $\{a \in A | f(a) = g(a)\}$, and this belongs to $\mathcal{C}$. Since $\mathcal{C}$ is full, it's also an equalizer in $\mathcal{C}$. Now $\mathbf{Z} \xrightarrow{\times 2} \Z$ is an equalizer of $\Z \stackrel[0]{q}{\rightrightarrows} \Z/2\Z$, so it's regular monic in $\mathcal{C}$. But if $\Z \xrightarrow{\times 4} \Z$ were an equalizer of $\Z \stackrel[g]{f}{\rightrightarrows} A$, then $f(1) - g(1)$ must have order $4$ in $A$, so $A \not\in \ob\mathcal{C}$.\\
+The last part of this is to find a counter-example to a previos part. We consider $\Z \xrightarrow{f} \Z \oplus \Z/2\Z \xrightarrow{g} \Z$, where $f(n) = (2n,[n])$, $g(p,q) = p$.\\
+Note that $gf$ is regular monic, but $f$ isn't, as $(1,[1])$ has order $4$ modulo $Im(f)$.
+
+\subsection{Question 6}
+(i) Suppose $e = fg$, $gf$ an identity. We claim that $e$ is an equalizer of $e$ and $1_{\dom e}$: we have $ef = fgf = f$, so $f$ has equal composites with $e$ and $1_{\dom e}$; now if $h$ satisfies $eh = h$, then $h = fgh$, so it factorizes through $h$; moreover this factorization is unique, as $f$ is a split monomorphism.\\
+Conversely, if $f$ is an equalizer of $(e,1_{\dom e})$, then of course $e$ must factor trough it since $ee = e$. Say $e=fg$. Now $fgf = ef = f$, and $f$ is monic, so $gf = 1_{\dom f}$.\\
+(ii) $\mathcal{E} \subseteq Idem \mathcal{C}$, morphisms $e \to d$ are morphisms $\dom_e \xrightarrow{f} \dom d$ in $\mathcal{C}$ with $dfe = f$. Note that this is equivalent to the two separate equations: one way is clear, now $df=d(dfe) = dfe = f$ (remember $d$ is idempotent!!!). Similarly $fe = f$.\\
+Compsotiion in $\mathcal{C}[\check{\mathcal{E}}]$ is composition in $\mathcal{C}$: if $e \xrightarrow{f} d \xrightarrow{g} c$, then $cgf = gf = gfe$, so $gf : e \to c$. The identity on $e$ is $e \xrightarrow{e} e$.\\
+(iii) We define $I:\mathcal{C} \to \mathcal{C} [\check{\mathcal{E}}]$ by $IA = 1_A$, $If = f$ (check this works). $I$ is f and f since all morphisms $A \to B$ in $\mathcal{C}$ are morphisms $1_A \to 1_B$ in $\mathcal{C} [\check{\mathcal{E}}]$.\\
+For every $A \xrightarrow{e} A$ in $\mathcal{E}$, $Ie$ splits as $1_A \xrightarrow{e} e \xrightarrow{e} 1_A$.\\
+So if $T = \hat{T I}$, $T$ must send idempotents in $\mathcal{E}$ to split idenpotents.\\
+Now we have to show the converse, where we do have to use choice here. Suppose $Te$ is split for every $A \xrightarrow{e} A$ in $\mathcal{E}$. Choose a splitting $TA \xrightarrow{g_e} \hat{T}e \xrightarrow{f_e} TA$ of it, and define $\hat{T}: \mathcal{C} [\check{\mathcal{E}}] \to \mathcal{D}$ on morphisms by $\hat{T} (e \xrightarrow{h} d) = \hat{T} e \xrightarrow{f_e}TA \xrightarrow{Th} TB \xrightarrow{g_d} \hat{T}d$ (verify that this is functorial): provided we split $T(1_A)$ as $TA \xrightarrow{1_{TA}} TA \xrightarrow{1_{TA}} TA$, we have $\hat{T} I = T$.\\
+(iv) Now suppose $\mathcal{E} = \{$all idempotents of $\mathcal{C}\}$. If $e \xrightarrow{d} e$ is idempotent in $\mathcal{C} [\check{\mathcal{E}}]$, then $dd = d$ in $\mathcal{C}$, so $d \in \mathcal{E}$, and $e \xrightarrow{d} e$ splits as $e \xrightarrow{d} d \xrightarrow{d} e$.\\
+(v) If $\mathcal{D}$ is Cauchy-complete, consider the functor $[\hat{\mathcal{C}},\mathcal{D}] \xrightarrow{\Phi} [\mathcal{C},\mathcal{D}]$ sending $\hat{T}$ to $\hat{T}I$ and $\alpha to \alpha_I$. $\Phi$ is surjective on objects by (iii); so we need to show, given $S,T : \hat{\mathcal{C}} \rightrightarrows \mathcal{D}$, any nat trans $\alpha:SI \to TI$ extends uniquely to a nat trans $S \to T$. Given $A \xrightarrow{e} A$ in $\mathcal{E}$, we have a morphism $Se \xrightarrow{S(e \xrightarrow{e} 1_A)} SA \xrightarrow{\alpha_A} TA \xrightarrow{T(1_A \xrightarrow{e} e)} Te$ which we take to be $\alpha_e$.\\
+This is the only possibility that makes the naturality squares for both $e \xrightarrow{e} 1_A$ and $1_A \xrightarrow{e} e$ commute:
+\begin{tikzcd}
+    Se \arrow[r,"S(e\xrightarrow{e} 1)"] \arrow[d,"\alpha_e"] & SA \arrow[d,"\alpha_A"]\\
+    Te \arrow[r,"T(e\xrightarrow{e} 1)"] & TA
+\end{tikzcd}
+commutes since $\alpha_A$ is natural w.r.t. $1_A \xrightarrow{e} 1_A$. So this is the only possible way to extend it to a nat trans, and we of course have to verify naturality w.r.t. any $e \xrightarrow{f} d$ in $\mathcal{C}[\check{\mathcal{E}}]$.\\
+So $\Phi$ is part of an equivalence by (1.12).
+
+\subsection{Question 7}
+For any $F: \mathcal{C} \to \mathbf{Set}$, $\coprod_{(A,x), A \in \ob\mathcal{C},x \in FA} \mathcal{C}(A,-) \to F$ is pointwise surjective, so $F$ irreducible implies that there exists $\mathcal{C}(A,-) \twoheadrightarrow F$.\\
+Conversely, given $\mathcal{C}(A,-) \stackrel{\alpha}{\twoheadrightarrow} F$ and an epi $\coprod_{i \in I} G_i \stackrel{f}{\twoheadrightarrow} F$, we have 
+\begin{tikzcd}
+    & \mathcal{C}(A,-) \arrow[dl,dashed, "\gamma"] \arrow[d,two heads, "\alpha"]\\
+    \coprod_{i \in I} G_i \arrow[r,two heads,"\beta"] & F
+\end{tikzcd}
+$\gamma$ corresponds to an element of $\coprod_{i \in I} G_i A$, which lives in $G,A$ for some $i$. Then 
+\begin{tikzcd}
+    & \mathcal{C}(A,-) \arrow[dl,"\gamma"] \arrow[d,two heads, "\alpha"]\\
+    G_i \arrow[r,"\beta_i"] & F
+\end{tikzcd}
+forces $\beta_i$ to be epic.\\
+(ii) If $F$ is irreducible and projective, then we get
+\begin{tikzcd}
+    & F \arrow[dl,"f"] \arrow[d,"1"]\\
+    \mathcal{C}(A,-) \arrow[r,two heads, "\alpha"] & F
+\end{tikzcd}
+, so $\alpha$ is split epic.\\
+Conversely, if
+\begin{tikzcd}
+    \mathcal{C}(A,-) \arrow[r,two heads,shift right, "\alpha"] & F \arrow[l,tail,shift right,"\beta"]
+\end{tikzcd}
+is split epic, then given
+\begin{tikzcd}
+    & F \arrow[d,"f"]\\
+    & \mathcal{C}(A,-) \arrow[ddl, dashed] \arrow[d,"\alpha"]\\
+    & F \arrow[d]\\
+    G \arrow[r,two heads] & H
+\end{tikzcd}
+so $F$ is projective.\\
+The composite $\mathcal{C}(A,-) \xrightarrow{\alpha} F \xrightarrow{\beta} \mathcal{C}(A,-)$ is idenpotent; $Y:\mathcal{C}^{op} \to [\mathcal{C},\mathbf{Set}]$ is full and faithful, so it's of the form $Y(e)$ for a uniqu idempotent $A \xrightarrow{e} A$ in $\mathcal{C}$.\\
+But now if this splits as $A \xrightarrow{g} B \xrightarrow{f} A$, then $\mathcal{C}(A,-) \xrightarrow{\mathcal{C}(f,-)}\mathcal{C}(B,-) \xrightarrow{\mathcal{C}(g,-)} \mathcal{C}(A,-)$ is a splitting of $\beta\alpha$. But then by Q6(i), so we must have $F \cong \mathcal{C}(B,-)$.\\
+(iii) We know $[\mathcal{C},\mathbf{Set}] \simeq [\hat{\mathcal{C}},\mathbf{Set}]$ since $\mathbf{Set}$ is Cauchy-complete. If $\hat{\mathcal{C}} \simeq \hat{\mathcal{D}}$ by functors $F$ and $G$, then $T \to TF$ and $T \to TG$ give an equivalence $[\hat{\mathcal{C}},\mathbf{Set}] \simeq [\hat{\mathcal{D}},\mathbf{Set}]$.\\
+But any equivalence $[\hat{\mathcal{C}},\mathbf{Set}] \simeq [\hat{\mathcal{D}},\mathbf{Set}]$ restricts to an equivalence between the full subcategories of irreducible projectives, which are equivalent to $\hat{\mathcal{C}}^{op}$ and $\hat{\mathcal{D}}^{op}$.
+
+\subsection{Question 8}
+This question is actually quite quick.\\
+$\mathcal{C}(A,-)$ is a monofunctor just means that for any $f:B \to C$, the map $g \to fg$ is an injection $\mathcal{C}(A,B) \to \mathcal{C}(A,C)$. This holds for all $A$ iff all $f \in \mor\mathcal{C}$ are monic -- that's the equivalence between (i) and (ii).\\
+We now prove (ii) $\implies$ (iii): Since we have an epi $\coprod \mathcal{C}(A,-) \twoheadrightarrow F$ and disjoint unions of monofunctors are monofunctors (?).\\
+For (iii) $\implies$ (ii), if we have $F \stackrel{\alpha}{\twoheadrightarrow} \mathcal{C}(A,-)$ with $F$ a monofunctor, we have a splitting $\mathcal{C}(A,-) \stackrel{\beta}{\rightarrowtail} F$, and any subfunctor of a monofunctor is a monofunctor.\\
+Given $f:A \to B$, consider the push out
+\begin{tikzcd}
+    \mathcal{C}(B,-) \arrow[r,"{\mathcal{C}(f,-)}"] \arrow[d,"{\mathcal{C}(f,-)}"] & \mathcal{C}(A,-)\\
+    \mathcal{C}(A,-) \arrow[r] & F
+\end{tikzcd}
+. Explicitly, $F(C) \cong \mathcal{C}(A,C) \times \{0,1\} / \sim$ where $(g,0) \sim (g,1) \iff f$ factors through $g$.\\
+If this is a monofunctor, we must have $(1_A,0) \simeq (1_A,1)$ (check the relation in the middle), since $Ff$ sends them to the same thing.\\
+If all morphisms of $\mathcal{C}$ are split monic, then $\mathcal{C}$ is a groupoid. And of course the converse holds (check).
 
 \end{document}
