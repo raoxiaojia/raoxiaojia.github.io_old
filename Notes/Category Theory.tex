@@ -697,7 +697,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
 
         (ii) It's enough to construct finite products and equalizers. But if $1$ is the terminal object, then a pullback for 
         \begin{tikzcd}
-            & A \arrow[d]\\
+                        & A \arrow[d]\\
             B \arrow[r] & 1
         \end{tikzcd}
         has the universal property of a product $A \times B$, and we can form $\prod_{i=1}^n A_i$ inductively as $A_1 \times (A_2 \times (A_3 \times ... (A_{n-1} \times A_n)))$.\\
@@ -724,5 +724,44 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     (b) We say $F$ \emph{reflects limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a cone $(L,(\lambda_j)_j)$ s.t. $(FL,(F\lambda_j)_j)$ is a limit for $FD$, then $(L,(\lambda_j)_j)$ is a limit for $D$.\\
     (c) (this is stronger than both of above and implies them. Note that a lot of textbook gets this wrong; those definitions aren't categorical) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and (lecturer had \emph{and and} here; if this is any other course I won'd bother put this, but this is Category Theory) a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$.
 \end{defi}
+
+\newpage
+
+\section{Example Class 1}
+Many people wrote too much for questions. Do have the confidence to use the dually principle when it's usable!
+
+\subsection{Question 1}
+We do need to verify that $(AB)_{ik} = \vee_j (a_{ij} \wedge b_{ij})$, and 
+\begin{equation*}
+    \begin{aligned}
+        ((AB)C)_{il} &= \vee_k ((\vee_j (a_{ij} \wedge b_{jk} )) \wedge c_{kl})\\
+        &= \vee_k \vee_j (a_{ij} \wedge b_{jk} \wedge c_{kl})\\
+        &= (A(BC))_{il} \text{ by symmetry}
+    \end{aligned}
+\end{equation*}
+And of course identity matrices are identities.
+
+Define a functor $F:\mathbf{Mat}_L \to \mathbf{Rel}_f$ by $F(n) = \{1,2,...,n\}$; if $A: n \to p$ is a $p \times n$ matrix in $\mathbf{Mat}_L$, then $FA = \{(i,j) | a_{ji} = 1\}$.\\
+Important: we have to verify this is functorial, which many people didn't bother to do. Why is it functorial? Well again we just have to verify explicitly that
+\begin{equation*}
+    \begin{aligned}
+        (AB)_{ik} = 1 \iff (\exists j) (a_{ij} = b_{jk} = 1)
+    \end{aligned}
+\end{equation*}
+so $F(AB) = FA \circ FB$. This does require verifications, because you are multiplying the matrices over lattices; for example say if you are doing it for the finite field with 2 elements then it won't work.\\
+Now note that to prove they are equivalent we don't really need to find both the two functors and natural transformations; instead we can use a theorem in chapter 1, that $F$ is part of an equivalence if it is full, faithful and essentially surjective. So we just have to verify that $F$ is f,f,and es. Indeed it is, since any finite set is isomorphic to $F(n)$ for some $n$. So by (1.12), $\mathbf{Mat}_L \simeq \mathbf{Rel}_f$.
+
+\subsection{Question 2}
+Part (i) was easy, but many people had problems on part (ii).\\
+(i) Given $(A_i | i \in I)$, define $\mathcal{C}$ by $\ob \mathcal{C} =\{(i,a)| i \in I, a \in A_i\}$, and $\mathcal{C}((i,a)(j,b)) = \phi$ if $i \neq j$, and is $\{*\}$ if $i=j$.\\
+$\mathcal{C}$ is a groupoid; its isomorphic classes of objects are of the form $\{i\} \times A,i \in I$. If we've got a skeleton then we can pick out one from each of these, which is equivalent to AC.\\
+(ii) Now take $\ob\mathcal{C} =I\times \{0,1\}$, and morphisms $(i,m) \to (i,n)$ are formal finite sums as given in the hint, and of course composition is just addition. Again this is a groupoid because every morphism can be inverted by just reverting the sign of every coefficient. So $\mathcal{C}$ has isomorphic classes $\{i\} \times \{0,1\}, i \in I$. So this has a skeleton, say we take $\mathcal{C}_0$ to be the full subcategory on objects $I\times\{0\}$.\\
+But then by assumption we have an equivalence $\mathcal{C}_0 \stackrel[G]{F}{\rightleftarrows} \mathcal{C}$, then $FG(i,0) = FG(i,1)$ for all $i$. So if we have a natural transfomation $\beta:FG \to 1_{\mathcal{C}}$ which is also an isomorphism, then either $\beta_{(i,0)}$ or $\beta_{(i,1)}$ is a non-zero formal finite sum. So we just put $A_i = \{x \in A_i | x$ occurs in either $\beta_{(i,0)}$ or $\beta_{(i,1)}$ with non-zero coefficient$\}$.
+
+\subsection{Question 3}
+(i) Quite a lot of people forgot to verify that it is actually a subgroup! Suppose given automorphisms $F,G,H$ with isomorphisms $\alpha:F \to 1_{\mathcal{C}},\beta:G \to 1_{\mathcal{C}}$. Then $(F^{-1} \alpha)^{-1} : F^{-1} \to F^{-1}F = 1_{\mathcal{C}}$ is an isomorphism, so $F^{-1}$ is inner. Now $FG\xrightarrow{F\beta} F \xrightarrow{\alpha} 1_\mathcal{C}$ is isomorphism, so $FG$ is inner.\\
+Now we have to verify normality: $HFH^{-1} \xrightarrow{H \alpha_{H^{-1}}} HH^{-1} = 1_{\mathcal{C}}$ is iso, so $HFH^{-1}$ is inner.\\
+You don't have to spend a lot of time to verify that all these are nat transforms (ok).\\
+(ii) Note that an isomorphism is in particular an equivalence. Now if $F$ is an automorphism, it is full and faithful, so for any $A$, morphism $A \to F1$ are in bijection with morphisms $F^{-1} A \to 1$, so there's just one of them.
 
 \end{document}
