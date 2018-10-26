@@ -781,27 +781,27 @@ If $\alpha_S$ is discontinuous, the nfor any $X$, $\alpha_X$ maps open subsets o
 So then $\alpha_S$ is a homeomorphism, and $\alpha_X$ is a homeomorphism for all $X$.\\
 (iv) This basically says that if we restrict to finite topological spaces, then we do have the other case in the above happening. Let $F:\mathbf{Top}_f \to\mathbf{Top}_f$ sending $X$ to the same set with closed sets as new opens.\\
 Then $FF = 1_{\mathbf{Top}_f}$, so $F$ is an automorphism, and it is not isomorphic to the identity as there exists finite spaces $X$ with $X \not\cong FX$ (we could find one with 3 points -- lecturer didn't give the explicit example). So $F$ is not inner.\\
-Now if $G$ is any non-inner autom, then $GF$ is inner(?????); so $\Aut(\mathbf{Top}_f):Inn(Top_f)| = 2$.
+Now if $G$ is any non-inner autom, then $GF$ is inner(?????); so $|\Aut(\mathbf{Top}_f):Inn(Top_f)| = 2$.
 
 \subsection{Question 4}
 (i) Suppose we are given 
 \begin{tikzcd}
     C \arrow[r,"h"] \arrow[d,"g", two heads] & A \arrow[d,tail,"f"]\\
-    D \arrow[r,"k"] & B \arrow[d,"p",shift right] \arrow[d,"q", shift left]\\
+    D \arrow[r,"k"] & B \arrow[d,"p"',shift right] \arrow[d,"q", shift left]\\
     & E
 \end{tikzcd}
 where $f$ is an equalizer of $(p,q)$.\\
 Then $pfh = pkg = qkg = qfh$, and $g$ is epic, so $pk = qk$, so exists unique $t$ with $ft=k$. Then $ftg = kg = fh$, and $f$ is monic, so $tg = h$.\\
 (ii) 
 \begin{tikzcd}
-    A \arrow[dr,"k"] \arrow[r,"f"] & B \arrow[d,"g",shift right] \arrow[d,"h", shift left] & D \arrow[l,"l"] \arrow[dl,"m"]\\
+    A \arrow[dr,"k"] \arrow[r,"f"] & B \arrow[d,"g"',shift right] \arrow[d,"h", shift left] & D \arrow[l,"l"] \arrow[dl,"m"]\\
     & C &
 \end{tikzcd}
 Note that $f$ isn't regular monic. Why not? Because it is not iso and not an equalizer of $(g,h)$, since $l$ doesn't factor through it. It is trivially monic and strong monic: the only squares with $f$ on RHS is to put the identity before $f$, but it's trivial to verify those cases.\\
 In some sense we can see that this is a minimal counter-example to the statement (think a bit, there's not anything better you can do).\\
 (iii) This actually has nothing to do with the previous two parts. We have 
 \begin{tikzcd}
-    A \arrow[r,"f"] \arrow[rd,"k"] & B \arrow[d,"g",shift right] \arrow[d,"h",shift left]\\
+    A \arrow[r,"f"] \arrow[rd,"k"] & B \arrow[d,"g"',shift right] \arrow[d,"h",shift left]\\
     & C
 \end{tikzcd}
 We want a commutative square
@@ -888,7 +888,7 @@ forces $\beta_i$ to be epic.\\
 , so $\alpha$ is split epic.\\
 Conversely, if
 \begin{tikzcd}
-    \mathcal{C}(A,-) \arrow[r,two heads,shift right, "\alpha"] & F \arrow[l,tail,shift right,"\beta"]
+    \mathcal{C}(A,-) \arrow[r,two heads,shift right, "\alpha"'] & F \arrow[l,tail,shift right,"\beta"']
 \end{tikzcd}
 is split epic, then given
 \begin{tikzcd}
@@ -910,7 +910,7 @@ We now prove (ii) $\implies$ (iii): Since we have an epi $\coprod \mathcal{C}(A,
 For (iii) $\implies$ (ii), if we have $F \stackrel{\alpha}{\twoheadrightarrow} \mathcal{C}(A,-)$ with $F$ a monofunctor, we have a splitting $\mathcal{C}(A,-) \stackrel{\beta}{\rightarrowtail} F$, and any subfunctor of a monofunctor is a monofunctor.\\
 Given $f:A \to B$, consider the push out
 \begin{tikzcd}
-    \mathcal{C}(B,-) \arrow[r,"{\mathcal{C}(f,-)}"] \arrow[d,"{\mathcal{C}(f,-)}"] & \mathcal{C}(A,-)\\
+    \mathcal{C}(B,-) \arrow[r,"{\mathcal{C}(f,-)}"] \arrow[d,"{\mathcal{C}(f,-)}"] & \mathcal{C}(A,-) \arrow[d]\\
     \mathcal{C}(A,-) \arrow[r] & F
 \end{tikzcd}
 . Explicitly, $F(C) \cong \mathcal{C}(A,C) \times \{0,1\} / \sim$ where $(g,0) \sim (g,1) \iff f$ factors through $g$.\\
