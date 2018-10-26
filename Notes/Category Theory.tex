@@ -373,7 +373,7 @@ Lecture is happy to mark any question we hand in!
 \begin{eg} (3.2)\\
     (a) The free functor $\mathbf{Set} \xrightarrow{F} \mathbf{Gp}$ is left adjoint to the forgetful functor $\mathbf{Gp} \xrightarrow{U} \mathbf{Set}$, since any function $f:A \to UB$ extends uniquely to a homomorphisms $\hat{f}: FA \to B$.\\
     Naturality in $B$ is \emph{easy} (lecturer says so), naturality in $A$ follows from the definition of $F$ as a functor.\\
-    (b) The forgetful functor $\mathbf{Top} \xrightarrow{U} \mathbf{Set}$ has a left adjoint $D$ which equips any set with the discrete topology, \emph{and} also a right adjoint $I$ which equips a set $A$ with the discrete (lecturer had \emph{indiscrete} here?) topology $\{\phi,A\}$.\\
+    (b) The forgetful functor $\mathbf{Top} \xrightarrow{U} \mathbf{Set}$ has a left adjoint $D$ which equips any set with the discrete topology, \emph{and} also a right adjoint $I$ which equips a set $A$ with the discrete (lecturer had \emph{indiscrete} here? Ok, it seems that he actually did mean indiscrete -- check) topology $\{\phi,A\}$.\\
     (c) The functor $\ob: \mathbf{Cat} \to \mathbf{Set}$ (recall $\mathbf{Cat}$ is the category of small categories) has a left adjoint $D$ sending $A$ to the \emph{discrete} category with $\ob(DA) = A$ and only identity morphisms, and a right adjoint $I$ sending $A$ to the category with $\ob(IA) = A$ and one morphism $x \to y$ for each $(x,y) \in A \times A$. In this case $D$ in turn has a left adjoint $\pi_0$ sending a small category $\mathcal{C}$ to its set of \emph{connected components}, i.e. the quotient of $\ob\mathcal{C}$ by the smallest equivalence relation identifying $\dom f$ with $\cod f$ for all $f \in \mor \mathcal{C}$.\\
     (d) Let $M$ be the monoid $\{1,e\}$ with $e^2=e$. An object of $[M,\mathbf{Set}]$ is a pair $(A,e)$ (the images of the functor?), where $e:A \to A$ satisfies $e^2=e$.\\
     We have a functor $G:[M,\mathbf{Set}] \to \mathbf{Set}$ sending $(A,e)$ to $\{x \in A | e(x) = x \} = \{e(x) | x \in A\}$ and a functor $F: \mathbf{Set} \to [M,\mathbf{Set}]$ sending $A$ to $(A,1_A)$.\\
@@ -624,7 +624,105 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     (a) (Lecturer says he'll give a very simple example) Suppose $\mathcal{J} = \phi$ (a diagram of that here. It's easy to draw, but a bit hard to see). There's a unique diagram of shape $\mathcal{J}$ in $\mathcal{C}$, a cone over it is just an object (with no legs), and a morphism of cones is a morphism of $\mathcal{C}$ (any one). So a limit for the empty diagram is a terminal object of $\mathcal{C}$.\\
     Dually, a colimit for it is an initial object.\\
     (Indeed a very simple example)
+
+    ---Lecture 10---
+
+    (b) Let $\mathcal{J}$ be the category with two objects and no non-identity morphisms. A diagram of shape $\mathcal{J}$ is a pair of objects $A,B$; a cone over it is a span
+    \begin{tikzcd}
+        & C \arrow[dl] \arrow[dr] &\\
+        A & & B
+    \end{tikzcd}
+    ; and a limit for it is a product
+    \begin{tikzcd}
+        & A\times B \arrow[dl,"\pi_1"] \arrow[dr, "\pi_2"] &\\
+        A & & B
+    \end{tikzcd}
+    as defined in 2.6(e). Dually, a colimit for it is a coproduct 
+    \begin{tikzcd}
+        A \arrow[dr,"\nu_1"] & & B \arrow[dl,"\nu_2"]\\
+        & A+B &
+    \end{tikzcd}
+
+    (c) More generally, if $\mathcal{J}$ is a small discrete category, a diagram of shape $\mathcal{J}$ is a $\mathcal{J}$-indexed family $(A_j|j \in \mathcal{J})$, and a limit for it is a product $(\prod_{j \in J} A_j \xrightarrow{\pi_j} A_j | j \in \mathcal{J})$ (Dually, $(A_j \xrightarrow{\nu_j} \sum_{j \in \mathcal{J}} A_j | j \in \mathcal{J})$, or $\coprod_{j \in \mathcal{J}} A_j$, but we usually use the first notation).
+
+    (d) Let $\mathcal{J}$ be the category 
+    \begin{tikzcd}
+        \cdot \arrow[r,shift left, "f"] \arrow[r, shift right, "g"] & B
+    \end{tikzcd}
+    . A diagram of shape $\mathcal{J}$ is a parallel pair $A \stackrel[g]{f}{\rightrightarrows} B$; a cone over this is 
+    \begin{tikzcd}
+        & C \arrow[dl,"h"] \arrow[dr,"k"] &\\
+        A & & B
+    \end{tikzcd}
+    satisfying $fh=k=gh$, or equivalently a morphism $C \xrightarrow{h} A$ satisfying $fh = gh$. A (co)limit for the diagram is a (co)equalizer as defined in 2.6(f).
+
+    (e) Let $\mathcal{J}$ be the category
+    \begin{tikzcd}
+        & \cdot \arrow[d]\\
+        \cdot \arrow[r] & \cdot
+    \end{tikzcd}
+    . A diagram of shape $\mathcal{J}$ is a cospan
+    \begin{tikzcd}
+        & A \arrow[d,"f"]\\
+        B \arrow[r,"g"] & C
+    \end{tikzcd} 
+    , a cone over it is 
+    \begin{tikzcd}
+        D \arrow[r,"p"] \arrow[d,"q"] \arrow[dr, "r"] & A\\
+        B & C
+    \end{tikzcd}
+    satisfying $fp=r=gq$, or equivalently, a span $(p,q)$ completing the diagram to a commutative square. A limit for the diagram is called a \emph{pullback} of $(f,g)$. In $\mathbf{Set}$, the apex of the pullback is the \emph{fibre product}
+    $$ A \times_C B = \{(x,y) \in A \times B | f(x) = g(y)\}$$
+    Dually, colimits of shape $\mathcal{J}^{op}$ are called \emph{pushouts}. Given 
+    \begin{tikzcd}
+        A \arrow[r,"f"] \arrow[d,"g"] & B\\
+        C & \\
+    \end{tikzcd}
+    , we \emph{push $g$ along $f$} to get the RH side of the colimit square.
+
+    (f) (not very important for this course, but might explain why the term \emph{limit} is used) Let $J$ be the poset of natural numbers. A diagram of shape $J$ is a \emph{direct system} $A_0 \xrightarrow{f_0} A_1 \xrightarrow{f_1} A_2 \xrightarrow{f_2} ...$\\
+    A colimit for this is called a \emph{direct limit}: it consists of $A_\infty$ equipped with morphisms $A_n \xrightarrow{g_n} A_\infty$ satisfying $g_n = g_{n+1}$ for all $n$, and universal among such.\\
+    Dually, we have \emph{inverse system} and \emph{inverse limit}.
 \end{eg}
 
+\begin{thm} (4.3)\\
+    (i) Suppose $\mathcal{C}$ has equalizeds and all finite (respectively, small) products. Then $\mathcal{C}$ has all finite (respectively, small) limits.\\
+    (ii) Suppose $\mathcal{C}$ has pullbaks and a terminal object, then $\mathcal{C}$ has all finite limits.
+    \begin{proof}
+        (i) Suppose given $D:\mathcal{J} \to \mathcal{C}$. Form the products $P=\prod_{j \in \ob\mathcal{J}} D(j)$ and $Q = \prod_{\alpha \in \mor\mathcal{J}} D(\cod \alpha)$.\\
+        We have morphisms $P \stackrel[g]{f}{\rightrightarrows} Q$ defined by $\pi_\alpha f = \pi_{\cod(\alpha)}$, $\pi_\alpha g = D(\alpha) \pi_{\dom \alpha}$ for all $\alpha$.\\
+        Let $E \xrightarrow{e} P$ be an equalizer of $(f,g)$. The composites $\lambda_j = \pi_j e: E \to D(j)$ form a cone over $D$: given $\alpha: j \to j'$ in $\mathcal{J}$, 
+        $$D(\alpha) \lambda_j = D(\alpha) \pi_j e = \pi_\alpha ge = \pi_\alpha fe = \pi_{j'} e = \lambda_{j'}$$
+        Given any cone $(A,(\mu_j | j \in \ob\mathcal{J}))$ over $D$, there's a unique $\mu:A \to P$ with $\pi_j \mu = \mu_j$ for each $j$, and $\pi_\alpha f \mu = \mu_{\cod \alpha} = D(\alpha) \mu_{\dom \alpha} = \\pi_\alpha g\mu$ for all $\alpha$, and hence $f\mu = g\mu$. So there is a unique $\nu:A \to E$ with $e\nu = \u$. So $(E,(\lambda_j | j \in \ob \mathcal{J}))$ is a limit cone.
+
+        (ii) It's enough to construct finite products and equalizers. But if $1$ is the terminal object, then a pullback for 
+        \begin{tikzcd}
+            & A \arrow[d]\\
+            B \arrow[r] & 1
+        \end{tikzcd}
+        has the universal property of a product $A \times B$, and we can form $\prod_{i=1}^n A_i$ inductively as $A_1 \times (A_2 \times (A_3 \times ... (A_{n-1} \times A_n)))$.\\
+        Now, to form the equalizer of $A \stackrel[g]{f}{\rightrightarrows} B$, consider the cospan
+        \begin{tikzcd}
+        & A \arrow[d,"(1_A,f)"]\\
+        A \arrow[r,"(1_A,g)"] & A \times B
+        \end{tikzcd}
+        . A cone over this consists of 
+        \begin{tikzcd}
+            P \arrow[r,"h"] \arrow[d,"k"] & A\\
+            A &
+        \end{tikzcd}
+        satisfying $(1_A,f) h = (1_A,g) k$, or equivalently $1_A h = 1_A k$, and $fh = gk$, or equivalently, a morphism $P \xrightarrow{h} A$ satisfying $fh = gh$ (think). So a pullback for $(1_A,f)$ and $(1_A,g)$ is an equalizer of $(f,g)$.\\
+        We say a category $\mathcal{C}$ is \emph{complete} if it has all small limits. Dually, \emph{cocomplete} means it has all small colimits.\\
+        $\mathbf{Set}$ is both complete and cocomplete: products are cartesian products, coproducts are disjoint unions.\\
+        Similarly, $\mathbf{Gp}$, $\mathbf{AbGp}$, $\mathbf{Rng}$, $\mathbf{Mod}_R$,... are all complete and cocomplete (nice to know that). $\mathbf{Top}$ is also complete and cocomplete, ...
+    \end{proof}
+\end{thm}
+
+\begin{defi} (4.4)\\
+    Let $F: \mathcal{C} \to \mathcal{D}$ be a functor.\\
+    (a) We say $F$ \emph{preserves limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a limit cone $(L,(\lambda_j|j \in \ob\mathcal{J}))$ in $\mathcal{C}$, $(FL, (F\lambda_j | j \in \ob \mathcal{J}))$ is a limit for $FD$.\\
+    (b) We say $F$ \emph{reflects limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a cone $(L,(\lambda_j)_j)$ s.t. $(FL,(F\lambda_j)_j)$ is a limit for $FD$, then $(L,(\lambda_j)_j)$ is a limit for $D$.\\
+    (c) (this is stronger than both of above and implies them. Note that a lot of textbook gets this wrong; those definitions aren't categorical) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathacl{J} \to \mathcal{C}$ and (lecturer had \emph{and and} here; if this is any other course I won'd bother put this, but this is Category Theory) a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$.
+\end{defi}
 
 \end{document}
