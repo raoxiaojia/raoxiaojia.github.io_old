@@ -607,20 +607,20 @@ Reminder: we have a lecture next Monday (22nd Oct)!
     ---Lecture 7---
 
     Last time we defined what a random graph is (in this course). We also defined what is a partial embedding in this theory (just preserves all edges).\\
-    Let's continue with the proof of the lemma now. Let $c \in M$, $c \neq \dom(p)$.
+    Let's continue with the proof of the lemma now. Let $c \in M$, $c \not\in \dom(p)$.
 
     \includegraphics[scale=0.5]{image/Model_06.png}
 
     Find $d \in N$ such that $\mathcal{N} \vDash R(d,p(a)) \iff \mathcal{M} \vDash R(c,a)$.
 \end{lemma}
 
-\begin{proof} (4.18)\\
-    Let $\mathcal{M},\mathcal{N} \vDash T_{rg}$ and $|\mathcal{M}| = |\mathcal{N}| = \omega$, adnd $P:A \subseteq M \to N$ is a finite partial embedding.\\
+\begin{thm} (4.18)\\
+    Let $\mathcal{M},\mathcal{N} \vDash T_{rg}$ and $|\mathcal{M}| = |\mathcal{N}| = \omega$, and $P:A \subseteq M \to N$ is a finite partial embedding.\\
     Then $\mathcal{M} \simeq \mathcal{N}$, by an isomorphism that extends $p$.
     \begin{proof}
         Same as proof of Theorem (4.4) (there is only one model of $T_{dlo}$ up to isomorphism), but with lemma (4.17) instead of lemma (4.3).
     \end{proof}
-\end{proof}
+\end{thm}
 
 \begin{coro} (4.19)\\
     $T_{rg}$ is $\omega$-categorical (see definition (4.6) -- this is just a restatement of the theorem above) and complete.\\
@@ -663,13 +663,13 @@ Reminder: we have a lecture next Monday (22nd Oct)!
         $\bullet$ If $c \in \mathcal{C}$, then $c^m = c^* (=c/\sim$);\\
         $\bullet$ If $R \in \mathcal{R}$ is a relation symbol, we define $R^{\mathcal{M}} = \{(c_1^*,...,c_{n_R}^*):R(c_1,...,c_{n_R}) \in T\}$.\\
         We have to check that $R^{\mathcal{M}}$ is well-defined: suppose $\bar{c},\bar{d} \in \mathcal{C}^{n_R}$ and suppose $c_i \sim d_i$ for each $i$, i.e. $c_i = d_i \in T$ for every $i=1,...,n_R$. However, now
-        $$R(\bar{c}) \in T \iff R(\mathbf{d}) \in T$$
+        $$R(\bar{c}) \in T \iff R(\bar{d}) \in T$$
         by maximality of $T$ and the previous lemma. So that $R^{\mathcal{M}}$ is well defined.\\
         $\bullet$ If $f \in \mathcal{F}$ is a function symbol, then $f\bar{c} = d \in T$ for some $d \in \mathcal{C}$: this is because $\exists x(f(\bar{c}=x) \in T$ by maximality and f.s..\\
         Then define $f^{\mathcal{M}}(\bar{c}^*) = \bar{d}^*$ (obvious notation).\\
         We also have to check this is well-defined. Lecturer decides to left this to us.\\
         Now we claim that the terms behave nicely as what the theory says, i.e. if $t(x_1,...,x_n)$ is an $L$-term and $c_1,...,c_n,d \in \mathcal{C}$, then $t(c_1,...,c_n) = d \in T \iff t^{\mathcal{M}} (c_1^*,...,c_n^*) = d^*$.\\
-        $\bullet$ $\implies$: by induction on the complexity of $T$ (lecturer decidse to leave this as another exercise).\\
+        $\bullet$ $\implies$: by induction on the complexity of $T$ (lecturer decided to leave this as another exercise).\\
         $\bullet$ $\Leftarrow$: Assume $t^{\mathcal{M}} (c_1^*,...,c_n^*) = d^*$. Then $t(c_1,...,c_n) = e \in T$ for some constant $e$ (why? As our theory is maximal, it has to say what the result is when we apply $t$ to these terms). We then use $\implies$ to get that $t^{\mathcal{M}}(c_1^*,...,c_n^*) = e^*$.\\
         But then $d^* = e^*$, i.e. $d = e \in T$. So by lemma (5.2), the sentence implied by these two sentences, $t(c_1,...,c_n) = d \in T$.\\
         The last massive claim: for all $L$-formulas $\phi(\bar{x})$ and $\bar{c} \in \mathcal{C}^{|\bar{x}|}$, we have
