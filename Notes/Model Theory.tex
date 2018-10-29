@@ -678,4 +678,39 @@ Reminder: we have a lecture next Monday (22nd Oct)!
     \end{proof}
 \end{lemma}
 
+\newpage
+
+\subsection{Example class 1}
+
+\subsection{Question 3}
+(i) if $\phi(\bar{x})$ is universal (i.e. $\forall \bar{y} \psi(\bar{x},\bar{y})$ where $\psi(\bar{x},\bar{y})$ is quantifier-free), then $\mathcal{N} \vDash \phi(\beta(\bar{a})) \implies \mathcal{M} \vDash \phi(\bar{a})$.\\
+(ii) Consider $\mathcal{N} = (\{\frac{n}{2} : n \in \Z \},+)$. Assume for a $X$ that $\phi(x)$ exists. Then $\mathcal{M} \vDash \phi(1)$ as $1$ is odd. Now consider $\beta:M \to N$ defined by $n \to \frac{n}{2}$; it's an isomorphism between $\mathcal{M}$ and $\mathcal{N}$; Also, $id:\mathcal{M} \to \mathcal{N}$ is an embedding. In particular, if $\mathcal{M} \vDash \phi(1)$, then $\mathcal{N} \vDash \phi(1)$; but $\mathcal{M} \equiv \mathcal{N}$ by the isomorphism, so $\mathcal{N} \vDash \forall x (\phi(x) \leftrightarrow \forall y (y +y \neq x))$, however that is not true in $\mathcal{N}$.
+
+\subsection{Question 4}
+(i) $\implies$ (ii): $id: A \to N$ is an embedding.\\
+(ii) $\implies$ (i): Define structure on $A$: $c^{\mathcal{M}} = c^{\mathcal{N}}$, $R^{\mathcal{M}} = R^{\mathcal{N}} \cap A^{n^R}$, and similar for functions.
+
+\subsection{Question 5}
+Prove that $\mathcal{M} \preccurlyeq \mathcal{N} \iff \mathcal{M} \equiv_M \mathcal{N}$, where $L(M) = L \cup \{c_a: a \in M\}$.\\
+It should be clear that everything follows from the fact that, $\mathcal{M} \vDash \phi(\bar{a})$ as an $L$-structure iff $\mathcal{M} \vDash \phi(c_{a_1},...,c_{a_n})$ as an $L(M)-$structure.
+
+\subsection{Question 6}
+We have $[0,1] \equiv [0,2]$ (seen in lectures, as they are isomorphic as $L_{lo}$-structures. However, $[0,1] \not\preccurlyeq [0,2]$ as $1$ has a property in LHS which it doesn't have in RHS.\\
+Instead, $(0,1) \preccurlyeq (0,2)$. It's best to use part (i): If $\mathcal{M},\mathcal{N}$ are s.t. $A \subseteq M \cap N$, then $\mathcal{M} \equiv_A \mathcal{N} \iff \mathcal{M} \equiv_B \mathcal{N}$ for every $B \stackrel{fin}{\subseteq} A$.\\
+Select finite $B \subseteq (0,1) \cap (0,2)$, and show $(0,1) \equiv_B (0,2)$.\\
+Induction on complexity of formulas are not strictly necessary; instead if we can find an isomorphism that fixes the elements of $B$ then we're done.\\
+Say $B =\{b_0,...,b_n\}$, where $b_m \geq b_i \forall b_i \in B$. We can just send every $x \leq b_n$ in $(0,1)$ to the same $x$ in $(0,2)$, and rescale the interval $(x,1)$ to match $(x,2)$, which gives an isomorphism.\\
+
+\subsection{Question 7}
+Let $\phi(\bar{x})$ be a formula and $\bar{a} \in M_i^{|\bar{x}|}$.\\
+It's required to prove that $\mathcal{M}_i = \phi(\bar{a}) \iff \mathcal{N} \vDash \phi(bar{a})$. By induction on $\phi(\bar{x})$: if $\phi(\bar{x})$ is atomic, claim follows from $\mathcal{M}_i \subseteq \mathcal{N}$ (substructure); $\wedge$ and $\neg$ are also easy induction;\\
+For existential formula $\phi(\bar{x}) \equiv \exists sy \psi(\bar{x},y)$, if $\mathcal{M} \vDash \exists y \psi(\bar{a},y)$, then $\mathcal{M} \vDash \psi(\bar{a},b)$ for $b$ in some $\mathcal{M}_i$, so $\mathcal{N} \vDash \psi(\bar{a},b)$;\\
+Conversely, if $\mathcal{N} \vDash \exists y \psi(\bar{a},y)$, then $\mathcal{N} \vDash \psi(\bar{a},b)$ for $b \in \mathcal{N}$. But then $\bar{a},b$ are in some $\mathcal{M}_j$ for some finite $j$; as a result, by inductive hypothesi $\mathcal{M}_j \vDash \exists y \psi (\bar{a},y)$.\\
+But then $\mathcal{M}_i \vDash \exists y \psi(\bar{a},y)$ by elementarity.\\
+Alternatively, use T-V test.
+
+\subsection{Question 8}
+(Lecturer is assuming CH here............)\\
+First show that $(\Q+\R) \not\cong (\R,<)$. Then for any $U \vDash T_{dlo}$ with $|U| = \lambda > 2^{\aleph_0}$. Then prove $(\Q+\R+U) \not\cong \R+U$.
+
 \end{document}
