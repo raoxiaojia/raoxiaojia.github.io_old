@@ -722,8 +722,99 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     Let $F: \mathcal{C} \to \mathcal{D}$ be a functor.\\
     (a) We say $F$ \emph{preserves limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a limit cone $(L,(\lambda_j|j \in \ob\mathcal{J}))$ in $\mathcal{C}$, $(FL, (F\lambda_j | j \in \ob \mathcal{J}))$ is a limit for $FD$.\\
     (b) We say $F$ \emph{reflects limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a cone $(L,(\lambda_j)_j)$ s.t. $(FL,(F\lambda_j)_j)$ is a limit for $FD$, then $(L,(\lambda_j)_j)$ is a limit for $D$.\\
-    (c) (this is stronger than both of above and implies them. Note that a lot of textbook gets this wrong; the definitions given by them are usually not categorical) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and (lecturer had \emph{and and} here; if this is any other course I won'd bother put this, but this is Category Theory) a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$.
+    (c) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and (lecturer had \emph{and and} here; if this is any other course I won'd bother put this, but this is Category Theory) a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$. (This is stronger than both of above and implies them. Note that a lot of textbooks get this wrong; the definitions given by them are usually not categorical)
 \end{defi}
+
+---Lecture 11---
+
+\begin{rem} (4.5)\\
+    (a) If $\mathcal{C}$ has limits of shape $\mathcal{J}$, $F: \mathcal{C} \to \mathcal{D}$ preserves them and $F$ reflects isomorphisms, then $F$ reflects limits of shape $\mathcal{J}$ (???????).
+    (b) $F$ reflects limits of shape $1$ $\iff$ $F$ reflects isomorphisms.\\
+    (c) If $\mathcal{D}$ has limits of shape $\mathcal{J}$ and $F:\mathcal{C} \to \mathcal{D}$ creates them, then $F$ both preserves and reflects them.\\
+    (d) In any of the statements of (4.3), we may replace both instances of \emph{$\mathcal{C}$ has} by either \emph{$\mathcal{C}$ has and $F:\mathcal{C} \to \mathcal{D}$ preserves} or \emph{$\mathcal{D}$ has and $F:\mathcal{C} \to \mathcal{D}$ creates}.
+\end{rem}
+
+We shall have some examples, as usual.
+
+\begin{eg} (4.6)\\
+    (a) $U : \mathbf{Gp} \to \mathbf{Set}$ creates all small limits: given a family $(G_i | i \in I)$ of groups, there's a unique group structure on $\prod_{i \in I} UG_i$ making the projections $\pi_i$ into homomorphisms, and this makes it into a product in $\mathbf{Gp}$.\\
+    Similarly for equalizers (check).\\
+    But $U$ doesn't preserve coproducts; $U(G * H) \not\cong UG \coprod UH$.\\
+    (b) $U:\mathbf{Top} \to \mathbf{Set}$ preserves all small limits and colimits, but this times it doesn't reflect them: if $L$ is a limit for $D: \mathcal{J} \to \mathbf{Top}$, and $L$ is not discrete, there's another cone with apex $L_d$ (take the underlying set and \emph{retopologize} with discrete topology) mapping to the limit in $\mathbf{Set}$.\\
+    (c) The inclusion functor $I:\mathbf{AbGp} \to \mathbf{Gp}$ reflects coproducts, but doesn't preserve them: the direct sum $A \oplus B$ (coproducts in $\mathbf{AbGp}$) is not normally isomorphic to the free product $A*B$; $A*B$ is not abelian unless either $A$ or $B$ is $\{e\}$.\\
+    But if $A \cong \{e\}$, then $A*B \cong A \oplus B \cong B$.
+\end{eg}
+
+\begin{lemma} (4.7)\\
+    If $\mathcal{D}$ has limits of shape $\mathcal{J}$, then so does the functor category $[\mathcal{C},\mathcal{D}]$ for any $\mathcal{C}$, and the forgetful functor $[\mathcal{C},\mathcal{D}] \to \mathcal{D}^{\ob \mathcal{C}}$ creates them.
+    \begin{proof}
+        Suppose given a diagram of shape $\mathcal{J}$ in $[\mathcal{C},\mathcal{D}]$; think of it as a functor $D:\mathcal{J} \times \mathcal{C} \to \mathcal{D}$. For each $A \in \ob\mathcal{C}$, let $(LA,(\lambda_{j,A}|j \in \ob \mathcal{J}))$ be a limit cone for the diagram $D(-,A): \mathcal{J} \to \mathcal{D}$.\\
+        Given $A \xrightarrow{f} B$ in $\mathcal{C}$, the composites $LA \xrightarrow{\lambda_{j,A}} D(j,A) \xrightarrow{D(j,f)} D(j,B)$ form a cone over $D(-,B)$, since the sqaures 
+        \begin{tikzcd}
+            D(j,A) \arrow[r,"{D(j,f)}"] \arrow[d,"{D(\alpha,A)}"] & D(j,B) \arrow[d,"{D(\alpha,B)}"]\\
+            D(j',A) \arrow[r,"{D(j',f)}"] & D(j',B)
+        \end{tikzcd}
+        commute. So there's a unique $LF:LA \to LB$ making
+        \begin{tikzcd}
+            LA \arrow[r,"{\lambda_{j,A}}"] \arrow[d,"Lf"] & D(j,A) \arrow[d,"{D(j,f)}"]\\
+            LB \arrow[r,"{\lambda_{j,B}}"] & D(j,B)
+        \end{tikzcd}
+        commute for all $j$.\\
+        As usual, uniqueness implies functoriality: given $g:B \to C$, $L(gf)$ and $(Lg)(Lf)$ are factorizations of the same cone through the limit $LC$. And this is the unique functor structure on $(A \to LA)$ making the $\lambda_{j,-}$ into natural transformations.\\
+        The cone $(L,(\lambda_{j,-} | j \in \ob\mathcal{J}))$ is a limit: suppose given another cone $(M,(\mu_{j,-} | j \in \ob\mathcal{J}))$, then for each $A$, $(MA,(\mu_{j,A} | j \in \ob\mathcal{J}))$ is a cone over $D(-,A)$, so induces a unique $\alpha_A:MA \to LA$. Naturality of $\alpha$ follows from uniqueness of factorizations through a limit. So $(M,(\mu_j))$ factors uniquely through $(L,(\lambda_j))$.
+    \end{proof}
+\end{lemma}
+
+\begin{rem} (4.8)\\
+    Now we can prove something that I promised very long ago (see Sheet 1 Q4 as well). In any category, a morphism $A \xrightarrow{f} B$ is monic iff
+    \begin{tikzcd}
+        A \arrow[r,"1_A"] \arrow[d,"1_A"] & A \arrow[d,"f"]\\
+        A \arrow[r,"f"] & B
+    \end{tikzcd}
+    is a pullback. Hence any functor which preserves pullbacks preserves monomorphisms.\\
+    In particular, if $\mathcal{D}$ has pullbacks, then monomorphisms in $[\mathcal{C},\mathcal{D}]$ are just pointwise monomorphisms.\\
+    The dual is the statement in comment of Sheet 1 Q4.
+\end{rem}
+
+\begin{thm} (4.9)\\
+    Suppose $G:\mathcal{D} \to \mathcal{C}$ has a left adjoint $F$. Then $G$ preserves all limits which exist in $\mathcal{D}$.\\
+    We'll present two proofs: the first (slick) proof is more for you to understand why this is true, while the second proof is more elementary.
+    \begin{proof} (1)\\
+        Suppose $\mathcal{C}$ and $\mathcal{D}$ both have limits of shape $\mathcal{J}$. We have a commutative diagram
+        \begin{tikzcd}
+            \mathcal{C} \arrow[r,"F"] \arrow[d,"\triangle"] & \mathcal{D} \arrow[d,"\triangle"]\\
+            \left[\mathcal{J},\mathcal{C}\right] \arrow[r,"{[\mathcal{J},F]}"] & \left[\mathcal{J},\mathcal{D}\right]
+        \end{tikzcd}
+        , and all functors in it have right adjoints.\\
+        In particular, $([\mathcal{J},F] \dashv [\mathcal{J},G])$.\\
+        So by (3.6), the diagram of right adjoints
+        \begin{tikzcd}
+            \mathcal{D} \arrow[r,"G"] & \mathcal{C}\\
+            \left[\mathcal{J},D\right] \arrow[u,"\lim_{\mathcal{J}}"] \arrow[r,"{[\mathcal{J},G]}"] & \left[\mathcal{J},\mathcal{C}\right] \arrow[u,"\lim_{\mathcal{J}}"]
+        \end{tikzcd}
+        commutes up to isomorphism, i.e. $G$ preserves limits of shape $\mathcal{J}$.\\
+        This is the real reason why this theorem works, because right adjoint commute with right adjoints.\\
+        However, this proof won't work if we don't know we have limits.
+    \end{proof}
+
+    \begin{proof} (2)\\
+        Suppose given $D:\mathcal{J} \to \mathcal{D}$ and a limit cone $(L,(L \xrightarrow{\lambda_j} D(j) | j \in \ob \mathcal{J}))$. Given a cone $(A,(A \xrightarrow{\alpha_j} GD(j) | j \in \ob\mathcal{J}))$ over $GD$, the morphisms $FA \xrightarrow{\hat{\alpha}_j} D(j)$ form a cone over $D$, so they induce a unique $FA \xrightarrow{\hat{\beta}} L$ such that $\lambda_j \hat{\beta} = \hat{\alpha}_j$ for all $j$.\\
+        Then $A \xrightarrow{\beta} GL$ is the unique morphism satisfying $(G \lambda_j) \beta = \alpha_j$ for all $j \in \mathcal{J}$. So $(GL,(G\lambda_j | j \in \ob\mathcal{J}))$ is a limit cone in $\mathcal{C}$.\\
+        The \emph{primeval Adjoint Functor Theorem} says that the converse of (4.9) is true: if $\mathcal{D}$ has (limits), and $G:\mathcal{D} \to \mathcal{C}$ preserves \emph{all} limits, then $G$ has a left adjoint.
+    \end{proof}
+\end{thm}
+
+
+
+
+
+
+
+
+
+
+
+
 
 \newpage
 
