@@ -211,7 +211,7 @@ Warning: almost any assertion about skeletons is equivalent to axiom of choice (
     (ii) Moreover, this bijection is natural in $A$ and $F$.
     \begin{proof}
         (i) Given $\alpha$:$\mathcal{C}(A,-) \to F$, we define $\Phi(\alpha) = \alpha_A(1_A) \in FA$.\footnote{Note $1_A \in \mathcal{C}(A,A)$, and $\alpha_A \in \mor \mathbf{Set}$ but $\mor \mathbf{Set}$ are just functions between sets, so this makes sense.}\\
-        Conversely, given $x \in FA$, we define $\Psi(x): \mathcal{C}(A,-) \to F$ by $\Psi(x)_B (A \xrightarrow{f} B) = (Ff)(x) \in FB$.\footnote{It seems a bit confusing why this is a natural transformation, but looking carefully it basicallly defines a function between sets, i.e. is in $\mor \mathbf{Set}$.}\\
+        Conversely, given $x \in FA$, we define $\Psi(x): \mathcal{C}(A,-) \to F$ by $\Psi(x)_B (A \xrightarrow{f} B) = (Ff)(x) \in FB$.\footnote{It seems a bit confusing why this is a natural transformation, but looking carefully it basically defines a function between sets, i.e. is in $\mor \mathbf{Set}$.}\\
         $\Psi(x)$ is natural: given $g:B \to C$, we have
         \begin{equation*}
             \begin{aligned}
@@ -268,7 +268,7 @@ Now let's go back to prove 2.2(ii):
     (a) The forgetful functor $\mathbf{Gp} \to \mathbf{Set}$ is representable by $(\Z,1)$, $\mathbf{Rng} \to \mathbf{Set}$ by $(\Z[X],X)$, and $\mathbf{Top} \to \mathbf{Set}$ by $(\{*\},*)$.\\
     (b) The functor $P^*: \mathbf{Set}^{op} \to \mathbf{Set}$ is representable by $(\{0,1\},\{1\})$: this is the bijection between subsets and characteristic functions.\\
     (c) Let $G$ be a group. The unique (up to isomorphism) representable functor $G(*,-): G \to \mathbf{Set}$ is the \emph{Cayley representation} of $G$, i.e. the set $UG$ with $G$ acting by left multiplication.\\
-    (d) Let $A$ and $B$ be two objects of a small category $\mathcal{C}$. We have a functor $\mathcal{C}^{op} \to \mathbf{Set}$ sending $C$ to $\mathcal{C}(C,A) \times \mathcal{C}(C,B)$. A representation of this, if it exists, is called a (categorical) \emph{product} of $A$ and $B$, and denoted $(A \times B,(A \times B \xrightarrow{\pi_1} A, A \times B \xrightarrow{\pi_2}_B))$.\\
+    (d) Let $A$ and $B$ be two objects of a small category $\mathcal{C}$. We have a functor $\mathcal{C}^{op} \to \mathbf{Set}$ sending $C$ to $\mathcal{C}(C,A) \times \mathcal{C}(C,B)$. A representation of this, if it exists, is called a (categorical) \emph{product} of $A$ and $B$, and denoted $(A \times B,(A \times B \xrightarrow{\pi_1} A, A \times B \xrightarrow{\pi_2} B))$.\\
     This pair has the property that, for any pair $(C \xrightarrow{f}A,C\xrightarrow{g}B)$, there's a unique $C \xrightarrow{h} A \times B$ with $\pi_1 h = f$ and $\pi_2 h = g$.\\
     Products exist in many categories of interest: in $\mathbf{Set}$, $\mathbf{Gp}$, $\mathbf{Rng}$, $\mathbf{Top}$,..., they are \emph{just} cartesian products, in posets they are binary meets (see sheet 1 Q1).\\
     Dually, we have the notion of \emph{coproduct} $(A+B,A \xrightarrow{\mu_1} A + B, B \xrightarrow{\mu_2}A+B)$.\\
@@ -300,7 +300,7 @@ Now let's go back to prove 2.2(ii):
 \end{defi}
 
 \begin{lemma} (2.9)\\
-    (i) If $\mathcal{C}$ is a balanced category, then any saparating fmamily is detecting.\\
+    (i) If $\mathcal{C}$ is a balanced category, then any saparating family is detecting.\\
     (ii) If $\mathcal{C}$ has equalizers, then any detecting family is separating.
     \begin{proof}
         (i) Suppose $\mathcal{G}$ is separating and $A \xrightarrow{f} B$ satisfies the condition of 2.8(b). If $B \stackrel[h]{g}{\rightrightarrows} C$ satisfy $gf=hf$, then $gx=hx$ for every $G \xrightarrow{x} B$, so $g=h$, i.e. $f$ is epic.\\
@@ -686,8 +686,8 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
 \end{eg}
 
 \begin{thm} (4.3)\\
-    (i) Suppose $\mathcal{C}$ has equalizeds and all finite (respectively, small) products. Then $\mathcal{C}$ has all finite (respectively, small) limits.\\
-    (ii) Suppose $\mathcal{C}$ has pullbaks and a terminal object, then $\mathcal{C}$ has all finite limits.
+    (i) Suppose $\mathcal{C}$ has equalizers and all finite (respectively, small) products. Then $\mathcal{C}$ has all finite (respectively, small) limits.\\
+    (ii) Suppose $\mathcal{C}$ has pullbacks and a terminal object, then $\mathcal{C}$ has all finite limits.
     \begin{proof}
         (i) Suppose given $D:\mathcal{J} \to \mathcal{C}$. Form the products $P=\prod_{j \in \ob\mathcal{J}} D(j)$ and $Q = \prod_{\alpha \in \mor\mathcal{J}} D(\cod \alpha)$.\\
         We have morphisms $P \stackrel[g]{f}{\rightrightarrows} Q$ defined by $\pi_\alpha f = \pi_{\cod(\alpha)}$, $\pi_\alpha g = D(\alpha) \pi_{\dom \alpha}$ for all $\alpha$.\\
@@ -722,7 +722,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     Let $F: \mathcal{C} \to \mathcal{D}$ be a functor.\\
     (a) We say $F$ \emph{preserves limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a limit cone $(L,(\lambda_j|j \in \ob\mathcal{J}))$ in $\mathcal{C}$, $(FL, (F\lambda_j | j \in \ob \mathcal{J}))$ is a limit for $FD$.\\
     (b) We say $F$ \emph{reflects limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a cone $(L,(\lambda_j)_j)$ s.t. $(FL,(F\lambda_j)_j)$ is a limit for $FD$, then $(L,(\lambda_j)_j)$ is a limit for $D$.\\
-    (c) (this is stronger than both of above and implies them. Note that a lot of textbook gets this wrong; those definitions aren't categorical) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and (lecturer had \emph{and and} here; if this is any other course I won'd bother put this, but this is Category Theory) a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$.
+    (c) (this is stronger than both of above and implies them. Note that a lot of textbook gets this wrong; the definitions given by them are usually not categorical) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and (lecturer had \emph{and and} here; if this is any other course I won'd bother put this, but this is Category Theory) a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$.
 \end{defi}
 
 \newpage
