@@ -367,6 +367,12 @@ Lecture is happy to mark any question we hand in!
 \begin{defi} (3.1)\\
     Let $\mathcal{C}$ and $\mathcal{D}$ be two categories and $\mathcal{C} \xrightarrow{F} \mathcal{D}$, $\mathcal{D} \xrightarrow{G} \mathcal{C}$ two functors.\\
     By an \emph{adjunction} between $F$ and $G$ we mean a bijection between morphisms $FA \xrightarrow{\hat{f}} B$ in $\mathcal{D}$ and morphisms $A \xrightarrow{f} GB$ in $\mathcal{C}$, which is natural in $A$ and $B$, i.e. given $A' \xrightarrow{g} A$ and $B \xrightarrow{h} B'$, we have $h\hat{f} (Fg) = \widehat{(Gh)fg}: FA' \to B'$.\\
+
+    \begin{tikzcd}
+        A' \arrow[r,"g"] \arrow[d,"F"] & A \arrow[r,"f"] \arrow[d,"F"] & GB \arrow[r,"Gh"] & GB'\\
+        FA' \arrow[r,"Fg"] & FA \arrow[r,"\hat{f}"] & B \arrow[u,"G"] \arrow[r,"h"] & B' \arrow[u,"G"]
+    \end{tikzcd}
+
     We say $F$ is \emph{left adjoint} to $G$, and write $(F \dashv G)$.
 \end{defi}
 
@@ -552,7 +558,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
 
 ---Lecture 9---
 
-\begin{defi} (3.10)
+\begin{defi} (3.10)\\
     By a \emph{reflection}, we mean an adjunction in which the right adjoint is full and faithfull (equivalently, the counit is an isomorphism).\\
     We say a full subcategory $\mathcal{C}' \subseteq \mathcal{C}$ is \emph{reflective} if the inclusion $\mathcal{C}'\to\mathcal{C}$ has a left adjoint.
 \end{defi}
@@ -647,7 +653,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
 
     (d) Let $\mathcal{J}$ be the category 
     \begin{tikzcd}
-        \cdot \arrow[r,shift left, "f"] \arrow[r, shift right, "g"] & B
+        \cdot \arrow[r,shift left, "f"] \arrow[r, shift right, "g"'] & B
     \end{tikzcd}
     . A diagram of shape $\mathcal{J}$ is a parallel pair $A \stackrel[g]{f}{\rightrightarrows} B$; a cone over this is 
     \begin{tikzcd}
