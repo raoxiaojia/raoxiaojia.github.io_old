@@ -403,4 +403,79 @@ When is equality achieved in EKR theorem? We can check equality holds iff $\math
 \section{Isoperimetric inequalities}
 The focus of this chapter: \emph{How tightly can we pack a subset of given size in a space?}
 
+---Lecture 7---
+
+Among subsets of $\R^2$ of given area, disc has smallest perimeter. Similar for $\R^3$ (volume vs. surface area).\\
+Something of a different flavour: among subsets of $S^2$ (surface of unit sphere) of given area, a circular cap (see diagram) has smallest perimeter.
+
+\includegraphics[scale=0.5]{image/Comb_01.png}
+
+For a set $A$ of vertices in a graph $G$, the \emph{boundary} of $A$ is $b(A) = \{x\in V(G): x \not\in A, xy \in E$ for some $y \in A\}$.\\
+e.g. in diagram
+\begin{tikzpicture}
+    \node (1) at (0,0) {1};
+    \node (2) at (1,0) {2};
+    \node (3) at (0,-1) {3};
+    \node (4) at (1,-1) {4};
+    \node (5) at (2,0) {5};
+    \node (6) at (3,0) {6};
+    \node (7) at (2,-1) {7};
+    \node (8) at (3,-1) {8};
+
+    \path (1) edge (2);
+    \path (1) edge (3);
+    \path (2) edge (4);
+    \path (3) edge (4);
+    \path (2) edge (5);
+    \path (5) edge (6);
+    \path (5) edge (7);
+    \path (6) edge (8);
+    \path (7) edge (8);
+\end{tikzpicture}
+, if $A = \{1,2,3\}$, then $b(A) = \{4,5\}$.
+
+An \emph{isoperimetric inequality} of $G$ is an inequality of form: $|B(A)| \geq f(|A|) \forall A \subset V(G)$.\\
+Equivalently, minimise the \emph{neighbourhood} of $A$: $N(A) = A \cap b(A) = \{x \in G: d(x,A) \leq 1\}$.\\
+A natural guess is often $B(x,r) = \{y \in G: d(x,y) \leq r\}$.\\
+What happens in $Q_n$? e.g. $|A| = 4$ in $Q_3$, take all vertices with at least one component 0, then $|b(A)| = 3$; if we instead take all vertices in the lower half plane then $|b(A)| = 4$.
+
+Our guess: \emph{balls are best}, i.e. if $|A| = |X^{(\leq r)}|$, then $|N(A)| \geq |X^{(\leq r+1)}|$ (obvious notations).\\
+What if $|A|$ is strictly between $\sum_{i=0}^r {n \choose i}$ and $\sum_{i=0}^{r+1} {n \choose i}$?\\
+We guess that $A=X^{(\leq r)} \cup B$ for some $B \subset X^{(r+1)}$ (this is called a \emph{hamming ball}).\\
+If we knew this, then $N(A) = X^{(\leq r+1)} \cup \partial^+ B$; hence in this case we know which $B$ to take -- by K-K theorem, take $B$ to be an initial segment of \emph{lex}.
+
+We define the \emph{simplicial} order on $Q_n$ by $x<y$ if either $|x| < |y|$ or $|x|=|y|$ and $x<y$ in lex.\\
+Our aim then becomes proving that initial segments of simplicial are best.\\
+
+Given $A \subset Q_n$, and $1 \leq i \leq n$, the \emph{$i$-section} are the set systems $A^{(i)}_+, A^{(i)}_- \subset \P(X-i)$ (\emph{$Q_{n-1}$}), given by
+$$A^{(i)}_- = \{x \in A:i \not\in X \} \subset \P(X-i)$$
+$$A^{(i)}_+ = \{x -\{i\}: x \in A, i \in x\} \subset \P(X-i)$$
+(the first is taking all elements of $A$ that don't contain $i$, the second is taking all elements of $A$ that have $i$ and then throw $i$ away and keep the result).
+
+Define the \emph{$i$-compression} $C_i(A)$ of $A$ by giving its $i$-sections:\\
+$C_i(A)^{(i)}_+ =$ initial segment of $Q_{n-1}$ of size $|A^{(i)}_+|$;
+$C_i(A)^{(i)}_- =$ initial segment of $Q_{n-1}$ of size $|A^{(i)}_-|$;
+
+Certainly, $|C_i(A)| = |A|$. Also, $C_i(A)$ \emph{looks more like} an initial segment of simplicial than $A$ did. We say $A$ is \emph{$i$-compreseed} if $C_i(A) = A$.
+
+\begin{thm} (1, Harper\footnote{Harper first gave a proof with a \emph{lot} of holes inside with no one knowing how to fill those...}'s)\\
+    Let $A \subset Q_n$, and let $C$ be the initial segment of simplicial order with $|C| = |A|$. Then $|N(A)| \geq |N(C)|$.\\
+    In particular, if $|A| \geq \sum_{i=0}^r {n \choose i}$, then $|N(A)| \geq \sum_{i=0}^{r+1} {n \choose i}$.
+
+    \begin{rem}
+        $\bullet$ If we know $A$ is a Hamming ball then we're done by K-K theorem;\\
+        $\bullet$ Harper implies K-K trivially: given $B \subset X^{(r)}$, just apply Harper to $A=B \cup X^{(\leq r-1)}$.
+    \end{rem}
+    
+    \begin{proof}
+        Induction on $n$. $n=1$ is trivial.\\
+        Given $A \subset Q_n(n>1)$: fix $1 \leq i \leq n$. We claim that $|N(C_i(A))| \leq |N(A)|$.\\
+        Proof of claim: write $B = C_i(A)$. We have $|N(A)| = |A_+ \cup N(A_-)| + |A_- \cup N(A_+)|$ (downstairs and upstairs respectively. Think)\\
+        Similarly, $|N(B)| = |B_+ \cup N(B_-)| + |B_- \cup N(B_+)|$.\\
+        Now $|B_+| = |A_+|$, and $|N(B_-)| \leq |N(A_-)|$ (induction). But $N(B_-)$ is an initial segment of simplicial (on $Q_{n-1}$), as is $B_+$, so $N(B_-)$ and $B_+$ are \emph{nested} (i.e. one belongs to another).\\
+        Hence $|B_+ \cup N(B_-)| \leq |A_+ \cup N(A_-)|$.\\
+        Similarly, $|B_- \cup N(B_+)| \leq |A_- \cup N(A_+)|$. Thus $|N(B)| \leq |N(A)|$. 
+    \end{proof}
+\end{thm}
+
 \end{document}
