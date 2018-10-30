@@ -435,7 +435,7 @@ e.g. in diagram
 , if $A = \{1,2,3\}$, then $b(A) = \{4,5\}$.
 
 An \emph{isoperimetric inequality} of $G$ is an inequality of form: $|B(A)| \geq f(|A|) \forall A \subset V(G)$.\\
-Equivalently, minimise the \emph{neighbourhood} of $A$: $N(A) = A \cap b(A) = \{x \in G: d(x,A) \leq 1\}$.\\
+Equivalently, minimise the \emph{neighbourhood} of $A$: $N(A) = A \cup b(A) = \{x \in G: d(x,A) \leq 1\}$.\\
 A natural guess is often $B(x,r) = \{y \in G: d(x,y) \leq r\}$.\\
 What happens in $Q_n$? e.g. $|A| = 4$ in $Q_3$, take all vertices with at least one component 0, then $|b(A)| = 3$; if we instead take all vertices in the lower half plane then $|b(A)| = 4$.
 
