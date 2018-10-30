@@ -408,7 +408,7 @@ Now suppose $\phi$ has \emph{more} than $n$ bits, say $\phi = 0.z_0z_1z_2...z_{n
         So
         \begin{equation*}
             \begin{aligned}
-                \P(|\delta(y) > \varepsilon) &\leq 2 \sum_{k=0}^\infty \frac{1}{2^{2n+2}} \frac{1}{(\varepsilon+\frac{k}{2^n})^2}\\
+                \P(|\delta(y)| > \varepsilon) &\leq 2 \sum_{k=0}^\infty \frac{1}{2^{2n+2}} \frac{1}{(\varepsilon+\frac{k}{2^n})^2}\\
                 &\leq \frac{1}{2} \int_0^\infty \frac{1}{(2^n \varepsilon+k)^2} dk\\
                 &= \int_{2^n \varepsilon}^\infty \frac{dk}{k^2}\\
                 &= \frac{1}{2^{n+1} \varepsilon}
@@ -420,8 +420,78 @@ Now suppose $\phi$ has \emph{more} than $n$ bits, say $\phi = 0.z_0z_1z_2...z_{n
 Further remarks on QPE algorithm:\\
 (1) If $C-U^{2^k}$ is implemented as $(C-U)^{2^k}$, the QPE algorithm needs exponential time in $n$ as we have $1+2+...+2^{n-1} = 2^n-1$ $(C-U)$ gates.\\
 However, for some special $U$'s, $C-U^{2^k}$ can be implemented in $poly(k)$ time, so we get a poly time QPE algorithm.\\
-It can be used to provide alternative facoring (order finding) algorithm (due to A. Kitaer) using PE.
+It can be used to provide alternative facoring (order finding) algorithm (due to A. Kitaev) using PE.
 
+---Lecture 8---
 
+First exercise class: Saturday 3 Nov 11am MR4.
+
+(2) If instead of $|v_\phi\ket$, use general input state $|\xi\ket$:
+$$|\xi \ket = \sum_j c_j | v_{\phi_j}\ket$$
+$$U|v_{\phi_j} \ket = e^{2\pi i \phi_j} | v_{\phi_j} \ket$$
+Then we get in QPE (before final measurement) a unitary process $U_{PE}$ with (lecturer had \emph{that}) effect
+$$|0...0\ket | \xi\ket \xrightarrow{U_{PE}} \sum_j c_j | \phi_j\ket |v_{\phi_j}\ket$$
+and final measurement will give a choice of $\phi_j$'s (or approximation) chosen with probabilities $|c_j|^2$.
+
+\begin{eg}
+    Implement $QFT_{\mathcal{Q}}$ for $\mathcal{Q}$ not a power of $2$, with a quantum curcuit of $1-$ and $2-$ qubit gates of circuit size $O(poly(\log \mathcal{Q}))$ (Kitaev's method).
+\end{eg}
+
+\begin{rem}
+    For $\mathcal{Q}=2^m$, we have explicit known circuit of $O(m^2)$. $H$ and $C$-phase gate to implement $QFT_{2^m}$ exactly (cf part II QIC Notes).
+\end{rem}
+
+For $QFT_{\mathcal{Q}}$: Introduce
+$$|\eta_a \ket = QFT_{\mathcal{Q}} |a\ket = \frac{1}{\sqrt{\mathcal{Q}}} \sum_{b=0}^{\mathcal{Q}-1} \omega^{ab} |b\ket, a \in \Z_{\mathcal{Q}}, \omega = e^{2\pi i/\mathcal{Q}}$$
+It suffices to make circuit hat does $|a \ket \to |\eta_a\ket$ (*).\\
+Let $2^{m-1} < \mathcal{Q} < 2^m$, and set $M=2^m$, view $\mathcal{H}_{\mathcal{Q}}$ as subspace of $m$ qubits (spanned by $|a\ket: 0 \leq a < \mathcal{Q}-1 < 2^m$).\\
+To achieve (*), consider instead on $\mathcal{H}_{\mathcal{Q}} \otimes \mathcal{H}_{\mathcal{Q}}$
+$$|a\ket |0\ket \xrightarrow{(1)} |a\ket |\eta_a\ket \xrightarrow{(2)} |0\ket |\eta_a\ket$$
+(1): get $\eta_a\ket$ from $|a\ket$ while \emph{remembering} $|a \ket$;\\
+(2): \emph{erase/forget} $|a\ket$.\\
+For (1), first do $|0\ket \to |\xi\ket = \frac{1}{\sqrt{\mathcal{Q}}} \sum_{b=0}^{\mathcal{Q}-1} |b\ket$ as follows:\\
+on $m$ qubits $\mathcal{H}^{\otimes m}$ gives $\frac{1}{\sqrt{M}} \sum_{x=0}^{2^m-1} |x\ket$. Then consider the step function $f(x) = 0$ if $x<\mathcal{Q}$ and 1 if $x \geq \mathcal{Q}$. It's classically efficiently computable, so can efficiently implement $U_f$ on $(m+1)$ qubits.\\
+So applying $U_\rho$ to $(H^{\otimes m} |0\ket) |0\ket$ and measure output $(m+1^{st})$ qubit to get $|\xi\ket$ on first $n$ qubits if measurement result is 0.\\
+Note that $prob(0) > 1/2$ as $\mathcal{Q} > 2^{m-1} = 2^m / 2$, so we can use multiple trials to give $|\xi\ket$.\\
+We can do offline: failures/re-tries do not affect state to which we want to apply $QFT_{\mathcal{Q}}$. So now we have $|\tilde{\xi} = |a\ket \left(\frac{1}{\sqrt{\mathcal{Q}}} \sum_{b=0}^{\mathcal{Q}-1} |b\ket\right)$.\\
+Next consider $V |a\ket |b\ket = \omega^{ab} |a\ket |b\ket$.\\
+Then $V|\tilde{\xi} \ket = |a\ket |\eta_a\ket$ as we want for (1).
+
+To implement $V$, consider 
+$$U:|b\ket \to \omega^b |b\ket$$
+If $|b\ket$ in $m$ qubits given by $|b_{m-1} \ket ... |b_0\ket$, i.e. $b = b_{m-1} ... b_0$ in binary, then $\omega^b = \omega^{b_{m-1} 2^{m-1}}...\omega^{b_02^0}$. So $U$ is product of $1$-qubit phase gates
+$$P(\omega^{2^{m-1}}) \otimes ... \otimes \P(\omega^{2^0})$$
+where $P(\xi) = Diag(1,\xi)$, $|\xi|=1$ is a phase gate.
+
+Similarly, for $C-U^{2^k}$ (starting with $U \to U^{2^k}$ i.e. $\omega^b \to \omega^{2^kb}$), and $V$ = \emph{generalised $C-U$}: 
+$$|a\ket |b\ket \xrightarrow{V} |a\ket U^a |b\ket$$
+which is constructed as before, from $C-U^{2^k}$'s.\\
+So now we have $|a\ket |0\ket \xrightarrow{(1)} |a\ket |\eta_a\ket$.
+
+For (2), i.e. $|a\ket |\eta_a\ket \xrightarrow{(2)} |0\ket |\eta_a\ket$, \emph{if} we had $U$ with eigenstates $|\eta_a\ket$, eigenvalues $\omega^a = e^{2\pi i a/\mathcal{Q}}$, then $U_{PE}$ would give
+$$|0\ket |\eta_a\ket \xrightarrow{U_{PE}} |a\ket |\eta_a\ket$$
+(we are a bit loose on how information is presented -- writing eigenvalue output as $a$, and note we are assuming that PE works exactly)\\
+Hence $U^{-1}_{PE}$ (\emph{inverse gates taken in reverse order}) would give desired (2)!
+
+Consider $U:|x\ket \to |x-1\ mod\ \mathcal{Q}\ket$, and check that $U |\eta_a\ket = \omega^a |\eta_a\ket$ as wanted.\\
+Now note $x \to x-k\ mod\ \mathcal{Q}$ for $k \in \Z_{\mathcal{Q}}$ is classically computable in $poly(\log\mathcal{Q})$-time, thus we also have $U^k: |x\ket \to |x-k\ mod\ \mathcal{Q}\ket$, and PE algotirhm with $m=O(\log(Q))$ lines.\\
+Then implementing (1) then (2) gives $poly(\log\mathcal{Q})$ sized circuit for $QFT_{\mathcal{Q}}$.
+
+But PE is not exact. However, using more qubit lines ($O(\log 1/\varepsilon)$ lines), we can achieve (by theorem PE(b))
+$$|0\ket |\eta_a \ket \xrightarrow{U_{PE}} (\sqrt{1-\varepsilon} |a\ket + \sqrt{\varepsilon} |a^\perp \ket) |\eta_a\ket$$
+(where $a^\perp$ is a state orthogonal to $|a\ket$) for any (small) deserved $\varepsilon$. Then
+$$||\ |a\ket - \sqrt{1-\varepsilon} |a\ket + \sqrt{\varepsilon} | a^\perp \ket\ || = O(\sqrt{\varepsilon})$$
+So
+$$||\ U_{PE}^{-1} |a\ket |\eta_a\ket - |0\ket |\eta_a\ket\ || = O(\sqrt{\varepsilon})$$
+(as unitaries preserve lengths). So we can approximate $QFT_{\mathcal{Q}}$ to any desired precision (omit details).
+
+\newpage
+
+\section{Amplitude Amplification}
+Note that this is a very good name -- a fifth order literation (both starting with \emph{Ampli}).\\
+Apothesis of technique in Grover's algorithm.
+
+Some background:\\
+We'll make much use of \emph{reflection operators}.
 
 \end{document}

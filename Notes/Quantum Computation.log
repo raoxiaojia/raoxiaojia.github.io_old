@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  25 OCT 2018 12:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  30 OCT 2018 11:55
 entering extended mode
 **"./Quantum Computation.tex"
 ("Quantum Computation.tex"
@@ -1614,7 +1614,7 @@ MS/cmsy/m/n/10 i$
  []
 
 [11]
-<image/QC_01.png, id=96, 722.7pt x 406.51875pt>
+<image/QC_01.png, id=102, 722.7pt x 406.51875pt>
 File: image/QC_01.png Graphic file (type png)
 <use image/QC_01.png>
 Package pdftex.def Info: image/QC_01.png  used on input line 304.
@@ -1624,7 +1624,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 304--307
 [][]
  []
 
-<image/QC_02.png, id=97, 722.7pt x 406.51875pt>
+<image/QC_02.png, id=103, 722.7pt x 406.51875pt>
 File: image/QC_02.png Graphic file (type png)
 <use image/QC_02.png>
 Package pdftex.def Info: image/QC_02.png  used on input line 312.
@@ -1635,7 +1635,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 312--313
  []
 
 [12 <./image/QC_01.png>]
-<image/QC_03.png, id=102, 722.7pt x 406.51875pt>
+<image/QC_03.png, id=108, 722.7pt x 406.51875pt>
 File: image/QC_03.png Graphic file (type png)
 <use image/QC_03.png>
 Package pdftex.def Info: image/QC_03.png  used on input line 319.
@@ -1650,22 +1650,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 334--336
 
  []
 
-[14] [15] [16]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 426.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 426.
+[14] [15] [16] [17] [18] [19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 497.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 497.
  ("Quantum Computation.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 426.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 426.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 497.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 497.
 Package rerunfilecheck Info: File `"Quantum Computation".out' has not changed.
-(rerunfilecheck)             Checksum: E0B9515FC5484F8EE0F0FC4ECAF6D36A;227.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 426.
+(rerunfilecheck)             Checksum: 090ED1D4EFB823E25546F36AAF120679;286.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 497.
  ) 
 Here is how much of TeX's memory you used:
- 39669 strings out of 492970
- 923582 string characters out of 3135854
+ 39678 strings out of 492970
+ 923653 string characters out of 3135854
  1178486 words of memory out of 3000000
- 42907 multiletter control sequences out of 15000+200000
- 548179 words of font info for 113 fonts, out of 3000000 for 9000
+ 42908 multiletter control sequences out of 15000+200000
+ 548281 words of font info for 115 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,16n,96p,759b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
@@ -1686,9 +1686,9 @@ ic/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbo
 ls/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/
 msbm7.pfb>
-Output written on "Quantum Computation.pdf" (16 pages, 472598 bytes).
+Output written on "Quantum Computation.pdf" (19 pages, 491172 bytes).
 PDF statistics:
- 186 PDF objects out of 1000 (max. 8388607)
- 22 named destinations out of 1000 (max. 500000)
- 16444 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 206 PDF objects out of 1000 (max. 8388607)
+ 26 named destinations out of 1000 (max. 500000)
+ 16452 words of extra memory for PDF output out of 17280 (max. 10000000)
 
