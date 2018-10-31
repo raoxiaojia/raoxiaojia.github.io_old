@@ -653,7 +653,7 @@ Reminder: we have a lecture next Monday (22nd Oct)!
 
 \begin{lemma} (5.3)\\
     Let $T$ be a maximal, f.s. theory with WP. Then $T$ has a model.\\
-    Moreover, if $\lambda$ is a cardinal and $|\mathcal{C}| \leq L$ ($\mathcal{C}$ is the set of constants in $L$), then $T$ has a model of size at most $\lambda$.
+    Moreover, if $\lambda$ is a cardinal and $|\mathcal{C}| \leq \lambda$ ($\mathcal{C}$ is the set of constants in $L$), then $T$ has a model of size at most $\lambda$.
     \begin{proof}
         Let $\mathcal{C}$ be the constants of $L$. Let $c,d \in \mathcal{C}$, define $c \sim d$ iff $c=d \in T$.\\
         We claim that $\sim$ is an equivalence relation: reflexivity and symmetry are trivial; for transitivity, let $c \sim d$ and $d \sim e$. Then $c=d \in T$ and $d=e \in T$. Then by the lemma $c=e\in T$ as it is implied by the two sentences. So $c \sim e$.\\
@@ -665,7 +665,7 @@ Reminder: we have a lecture next Monday (22nd Oct)!
         We have to check that $R^{\mathcal{M}}$ is well-defined: suppose $\bar{c},\bar{d} \in \mathcal{C}^{n_R}$ and suppose $c_i \sim d_i$ for each $i$, i.e. $c_i = d_i \in T$ for every $i=1,...,n_R$. However, now
         $$R(\bar{c}) \in T \iff R(\bar{d}) \in T$$
         by maximality of $T$ and the previous lemma. So that $R^{\mathcal{M}}$ is well defined.\\
-        $\bullet$ If $f \in \mathcal{F}$ is a function symbol, then $f\bar{c} = d \in T$ for some $d \in \mathcal{C}$: this is because $\exists x(f(\bar{c}=x) \in T$ by maximality and f.s..\\
+        $\bullet$ If $f \in \mathcal{F}$ is a function symbol, then $f\bar{c} = d \in T$ for some $d \in \mathcal{C}$: this is because $\exists x(f(\bar{c})=x) \in T$ by maximality and f.s..\\
         Then define $f^{\mathcal{M}}(\bar{c}^*) = \bar{d}^*$ (obvious notation).\\
         We also have to check this is well-defined. Lecturer decides to left this to us.\\
         Now we claim that the terms behave nicely as what the theory says, i.e. if $t(x_1,...,x_n)$ is an $L$-term and $c_1,...,c_n,d \in \mathcal{C}$, then $t(c_1,...,c_n) = d \in T \iff t^{\mathcal{M}} (c_1^*,...,c_n^*) = d^*$.\\
@@ -677,6 +677,82 @@ Reminder: we have a lecture next Monday (22nd Oct)!
         The proof is by induction on complexity of $\phi(\bar{x})$ (The lecturer decided to leave yet another proof to us -- lots of work to be done here. Lecturer is speeding up!).
     \end{proof}
 \end{lemma}
+
+---Lecture 8---
+
+\begin{lemma} (5.4)\\
+    Let $T$ be a f.s. $L$-theory. Then there are $L^* \supseteq L$ and a f.s. $T^* \supseteq T$ such that:\\
+    (i) $|L^*| = |L| + \omega$;\\
+    (ii) any $L^*$-theory extending $T^*$ has WP.
+    \begin{proof}
+        Define $\bra L_i: i < \omega \ket$ a chain of languages containing $L$ and s.t. $|L_i| = |L|+\omega$, and $\bra T_i: i < \omega \ket$ of f.s. theories s.t. $\forall i$ $T_i$ is an $L_i$-theory, and $T_i \supseteq T$.\\
+        $\bullet$ Base step: $L_0=L$ and $T_0=T$.\\
+        $\bullet$ At stage $i+1$, $L_i$ and $T_i$ are given. List all $L_i$-formulas $\phi(x)$ (one free variable $x$) and let $L_{i+1} = L_i \cup \{c_\phi:\phi(x)$ is an $L_i$-formula$\}$.\\
+        For all $\phi(x)$ ($L_i$-formula), let $\Phi_\phi$ be the $L_{i+1}$-sentence $\exists x\phi(x) \to \phi(c_\phi)$.\\
+        Then $T_{i+1}:= T_i \cup \{\Phi_\phi: \phi(x)$ is $L_i$-formula$\}$.\\
+        Claim: $T_{i+1}$ is f.s.. Why is that? Let's take a finite subset $\triangle \stackrel{fin}{\subseteq} T_{i+1}$. Then $\triangle = \triangle_0 \cup \{\Phi_{\phi_2},...,\Phi_{\phi_n}\}$ where $\triangle_0 \subseteq T_i$.\\
+        Let $\mathcal{M} \vDash \triangle_0$ ($\mathcal{M}$ is an $L_i$-structure; it exists because $T_i$ is f.s.).\\
+        We define an $L_{i+1}$-structure $\mathcal{M'}$ with domain $M$ (of $\mathcal{M}$). Define the integration of new constants as follows: if $\mathcal{M} \vDash \exists x \phi(x)$, then $c_\phi^{\mathcal{M}'} = a$ for any $a \in \mathcal{M}$ s.t. $\mathcal{M} \vDash \phi(a)$.\\
+        Otherwise, $c_\phi^{\mathcal{M}'}$ is arbitrary.\\
+        Then $\mathcal{M}' \vDash \triangle$.\\
+        Now let $L^* = \cup_{i < \omega} L_i$, $T^* = \cup_{i<\omega} T_i$.\\
+        By our construction, any extension of $T^*$ has WP (check), and $T^*$ is f.s. ($\triangle \stackrel{fin}{\subseteq} T^*$, then $\triangle \subseteq T_i$ for some $i$). 
+    \end{proof}
+\end{lemma}
+
+\begin{lemma} (5.5)\\
+    If $T$ is f.s., there exists a maximal f.s. $T' \supseteq T$ (of underlying language $L$).
+    \begin{proof}
+        Let $I:= \{ S: S$ is a f.s. $L$-theory s.t. $T \subseteq S\}$.\\
+        $I$ is partially ordered by inclusion.\\
+        If $\bra C_i: i < \lambda\ket$ is a chain in $I$, then $\cup_{i < \lambda} C_i$ is an upper bound for the chain: it is f.s. ($\triangle \subseteq \cup C_i$ is s.t. $\triangle \subseteq C_i$).\\
+        Then by Zorn's lemma, $I$ has a maximal element (w.r.t. $\subseteq$).\\
+        We claim that the maximal element $T'$ of $I$ is the required extension of $T$ (check that $\forall$ $L$-sentences $\sigma$, $\sigma \in T'$ or $\neg \sigma \in T'$).
+    \end{proof}
+\end{lemma}
+
+\begin{thm} (5.6, Compactness)\\
+    If $T$ is a f.s. $L$-theory, and $\lambda \geq |L|+\omega$, then there is $\mathcal{M} \vDash T$ s.t. $|\mathcal{M}| \leq \lambda$.\\
+    (See part II Logic and Set Theory for the finite case).\\
+    \begin{proof} (sketch)\\
+        Extend $T$ to $T^*$, an $L^*$-theory that is f.s., and s.t. any $S \supseteq T^*$ has WP (by lemma (5.4)).\\
+        By lemma (5.5), we can extend this $T^*$ to a maximal f.s. theory $T'$; and by the lemma $T'$ would have WP since it is an extension of $T^*$.\\
+        Now $T'$ is maximal and f.s., so we can use lemma (5.3) to show that there is a model $\mathcal{M} \vDash T'$. Then in particular, $\mathcal{M} \vDash T$ (check $\mathcal{M} \leq \lambda$).
+    \end{proof}
+\end{thm}
+
+\begin{defi} (5.7)\\
+    Let $L$ be a language. Then an $L$-type $p(\bar{x})$ is a set of $L$-formulas whose free variables are in $\bar{x}$ (and $\bar{x} = \bra x_i : i < \lambda \ket $).\\
+    $\bullet$ An $L$-type is \emph{satisfiable} if there is an $L$-structure $\mathcal{M}$ and an assignment $\bar{a} \in \mathcal{M}^{|\bar{x}|}$ s.t. $\mathcal{M} \vDash \phi(\bar{a})$ for all $\phi(x) \in p(x)$ (we also say $p(\bar{x})$ is \emph{consistent}, and $\bar{a}$ \emph{realizes} $p(\bar{x})$ in $\mathcal{M}$).\\
+    We write $\mathcal{M} \vDash p(\bar{a})$, or $\mathcal{M},\bar{a} \vDash p(\bar{x})$.\\
+    We also say that $p(\bar{x})$ is \emph{satisfied in $\mathcal{M}$}.\\
+    $\bullet$ A type $p(\bar{x})$ is finitely satisfiable if every finite subset of $p(x)$ is satisfiable (we may say $p(x)$ is finitely consistent).
+\end{defi}
+
+\begin{rem}
+    An $L$-type may be finitely satisfiable in a model $\mathcal{M}$ (by this we mean every finite subset is satisfiable in $\mathcal{M}$), but not satisfiable in $\mathcal{M}$.
+\end{rem}
+
+\begin{eg}
+    Let $\mathcal{M} = (\N,<)$. Let $\phi_n(x)$ say \emph{there are at least $n$ elements less than $x$}, and $p(x):=\{\phi_n(x):n < \omega\}$.\\
+    Is $p(x)$ finitely satisfiable in $\mathcal{M}$? Yes; but obviously $p(x)$ is not satisfiable in $\mathcal{M}$.
+\end{eg}
+
+\begin{thm}
+    Every finitely satisfiable $L$-type $p(\bar{x}$ is satisfiable).
+    \begin{proof}
+        Let $\bar{x} = \bra x_i : i<\lambda\ket$, let $\bra c_i:i<\lambda\ket$ be new constants (not in $L$).\\
+        Expand $L$ to $L' = L \cup \{c_i:i<\lambda\}$. Then $p(\bar{c})$ is an $L'$-theory, and theorem (5.6) applied to $p(\bar{c})$ gives the desired conclusion (think).
+    \end{proof}
+\end{thm}
+
+
+
+
+
+
+
+
 
 \newpage
 
