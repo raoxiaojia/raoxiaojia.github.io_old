@@ -2,11 +2,11 @@
 
 \input{temp}
 
-\setcounter{section}{-1}
+\setcounter{section}{0}
 
 \begin{document}
 
-\title{Percolation and Random Walk on Graphs}
+\title{Percolation and Random Walk on Graphs (Example Class notes)}
 
 \maketitle
 
@@ -16,19 +16,8 @@
 
 \newpage
 
-\section{Introduction}
+\section{Example Class 1}
 
-Consider the $n\times n$ box (we only consider points of integer coordinate). For every edge we keep them with some probability $p$. We say an edge is open if we choose to keep the edge, and closed otherwise.
-
-Some problems we could consider:
-
-\begin{eg}
-Let $f_n(p)$ be the probability that there exists a path from the leftmost edge to the rightmost (i.e. horizontal crossing of the box).\\
-Apparently $f_n(0)=0,f_n(1)=1$. More interestingly, $f_n(\frac{1}{2})=\frac{1}{2}$ (by duality, note that if there is no horizontal crossing then there is vertical crossing in a dual construction by having edges through the centres of graphs?).
-
-As $n\to\infty$, $f$ converges to a step function with a critical point at $1/2$, and takes $0$ and $1$ at the sub-critical and super-critical sections respectively.
-
-www.statslab.cam.ac.uk/~ps422 for lecture notes
-\end{eg}
+Question 10: See page 81 of \href{https://moodle.epfl.ch/pluginfile.php/1671994/mod_resource/content/1/Chap8-9.pdf}{this} document.
 
 \end{document}

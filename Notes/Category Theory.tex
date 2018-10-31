@@ -810,8 +810,59 @@ We shall have some examples, as usual.
     \end{proof}
 \end{thm}
 
+---Lecture 12---
 
+Second example class: Friday 9 November, 14:00, MR3.
 
+\begin{lemma} (4.10)\\
+    Suppose $\mathcal{D}$ has and $G:\mathcal{D} \to \mathcal{C}$ preserves limits of shape $\mathcal{J}$. Then for any $A \in \ob \mathcal{C}$, the arrow category $(A \downarrow G)$ has limits of shape $\mathcal{J}$, and the forgetful functor $U:(A \downarrow G) \to \mathcal{D}$ creates them.
+    \begin{proof}
+        Suppose given $D:\mathcal{J} \to (A\downarrow G)$; write $D(j)$ as $(UD(j),f_j)$.\\
+        Let $(L,(\lambda_j:L \to UD(j))_{j \in \ob\mathcal{J}}$ be a limit for $UD$; then $(GL,(G\lambda_j)_{j \in \ob\mathcal{J}})$ is a limit for $GUD$. Since the edges of $UD$ are morphisms in $(A \downarrow G)$, the $f_j$ form a cone over $GUD$.\\
+        So there's a unique $h:A \to GL$ s.t. $(G\lambda_j)h = f_j$ for all $j$, i.e. there is a unique $h$ s.t. the $\lambda_j$ are all morphisms $(L,h) \to (UD(j),f_j)$ in $(A \downarrow G)$.\\
+        We need to show that $((L,h),(\lambda_j)_{j \in \ob\mathcal{J}})$ is a limit cone in $(A \downarrow G)$.\\
+        If $((C,k),(\mu_j)_{j \in \ob\mathcal{J}})$ is any cone over $D$, then $(C,(\mu_j)_{j \in \ob\mathcal{J}})$ is a cone over $UD$. So there's a unnique $l:C \to L$ with $\lambda_j l = \mu_j$ for all $j$. We need to show $(Gl)k = h$: but $(G\lambda_j) (Gl)k = (G\mu_j)k = f_j = (G\lambda_j) h$ for all $j$. So $(Gl)k = h$ by uniqueness of factorizations through limits.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma} (4.11)\\
+    A category $\mathcal{C}$ has an initial object iff $1_{\mathcal{C}}:\mathcal{C} \to \mathcal{C}$, regarded as a diagram of shape $\mathcal{C}$ in $\mathcal{C}$, has a limit.
+    \begin{proof}
+        First, suppose $\mathcal{C}$ has an initial object $I$. Then the unique morphisms $(I \to A | A \in \ob\mathcal{C})$ form a cone over $1_{\mathcal{C}}$; and given any cone $(C \xrightarrow{\lambda_A} A |A \in \ob\mathcal{C})$, then for any $A$ the triangle 
+        \begin{tikzcd}
+            C \arrow[rd,"\lambda_A"] \arrow[r,"\lambda_I"] & I \arrow[d]\\
+            & A
+        \end{tikzcd}
+        commutes, so $\lambda_I$ is the unique factorization of $(\lambda_A|A \in \ob\mathcal{C})$ through $(I \to A|A\in\ob\mathcal{C})$.\\
+        Conversely, suppose $(I,(\lambda_A:I \to A|A \in \ob\mathcal{C}))$ has a limit. Then for any $I \xrightarrow{f} A$, the diagram
+        \begin{tikzcd}
+            I \arrow[r,"\lambda_I"] \arrow[rd,"\lambda_A"] & I \arrow[d,"f"]\\
+            & A
+        \end{tikzcd}
+        commutes. In particular, putting $f = \lambda_A$, we see that $\lambda_I$ is a factorization of the limit cone through itself, so $\lambda_I = 1_I$. Hence every $f:I \to A$ satisfies $f=\lambda_A$. So $I$ is initial.
+    \end{proof}
+\end{lemma}
+
+The primeval adjoint functor theorem follows immediately from (4.10), (4.11) and (3.3).\\
+However, it only applies to functors between preorders (since that's the only category that satisfies the conditions; c.f. Sheet 2 Q6).
+
+\begin{thm} (4.12, General Adjoint Functor Theorem)\\
+    Suppose that $\mathcal{D}$ is locally small and complete. Then $G:\mathcal{D} \to \mathcal{C}$ has a left adjoint $\iff$ $G$ preserves all small limits (some people use the word \emph{continuous} for this) and, for each $A \in \ob\mathcal{C}$, there exists a \emph{set} of morphisms $\{A \xrightarrow{f_i} GB_i | i \in I\}$ s.t. every $A \xrightarrow{h} GC$ factors as $A \xrightarrow{f_i} GB_i \xrightarrow{Gg} GC$ for some $i$ and some $g:B_i \to C$.\\
+    (We say $G$ satisfies the \emph{solution set condition}.)
+    \begin{proof}
+        $\implies$: If $(F \dashv G)$, $G$ preserves limits by (4.9), and $\{A \xrightarrow{\eta_A} GFA\}$ is a singleton solution set, by (3.3).\\
+        $\Leftarrow$: By (4.10) $(A\downarrow G)$ is complete, and it inherits local smallness from $\mathcal{D}$. So we need to show: if $\mathcal{A}$ is compelte and locally small, and has a weakly initial set of objects $\{B_i | i \in I\}$, then $\mathcal{A}$ has an initial object.\\
+        First form $P=\prod_{i \in I} B_i$, then $P$ is weakly initial. Now form the limit of $P \stackrel[\to]{\to}{...} P$ (*) whose edges are all the endomorphisms of $P$; denote it $I \xrightarrow{i} P$. $I$ is also weakly initial in $\mathcal{A}$; suppose given $I \stackrel[g]{f}{\rightrightarrows} C$. Form equalizer $E \xrightarrow{e} I$ of $(f,g)$; then there exists $P\xrightarrow{h} E$ since $P$ is weakly initial.\\
+        $ieh:P \to P$ and $1_P$ are edges of the diagram (*) above, so $i=iehi$. But $i$ is monic, so $ehi = 1_I$; in particular, $e$ is split epic. So $f=g$.\\
+        Hence $I$ is initial.
+    \end{proof}
+\end{thm}
+
+\begin{eg} (4.13)\\
+    (a) Suppose you've never heard of free groups nor how to construct them. Consider the forgetful functor $U: \mathbf{Gp} \to \mathbf{Set}$. By (4.6 a), $U$ creates all small limits, so $\mathbf{Gp}$ has them and $U$ preserves them. $\mathbf{Gp}$ is locally small; now given a set $A$, any $f:A \to UG$ factors as $A \to UG' \to UG$, where $G' \leq G$ is the subgroup generated by $\{f(x) |x \in A\}$, and $\Card G' \leq \max\{\aleph_0,\Card A\}$.\\
+    Let $B$ be a set of this cardinality, and consider all possible subsets $B' \subseteq B$. All group structures on $B'$ and all mappings $A \to B'$. So these give us a solution set at $A$.\footnote{However this is not a very good example -- how did we know the upper bound of $\Card G'$? We knew it because we've already known free group consists of all words generated by set elements. Indeed this is almost always the case: if you've known enough about the functor so that you can find a solution set to apply GAFT, almost always you could have constructed the adjoint explicitly.}\\
+    (b) Consider the category $\mathbf{CLat}$ of complete lattices, i.e. posets with all meets and joins. Again, $U:\mathbf{CLat} \to \mathbf{Set}$ creates all small limits. But A.W.Hales (1964) showed that, for any cardinal $\kappa$, there exist complete lattices of cardinality $\geq \kappa$ generated by three elements; so the SSC fails at $A=\{x,y,z\}$. Hence $U$ doesn't have a left adjoint.
+\end{eg}
 
 
 
