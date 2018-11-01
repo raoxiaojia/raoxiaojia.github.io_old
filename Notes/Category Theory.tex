@@ -878,7 +878,7 @@ However, it only applies to functors between preorders (since that's the only ca
 Many people wrote too much for questions. Do have the confidence to use the duality principle when it's usable!
 
 \subsection{Question 1}
-We do need to verify that $(AB)_{ik} = \vee_j (a_{ij} \wedge b_{ij})$, and 
+We do need to verify
 \begin{equation*}
     \begin{aligned}
         ((AB)C)_{il} &= \vee_k ((\vee_j (a_{ij} \wedge b_{jk} )) \wedge c_{kl})\\
@@ -886,7 +886,7 @@ We do need to verify that $(AB)_{ik} = \vee_j (a_{ij} \wedge b_{ij})$, and
         &= (A(BC))_{il} \text{ by symmetry}
     \end{aligned}
 \end{equation*}
-And of course identity matrices are identities.
+and of course identity matrices are identities.
 
 Define a functor $F:\mathbf{Mat}_L \to \mathbf{Rel}_f$ by $F(n) = \{1,2,...,n\}$; if $A: n \to p$ is a $p \times n$ matrix in $\mathbf{Mat}_L$, then $FA = \{(i,j) | a_{ji} = 1\}$.\\
 Important: we have to verify this is functorial, which many people didn't bother to do. Why is it functorial? Well again we just have to verify explicitly that
@@ -910,7 +910,7 @@ But then by assumption we have an equivalence $\mathcal{C}_0 \stackrel[G]{F}{\ri
 Now we have to verify normality: $HFH^{-1} \xrightarrow{H \alpha_{H^{-1}}} HH^{-1} = 1_{\mathcal{C}}$ is iso, so $HFH^{-1}$ is inner.\\
 You don't have to spend a lot of time to verify that all these are nat transforms (ok).\\
 (ii) Note that an isomorphism is in particular an equivalence. Now if $F$ is an automorphism, it is full and faithful, so for any $A$, morphism $A \to F1$ are in bijection with morphisms $F^{-1} A \to 1$, so there's just one of them.\\
-Hence if $F$ is an isomorphism of $\mathbf{Set}$, $F(1) = 1$, and henec there's a unique $\alpha: \mathbf{Set} (1,-) \to F$ (this is just Yoneda).\\
+Hence if $F$ is an isomorphism of $\mathbf{Set}$, $F(1) = 1$, and hence there's a unique $\alpha: \mathbf{Set} (1,-) \to F$ (this is just Yoneda).\\
 We need to show $\alpha$ is iso: but for any $A$, and any $1 \xrightarrow{x} A$, 
 \begin{tikzcd}
     1 \arrow[r,"\alpha_1"] \arrow[d,"x"] & F1 \arrow[d,"Fx"]\\
@@ -1002,7 +1002,7 @@ Conversely, if $f$ is an equalizer of $(e,1_{\dom e})$, then of course $e$ must 
 Composition in $\mathcal{C}[\check{\mathcal{E}}]$ is composition in $\mathcal{C}$: if $e \xrightarrow{f} d \xrightarrow{g} c$, then $cgf = gf = gfe$, so $gf : e \to c$. The identity on $e$ is $e \xrightarrow{e} e$.\\
 (iii) We define $I:\mathcal{C} \to \mathcal{C} [\check{\mathcal{E}}]$ by $IA = 1_A$, $If = f$ (check this works). $I$ is f and f since all morphisms $A \to B$ in $\mathcal{C}$ are morphisms $1_A \to 1_B$ in $\mathcal{C} [\check{\mathcal{E}}]$.\\
 For every $A \xrightarrow{e} A$ in $\mathcal{E}$, $Ie$ splits as $1_A \xrightarrow{e} e \xrightarrow{e} 1_A$.\\
-So if $T = \hat{T}I$, $T$ must send idempotents in $\mathcal{E}$ to split idenpotents.\\
+So if $T = \hat{T}I$, $T$ must send idempotents in $\mathcal{E}$ to split idempotents.\\
 Now we have to show the converse, where we do have to use choice here. Suppose $Te$ is split for every $A \xrightarrow{e} A$ in $\mathcal{E}$. Choose a splitting $TA \xrightarrow{g_e} \hat{T}e \xrightarrow{f_e} TA$ of it, and define $\hat{T}: \mathcal{C} [\check{\mathcal{E}}] \to \mathcal{D}$ on morphisms by $\hat{T} (e \xrightarrow{h} d) = \hat{T} e \xrightarrow{f_e}TA \xrightarrow{Th} TB \xrightarrow{g_d} \hat{T}d$ (verify that this is functorial): provided we split $T(1_A)$ as $TA \xrightarrow{1_{TA}} TA \xrightarrow{1_{TA}} TA$, we have $\hat{T} I = T$.\\
 (iv) Now suppose $\mathcal{E} = \{$all idempotents of $\mathcal{C}\}$. If $e \xrightarrow{d} e$ is idempotent in $\mathcal{C} [\check{\mathcal{E}}]$, then $dd = d$ in $\mathcal{C}$, so $d \in \mathcal{E}$, and $e \xrightarrow{d} e$ splits as $e \xrightarrow{d} d \xrightarrow{d} e$.\\
 (v) If $\mathcal{D}$ is Cauchy-complete, consider the functor $[\hat{\mathcal{C}},\mathcal{D}] \xrightarrow{\Phi} [\mathcal{C},\mathcal{D}]$ sending $\hat{T}$ to $\hat{T}I$ and $\alpha \to \alpha_I$. $\Phi$ is surjective on objects by (iii); so we need to show, given $S,T : \hat{\mathcal{C}} \rightrightarrows \mathcal{D}$, any nat trans $\alpha:SI \to TI$ extends uniquely to a nat trans $S \to T$. Given $A \xrightarrow{e} A$ in $\mathcal{E}$, we have a morphism $Se \xrightarrow{S(e \xrightarrow{e} 1_A)} SA \xrightarrow{\alpha_A} TA \xrightarrow{T(1_A \xrightarrow{e} e)} Te$ which we take to be $\alpha_e$.\\
@@ -1051,7 +1051,7 @@ But now if this splits as $A \xrightarrow{g} B \xrightarrow{f} A$, then $\mathca
 But any equivalence $[\hat{\mathcal{C}},\mathbf{Set}] \simeq [\hat{\mathcal{D}},\mathbf{Set}]$ restricts to an equivalence between the full subcategories of irreducible projectives, which are equivalent to $\hat{\mathcal{C}}^{op}$ and $\hat{\mathcal{D}}^{op}$.
 
 \subsection{Question 8}
-This question is actually quite quick.\\
+This question is actually quite quick (and Joel says it's actually a question in one past-paper).\\
 $\mathcal{C}(A,-)$ is a monofunctor just means that for any $f:B \to C$, the map $g \to fg$ is an injection $\mathcal{C}(A,B) \to \mathcal{C}(A,C)$. This holds for all $A$ iff all $f \in \mor\mathcal{C}$ are monic -- that's the equivalence between (i) and (ii).\\
 We now prove (ii) $\implies$ (iii): Since we have an epi $\coprod \mathcal{C}(A,-) \twoheadrightarrow F$ and disjoint unions of monofunctors are monofunctors (?).\\
 For (iii) $\implies$ (ii), if we have $F \stackrel{\alpha}{\twoheadrightarrow} \mathcal{C}(A,-)$ with $F$ a monofunctor, we have a splitting $\mathcal{C}(A,-) \stackrel{\beta}{\rightarrowtail} F$, and any subfunctor of a monofunctor is a monofunctor.\\
