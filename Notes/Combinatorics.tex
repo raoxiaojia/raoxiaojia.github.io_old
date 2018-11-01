@@ -120,7 +120,7 @@ Hence $\mathcal{A} = X^{(r)}$ or $\phi$.
         Also, $\partial \mathcal{A}_n$ and $\mathcal{A}_{n-1}$ are disjoint (as $\mathcal{A}$ is an antichain). So 
         \begin{equation*}
         \begin{aligned}
-            \frac{|\partial \mathcal{A}_n|}{{n \choose {n-1}}} + \frac{|\mathcal{A}_{n-1}|}{{n \choose {n-1}}} = \frac{|\partial \mathcal{A}_n \cup \mathcal{A}_{n-1}}{{n \choose {n-1}}} \leq 1
+            \frac{|\partial \mathcal{A}_n|}{{n \choose {n-1}}} + \frac{|\mathcal{A}_{n-1}|}{{n \choose {n-1}}} = \frac{|\partial \mathcal{A}_n \cup \mathcal{A}_{n-1}|}{{n \choose {n-1}}} \leq 1
         \end{aligned}
         \end{equation*}
         So
@@ -161,7 +161,7 @@ Hence equality in Sperner's lemma is only achieved when $\mathcal{A} = X^{\lfloo
 Now let's look at another proof to LYM inequality:
 \begin{proof} (2) \\
     Choose, uniformly at random, a maximal chain $\mathcal{C}$ (i.e. $C_0 \subset C_1 \subset ... \subset C_n$ with $|C_i| =i \forall i$). For a given $r$-set $A$ (which is just one vertex in our graph, if you rememeber what our vertices mean), $\P(A \in \mathcal{C}) = \frac{1}{{n \choose r}}$. So $\P(\mathcal{A}_r \text{ meets } \mathcal{C}) = \frac{|\mathcal{A}_r|}{{n \choose r}}$ (events are disjoint).\\
-    So $\P(\mathcal{A} \text{ meets } \mathcal{C}) = \sum_{r=0}^n \frac{|\mathcal{A}_r}{{n \choose r}}$, but that can be no greater than 1.
+    So $\P(\mathcal{A} \text{ meets } \mathcal{C}) = \sum_{r=0}^n \frac{|\mathcal{A}_r|}{{n \choose r}}$, but that can be no greater than 1.
 \end{proof}
 
 \begin{rem}
@@ -475,13 +475,16 @@ Certainly, $|C_i(A)| = |A|$. Also, $C_i(A)$ \emph{looks more like} an initial se
         Now $|B_+| = |A_+|$, and $|N(B_-)| \leq |N(A_-)|$ (induction). But $N(B_-)$ is an initial segment of simplicial (on $Q_{n-1}$), as is $B_+$, so $N(B_-)$ and $B_+$ are \emph{nested} (i.e. one belongs to another).\\
         Hence $|B_+ \cup N(B_-)| \leq |A_+ \cup N(A_-)|$.\\
         Similarly, $|B_- \cup N(B_+)| \leq |A_- \cup N(A_+)|$. Thus $|N(B)| \leq |N(A)|$.\\
+
+        ---Lecture 8---
+
         Among all $B \subset Q_n$ with $|B| = |A|$ and $|N(B)| \leq |N(A)|$, choose one with $\sum_{x \in B} f(x)$ minimal where $f(x)$ is the position of $x$ in simplicial order on $Q_n$. Then $B$ is $i$-compressed $\forall i$.\\
         Must such $A,B$ be an initial segment of simplicial? Unfortunately the answer is no, e.g. take $A=\{\phi,1,2,12\} \subset Q_3$.
         However we have 
         \begin{lemma} (2)\\
             Let $B \subset Q_n$ be $i$-compressed for all $i$, but not an initial segment of the simplicial order. Then\\
             $\bullet$ If $n=2k+1$ is odd, we have $B=X^{(\leq k)} - (k+2)(k+3)...(2k)(2k+1) \cup 12...k(k+1)$, i.e. removing the last element in $X^{(k)}$ but add in the first element in $X^{(k+1)}$;\\
-            $\bullet$ If $n=2k$ is even, we have $B=X^{(\leq k-1)} \cup \{x \in X^{(k)}: 1 \in x\} - 1(k+2)(k+3)...(2k) \cup 234...k(k+1)$, i.e. cut exactly half in the middle layer but removing the last elment with 1 and add in the first element without 1.
+            $\bullet$ If $n=2k$ is even, we have $B=X^{(\leq k-1)} \cup \{x \in X^{(k)}: 1 \in x\} - 1(k+2)(k+3)...(2k) \cup 234...k(k+1)$, i.e. cut exactly half in the middle layer but removing the last element with 1 and add in the first element without 1.
 
             \includegraphics[scale=0.5]{image/Comb_02.png}
 
@@ -511,7 +514,7 @@ Now there's no reason to consider only the neighbourhood within one step. For $A
 To get a feel for what corollary 3 is saying, we'll need some estimates on things like $\sum_{i=0}^r {n\choose i}$. Note that this is essentially just estimating $\P(X<=r)$ where $X \sim B(n,\frac{1}{2})$. So by CLT we could just use normal distribution to get an accurate estimate when $n$ is large.\\
 Lecturer decided to still write a proposition down in the end.
 
-\begin{prop} (4)
+\begin{prop} (4)\\
     Let $0 < \varepsilon < \frac{1}{4}$, Then for $r=\lfloor \frac{1}{2} -\varepsilon/n\rfloor$, the above sum (let's use $S$ to denote that) is at most $\frac{1}{\varepsilon} e^{-\varepsilon^2 n/2} 2^n$ (an exponentially small fraction of $2^n$, with $\varepsilon$ fixed).\\
     \begin{proof}
         For $i \leq (\frac{1}{2} - \varepsilon) n$:
