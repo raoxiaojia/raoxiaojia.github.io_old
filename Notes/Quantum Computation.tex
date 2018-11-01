@@ -494,4 +494,73 @@ Apothesis of technique in Grover's algorithm.
 Some background:\\
 We'll make much use of \emph{reflection operators}.
 
+---Lecture 9---\\
+A reminder that we don't have lecture next thursday.
+
+Reflection operators:\\
+$\bullet$ State $|\alpha\ket$ in $\mathcal{H}_d$ $\to$ 1-dimensional subspace $L_\alpha$ and $(d-1)$-dimensional orthogonal complement $L_\alpha^\perp$
+$$I_{|\alpha\ket} \stackrel{def}{=} I-2|\alpha \times \alpha|$$
+has $I_{|\alpha\ket} |\alpha\ket = -|\alpha\ket$, $I_{|\alpha\ket} |\beta\ket = |\beta\ket$ for any $|\beta \ket \perp |\alpha\ket$.\\
+So $I_{|\alpha\ket}$ is reflection in $(d-1)$-dimensional subspace $L_{\alpha}^\perp$.
+
+Note that for any unitary $U$, $U I_{|\alpha\ket} U^\dagger = I_{U|\alpha\ket}$, since $U|\alpha \times \alpha|Y^\dagger = |\xi \times \xi|$ ofr $\xi = U|\alpha\ket$ (basically a change of basis).
+
+$\bullet$ Take $k$-dimensional subspace $A \subseteq \mathcal{H}_d$, and any orthonormal basis $|a_1\ket,...,|a_k\ket$. Then $P_A = \sum_{i=1}^k |a_i \times a_i|$ is projection operator into $A$.\\
+Define $I_A = I-2P_A$. Then we have $I_A |\xi\ket = |\xi\ket$ if $|\xi\ket \in A^\perp$, and $I_A|\xi\ket = -|\xi\ket$ if $|\xi\ket \in A$.\\
+So $I_A$ is reflection in $(d-k)$ dimensional mirror $A^\perp$.
+
+Recap of Grover's algorithm (part II notes page 68-73):\\
+$\bullet$ search for unique \emph{good} item in unstructured database of $N=2^n$ items formalised as: (write $B_n$ to be the set of all $n$-bit strings, $N=2^n$):
+Given oracle for $f:B_n \to B$, promised that there is unique $x_0 \in B_n$ with $f(x_0) = 1$, and we wish to find $x_0$.\\
+This is closely related to class NP and Boolean satisfiability problem (see part II notes p 67-68).\\
+Using one query to $(n+1)$-qubit $\mathcal{U}_f$, we can implement reflection operator $I_{|x_0\ket} : |x\ket \to |x\ket$ if $x \neq x_0$, and to $-|x\ket$ if $x=x_0$.\\
+(viz. apply $\mathcal{U}_f$ to $|x\ket (\frac{|0\ket - |1\ket}{\sqrt{2}})$ and discard the last qubit.)\\
+Then consider \emph{Grover iteration operator} on $n$ qubits:\\
+$$Q \stackrel{def}{=} -H_n I_{|0...0\ket} H_n I_{|x_0\ket} = -I_{|\psi_0\ket} I_{|x_0\ket}$$
+here $H_n = H\otimes H \otimes ... \otimes H = H_n^{\dagger}$, and $|\psi_0\ket = H^n |0...0\ket = \frac{1}{\sqrt{2^n}} \sum_{x \in B_n} |x\ket$.\\
+So one application of $Q$ uses 1 query to $\mathcal{U}_f$.
+
+\begin{thm} (Grover, 1996)\\
+    In 2-dimensional span of $|\psi_0\ket$ and (unknown) $|x_0\ket$, the action of $Q$ is rotation by angle $2\alpha$ where $\sin\alpha = \frac{1}{\sqrt{N}}$.\\
+\end{thm}
+
+Hence (Grover's algorithm) to find $x_0$ given $U_f$:\\
+1. Make $|\psi_0\ket$;\\
+2. Apply $Q$ $m$ times where $m = \frac{\arccos(\frac{1}{\sqrt{N}})}{2\arctan(frac{1}{\sqrt{N}})}$ to rotate $|\psi_0\ket$ very close to $|x_0\ket$.\\
+3. Measure to see $x_0$ with high probability $\sim 1-\frac{1}{N}$.
+
+For large $N$, $\arccos(\frac{1}{\sqrt{N}}) \approx \pi/2$, $\arcsin(\frac{1}{\sqrt{N}}) \approx \frac{1}{\sqrt{N}}$ so $m = \frac{\pi}{4} \sqrt{N}$ iterations/queries to $U_f$ suffice.\\
+Classically we need $O(N)$ queries to see $x_0$ with any \emph{constant} probability (independent of $N$), so get \emph{square-root} speed up quantumly.
+
+Amplitude Amplification:\\
+Let $G$ be any subspace (\emph{good subspace}) of state space $\mathcal{H}$, and $G^\perp$ is orthogonal complement (\emph{bad subspace}) $\mathcal{J} = G \oplus G^\perp$.\\
+Given any $|\psi \ket \in \mathcal{H}$, we have unique decompoisiton with \emph{real positive} coefficients
+$$|\psi\ket = \sin\theta |g\ket + \cos\theta |b\ket$$
+where $|g\ket \in G$, $|b\ket \in G^\perp$ normalised. Introduce reflections: flip $|\psi\ket $ and good vectors: $I_{|\psi\ket} = I-2|\psi \times \psi|$, $I_G = I-2P_G$ (projection into $G$), so $\sin\theta = ||P_G |\psi\ket||$ is the length of good projection.\\
+Introduce $Q \stackrel{def}{=} -I_{|\psi\ket} I_G$.
+
+\begin{thm} (Amplitude Amplification)\\
+In the 2-dimensional subspace spanned by $|g\ket$ and $|\psi\ket$ (or equivalently by orthonormal vectors $|g\ket$ and $|b\ket$), $Q$ is rotation by $2\theta$ where $\sin\theta$ is the length of good projection of $|\psi\ket$.
+    \begin{proof}
+        We have $I_G|g\ket = -|g\ket$, $I_G|b\ket = |b\ket$. So $Q|g\ket = +I_{|\psi\ket} |g\ket$, $Q|b\ket = -I_{|\psi\ket} |b\ket$.\\
+        Now 
+        \begin{equation*}
+            \begin{aligned}
+                I_{|\psi\ket} &= I-2(\sin\theta|g\ket + \cos\theta|b\ket)(\sin\theta\bra g| + \cos\theta\bra b|)\\
+                &= I-2[\sin^2\theta |g\times g| + \sin\theta\cos\theta |g\times b| + \sin\theta\cos\theta|b \times g| + \cos^2\theta |b\times b|] |b\ket
+            \end{aligned}
+        \end{equation*}
+        And direct calculation (using $\bra g| b\ket =0$, $\bra g|g\ket = \bra b|b\ket = 1$) gives 
+        \begin{equation*}
+            \begin{aligned}
+                Q|b\ket &= I_{|\psi\ket} |b\ket\\
+                &=2\sin\theta\cos\theta |g\ket - (1-2\cos^2\theta) |b\ket\\
+                &= \cos 2\theta |b\ket + \sin 2\theta|g\ket
+            \end{aligned}
+        \end{equation*}
+        and $Q|g\ket = +I_{|\psi\ket} |g\ket = -\sin 2\theta |b\ket + \cos 2\theta |g\ket$.\\
+        So in $\{|b\ket,|g\ket\}$ basis, matrix of $Q$ is exactly the matrix of rotation by $2\theta$.
+    \end{proof}
+\end{thm}
+
 \end{document}
