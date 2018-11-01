@@ -474,8 +474,65 @@ Certainly, $|C_i(A)| = |A|$. Also, $C_i(A)$ \emph{looks more like} an initial se
         Similarly, $|N(B)| = |B_+ \cup N(B_-)| + |B_- \cup N(B_+)|$.\\
         Now $|B_+| = |A_+|$, and $|N(B_-)| \leq |N(A_-)|$ (induction). But $N(B_-)$ is an initial segment of simplicial (on $Q_{n-1}$), as is $B_+$, so $N(B_-)$ and $B_+$ are \emph{nested} (i.e. one belongs to another).\\
         Hence $|B_+ \cup N(B_-)| \leq |A_+ \cup N(A_-)|$.\\
-        Similarly, $|B_- \cup N(B_+)| \leq |A_- \cup N(A_+)|$. Thus $|N(B)| \leq |N(A)|$. 
+        Similarly, $|B_- \cup N(B_+)| \leq |A_- \cup N(A_+)|$. Thus $|N(B)| \leq |N(A)|$.\\
+        Among all $B \subset Q_n$ with $|B| = |A|$ and $|N(B)| \leq |N(A)|$, choose one with $\sum_{x \in B} f(x)$ minimal where $f(x)$ is the position of $x$ in simplicial order on $Q_n$. Then $B$ is $i$-compressed $\forall i$.\\
+        Must such $A,B$ be an initial segment of simplicial? Unfortunately the answer is no, e.g. take $A=\{\phi,1,2,12\} \subset Q_3$.
+        However we have 
+        \begin{lemma} (2)\\
+            Let $B \subset Q_n$ be $i$-compressed for all $i$, but not an initial segment of the simplicial order. Then\\
+            $\bullet$ If $n=2k+1$ is odd, we have $B=X^{(\leq k)} - (k+2)(k+3)...(2k)(2k+1) \cup 12...k(k+1)$, i.e. removing the last element in $X^{(k)}$ but add in the first element in $X^{(k+1)}$;\\
+            $\bullet$ If $n=2k$ is even, we have $B=X^{(\leq k-1)} \cup \{x \in X^{(k)}: 1 \in x\} - 1(k+2)(k+3)...(2k) \cup 234...k(k+1)$, i.e. cut exactly half in the middle layer but removing the last elment with 1 and add in the first element without 1.
+
+            \includegraphics[scale=0.5]{image/Comb_02.png}
+
+            Note that this is trivially beaten by the initial segment of the same size -- so we can prove Harper's theorem if we could prove this.
+            \begin{proof}
+                Suppose we have $x \not\in B, y \in B$ for some $x,y$ with $x<y$ in simplicial order. Note that we cannot have $i \in x, i \in y$ (as $B$ is $i$-compressed) for any $i$; similarly we cannot have $i \not\in x, i \not\in y$. So $x$ and $y$ must be complement to each other.\\
+                Hence for each $y \in B$, at most one $x<y$ has $x \not\in B$ (namely $y^c$); and for each $x\not\in B$ at most one $y>x$ ahs $y \in B$ ($x^c$). Hence $B=\{z:z \leq y\} - \{x\}$, where $x$ is the immediate predecessor of $y$ and $x=y^c$. But then $x$ is the last $k$-set (if $n=2k+1$) or the last $k$-set containing 1 (if $n=2k$).
+            \end{proof}
+        \end{lemma}
     \end{proof}
 \end{thm}
+
+\begin{rem}
+    1. We can also prove this by $UV$-compressions.\\
+    2. We can also use these \emph{codimension-1} compression to prove K-K theorem directly.
+\end{rem}
+
+Now there's no reason to consider only the neighbourhood within one step. For $A \subset Q_n$, the \emph{$t$-neighbourhood} of $A$ is $A_{(t)} = N^t (A) = \{x \in Q_n: d(x,A) \leq t\}$.
+
+\begin{coro} (3)\\
+    Let $A \subset Q_n$ with $|A| = |X^{(\leq r)}|$. Then, for $1 \leq t \leq n-r$, we have $|A_{(t)}| \geq |X^{(\leq r+t)}|$.
+    \begin{proof}
+        Apply Harper's theorem and use induction.
+    \end{proof}
+\end{coro}
+
+To get a feel for what corollary 3 is saying, we'll need some estimates on things like $\sum_{i=0}^r {n\choose i}$. Note that this is essentially just estimating $\P(X<=r)$ where $X \sim B(n,\frac{1}{2})$. So by CLT we could just use normal distribution to get an accurate estimate when $n$ is large.\\
+Lecturer decided to still write a proposition down in the end.
+
+\begin{prop} (4)
+    Let $0 < \varepsilon < \frac{1}{4}$, Then for $r=\lfloor \frac{1}{2} -\varepsilon/n\rfloor$, the above sum (let's use $S$ to denote that) is at most $\frac{1}{\varepsilon} e^{-\varepsilon^2 n/2} 2^n$ (an exponentially small fraction of $2^n$, with $\varepsilon$ fixed).\\
+    \begin{proof}
+        For $i \leq (\frac{1}{2} - \varepsilon) n$:
+        \begin{equation*}
+            \begin{aligned}
+                \frac{{n \choose {i-1}}}{{n \choose i}} &= \frac{i}{n-i+1} \leq \frac{\frac{1}{2}-\varepsilon}{\frac{1}{2}+\varepsilon}\\
+                &= 1-\frac{2\varepsilon}{\frac{1}{2}+\varepsilon}\\
+                &\leq 1-2\varepsilon
+            \end{aligned}
+        \end{equation*}
+        Hence $S \leq \frac{1}{2\varepsilon}{n \choose {\lfloor (\frac{1}{2}-\varepsilon) n \rfloor}}$.\\
+        Similarly we could estimate (note we have to be careful about the floor sign)
+        \begin{equation*}
+            \begin{aligned}
+                {n \choose {\lfloor (\frac{1}{2}-\varepsilon) n \rfloor}} &\leq (1-\varepsilon)^{\varepsilon n/2-1} {n \choose {\lfloor (\frac{1}{2}-\frac{\varepsilon}{2}) n \rfloor}}\\
+                &\leq 2(1-\varepsilon)^{\varepsilon n/2} 2^n\\
+                &\leq 2 e^{-\varepsilon \cdot \varepsilon n/2} \cdot 2^n
+            \end{aligned}
+        \end{equation*}
+        Thus $S \leq \frac{1}{2\varepsilon} 2e^{-\varepsilon^2 n/2} 2^n$.
+    \end{proof}
+\end{prop}
 
 \end{document}
