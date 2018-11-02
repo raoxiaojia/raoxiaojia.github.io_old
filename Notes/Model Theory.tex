@@ -723,7 +723,7 @@ Reminder: we have a lecture next Monday (22nd Oct)!
 
 \begin{defi} (5.7)\\
     Let $L$ be a language. Then an $L$-type $p(\bar{x})$ is a set of $L$-formulas whose free variables are in $\bar{x}$ (and $\bar{x} = \bra x_i : i < \lambda \ket $).\\
-    $\bullet$ An $L$-type is \emph{satisfiable} if there is an $L$-structure $\mathcal{M}$ and an assignment $\bar{a} \in \mathcal{M}^{|\bar{x}|}$ s.t. $\mathcal{M} \vDash \phi(\bar{a})$ for all $\phi(x) \in p(x)$ (we also say $p(\bar{x})$ is \emph{consistent}, and $\bar{a}$ \emph{realizes} $p(\bar{x})$ in $\mathcal{M}$).\\
+    $\bullet$ An $L$-type is \emph{satisfiable} if there is an $L$-structure $\mathcal{M}$ and an assignment $\bar{a} \in \mathcal{M}^{|\bar{x}|}$ s.t. $\mathcal{M} \vDash \phi(\bar{a})$ for all $\phi(\bar{x}) \in p(\bar{x})$ (we also say $p(\bar{x})$ is \emph{consistent}, and $\bar{a}$ \emph{realizes} $p(\bar{x})$ in $\mathcal{M}$).\\
     We write $\mathcal{M} \vDash p(\bar{a})$, or $\mathcal{M},\bar{a} \vDash p(\bar{x})$.\\
     We also say that $p(\bar{x})$ is \emph{satisfied in $\mathcal{M}$}.\\
     $\bullet$ A type $p(\bar{x})$ is finitely satisfiable if every finite subset of $p(x)$ is satisfiable (we may say $p(x)$ is finitely consistent).
@@ -738,17 +738,91 @@ Reminder: we have a lecture next Monday (22nd Oct)!
     Is $p(x)$ finitely satisfiable in $\mathcal{M}$? Yes; but obviously $p(x)$ is not satisfiable in $\mathcal{M}$.
 \end{eg}
 
-\begin{thm}
-    Every finitely satisfiable $L$-type $p(\bar{x})$ is satisfiable.
+\begin{thm} (5.8)\\
+    Every finitely satisfiable $L$-type $p(\bar{x})$ is satisfiable (not necessarily in the original model, of course).
     \begin{proof}
         Let $\bar{x} = \bra x_i : i<\lambda\ket$, let $\bra c_i:i<\lambda\ket$ be new constants (not in $L$).\\
         Expand $L$ to $L' = L \cup \{c_i:i<\lambda\}$. Then $p(\bar{c})$ is an $L'$-theory, and theorem (5.6) applied to $p(\bar{c})$ gives the desired conclusion (think).
     \end{proof}
 \end{thm}
 
+---Lecture 9---
 
+Example class 2: 19th November, Monday.
 
+\begin{lemma}
+    Let $\mathcal{M}$ be a structure, let $\bar{a} = \bra a_i:i<\lambda \ket$ enumerate $\mathcal{M}$. Let
+    $$q(\bar{x}) = \{\phi(\bar{x}): \mathcal{M} \vDash \phi(\bar{a})\}$$
+    where $|bar{x}| = \lambda$.\\
+    Then $q(\bar{x})$ is satisfiable in $\mathcal{N}$ iff there is $\beta:\mathcal{M} \to \mathcal{N}$ that is an elementary embedding.
+    \begin{proof}
+        If $q(\bar{x})$ is satisfiable in $\mathcal{N}$, there is $\bar{b} \in N^{|\bar{x}|}$ s.t. $\mathcal{N} \vDash \phi(\bar{b})$ for all $\phi(\bar{x}) \in q(\bar{x})$.\\
+        Then $\beta:a_i \to b_i$ ($i < \lambda$) is an elementary embedding ($\beta$ preserves, for example, atomic formulas of the form $f(a_{i_1},...,a_{i_n}) = a_{i_{n+1}}$, so it is an embedding.)\\
+        More generally, for any $\phi(\bar{x})$ ($L$-formula),\\
+        $\mathcal{M} \vDash \phi(\bar{a})$ iff $\mathcal{N} \vDash \phi(\bar{b})$, but $\beta(\bar{a}) = \bar{b}$.\\
+        Conversely, if $\beta:\mathcal{M} \to \mathcal{N}$ is elementary, then $\beta(\bar{a})$ satisfies $q(\bar{x})$ in $\mathcal{N}$.
+    \end{proof}
+\end{lemma}
 
+\begin{rem}
+    The above is usually stated as (diagram lemma): Let $Th(\mathcal{M}_M)$ be a theory in $L(M)$, $\mathcal{N} \vDash Th(\mathcal{M}_M)$, then $\mathcal{M}$ embeds elementarily in $\mathcal{N}$.
+\end{rem}
+
+\begin{rem} (5.10)\\
+    We can consider types in $L(A)$, where $A \subseteq \mathcal{M}$.\\
+    In particular, we can consider $A=M$ the whole domain of $\mathcal{M}$.\\
+    Types of this kind are said to \emph{have parameters in $A$} (or to be \emph{over $A$}).\\
+    If $p(\bar{x})$ is a type over $M$, then there is a $\bar{a}$, an enumeration of $M$, and a type $p'(\bar{x},\bar{z})$ where the $\bar{z}$ are \emph{new constants}, $|\bar{z}| = |\bar{a}|$, and $p(\bar{x}) = p'(\bar{x},\bar{a})$.
+\end{rem}
+
+\begin{thm} (5.11)\\
+    If $\mathcal{M}$ is a structure, and $p(x)$ is a type in $L(M)$ that is finitely satisfiable in $\mathcal{M}$, then $p(\bar{x})$ is satisfiable in some $\mathcal{M}$ such that $\mathcal{M} \preccurlyeq \mathcal{N}$.
+\end{thm}
+
+\begin{eg}
+    Consider $\mathcal{M} = (\Q,<)$, and let $\bra a_i:i < \omega\ket$ a sequence in $\Q$ that converges to $\sqrt{2}$ from below, and let $\bra b_i:i < \omega\ket \subseteq \Q$ tend to $\sqrt{2}$ from above.\\
+    Let $\phi_m(x) \equiv a_n < x < b_n$. Then let $p(x) = \{\phi_n(x)$ s.t. $n<\omega\}$.\\
+    Then $p(x)$ is an $L(\Q)$-type which is finitely satisfiable in $\Q$. But $p(x)$ is \emph{not} satisfiable in $\mathcal{M}$.\\
+    It is, however, satisfiable in $(\R,<)$ which contains $(\Q,<)$ as an elementary substructure.\\
+    (we can actually also use the example about natural numbers in last lecture -- just need to add an $\infty$.)
+\end{eg}
+
+\begin{proof} (of 5.11)\\
+    Let $\bra a_i:i<\lambda \ket$ enumerate $\mathcal{M}$, and let $q(\bar{x}) := \{\phi(\bar{z}): \mathcal{M} \vDash \phi(bar{a})\}$, where $|\bar{z}| = \lambda$ and the $z_i$ are new variables (so not among the $\bar{x}$).\\
+    Write $p(\bar{x})$ as $p'(\bar{x},\bar{a})$ for some $p'(\bar{x},\bar{z})$ (an $L$-type).\\
+    We claim that $p'(\bar{x},\bar{z}) \cup q(\bar{z})$ is finitely satisfiable in $\mathcal{M}$: this is because $p'(\bar{x},\bar{a})$ is finitely satisfiable by hypothesis and $q(\bar{z})$ is realized by $\bar{a}$.\\
+    Then, by theorem (5.8) (compactness for types), $p'(\bar{x},\bar{z}) \cup q(\bar{z})$ is satifsiable.\\
+    That is, there is $\mathcal{N}$ and $\bar{b} \in \mathcal{N}^{|\bar{z}|}$ and $\bar{c} \in \mathcal{N}^{|\bar{x}|}$ such that $\mathcal{N} \vDash p'(\bar{c},\bar{b}) \cup q(\bar{b})$.\\
+    In particular, $\mathcal{N} \vDash q(\bar{b})$. Then by lemma (5.9), $\beta: \mathcal{M} \to \mathcal{N}$ by $a_i \to b_i$ is an elementary embedding.
+
+    \includegraphics[scale=0.5]{image/Model_07.png}
+
+    (Get $\mathcal{N}' \simeq \mathcal{N}$ s.t. $\mathcal{M} \preccurlyeq \mathcal{N}'$, $\mathcal{M} \simeq \beta(\mathcal{M})$.)
+\end{proof}
+
+\begin{thm} (5.12, Upward L$\ddot{o}$wenheim-Skolem theorem)\\
+    (See part II Logic and Set theory for the (countable?) case)\\
+    Let $\mathcal{M}$ be s.t. $|\mathcal{M}| \geq \omega$. Then for any $\lambda \geq |\mathcal{M}| + |L|$, there is $\mathcal{N}$ s.t. $\mathcal{M} \preccurlyeq \mathcal{N}$ with $|\mathcal{N}| = \lambda$.
+    \begin{proof}
+        Let $\bar{x} = \bra x_i: i < \lambda \ket$ a tuple of distinct variables.\\
+        Let $p(\bar{x}) = \{x_i \neq x_j: i < j < \lambda\}$. Then $p(\bar{x})$ is finitely consistent in $\mathcal{M}$. So by theorem (5.11), $p(\bar{x})$ is realized in some $\mathcal{N}$ that is an elementary extension of $\mathcal{M}$, and $|\mathcal{N}| \geq \lambda$.\\
+        Then by downward L-S theorem (3.11) we could have $|\mathcal{N}| = \lambda$.
+    \end{proof}
+\end{thm}
+
+\newpage
+
+\section{Saturation}
+
+\begin{defi} (6.1)\\
+    Let $\lambda$ be an infinite cardinal, let $|\mathcal{M}| \geq \omega$. Then $\mathcal{M}$ is \emph{$\lambda$-saturated} if $\mathcal{M}$ realizes every type $p(x)$ (with one free variable) such that:\\
+    (i) $p(x)$ has parameters in $A \subseteq \mathcal{M}$ and $|A| < \lambda$;\\
+    (ii) $p(x)$ is finitely consistent in $\mathcal{M}$.\\
+    We say $\mathcal{M}$ is \emph{saturated} if it is $|\mathcal{M}|$-saturated.
+\end{defi}
+
+Question: can $\mathcal{M}$ be $\lambda$-saturated if $\lambda > |\mathcal{M}|$? If so, $\mathcal{M}$ would satisfy f.s. types in $L(M)$.\\
+(Hint: we could use $p(x) = \{x \neq a_i: i < |\mathcal{M}|\}$ where $\bra a_i: i<|\mathcal{M}| \ket$ enumerates $\mathcal{M}$.)
 
 
 
