@@ -872,7 +872,7 @@ However, it only applies to functors between preorders (since that's the only ca
         A'' \arrow[rr] \arrow[rd,tail] & & A' \arrow[ld, tail]\\
         & A &
     \end{tikzcd}
-    i.e. there a factorization of $A''$ through $A'$.\\
+    i.e. a factorization of $A''$ through $A'$.\\
     We say $\mathcal{C}$ is \emph{well-ordered} if each $A \in \ob\mathcal{C}$ has a set of subobjects $\{A_i \rightarrowtail A | i \in I\}$ s.t. every subobject of $A$ is isomorphic to some $A_i$ (e.g. in $\mathbf{Set}$ we can take the inclusions $\{A' \hookrightarrow A| A'\in PA\})$.\\
     If $\mathcal{C}^{op}$ is well-powered, we say $\mathcal{C}$ is \emph{well-copowered}\footnote{Some people use \emph{cowell-powered}, but lecturer thought that meant \emph{not well-powered} so decided not to use that.}. 
 \end{defi}
@@ -893,7 +893,7 @@ However, it only applies to functors between preorders (since that's the only ca
     Suppose $\mathcal{C}$ and $\mathcal{D}$ are both locally small, and that $\mathcal{D}$ is complete and well-powered and has a coseparating set (see (2.8)). Then a functor $G:\mathcal{D} \to \mathcal{C}$ has a left adjoint iff it preserves all small limits.
     \begin{proof}
         $\implies$: by (4.9).\\
-        $\Leftarrow$: For any $A \in \ob\mathcal{C}$, $(A \downarrow G)$ is complete by (4.10), locally small, and well-powered since the subobjects of $(B,f)$ in $(A\downarrow G)$. But they are just those subobjects $B' \rightarrowtail B$ in $\mathcal{D}$ for which $f$ factors through $GB' \rightarrowtail GB$.\\
+        $\Leftarrow$: For any $A \in \ob\mathcal{C}$, $(A \downarrow G)$ is complete by (4.10), locally small, and well-powered, since the subobjects of $(B,f)$ in $(A\downarrow G)$ are just those subobjects $B' \rightarrowtail B$ in $\mathcal{D}$ for which $f$ factors through $GB' \rightarrowtail GB$.\\
         Also, if $\{S_i | i \in I\}$ is a coseparating set for $\mathcal{D}$, then the set $\{(S_i, f)|i \in Im f \in \mathcal{C}(A,GS_i)\}$ is coseparating in $(A \downarrow G)$: given $(B,f) \stackrel[h]{g}{\rightrightarrows} (B',f')$ in $(A \downarrow G)$ with $g \neq h$, there exists some morphism $k:B' \to S_i$ for some $i$ with $kg \neq kh$, and then $k$ is also a morphism $(B',f') \to (S_i,(Gk)f')$ in $(A \downarrow G)$.\\
         So we need to show that if $\mathcal{A}$ is complete, locally small and well-powered and has a coseparating set $\{S_i|i \in I\}$, then $\mathcal{A}$ has an initial object: form the product $P=\prod_{i \in I} S_i$. Now consider the diagram
 
