@@ -3,3 +3,6 @@
 \contentsline {subsection}{\numberline {1.1}The quantum algorithm}{4}{subsection.1.1}
 \contentsline {section}{\numberline {2}The hidden subgroup problem (HSP)}{7}{section.2}
 \contentsline {section}{\numberline {3}Amplitude Amplification}{19}{section.3}
+\contentsline {section}{\numberline {4}Example Class 1}{21}{section.4}
+\contentsline {subsection}{\numberline {4.1}Question 1}{21}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Question 2}{21}{subsection.4.2}
