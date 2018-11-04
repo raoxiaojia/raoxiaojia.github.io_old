@@ -410,7 +410,7 @@ Lecture is happy to mark any question we hand in!
 
     commutes.
     \begin{proof}
-        Suppose given $(F \dashv G)$. Consider the morphism $\eta_A:A \to GFA$ correspond to $FA \xrightarrow{\eta} FA$. Then $(FA,\eta_A)$ is an object of $(A \downarrow G)$. Moreover, given $g:FA \to B$ and $f:A \to GB$, the diagram 
+        Suppose given $(F \dashv G)$. Consider the morphism $\eta_A:A \to GFA$ correspond to $FA \xrightarrow{1_{FA}} FA$. Then $(FA,\eta_A)$ is an object of $(A \downarrow G)$. Moreover, given $g:FA \to B$ and $f:A \to GB$, the diagram 
 
         \begin{tikzcd}
             A \arrow[rd,"f"'] \arrow[rr,"\eta_A"] & & GFA \arrow[dl,"Gg"]\\
@@ -420,7 +420,7 @@ Lecture is happy to mark any question we hand in!
         commutes iff
 
         \begin{tikzcd}
-            FA \arrow[rd,"\hat{f}"'] \arrow[rr,"1_A"] & & FA \arrow[dl,"g"]\\
+            FA \arrow[rd,"\hat{f}"'] \arrow[rr,"1_{FA}"] & & FA \arrow[dl,"g"]\\
             &B &
         \end{tikzcd}
 
