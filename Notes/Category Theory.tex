@@ -426,14 +426,13 @@ Lecture is happy to mark any question we hand in!
 
         commutes, i.e. $g=\hat{f}$.\\
         So $(FA,\eta_A)$ is initial in $(A \downarrow G)$.\\
-        Conversely, suppose given an initial object $(FA,\eta_A)$ for each $(A \downarrow G)$. Given $A \xrightarrow{f} A'$, we define $Ff : FA \to FA'$ to be the unique morphism making 
-        \begin{equation*}
-            \begin{aligned}
-                A & \xrightarrow{\eta_A} & GFA\\
-                \downarrow f & & \downarrow GFf\\
-                A' & \xrightarrow{\eta_{A'}} & GFA'
-            \end{aligned}
-        \end{equation*}
+        Conversely, suppose given an initial object $(FA,\eta_A)$ for each $(A \downarrow G)$. Given $A \xrightarrow{f} A'$, we define $Ff : FA \to FA'$ to be the unique morphism (uniqueness by initiality of $FA$, commutativeness by the definition of morphsims in $(A\downarrow G)$ (see above)) making 
+
+        \begin{tikzcd}
+            A \arrow[r,"\eta_A"] \arrow[d,"f"] & GFA \arrow[d,"GFf"]\\
+            A' \arrow[r,"\eta_{A'}"] & GFA'
+        \end{tikzcd}
+        
         commute.\\
         Functoriality follows from uniqueness: given $f': A' \to A''$, $F(f'f)$ and $(Ff')(Ff)$ are both morphisms $(FA,\eta_A) \to (FA'',\eta_{A''}F'f)$ in $(A \downarrow G)$.\\
         Note that we haven't finished: we still have to verify natural adjunctions. We'll finish off this next monday. 
@@ -444,7 +443,7 @@ Lecture is happy to mark any question we hand in!
     \end{proof}
 \end{thm}
 
-Given an adjunction $(F \dashv G)$, the natural transformation $\eta:1_{\mathcal{C}} \to GF$ emergin in the above proof (3.3) is called the \emph{unit} of the adjunction.\\
+Given an adjunction $(F \dashv G)$, the natural transformation $\eta:1_{\mathcal{C}} \to GF$ emerging in the above proof (3.3) is called the \emph{unit} of the adjunction.\\
 Dually, we have a natural transformation traditionally denoted $\varepsilon: FG \to 1_{\mathcal{D}}$ s.t. $\varepsilon_B:FGB \to B$ corresponds to $GB \xrightarrow{1_{GB}} GB$, is called the \emph{counit}.
 
 \begin{coro} (3.4)\\
@@ -471,14 +470,14 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
             &\mathcal{E} \to &\mathcal{F}
         \end{aligned}
     \end{equation*}
-    of categories and functors, if the functors all have left adjoints, then the diagram of left adjoinst commutes up to natural isomorphisms (?).
+    of categories and functors, if the functors all have left adjoints, then the diagram of left adjoints commutes up to natural isomorphisms.
     \begin{proof}
         By (3.5), both ways round the diagram of left adjoinst are left adjoint to the composite $\mathcal{C} \to \mathcal{F}$, so by (3.4) they are isomorphic.
     \end{proof}
 \end{coro}
 
 \begin{thm} (3.7)\\
-    Given functors $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$, specifyig an adjunction $(F \dashv G)$ is equivalent to specifying natural transformations $\eta: 1_{\mathcal{C}} \to GF$, $\varepsilon:FG \to 1_{\mathcal{D}}$ satisfying the commutative diagrams,
+    Given functors $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$, specifying an adjunction $(F \dashv G)$ is equivalent to specifying natural transformations $\eta: 1_{\mathcal{C}} \to GF$, $\varepsilon:FG \to 1_{\mathcal{D}}$ satisfying the commutative diagrams,
 
     \begin{tikzcd}
         F \arrow[rd,"1_F"'] \arrow[r,"F_\eta"] & FGF \arrow[d,"\varepsilon_F"]\\
