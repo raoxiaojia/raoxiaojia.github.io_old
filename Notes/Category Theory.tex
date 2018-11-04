@@ -486,28 +486,28 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     Given functors $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$, specifying an adjunction $(F \dashv G)$ is equivalent to specifying natural transformations $\eta: 1_{\mathcal{C}} \to GF$, $\varepsilon:FG \to 1_{\mathcal{D}}$ satisfying the commutative diagrams,
 
     \begin{tikzcd}
-        F \arrow[rd,"1_F"'] \arrow[r,"F_\eta"] & FGF \arrow[d,"\varepsilon_F"]\\
+        F \arrow[rd,"1_F"'] \arrow[r,"F\eta"] & FGF \arrow[d,"\varepsilon F"]\\
         &F
     \end{tikzcd}
     and
     \begin{tikzcd}
-        G \arrow[rd,"1_G"'] \arrow[r,"\eta_G"] & GFG \arrow[d,"G_\varepsilon"]\\
+        G \arrow[rd,"1_G"'] \arrow[r,"\eta G"] & GFG \arrow[d,"G\varepsilon"]\\
         &G
     \end{tikzcd}
 
     which are sometimes called the \emph{triangular identities} (for obvious reason).
     \begin{proof}
         First suppose we are given $(F \dashv G)$. Define $\eta$ and $\varepsilon$ as in (3.3) and its dual; now consider the composite
-        $$FA \xrightarrow{F_{\eta_A}} FGFA \xrightarrow{\varepsilon_{FA}} FA$$
+        $$FA \xrightarrow{F \eta_A} FGFA \xrightarrow{\varepsilon_{FA}} FA$$
         under the adjunction, this corresponds to
         $$A \xrightarrow{\eta_A} GFA \xrightarrow{1_{GFA}} GFA$$
-        But this also corresponds to $1_{FA}$, so $\varepsilon_{FA} \cdot F_{\eta_A} = 1_FA$.\\
+        But this also corresponds to $1_{FA}$, so $\varepsilon_{FA} \cdot F \eta_A = 1_FA$.\\
         The other identity is dual to this one (check).\\
         Conversely, suppose we are given $\eta$ and $\varepsilon$ satisfying the trianglular identities. Given $A \xrightarrow{f} GB$, let $\Phi(f)$ be the composite $FA \xrightarrow{Ff} FGB \xrightarrow{\varepsilon_B} B$; and given $FA \xrightarrow{g} B$, let $\Psi(g)$ be $A \xrightarrow{\eta_A} GFA \xrightarrow{Gg} GB$. Then $\Phi$ and $\Psi$ are both natural; we now need to show they are inverse to each other. Let's do $\Psi\Phi$, say: now 
         \begin{equation*}
             \begin{aligned}
                 \Psi\Phi(A \xrightarrow{f} GB) &= A \xrightarrow{\eta_A} GFA \xrightarrow{GFf} GFGB \xrightarrow{G\varepsilon_B} GB\\
-                &= A \xrightarrow{f} FB \xrightarrow{\eta_{GB}} GFGB \xrightarrow{G_{\varepsilon_B}} GB\\
+                &= A \xrightarrow{f} FB \xrightarrow{\eta_{GB}} GFGB \xrightarrow{G \varepsilon_B} GB\\
                 &= f
             \end{aligned}
         \end{equation*}
