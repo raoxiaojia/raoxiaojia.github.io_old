@@ -432,7 +432,7 @@ Lecture is happy to mark any question we hand in!
             A \arrow[r,"\eta_A"] \arrow[d,"f"] & GFA \arrow[d,"GFf"]\\
             A' \arrow[r,"\eta_{A'}"] & GFA'
         \end{tikzcd}
-        
+
         commute.\\
         Functoriality follows from uniqueness: given $f': A' \to A''$, $F(f'f)$ and $(Ff')(Ff)$ are both morphisms $(FA,\eta_A) \to (FA'',\eta_{A''}F'f)$ in $(A \downarrow G)$.\\
         Note that we haven't finished: we still have to verify natural adjunctions. We'll finish off this next monday. 
@@ -463,6 +463,12 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
 
 \begin{coro} (3.6)\\
     Given a commutative square
+
+    \begin{tikzcd}
+        \mathcal{C} \arrow[r] \arrow[d] & \mathcal{D} \arrow[d]\\
+        \mathcal{E} \arrow[r] & \mathcal{F}
+    \end{tikzcd}
+
     \begin{equation*}
         \begin{aligned}
             &\mathcal{C}\to &\mathcal{D}\\
