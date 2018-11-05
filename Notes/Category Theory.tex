@@ -1040,15 +1040,13 @@ Does every monad arise from an adjunction? In 5.2(b) we have the category $[M,\m
     To verify associativity, suppose given
     \begin{tikzcd}
         A \arrow[r,green,"f"] & B \arrow[r,green,"g"] & C \arrow[r,green,"h"] & D
-    \end{tikzcd}
-    
-    Then 
+    \end{tikzcd}. Then 
     
     \begin{tikzcd}
         A \arrow[r,"f"] & TB \arrow[r,"Tg"] & TTC \arrow[r,"TTh"] \arrow[d,"\mu_C"] & \mathbb{T}TD \arrow[r,"T_{\mu D}"] \arrow[d,"\mu_{TD}"] & TTD \arrow[d,"\mu_D"]\\
         & &TC \arrow[r,"Th"] & TTD \arrow[r,"\mu_D"] & TD
     \end{tikzcd}
-    
+
     commutes: the upper way round is \textcolor{green}{$(hg)f$}, the lower is \textcolor{green}{$h(gf)$} (the rightmost square is diagram (3)).
 
     The unit laws similar follow from, using diagram (1) and (2) in the two triangles respectively,
