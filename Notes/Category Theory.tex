@@ -502,8 +502,8 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
         $$FA \xrightarrow{F \eta_A} FGFA \xrightarrow{\varepsilon_{FA}} FA$$
         under the adjunction, this corresponds to
         $$A \xrightarrow{\eta_A} GFA \xrightarrow{1_{GFA}} GFA$$
-        But this also corresponds to $1_{FA}$, so $\varepsilon_{FA} \cdot F \eta_A = 1_FA$.\\
-        The other identity is dual to this one (check).\\
+        But this also corresponds to $1_{FA}$, so $\varepsilon_{FA} \cdot F \eta_A = 1_{FA}$.\\
+        The other identity is dual to this one.\\
         Conversely, suppose we are given $\eta$ and $\varepsilon$ satisfying the trianglular identities. Given $A \xrightarrow{f} GB$, let $\Phi(f)$ be the composite $FA \xrightarrow{Ff} FGB \xrightarrow{\varepsilon_B} B$; and given $FA \xrightarrow{g} B$, let $\Psi(g)$ be $A \xrightarrow{\eta_A} GFA \xrightarrow{Gg} GB$. Then $\Phi$ and $\Psi$ are both natural; we now need to show they are inverse to each other. Let's do $\Psi\Phi$, say: now 
         \begin{equation*}
             \begin{aligned}
@@ -951,11 +951,117 @@ However, it only applies to functors between preorders (since that's the only ca
     (b) We could have used GAFT to construct $\beta$ as well: we get a solution set at $X$ by considering all continuous $X \xrightarrow{f} Y$ with $Y$ compact Hausdorff, and $\im f$ dense in $Y$ and such $Y$ have cardinality at most $2^{2^{\Card X}}$.
 \end{rem}
 
+\newpage
 
+\section{Monads}
 
+Suppose we are given $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$ with $(F \dashv G)$. How much of this structure can we describe without even mentioning $\mathcal{D}$?\\
+Obviously we can't just use $F$ or $G$ as both of them needs $\mathcal{D}$. However we have the functor $T=GF:\mathcal{C} \to \mathcal{C}$, the unit $\eta: 1_{\mathcal{C}} \to T = GF$, and the natural transformation $\mu=G\varepsilon F: TT=GFGF \to GF = T$ (whisker-composition).\\
+These satisfy the commutative diagrams
 
+\begin{tikzcd}
+    T \arrow[r, "T\eta"] \arrow[rd, "1_T"] & TT \arrow[d, "\mu"] & T \arrow[l,"\eta T"] \arrow[ld,"1_T"]\\
+    & T &
+\end{tikzcd}
 
+by the triangular identities (we'll use (1) and (2) to denote the left and right half of this diagram), and 
 
+\begin{tikzcd}
+    TTT \arrow[r,"T\mu"] \arrow[d,"\mu T"] & TT \arrow[d,"\mu"]\\
+    TT \arrow[r,"\mu"] & T
+\end{tikzcd}
+
+by naturality of $\varepsilon$ (we'll use (3) to denote this diagram).
+
+\begin{defi} (5.1)\\
+    A \emph{monad}\footnote{Historically this was called \emph{the standard construction} or \emph{triples}, but later people found that it needed a name. This name is probably because it sounds like \emph{monoid}?} $\mathbb{T} = (T,\eta,\mu)$ on a category $\mathcal{C}$ consists of a functor $T:\mathcal{C} \to \mathcal{C}$ and natural transformations $\eta:1_{\mathcal{C}} \to T, \mu:TT \to T$ satisfying (1)-(3).\\
+    $\eta$ and $\mu$ are called the \emph{unit} and \emph{multiplication} of $\mathbb{T}$.
+\end{defi}
+
+\begin{eg} (5.2)\\
+    (a) Any adjunction $(F \dashv G)$ induces a monad $(GF,\eta,G\varepsilon F)$ pm $\mathcal{C}$ and a comonad $(FG,\varepsilon, F\eta G)$ on $\mathcal{D}$.\\
+    (b) Let $M$ be a monoid. The functor $(M \times -): \mathbf{Set} \to \mathbf{Set}$ has a monad structure with unit given by $\eta_A(a) = (1_M,a)$, and multiplication $\mu_A(m,m',a) = (mm',a)$.\\
+    The monad identities follow from the mononid ones.\\
+    (c) Let $\mathcal{C}$ be any category with finite products, $A \in \ob\mathcal{C}$. The functor $(A \times -):\mathcal{C} \to \mathcal{C}$ has a comonad structure with counit $\varepsilon_B" A \times B \to B$ given by $\pi_2$, and comultiplication $\delta_B:A \times B \to A \times A \times B$ given by $(\pi_1,\pi_1,\pi_2)$.
+\end{eg}
+
+Does every monad arise from an adjunction? In 5.2(b) we have the category $[M,\mathbf{Set}]$. Its forgetful functor to $\mathbf{Set}$ has a left adjoint, sending $A$ to $M \times A$ with $M$ acting by multiplication on the left factor. This adjunction gives rise to the monad of 5.2(b).
+
+\begin{defi} (5.3, Eilenberg-Moore)\\
+    Let $\mathbb{T}$ be a monad on $\mathcal{C}$. A \emph{$\mathbb{T}$-algebra} is a pair $(A,\alpha)$ with $A \in \ob\mathcal{C}$ and $TA \xrightarrow{\alpha} A$, satisfying the commutative diagrams
+
+    \begin{tikzcd}
+        A \arrow[r,"\eta_A"] \arrow[rd,"1_A"] & TA \arrow[d,"\alpha"]\\
+        & A
+    \end{tikzcd}
+    and
+    \begin{tikzcd}
+        TTA \arrow[r,"T\alpha"] \arrow[d,"\mu_A"] & TA \arrow[d,"\alpha"]\\
+        TA \arrow[r,"\alpha"] & A
+    \end{tikzcd}
+
+    We shall call these diagrams (4) and (5) respectively.\\
+    A \emph{homomorphism} $f:(A,\alpha) \to (B,\beta)$ is a morphism $A \xrightarrow{f} B$ s.t.
+    \begin{tikzcd}
+        TA \arrow[r,"Tf"] \arrow[d,"\alpha"] & TB \arrow[d,"\beta"]\\
+        A \arrow[r,"f"] & B
+    \end{tikzcd}
+    commutes (label this diagram (6)).\\
+    The category of $\mathbb{T}$-algebras (on $\mathcal{C}$) is denoted $\mathcal{C}^{\mathbb{T}}$.
+\end{defi}
+
+\begin{lemma} (5.4)\\
+    The forgetful functor $G^{\mathbb{T}}: \mathcal{C}^\mathbb{T} \to \mathcal{C}$ has a left adjoint $F^\mathbb{T}$, and the adjunction induces $\mathbb{T}$.
+    \begin{proof}
+        We need to find something like a \emph{free} functor. We define $F^\mathbb{T} A = (TA,\mu_A)$ (on algebra by (2) and (3)), and $F^\mathbb{T}(A\xrightarrow{f} B) = Tf$ (a homomorphism by naturality of $\mu$).\\
+        Clearly $G^\mathbb{T} F^\mathbb{T} = T$; the unit of the adjunction is $\eta$.\\
+        We define the counit $\varepsilon_{(A,\alpha)}= \alpha:(TA,\mu_A) \to (A,\alpha)$ (a homomorphism by (5)); $\varepsilon$ is natural by (6). For the triangular identities, $\varepsilon_{FA}(F\eta_A) = 1_{FA}$ is (1), $G\varepsilon_{(A,\alpha)} \eta_A = 1_A$ is (4), so we have all of the diagrams.\\
+        The monad induced by $(F^\mathbb{T} \dashv G^\mathbb{T})$ has functor $T$ and unit $\eta$, and $G^\mathbb{T} \varepsilon_{F^\mathbb{T} A} = \mu_A$ by definition of $F^\mathbb{T} A$.
+    \end{proof}
+
+    Kleisli took a \emph{minimalist} approach: if $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$ induces $\mathbb{T}$, then so does $\mathcal{C} \stackrel[G|_{\mathcal{D}'}]{F}{\rightleftarrows} \mathcal{D}'$ where $\mathcal{D}'$ is the full subcategory of $\mathcal{D}$ on objects $FA$.\\
+    So in trying to construct $\mathcal{D}$, we may assume $F$ is surjective (or indeed bijective) on objects. But then morphisms $FA \to FB$ correspond bijectively to morphsims $A \to GFB = TB$ in $\mathcal{C}$.
+\end{lemma}
+
+\begin{defi} (5.5)\\
+    Given an algebra monad $\mathbb{T}$ on $\mathcal{C}$, the \emph{Kleisli category} $\mathcal{C}_\mathbb{T}$ has $\ob\mathcal{C}_\mathbb{T} = \ob\mathcal{C}$ (it might be useful to bring pens of different colours in the next few lectures), and morphisms
+    \begin{tikzcd}
+        A \arrow[r,green] & B
+    \end{tikzcd}
+    and morphisms $A \to TB$ in $\mathcal{C}$. The composite
+    \begin{tikzcd}
+        A \arrow[r,green,"f"] & B \arrow[r,green,"g"] & C
+    \end{tikzcd} 
+    is $A \xrightarrow{f} TB \xrightarrow{Tg} TTC \xrightarrow{\mu_C} TC$, and the identity
+    \begin{tikzcd}
+        A \arrow[r,green] & A
+    \end{tikzcd}
+    is $A \xrightarrow{\eta_A} TA$.\\
+    To verify associativity, suppose given
+    \begin{tikzcd}
+        A \arrow[r,green,"f"] & B \arrow[r,green,"g"] & C \arrow[r,green,"h"] & D
+    \end{tikzcd}
+    
+    Then 
+    
+    \begin{tikzcd}
+        A \arrow[r,"f"] & TB \arrow[r,"Tg"] & TTC \arrow[r,"TTh"] \arrow[d,"\mu_C"] & \mathbb{T}TD \arrow[r,"T_{\mu D}"] \arrow[d,"\mu_{TD}"] & TTD \arrow[d,"\mu_D"]\\
+        & &TC \arrow[r,"Th"] & TTD \arrow[r,"\mu_D"] & TD
+    \end{tikzcd}
+    commutes: the upper way round is \textcolor{green}{$(hg)f$}, the lower is \textcolor{green}{$h(gf)$} (the rightmost square is diagram (3)).
+
+    The unit laws similar follow from, using diagram (1) and (2) in the two triangles respectively,
+
+    \begin{tikzcd}
+        A \arrow[r,"f"] & TB \arrow[r,"T \eta_B"] \arrow[rl,"1_{\mathbb{T}B}"] & TTB \arrow[d,"\mu_B"]\\
+        & & TB
+    \end{tikzcd}
+    and
+    \begin{tikzcd}
+        A \arrow[r,"f"] \arrow[d,"\eta_A"] & TB \arrow[d,"1_{TB}"] \arrow[rd,"1_{TB}"] &\\
+        TA \arrow[r,"Tf"] & TTB \arrow[r,"\mu_B"] & TB
+    \end{tikzcd}
+\end{defi}
 
 
 
