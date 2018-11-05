@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  5 NOV 2018 11:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  5 NOV 2018 11:42
 entering extended mode
 **"./Category Theory.tex"
 ("Category Theory.tex"
@@ -1653,7 +1653,7 @@ Overfull \hbox (12.77507pt too wide) in paragraph at lines 642--657
  []
 
 [23] [24] [25] [26] [27] [28] [29] [30] [31] [32]
-Overfull \hbox (0.38098pt too wide) in paragraph at lines 1003--1011
+Overfull \hbox (0.38098pt too wide) in paragraph at lines 1005--1013
 \OT1/cmr/m/n/10 (-20) A \OT1/cmr/m/it/10 (-20) ho-mo-mor-phism $\OML/cmm/m/it/1
 0 f \OT1/cmr/m/n/10 (-20) : (\OML/cmm/m/it/10 A; \OT1/cmr/m/n/10 (-20) ) \OMS/
 cmsy/m/n/10 ! \OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 B; \OT1/cmr/m/n/10 (-20)
@@ -1661,7 +1661,7 @@ cmsy/m/n/10 ! \OT1/cmr/m/n/10 (-20) (\OML/cmm/m/it/10 B; \OT1/cmr/m/n/10 (-20)
  []
 
 [33] [34] [35] [36] [37] [38]
-Overfull \hbox (42.58075pt too wide) in paragraph at lines 1211--1245
+Overfull \hbox (42.58075pt too wide) in paragraph at lines 1213--1247
 \OT1/cmr/m/n/10 (-20) Conversely, given $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (-20
 ) (\OML/cmm/m/it/10 A; \OMS/cmsy/m/n/10  \OT1/cmr/m/n/10 (-20) ) [] \OML/cmm/m/
 it/10 F$ \OT1/cmr/m/n/10 (-20) and an epi $[][] \OML/cmm/m/it/10 G[] [] F$\OT1/
@@ -1669,20 +1669,20 @@ cmr/m/n/10 (-20) , we have []
  []
 
 [39] [40]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1260.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1260.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1262.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1262.
  ("Category Theory.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1260.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1260.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1262.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1262.
 
 Package rerunfilecheck Info: File `"Category Theory".out' has not changed.
 (rerunfilecheck)             Checksum: ACD75AEBBE913169B33D3E6E1AED8852;828.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1260.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1262.
  ) 
 Here is how much of TeX's memory you used:
  42542 strings out of 492970
  997507 string characters out of 3135855
- 1232035 words of memory out of 3000000
+ 1232034 words of memory out of 3000000
  45669 multiletter control sequences out of 15000+200000
  551470 words of font info for 148 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1714,7 +1714,7 @@ ti8.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10
 .pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm5.pfb><E
 :/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Category Theory.pdf" (40 pages, 601756 bytes).
+Output written on "Category Theory.pdf" (40 pages, 601734 bytes).
 PDF statistics:
  429 PDF objects out of 1000 (max. 8388607)
  66 named destinations out of 1000 (max. 500000)
