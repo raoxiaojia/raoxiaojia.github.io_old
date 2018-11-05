@@ -958,7 +958,7 @@ However, it only applies to functors between preorders (since that's the only ca
 ---Lecture 14---
 
 Suppose we are given $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$ with $(F \dashv G)$. How much of this structure can we describe without even mentioning $\mathcal{D}$?\\
-Obviously we can't just use $F$ or $G$ as both of them needs $\mathcal{D}$. However we have the functor $T=GF:\mathcal{C} \to \mathcal{C}$, the unit $\eta: 1_{\mathcal{C}} \to T = GF$, and the natural transformation $\mu=G\varepsilon F: TT=GFGF \to GF = T$ (whisker-composition).\\
+Obviously we can't just use $F$ or $G$ as both of them needs $\mathcal{D}$. However we have the functor $T=GF:\mathcal{C} \to \mathcal{C}$, the unit $\eta: 1_{\mathcal{C}} \to T = GF$, and the natural transformation $\mu=G\varepsilon F: TT=GFGF \to GF = T$ (whiskering).\\
 These satisfy the commutative diagrams
 
 \begin{tikzcd}
@@ -1030,7 +1030,7 @@ Does every monad arise from an adjunction? In 5.2(b) we have the category $[M,\m
     \begin{tikzcd}
         A \arrow[r,green] & B
     \end{tikzcd}
-    and morphisms $A \to TB$ in $\mathcal{C}$. The composite
+    are morphisms $A \to TB$ in $\mathcal{C}$. The composite
     \begin{tikzcd}
         A \arrow[r,green,"f"] & B \arrow[r,green,"g"] & C
     \end{tikzcd} 
@@ -1045,7 +1045,7 @@ Does every monad arise from an adjunction? In 5.2(b) we have the category $[M,\m
     \end{tikzcd}. Then 
     
     \begin{tikzcd}
-        A \arrow[r,"f"] & TB \arrow[r,"Tg"] & TTC \arrow[r,"TTh"] \arrow[d,"\mu_C"] & TTTD \arrow[r,"T_{\mu D}"] \arrow[d,"\mu_{TD}"] & TTD \arrow[d,"\mu_D"]\\
+        A \arrow[r,"f"] & TB \arrow[r,"Tg"] & TTC \arrow[r,"TTh"] \arrow[d,"\mu_C"] & TTTD \arrow[r,"T \mu_D"] \arrow[d,"\mu_{TD}"] & TTD \arrow[d,"\mu_D"]\\
         & &TC \arrow[r,"Th"] & TTD \arrow[r,"\mu_D"] & TD
     \end{tikzcd}
 
