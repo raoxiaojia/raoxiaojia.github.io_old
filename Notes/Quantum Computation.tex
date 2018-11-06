@@ -563,6 +563,64 @@ In the 2-dimensional subspace spanned by $|g\ket$ and $|\psi\ket$ (or equivalent
     \end{proof}
 \end{thm}
 
+---Lecture 10---
+
+Let's continue on Amplitude Amplification.
+
+Last time we showed that $Q=-I_{|\psi\ket} I_g$ is the rotation through $2\theta$ in the plane of $|\psi\ket$ and $|g\ket$, i.e. in $|b\ket$ and $|g\ket$ (orthonormal).\\
+So $Q^n|\psi\ket = \sin(2n+1)\theta |g\ket + \cos(2n+1)\theta |b\ket$, and if we measure $Q^n |\psi\ket$ for good vs bad, we get $prob(good) = \sin^2(2n+1)\theta$.\\
+We want to maximize this: it is maximised when $(2n+1)\theta = \pi/2$, i.e. $n=\frac{\pi^2}{4\theta} - \frac{1}{2}$.
+
+\begin{eg}
+    \emph{If} we had $\theta =4/6$, then $n=\frac{\pi}{4\theta} - \frac{1}{2} = 1$ is an exact integer. So $Q^1$ rotates $|\psi\ket$ \emph{exactly} onto $|g\ket$, so we see good result with certainty!
+\end{eg}
+
+Generally, for given $\theta$, $n$ is not an integer. So we use $n$ to be the nearest integer to $(\frac{\pi}{4\theta} - \frac{1}{2}) \approx \frac{\pi}{4\theta}$ (for small $\theta$), which equals $O(\frac{1}{\theta} = O(\frac{1}{\sin\theta}) = O(\frac{1}{||good\ proj\ of\ |\psi||})$), and $Q^n|\psi\ket$ will be within angle $\pm \theta$ of $|g\ket$, so probability of good result is at least $\cos^2\theta \approx 1-O(\theta^2)$.
+
+All this can be implemented oif $I_{|\psi\ket}$ and $I_G$ can be implemented. See example sheet -- for $I_G$, suffices for $G$ to be spanned by computational basis states $|x\ket$'s, and indicator function $f(x)=1$ for $x$ good and $0$ for $x$ bad efficiently computable.\\
+For $I_{|\psi\ket}$, usally have $|\psi\ket =H_n|00...0\ket$ ($H$ is the Hadamard gate). Then $I_{|\psi\ket}$ can be implemented in linear $O(n)$ time.
+
+Notes:\\
+(1) In AA process, relative amplitudes of good labels in $|g\ket$ stay \emph{same} as they were in $|\psi\ket = \sin\theta|g\ket + \cos\theta |b\ket$.\\
+(2) Final state is generally not exactly $|g\ket$, but \emph{if} $\sin\theta$ is \emph{known}, then we can modify AA process to make it exact, i.e. giving $|g\ket$ state exactly (see example sheet).
+
+Applications of AA:\\
+(1) \emph{Grover Search} with one or \emph{more} ($k$) good items in $N$:\\
+\begin{equation*}
+    \begin{aligned}
+        |\psi\ket &= |\psi_0\ket = \frac{1}{\sqrt{2^n}} \sum_{x \in B_n} |x\ket\\
+        &= \sqrt{\frac{k}{N}} \left(\frac{1}{\sqrt{k}} \sum_{good\ |g\ket} |x\ket\right) + \sqrt{\frac{N-k}{N}} \left(\frac{1}{\sqrt{N-k}} \sum_{x\ bad}|x\ket\right)
+    \end{aligned}
+\end{equation*}
+$G$ spanned by good $x$'s, $\sin\theta = \frac{k}{n}$ so $Q$ is rotation through $2\theta$, $\theta=\arcsin\sqrt{k/N} \approx \sqrt{k/N}$, where $k\ll N$; and we only need $O(\sqrt{N/k})$ queries.
+
+Note: for $2$-bit case, $N=4$ with $k=1$ good item; we have $\theta = \arcsin(1/2) = \pi/6$, so one application of $Q$ rotates $|\psi_0\ket$ exactly onto $|x_{good}\ket$, i.e. a \emph{single} query suffices to find a unique good item in four, \emph{with certainty}!
+
+(2) Square-root sppedup of general quantum algorithms:\\
+Let $A$ be a quantum algorithm/circuit (sequence of unitary gates). on input, say $|0...0\ket$. So final state is $A|0...0\ket$.\\
+Good labels = desired computational outcomes
+$$A|0.000\ket = \alpha|a\ket + \beta|b\ket, \alpha=\sin\theta$$
+where $|a\ket$ is normalised, genrally unequal superposition $\sum_{good\ x} c_x|x\ket$.\\
+So $Prob(\text{success in 1 run}) = |\alpha|^2$, so $O(\frac{1}{|\alpha|^2})$ repetitions of $A$ needed to succeed with any \emph{constant} high probability $1-\varepsilon$.
+
+Instead use AA: assumed we can check if answer is good or bad (e.g. factoring).\\
+So we can then implement $I_G:|x\ket \to -|x\ket$ if $x$ is good, and $\to |x\ket$ if $x$ is bad.\\
+Consider $|\psi\ket = A|0...0\ket$ and $Q=-I_{A|0...0\ket} I_G = -(AI_{|0...0\ket} A^\dagger) I_G$. All parts are implementable ($A$ is the algorithm, $A^\dagger$ is inverse gate in reverse order, and $I_{|0...0\ket}$ see example sheet).\\
+By AA theorem, $Q$ is rotation through $2\theta$, where $\sin\theta=|\alpha|$. So after $n\approx \frac{\pi}{4\theta} = O(\frac{1}{\theta}) = O(\frac{1}{\sin\theta}) = O(\frac{1}{|\alpha|})$ (for small $|\alpha|$).\\
+Repetitions $A|0...0\ket$ will be rotate very near to $|g\ket$, and final measurement will succeed with high probability.\\
+Each application of $\mathcal{Q}$ needs one $A$ and one $A^\dagger$; $A^\dagger$ is the \emph{inverse gate in reverse order}, i.e. the time complexity is the same, i.e. $O(\frac{1}{|\alpha|})$ repetition of $Q$ gives square root time speed up over direct method.
+
+Also, if success probability of $A$ (i.e. $|\alpha|^2$) is known, then \emph{improved} modification of the AA process that is \emph{exact} can be applied; we convert probabilistic algorithm $A$ into \emph{deterministic} one, giving a good outcome with certainty.
+
+\newpage
+
+\section{Quantum Counting}
+
+Given $f:B_n \to B$ a boolean function with an unknown number $k$ good $x$'s, we want ot \emph{estimate} $k$ (rather than just find some good $x$).
+
+Recall that Grover operator $Q_G$ for $f$ is rotaion through $2\theta$ in 2-dimensional space of $|\psi_0 = \frac{1}{\sqrt{2^n}} \sum_{x \in B_n} |x\ket$ and its good projection $|g\ket = \frac{1}{\sqrt{k}} \sum_{good\ x} |x\ket$, with $\sin\theta = \sqrt{k/N} \approx \theta$ for $k \ll N$.
+
+
 \newpage
 
 \section{Example Class 1}
