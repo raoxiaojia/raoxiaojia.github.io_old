@@ -538,6 +538,66 @@ Lecturer decided to still write a proposition down in the end.
     \end{proof}
 \end{prop}
 
+\begin{thm} (5)\\
+    Let $A \subset Q_n$ with $\frac{|A|}{2^n} \geq 1/2$, and $0 < \varepsilon < 1/4$. Then
+    $$\frac{|A_{(\varepsilon_n)}|}{2^n} \geq 1-\frac{2}{\varepsilon} e^{-\varepsilon^2 n/2}$$
+    (Slogan: \emph{1/2-sized sets have exponentially large $\varepsilon n-$neighbourhood}.)
+    \begin{proof}
+        It's enough to show that if $\varepsilon_n$ is an integer then the above holds.\\
+        We have $|A| \geq \sum_{i=0}^{\lceil n/2-1\rceil} {n\choose i}$ (if $n$ is even this is trivial, if $n$ is odd this is exactly halfway). So by Harper's, we have
+        $$|A_{(\varepsilon_n)}| \geq \sum_{i=0}^{\lceil n(1/2+\varepsilon)-1\rceil} {n \choose i}$$
+        i.e. 
+        $$|A_{(\varepsilon_n)}^c| \leq \sum_{i=\lceil n(1/2+\varepsilon)\rceil}^n {n \choose i} = \sum_{i=0}^{\lfloor n(1/2-\varepsilon)\rfloor} {n \choose i} \leq \frac{1}{\varepsilon} e^{-\varepsilon^2 n/2} \cdot 2^n$$
+
+    \end{proof}
+\end{thm}
+
+\subsection{Concentration of Measure}
+
+Say $f:Q_n \to \R$ is \emph{Lipschitz} if $|f(x)-f(y)| \leq 1$ $\forall x,y \in Q_n$ adjacent (see part IB Analysis II for the original meaning).\\
+We say $M \in \R$ is a \emph{median} or \emph{L\'evy mean} of $f$ if $|\{x:f(x) \leq M\}|$, $|\{x:f(x) \geq M\}| \geq \frac{1}{2}\cdot 2^n$.\\
+Now we are ready to show \emph{every well-behaved function on $Q_n$ is roughly constant nearly everywhere}.
+
+\begin{thm} (6)\\
+    Let $f:Q_n \to \R$ be Lipschitz, with median $M$, and $0<\varepsilon<\frac{1}{4}$. Then
+    $$\frac{|\{x:|f(x)-M| \leq \varepsilon n\}|}{2^n} \geq 1-\frac{4}{\varepsilon} e^{-\varepsilon^2 n/2}$$
+    \begin{proof}
+        Let $A=\{x:f(x) \leq M\}$.\\
+        Then $\frac{|A|}{2^n} \geq \frac{1}{2}$. So $\frac{|A_{(\varepsilon n)}|}{2^n} \geq 1-\frac{2}{\varepsilon} e^{-\varepsilon^2 n/2}$.\\
+        However, $x \in A_{(\varepsilon_n)} \implies f(x) \leq M+\varepsilon n$ as $f$ is Lipschitz. So 
+        $$\frac{|\{x:f(x) \leq M+\varepsilon n\}|}{2^n} \geq 1-\frac{2}{\varepsilon} e^{-\varepsilon^2 n/2}$$
+        Same argument shows that
+        $$\frac{|\{x:f(x) \geq M-\varepsilon n\}|}{2^n} \geq 1-\frac{2}{\varepsilon} e^{-\varepsilon^2 n/2}$$
+        Intersect with and we get the desired result.
+    \end{proof}
+    This is sometimes called the \emph{concentration of measure phenomenon}.
+\end{thm}
+
+Let $G$ be a graph of diameter $D$. Let
+$$\alpha(G,\varepsilon) = \max\{1-\frac{|A_{(\varepsilon D)}|}{|G|}: A \subset G, \frac{|A|}{|G|} \geq \frac{1}{2}\}$$
+So $\alpha(G,\varepsilon)$ is \emph{small} says \emph{$\frac{1}{2}$-sized sets have big $\varepsilon D$-neighbourhoods}.\\
+We say a sequence of graphs $G_1,G_2,...$ is a \emph{L\'evy family} if $\alpha(G_n,\varepsilon) \to 0$ as $n \to \infty$ (for each fixed $\varepsilon$).\\
+Thus theorem 5 says: $Q_1,Q_2,Q_3,...$ forms a L\'evy family (even a \emph{normal} one, i.e. $\alpha(G_n,\varepsilon)$ is exponentially small in $A$ for each fixed $\varepsilon$).\\
+So we have concentration of measure (as in theorem 6 for any L\'evy family).\\
+Many natural families of graphs form L\'evy families, e.g. symmetric group $S_n$ (made into a graph by joining $x,y$ if $xy^{-1}$ is a transposition).
+
+Similarly, we can define $\alpha(X,\varepsilon)$ for $x$ any metric measure space (of finite diameter and finite measure) -- so again we have concentration of measure for any L\'evy family.\\
+
+\begin{eg}
+    Consider the sphere $S^n \subset \R^{n+1}$ (note that $D=1$ so we can omit it in this example).\\
+    To show \emph{all 1/2-sized sets have big $\varepsilon$-neighbourhoods}, we need 2 ingredients:\\
+    (1) An isoperimetric inequality: if $A \subset S^n$ and $C \subset S^n$ is the circular cap of the same size ($|C| = |A|$), then $|A_{(\varepsilon)}|\geq |C_{(\varepsilon)}|$.\\
+    To prove this we'd like to have some way to \emph{compress} $A$ into something that is more like $C$, while reducing (at least not increasing) it's $\varepsilon$-neighbourhood. One way is to \emph{stamp on your set}, i.e. always move point \emph{above} equator to corresponding point \emph{below} the equator, if possible.
+
+    \includegraphics[scale=0.5]{image/Comb_03.png}
+
+    But note that we can choose any direction for the compression. Then by some arguments we could prove that $A$ converges to a circular cap.\\
+    The above compression is sometimes called \emph{2-point symmetrisation}.\\
+    (2) An estimate: let $C$ be circular cap with $|C| = \frac{1}{2}$, i.e. with angle $\frac{\pi}{2}$ (so exactly half the surface of a sphere). Then $C_{(\varepsilon)}$ is the circular cap of angle $\frac{\pi}{2}+\varepsilon$.\\
+    However, we know from common sense that almost all of the surface area concentrates around the equator in high dimensions. So $C_{(\varepsilon)}$ is indeed big.\\
+    (More rigourously, the remaining volume is approximately $\int_\varepsilon^{\frac{\pi}{2}} (\cos \theta)^n d\theta$ which tends to $0$ exponentially fast as $n \to \infty$ for any fixed $\varepsilon>0$).
+\end{eg}
+
 \newpage
 
 \section{Example Class 1}
