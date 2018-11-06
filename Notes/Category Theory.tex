@@ -508,11 +508,11 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
         \begin{equation*}
             \begin{aligned}
                 \Psi\Phi(A \xrightarrow{f} GB) &= A \xrightarrow{\eta_A} GFA \xrightarrow{GFf} GFGB \xrightarrow{G\varepsilon_B} GB\\
-                &= A \xrightarrow{f} FB \xrightarrow{\eta_{GB}} GFGB \xrightarrow{G \varepsilon_B} GB\\
+                &= A \xrightarrow{f} GB \xrightarrow{\eta_{GB}} GFGB \xrightarrow{G \varepsilon_B} GB\\
                 &= f
             \end{aligned}
         \end{equation*}
-        and dually, $\Phi\Psi(g) = g$.
+        where the last equality is triangular equality; and dually, $\Phi\Psi(g) = g$.
     \end{proof}
 \end{thm}
 
@@ -1026,7 +1026,7 @@ Does every monad arise from an adjunction? In 5.2(b) we have the category $[M,\m
 \end{lemma}
 
 \begin{defi} (5.5)\\
-    Given an algebra monad $\mathbb{T}$ on $\mathcal{C}$, the \emph{Kleisli category} $\mathcal{C}_\mathbb{T}$ has $\ob\mathcal{C}_\mathbb{T} = \ob\mathcal{C}$ (and because of this, we'll use green for morphisms in $\mathcal{D}_\mathbb{T}$. It might be useful to bring pens of different colours in the next few lectures), and morphisms
+    Given an algebra monad $\mathbb{T}$ on $\mathcal{C}$, the \emph{Kleisli category} $\mathcal{C}_\mathbb{T}$ has $\ob\mathcal{C}_\mathbb{T} = \ob\mathcal{C}$ (and because of this, we'll use green for morphisms in $\mathcal{C}_\mathbb{T}$. It might be useful to bring pens of different colours in the next few lectures), and morphisms
     \begin{tikzcd}
         A \arrow[r,green] & B
     \end{tikzcd}
