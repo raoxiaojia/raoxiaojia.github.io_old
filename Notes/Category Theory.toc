@@ -4,12 +4,12 @@
 \contentsline {section}{\numberline {3}Adjunctions}{15}{section.3}
 \contentsline {section}{\numberline {4}Limits}{21}{section.4}
 \contentsline {section}{\numberline {5}Monads}{32}{section.5}
-\contentsline {section}{\numberline {6}Example Class 1}{35}{section.6}
-\contentsline {subsection}{\numberline {6.1}Question 1}{35}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Question 2}{35}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Question 3}{36}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Question 4}{37}{subsection.6.4}
-\contentsline {subsection}{\numberline {6.5}Question 5}{37}{subsection.6.5}
-\contentsline {subsection}{\numberline {6.6}Question 6}{38}{subsection.6.6}
-\contentsline {subsection}{\numberline {6.7}Question 7}{39}{subsection.6.7}
-\contentsline {subsection}{\numberline {6.8}Question 8}{40}{subsection.6.8}
+\contentsline {section}{\numberline {6}Example Class 1}{37}{section.6}
+\contentsline {subsection}{\numberline {6.1}Question 1}{37}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Question 2}{37}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Question 3}{38}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Question 4}{39}{subsection.6.4}
+\contentsline {subsection}{\numberline {6.5}Question 5}{39}{subsection.6.5}
+\contentsline {subsection}{\numberline {6.6}Question 6}{40}{subsection.6.6}
+\contentsline {subsection}{\numberline {6.7}Question 7}{41}{subsection.6.7}
+\contentsline {subsection}{\numberline {6.8}Question 8}{42}{subsection.6.8}
