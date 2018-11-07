@@ -750,10 +750,10 @@ Reminder: we have a lecture next Monday (22nd Oct)!
 
 Example class 2: 19th November, Monday.
 
-\begin{lemma}
+\begin{lemma} (5.9)\\
     Let $\mathcal{M}$ be a structure, let $\bar{a} = \bra a_i:i<\lambda \ket$ enumerate $\mathcal{M}$. Let
     $$q(\bar{x}) = \{\phi(\bar{x}): \mathcal{M} \vDash \phi(\bar{a})\}$$
-    where $|bar{x}| = \lambda$.\\
+    where $|\bar{x}| = \lambda$.\\
     Then $q(\bar{x})$ is satisfiable in $\mathcal{N}$ iff there is $\beta:\mathcal{M} \to \mathcal{N}$ that is an elementary embedding.
     \begin{proof}
         If $q(\bar{x})$ is satisfiable in $\mathcal{N}$, there is $\bar{b} \in N^{|\bar{x}|}$ s.t. $\mathcal{N} \vDash \phi(\bar{b})$ for all $\phi(\bar{x}) \in q(\bar{x})$.\\
@@ -776,7 +776,7 @@ Example class 2: 19th November, Monday.
 \end{rem}
 
 \begin{thm} (5.11)\\
-    If $\mathcal{M}$ is a structure, and $p(x)$ is a type in $L(M)$ that is finitely satisfiable in $\mathcal{M}$, then $p(\bar{x})$ is satisfiable in some $\mathcal{M}$ such that $\mathcal{M} \preccurlyeq \mathcal{N}$.
+    If $\mathcal{M}$ is a structure, and $p(x)$ is a type in $L(M)$ that is finitely satisfiable in $\mathcal{M}$, then $p(\bar{x})$ is satisfiable in some $\mathcal{N}$ such that $\mathcal{M} \preccurlyeq \mathcal{N}$.
 \end{thm}
 
 \begin{eg}
@@ -788,7 +788,7 @@ Example class 2: 19th November, Monday.
 \end{eg}
 
 \begin{proof} (of 5.11)\\
-    Let $\bra a_i:i<\lambda \ket$ enumerate $\mathcal{M}$, and let $q(\bar{x}) := \{\phi(\bar{z}): \mathcal{M} \vDash \phi(bar{a})\}$, where $|\bar{z}| = \lambda$ and the $z_i$ are new variables (so not among the $\bar{x}$).\\
+    Let $\bra a_i:i<\lambda \ket$ enumerate $\mathcal{M}$, and let $q(\bar{x}) := \{\phi(\bar{z}): \mathcal{M} \vDash \phi(\bar{a})\}$, where $|\bar{z}| = \lambda$ and the $z_i$ are new variables (so not among the $\bar{x}$).\\
     Write $p(\bar{x})$ as $p'(\bar{x},\bar{a})$ for some $p'(\bar{x},\bar{z})$ (an $L$-type).\\
     We claim that $p'(\bar{x},\bar{z}) \cup q(\bar{z})$ is finitely satisfiable in $\mathcal{M}$: this is because $p'(\bar{x},\bar{a})$ is finitely satisfiable by hypothesis and $q(\bar{z})$ is realized by $\bar{a}$.\\
     Then, by theorem (5.8) (compactness for types), $p'(\bar{x},\bar{z}) \cup q(\bar{z})$ is satifsiable.\\
