@@ -822,7 +822,68 @@ Example class 2: 19th November, Monday.
 \end{defi}
 
 Question: can $\mathcal{M}$ be $\lambda$-saturated if $\lambda > |\mathcal{M}|$? If so, $\mathcal{M}$ would satisfy f.s. types in $L(M)$.\\
-(Hint: we could use $p(x) = \{x \neq a_i: i < |\mathcal{M}|\}$ where $\bra a_i: i<|\mathcal{M}| \ket$ enumerates $\mathcal{M}$.)
+(Hint: we could use $p(x) = \{x \neq a_i: i < |\mathcal{M}|\}$ where $\bra a_i: i<|\mathcal{M}| \ket$ enumerates $\mathcal{M}$. This could not be satisfiable.)
+
+---Lecture 10---
+
+\begin{defi} (6.2)\\
+    Let $\mathcal{M}$ be an $L$-structure, $A \subseteq M$, $\bar{b}$ a tuple of in $M$, possibly infinite.\\
+    The type of $\bar{b}$ over $A$ is the following $L(A)$-type:
+    $$tp_\mathcal{M}(\bar{b}/A) = \{\phi(\bar{x}) \in L(A): \mathcal{M} \vDash \phi(\bar{b})\}$$
+    (i.e. all the $L(A)$-formulas that, when plugged in $\bar{b}$, can be implied by $\mathcal{M}$).\\
+    $\mathcal{M}$ is often omitted if it's clear from the context.
+\end{defi}
+
+\begin{rem} (6.3)\\
+    (i) $tp_{\mathcal{M}} (\bar{b}/A)$ is complete, i.e. for every $L(A)$ formula $\phi(\bar{x})$, either $\phi(\bar{x}) \in tp(\bar{b}/A)$ or $\neg\phi(x) \in tp(\bar{b}/A)$ (clear).\\
+    (ii) If $\mathcal{M} \preccurlyeq\mathcal{N}$, then for $A \subseteq M$, and $\bar{b}$ a tuple,
+    $$tp_\mathcal{M}(\bar{b}/A) = tp_\mathcal{N}(\bar{b}/A)$$
+\end{rem}
+
+\begin{fact} (6.4, elementary maps and types)\\
+    Recall definition (4.10):\\
+    (i) If $f:A \subseteq \mathcal{M} \to \mathcal{N}$ is a (partial) elementary map, then in particular, $f$ preserves $L$-sentences, so $\mathcal{M} \equiv \mathcal{N}$.\\
+    (ii) If $\mathcal{M} \equiv \mathcal{N}$, then $\phi$, the empty map, \emph{is} an elementary map (only required to preserve sentences).\\
+    (iii) If $f:A \subseteq \mathcal{M} \to \mathcal{N}$ is elementary, and $\bar{a}$ is an enumeration of $A=\dom(f)$, then
+    $$tp(\bar{a}/\phi) = tp(f(\bar{a})/\phi)$$
+    More generally: if $f:\mathcal{M} \to \mathcal{N}$ (we'll stop writing $f:A \subseteq \mathcal{M} \to \mathcal{N}$ for elementary maps now) is elementary and there is $A\subseteq M \cap N$ s.t. $A \subseteq \dom(f)$, $f|_A = id$ ($f$ fixes $A$ pointwise), then for every $\bar{b}$, tuple in $\dom(f)$,
+    $$tp_\mathcal{M} (\bar{b}/A) = tp_\mathcal{N} (f(\bar{b}),A)$$
+
+    \includegraphics[scale=0.5]{image/Model_08.png}
+
+    (iv) Let $\bar{a}$ enumerate $A \subseteq M$, $A=\dom(f)$ where $f:\mathcal{M} \to \mathcal{N}$ is elementary.\\
+    Let $p(\bar{x},\bar{a})$ be a type in $L(A)$ that is finitely satisfiable in $\mathcal{M}$.\\
+    Then $p(\bar{x},f(\bar{a}))$ is finitely satisfiable in $\mathcal{N}$.\\
+    With massive abuse of notations, let $\{\phi_1(\bar{x},\bar{a}),...,\phi_n(\bar{x},\bar{a})\} \subseteq p(\bar{x},\bar{a})$.\\
+    By f.s. of $p(\bar{x},\bar{a})$, $\mathcal{M} \vDash \exists \bar{x} \bigwedge_{i=1}^n \phi_i(\bar{x},\bar{a})$.\\
+    Then $\mathcal{N} \vDash \exists \bar{X} \bigwedge_{i=1}^n \phi_i(\bar{x},f(\bar{a}))$ by elmentarity of $f$.\\
+    (Does $p(\bar{x},\bar{a})$ satisfiable in $\mathcal{M}$ imply $p(\bar{x},f(\bar{a}))$ satisfiable in $\mathcal{N}$? The answer is no -- this doesn't hold in the infinite case.)
+\end{fact}
+
+(Note that we haven't really discussed about the existence of saturated models. The general result is that given any model with size $\lambda$ we could extend it elementarily to a model that is $\lambda^+$ saturated, but we'll have no control over the size of the extended model unless we assume some more subtle things (Lecturer was unsure of that)).
+
+\begin{thm} (6.5)\\
+    Let $\mathcal{N}$ be s.t. $|\mathcal{N}| \geq \lambda \geq |L|+\omega$. The following are equivalent:\\
+    (i) $\mathcal{N}$ is $\lambda$-saturated;\\
+    (ii) if $\mathcal{M} \equiv \mathcal{N}$, $b \in M$ and $f:\mathcal{M} \to \mathcal{N}$ partial elementary s.t. $|\dom f| < \lambda$, then there is partial elementary $\bar{f} \supseteq f$ such that $b \in \dom(\bar{f})$;\\
+    (iii) If $p(\bar{z})$ is an $L(A)$-type where $|\bar{z}| \leq \lambda$, and $|A| < \lambda$ and $p(\bar{z})$ is finitely satifiable in $\mathcal{N}$, then $p(\bar{z})$ is satisfiable in $\mathcal{N}$.
+    \begin{proof}
+        (i) $\implies$ (ii): Let $f:\mathcal{M} \to \mathcal{N}$ be as in (ii), and let $b \in M$. The idea is the following: look at the type of $b$ over $M$, and then prove that the corresponding type in $\mathcal{N}$ is realized in $\mathcal{N}$.\\
+        Let $\bar{a}$ be an enumeration of $\dom(f)$, so $|\bar{a}|<\lambda$. Let $p(x/\bar{a}) = tp_\mathcal{M} (b/\bar{a})$.
+
+        \includegraphics[scale=0.5]{image/Model_09.png}
+
+        Then $p(x/\bar{a})$ is finitely satisfiable in $\mathcal{M}$, hence $tp(x/f(\bar{a}))$ is f.s. in $\mathcal{N}$ (6.4 (iv)).\\
+        Since $|f(\bar{a})| < \lambda$ and $\mathcal{N}$ is $\lambda$-saturated, $tp(x/f(\bar{a}))$ is realized in $\mathcal{N}$ by some $c$.\\
+        Then $f \cup \{\bra b,c\ket \}$ is the required extension.\\
+        ($\mathcal{M} \vDash \phi(b,\bar{a}) \iff \mathcal{N} \vDash \phi(c,f(\bar{a}))$, so $f$ preserves the truth).\\
+        (ii) $\implies$ (iii): Let $p(\bar{z})$ be as in (iii), $p(\bar{z})$ is f.s. in $\mathcal{N}$. Then by (5.11), $p(\bar{z})$ is realized in some elementary extension $\mathcal{M}'$ of $\mathcal{N}$, by some tuple $\bar{a}$ (where $|\bar{a}| = |\bar{z}|$).\\
+        But now we can shrink $|\mathcal{M}'|$ by downward L-S theorem: there is $\mahtcal{M} \preccurlyeq\mathcal{M}'$ such that $A \cup \bar{a} \subseteq M$, where $A$ is the parameter set of the type.
+
+        \includegraphics[scale=0.5]{image/Model_10.png}
+    \end{proof}
+\end{thm}
+
 
 
 
