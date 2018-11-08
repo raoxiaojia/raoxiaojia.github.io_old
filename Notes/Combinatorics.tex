@@ -294,7 +294,7 @@ With this tool, we can finally begin the proof of:
         Let $\mathcal{A}_0 = \mathcal{A}$. Having defined $\mathcal{A}_{k_1}$, if $\mathcal{A})k$ is $(U,V)-$compressed $\forall (U,V) \in \Gamma$, then stop the sequence with $\mathcal{A}_k$. If not, choose $(U,V) \in \Gamma$ s.t. $\mathcal{A}_k$ \emph{not} $(U,V)$-compressed, with $|U|$ minimal. Set $\mathcal{A}_{k+1} = C_{UV}(\mathcal{A}_k)$.\\
         Note that $\forall x \in U$, we have $(U-x,V-y) \in \Gamma \cup \{(\phi,\phi)\}$ for $y = \min V$. So by proposition 6, $|\partial \mathcal{A}_{k+1}| \leq |\partial \mathcal{A}_k|$. Continue.\\
         This sequence must terminate, as, for example, $\sum){A \in \mathcal{A}_k} \sum_{i \in A} 2^i$ is decreasing in $k$ (not important, just something that is monotonically decreasing).\\
-        The final sysem $\mathcal{B} = \mathcal{A}_k$ satisfies $|\mathcal{B}| = |\mathcal{A}|$, and $|\partial \mathcal{B}| \leq |\partial \mathcal{A}|$, and is $(U,V)$-compressed for every $(U,V) \in \Gamma$.\\
+        The final system $\mathcal{B} = \mathcal{A}_k$ satisfies $|\mathcal{B}| = |\mathcal{A}|$, and $|\partial \mathcal{B}| \leq |\partial \mathcal{A}|$, and is $(U,V)$-compressed for every $(U,V) \in \Gamma$.\\
         Now we claim $\mathcal{B} = \mathcal{C}$: suppose otherwise, that $\mathcal{B}$ is not an initial segment of colex. Then $\exists A < B$ in colex with $A \not\in \mathcal{B}$ and $B \in \mathcal{B}$.\\
         But then $U = A-B$ and $V=B-A$. We have $(U,V) \in \Gamma$, and $C_{UV}(B) = A$, so $\mathcal{B}$ is not $(U,V)$-compressed. Contradiction.
     \end{proof}
@@ -599,6 +599,84 @@ Similarly, we can define $\alpha(X,\varepsilon)$ for $x$ any metric measure spac
     However, we know from common sense that almost all of the surface area concentrates around the equator in high dimensions. So $C_{(\varepsilon)}$ is indeed big.\\
     (More rigourously, the remaining volume is approximately $\int_\varepsilon^{\frac{\pi}{2}} (\cos \theta)^n d\theta$ which tends to $0$ exponentially fast as $n \to \infty$ for any fixed $\varepsilon>0$).
 \end{eg}
+
+---Lecture 10---
+
+We deduced concentration of measure from isoperimetric estimates conversely:
+
+\begin{prop}
+    Let $G$ be a graph s.t. for any Lipschitz $f:G \to \R$ with median $M$ we have 
+    $$\frac{|\{x \in G:|f(x)-M| \leq t\}}{|G|} \geq 1-\alpha$$
+    (for some given $t,\alpha$). Then for $A \subset G$ with $\frac{|A|}{|G|} \geq \frac{1}{2}$ we have $\frac{A_{(t)}|}{|G|} \geq 1-\alpha$.
+    \begin{proof}
+        The function $f(x) = d(x,A)$ is Lipschitz and has $0$ as a median (as $|A| \geq \frac{1}{2}|G|$).
+    \end{proof}
+\end{prop}
+
+\subsection{Edge-isoperimetric inequalities}
+
+For $A \subset G$ ($G$ a graph), the \emph{edge-boundary} of $A$ is $\partial A = \{xy \in E(G): x \in A, y \not\in A\}$.
+
+For example, in
+
+\begin{tikzpicture}
+    \node (1) at (0,0) {1};
+    \node (2) at (1,0) {2};
+    \node (3) at (0,-1) {3};
+    \node (4) at (1,-1) {4};
+    \node (5) at (2,0) {5};
+    \node (6) at (1.5,-1) {6};
+    \node (7) at (2.5,-1) {7};
+
+    \path (1) edge (2);
+    \path (1) edge (3);
+    \path (2) edge (4);
+    \path (3) edge (4);
+    \path (1) edge (4);
+    \path (2) edge (5);
+    \path (5) edge (6);
+    \path (5) edge (7);
+    \path (6) edge (7);
+\end{tikzpicture}
+
+the set $A=1,3,4$ has $|\partial A|=2$ ($12,14$). 
+
+For another example, suppose $|A|=4$ and we work in $Q_3$. If we choose $A=\phi,1,2,3$ then $|\partial A| = 6$; however if we use $A=\phi,1,2,12$ then $|\partial A| = 4$.\\
+This suggests that, perhaps subcubes are best (instead of simplicial). What if $2^k < |A| < 2^{k+1}$?
+
+We define yet another ordering on $Q_n$: say $x<y$ in the \emph{binary} ordering on $Q_n$ if $\max(x \triangle y) \in y$. Equivalently, $x<y$ if $\sum_{i \in x} 2^i < \sum_{i \in y} 2^i$ (i.e. treat them as binary numbers).
+
+Our aim is to prove that initial segments of binary are best for $\partial A$ in this problem.\\
+In particular, $|A|=2^k \implies |\partial A| = 2^k (n-k)$ (each point has $n$ directions; $k$ are inside $A$, so each point sends $n-k$ outside).
+
+For $A \subset Q_n$ and $1 \leq i \leq n$, the \emph{$i$-binary compression} $B_i(A)$ is defined by giving its $i$-sections:\\
+$B_i(A)^{(i)}_+ = $ first $|A^{(i)}_+|$ elements of $\P(X-i)$ in binary,\\
+$B_i(A)^{(i)}_- = $ first $|A^{(i)}_-|$ elements of $\P(X-i)$ in binary (we defined these two $A$ sets previously when we proved Harper's theorem).
+
+Note that $|B_i(A)| = |A|$. We say $A$ is $i$-binary-compressed if $B_i(A) = A$.
+
+\begin{thm} (8, edge-isoperimetric inequality in the cube\footnote{This is sometimes called Harper-Lindsey-Berstein-Hart theorem. Basically Harper gave another proof with lots of holes, Bernstein tried to fix them but he missed some of them, and Hart fixed the proof in the end. Meanwhile Lindsey gave a generalized version of the theorem (which is correct).})\\
+    Let $A \subset Q_n$, and let $C$ be the initial segment of the binary ordering with $|C| = |A|$. Then $|\partial A| \geq |\partial C$.\\
+    In particular, if $|A| = 2^k$ then $|\partial A| \geq 2^k (n-k)$.
+    \begin{proof}
+        Induction on $n$: $n=1$ is trivial.\\
+        Given $A \subset Q_n$ $(n>1)$, and $1 \leq i \leq n$, we claim $|\partial B_i(A)| \leq |\partial A|$: to prove that, write $B$ for $B_i(A)$.\\
+        We have $|\partial A| = |\partial (A_-)| + |\partial (A_+)| + |A_- \triangle A_+|$ (which are downstairs, upstirs, and in direction $i$ respectively);\\
+        Also $|\partial B| = |\partial(B_-)| + |\partial(B_+)| + |B_- \triangle B_+|$.\\
+        Now we have $|\partial(B_-)| \leq |\partial(A_-)|$ and $|\partial(B_+)| \leq |\partial (A_+)|$ (induction).\\
+        Also, $|A_-| = |B_-|$, $|A_+|=|B_+|$, and $B_-,B_+$ are nested (i.e. one a subset of another). So by triangle inequality we're done with the claim.\\
+
+        Back to main proof: among all $B\subset Q_n$ with $|B| = |A|$ and $|\partial B| \leq |\partial A|$, choose one with $\sum_{x\in B}($position of $x$ in binary order$)$ minimal (note that position of $x$ in binary order is just the binary number it corresponds to).\\
+        Then $B$ is $i$-binary-compressed for all $i$ (by claim). Unfortunately this $B$ need not be an initial segment of binary -- e.g. $B=\{\phi,1,2,3\}$.\\
+        However this is also the only counterexample -- we claim that if $B$ is $i$-binary-compressed for all $i$ but not an initial segment of binary, then it has to be $\P(n-1) \cup n - 123...(n-1)$, i.e. the \emph{bottom-half} of the cube, with last point replaced by the first point of top half. Then we are done as this is clearly worse than the bottom half of the cube.\\
+        To prove the claim, suppose we have some $x<y$ with $x \not\in B$ but $y\in B$. Then forall $i$ we cannot have $i \not\in x,y$, nor $i \in x,y$ (as $B$ is $i$-compressed). This holds for all $i$, so $x=y^c$.\\
+        Thus for each $y \in B$, there is at most one $x<y$ with $x \not\in B$ (its complement); for each $y \not\in B$, there is at most 1 $y>x$ that is in $B$. But then $x$ and $y$ must be consecutive in the binary order, therefore the result.
+    \end{proof}
+\end{thm}
+
+\begin{rem}
+    In both of these theorems (1 and 8, for vertices and edges respectively), it was vital that the extremal sets in dimension $n-1$ were nested, i.e. they were the initial segments of some ordering.
+\end{rem}
 
 \newpage
 

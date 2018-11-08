@@ -7,13 +7,14 @@
 \contentsline {subsection}{\numberline {1.3}Intersecting families}{11}{subsection.1.3}
 \contentsline {section}{\numberline {2}Isoperimetric inequalities}{13}{section.2}
 \contentsline {subsection}{\numberline {2.1}Concentration of Measure}{17}{subsection.2.1}
-\contentsline {section}{\numberline {3}Example Class 1}{20}{section.3}
-\contentsline {subsection}{\numberline {3.1}Question 1}{20}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Question 2}{20}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Question 3}{20}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Question 4}{20}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Question 5}{20}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Question 6}{20}{subsection.3.6}
-\contentsline {subsection}{\numberline {3.7}Question 7}{20}{subsection.3.7}
-\contentsline {subsection}{\numberline {3.8}Question 8}{21}{subsection.3.8}
-\contentsline {subsection}{\numberline {3.9}Question 9}{21}{subsection.3.9}
+\contentsline {subsection}{\numberline {2.2}Edge-isoperimetric inequalities}{19}{subsection.2.2}
+\contentsline {section}{\numberline {3}Example Class 1}{21}{section.3}
+\contentsline {subsection}{\numberline {3.1}Question 1}{21}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Question 2}{21}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Question 3}{21}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Question 4}{21}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Question 5}{21}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Question 6}{21}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Question 7}{21}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.8}Question 8}{22}{subsection.3.8}
+\contentsline {subsection}{\numberline {3.9}Question 9}{22}{subsection.3.9}
