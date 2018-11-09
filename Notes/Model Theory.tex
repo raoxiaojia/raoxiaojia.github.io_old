@@ -845,17 +845,16 @@ Question: can $\mathcal{M}$ be $\lambda$-saturated if $\lambda > |\mathcal{M}|$?
     Recall definition (4.10):\\
     (i) If $f:A \subseteq \mathcal{M} \to \mathcal{N}$ is a (partial) elementary map, then in particular, $f$ preserves $L$-sentences, so $\mathcal{M} \equiv \mathcal{N}$.\\
     (ii) If $\mathcal{M} \equiv \mathcal{N}$, then $\phi$, the empty map, \emph{is} an elementary map (only required to preserve sentences).\\
-    (iii) If $f:A \subseteq \mathcal{M} \to \mathcal{N}$ is elementary, and $\bar{a}$ is an enumeration of $A=\dom(f)$, then
+    (iii) If $f:A \subseteq \mathcal{M} \to \mathcal{N}$ is elementary, and $\bar{a}$ is an enumeration of $A=\dom(f)$, then (obviously, $\phi$ denotes the empty set here)
     $$tp(\bar{a}/\phi) = tp(f(\bar{a})/\phi)$$
-    More generally: if $f:\mathcal{M} \to \mathcal{N}$ (we'll stop writing $f:A \subseteq \mathcal{M} \to \mathcal{N}$ for elementary maps now) is elementary and there is $A\subseteq M \cap N$ s.t. $A \subseteq \dom(f)$, $f|_A = id$ ($f$ fixes $A$ pointwise), then for every $\bar{b}$, tuple in $\dom(f)$,
+    More generally: if $f:\mathcal{M} \to \mathcal{N}$ (we'll stop writing $f:A \subseteq \mathcal{M} \to \mathcal{N}$ for elementary maps now) is elementary and there is $A\subseteq M \cap N$ s.t. $A \subseteq \dom(f)$, $f|_A = id$ ($f$ fixes $A$ pointwise), then for every tuple $\bar{b}$ in $\dom(f)$,
     $$tp_\mathcal{M} (\bar{b}/A) = tp_\mathcal{N} (f(\bar{b}),A)$$
 
     \includegraphics[scale=0.5]{image/Model_08.png}
 
     (iv) Let $\bar{a}$ enumerate $A \subseteq M$, $A=\dom(f)$ where $f:\mathcal{M} \to \mathcal{N}$ is elementary.\\
     Let $p(\bar{x},\bar{a})$ be a type in $L(A)$ that is finitely satisfiable in $\mathcal{M}$.\\
-    Then $p(\bar{x},f(\bar{a}))$ is finitely satisfiable in $\mathcal{N}$.\\
-    With massive abuse of notations, let $\{\phi_1(\bar{x},\bar{a}),...,\phi_n(\bar{x},\bar{a})\} \subseteq p(\bar{x},\bar{a})$.\\
+    Then $p(\bar{x},f(\bar{a}))$ is finitely satisfiable in $\mathcal{N}$: with massive abuse of notations, let $\{\phi_1(\bar{x},\bar{a}),...,\phi_n(\bar{x},\bar{a})\} \subseteq p(\bar{x},\bar{a})$.\\
     By f.s. of $p(\bar{x},\bar{a})$, $\mathcal{M} \vDash \exists \bar{x} \bigwedge_{i=1}^n \phi_i(\bar{x},\bar{a})$.\\
     Then $\mathcal{N} \vDash \exists \bar{X} \bigwedge_{i=1}^n \phi_i(\bar{x},f(\bar{a}))$ by elmentarity of $f$.\\
     (Does $p(\bar{x},\bar{a})$ satisfiable in $\mathcal{M}$ imply $p(\bar{x},f(\bar{a}))$ satisfiable in $\mathcal{N}$? The answer is no -- this doesn't hold in the infinite case.)
