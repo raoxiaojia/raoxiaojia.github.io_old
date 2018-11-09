@@ -734,7 +734,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     Let $F: \mathcal{C} \to \mathcal{D}$ be a functor.\\
     (a) We say $F$ \emph{preserves limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a limit cone $(L,(\lambda_j|j \in \ob\mathcal{J}))$ in $\mathcal{C}$, $(FL, (F\lambda_j | j \in \ob \mathcal{J}))$ is a limit for $FD$.\\
     (b) We say $F$ \emph{reflects limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a cone $(L,(\lambda_j)_j)$ s.t. $(FL,(F\lambda_j)_j)$ is a limit for $FD$, then $(L,(\lambda_j)_j)$ is a limit for $D$.\\
-    (c) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and (lecturer had \emph{and and} here; if this is any other course I won'd bother put this, but this is Category Theory) a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$. (This is stronger than both of above and implies them. Note that a lot of textbooks get this wrong; the definitions given by them are usually not categorical)
+    (c) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$. (This is stronger than both of above and implies them. Note that a lot of textbooks get this wrong; the definitions given by them are usually not categorical)
 \end{defi}
 
 ---Lecture 11---
@@ -1190,6 +1190,86 @@ Note that although this is quite a length proof, there's only one way we can go,
     \end{proof}
 \end{thm}
 
+---Lecture 16---
+
+If $\mathcal{C}$ has coproducts, then so does $\mathcal{C}_\mathbb{T}$, since $F_\mathbb{T}$ preserves them.\\
+In general, however, it has few other limits or colimits. In contrast, we have
+
+\begin{thm} (5.8)\\
+    (i) The forgetful functor $G:\mathcal{C}^\T \to \mathcal{C}$ creates all limits which exist in $\mathcal{C}$.\\
+    (ii) If $\mathcal{C}$ has colimits of shape $\mathcal{J}$, then $G:\mathcal{C}^\T \to \mathcal{C}$ creates them iff $T$ preserves them.
+    \begin{proof}
+        Suppose given $D:\mathcal{J} \to \mathcal{C}^\T$; write $D(j) = (GD(j),\delta_j)$, and suppose we have a limit cone $(L,(\mu_j:L \to GD(j) | j \in \ob\mathcal{J}))$ is a limit cone for $GD$.\\
+        Then the composites $TL \xrightarrow{T \mu_j} TGD(j) \xrightarrow{\delta_j} GD(j)$ form a cone over $GD$, since the edges of $GD$ are homomorphisms, so they induce a unique $\lambda:TL \to L$ s.t. $\mu_j \lambda = \delta_j(T\mu)$ for all $j$.\\
+        The fact that $\lambda$ is a $\T$-algebra structure on $L$ follows from the fact that the $\delta_j$ are algebra structures and uniqueness of factorizations through limits.\\
+        So $((L,\lambda)(\mu_j|j \in \ob\mathcal{J}))$ is the unique lifting of the limit cone over $GD$ to a cone over $D$; and it's a limit, since given a cone over $D$ with apex $(A,\alpha)$, we get a unique factorization $A \xrightarrow{f} L$ in $\mathcal{C}$, and $F$ is an algebra homomorphism by uniqueness of factorizations through $L$.\\
+        (ii) $\implies$: $F:\mathcal{C} \to \mathcal{C}^\T$ preserves colimits since it's a left adjoint, so $T=GF$ preserves colimits of shape $\mathcal{J}$.\\
+        $\Leftarrow$: Suppose given $\mathcal{J} \to \mathcal{C}^\T$ as in (i), and a colimit cone $(GD(j) \xrightarrow{\mu_j} L| j \in \ob\mathcal{J})$ in $\mathcal{C}$.\\
+        Then $(TGD(j) \xrightarrow{T\mu_j} TL | j \in \ob\mathcal{J})$ is also a colimit cone, so the composites $TGD(j) \xrightarrow{f_j} GD(j) \xrightarrow{\mu_j} L$ induce a unique $\lambda:TL \to L$.\\
+        The rest of the argument is similar to that of (i) (verifying unique factorizations).
+    \end{proof}
+\end{thm}
+
+\begin{defi} (5.9)\\
+    Given an adjunction $(\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D})$, $(F \dashv G)$, we say the adjunction (or the functor $G$) is \emph{monadic} if the comparison functor $K:\mathcal{D} \to \mathcal{C}^\T$ is part of an equivalence of categories.\footnote{In some textbooks the author require $K$ to be an isomorphism here; but that is because they required stronger definition of creating limits.}\\
+    (Note that, since the Kleiski comparison $\mathcal{C}_\T \to\mathcal{D}$ is always full and faithful, it's part of an equivalence iff it (equivalently, $F$) is essentially surjective on objects).
+\end{defi}
+
+\begin{rem}
+    Given any adjunction $(F \dashv G)$, for each object $B$ of $\mathcal{D}$ we have a diagram 
+    \begin{tikzcd}
+        FGFGB \arrow[r,shift left, "FG\varepsilon_B"] \arrow[r, shift right, "\varepsilon_{FGB}"'] & FGB \arrow[r,"\varepsilon_B"] & B
+    \end{tikzcd}
+    with equal composites. The \emph{primeval monadicity theorem} asserts that $\mathcal{C}^\T$ is characterized in $\mathbf{Adj}(\T)$ by the fact that these diagrams are all coequalizers.
+\end{rem}
+
+\begin{defi} (5.10)\\
+    We say a parallel pair $A \stackrel[g]{f}{\rightrightarrows} B$ is \emph{reflexive} if there exists $B \xrightarrow{r} A$ s.t. $fr = gr = 1_B$.\\
+    (Note that in our previous remark,
+    \begin{tikzcd}
+        FGFGB \arrow[r,shift left, "FG\varepsilon_B"] \arrow[r,shift right, "\varepsilon_{FGB}"'] & FGB
+    \end{tikzcd}
+    is reflexive, with $r = F\eta_{GB}$ by triangular identities).\\
+    We say $\mathcal{C}$ has reflexive coequalizers if it has coequalizers of all reflexive pairs (equivalently, colimits of shape $\mathcal{J}$ where
+    \begin{tikzcd}
+        \cdot \arrow[loop, out=105, in=165,looseness = 4] \arrow[loop, out=255, in=195, looseness=4] \arrow[r,shift left] \arrow[r,shift right] & \cdot \arrow[l]
+    \end{tikzcd}
+    ).\\
+    (b) By a \emph{split coequalizer diagram}, we mean a diagram
+    \begin{tikzcd}
+        A \arrow[r,shift left, "f"] \arrow[r,shift right, "g"'] & B \arrow[r,"h"] \arrow[l,bend left=40,"t"] & C \arrow[l,bend left = 20,"s"]
+    \end{tikzcd}
+    satisfying $hf=hg,hs=1_C,gt=1_b$ and $ft = sh$.\\
+    These equations imply that $h$ is a coequalizer of $(f,g)$: if $B \xrightarrow{x} D$ satisfies $xf = xg$, then $x=xgt=xft=xsh$, so $x$ factors through $h$, and the factorization is unique since $h$ is split epic.\\
+    Note that split coequalizers are preserved by \emph{all} functors.\\
+    (c) Given a functor $G:\mathcal{D} \to \mathcal{C}$, a parallel pair $A \stackrel[g]{f}{\rightrightarrows} B$ is called \emph{$G$-split} if there exsts a split coequalizer diagram
+    \begin{tikzcd}
+        GA \arrow[r,shift left,"Gf"] \arrow[r,shift right,"Gg"'] & GB \arrow[r,"h"] \arrow[l, bend left=40, "t"] & C \arrow[l, bend left=20, "s"]
+    \end{tikzcd}
+    in $\mathcal{C}$.\\
+    Note that 
+    \begin{tikzcd}
+        FGFGB \arrow[r,shift left, "FG\varepsilon_B"] \arrow[r,shift right, "\varepsilon_{FGB}"'] & FGB
+    \end{tikzcd}
+    is $G$-split, since 
+    \begin{tikzcd}
+        GFGFGB \arrow[r,shift left, "GFG\varepsilon_B"] \arrow[r,shift right,"G\varepsilon_{FGB}"'] & GFGB \arrow[l,bend left=35, "\eta_{GFGB}"] \arrow[r,"G\varepsilon_B"] & GB \arrow[l,bend left=20, "\eta_{GB}"]
+    \end{tikzcd}
+    is a split coequalizer.
+\end{defi}
+
+\begin{lemma} (5.11)\\
+    Suppose we are given an adjunction $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$, inducing a monad $\T$ on $\mathcal{C}$, then $K:\mathcal{D} \to \mathcal{C}^\T$ has a left adjoint provided, for every $\T$-algebra $(A,\alpha)$, the pair $FGFA \stackrel[\varepsilon_{FA}]{F\alpha}{\rightrightarrows} FA$ has a coqeualizer in $\mathcal{D}$.
+    \begin{proof}
+        We define $L:\mathcal{C}^\T \to \mathcal{D}$ by taking $FA \to L(A,\alpha)$ to be a coequalizer for $(F\alpha,\varepsilon_{FA})$. Note that this is a functor $\mathcal{C}^\T \to \mathcal{D}$.\\
+        Recall that $K$ is defined by $KB=(GB,G\varepsilon_B)$.\\
+        For any $B$, morphisms $FA \xrightarrow{f} B$ satisfying $f(F\alpha) = f(\varepsilon_{FA})$.\\
+        These correspond to morphisms $A \xrightarrow{\check{f}} GB$ satisfying 
+        $$\check{f}\alpha = Gf = G(\varepsilon_B (F\check{f})) = (G\varepsilon_B) (T\check{f})$$
+        i.e. to algebra homomorphisms $(A,\alpha) \to KB$.\\
+        It's tedious but entirely straightforward to verify that these bijections are natural in $(A,\alpha)$ and in $B$.
+    \end{proof}
+\end{lemma}
 
 \newpage
 
@@ -1197,7 +1277,7 @@ Note that although this is quite a length proof, there's only one way we can go,
 Many people wrote too much for questions. Do have the confidence to use the duality principle when it's usable!
 
 \subsection{Question 1}
-We do need to verify
+We need to verify
 \begin{equation*}
     \begin{aligned}
         ((AB)C)_{il} &= \vee_k ((\vee_j (a_{ij} \wedge b_{jk} )) \wedge c_{kl})\\
