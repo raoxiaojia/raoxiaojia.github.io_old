@@ -877,13 +877,83 @@ Question: can $\mathcal{M}$ be $\lambda$-saturated if $\lambda > |\mathcal{M}|$?
         Since $|f(\bar{a})| < \lambda$ and $\mathcal{N}$ is $\lambda$-saturated, $tp(x/f(\bar{a}))$ is realized in $\mathcal{N}$ by some $c$.\\
         Then $f \cup \{\bra b,c\ket \}$ is the required extension.\\
         ($\mathcal{M} \vDash \phi(b,\bar{a}) \iff \mathcal{N} \vDash \phi(c,f(\bar{a}))$, so $f$ preserves the truth).\\
-        (ii) $\implies$ (iii): Let $p(\bar{z})$ be as in (iii), $p(\bar{z})$ is f.s. in $\mathcal{N}$. Then by (5.11), $p(\bar{z})$ is realized in some elementary extension $\mathcal{M}'$ of $\mathcal{N}$, by some tuple $\bar{a}$ (where $|\bar{a}| = |\bar{z}|$).\\
-        But now we can shrink $|\mathcal{M}'|$ by downward L-S theorem: there is $\mathcal{M} \preccurlyeq\mathcal{M}'$ such that $A \cup \bar{a} \subseteq M$, where $A$ is the parameter set of the type.
+        (ii) $\implies$ (iii): (idea?: Let $p(\bar{z})$ be as in (iii), $p(\bar{z})$ is f.s. in $\mathcal{N}$. Then by (5.11), $p(\bar{z})$ is realized in some elementary extension $\mathcal{M}'$ of $\mathcal{N}$, by some tuple $\bar{a}$ (where $|\bar{a}| = |\bar{z}|$).\\
+        But now we can shrink $|\mathcal{M}'|$ by downward L-S theorem: there is $\mathcal{M} \preccurlyeq\mathcal{M}'$ such that $A \cup \bar{a} \subseteq M$, where $A$ is the parameter set of the type.)
 
         \includegraphics[scale=0.5]{image/Model_10.png}
+        
+        ---Lecture 11---
+
+        Let $p(\bar{z})$ be as in (iii), $\mathcal{M}$ is s.t. $\mathcal{N} \preccurlyeq\mathcal{M}$ and $\mathcal{M} \vDash p(\bar{b})$. The identity map $id_A:\mathcal{M} \to \mathcal{N}$ is partial elementary.\\
+        Idea: build $\bra f_i:i < |\bar{b}| \ket$ of $p$ elementary maps. Then $\cup f_i$ is partial elementary, and $\bar{b} \in \dom \cup_{i < |\bar{a}|} f_i$.\\
+        Let $f_0 = id_A$. At stage $i+1$, use (ii) to put $b_i$ in $\dom (f_{i+1})$.\\
+        At limit stages $\mu < \lambda$, let $f_\mu = \cup_{i < \mu} f_i$.\\
+        Then $f(\bar{b})$ satisfies $p(\bar{z})$ in $\mathcal{N}$.
+
+        (iii) $\implies$ (i) is trivial.
     \end{proof}
 \end{thm}
 
+\begin{coro} (6.6)\\
+    If $\mathcal{M}$ and $\mathcal{N}$ are saturated, and $\mathcal{M} \equiv \mathcal{N}$, and $|\mathcal{M}| = |\mathcal{N}|$, then every elmentary map $f:\mathcal{M} \to \mathcal{N}$ extends to an isomorphism.\\
+    In particular, these two structures are isomorphic (since the empty map $\phi$ is an elementary map).
+    \begin{proof}
+        Use theorem 6.5(ii) to extend $f:\mathcal{M} \to \mathcal{N}$ to an isomorphism by back-and-forth (similar to that in random graphs), taking unions at limit stages.
+    \end{proof}
+\end{coro}
+
+\begin{coro} (6.7)\\
+    Models of $T_{dlo}$ and $T_{rg}$ are $\omega$-saturated.
+    \begin{proof}
+        In chapter 4 we proved that we can do one point extensions for partial elmentary maps for both of the cases (4.3 and 4.17).\\
+        So $(\Q,<)$ $\omega$-saturated.\\
+        Is $(\R,<)$ $\omega_1$-saturated? No -- for example, the type $p(x):= \{x>q: q \in \Q\}$ is not realized).
+    \end{proof}
+\end{coro}
+
+\begin{defi} (6.8)\\
+    An isomorphism $\alpha:\mathcal{N} \to \mathcal{N}$ is called an \emph{automorphism}.\\
+    The automorphism of $\mathcal{N}$ form a group denoted by $\Aut(\mathcal{N})$.\\
+    If $A \subseteq N$, then $\Aut(\mathcal{N}/A)$ for the subgroup of $\Aut(\mathcal{N})$ that fixes $A$ pointwise, i.e. $\{\alpha \in \Aut(\mathcal{N}):\alpha|_A = id\}$.
+\end{defi}
+
+\begin{defi} (6.9\footnote{In some texts the definition of this is a bit different -- sometimes they use $\lambda^+$-universality for our $\lambda$-universality here. Homogeneity is sometimes called \emph{strong homogeneity}. \emph{Ultrahomogeneity} concerns partial embeddings instead of (partial) elementary maps.})\\
+    (i) An $L$-structure $\mathcal{N}$ is $\lambda$-universal if for every $\mathcal{M} \equiv \mathcal{N}$ s.t. $|\mathcal{M}| \leq \lambda$, there is elementary embedding $\beta:\mathcal{M} \to \mathcal{N}$.\\
+    In particular, $\beta$ would be an isomorphism between $\mathcal{M}$ and its image in $\mathcal{N}$, i.e. $\mathcal{N}$ contains a copy of $\mathcal{M}$.\\
+    $\mathcal{N}$ is \emph{universal} if it is $|\mathcal{N}|$-universal.\\
+    (ii) $\mathcal{N}$ is \emph{$\lambda$-homogeneous} if every elementary map $f:\mathcal{N} \to \mathcal{N}$ s.t. $|f|<\lambda$ extends to an automorphism of $\mathcal{N}$.
+\end{defi}
+
+\begin{thm} (6.10)\\
+    Let $\mathcal{N}$ be s.t. $|\mathcal{N}| \geq |L|+\omega$. The following are equivalent:\\
+    (i) $\mathcal{N}$ is saturated;\\
+    (ii) $\mathcal{N}$ is universal and homogeneous.
+    \begin{proof}
+        (i) $\implies$ (ii): Assume $\mathcal{N}$ is saturated, let $\mathcal{M} \equiv \mathcal{N}$ and s.t. $|\mathcal{M}| \leq |\mathcal{N}|$.\\
+        Then let $\bar{a}$ enumerate $M$, let $p(\bar{x}) = tp(\bar{a}/\phi)$. Then $p(\bar{x})$ is f.s. in $\mathcal{M}$.\\
+        We claim that $p(\bar{x})$ is also f.s. in $\mathcal{N}$: let $\{\phi_1(\bar{x}),...,\phi_m(\bar{x})\}$, so $\mathcal{M} \exists \bar{x} \bigwedge_{i=1}^n \phi_i(\bar{x})$; but note that this is a sentence, so $\mathcal{N} \vDash \exists \bar{x} \bigwedge \phi_i(\bar{x})$ as well.\\
+        Now since $|\bar{x}| \leq |\mathcal{N}|$, $n$ realizes $p(\bar{x})$ since it's saturated (6.5 (iii)). Homoegeneity follows from (6.6).
+
+        Conversely, we show that if $\mathcal{M} \equiv \mathcal{N}, b \in M$, $f:\mathcal{M} \to \mathcal{N}$ elementary s.t. $|f| < |\mathcal{N}|$, then there is $\hat{f} \supseteq f$ elementary and contains $b$ in its domain (i.e. we can extend $f$ to be defined on $b$).
+
+        \includegraphics[scale=0.5]{image/Model_11.png}
+
+        (Find?) $\alpha \in \Aut(\mathcal{N})$ extending $\beta(\dom(f)) \to img(f)$.
+
+        (see lecturer's scanned notes for more details -- tbd.)
+    \end{proof}
+\end{thm}
+
+\begin{defi} (6.11)\\
+    Let $\bar{a}$ be a tuple in $\mathcal{N}$ and $A \subseteq N$. The \emph{orbit of $\bar{a}$} over $A$ is the set
+    $$O_\mathcal{N} (\bar{a}/A) = \{\alpha(\bar{a}):\alpha \in \Aut(\mathcal{N}/A)\}$$
+    If $\phi(\bar{x})$ is an $L(A)$-formula, then
+    $$\phi(\mathcal{N}) := \{\bar{a} \in N^{|\bar{x}|}:\mathcal{N} \vDash \phi(\bar{a})\}$$
+    (called the set defined by $\phi(\bar{x})$).\\
+    A set is definable over $A$ if it is defined by some $L(A)$-formula.
+\end{defi}
+
+There are analogous notions of a type defining a set, and a set being type-definable -- lecturer will say more about this next time.
 
 
 
