@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  11 NOV 2018 14:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  11 NOV 2018 14:08
 entering extended mode
 **"./Category Theory.tex"
 ("Category Theory.tex"
@@ -1710,11 +1710,7 @@ Overfull \hbox (20.0805pt too wide) in paragraph at lines 1507--1519
 o be [] and $\OML/cmm/m/it/10 "$ \OT1/cmr/m/n/10 (-20) to be [] 
  []
 
-[46] [47]
-
-LaTeX Warning: Command \j invalid in math mode on input line 1626.
-
-[48] [49]
+[46] [47] [48] [49]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1640.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 1640.
  ("Category Theory.aux")
@@ -1760,7 +1756,7 @@ ti8.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10
 .pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm5.pfb><E
 :/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Category Theory.pdf" (49 pages, 663033 bytes).
+Output written on "Category Theory.pdf" (49 pages, 662939 bytes).
 PDF statistics:
  509 PDF objects out of 1000 (max. 8388607)
  82 named destinations out of 1000 (max. 500000)
