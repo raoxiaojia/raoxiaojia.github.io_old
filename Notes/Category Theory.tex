@@ -1463,4 +1463,151 @@ Given $f:A \to B$, consider the push out
 If this is a monofunctor, we must have $(1_A,0) \simeq (1_A,1)$ (check the relation in the middle), since $Ff$ sends them to the same thing.\\
 If all morphisms of $\mathcal{C}$ are split monic, then $\mathcal{C}$ is a groupoid. And of course the converse holds (check).
 
+\newpage
+
+\section{Example Class 2}
+
+\subsection{Question 1}
+This is intended to be a easy question, although you could spend a lot of time if you want to go into all the details.
+
+Define $F_0,F_1,...,F_n$ by
+$$F_0(A_1 \to A_2 \to ... \to A_{n-1}) = (0 \to A_1 \to A_2 \to ... \to A_{n-1})$$
+$$F_n(A_1 \to ... \to A_{n-1}) = (A_1 \to A_2 \to ... \to A_{n-1} \to 1)$$
+and if $1 \leq i \leq n-1$,
+$$F_i (A_1 \to ... \to A_{n-1}) = (A_1 \to A_2 \to ... \to A_i \xrightarrow{1} A_i \to A_{i+1} \to ... \to A_{n-1})$$
+Similarly, $G_0,...,G_{n-1}$ by 
+$$G_0(B_1 \to B_2 \to ... \to B_n) = (B_2 \to ... \to B_n)$$
+$$G_{n-1}(B_1 \to ... \to B_{n-1} \to B_n) = (B_1 \to ... \to B_{n-1})$$
+and if $1 \leq i \leq n-2$,
+$$G_i (B_1 \to B_2 \to ... \to B_n) =(B_1 \to ... \to B_i \to B_{i+2} \to ... \to B_{n-1})$$
+where we compose two morphisms together.
+
+To show $F_i \dashv G_i$ (for $i$ in the middle), consider a morphism $F_i(\mathbf{A}) \to \mathbf{B}$. This looks like
+
+\begin{tikzcd}
+    A_1 \arrow[d,"\alpha_1"] \arrow[r] & A_2 \arrow[d,"\alpha_2"] \arrow[r] & ... \arrow[r] & A_i \arrow[d,"\alpha_i"] \arrow[r] & A_i \arrow[d,"\alpha_{i+1}"] \arrow[r] & A_{i+1} \arrow[d,"\alpha_{i+2}"] \arrow[r] & ... \arrow[r] & A_{n-1} \arrow[d,"\alpha_n"]\\
+    B_1 \arrow[r] & B_2 \arrow[r] & ... \arrow[r] & B_i \arrow[r] & B_{i+1} \arrow[r] & B_{i+2} \arrow[r] & ... \arrow[r] & B_n
+\end{tikzcd}
+Here $\alpha_{i+1}$ is uniquely determined by the other data: if we omit it, we get a morphism $\mathbf{A} \to G_i (\mathbf{B})$. Other adjunctions are similar.\\
+$F_0$ doesn't preserve $\mathbf{1}$, so it can't have a left adjoint; similarly $F_n$ doesn't preserve $\mathbf{0}$.
+
+For the last part, we have $(F_0G_0 \dashv F_1G_0 \dashv F_1G_1 \dashv ... \dashv F_n G_{n-1})$, which is a string of length $2n$; but $F_0G_0$ doesn't preserve $\mathbf{1}$, $F_nG_{n-1}$ doesn't preserve $\mathbf{0}$.
+
+\subsection{Question 2}
+We know
+
+\begin{tikzcd}
+    F \arrow[r,"F\alpha"] \arrow[d,"F\alpha"] & FGF \arrow[r,"\beta_F"] \arrow[d,"FGF\alpha"] & F \arrow[d,"F\alpha"]\\
+    FGF \arrow[r,"F\alpha_{GF}"] \arrow[rd,"1_{FGF}"] & FGFGF \arrow[r,"\beta_{FGF}"] \arrow[d,"FG\beta_F"] & FGF \arrow[d,"\beta_F"]\\
+    & FGF \arrow[r,"\beta_F"] & F
+\end{tikzcd}
+
+commutes by naturality of $\alpha$ and $\beta$ and the given triangular identity. So from the diagram we've proved idempotency.
+
+If we can split $(\beta_F) (F\alpha)$ in the functor category $[\mathcal{C},\mathcal{D}]$, say as
+\begin{tikzcd}
+    F \arrow[r,"\delta"] & F' \arrow[r,"\gamma"] & F
+\end{tikzcd}
+, we define $\eta$ to be 
+\begin{tikzcd}
+    1_\mathcal{C} \arrow[r,"\alpha"] & GF \arrow[r,"G\delta"] & GF'
+\end{tikzcd}
+and $\varepsilon$ to be
+\begin{tikzcd}
+    F'G \arrow[r,"\gamma_G"] & FG \arrow[r,"\beta"] & 1_\mathcal{D}
+\end{tikzcd}
+
+Now we just have to verify the triangular identities for these:
+
+\begin{tikzcd}
+    G \arrow[r,"\alpha_G"] \arrow[d,"\alpha_G"] & GFG \arrow[r,"G\delta_G"] \arrow[d,"GF\alpha_G"] & GF'G \arrow[d,"G\gamma_G"] \\
+    GFG \arrow[r,"\alpha_{GFG}"] \arrow[rr,bend right=20, "1_{GFG}"'] & GFGFG \arrow[r, "G\beta_{FG}"] & GFG \arrow[d,"G\beta"]\\
+    & & G
+\end{tikzcd}
+
+is the identity. For the other triangle,
+
+\begin{tikzcd}
+    F' \arrow[d,"\gamma"] \arrow[dd, bend right=20, "1_{F'}"'] \arrow[r,"F'\alpha"] & F'GF \arrow[d,"\gamma_{GF}"] \arrow[r,"F'G\delta"] & F'GF' \arrow[d,"\gamma_{GF'}"]\\
+    F \arrow[r,"F\alpha"] \arrow[d,"\delta"] & FGF \arrow[r,"FG\delta"] \arrow[d,"\beta_F"] & FGF' \arrow[d,"\beta_{F'}"]\\
+    F' \arrow[r,"\gamma"] \arrow[rr,bend right=20, "1_{F'}"'] & F \arrow[r, "\delta"] & F'
+\end{tikzcd}
+
+For the last part, take $\mathcal{C} = \mathbf{1}$, $\mathcal{D}$ to be the monoid $\{1,e|e^2 = e\}$.\\
+$\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$ are the unique functors, $GF=1_{\mathcal{C}}$, so take $\alpha = 1_{1_{\mathcal{C}}}$. $FG \neq 1_\mathcal{D}$, but $e$ defines a natural transformation $\beta:FG \to 1_\mathcal{D}$. Note that $\mathcal{D}$ doesn't have an initial object, so $G$ doesn't have a left adjoint (I think so?).
+
+\subsection{Question 3}
+In fact (i) and (ii) are immediately equivalent since $(\varepsilon_F) (F\eta) = 1_F$, so if one of them is an isomorphism then so is the other one.\\
+(ii) implies (iii) since $G$ preserves isomorphisms.\\
+(iii) implies (iv) since $\eta_{GF}$ and $GF\eta$ are both 1-sided inverses for $G\varepsilon_F$.\\
+(iv) implies (v) is trivial.\\
+The only nontrivial part is (v) $\implies$ (vi). Assuming (v), we need to show
+\begin{tikzcd}
+    GFG \arrow[r,"G\varepsilon"] & G \arrow[r,"\eta_G"] & GFG
+\end{tikzcd}
+is the identity, but 
+\begin{tikzcd}
+    GFG \arrow[r,"G\varepsilon"] \arrow[d,"\eta_{GFG}"] & G \arrow[d,"\eta_G"]\\
+    GFGFG \arrow[r,"GFG\varepsilon"] & GFG
+\end{tikzcd}
+commutes by naturality, and $(GFG\varepsilon)(GF\eta_G) = 1_{GFG}$.
+
+\subsection{Question 4}
+These $Fix$s are really only interesting when $F \dashv G$ is idempotent, since otherwise we usually have both of the $Fix$ being empty.\\
+(i) If $A \in \ob(Fix(GF))$, then $F\eta_A$ is an isomorphism, so $\varepsilon_{FA}$ is isomorphism, so $FA \in \ob(Fix(FG))$, and dually $G$ maps $Fix(FG)$ to $Fix(GF)$.\\
+The adjunction restricts to an adjunction $Fix(GF) \stackrel[G]{F} Fix(FG)$ (note that we are using the same letter for the restricted functors), where unit and counit are isomorphisms. So this is actually an equivalence between categories.\\
+(ii) Now if the adjunction is idempotent, then $F$ maps all of $\mathcal{C}$ into $Fix(FG)$, and $G$ maps $\mathcal{D}$ into $Fix(GF)$, so these things now can't be empty. Moreover, $GF$ is a functor $\mathcal{C} \to Fix(GF)$, and we have a natural transformation $\eta:1_\mathcal{C} \to GF$ s.t. $\eta$ is an isomorphism precisely when $A \in \ob(Fix(GF))$. This yields a bijection between morphisms $A \xrightarrow{f} A'$ with $A' \in \ob Fix(FG)$ and morphisms
+\begin{tikzcd}
+    GFA \arrow[r,"GFf"] & GFA' \arrow[r,"\eta_{A'}^{-1}"] & A'
+\end{tikzcd}
+Dually, $FG$ is a right adjoint to the inclusion $Fix(FG) \hookrightarrow \mathcal{D}$. So we have
+
+\begin{tikzcd}
+    \mathcal{C} \arrow[r,shift left, "FGF"] \arrow[d,"GF"',shift right] & \mathcal{D} \arrow[l,"GFG", shift left] \arrow[d,"FG",shift left]\\
+    Fix(GF) \arrow[u,shift right,"I"'] \arrow[r,"F",shift left] & Fix(FG) \arrow[u,shift left,"J"] \arrow[l,"G",shift left]
+\end{tikzcd}
+
+a factorization of $(F \dashv G)$ up to isomorphism as reflection + equivalance + coreflection.\\
+Suppose given $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D} \stackrel[K]{H}{\rightleftarrows} \mathcal{E}$ where $(F\dashv G)$ is a reflection and $(H \dashv K)$ is a coreflection.\\
+The unit of $(HF \dashv GK)$ is $1\mathcal{C} \xrightarrow{\eta} GF \stackrel[\simeq]{G\iota_F}{\longrightarrow} GKHF$, where $\eta$ and $\iota$ are the units of $(F\dashv G)$ and $(H \dashv K)$.\\
+Now $F \xrightarrow{F\eta} FGF \xrightarrow{\sim} FGKHF$ is an isomorphism, so $HF \to HFGKHF$ is an isomorphism.
+
+\subsection{Question 5}
+Start with $J$ a finite connected category. For $j \in \ob\mathcal{J}$, define $d(j) = |\{j' \in \ob\mathcal{J} | \not\exists j \to j' \text{ in } \mathcal{J}\}|$. Choose $j_0 \in \ob\mathcal{J}$ with $d(j_0)$ minimal. If $d(j_0) \neq 0$, pick $k$ in the corresponding above set of $d(j_0)$, we can find a zigzag
+
+\begin{tikzcd}
+    j_0 \arrow[rd] & & k_2 \arrow[ld] \arrow[rd] & & \cdot \arrow[ld] \arrow[r, dotted, no head] & K=K_n\\
+    & k_1 & & k_3 & &
+\end{tikzcd}
+Let $i$ be minimal s.t. $\not\exists j_0 \to K_i$. Then we have 
+\begin{tikzcd}
+    j_0 \arrow[rd,"\alpha"] & & k_i \arrow[ld,"\beta"]\\
+    & k_{i-1} &
+\end{tikzcd}
+. Enlarge $\mathcal{J}$ to $\mathcal{J}_1$ by adding
+\begin{tikzcd}
+    & j_1 \arrow[ld,"\gamma"] \arrow[rd,"\delta"] & \\
+    j_0 & & k_i
+\end{tikzcd}
+plus composites subjects to the relation $\alpha\gamma = \beta\delta$.\\
+Note that $d_{\mathcal{J}_1}(j_1) < d_{\mathcal{J}}(j_0)$.\\
+If $D:J \to \mathcal{C}$ where $\mathcal{C}$ has pullbacks, we enlarge it to a diagram $D_1: \mathcal{J}_1 \to \mathcal{C}$ by requiring
+\begin{tikzcd}
+    & D_1(j_1) \arrow[ld] \arrow[rd] &\\
+    D(j_0) \arrow[rd] & & D(k_i) \arrow[ld]\\
+    & D(K_{i-1}) &
+\end{tikzcd}
+to be a pullback. Then any cone over $D$ extends uniquely to a cone over $D_1$, and hence $D_1$ has a limit iff $D$ does.\\
+Hence, after at most $d(j_0)$ steps, we get a diagram $D': \mathcal{J}' \to \mathcal{C}$ where $\mathcal{J}'$ has a weakly initial object, s.t. the extended diagram has a limit iff the original diagram $D$ does.\\
+Now suppose we are given $D:\mathcal{J} \to \mathcal{C}$ where $\mathcal{J}$ is finite and has aweakly initial object $j_0$. Let
+$$\{j_0 \stackrel[\beta_i]{\alpha_i}{\rightrightarrows} j_i| 1 \leq i \leq n\}$$
+be a listing of the unequal parallel pairs with domain $j_0$. Now form
+
+\begin{tikzcd}
+    E_n \arrow[r] & ... \arrow[r] & E_2 \arrow[r] & E_1 \arrow[r] & D(j_0)
+\end{tikzcd}
+
+where $E_1 \to D(j_0)$ is the equalizer of $D(\alpha_1)$ and $D(\beta_1)$, $E_2 \to E_1$ is tha equalizer of $E_1 \to D(j_0) \stackrel[D(\beta_2)]{D(\alpha_2)}{\rightrightarrows} D(j_2)$, and so on.\\
+Then the composites $E_n \to D(j_0) \to D(j)$ for $j \in \ob\mathcal{J}$ form a cone over $D$; moreover, if $(\lambda_j| j \in \ob\mathcal{J})$ is any cone over $D$, $\lambda_{j_0}$ factors uniquely through $D_n \to D(j_0)$, and the factorization is a moprhism of cones.
+
 \end{document}
