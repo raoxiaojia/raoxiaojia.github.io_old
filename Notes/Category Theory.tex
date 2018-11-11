@@ -981,7 +981,7 @@ by naturality of $\varepsilon$ (we'll use (3) to denote this diagram).
 \end{defi}
 
 \begin{eg} (5.2)\\
-    (a) Any adjunction $(F \dashv G)$ induces a monad $(GF,\eta,G\varepsilon F)$ pm $\mathcal{C}$ and a comonad $(FG,\varepsilon, F\eta G)$ on $\mathcal{D}$.\\
+    (a) Any adjunction $(F \dashv G)$ induces a monad $(GF,\eta,G\varepsilon F)$ on $\mathcal{C}$ and a comonad $(FG,\varepsilon, F\eta G)$ on $\mathcal{D}$.\\
     (b) Let $M$ be a monoid. The functor $(M \times -): \mathbf{Set} \to \mathbf{Set}$ has a monad structure with unit given by $\eta_A(a) = (1_M,a)$, and multiplication $\mu_A(m,m',a) = (mm',a)$.\\
     The monad identities follow from the mononid ones.\\
     (c) Let $\mathcal{C}$ be any category with finite products, $A \in \ob\mathcal{C}$. The functor $(A \times -):\mathcal{C} \to \mathcal{C}$ has a comonad structure with counit $\varepsilon_B" A \times B \to B$ given by $\pi_2$, and comultiplication $\delta_B:A \times B \to A \times A \times B$ given by $(\pi_1,\pi_1,\pi_2)$.
@@ -1609,5 +1609,29 @@ be a listing of the unequal parallel pairs with domain $j_0$. Now form
 
 where $E_1 \to D(j_0)$ is the equalizer of $D(\alpha_1)$ and $D(\beta_1)$, $E_2 \to E_1$ is tha equalizer of $E_1 \to D(j_0) \stackrel[D(\beta_2)]{D(\alpha_2)}{\rightrightarrows} D(j_2)$, and so on.\\
 Then the composites $E_n \to D(j_0) \to D(j)$ for $j \in \ob\mathcal{J}$ form a cone over $D$; moreover, if $(\lambda_j| j \in \ob\mathcal{J})$ is any cone over $D$, $\lambda_{j_0}$ factors uniquely through $D_n \to D(j_0)$, and the factorization is a moprhism of cones.
+
+(ii) Consider 
+\begin{tikzcd}
+    \mathcal{C}/A \arrow[r,"U"] & \mathcal{C} \\
+    \begin{pmatrix}
+        B\\
+        \downarrow f\\
+        A
+    \end{pmatrix} \arrow[r] & B
+\end{tikzcd}
+, and suppose given $D:\mathcal{J} \to \mathcal{C}/A$ with $\mathcal{J}$ connected, and write $D(j) = \begin{pmatrix}UD(j)\\\downarrow f_j\\A \end{pmatrix}$.\\
+Given any cone $(B\xrightarrow{\beta_j} UD(j) | j \in \ob\mathcal{J})$ over $UD$, the composite $f_j \beta_j$ is independent of $j$, since if $\exists \alpha:j \to \j'$, then 
+
+\begin{tikzcd}
+    & B \arrow[ld,"\beta_j"'] \arrow[rd,"\beta_{j'}"] &\\
+    UD(j) \arrow[rr,"UD(\alpha)"] \arrow[rd,"f_j"'] & & UD(j') \arrow[ld,"f_{j'}"] \\
+    & A &
+\end{tikzcd}
+commutes. So there exists a unique $g:B \to A$ s.t. $\beta_j$ become a cone in $\mathcal{C}/A$ with apex $g$.\\
+In particular, if the $\beta_j$ are a limit cone over $UD$, their liftings are a limit cone over $D$.
+
+(iii) Given $F:\mathcal{C} \to \mathcal{D}$, factor it as $\mathcal{C} \xrightarrow{\hat{F}} D / F1 \xrightarrow{U} D$, where $\hat{F}(A) = \begin{pmatrix} FA\\\downarrow\\F1\end{pmatrix}$. $\hat{F}$ preserves pullbacks since $F$ preserves them and $U$ creates them. But $\hat{F}$ also preserves the terminal object. So $\hat{F}$ preserves all finite limits. And $U$ preserves all connected limits, so $U\hat{F} = F$ preserves all finite connected limits.
+
+
 
 \end{document}
