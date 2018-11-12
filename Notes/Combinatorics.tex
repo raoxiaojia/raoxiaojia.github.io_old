@@ -606,8 +606,8 @@ We deduced concentration of measure from isoperimetric estimates conversely:
 
 \begin{prop}
     Let $G$ be a graph s.t. for any Lipschitz $f:G \to \R$ with median $M$ we have 
-    $$\frac{|\{x \in G:|f(x)-M| \leq t\}}{|G|} \geq 1-\alpha$$
-    (for some given $t,\alpha$). Then for $A \subset G$ with $\frac{|A|}{|G|} \geq \frac{1}{2}$ we have $\frac{A_{(t)}|}{|G|} \geq 1-\alpha$.
+    $$\frac{|\{x \in G:|f(x)-M| \leq t\}|}{|G|} \geq 1-\alpha$$
+    (for some given $t,\alpha$). Then for $A \subset G$ with $\frac{|A|}{|G|} \geq \frac{1}{2}$ we have $\frac{|A_{(t)}|}{|G|} \geq 1-\alpha$.
     \begin{proof}
         The function $f(x) = d(x,A)$ is Lipschitz and has $0$ as a median (as $|A| \geq \frac{1}{2}|G|$).
     \end{proof}
@@ -656,7 +656,7 @@ $B_i(A)^{(i)}_- = $ first $|A^{(i)}_-|$ elements of $\P(X-i)$ in binary (we defi
 Note that $|B_i(A)| = |A|$. We say $A$ is $i$-binary-compressed if $B_i(A) = A$.
 
 \begin{thm} (8, edge-isoperimetric inequality in the cube\footnote{This is sometimes called Harper-Lindsey-Berstein-Hart theorem. Basically Harper gave another proof with lots of holes, Bernstein tried to fix them but he missed some of them, and Hart fixed the proof in the end. Meanwhile Lindsey gave a generalized version of the theorem (which is correct).})\\
-    Let $A \subset Q_n$, and let $C$ be the initial segment of the binary ordering with $|C| = |A|$. Then $|\partial A| \geq |\partial C$.\\
+    Let $A \subset Q_n$, and let $C$ be the initial segment of the binary ordering with $|C| = |A|$. Then $|\partial A| \geq |\partial C|$.\\
     In particular, if $|A| = 2^k$ then $|\partial A| \geq 2^k (n-k)$.
     \begin{proof}
         Induction on $n$: $n=1$ is trivial.\\
