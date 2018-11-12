@@ -557,7 +557,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     (ii) $G$ is full and faithful iff $\varepsilon$ is an isomorphism.\\
     (and of course the dual results for unit -- change epic to monic).\\
     \begin{proof}
-        (i) Given $B \xrightarrow{g} B'$, $Gg$ corresponds, under the adjunction, to the composite $FGB \xrightarrow{\varepsilon_B} B \xrightarrow{g} B'$. Hence the mapping $g \to Gg$ is injective on morphisms with domain $B$ (and specified codomain) iff $g \to g\varepsilon_B$ is injecctive, i.e. iff $\varepsilon_B$ is an epimorphism.\\
+        (i) Given $B \xrightarrow{g} B'$, $Gg$ corresponds, under the adjunction, to the composite $FGB \xrightarrow{\varepsilon_B} B \xrightarrow{g} B'$. Hence the mapping $g \to Gg$ is injective on morphisms with domain $B$ (and specified codomain) iff $g \to g\varepsilon_B$ is injective, i.e. iff $\varepsilon_B$ is an epimorphism.\\
         (ii) The proof of this is actually very similar: $G$ is full and faithful iff $g \to g\varepsilon_B$ is bijective, but that forces $\varepsilon$ to be an isomorphism: if $\alpha:B \to FGB$ is such that $\alpha\varepsilon_B = 1_{FGB}$, then this must be a two sided inverse as $\varepsilon_B \alpha \varepsilon_B = \varepsilon_B$, whence $\varepsilon_B \alpha = 1_B$. So $\varepsilon_B$ is an isomorphism, for all $B$.
     \end{proof}
 \end{lemma}
@@ -565,7 +565,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
 ---Lecture 9---
 
 \begin{defi} (3.10)\\
-    By a \emph{reflection}, we mean an adjunction in which the right adjoint is full and faithfull (equivalently, the counit is an isomorphism).\\
+    By a \emph{reflection}, we mean an adjunction in which the right adjoint is full and faithful (equivalently, the counit is an isomorphism).\\
     We say a full subcategory $\mathcal{C}' \subseteq \mathcal{C}$ is \emph{reflective} if the inclusion $\mathcal{C}'\to\mathcal{C}$ has a left adjoint.
 \end{defi}
 
@@ -1239,7 +1239,7 @@ In general, however, it has few other limits or colimits. In contrast, we have
     \begin{tikzcd}
         A \arrow[r,shift left, "f"] \arrow[r,shift right, "g"'] & B \arrow[r,"h"] \arrow[l,bend left=40,"t"] & C \arrow[l,bend left = 20,"s"]
     \end{tikzcd}
-    satisfying $hf=hg,hs=1_C,gt=1_b$ and $ft = sh$.\\
+    satisfying $hf=hg,hs=1_C,gt=1_B$ and $ft = sh$.\\
     These equations imply that $h$ is a coequalizer of $(f,g)$: if $B \xrightarrow{x} D$ satisfies $xf = xg$, then $x=xgt=xft=xsh$, so $x$ factors through $h$, and the factorization is unique since $h$ is split epic.\\
     Note that split coequalizers are preserved by \emph{all} functors.\\
     (c) Given a functor $G:\mathcal{D} \to \mathcal{C}$, a parallel pair $A \stackrel[g]{f}{\rightrightarrows} B$ is called \emph{$G$-split} if there exsts a split coequalizer diagram
@@ -1259,7 +1259,11 @@ In general, however, it has few other limits or colimits. In contrast, we have
 \end{defi}
 
 \begin{lemma} (5.11)\\
-    Suppose we are given an adjunction $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$, inducing a monad $\T$ on $\mathcal{C}$, then $K:\mathcal{D} \to \mathcal{C}^\T$ has a left adjoint provided, for every $\T$-algebra $(A,\alpha)$, the pair $FGFA \stackrel[\varepsilon_{FA}]{F\alpha}{\rightrightarrows} FA$ has a coqeualizer in $\mathcal{D}$.
+    Suppose we are given an adjunction $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$, inducing a monad $\T$ on $\mathcal{C}$, then $K:\mathcal{D} \to \mathcal{C}^\T$ has a left adjoint provided, for every $\T$-algebra $(A,\alpha)$, the pair 
+    \begin{tikzcd}
+        FGFA \arrow[r,shift right, "\varepsilon_{FA}"'] \arrow[r,shift left, "F\alpha"] & FA
+    \end{tikzcd} 
+    has a coqeualizer in $\mathcal{D}$.
     \begin{proof}
         We define $L:\mathcal{C}^\T \to \mathcal{D}$ by taking $FA \to L(A,\alpha)$ to be a coequalizer for $(F\alpha,\varepsilon_{FA})$. Note that this is a functor $\mathcal{C}^\T \to \mathcal{D}$.\\
         Recall that $K$ is defined by $KB=(GB,G\varepsilon_B)$.\\
@@ -1270,6 +1274,90 @@ In general, however, it has few other limits or colimits. In contrast, we have
         It's tedious but entirely straightforward to verify that these bijections are natural in $(A,\alpha)$ and in $B$.
     \end{proof}
 \end{lemma}
+
+---Lecture 17---
+
+\begin{thm} (5.12, Precise Monadicity Theorem)\\
+    $G:\mathcal{D} \to \mathcal{C}$ is monadic iff $G$ has a left adjoint and creates coequalizers of $G$-split pairs.
+\end{thm}
+
+\begin{thm} (5.13, Refined/Reflexive Monadicity Theorem)\\
+    Suppose $\mathcal{D}$ has and $G:\mathcal{D} \to \mathcal{C}$ preserves reflexive coequalizers, and that $G$ reflects isomorphisms and has a left adjoint. Then $G$ is monadic.
+    \begin{proof}
+        (5.12) $\implies$: It's sufficient to show that $G^\mathbb{T}:\mathcal{C}^\mathbb{T} \to \mathcal{C}$ creates coequalizers of $G^\mathbb{T}$-split pairs. But this follows from the argument of 5.8(ii), since if $(A,\alpha) \stackrel[g]{f}{\rightrightarrows} (B,\beta)$ is a $G^\T$-split pair, the coequalizer of $A \stackrel[g]{f}{\rightrightarrows} B$ is preserved by $T$ and by $TT$.\\
+        (5.12) $\Leftarrow$ and (5.13): Let $\T$ denotes the monad induced by $(F \dashv G)$. For any $\T$-algebra $(A,\alpha)$, the pair
+        \begin{tikzcd}
+            FGFA \arrow[r,shift right, "\varepsilon_{FA}"'] \arrow[r,shift left, "F\alpha"] & FA
+        \end{tikzcd}
+        is both reflexive and $G$-split, so has coeuqalizer in $\mathcal{D}$; and hence by (5.11), $K:\mathcal{D} \to \mathcal{C}^\T$ has a left adjoint $L$.\\
+        The unit of $(L \dashv K)$ at an algebra $(A,\alpha)$: the coequalizer defining $L(A,\alpha)$ is mapped by $K$ to the diagram
+
+        \begin{tikzcd}
+            F^\T TA \arrow[r,shift left, "F^\T \alpha"] \arrow[r,shift right, "\mu_A"'] & F^\T A arrow[r] \arrow[rd,"\alpha"'] & & KL(A,\alpha) \\
+            & & (A,\alpha) \arrow[ru,dashed,"{\iota_{(A,\alpha)}}"] &
+        \end{tikzcd}
+
+        and $\iota_{(A,\alpha)}$ is the factorization of this through the ($G^\T$-split) coequalizer of $\alpha$.\\
+        But either set of hypotheses implies that $G$ preserves the coequalizers defining $L(A,\alpha)$, so $\iota_(A,\alpha)$ is an isomorphism.\\
+        For the counit $\xi_B: LKB \to B$, we have a coequalizer
+
+        \begin{tikzcd}
+            FGFGB \arrow[r,shift left, "FG\varepsilon_B"] \arrow[r,shift right, "\varepsilon_{FGB}"'] & FGB \arrow[r,two heads] \arrow[rd,"\varepsilon_B"'] & LKB \arrow[d,dashed, "\xi_B"]\\
+            & & B
+        \end{tikzcd}
+
+        Again, either set of hypothesis implies that $\varepsilon_B$ is a coequalizer of the pair $(FG\varepsilon_B, \varepsilon_{FGB})$, so $\xi_B$ is an isomorphism.
+    \end{proof}
+\end{thm}
+
+\begin{eg} (5.14)\\
+    (a) The forgetful functor $\mathbf{Gp} \to \mathbf{Set}$, $\mathbf{Rng} \to \mathbf{Set}$, $\mathbf{Mod}_R \to \mathbf{Set}, ...$ all satisfy the hypotheses of (5.13), for the reflexive coequalizers, use Sheet 4 Question 3\footnote{Lecturer: I usually prove it as a lemma here, but this year I'm not going to do it because I want you to do it in the fourth example sheet. It's a nice exercise to do it by yourself.} which shows that if $A \stackrel[g]{f}{\rightrightarrows} B \xrightarrow{h} C$ is a reflexive coequalizer diagram in $\mathbf{Set}$, then so is 
+    \begin{tikzcd}
+        A^n \arrow[r,shift left, "f^n"] \arrow[r,shift right, "g^n"'] & B \arrow[r,"h^n"] & C^n
+    \end{tikzcd}
+    .\\
+    (b) Any reflection is monadic: this follows from Sheet 3 Question 2, but can also be proved using (5.12). Let $\mathcal{D}$ be a reflective (so full) subcategory of $\mathcal{C}$, and suppose a pair $A \stackrel[g]{f}{\rightrightarrows} B$ in $\mathcal{D}$ fits into a split coequalizer diagram
+    \begin{tikzcd}
+        A \arrow[r,shift left, "f"] \arrow[r,shift right, "g"'] & B \arrow[r,green, "h"] \arrow[l,green, bend left=30,"t"] & \textcolor{green}{C} \arrow[l,green, bend left=30, "s"]
+    \end{tikzcd}
+    in $\mathcal{C}$. Then $t$ and $ft=sh$ belong to $\mathcal{D}$, since $\mathcal{D}$ is full, and hence $s$ is in $\mathcal{D}$ since it's an equalizer of $(1_B,sh)$ and $\mathcal{D}$ is closed under limits in $\mathcal{C}$. Hence also $h \in \mor\mathcal{D}$.\\
+    (c) This is a non-example but an important one: Consider the composite adjunction
+
+    \begin{tikzcd}
+        \mathbf{Set} \arrow[r, shift left, "F"] & \mathbf{AbGp} \arrow[l, shift left, "U"] \arrow[r, shift left, "L"] & \mathbf{tfAbGp} \arrow[l,shift left, "I"]
+    \end{tikzcd}
+
+    The two factors are monadic by (a) and (b) respectively, but the composite isn't since the monad it induces on $\mathbf{Set}$ is isomorphic to that induced by $(F \dashv U)$. So monadic adjunctions are not stable under composition -- that's why we have to have the conditions in (5.13) -- note that those adjunction are stable under compositions (I think lecturer said so but didn't write it down).\\
+    (d) Consider the forgetful functor $\mathbf{Top} \xrightarrow{U} \mathbf{Set}$. This is faithful and has both left and right adjoints (so preserves all coequalizers), but the monad induced on $\mathbf{Set}$ is $(1,1,1)$, and the category of algebras is $\mathbf{Set}$. So we see that we can't weaken the condition in (5.13) of $G$ reflecting isomorphisms to only be faithful.\\
+    (e) Consider the composite function
+
+    \begin{tikzcd}
+        \mathbf{Set} \arrow[r,shift left, "D"] & \mathbf{Top} \arrow[l,shift left, "U"] \arrow[r,shift left,"\beta"] & \mathbf{KHaus} \arrow[l, shift left, "I"]
+    \end{tikzcd}
+
+    We'll show that this satisfies the hypotheses of (5.12) (with use of a lemma in general topology which lecturer is not going to prove): Let 
+    \begin{tikzcd}
+        X \arrow[r,shift left, "f"] \arrow[r, shift right, "g"'] & Y \arrow[l, green, bend left=30, "t"] \arrow[r,green, "h"] & Z \arrow[l,bend left=30, "s"]
+    \end{tikzcd}
+    be a split coequalizer in $\mathbf{Set}$, where $X$ and $Y$ have compact Hausdorff topologies and $f,g$ are continuonus. Note that the quotient topology on $Z \cong Y/R$ is compact, so it's the only possible candidate for a compact Hausdorff topology making $h$ continuous.\\
+    We use the lemma from general topology: if $Y$ is compact Hausdorff, then a quotient $Y/R$ is Hausdorff iff $R \subseteq Y \times Y$ is closed.\\
+    We note $R = \{(y,y') | h(y) = h(y') \} = \{(y,y') | sh(y) = sh(y')\} = \{(y,y') | ft(y) = ft(y')\}$.\\
+    So if we define $S = \{(x,x')|f(x) = f(x')\} \subseteq X \times X$, then $R \subseteq (g \times g) (S)$; but the reverse inclusion also holds. But 
+    \begin{tikzcd}
+        S \arrow[r] & X \times X \arrow[r,shift left, "f\pi_1"] \arrow[r,shift right, "f\pi_2"'] & Y
+    \end{tikzcd}
+    is an equalizer, and $Y$ is Hausdorff, so $S$ is closed in $X \times X$ and hence compact. So $R=(g \times g)(S)$ is compact and hence closed in $Y \times Y$.
+\end{eg}
+
+
+
+
+
+
+
+
+
+
 
 \newpage
 
