@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  12 NOV 2018 11:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  12 NOV 2018 12:27
 entering extended mode
 **"./Category Theory.tex"
 ("Category Theory.tex"
@@ -1587,7 +1587,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 554--560
  []
 
 [19] [20]
-<image/Cat_07.png, id=259, 722.7pt x 406.51875pt>
+<image/Cat_07.png, id=157, 722.7pt x 406.51875pt>
 File: image/Cat_07.png Graphic file (type png)
 <use image/Cat_07.png>
 Package pdftex.def Info: image/Cat_07.png  used on input line 617.
@@ -1668,15 +1668,22 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 1728.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1728.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1728.
 
-Package rerunfilecheck Info: File `"Category Theory".out' has not changed.
-(rerunfilecheck)             Checksum: E357E43E77E5EBB4B67123CB1140AC0E;1185.
+
+
+Package rerunfilecheck Warning: File `"Category Theory".out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `"Category Theory".out':
+(rerunfilecheck)             Before: C0471600ECC463E17E0A1B6B8141251E;291
+(rerunfilecheck)             After:  E357E43E77E5EBB4B67123CB1140AC0E;1185.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1728.
  ) 
 Here is how much of TeX's memory you used:
- 44572 strings out of 492970
- 1045211 string characters out of 3135854
- 1266084 words of memory out of 3000000
- 47674 multiletter control sequences out of 15000+200000
+ 44556 strings out of 492970
+ 1044961 string characters out of 3135854
+ 1266074 words of memory out of 3000000
+ 47658 multiletter control sequences out of 15000+200000
  551679 words of font info for 151 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,19n,96p,866b,1009s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1707,9 +1714,9 @@ ti8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm5.pfb><C
 :/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Category Theory.pdf" (51 pages, 677381 bytes).
+Output written on "Category Theory.pdf" (51 pages, 663280 bytes).
 PDF statistics:
- 520 PDF objects out of 1000 (max. 8388607)
+ 433 PDF objects out of 1000 (max. 8388607)
  85 named destinations out of 1000 (max. 500000)
- 18618 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 18498 words of extra memory for PDF output out of 20736 (max. 10000000)
 
