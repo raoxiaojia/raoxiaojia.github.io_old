@@ -740,7 +740,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
 ---Lecture 11---
 
 \begin{rem} (4.5)\\
-    (a) If $\mathcal{C}$ has limits of shape $\mathcal{J}$, $F: \mathcal{C} \to \mathcal{D}$ preserves them and $F$ reflects isomorphisms, then $F$ reflects limits of shape $\mathcal{J}$ (???????).
+    (a) If $\mathcal{C}$ has limits of shape $\mathcal{J}$, $F: \mathcal{C} \to \mathcal{D}$ preserves them and $F$ reflects isomorphisms, then $F$ reflects limits of shape $\mathcal{J}$ (???????).\\
     (b) $F$ reflects limits of shape $1$ $\iff$ $F$ reflects isomorphisms.\\
     (c) If $\mathcal{D}$ has limits of shape $\mathcal{J}$ and $F:\mathcal{C} \to \mathcal{D}$ creates them, then $F$ both preserves and reflects them.\\
     (d) In any of the statements of (4.3), we may replace both instances of \emph{$\mathcal{C}$ has} by either \emph{$\mathcal{C}$ has and $F:\mathcal{C} \to \mathcal{D}$ preserves} or \emph{$\mathcal{D}$ has and $F:\mathcal{C} \to \mathcal{D}$ creates}.
@@ -984,7 +984,7 @@ by naturality of $\varepsilon$ (we'll use (3) to denote this diagram).
     (a) Any adjunction $(F \dashv G)$ induces a monad $(GF,\eta,G\varepsilon F)$ on $\mathcal{C}$ and a comonad $(FG,\varepsilon, F\eta G)$ on $\mathcal{D}$.\\
     (b) Let $M$ be a monoid. The functor $(M \times -): \mathbf{Set} \to \mathbf{Set}$ has a monad structure with unit given by $\eta_A(a) = (1_M,a)$, and multiplication $\mu_A(m,m',a) = (mm',a)$.\\
     The monad identities follow from the mononid ones.\\
-    (c) Let $\mathcal{C}$ be any category with finite products, $A \in \ob\mathcal{C}$. The functor $(A \times -):\mathcal{C} \to \mathcal{C}$ has a comonad structure with counit $\varepsilon_B" A \times B \to B$ given by $\pi_2$, and comultiplication $\delta_B:A \times B \to A \times A \times B$ given by $(\pi_1,\pi_1,\pi_2)$.
+    (c) Let $\mathcal{C}$ be any category with finite products, $A \in \ob\mathcal{C}$. The functor $(A \times -):\mathcal{C} \to \mathcal{C}$ has a comonad structure with counit $\varepsilon_B: A \times B \to B$ given by $\pi_2$, and comultiplication $\delta_B:A \times B \to A \times A \times B$ given by $(\pi_1,\pi_1,\pi_2)$.
 \end{eg}
 
 Does every monad arise from an adjunction? In 5.2(b) we have the category $[M,\mathbf{Set}]$. Its forgetful functor to $\mathbf{Set}$ has a left adjoint, sending $A$ to $M \times A$ with $M$ acting by multiplication on the left factor. This adjunction gives rise to the monad of 5.2(b).
@@ -1133,7 +1133,7 @@ Does every monad arise from an adjunction? In 5.2(b) we have the category $[M,\m
     \end{proof}
 \end{lemma}
 
-Note that although this is quite a length proof, there's only one way we can go, i.e. verify everything we need.
+Note that although this is quite a lengthy proof, there's only one way we can go, i.e. verify everything we need.
 
 \begin{thm} (5.7)\\
     Given a monad $\mathbb{T}$ on $\mathcal{C}$, let $\mathbf{Adj}(\mathbb{T})$ be the category whose objects are the adjunctions $(\mathcal{C}\stackrel[G]{F}{\rightleftarrows} \mathcal{D})$ inducing $\mathbb{T}$, and whose morphisms $(\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}) \to (\mathcal{C} \stackrel[G']{F'}{\rightleftarrows} \mathcal{D}')$ are functors $H:\mathcal{D} \to \mathcal{D}'$, satisfying $HF = F'$ and $G'H = G$ (note that we might have expected just natural isomorphisms here, but we do need equalities for things to work). Then the Kleisli adjunction is an initial object of $\mathbf{Adj}(\mathbb{T})$, and the Eilenberg-Moore adjunction is terminal.\\
@@ -1468,7 +1468,7 @@ If all morphisms of $\mathcal{C}$ are split monic, then $\mathcal{C}$ is a group
 \section{Example Class 2}
 
 \subsection{Question 1}
-This is intended to be a easy question, although you could spend a lot of time if you want to go into all the details.
+This is intended to be an easy question, although you could spend a lot of time if you want to go into all the details.
 
 Define $F_0,F_1,...,F_n$ by
 $$F_0(A_1 \to A_2 \to ... \to A_{n-1}) = (0 \to A_1 \to A_2 \to ... \to A_{n-1})$$
@@ -1599,7 +1599,7 @@ If $D:J \to \mathcal{C}$ where $\mathcal{C}$ has pullbacks, we enlarge it to a d
 \end{tikzcd}
 to be a pullback. Then any cone over $D$ extends uniquely to a cone over $D_1$, and hence $D_1$ has a limit iff $D$ does.\\
 Hence, after at most $d(j_0)$ steps, we get a diagram $D': \mathcal{J}' \to \mathcal{C}$ where $\mathcal{J}'$ has a weakly initial object, s.t. the extended diagram has a limit iff the original diagram $D$ does.\\
-Now suppose we are given $D:\mathcal{J} \to \mathcal{C}$ where $\mathcal{J}$ is finite and has aweakly initial object $j_0$. Let
+Now suppose we are given $D:\mathcal{J} \to \mathcal{C}$ where $\mathcal{J}$ is finite and has a weakly initial object $j_0$. Let
 $$\{j_0 \stackrel[\beta_i]{\alpha_i}{\rightrightarrows} j_i| 1 \leq i \leq n\}$$
 be a listing of the unequal parallel pairs with domain $j_0$. Now form
 
@@ -1607,7 +1607,7 @@ be a listing of the unequal parallel pairs with domain $j_0$. Now form
     E_n \arrow[r] & ... \arrow[r] & E_2 \arrow[r] & E_1 \arrow[r] & D(j_0)
 \end{tikzcd}
 
-where $E_1 \to D(j_0)$ is the equalizer of $D(\alpha_1)$ and $D(\beta_1)$, $E_2 \to E_1$ is tha equalizer of $E_1 \to D(j_0) \stackrel[D(\beta_2)]{D(\alpha_2)}{\rightrightarrows} D(j_2)$, and so on.\\
+where $E_1 \to D(j_0)$ is the equalizer of $D(\alpha_1)$ and $D(\beta_1)$, $E_2 \to E_1$ is the equalizer of $E_1 \to D(j_0) \stackrel[D(\beta_2)]{D(\alpha_2)}{\rightrightarrows} D(j_2)$, and so on.\\
 Then the composites $E_n \to D(j_0) \to D(j)$ for $j \in \ob\mathcal{J}$ form a cone over $D$; moreover, if $(\lambda_j| j \in \ob\mathcal{J})$ is any cone over $D$, $\lambda_{j_0}$ factors uniquely through $D_n \to D(j_0)$, and the factorization is a moprhism of cones.
 
 (ii) Consider 
