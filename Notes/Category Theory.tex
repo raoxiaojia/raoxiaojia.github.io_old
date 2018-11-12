@@ -1318,7 +1318,7 @@ In general, however, it has few other limits or colimits. In contrast, we have
     .\\
     (b) Any reflection is monadic: this follows from Sheet 3 Question 2, but can also be proved using (5.12). Let $\mathcal{D}$ be a reflective (so full) subcategory of $\mathcal{C}$, and suppose a pair $A \stackrel[g]{f}{\rightrightarrows} B$ in $\mathcal{D}$ fits into a split coequalizer diagram
     \begin{tikzcd}
-        A \arrow[r,shift left, "f"] \arrow[r,shift right, "g"'] & B \arrow[r,green, "h"] \arrow[l,green, bend left=30,"t"] & \textcolor{green}{C} \arrow[l,green, bend left=30, "s"]
+        A \arrow[r,shift left, "f"] \arrow[r,shift right, "g"'] & B \arrow[r,green, "h"] \arrow[l,green, bend left=40,"t"] & \textcolor{green}{C} \arrow[l,green, bend left=40, "s"]
     \end{tikzcd}
     in $\mathcal{C}$. Then $t$ and $ft=sh$ belong to $\mathcal{D}$, since $\mathcal{D}$ is full, and hence $s$ is in $\mathcal{D}$ since it's an equalizer of $(1_B,sh)$ and $\mathcal{D}$ is closed under limits in $\mathcal{C}$. Hence also $h \in \mor\mathcal{D}$.\\
     (c) This is a non-example but an important one: Consider the composite adjunction
@@ -1337,7 +1337,7 @@ In general, however, it has few other limits or colimits. In contrast, we have
 
     We'll show that this satisfies the hypotheses of (5.12) (with use of a lemma in general topology which lecturer is not going to prove): Let 
     \begin{tikzcd}
-        X \arrow[r,shift left, "f"] \arrow[r, shift right, "g"'] & Y \arrow[l, green, bend left=30, "t"] \arrow[r,green, "h"] & Z \arrow[l,bend left=30, "s"]
+        X \arrow[r,shift left, "f"] \arrow[r, shift right, "g"'] & Y \arrow[l, green, bend left=40, "t"] \arrow[r,green, "h"] & Z \arrow[l,bend left=40, "s"]
     \end{tikzcd}
     be a split coequalizer in $\mathbf{Set}$, where $X$ and $Y$ have compact Hausdorff topologies and $f,g$ are continuonus. Note that the quotient topology on $Z \cong Y/R$ is compact, so it's the only possible candidate for a compact Hausdorff topology making $h$ continuous.\\
     We use the lemma from general topology: if $Y$ is compact Hausdorff, then a quotient $Y/R$ is Hausdorff iff $R \subseteq Y \times Y$ is closed.\\
