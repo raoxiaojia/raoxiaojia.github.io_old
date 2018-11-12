@@ -1337,7 +1337,7 @@ In general, however, it has few other limits or colimits. In contrast, we have
 
     We'll show that this satisfies the hypotheses of (5.12) (with use of a lemma in general topology which lecturer is not going to prove): Let 
     \begin{tikzcd}
-        X \arrow[r,shift left, "f"] \arrow[r, shift right, "g"'] & Y \arrow[l, green, bend left=40, "t"] \arrow[r,green, "h"] & Z \arrow[l,bend left=40, "s"]
+        X \arrow[r,shift left, "f"] \arrow[r, shift right, "g"'] & Y \arrow[l, green, bend left=40, "t"] \arrow[r,green, "h"] & \textcolor{green}{Z} \arrow[l,green,bend left=40, "s"]
     \end{tikzcd}
     be a split coequalizer in $\mathbf{Set}$, where $X$ and $Y$ have compact Hausdorff topologies and $f,g$ are continuonus. Note that the quotient topology on $Z \cong Y/R$ is compact, so it's the only possible candidate for a compact Hausdorff topology making $h$ continuous.\\
     We use the lemma from general topology: if $Y$ is compact Hausdorff, then a quotient $Y/R$ is Hausdorff iff $R \subseteq Y \times Y$ is closed.\\
