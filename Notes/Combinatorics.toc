@@ -8,13 +8,14 @@
 \contentsline {section}{\numberline {2}Isoperimetric inequalities}{13}{section.2}
 \contentsline {subsection}{\numberline {2.1}Concentration of Measure}{17}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Edge-isoperimetric inequalities}{19}{subsection.2.2}
-\contentsline {section}{\numberline {3}Example Class 1}{21}{section.3}
-\contentsline {subsection}{\numberline {3.1}Question 1}{21}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Question 2}{21}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Question 3}{21}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Question 4}{21}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Question 5}{21}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Question 6}{21}{subsection.3.6}
-\contentsline {subsection}{\numberline {3.7}Question 7}{21}{subsection.3.7}
-\contentsline {subsection}{\numberline {3.8}Question 8}{22}{subsection.3.8}
-\contentsline {subsection}{\numberline {3.9}Question 9}{22}{subsection.3.9}
+\contentsline {subsection}{\numberline {2.3}Inequalities in the grid}{21}{subsection.2.3}
+\contentsline {section}{\numberline {3}Example Class 1}{23}{section.3}
+\contentsline {subsection}{\numberline {3.1}Question 1}{23}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Question 2}{23}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Question 3}{23}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Question 4}{23}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Question 5}{23}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Question 6}{23}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Question 7}{23}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.8}Question 8}{24}{subsection.3.8}
+\contentsline {subsection}{\numberline {3.9}Question 9}{24}{subsection.3.9}

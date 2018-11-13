@@ -678,6 +678,72 @@ Note that $|B_i(A)| = |A|$. We say $A$ is $i$-binary-compressed if $B_i(A) = A$.
     In both of these theorems (1 and 8, for vertices and edges respectively), it was vital that the extremal sets in dimension $n-1$ were nested, i.e. they were the initial segments of some ordering.
 \end{rem}
 
+---Lecture 11---
+
+Final lecture is on Thursday 9am 29th Nov.
+
+Example class on Friday 23rd 4pm.
+
+Define the \emph{isoperimetric number} of a graph $G$ is $i(G) = \min\{\frac{|\partial A|}{|A|}: A \subset G, |A| \leq \frac{1}{2}|G|\}$.\\
+Slogan: \emph{How small can the average out-degree be}?
+
+\begin{coro}
+    $i(Q_n) = 1$.
+    \begin{proof}
+        The set $A = \P([n-1])$ shows $i(Q_n) \leq 1$.\\
+        To show the other inequality, it's sufficient ot show (by theorem 8) that if $C$ is an initial segment of binary with $|C| \leq 2^{n-1}$, then $|\partial C| \geq |C|$.
+            But this is clear because $C \subset \P([n-1])$.
+    \end{proof}
+\end{coro}
+
+\subsection{Inequalities in the grid}
+
+The \emph{grid} is the graph on vertex-set $[k]^n = \{1,2,...,k\}^n$ in which $(x_1...x_n)$ is joiend to $(y_1...y_n)$ if for some $i$, we have $|x_i - y_i| = 1$ and $x_j = y_j$ $\forall j \neq i$ (i.e. has $L_1$-distance 1).\\
+For $k=2$, this is the discrete cube $Q_n$. Do theorem 1 and theorem 8 have anlaogues in $[k]^n$?
+
+For best vertex-boundary? e.g. consider $[k]^2$. A natural choice is an $L_1$-ball, but where should we put it? Obviously it's better to put it at the corner instead of in the center of grid. If we use a $L_1$-ball centered at a corner of the grid with radius $d$, then size of the boundary of $A$, $|b(A)| \approx d \approx \sqrt{2|A|}$; if we instead consider a $L_\infty$ balll at the same location, we have $|b(A)| \approx 2d \approx 2\sqrt{|A|}$.\\
+This suggests that sets of the form $\{x: |x| \leq r\}$ are best. How about in between? Let's look at some (3d)-diagram:
+
+\includegraphics[scale=0.5]{image/Comb_04.png}
+
+For given $|x|$, we'd \emph{keep $x_1$ big}, or more precisely, define the \emph{simplicial ordering} on $[k]^n$ by setting $x<y$ if \emph{either} $|x| < |y|$ or $|x| = |y|$ and $x_i > y_i$ where $i = \min\{j:x_j \neq y_j\}$.\\
+Note: for $k=2$, this agrees with the previous definition.
+
+(Some examples)
+
+Obviously, our aim is to show that initial segments of simplicial minimise the neighbourhood.\\
+In particular, $|A| = |\{x:|x| \leq r\}| \implies |n(A)| \geq |\{x:|x|\leq r+1\}|$.
+
+For $A \subset [k]^n$ and $1 \leq i\ leq n$, the \emph{$i$-section} of $A$ are the sets $A_1,...,A_k$ or $A_1^{(i)},...,A_k^{(i)}$ in $[k]^{n-1}$, given by:\\
+$$A_t = \{(x_1,...,x_{n-1}) \in [k]^{n-1}: (x_1,x_2,...,x_{i-1},t,x_{i+1},...,x_{n-1}) \in  A\}\ 1 \leq t \leq k$$\footnote{Lecturer has $x_n$ as the last term, but that doesn't really make sense here.}
+
+The \emph{$i$-compression} $C_i(A) \subset [k]^n$ is defined by giving its $i$-sections:\\
+$C_i(A)_t =$ first $|A_t|$ points in simplicial order on $[k]^{n-1}$ (for each $1 \leq t \leq k$).
+
+Certainly $|C_i(A)| = |A|$ (check).\\
+We say A is \emph{$i$-compressed} if $C_i(A) = A$.
+
+\begin{thm} (10, vertex-isoperimetric inequality in the grid)\\
+    Let $A \subset [k]^n$, and let $C$ be the initial segment of the simplicial order on $[k]^n$ with $|C|=|A|$. Then $|N(A)| \geq |N(C)|$.\\
+    In particular, if $A|| \geq |\{x:|x| \leq r\}|$, then $|N(A)| \geq |\{x:|x| \leq r+1\}|$.
+    \begin{proof}
+        Induction on $n$; $n=1$ is trivial (just one straight line).\\
+        Now given $A \subset [k]^n$ ($n>1$), and $1 \leq i\ leq n$. We claim that $|N(C_i(A))| \leq |N(A)|$: Let $B = C_i(A)$. For $1 \leq t \leq k$, $N(A)_t = N(A_t) \cup A_{t-1} \cup A_{t+1}$ (which are from level $t$, from below and from above respectively, and define $A_0 = A_{k+1} = \phi$).\\
+        Similarly, $N(B)_t = N(B_t) \cup B_{t-1} \cup B_{t+1}$. We're again showing $B$ is better than $A$, but the three unions in expression of $N(b)_t$ are nested since they are all initial segment of simplical; also $|B_{t-1}| = |A_{t-1}|$, $|B_{t+1}| = |A_{t+1}|$, and by induction hypothesis $|N(B_t)| \leq |N(A_t)|$. So $|N(B)_t| \leq |N(A)_t|$.\\
+        This works for every $1 \leq t \leq k$.\\
+        Among all $B \subset [k]^n$ with $|B| = |A|$, and $|N(B)| \leq |N(A)|$, choose one with minimal $\sum_{x \in B} ($ position of $x$ in simplicial$)$.\\
+        Then $B$ is $i$-compressed for all $i$ (else $C_i(B)$ contradicts our choice of $B$).\\
+        Similarly we are not done -- but we'll left this to next lecture.
+    \end{proof}
+\end{thm}
+
+
+
+
+
+
+
+
 \newpage
 
 \section{Example Class 1}
