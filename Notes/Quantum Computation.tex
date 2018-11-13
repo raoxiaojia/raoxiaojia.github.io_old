@@ -620,6 +620,104 @@ Given $f:B_n \to B$ a boolean function with an unknown number $k$ good $x$'s, we
 
 Recall that Grover operator $Q_G$ for $f$ is rotaion through $2\theta$ in 2-dimensional space of $|\psi_0 = \frac{1}{\sqrt{2^n}} \sum_{x \in B_n} |x\ket$ and its good projection $|g\ket = \frac{1}{\sqrt{k}} \sum_{good\ x} |x\ket$, with $\sin\theta = \sqrt{k/N} \approx \theta$ for $k \ll N$.
 
+---Lecture 11---
+
+(Did I miss a lecture?)
+
+\subsection{Hamiltonian Simulation}
+
+$k$-local Halmiltonians:
+
+$H$ on $n$ qubits is a $2^n \times 2^n$ Hermitian matrix. We'll want to simulate $U=e^{-iHt}$ with a circuit of $poly(n,t)$ basic unitary gates, i.e. efficient simulation.\\
+Not all $H$'s can be efficently simulated, but some physically important classes can --
+
+\begin{defi}
+    $H$ is $k$-local ($k$ is a fixed constant) on $n$ qubits if $H=\sum_{j=1}^m H_j$ where each $H_j$ is a Hermitian matrix acting on at most $k$ qubits (not necessarily contiguous).\\
+    i.e. each $H_j = \tilde{H}_j \otimes I$ (on some $k$ qubits, and identity on rest of qubits).
+
+    So $m \leq {n \choose i} =O(n^k) = poly(n)$ terms in $H$.
+\end{defi}
+
+\begin{eg}
+    (1) $H=X \otimes I \otimes I - 5 Z \otimes I \otimes Y$ is $2$-local on 3 qubits.\\
+    (2) Write $M_{(j)}$ to denote operator $M$ acting on $j^{th}$ qubit (and $I$ on all others). Physically important spin-spin interactions:\\
+    Ising model on $n\times n$ square lattice of qubits, $H=J \sum_{i,j=1}^{n-1} Z_{(i,j)} Z_{(i,j+1)} + Z_{(i,j)}Z_{(i+1,j)}$, i.e. all nearest neighbours on square.\\
+    Heisenberg model on a line: $H=\sum_{i=1}^{n-1} J_x X_{(i)} X_{(i+1)} + J_y Y_{(i)} Y_{(i+1)} + J_z Z_{(i)} Z_{(i+1)}$ (where $J,J_x,J_y,J_z$ are all real constants). This is very relevatn on chemistry (in studying covalence bonds?)
+\end{eg}
+
+Note: in general, $e^{-i\sum_{j} H_j t} \neq \prod_j (e^{-i H_j t})$ -- if the $H_j$'s don't commute.
+
+But $e^{-iH_j t}$'s \emph{are} local unitary gates (acting on $k$ qubits each), and we'll simulate $U(t_0) = e^{-i \sum_j H_i t_0}$ in terms of these (for suitable $t$'s), and we'll have a $poly(n,t_0)$-sized circuit too.
+
+If we want to use some standard universal gate set (to further express the above gates), then use: \emph{Solovay-Kitaev theorem}: Let $U$ be a unitary operator on $k$ (const) qubits, and $S$ any universal set of quantum gates ($S$ is the set that have property that if we look at all circuit and all finite sets, then it's dense in all circuits?? Lecturer didn't write down).\\
+Then $U$ can be approximated to within $\varepsilon$ using $O(\log^c(1/\varepsilon))$ gates from $S$ with $c < 4$ (it's actually exponential in $k$, but here we consider $k$ constant).\\
+So all $S$-products of length $O(\log^c(1/\varepsilon))$ get within $\varepsilon$ of any element of $U(k)$.
+
+We'll also need a lemma about accumulation of errors (c.f. Example sheet).\\
+We call this lemmma A: let $\{u_i\}, \{v_i\}$ be sets of $m$ unitary operators, with $||u_i - v_i|| < \varepsilon$ for all $i=1,2,...,m$, then 
+$$||u_m...u_1 - v_m...v_1|| \leq m\varepsilon$$
+i.e. errors accumulate linearly.\\
+Proof is an easy exercise -- induction on $m$.
+
+Warm up: the (easy) commuting case.
+\begin{prop} ($k$-local Hamiltonioans with commuting terms)\\
+    $H=\sum_{j=1}^m H_j$ with $H_j$ commuting -- any local Hamiltonian with commuting terms.\\
+    Then for any $t$, $e^{-iHt}$ can be approximated to within $\varepsilon$ by a circuit of $O(m\ poly(\log \frac{m}{\varepsilon}))$ gates from any given universal set.\\
+    Note, as $m=O(n^k)$ this is $poly(n,\log\frac{1}{\varepsilon})$ too. Also, $\log(\frac{1}{\varepsilon})$ is the number of digits of precision in the approximation.
+    \begin{proof}
+        $H_j$'s commute implies that $e^{-i \sum_j H_j t} = \prod_{j=1}^m (e^{-i H_j t})$. Then SK theorem implies, for each $e^{-iH_j t}$ can be approximated to within $\varepsilon/m$ within $O(poly(\log\frac{m}{\varepsilon}))$ gates, so lemma $A$ then implies that the full product $\prod_{j=1}^m$ is then approximated to within $m(\varepsilon/m) = \varepsilon$, with a total of $O(m\ poly(\log \frac{m}{\varepsilon}))$ gates (from the universal set).
+    \end{proof}
+\end{prop}
+
+Now let's look at the full non-commuting case: for any matrix $X$, write $X+O(\varepsilon)$ for $X+E$ where $||E|| = O(\varepsilon)$.
+
+\begin{lemma} (B, Lie-Trotter product formula)\\
+    Let $A,B$ be matrices with $||A|| \leq K$, $||B|| \leq k$ and $k<1$ (small).\\
+    Then $e^{-iA} e^{-iB} = e^{-i(A+B)} + O(k^2)$.
+    \begin{proof}
+        \begin{equation*}
+            \begin{aligned}
+                e^{-iA} &= I-iA + \sum_{k=2}^\infty \frac{(-iA)^k}{k!}\\
+                &= I-iA + (iA)^2 \sum_{k=0}^\infty \frac{(-iA)^k}{(k+2)!}\\
+                &= I-iA + O(k^2)
+            \end{aligned}
+        \end{equation*}
+        since $||(iA)^2|| < k^2$, and the remainder term is at most $1$. So
+        \begin{equation*}
+            \begin{aligned}
+                e^{-iA} e^{-iB} &= (I-iA + O(k^2)) (I-iB + O(k^2))\\
+                &= I-i(A+B) + O(k^2)\\
+                &= e^{-i(A+B)} + O(k^2)
+            \end{aligned}
+        \end{equation*}
+        by applying the inverse of above
+    \end{proof}
+\end{lemma}
+Now apply this repeatedly to accumulate sums of $H_1,...,H_m$ in exponent. Note thta if each $||H_i|| < k$, then $||H_1+...+H_l|| < lk$, we want this to be $<1$ for all $l\leq m$.\\
+So \emph{for now}, we'll assume $||H_i|| < \frac{1}{m}$ to have Lie-Trotter for all stages. Also take $t=1$ \emph{for now}.\\
+Then consider
+\begin{equation*}
+    \begin{aligned}
+        e^{-iH_1} e^{-iH_2}...e^{-iH_m} &= \left[e^{-i(H_1+H_2)}+O(k^2)\right] e^{-iH^3} ... e^{-iH_m}\\
+        &= e^{-i(H_1+H_2)} e^{-iH_3} ... e^{-iH_m} + O(k^2)\\
+        &= ...\\
+        &= e^{-i(H_1+H_2+...+H_m)} +O(k^2)+O((2k)^2)+...+O(((m-1)k)^2)\\
+        &= e^{-i(H_1+H_2+...+H_m)} + O(m^3k^2)
+    \end{aligned}
+\end{equation*}
+where in the second equality we used that $||AU|| = ||A||$ for any unitary $U$, and note that the sum of squares up to $m$ is of order $m^3$.
+
+
+
+
+
+
+
+
+
+
+
+
 
 \newpage
 
