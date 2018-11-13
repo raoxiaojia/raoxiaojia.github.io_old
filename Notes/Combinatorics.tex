@@ -698,10 +698,10 @@ Slogan: \emph{How small can the average out-degree be}?
 
 \subsection{Inequalities in the grid}
 
-The \emph{grid} is the graph on vertex-set $[k]^n = \{1,2,...,k\}^n$ in which $(x_1...x_n)$ is joiend to $(y_1...y_n)$ if for some $i$, we have $|x_i - y_i| = 1$ and $x_j = y_j$ $\forall j \neq i$ (i.e. has $L_1$-distance 1).\\
+The \emph{grid} is the graph on vertex-set $[k]^n = \{1,2,...,k\}^n$ in which $(x_1...x_n)$ is joind to $(y_1...y_n)$ if for some $i$, we have $|x_i - y_i| = 1$ and $x_j = y_j$ $\forall j \neq i$ (i.e. has $L_1$-distance 1).\\
 For $k=2$, this is the discrete cube $Q_n$. Do theorem 1 and theorem 8 have anlaogues in $[k]^n$?
 
-For best vertex-boundary? e.g. consider $[k]^2$. A natural choice is an $L_1$-ball, but where should we put it? Obviously it's better to put it at the corner instead of in the center of grid. If we use a $L_1$-ball centered at a corner of the grid with radius $d$, then size of the boundary of $A$, $|b(A)| \approx d \approx \sqrt{2|A|}$; if we instead consider a $L_\infty$ balll at the same location, we have $|b(A)| \approx 2d \approx 2\sqrt{|A|}$.\\
+For best vertex-boundary? e.g. consider $[k]^2$. A natural choice is an $L_1$-ball, but where should we put it? Obviously it's better to put it at the corner instead of in the center of grid. If we use a $L_1$-ball centered at a corner of the grid with radius $d$, then size of the boundary of $A$, $|b(A)| \approx d \approx \sqrt{2|A|}$; if we instead consider a $L_\infty$ ball at the same location, we have $|b(A)| \approx 2d \approx 2\sqrt{|A|}$.\\
 This suggests that sets of the form $\{x: |x| \leq r\}$ are best. How about in between? Let's look at some (3d)-diagram:
 
 \includegraphics[scale=0.5]{image/Comb_04.png}
@@ -714,8 +714,8 @@ Note: for $k=2$, this agrees with the previous definition.
 Obviously, our aim is to show that initial segments of simplicial minimise the neighbourhood.\\
 In particular, $|A| = |\{x:|x| \leq r\}| \implies |n(A)| \geq |\{x:|x|\leq r+1\}|$.
 
-For $A \subset [k]^n$ and $1 \leq i\ leq n$, the \emph{$i$-section} of $A$ are the sets $A_1,...,A_k$ or $A_1^{(i)},...,A_k^{(i)}$ in $[k]^{n-1}$, given by:\\
-$$A_t = \{(x_1,...,x_{n-1}) \in [k]^{n-1}: (x_1,x_2,...,x_{i-1},t,x_{i+1},...,x_{n-1}) \in  A\}\ 1 \leq t \leq k$$\footnote{Lecturer has $x_n$ as the last term, but that doesn't really make sense here.}
+For $A \subset [k]^n$ and $1 \leq i\ \leq n$, the \emph{$i$-section} of $A$ are the sets $A_1,...,A_k$ or $A_1^{(i)},...,A_k^{(i)}$ in $[k]^{n-1}$, given by\footnote{Lecturer has $x_n$ as the last term in the expression, but that doesn't really make sense here.}:\\
+$$A_t = \{(x_1,...,x_{n-1}) \in [k]^{n-1}: (x_1,x_2,...,x_{i-1},t,x_{i+1},...,x_{n-1}) \in  A\}\ 1 \leq t \leq k$$
 
 The \emph{$i$-compression} $C_i(A) \subset [k]^n$ is defined by giving its $i$-sections:\\
 $C_i(A)_t =$ first $|A_t|$ points in simplicial order on $[k]^{n-1}$ (for each $1 \leq t \leq k$).
