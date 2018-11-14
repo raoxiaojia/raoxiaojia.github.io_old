@@ -1349,6 +1349,125 @@ In general, however, it has few other limits or colimits. In contrast, we have
     is an equalizer, and $Y$ is Hausdorff, so $S$ is closed in $X \times X$ and hence compact. So $R=(g \times g)(S)$ is compact and hence closed in $Y \times Y$.
 \end{eg}
 
+---Lecture 18---
+
+\begin{defi} (5.15)\\
+    Let $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$ be an adjunction, and suppose $\mathcal{D}$ has reflexive coequalizers. The \emph{monadic tower} of $(F \dashv G)$ is the diagram
+
+    \begin{tikzcd}
+        \mathcal{D} \arrow[rrrd,shift left,"K'"] \arrow[rrddd,shift left,"K"] \arrow[rddddd,shift left,"G"] & & ...\\
+        & & & (\mathcal{C}^\T)^\mathbb{S} \arrow[lllu,shift left,"L'"] \arrow[ldd,shift left]\\
+        & & & \\
+        & & \mathcal{C}^\T \arrow[uuull,shift left,"L"] \arrow[uur,shift left] \arrow[ldd,shift left] &\\
+        & & & &\\
+        & \mathcal{C} \arrow[uuuuul,shift left,"F"] \arrow[uur,shift left] & &
+    \end{tikzcd}
+
+    where $\T$ is the monad induced by $(F \dashv G)$, $K$ is as in (5.7), $L$ as in (5.11), $\mathbb{S}$ is the monad induced by $(L \dashv K)$, and so on.\\
+    We say $(F \dashv G)$ has \emph{monadic length} $n$ if we reach an equivalence after $n$ steps.\\
+    For example, the adjunction of 5.14(c) has monadic length 2, the adjunction of 5.14(d) has monadic length $\infty$ (the tower never reaches an equivalence).
+\end{defi}
+
+Lecturer: Normally this is where I end chapter 5, but since this year we'll be doing topos I realized that we'll need an example in chapter 7 which is purely about monads and adjunctions, so we'd rather do it here.
+
+\begin{thm} (5.16)\\
+    Suppose given an adjunction $\mathcal{C} \stackrel[R]{L}{\rightleftarrows} \mathcal{D}$ and monads $\T,\mathbb{S}$ on $\mathcal{C},\mathcal{D}$ respectively, and a functor $\bar{R}:\mathcal{D}^\mathbb{S} \to \mathcal{C}^\T$ such that 
+    \begin{tikzcd}
+        \mathcal{D}^\mathbb{S} \arrow[r,"R"] \arrow[d,"G^\mathbb{S}"] & \mathcal{C}^\T \arrow[d,"G^\T"]\\
+        \mathcal{D} \arrow[r,"R"] & \mathcal{C}
+    \end{tikzcd}
+    commutes up to isomorphism.\\
+    Suppose also $\mathcal{D}^\mathbb{S}$ has reflexive coequalizers. Then $\bar{R}$ has a left adjoint $\bar{L}$.\\
+    (Note that there's also a version of this for right adjoint, but it is \emph{not} the dual of this.)
+    \begin{proof}
+        Note that if $\bar{L}$ exists, we must have $\bar{L} F^\T = F^\mathbb{S} L$, by (3.6). So we'd expect $\bar{L}(A,\alpha)$ to be a coequalizer of two morphisms
+        \begin{tikzcd}
+            F^\mathbb{S} LTA \arrow[r,shift left, "F^\mathbb{S} L\alpha"] \arrow[r,shift right, "?"'] & F^\mathbb{S} LA
+        \end{tikzcd}
+        .\\
+        To contruct the second morphism, note first that we can assume, WLOG, that $G^\T \bar{R} = RG^\mathbb{S}$, by transporting $\T$-algebra structures along the isomorphism $G^\T \bar{R} (B,\beta) \to RB$.\\
+        We obtain $\theta:TR \to RS$ by 
+        \begin{equation*}
+            \begin{aligned}
+                \frac{R \xrightarrow{R\iota} RS = RG^\mathbb{S} F^\mathbb{S} = G^\T \bar{R} F^\mathbb{S}}{\frac{F^\T R \to \bar{R} F^\mathbb{S}}{TR = G^\T F^\T R \xrightarrow{\theta} G^\T \bar{R} F^\mathbb{S} = RG^\mathbb{S} F^\mathbb{S} = RS}}
+            \end{aligned}
+        \end{equation*}
+        Convert it to $\phi:LT \to SL$ by
+        \begin{tikzcd}
+            LT \arrow[r,"LT\gamma"] & LTRL \arrow[r,"L\theta_L"] & LRSL \arrow[r,"\delta_{SL}"] & SL
+        \end{tikzcd}
+        where $\gamma$ and $\delta$ are the unit and counit of $(L\dashv R)$.\\
+        Transposing across $(F^\mathbb{S} \dashv G^\mathbb{S})$, we get $F^\mathbb{S} LT \xrightarrow{\bar{\phi}} F^\mathbb{S}L$.\\
+        The pair $(F^\mathbb{S} L\alpha,\bar{\phi}_A)$ is reflexive, with common splitting $F^\mathbb{S} L\eta$.\\
+        It can be verified that the coequalizer of this pair has the universal property we require for $I(A,\alpha)$. (Not saying this is examinable, but useful to know.)
+    \end{proof}
+\end{thm}
+
+\newpage
+
+\section{Cartesian Closed Categories}
+
+\begin{defi} (6.1)\\
+    Let $\mathcal{C}$ be a category with finite products. We say $A \in \ob\mathcal{C}$ is \emph{exponentiable} if the functor $(-) \times A: \mathcal{C} \to \mathcal{C}$ has a right adjoint $(-)^A$.\\
+    If every object of $\mathcal{C}$ is exponentiable, then we say $\mathcal{C}$ is \emph{cartesian closed}.
+\end{defi}
+
+\begin{eg} (6.2)\\
+    (a) We'll expect $\mathbf{Set}$ to be cartesian closed, and it is indeed, with $B^A = \mathbf{Set}(A,B)$. A function $f:C \times A \to B$ (sometimes called \emph{lambda conversion}) corresponds to $\bar{f}: C \to B^A$.\\
+    (b) $\mathbf{Cat}$ is cartesian closed, with $\mathcal{D}^\mathcal{C} = [\mathcal{C},\mathcal{D}]$.\\
+    (c) In $\mathbf{Top}$, if an exponential $Y^X$ exists, its points must be the continuous maps $X \to Y$.\\
+    The \href{https://en.wikipedia.org/wiki/Compact-open_topology}{compact-open topology} on $\mathbf{Top}(X,Y)$ has the universal property of an exponential iff $X$ is locally compact.\\
+    Note that finite products of exponentiable objects are exponentiable: since $(-) \times (A \times B) \cong (- \times A) \times B$, we have $(-)^{A \times B} \cong ((-)^B)^A$.\\
+    However, even if $X$ and $Y$ are locally compact, $X^Y$ need not be (take both $X$ and $Y$ be the real line, and $\R^\R$ is too big to be locally compact). So the exponentiable objects don't form a cartesian closed full subcategory.\\
+    (d) A cartesian closed poset, is called a \emph{Heiting semilattice}: it's a poset with finite meets and a binary operation $\implies$ satisfying $a \leq (b \implies c)$ iff $a \wedge b \leq c$.\\
+    For example, a complete poset is a Heyting semillatice iff it satisfies the infinite distributive law
+    $$a \wedge \bigvee \{b_i | i \in I\} = \bigvee \{a \wedge b_i | i \in I\}$$
+    For any topological space $X$, the lattice $\mathcal{O}(X)$ of open subsets satisfies this condition, since $\wedge$ and $\bigvee$ coincide with $\cap$ and $\bigcup$.
+\end{eg}
+
+Recall that, if $B \in ob\mathcal{C}$, we define $\mathcal{C}/B$ to have objects which are morphisms $\begin{pmatrix}A\\\downarrow\\B\end{pmatrix}$ in $\mathcal{C}$, and morphisms are commutative triangles 
+\begin{tikzcd}
+    A \arrow[rr] \arrow[rd] & & A' \arrow[ld]\\
+    & B &
+\end{tikzcd}
+. The forgetful functor $\mathcal{C}/B \to \mathcal{C}$ will be denoted $\sum_B$.\\
+If $\mathcal{C}$ has finite products, $\sum_B$ has a left adjoint $B^*$ which sends $A$ to $\begin{pmatrix}A \times B\\\downarrow \pi_2\\B\end{pmatrix}$, since morphisms
+\begin{tikzcd}
+    C \arrow[rr,"{(f,g)}"] \arrow[rd, "g"'] & & A \times B \arrow[ld,"\pi_2"]\\
+    & B &
+\end{tikzcd}
+corresponds to morphisms $C = \sum_B g \xrightarrow{f} A$.
+
+\begin{lemma} (6.3)\\
+    If $\mathcal{C}$ has all finite limits, then an object $B$ is exponetniable iff $B^*:\mathcal{C} \to \mathcal{C}/B$ has a right adjoint $\prod_B$.
+    \begin{proof}
+        $\Leftarrow$: the composite $\sum_B B^*$ is equal to $(-) \times B$, so we take $(-)^B$ to be $\prod_B B^*$.\\
+        $\implies$: Now we have an exponential and we want to build $\prod_B$. What we'll do is to use a pullback: for any $A \xrightarrow{f} B$, we define $\prod_B(f)$ to be the pullback
+
+        \begin{tikzcd}
+            \prod_B(f) \arrow[r] \arrow[d] & A^B \arrow[d,"f^B"]\\
+            1 \arrow[r,"\bar{\pi_2}"] & B^B
+        \end{tikzcd}
+
+        The morphisms $C \to \prod_B(f)$ corresponds to morphisms $C \to A^B$ making 
+        \begin{tikzcd}
+            C \arrow[r] \arrow[d] & A^B \arrow[d,"f^B"] \\
+            1 \arrow[r,"\bar{\pi_2}"] & B^B
+        \end{tikzcd}
+        commute, i.e. to morphisms $C \times B \to A$ making 
+        \begin{tikzcd}
+            C \times B \arrow[r] \arrow[rd,"\pi_2"'] & A \arrow[d,"f"]\\
+            & B
+        \end{tikzcd}
+        commute.
+    \end{proof}
+\end{lemma}
+
+
+
+
+
+
 
 
 
