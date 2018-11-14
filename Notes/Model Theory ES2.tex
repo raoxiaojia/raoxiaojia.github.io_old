@@ -1,0 +1,28 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\begin{document}
+
+\title{Model Theory Example Sheet 2}
+
+\author{Xiaojia Rao}
+
+\maketitle
+
+\setcounter{secnumdepth}{0}
+
+\section{Question 3}
+
+For the first part, $\mathcal{N}$ is not connected, so it's not a random graph.
+
+For the second part simply use $\psi(x,y) = \exists z (R(z,x) \wedge R(z,y))$ -- it will be true if $x$ and $y$ are from the same random subgraph by the property of random graphs, and will be false otherwise since the two random subgraphs are disconnected.
+
+\section{Question 7}
+
+(ii) $\implies$ (i) is trivial as $|\mathcal{N}|$ is infinite by definition of saturation.\\
+For (i) $\implies$ (ii), suppose otherwise, that $|\phi(\mathcal{N})| < |\mathcal{N}|$. Then let $\bra a_i:i<|\phi(\mathcal{N})|\ket$ enumerate $\phi(\mathcal{N})$, and consider the formula
+$$p(x) = \{\phi(x) \wedge (x \neq a_i): i < |\phi(\mathcal{N})|\}$$
+this is finitely satisfiable (as $\phi(\mathcal{N})$ is infinite), and has parameters $\phi(\mathcal{N})$ which, by assumption, has cardinality less than $\mathcal{N}$. Since $\mathcal{N}$ is saturated, $\mathcal{N}$ realizes $p(x)$. But this is impossible.
+
+\end{document}
