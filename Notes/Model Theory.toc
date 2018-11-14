@@ -4,10 +4,11 @@
 \contentsline {section}{\numberline {4}Two relational structures}{14}{section.4}
 \contentsline {section}{\numberline {5}Compactness}{20}{section.5}
 \contentsline {section}{\numberline {6}Saturation}{25}{section.6}
-\contentsline {section}{\numberline {7}Example class 1}{30}{section.7}
-\contentsline {subsection}{\numberline {7.1}Question 3}{30}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Question 4}{30}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Question 5}{30}{subsection.7.3}
-\contentsline {subsection}{\numberline {7.4}Question 6}{30}{subsection.7.4}
-\contentsline {subsection}{\numberline {7.5}Question 7}{30}{subsection.7.5}
-\contentsline {subsection}{\numberline {7.6}Question 8}{31}{subsection.7.6}
+\contentsline {section}{\numberline {7}The Monster Model}{31}{section.7}
+\contentsline {section}{\numberline {8}Example class 1}{33}{section.8}
+\contentsline {subsection}{\numberline {8.1}Question 3}{33}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Question 4}{33}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Question 5}{33}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}Question 6}{33}{subsection.8.4}
+\contentsline {subsection}{\numberline {8.5}Question 7}{33}{subsection.8.5}
+\contentsline {subsection}{\numberline {8.6}Question 8}{34}{subsection.8.6}
