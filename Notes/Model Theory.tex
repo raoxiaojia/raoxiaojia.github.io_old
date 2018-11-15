@@ -995,7 +995,7 @@ Given a complete theory $T$ with an infinite model, we work in a saturated struc
     $\bullet$ definable sets have the form $\phi(U)$ for some formula $\phi(\bar{x})$ in $L(U)$;\\
     $\bullet$ type definable ests have form $p(U)$ for some type $p(\bar{x},A)$ where $|A| < \kappa$;\\
     $\bullet$ Orbits and types of tuples are within $U$, so $tp(\bar{a}/A)$ means $tp_U(\bar{a}/A)$; $O(a/A)$ means $O_U(a/A)$;\\
-    $\bullet$ if $p(\bar{x}),q(\bar{x}$ are types, we write, for example, $p(x) \to q(x)$ to mean $p(\mathcal{N}) \subseteq q(\mathcal{N})$ (think of $p(x)$ as \emph{infinite conjunction of formulas}).
+    $\bullet$ if $p(\bar{x}),q(\bar{x})$ are types, we write, for example, $p(x) \to q(x)$ to mean $p(\mathcal{N}) \subseteq q(\mathcal{N})$ (think of $p(x)$ as \emph{infinite conjunction of formulas}).
 \end{defi}
 
 \begin{fact} (7.2)\\
@@ -1069,7 +1069,7 @@ Say $B =\{b_0,...,b_n\}$, where $b_m \geq b_i \forall b_i \in B$. We can just se
 
 \subsection{Question 7}
 Let $\phi(\bar{x})$ be a formula and $\bar{a} \in M_i^{|\bar{x}|}$.\\
-It's required to prove that $\mathcal{M}_i = \phi(\bar{a}) \iff \mathcal{N} \vDash \phi(bar{a})$. By induction on $\phi(\bar{x})$: if $\phi(\bar{x})$ is atomic, claim follows from $\mathcal{M}_i \subseteq \mathcal{N}$ (substructure); $\wedge$ and $\neg$ are also easy induction;\\
+It's required to prove that $\mathcal{M}_i = \phi(\bar{a}) \iff \mathcal{N} \vDash \phi(\bar{a})$. By induction on $\phi(\bar{x})$: if $\phi(\bar{x})$ is atomic, claim follows from $\mathcal{M}_i \subseteq \mathcal{N}$ (substructure); $\wedge$ and $\neg$ are also easy induction;\\
 For existential formula $\phi(\bar{x}) \equiv \exists sy \psi(\bar{x},y)$, if $\mathcal{M} \vDash \exists y \psi(\bar{a},y)$, then $\mathcal{M} \vDash \psi(\bar{a},b)$ for $b$ in some $\mathcal{M}_i$, so $\mathcal{N} \vDash \psi(\bar{a},b)$;\\
 Conversely, if $\mathcal{N} \vDash \exists y \psi(\bar{a},y)$, then $\mathcal{N} \vDash \psi(\bar{a},b)$ for $b \in \mathcal{N}$. But then $\bar{a},b$ are in some $\mathcal{M}_j$ for some finite $j$; as a result, by inductive hypothesi $\mathcal{M}_j \vDash \exists y \psi (\bar{a},y)$.\\
 But then $\mathcal{M}_i \vDash \exists y \psi(\bar{a},y)$ by elementarity.\\

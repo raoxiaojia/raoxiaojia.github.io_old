@@ -725,21 +725,58 @@ We say A is \emph{$i$-compressed} if $C_i(A) = A$.
 
 \begin{thm} (10, vertex-isoperimetric inequality in the grid)\\
     Let $A \subset [k]^n$, and let $C$ be the initial segment of the simplicial order on $[k]^n$ with $|C|=|A|$. Then $|N(A)| \geq |N(C)|$.\\
-    In particular, if $A|| \geq |\{x:|x| \leq r\}|$, then $|N(A)| \geq |\{x:|x| \leq r+1\}|$.
+    In particular, if $|A| \geq |\{x:|x| \leq r\}|$, then $|N(A)| \geq |\{x:|x| \leq r+1\}|$.
     \begin{proof}
         Induction on $n$; $n=1$ is trivial (just one straight line).\\
-        Now given $A \subset [k]^n$ ($n>1$), and $1 \leq i\ leq n$. We claim that $|N(C_i(A))| \leq |N(A)|$: Let $B = C_i(A)$. For $1 \leq t \leq k$, $N(A)_t = N(A_t) \cup A_{t-1} \cup A_{t+1}$ (which are from level $t$, from below and from above respectively, and define $A_0 = A_{k+1} = \phi$).\\
+        Now given $A \subset [k]^n$ ($n>1$), and $1 \leq i\ \leq n$. We claim that $|N(C_i(A))| \leq |N(A)|$: Let $B = C_i(A)$. For $1 \leq t \leq k$, $N(A)_t = N(A_t) \cup A_{t-1} \cup A_{t+1}$ (which are from level $t$, from below and from above respectively, and define $A_0 = A_{k+1} = \phi$).\\
         Similarly, $N(B)_t = N(B_t) \cup B_{t-1} \cup B_{t+1}$. We're again showing $B$ is better than $A$, but the three unions in expression of $N(b)_t$ are nested since they are all initial segment of simplical; also $|B_{t-1}| = |A_{t-1}|$, $|B_{t+1}| = |A_{t+1}|$, and by induction hypothesis $|N(B_t)| \leq |N(A_t)|$. So $|N(B)_t| \leq |N(A)_t|$.\\
         This works for every $1 \leq t \leq k$.\\
         Among all $B \subset [k]^n$ with $|B| = |A|$, and $|N(B)| \leq |N(A)|$, choose one with minimal $\sum_{x \in B} ($ position of $x$ in simplicial$)$.\\
         Then $B$ is $i$-compressed for all $i$ (else $C_i(B)$ contradicts our choice of $B$).\\
         Similarly we are not done -- but we'll left this to next lecture.
+
+        ---Lecture 12---
+        
+        Example Class 2: Friday 23rd, MR3, 4pm; hand in Q4 and Q6 (on lecture next thursday).
+
+        Now we want to prove that $N(B) \geq N(C)$.\\
+        Case 1: $n=2$. Now $B$ is $i$-compressed $\forall i$ iff $B$ is a \emph{down-set}, i.e. if $x_i \leq y_i$ and $y \in B$, then $x \in B$ (\emph{going down or left, we stay in $B$}).\\
+        Now suppose $B \neq C$. Let $r = \min\{|x|:x \not\in B\}$, $s = \max\{|x|: x \in B\}$. We must have $r \leq s$, since $r>s \implies B=C$.\\
+        $\bullet$ If $r=s$: We have $\{x:|x| \leq r-1\} \subset B \subset \{x:|x| \leq r\}$. But in that case it's trivial that the best we can do to place those points in level $r$ is putting them adjacent at an edge (which is what $C$ does), so $|N(B)| \geq |N(C)|$;\\
+        If $r<s$: we cannot have $\{x:|x| = r\}$ disjoint from $B$ (as there's a point in level $s$ and $B$ is a down-set). And similarly, we cannot have $\{x:|x| = s\} \subset B$ (as $B$ is a down-set and $\exists x \not\in B, |x|=r$).\\
+        So we have two adjacent (in the sense of they differ by $(1,-1)$) points in level $r$, $x,x'$, such that $x \not\in B$ but $x' \in B$; similarly we have two adjacent $y,y'$ in level $s$ s.t. $y\in B$ but $y' \not\in B$. Now consider $B'=B \cup \{x\} - \{y\}$. This doesn't increase the size of neighbourhood; but this contradicts the choice of $B$.\\
+        Case 2: $n \geq 3$. If $x \in B$, then we must have $x-l_n+l_i \in B$ (for any $1 \leq i \leq n-1, x_n >1, x_i<k$) (here $l_i$ referring to the unit vector in $i^{th}$ direction). Because $B$ is $j$-compressed for any $j \neq n,i$ (note that this exists since $n \geq 3$), we have $N(B_t) \subset B_{t-1}$.\\
+        We had $N(B)_t = N(B_t) \cup B_{t-1} \cup B_{t+1}$, so $N(B)_t = B_{t-1}$. Thus $|N(B)| = |B_{k-1}| + |B_{k-2}| + ... + |B_1| + |N(B_1)| = |B|-|B_k| + |N(B_1)|$.\\
+        Similary, $|N(C)| = |C| - |C_k| + |N(C_1)|$. As a result, it's sufficient to show that $|B_k| \leq |C_k|$ and $|B_1| \geq |C_1|$ (as $C_1$ is the set that minimizes its neighbour among sets of its size in dimension $n-1$).\\
+        $\bullet$ $|B_k| \leq |C_k|$: Define $D \subset [k]^n$ by $D_k = B_k$, $D_t = N(D_{t+1})$ ($t=k-1,k-2,...,1$). Then $D$ is an initial segment of simplicial, and $D \subset B$. So $|D| \leq |B| = |C|$; from this we know $D \subset C$ (nested), hence $D_k \subset C_k$.\\
+        $\bullet$ $|B_1| \geq |C_1|$: (similar argument) Define $E \subset [k]^n$ by: $E_1 = B_1$, $E_t = \{x \in [k]^{n-1}: N(\{x\}) \subset E_{t-1}\}$, $t=2,3,...,k$. Then $E$ is an initial segment of simplicial; this time $E \supset B$, so $|E| \geq |B| = |C|$ and $E\supset C$. Hence $E_1 \supset C_1$.
     \end{proof}
 \end{thm}
 
+\begin{coro} (11)\\
+    Let $A \subset [k]^n$ with $|A| = |\{x:|x| \leq r\}|$. Then $|A_{(t)}| \geq |\{x:|x| \leq r+t\}|$.\\
+    \begin{proof}
+        Induction on $t$.
+    \end{proof}
+\end{coro}
 
+\begin{rem}
+    We can check from this that, for any fixed $k$, the sequence $[k]^1,[k]^2,[k]^3,...$ is a normal L\'evy family.
+\end{rem}
 
+\subsection{Edge-isoperimetric inequalities in the grid (\emph{Non-examinable})}
 
+How to minimize $|\partial A|$ in $[k]^n$?\\
+For example, in $[k]^2$. If we take the $L_\infty$ ball with radius $d$ then $|\partial A| \approx 2d = 2\sqrt{|A|}$; for the $L_1$ ball with radius $d$, $|\partial A| \approx 2d \approx 2\sqrt{2|A|}$.\\
+So (as we would expect) squares do better.
+
+However, let's consider what happens when the size of $A$ increases: when $|A|$ reaches $k^2/4$, we could use a square with side $k/2$, but note that it's equally good to use a column with width $k/4$ at a side. When $|A|$ increases further, if we continuing using the square we get larger $|\partial A|$ then a column would do. The same \emph{phase transition} happens when $|A|$ reaches $3k^2/4$, where everything becomes the complement, and beyond that the complement of a square becomes better.\\
+So we realize that the extremal sets are not nested! So we can't use a similar argument, as all of the previous arguments require our extremal sets to be nested.
+
+In $[k]^3$: We similar ahve the transition from $[a]^3$ to $[a]^2 \times [k]$, and later to $[a] \times [k]^2$, then to the complement of a $[a]^2 \times [k]$, and so on (at some sizes that we could easily calculate).\\
+Obviously the same happens in higher dimensions. So we can't compression to solve this problem.\footnote{There is a result for this, but is much harder. (Searching on google reveals that the \href{https://link.springer.com/content/pdf/10.1007/BF01275667.pdf}{result} is actually by the lecturer in 1989!)}
+
+Very few isoperimetric inequalities are known exactly or asymptotically. E.g. the level $X^{(r)}$: $A$ joined to $B$ if $|A \cap B| = r-1$ -- no one can prove anything sharp!
 
 
 
