@@ -702,13 +702,53 @@ Then consider
         &= e^{-i(H_1+H_2)} e^{-iH_3} ... e^{-iH_m} + O(k^2)\\
         &= ...\\
         &= e^{-i(H_1+H_2+...+H_m)} +O(k^2)+O((2k)^2)+...+O(((m-1)k)^2)\\
-        &= e^{-i(H_1+H_2+...+H_m)} + O(m^3k^2)
+        &= e^{-i(H_1+H_2+...+H_m)} + O(m^3k^2)\ (1)
     \end{aligned}
 \end{equation*}
 where in the second equality we used that $||AU|| = ||A||$ for any unitary $U$, and note that the sum of squares up to $m$ is of order $m^3$.
 
+---Lecture 12---
 
+For general finite $||H_j||$'s and $t$ values, $||H_j t|| < kt$ can be large, so interoduce $N$ (large-ish, fix later), and note 
+$$\frac{H_j t}{N} \text{ has } \tilde{K} = ||\frac{H_j t}{N}|| < \frac{kt}{N}\ (*)$$
+can be suitably small, i.e. divide $t$ into (small) $\frac{1}{N}$ intervals,
+$$U=e^{i(H_1+...+H_m)t} = [e^{i(\frac{H_1t}{N} + ... + \frac{H_mt}{N})}]^N$$
+We want final error for $U$ to be $<\varepsilon$, so by lemma $A$, we want error for $[...]$ to be $<\frac{\varepsilon}{N}$.\\
+So by (1) and (*), $Cm^3 \tilde{k}^2 < \frac{\varepsilon}{N}$, i.e. $Cm^3 \frac{K^2t^2}{N^2} < \frac{\varepsilon}{N}$, i.e. $N>\frac{Cm^3K^2t^2}{\varepsilon}$ (2).\\
+Then 
+$$||e^{-iH_1t/N} e^{-iH_2t/N}...e^{-iH_mt/N} - e^{-i\frac{(H_1+...+H_m)t}{N}}|| < \frac{\varepsilon}{N}$$
+so by lemma $A$ again,
+$$||(e^{-iH_1t/N}...e^{-iH_mt/N})^N - e^{-i(H_1+...+H_m)t}||< \varepsilon$$
+(this is $Nm$ gates if form $e^{-iH_jt/N}$, and $N$ given by (2)). So circuit size is $O(\frac{m^4(Kt)^2}{\varepsilon})$.\\
+Recall for $n$ qubits and $k$-local Hamiltonians, $m=O(n^k)$, so circuit size is $O(n^{4k} \frac{(Kt)^2}{\varepsilon}) = O(n^{4k},t^2,\frac{1}{\varepsilon})$.
 
+We have circuit $\mathcal{C}$ of size $|\mathcal{C}| = O(m^4 \frac{(Kt)^2}{\varepsilon})$ gates of form $e^{-i\tilde{H}_j/N}$ approximate to $O(t)$.\\
+If we want to use standard universal set, lemma A gives each of these gates needs to be approximate to $O(\varepsilon/|\mathcal{C}|)$ to maintain an overall $O(\varepsilon)$ level approximation to $U$.\\
+So by SK theorem, need $O(\log^c(|\mathcal{C}|/\varepsilon))$ gates from the universal set for each, i.e. get (modest) multiplicative factor of $O(\log^c \frac{m^4(Kt)^2}{\varepsilon^2})$ in $|\mathcal{C}|$.\\
+
+For fixed $n,\varepsilon$, and variable $t$, the quantum process $e^{iHt}$ runs for time $t$; but our circuit simulation runs for time $O(t^2)$. By refining/improving Lie-Trotter formula, it can be shown that this can be improved to $O(t^{1+\delta})$ for any $\delta>0$ (See example sheet 2 for an example).
+
+Harrow-Hassidim-Lloyd (HHL) quantum algorithm for linear systems of equations:\\
+We'll want to solve a linear system of equations $A \mathbf{x} = \mathbf{b}$, where $\mathbf{b},\mathbf{x} \in \C^N$, and dimension $N$ is potentially \emph{very} large (we could set $N=2^n$, where $2^n$ is the least power of 2 that is greater than $N$).\\
+Rather than outputting the full solution $\mathbf{x}$ itself, which would take $O(N)$ time, we instead want to compute (suitable approximates to) the value of properties of the solution, such as quadratic expressions $\mathbf{x}^T M \mathbf{x}$ e.g. total weight of some subset of components.
+
+Very large lineary systems are important in applications: data mining/machine learning on data sets of increasingly large size to discover pattern properties in data; in science/engineering , we have numerical solutions of PDEs, where discretisation techniques (finite element methods) lead to linear systems far larger than original problem description.
+
+The best known classical techniques take $poly(N)$ time to solve such problems.
+
+Important parameters (for both classical and quantum algorithms):\\
+$\bullet$ the system size $N$;\\
+$\bullet$ the desired approximate tolerance $\varepsilon$;\\
+$\bullet$ the \emph{condition number} $\kappa$ of matrix $A$, defined as ratio of largest to smallest eigenvalue size $\kappa = |\frac{\lambda_{max}}{\lambda_{min}}|$;\\
+It provides intrinsic scale of the linear transformation $A$, and is a measure of how close $A$ is to being non-invertible.\\
+If renormalize $A$ to have $\lambda_{max} = 1$, then $|\lambda_{min}| = 1/\kappa$, and numerical computation of $A^{-1}$ becomes less stable with increasing $\kappa$, needing more significant digits and correspondingly longer runtime.
+
+Preliminary requirements for the HHL algorithm:\\
+Aim: to compute $\varepsilon$-approximate to properties of the solution of an $N$-dimensional system $A\mathbf{x} = \mathbf{b}$ in time $poly(\log N) = poly(n)$. We'll take the property to be a quadratic expression $\mu = \mathbf{x}^T M \mathbf{x}$.
+
+Immediate issue is how the defining ingredients viz $A$ and $\mathbf{b}$ are actually given (as reading them componently would already have taken $O(poly(N))$ time). Thus we'll need a different presentation of the problem (cf below) that is still available in applications.
+
+The $poly(\log N)$ run time will be achieved by using only $O(\log N)$ qubits and it will never be required to write down all of $A$ or $\mathbf{b}$ or $\mathbf{x}$ in the course of the algorithm (as that would be impossible given the complexity constraints).
 
 
 
