@@ -1079,4 +1079,47 @@ Alternatively, use T-V test.
 (Lecturer is assuming CH here............)\\
 First show that $(\Q+\R) \not\cong (\R,<)$. Then for any $U \vDash T_{dlo}$ with $|U| = \lambda > 2^{\aleph_0}$. Then prove $(\Q+\R+U) \not\cong \R+U$.
 
+\newpage
+
+\section{Example Class 2}
+
+\subsection{Question 1}
+Idea: build a chain $\bra \mathcal{K}_i:i < \omega\ket$ of countable $\mathcal{K}_i \preccurlyeq \mathcal{N}$ and $\bra \mathcal{M}_i : i < \omega \ket$ coutnable s.t. \\
+(i) $A \cap \mathcal{M} \subseteq \mathcal{M}_i$;\\
+(ii) $A \subseteq \mathcal{K}_i \forall i$;\\
+(iii) $A \cup \mathcal{M}_i \subesteq \mathcal{K}_{i+1}$, $i < \omega$.\\
+By downward L-S, let $\mathcal{K}_0 \preccurlyeq \mathcal{N}$ s.t. $A \subseteq \mathcal{K}_0$.\\
+At stage $i+1$, let $\mathcal{M} \cap \mathcal{K}_i \subseteq \mathcal{M}_i \preccurlyeq\mathcal{M}$, and $\mathcal{K}_i \cup \mathcal{M}_i \subseteq \mathcal{K}_{i+1} \preccurlyeq \mathcal{N}$ (and let all of these to be countable).
+Let $\mathcal{K} = \cup_{i < \omega} \mathcal{K}_i$, and $\mathcal{M}' = \cup_{i < \omega} \mathcal{M}_i$, $K \cap \mathcal{M} = \mathcal{M}'$ (check this) $\preccurlyeq \mathcal{M}$, hence $\mathcal{M}' \preccurlyeq \mathcal{N}$.\\
+Note that this only works if $|\mathcal{N}|$ is more than countable. But if it is countable then we can just use $\mathcal{K} = \mathcal{N}$.
+
+\subsection{Question 2}
+We just have to prove that the new graph is still a random graph. Suppose we've removed $a_1,...,a_k$ and their neighbours. For any set of $x_1,...,x_n,y_1,...,y_m$ in the axiom, just add the $a_i$'s as additional $y_i$'s and consider in the original graph.
+
+\subsection{Question 3}
+$\mathcal{N}$ is not connected so it's not a random graph.\\
+For the second part use $\psi(x,y) = \exists z(R(z,x) \wedge R(z,y))$.
+
+\subsection{Question 4}
+Trivial
+
+\subsection{Question 5}
+$T_1$ includes $T_0$ plus axioms for no endpoints plus axioms that say that there are infinitely many equivalent classes, plus the following axiom (density):
+$$\forall x,y,v[x < y \to \exists z[x < z < y \wedge E(v,z)]]$$
+The rest is straight-forward.
+
+\subsection{Question 6}
+Similar back-and-forth with one-point extensions.
+
+\subsection{Question 7}
+Only need to prove (i) $\implies$ (ii). If $\omega \leq |\phi(x)| < |\mathcal{N}|$, consider 
+$$p(x) = \{\phi(x)\} \cup \{x \neq a : a \in \phi(\mathcal{N})\}$$
+Clearly $p(x)$ is f.s. in $\mathcal{N}$ (because $|\phi(\mathcal{N})| \geq \omega$); by saturation it is satisfiable, but that is impossible.
+
+\subsection{Question 8}
+(ii) $\implies$ (i) is trivial. Conversely, suppose $p(\mathcal{N}) = \{a_1,...,a_n\}$, and let $p'(x) = p(x) \cup \{x \neq a_i:i=1,...,n\}$. Then $p'(x)$ is not f.s. in $\mathcal{N}$, so there is $\phi(x) \in p(x)$ s.t. $\{\phi(x)\} \cup \{x \neq a_i: i<n\}$ is not consistent. So $\phi(x) \to \vee_{i=1}^n x=a_i$ (so $\phi(x)$ has finite realizations).
+
+\subsection{Question 9}
+By symmetry let's only do (ii) $\implies$ (i): there is an infinite descending sequence, so the type $p(\bar{x}) = \{x_i<x_{i+1}, i < \omega\}$ is f.s.. So by saturation we're done.
+
 \end{document}
