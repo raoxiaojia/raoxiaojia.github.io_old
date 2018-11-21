@@ -1463,10 +1463,62 @@ corresponds to morphisms $C = \sum_B g \xrightarrow{f} A$.
     \end{proof}
 \end{lemma}
 
----missing 
+---two lectures (19,20) to be transcribed---
 
+\newpage
 
+\section{Toposes}
 
+---Lecture 21---
+
+Some introduction by lecturer: Grothendick introduced toposes as categories of \emph{generalized sheaves}. J.Giraud gave a characterization of such categories by (set-theoretic) categorical properties.
+
+F.W.Lawvere and M Tierney investigated the elementary categorical properties of these categories, and come up with the elementary definition.
+
+In fact, a Grothendieck topos is exactly a Lawvere-Tierneg topos which is (co)complete and locally small, and has a separating set of objects.
+
+\begin{defi} (7.1)\\
+    (a) Let $\mathcal{E}$ be a category with finite limits. A \emph{subobject classifier} for $\mathcal{E}$ is a monomorphism $\Omega' \stackrel{\top}{\rightarrowtail} \Omega$ s.t., for every monomorphism $A' \stackrel{m}{\rightarrowtail} A$ in $\mathcal{E}$, there's a unique $\chi_m:A \to \Omega$ for which there is a pullback square
+
+    \begin{tikzcd}
+        A' \arrow[r] \arrow[d,tail,"m"] & \Omega' \arrow[d,"\top"] \\
+        A \arrow[r,"\chi_m"] & \Omega
+    \end{tikzcd}
+
+    Note that, for any $A$, there's a unique $A\to \Omega$ which factors through $\Omega' \stackrel{\top}{\rightarrowtail} \Omega$, so the domain of $\top$ is actually a terminal object.\\
+    If $\mathcal{E}$ is well-powered, we have a functor $Sub_\mathcal{E} (-):\mathcal{E}^{op} \to \mathbf{Set}$ sending $A$ to the set of (isomorphism classes of) subobjects of $A$, and acting on morphisms by pullback, and a subobject classifier is a representation of this functor.
+
+    (b) A \emph{topos} is a category which has finite limits, is cartesian closed, and has a subobject classifier.
+
+    (c) If $\mathcal{E}$ and $\exists$ are toposes, a \emph{logical functor} $F:\mathcal{E} \to \exists$ is one which preserves finite limits, exponentials and the subobject classifier.
+\end{defi}
+
+\begin{eg} (7.2)\\
+    (a) $\mathbf{Set}$ is a topos, with $\Omega =\{0,1\}$ and $t=1:1 \to \{0,1\}$, and of course $\chi_m$ is just the characteristic function of $A'$.\\
+    So also is the category of finite sets $\mathbf{Set}_F$, or the category of sets of cardinality less than $\kappa$, $\mathbf{Set}_\kappa$, where $\kappa$ is an infinite cardinal s.t. $\lambda < \kappa \implies 2^\lambda < \kappa$.
+
+    (b) For any small category $\mathcal{C}$, $[\mathcal{C}^{op},\mathbf{Set}]$ is a topos: we've seen that it's cartesian closed, and $\Omega$ is determined by Yoneda: we have\\
+    $\Omega(A) = \cong [\mathcal{C}^{op},\mathbf{Set}](\mathcal{C}(-,A),\Omega) \cong \{$subfunctors of $\mathcal{C}(-,A)\}$.\\
+    So we define $\Omega(A)$ to be the set of \emph{sieves} on $A$, i.e. sets $R$ of morphisms with codomain $A$, s.t. $f \in R \implies fg \in R$ for any $g$.\\
+    Given $B\xrightarrow{f} A$ and a sieve $R$ on $A$, we need a pullback: define $f^* R$ to be the set of $g$ with codomain $B$ s.t. $fg \in R$.\\
+    This makes $\Omega$ into a functor $\mathcal{C}^{op} \to \mathbf{Set}$: $T:1 \to \Omega$ is defined by $T_A(*) = \{$all morphisms withcodomain $A\}$.\\
+    Given a subfunctor $F' \stackrel{m}{\rightarrowtail} F$, we define $\chi_m:F \to \Omega$ by $(\chi_m)_A(x) = \{f:B \to A|Ff(x) \in F'(b)\}$ (lecturer: if you find this not obvious, then write it down and you'll find it obvious).\\
+    This is the unique natural transformation making 
+
+    \begin{tikzcd}
+        F' \arrow[r] \arrow[d,tail,"m"] & 1 \arrow[d,tail,"\top"]\\
+        F \arrow[r] & \Omega
+    \end{tikzcd}
+
+    (c) For any space $X$, $\mathbf{Sh}(X)$ is a topos. It's cartesian closed by 6.12(ii); for the subobject classifier, we take $\Omega(U) = \{V \in \mathcal{O}(X) | V \subseteq U\}$. $\Omega(U' \to U)$ is the map $V \to V\cap U'$ and $\Omega$ is a sheaf since if we have $U=\cup_{i \in I} U_i$, and $V_i \subseteq U_i$ s.t. $V_i \cap U_j = V_j \cap U_i$ for each $i,j$, then $V = \cup_{i \in I} V_i$ is the unique open subset of $U$ with $V \cap U_i = V_i$ for each $i$.\\
+    If $F' \stackrel{m}{\rightarrowtail} F$ is a subsheaf, then for any $x \in F(U)$, the sieve $\{V \subseteq U | x|_V \in F'(V)\}$ has a greatest element since $F'$ is a sheaf, so we define $\chi_m:F \to \Omega$ to send $x$ to this (the previous greatest) element.
+
+    (d) Let $\mathcal{C}$ be a group $G$. The topos structure on $[G,\mathbf{Set}]$ is particularly simplel: $B^A$ is the set of all $G$-equivariant maps $A\times G \xrightarrow{f} B$, but such an $f$ is determined by its values at elements of the form $(a,1)$, since $f(a,g) = g \cdot f(g^{-1}\cdot a, 1)$, and this restriction can be any mapping $A \times \{1\} \to B$. So we can take $B^A$ to be the set of functions $A \to B$, with $G$ acting by $(g \cdot f) (a) = g(f(g^{-1} \cdot a))$. And $\Omega = \{0,1\}$ with trivial $G$-action.\\
+    So the forgetful functor $[G,\mathbf{Set}] \to \mathbf{Set}$ is logical, as is the functor which equips a set $A$ with trivial $G$-action.\\
+    Moreover, even if $G$ is infinite, $[G,\mathbf{Set}_f]$ is a topos, and the inclusion $[G,\mathbf{Set}_f] \to [G,\mathbf{Set}]$ is logical. Similarly, if $\mathcal{G}$ is a large (contrast to small?) group, then $[\mathcal{G},\mathbf{Set}]$ is a topos.
+
+    (e) Let $\mathcal{C}$ be a category such that every slice $\mathcal{C}/A$ is equivalent to a finite category. Then $[\mathcal{C}^{op},\mathbf{Set}_f]$ is a topos just by checking definitions. Similarly, if $\mathcal{C}$ is large, but all $\mathcal{C}/A$ are small, then $[\mathcal{C}^{op},\mathbf{Set}]$ is a topos, then $[\mathcal{C}^{op},\mathbf{Set}]$ is a topos. In particular, $[\mathbf{On}^{op},\mathbf{Set}]$ is a topos which is not locally small.
+\end{eg}
 
 
 
