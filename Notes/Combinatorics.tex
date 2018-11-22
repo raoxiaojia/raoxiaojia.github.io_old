@@ -778,7 +778,68 @@ Obviously the same happens in higher dimensions. So we can't compression to solv
 
 Very few isoperimetric inequalities are known exactly or asymptotically. E.g. the level $X^{(r)}$: $A$ joined to $B$ if $|A \cap B| = r-1$ -- no one can prove anything sharp!
 
+\newpage
 
+\section{Projections}
+
+---Lecture 13 to be typesetted---
+
+\emph{If a set has small projections, must it be small?}
+
+---Lecture 14---
+
+E.g. for $S \subset \R^3$: $|S| \leq |S_1| |S_2| |S_3|$ -- as $S \subset S_1 \times S_2 \times S_3$;\\
+$|S| \leq |S_{12}| |S_3|$ as $S \subset S_{12} \times S_3$.\\
+But $|S_{12}|,|S_{13}|$ does not boudn $|S|$ -- e.g. $S=[0,\frac{1}{N}] \times [0,N] \times [0,N]$.\\
+How about $|S_{12}|,|S_{13}|,|S_{23}|$?
+
+\begin{prop} (2)
+    Let $S$ be a body in $\R^3$. Then $|S|^2 \leq |S_{12}||S_{13}||S_{23}|$.
+
+    Notes: 1. we can have eqaulity, e.g. when $S$ is a brick.\\
+    2. for $S \subset \R^n$, the \emph{sections} of $S$ are the sets $S(x) \subset \R^{n-1}$ ($x \in \R$) given by $S(x) = \{(x_1...x_{n-1}) \in \R^{n-1}:(x_1...x_{n-1}x) \in S\}$.
+
+    \begin{proof}
+        Suppose first that every section of $S$ is a sqaure -- $S(x) =[0,f(x)] \times [0,f(x)]$ $\forall x$. Then $|S_{12}| = M^2$, where $M=\max f$. Also, $|S_{13}| = |S_{23}| = \int f(x) dx$.\\
+        So we want $(\int f^2)^2 \leq M^2 (\int f)^2$, i.e $\int f^2 \leq M \int f$, which is true because $f(x)^2 \leq M \cdot f(x)$ $\forall x$.\\
+        For general $S$, define body $T \subset \R^3$ by giving its sections:
+        $$T(x) = [0,\sqrt{|S(x)|}] \times [0,\sqrt{|S(x)|}]$$
+        So $|T| = |S|$.\\
+        Certainly we have $|T_{12}| \leq |S_{12}|$ since $|T_{12}| = \max |T(x)|$. Write $g(x) = |S(x)_1|$, $h(x) = |S(x)_2|$, so $|S(x)| \leq g(x)h(x)$.\\
+        We have $|S_{13}| = \int g(x) dx$, and $|S_{23}| = \int h(x) dx$. Also, $|T_{13}| = |T_{23}| = \int \sqrt{|S(x)|} dx \leq \int \sqrt{g(x)h(x)} dx$.\\
+        So we need $(\int \sqrt{gh})^2 \leq (\int g)(\int h)$, i.e $\int \sqrt{gh} \leq (\int g)^{1/2} (\int h)^{1/2}$ but this is just the Cauchy-Schartz inequality.
+    \end{proof}
+\end{prop}
+
+Say sets $Y_1 ... Y_r \subset [n]$ \emph{cover} $[n]$ if $Y_1 \cup ... \cup Y_r = [n]$.\\
+They are a \emph{$k$-uniform cover} if each $i \in [n]$ belongs to exactly $k$ of $Y_1,...,Y_r$.\\
+(Some examples)\\
+Our aim is to show that $|S|^k \leq |S_{Y_1}|...|S_{Y_r}|$ when $Y_1,...,Y_r$ is a $k$-uniform cover of $[n]$.\\
+Let $\mathcal{C} = \{Y_1,...,Y_k\}$ be a $k$-uniform cover of $[n]$. This is a multiset, i.e. some of the $Y_i$'s could be equal.\\
+Now define something that is reminiscent of our previous $i$-sections: $\mathcal{C}_- = \{Y \in \mathcal{C}:n \not\in Y\}$, $\mathcal{C}_+ = \{Y-\{n\} : Y \in \mathcal{C},n \in Y\}$.\\
+So $|\mathcal{C}_+| = k$, and $\mathcal{C}_- \cup \mathcal{C}_+$ is a $k$-uniform cover of $[n-1]$.
+
+Note that for a body $S \subset \R^n$: if $n \not\in Y$ then $|S_Y| \geq |S(x)_Y| \forall x$ -- e.g. $|S_1| \geq |S(x)_1| \forall x$ when $S \subset \R^3$.\\
+Also, if $n \in Y$, then $|S_Y| = \int |S(x)_{Y-n}| dx$, e.g. $|S_{13}| = \int |S(x)_1| dx$.\\
+In proof of proposition 2, we used Cauchy-Schwartz: $\int fg \leq (\int f^2)^{1/2} (\int g^2)^{1/2}$.\\
+Here in the general case we'll be using H\"older's inequality: $\int fg \leq (\int f^p)^{1/p} (\int g^q)^{1/q}$, where $\frac{1}{p} + \frac{1}{q} = 1$ (think this was a question on IA Analysis example sheet).\\
+Iteration: $\int f_1...f_k \leq (\int f_1^k)^{1/k} ... (\int f_k^k)^{1/k}$.
+
+\begin{thm} (3, uniform cover theorem)\\
+    Let $S$ be a body in $\R^n$, and let $\mathcal{C}$ be a $k$-uniform cover of $[n]$. Then $|S|^k \leq \prod_{Y \in \mathcal{C}} |S_Y|$.
+    \begin{proof}
+        Induction on $n$: $n=1$ is clear.\\
+        Given $S \subset \R^n$ where $n>2$,
+        \begin{align*}
+            |S| &= \int |S(x)| dx\\
+            &\leq \int \prod_{Y \in \mathcal{C}_-} |S(x)_Y|^{1/k} \prod_{Y \in \mathcal{C}_+} |S(x)_Y|^{1/k}\\
+            &\leq \prod_{Y \in \mathcal{C}_-} |S_Y|^{1/k} \int \prod_{Y \in \mathcal{C}_+} |S(x)_Y|^{1/k}\\
+            &\leq \prod_{Y \in \mathcal{C}_-} |S_Y|^{1/k} \prod_{Y \in \mathcal{C}_+} \left(\int |S(x)_Y|\right)^{1/k}\\
+            &= \prod_{Y \in \mathcal{C}_-} |S_Y|^{1/k} \prod_{Y \in \mathcal{C}_+} |S_{Y \cup n}|^{1/k}\\
+            &= \prod_{Y \in \mathcal{C}} |S_Y|^{1/k}
+        \end{align*}
+    \end{proof}
+\end{thm}
 
 
 \newpage
