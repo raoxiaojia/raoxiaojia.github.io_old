@@ -1490,7 +1490,7 @@ In fact, a Grothendieck topos is exactly a Lawvere-Tierneg topos which is (co)co
 
     (b) A \emph{topos} is a category which has finite limits, is cartesian closed, and has a subobject classifier.
 
-    (c) If $\mathcal{E}$ and $\exists$ are toposes, a \emph{logical functor} $F:\mathcal{E} \to \exists$ is one which preserves finite limits, exponentials and the subobject classifier.
+    (c) If $\mathcal{E}$ and $\mathcal{F}$ are toposes, a \emph{logical functor} $F:\mathcal{E} \to \mathcal{F}$ is one which preserves finite limits, exponentials and the subobject classifier.
 \end{defi}
 
 \begin{eg} (7.2)\\
@@ -1520,13 +1520,148 @@ In fact, a Grothendieck topos is exactly a Lawvere-Tierneg topos which is (co)co
     (e) Let $\mathcal{C}$ be a category such that every slice $\mathcal{C}/A$ is equivalent to a finite category. Then $[\mathcal{C}^{op},\mathbf{Set}_f]$ is a topos just by checking definitions. Similarly, if $\mathcal{C}$ is large, but all $\mathcal{C}/A$ are small, then $[\mathcal{C}^{op},\mathbf{Set}]$ is a topos, then $[\mathcal{C}^{op},\mathbf{Set}]$ is a topos. In particular, $[\mathbf{On}^{op},\mathbf{Set}]$ is a topos which is not locally small.
 \end{eg}
 
+---Lecture 22---
 
+\begin{lemma} (7.3)\\
+    Suppose $\mathcal{E}$ has finite limits and a subobject classifier. Then every monomorphism in $\mathcal{E}$ is regular. In particular, $\mathcal{E}$ is balanced.
+    \begin{proof}
+        The universal monomorphism $1 \stackrel{\top}{\rightarrowtail} \Omega$ is split and hence regular (ES1 Q5). But any pullback of a regular monomorphism is regular: if $f$ is an equalizer of $(g,h)$ then $K^*(f)$ is an equalizer of $(gk,hk)$. The second assertion follows since regular epic monomorphism is an isomorphism.
+    \end{proof}
+\end{lemma}
 
+Given an object $A$ in a topos $\mathcal{E}$, we write $PA$ for the exponential $\Omega^A$, and $\ni_A \rightarrowtail PA \times A$ for the subobject corresponding to $PA \times A \xrightarrow{ev} \Omega$. This has the property that, for any $B$ and any $R \stackrel{m}{\rightarrowtail} B \times A$, there's a unique $\ddddot{m}: B \to PA$ (lecturer had a symbol like ${}^{\lceil}m^\rceil)$ for this, that's a bit long to type) s.t.
 
+\begin{tikzcd}
+    R \arrow[r] \arrow[d,tail,"m"] & \ni_A \arrow[d,tail]\\
+    B \times A \arrow[r,"\ddddot{m} \times 1_A"] & PA \times A
+\end{tikzcd}
 
+is a pullback.
 
+\begin{defi} (7.4)\\
+    By a \emph{power-object} for $A$ in a category $\mathcal{E}$ with finite limits, we mean an object $PA$ equipped with $\ni_A \rightarrowtail PA \times A$ satisfying the above.\\
+    We say $\mathcal{E}$ is a \emph{weak topos} if every $A \in \ob\mathcal{E}$ has a power-object. Similarly, we say $F:\mathcal{E} \to \mathcal{F}$ is \emph{weakly logical} if $F(\ni_A) \rightarrowtail F(PA) \times FA$ is a power-object for $FA$, for every $A \in \ob\mathcal{E}$.
+\end{defi}
 
+\begin{lemma} (7.5)\\
+    $P$ is a functor $\mathcal{E}^{op} \to \mathcal{E}$. Moreover, it is self-adjoint on the right.
+    \begin{proof}
+        Given $A \xrightarrow{f} B$, we define $PB \xrightarrow{PF} PA$ to correspond to the pullback
 
+        \begin{tikzcd}
+            E_f \arrow[r] \arrow[d,tail] & \ni_B \arrow[d,tail]\\
+            PB \times A \arrow[r,"1\times f"] & PB \times B
+        \end{tikzcd}
+
+        For any morphism $C \xrightarrow{\ddddot{m}} PB$, it's easy to see that $(Pf)\ddddot{m}$ correspond to $(1_C \times f)^*(m)$; hence $f \to Pf$ is functorial. For any $A$ and $B$, we have a bijection between subobjects of $A \times B$ and of $B \times A$, given by composition with $(\pi_2,\pi_1): A \times B \to B \times A$; this yields a (natural) bijection between morphisms $A \to PB$ and $B \to PA$.
+    \end{proof}
+\end{lemma}
+
+We write $\{\}_A$ (pronounced as \emph{singleton}) $:A \to PA$ for the morphism correponding to $A \stackrel{(1_A,1_A)}{\rightarrowtail} A \times A$.
+
+\begin{lemma} (7.6)\\
+    Given $A \xrightarrow{f} B$, $\{\}_B f$ corresponds to $A \stackrel{(1_A,f)}{\rightarrowtail} A \times B$ and $(Pf) \{\}_B$ corresponds to $A \stackrel{(f,1_A)}{\rightarrowtail} B \times A$.
+    \begin{proof}
+        The square
+        
+        \begin{tikzcd}
+            A \arrow[r,"f"] \arrow[d,tail,"{(1,f)}"] & B \arrow[d,tail,"{(1,1)}"] \\
+            A \times B \arrow[r,"f \times 1"] & B \times B
+        \end{tikzcd}
+
+        is a pullback. Similarly for the second assertion.
+    \end{proof}
+\end{lemma}
+
+\begin{coro} (7.7)\\
+    (i) $\{\} : A \to PA$ is monic.\\
+    (ii) $P$ is faithful.
+    \begin{proof}
+        (i) If $\{\} f = \{\} g$, then $(1_A,f)$ and $(1_A,g)$ are isomorphic as subobjects of $A \times B$, which forces $f=g$.\\
+        (ii) Similarly, if $Pf = Pg$, then $(Pf)\{\} = (Pg)\{\}$, so we again deduce $f=g$.
+    \end{proof}
+\end{coro}
+
+Given monomorphism $A \stackrel{f} B$ in $\mathcal{E}$, we define $\exists f:PA \to PB$ to correspond to the composite $\ni_A \rightarrowtail PA \times A \stackrel{1\times f}{\rightarrowtail} PA \times B$. Then, for any $C \xrightarrow{\ddddot{m}} PA$, $(\exists f) \ddddot{m}$ corresponds to $R \stackrel{m}{\rightarrowtail} C \times A \rightarrowtail{1 \times f} C \times B$.\\
+So $f \to \exists f$ is a functor $Mono(\mathcal{E}) \to \mathcal{E}$.
+
+\begin{lemma} (7.8, Beck-Chevalley condition)\\
+    Suppose
+
+    \begin{tikzcd}
+        D \arrow[r,"h"] \arrow[d,tail,"k"] & A \arrow[d,tail,"f"]\\
+        B \arrow[r,"g"] & C
+    \end{tikzcd}
+
+    is a pullback with $f$ monic. Then the diagram 
+
+    \begin{tikzcd}
+        PA \arrow[r,"\exists f"] \arrow[d,"Ph"] & PC \arrow[d,"Pg"]\\
+        PD \arrow[r,"\exists k"] & PB
+    \end{tikzcd}
+
+    commutes.
+    \begin{proof}
+        Consider the diagram
+
+        \begin{tikzcd}
+            E_h \arrow[r] \arrow[d,tail] & \ni_A \arrow[d,tail]\\
+            PA \times D \arrow[r,"1 \times h"] \arrow[d,"1 \times k"] & PA \times A \arrow[d,"1 \times f"]\\
+            PA \times B \arrow[r,"1 \times g"] & PA \times C
+        \end{tikzcd}
+
+        The lower square is a pullback, so the upper square is a pullback iff the composite is a pullback.
+    \end{proof}
+\end{lemma}
+
+\begin{thm} (7.9,Par\'e)\\
+    The functor $P:\mathcal{E}^{op} \to \mathcal{E}$ is monadic.
+    \begin{proof}
+        It has a left adjoint $P :\mathcal{E} \to \mathcal{E}^{op}$ by (7.5). It's faithful by 7.7(ii), and hence reflects isomorphsms by (7.3). $\mathcal{E}^{op}$ has coequalizers, since $\mathcal{E}$ has equalizers. Suppose now that $A \stackrel[\stackrel{\to}{g}]{\xrightarrow{f}}{\stackrel{r}{\leftarrow}} B$ is a coreflexive pair in $\mathcal{E}$; then $f$ and $g$ are (split) monic, and the equalizer $E \xrightarrow{e} A$ makes
+
+        \begin{tikzcd}
+            E \arrow[r,"e"] \arrow[d,"e"] & A \arrow[d,"g"]\\
+            A \arrow[r,"f"] & B
+        \end{tikzcd}
+
+        a pullback square, since any cone over 
+        \begin{tikzcd}
+            & A \arrow[d,"g"]\\
+            A \arrow[r,"f"] & B
+        \end{tikzcd}
+        has both legs equal.\\
+        So by (7.8) we have $(Pf)(\exists g) =(\exists e)(Pe)$; but we also have $(Pg)(\exists g) = 1_{PA}$ since 
+
+        \begin{tikzcd}
+            A \arrow[r,"1"] \arrow[d,"1"] & A \arrow[d,"g"]\\
+            A \arrow[r,"g"] & B
+        \end{tikzcd}
+
+        is a pullback, and similarly $(Pe)(\exists e) = 1_{PE}$. So
+
+        \begin{tikzcd}
+            PB \arrow[r,shift left, "Pf"] \arrow[r,shift right,"Pg"'] & PA \arrow[r,"Pe"] \arrow[l, bend left = 40, "\exists g"] & PE \arrow[l,bend left=20,"\exists e"]
+        \end{tikzcd}
+
+        is a split coequalizer, and in particular a coequalizer. Hence by (5.13) $P$ is monadic.
+    \end{proof}
+\end{thm}
+
+\begin{coro} (7.10)\\
+    (i) A weak topos has finite colimits. Moreover, if it has any infinite limits, then it has the corresponding colimits.\\
+    (ii) If a weakly logical functor has a left adjoint, then it has a right adjoint.
+    \begin{proof}
+        (i) $P$ creates all limits which exist, by (5.8).\\
+        (ii) By definition, if $F$ is weakly logical, then 
+
+        \begin{tikzcd}
+            \mathcal{E}^{op} \arrow[r,"F"] \arrow[d,"P"] & \mathcal{F}^{op} \arrow[d,"P"]\\
+            \mathcal{E} \arrow[r,"F"] & \mathcal{F}
+        \end{tikzcd}
+
+        commutes up to isomorphism. So this follows from (5.16).
+    \end{proof}
+\end{coro}
 
 
 
