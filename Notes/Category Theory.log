@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  23 NOV 2018 12:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  23 NOV 2018 15:56
 entering extended mode
 **"./Category Theory.tex"
 ("Category Theory.tex"
@@ -1569,11 +1569,11 @@ LaTeX Warning: No \author given.
 [1
 
 {C:/Users/raoxj/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-("Category Theory.toc")
+("Category Theory.toc" [2])
 \tf@toc=\write5
 \openout5 = `"Category Theory.toc"'.
 
- [2] [3] [4]
+ [3] [4]
 \g__tikzsymbols_savebox_F_0 g 0 G_10_Cat_1_box=\box59
  [5] [6] [7] [8] [9] [10] [11] [12] [13]
 [14] [15]
@@ -1587,7 +1587,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 554--560
  []
 
 [20] [21]
-<image/Cat_07.png, id=275, 722.7pt x 406.51875pt>
+<image/Cat_07.png, id=323, 722.7pt x 406.51875pt>
 File: image/Cat_07.png Graphic file (type png)
 <use image/Cat_07.png>
 Package pdftex.def Info: image/Cat_07.png  used on input line 617.
@@ -1669,21 +1669,39 @@ o be [] and $\OML/cmm/m/it/10 "$ \OT1/cmr/m/n/10 (-20) to be []
  []
 
 [57] [58] [59] [60]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2034.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2034.
+Overfull \hbox (37.54999pt too wide) in paragraph at lines 2052--2061
+[]\OT1/cmr/m/n/10 (-20) (iii) Sup-pose $\OML/cmm/m/it/10  \OT1/cmr/m/n/10 (-20
+) : 1[] \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 GC$ \OT1/cmr/m/n/10 (-20) is a nat-
+u-ral iso-mor-phism. De-fine $\OML/cmm/m/it/10 [] \OT1/cmr/m/n/10 (-20) =$ []
+ []
+
+[61] [62] [63]
+<image/Cat_08.png, id=516, 722.7pt x 406.51875pt>
+File: image/Cat_08.png Graphic file (type png)
+<use image/Cat_08.png>
+Package pdftex.def Info: image/Cat_08.png  used on input line 2166.
+(pdftex.def)             Requested size: 361.3491pt x 203.25887pt.
+
+Overfull \hbox (16.3491pt too wide) in paragraph at lines 2166--2167
+[][] 
+ []
+
+[64 <./image/Cat_08.png>] [65] [66]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2220.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2220.
  ("Category Theory.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2034.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2034.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2220.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2220.
 
 Package rerunfilecheck Info: File `"Category Theory".out' has not changed.
-(rerunfilecheck)             Checksum: 13015828A3F49D8B5A4766B3A42A418F;1293.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2034.
+(rerunfilecheck)             Checksum: 03C9612936093C88AA6C4893D456181C;1787.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2220.
  ) 
 Here is how much of TeX's memory you used:
- 45420 strings out of 492970
- 1067100 string characters out of 3135854
- 1281535 words of memory out of 3000000
- 48507 multiletter control sequences out of 15000+200000
+ 46066 strings out of 492970
+ 1083829 string characters out of 3135854
+ 1289578 words of memory out of 3000000
+ 49138 multiletter control sequences out of 15000+200000
  551895 words of font info for 153 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,19n,96p,866b,1009s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1714,9 +1732,9 @@ ti8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm5.pfb><C
 :/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Category Theory.pdf" (60 pages, 729729 bytes).
+Output written on "Category Theory.pdf" (66 pages, 808124 bytes).
 PDF statistics:
- 571 PDF objects out of 1000 (max. 8388607)
- 96 named destinations out of 1000 (max. 500000)
- 18634 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 651 PDF objects out of 1000 (max. 8388607)
+ 110 named destinations out of 1000 (max. 500000)
+ 18703 words of extra memory for PDF output out of 20736 (max. 10000000)
 

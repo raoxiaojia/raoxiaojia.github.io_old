@@ -1614,7 +1614,7 @@ So $f \to \exists f$ is a functor $Mono(\mathcal{E}) \to \mathcal{E}$.
     \end{proof}
 \end{lemma}
 
-\begin{thm} (7.9,Par\'e)\\
+\begin{thm} (7.9, Par\'e)\\
     The functor $P:\mathcal{E}^{op} \to \mathcal{E}$ is monadic.
     \begin{proof}
         It has a left adjoint $P :\mathcal{E} \to \mathcal{E}^{op}$ by (7.5). It's faithful by 7.7(ii), and hence reflects isomorphsms by (7.3). $\mathcal{E}^{op}$ has coequalizers, since $\mathcal{E}$ has equalizers. Suppose now that $A \stackrel[\stackrel{\to}{g}]{\xrightarrow{f}}{\stackrel{r}{\leftarrow}} B$ is a coreflexive pair in $\mathcal{E}$; then $f$ and $g$ are (split) monic, and the equalizer $E \xrightarrow{e} A$ makes
@@ -2030,5 +2030,191 @@ In particular, if the $\beta_j$ are a limit cone over $UD$, their liftings are a
 (iii) Given $F:\mathcal{C} \to \mathcal{D}$, factor it as $\mathcal{C} \xrightarrow{\hat{F}} D / F1 \xrightarrow{U} D$, where $\hat{F}(A) = \begin{pmatrix} FA\\\downarrow\\F1\end{pmatrix}$. $\hat{F}$ preserves pullbacks since $F$ preserves them and $U$ creates them. But $\hat{F}$ also preserves the terminal object. So $\hat{F}$ preserves all finite limits. And $U$ preserves all connected limits, so $U\hat{F} = F$ preserves all finite connected limits.
 
 (Solution to question 6-10 to be typesetted)
+
+\newpage
+
+\section{Example Class 3}
+
+\subsection{Question 1}
+As usual this was meant to be an easy question (jfalksdjf;laskflklj;aj;sdkjflasj).
+
+(i) If $\alpha,\beta:1_\mathcal{C} \rightrightarrows 1_\mathcal{C}$, then
+
+\begin{tikzcd}
+    A \arrow[r,"\alpha_A"] \arrow[d,"\beta_A"] & A \arrow[d,"\beta_A"]\\
+    A \arrow[r,"\alpha_A"] & A
+\end{tikzcd}
+
+commutes by naturality.
+
+(ii) If $(1_\mathcal{C},\eta,\mu)$ is a monad, then $\mu\eta = 1_{1_\mathcal{C}}$, so $\eta \mu = 1_{1_\mathcal{C}}$.
+
+(iii) Suppose $\alpha:1_\mathcal{C} \to GC$ is a natural isomorphism. Define $\eta' = $
+\begin{tikzcd}
+    1_\mathcal{C} \arrow[r,"\eta'"] & GF \arrow[r,"\alpha^{-1}"] & 1_\mathcal{C}
+\end{tikzcd}
+,\\
+$\mu'=$
+\begin{tikzcd}
+    1_\mathcal{C} \arrow[r,"\alpha"] & GF \arrow[r,"GF\alpha"] & GFGF \arrow[r,"\mu"] & GF \arrow[r,"\alpha^{-1}"] & 1_\mathcal{C}
+\end{tikzcd}
+
+Then $(1_\mathcal{C},\eta',\mu')$ is a monad, so $\eta'$ is an isomorphism, so $\eta = \alpha\eta'$ is an isomorphism, i.e. $F$ is full and faithful (a dual to one of the results in lecture).
+
+(iv) We have the forgetful functor $[M,\mathbf{Set}] \xrightarrow{U} \mathbf{Set}$. $FF = M \times A$ with $M$ acting on first factor $(F \dashv U)$, but $\eta:A \to UFA$ isn't an isomorphism.\\
+If $H:\mathbf{Set} \to [M,\mathbf{Set}]$, $HA = A$ with trivial $M$-action, then $UH = 1_{\mathbf{Set}}$.\\
+$G:[M,\mathbf{Set}] \to \mathbf{Set}$ sends $(A,e)$ to $\{x \in A | ex = x\}$, then $GF \cong 1_{\mathbf{Set}}$.
+
+\subsection{Question 2}
+If $(A,\alpha)$ is a $\T$-algebra, then $\alpha\eta_A = 1_A$, and 
+\begin{tikzcd}
+    TA \arrow[r,"\eta_{TA}"] \arrow[d,"\alpha"] & TTA \arrow[d,"T\alpha"]\\
+    A \arrow[r,"\eta_A"] & TA
+\end{tikzcd}
+commutes; but $\eta_{TA} = T\eta_A$ since both are inverse to $\mu_A$, so $\eta_A \alpha = 1_{TA}$.\\
+Conversely, if $A \in \ob(Fix T)$, then $\eta_A^{-1}$ is a $\T$-algebra structure on $A$, and any $A \xrightarrow{f} B$ in $Fix(T)$ is a homomorphism $(A,\eta_A^{-1}) \to (B,\eta_B^{-1})$.\\
+So $G^\T: \mathcal{C}^\T \to \mathcal{C}$ maps $\mathcal{C}^\T$ isomorphically to $Fix(T)$.\\
+$Fix(T)$ is reflective in $\mathcal{C}$, with reflector $T$, and $T$ is essentially surjective as a functor $\mathcal{C} \to Fix(T)$. So the Kleisli comparison $\mathcal{C}_\T \to Fix(T)$ is an equivalence.
+
+For the last part, $M$ is the order-preserving endomorphisms of $\N$. Define $\eta:1_M \to T$ by $\eta_*(n) = n+1$, and $\mu:TT \to T$ must send $\mu_*(0) = 0$, $\mu_*(n) = n-1$ if $n>0$. But if $\alpha$ is any $\T$-algebra structure on $*$, then necessarily $\alpha(n+1) = n$ for all $n$, and $\alpha$ is order-preserving so $\alpha(0) = 0$. So the comparison $M_\T \to M^\T$ is bijective on objects.
+
+\subsection{Question 3}
+$F:\mathcal{C} \to \mathcal{D}$ induces $F^*:[\mathcal{D},\mathbf{Set}] \to [\mathcal{C},\mathbf{Set}]$ with both left and right adjoints, and hence preserving equalizers and coequalizers. So $F^*$ is monadic and comadic $\iff F^*$ reflects isomorphisms.\\
+If every $B \in \ob\mathcal{D}$ is isomorphic to some $FA$, then for $\beta: G \to H$ (where $G,H: \mathcal{D} \rightrightarrows \mathbf{Set})$, $\beta_{FA}$ is isomorphism for all $A$ implies that $\beta_B$ is an isomorphism for all $B$, since
+
+\begin{tikzcd}
+    GFA \arrow[r,"G\alpha"] \arrow[d,"\beta_{FA}"] & GB \arrow[d,"\beta_B"]\\
+    HFA \arrow[r,"H\alpha"] & HB
+\end{tikzcd}
+
+commutes.
+
+For the last part, apply this to $I:\mathcal{C}_0 \to \mathcal{C}$ where $\mathcal{C}_0$ is the discrete category with same objects as $\mathcal{C}$, and $I$ is inclusion, we get $[\mathcal{C},\mathbf{Set}]$ monadic and comonadic over $[\mathcal{C}_0,\mathbf{Set}] \cong \mathbf{Set}^{ob\mathcal{C}}$.
+
+\subsection{Question 4}
+(Lecturer: This is a very fun question, and I'm pretty happy that I discovered this).\\
+$x:\mathbf{Set} \times \mathbf{Set} \to \mathbf{Set}$ preserves reflexive coequalizers by ES4 Q3. But $\phi\times A = \phi$ for all $A$, so $\phi \times A \to \phi \times B$ is an isomorphism for any $A \times B$. So it's not monadic.\\
+However, if $\mathcal{C}$ is the full subcategory of $\mathbf{Set} \times \mathbf{Set}$ on pairs $(A,B)$ with $A=\phi \iff B=\phi$, then $\Delta: \mathbf{Set} \to \mathcal{C}$ and $\times|_\mathcal{C}$ are still adjoint to each other (because this is a full subcategory), and $\times|_\mathcal{C}$ still preserves reflexive coequalizers, and now reflects isomorphisms (because we've thrown away the bad things).\\
+A \emph{rectangular band} is a set $A$ with binary operation $b$ satisfying $b(x,x) = x$ and $b(b(x,y),b(z,w)) = b(x,w)$. The category of rectangular bands is actually isomorphic to the above $\mathcal{C}$.
+
+\subsection{Question 5}
+(i) $\implies$ (ii) because $F$ preserves coequalizers.\\
+(ii) $\implies$ (i) since $\mathbf{Set}$ is balacned.\\
+(ii) $\iff$ (iii) is the dual of (3.8).\\
+(iii) $\implies$ (iv) is trivial.\\
+(iv) $\implies$ (v) is almost equally trivial, since $F2$ has at least 2 elements.\\
+(v) $\implies$ (iii): Let $(B,\beta)$ be a $\T$-algebra with $>1$ elements. Then given $A$ and two distinct elemnets, $x,y \in A$, we can find $A \xrightarrow{f} B$ with $f(x) \neq f(y)$. Then $f$ factors through $\eta_A$, so $\eta_A(x) \neq \eta_A(y)$.\\
+(vii) $\implies$ (vi) by reflexive comonadicity theorem (dual to 5.13).\\
+(vii) $\iff$ (viii) since $T=GF$ and $G$ creates equalizers.\\
+(ix) $\implies$ (viii): if 
+\begin{tikzcd}
+    A \arrow[r,"f"] & B \arrow[r,shift left, "g"] \arrow[r,shift right,"h"'] & C \arrow[l,"r"]
+\end{tikzcd}
+us a coreflexive equalizers in $\mathbf{Set}$, and $A \vDash \phi$, note that $g$ and $h$ are injective, and $g(x) = h(y)$ iff $x=y \in \im(f)$.\\
+So choose $s:B \to A$ with $sf = 1_A$; then define $t:C \to B$ so that $t(z) = y$ if $z=h(y)$, $t(z) = fs(y)$ if $z=g(y)$, and $t(z) = y_0$ if $z \not\in (\im h \cup \im g)$.\\
+This is a split coequalizer, so $T$ preserves it. Now suppose $A = \phi \neq B$. Then $\im g$ and $\im h$ are disjoint.\\
+Suppose $x \in TB$ satisfies $Tg(x) = Th(x)$. Define $t:C \to B$ by $t(z) = y$ if $z=g(y)$, and is $z_0$ otherwise. then $x = (Tt)(Tg)(x) = (Tt)(Th)x = (Tz_0)(u)$ for some $u \in T1$.\\
+Now consider 
+
+\begin{tikzcd}
+    1 \arrow[r,shift left] \arrow[r,shift right] \arrow[d,"y_0"] & 2 \arrow[d,"{(gy_0,hy_0)}"]\\
+    B \arrow[r,shift left, "g"] \arrow[r,shift right, "h"'] & C
+\end{tikzcd}
+
+which commutes, and the right hand map is (split) monic, so $T$ maps it to a monomorphism. So $u$ has the same images under $T1 \rightrightarrows T2$; hence it's in the image of $T\phi \to T1$.
+
+Finally (vi) $\implies$ (ix) is a rather strange argument -- assume (ix) fails: consider the equalizer $E \rightarrowtail F1$ of $F1 \rightrightarrows F2$. We know $GE \to GF1 \rightrightarrows GF2$ is a coreflexive equalizer diagram with $GE \neq \phi$ (since $GF\phi \to GE$ is not an isomorphism). So it's split, and hence 
+
+\begin{tikzcd}
+    FGE \arrow[r] & FGF1 \arrow[r,shift left] \arrow[r,shift right] & FGF2 \\
+    E \arrow[u,dashed, "\theta"'] \arrow[r] & F1 \arrow[u,"F\eta_1"'] \arrow[r,shift left] \arrow[r,shift right] & F2 \arrow[u,"F\eta_2"']
+\end{tikzcd}
+
+This $\theta$ is a coalgebra structure on $E$. Now the image under the comparison of $\phi \to 1$ factors as
+\begin{tikzcd}
+    (F\phi,F\eta_\phi) \arrow[r] & (E,\theta) & \arrow[r,tail] & (F1, F\eta_1)
+\end{tikzcd}
+with neither factor an isomorphism. So $(E,\theta)$ is not in the essential image (image of objects?) of the comparison.
+
+\subsection{Question 6}
+(i) (This part is \emph{straight-forward enough}) Given a $\T$-algebra homomorphsim $f:(A,\alpha) \to (B,\beta)$, consider
+
+\begin{tikzcd}
+    TA \arrow[d,"\alpha"] \arrow[r,two heads, "Te"] & TI \arrow[r,"Tm"] \arrow[d,dashed,"\iota"] & TB \arrow[d,"\beta"]\\
+    A \arrow[r,two heads,"e"] & I \arrow[r,tail,"m"] & B
+\end{tikzcd}
+
+We get an induced $\iota$ since $Te$ is (strong) epic and monic, and $\iota$ is an algebra structure.\\
+So $f$ is a strong epimorphsim in $\mathbf{Set}^\T$ $\implies$ $m$ is an isomorphism $\implies$ $f$ is surjective.\\
+Given a surjective $(A,\alpha) \xrightarrow{f} (B,\beta)$, form the pullback
+
+\begin{tikzcd}
+    R \arrow[r,"a"] \arrow[d,"b"] & A \arrow[d,"f"]\\
+    A \arrow[r,"f"] & B
+\end{tikzcd}
+
+$R$ has an algebra structure $\rho$ since $G^\T$ creates limits.\\
+Now
+\begin{tikzcd}
+    R \arrow[r,shift left, "a"] \arrow[r, shift right, "b"'] & A \arrow[r,"f"] \arrow[l,bend left=40,"t"] & B \arrow[l,bend left=20,"s"]
+\end{tikzcd}
+, we can choose $s$ with $fs = 1_B$ and define $t$ to be the factorization of $(sf,1_A)$ through the pullback.\\
+So $f$ is a coequalizer of $(R,\rho) \stackrel[b]{a}{\rightrightarrows} (A,\alpha)$ in $\mathbf{Set}^\T$.
+
+(ii) 
+
+\includegraphics[scale=0.5]{image/Cat_08.png}
+
+The above is anon-regular composite of two regular epimorphisms.
+
+(iii) $\mathbf{DGph} \cong [M,\mathbf{Set}]$ where $M=\{1,d,c|d^2=cd=d,c^2=dc=c\}$, and $[M,\mathbf{Set}] \xrightarrow{U} \mathbf{Set}$ is monadic.\\
+$G:\mathbf{Cat} \to \mathbf{DGph}$ has a left adjoint: the free category on a digraph $\mathcal{G}$ has the same objects as $\mathcal{G}$, and morphisms are composable strings $\cdot \to \cdot \to \cdot \to ... \to \cdot$, subject to cancellation of identities, and the adjunction is \emph{straight-forward} to verify, so \emph{that's easy}; and $\varepsilon:FG\mathcal{C} \to \mathcal{C}$ is bijective on objects.
+
+Suppose
+\begin{tikzcd}
+    \mathcal{G} \arrow[r,shift left, "f"] \arrow[r,shift right, "g"] & \mathcal{H} \arrow[r,"h"] \arrow[l,"r"] & \mathcal{K}
+\end{tikzcd}
+is a reflexive coequalizer in $\mathbf{DGph}$ where $f$ and $g$ are bijective on objects. Then $h$ is bijcetive on objects, and the morphisms of $\mathcal{K}$ are equivalence classes of morphisms of $\mathcal{H}$.\\
+So if $\mathcal{G}$ and $\mathcal{H}$ are categories and $f$ and $g$ are functors, $\mathcal{K}$ inherits a category structure making $h$ a coequalizer in $\mathbf{Cat}$ (lecturer: I'm a bit hand-waving on this, the actual verification is a bit long to write down but I hope it's obvious).\\
+This is enough to make the proof of the reflexive monadicity theorem work.
+
+\subsection{Question 7}
+(i)
+
+\begin{tikzcd}
+    1 \arrow[r,"0"] & \N & \N \arrow[l,"s"']
+\end{tikzcd}
+is a coproduct and 
+\begin{tikzcd}
+    \N \arrow[r,shift left, "s"] \arrow[r,shift right, "1_\N"'] & \N \arrow[r] & 1
+\end{tikzcd}
+is a coequalizer.\\
+Given $A$, $1 \xrightarrow{a} A$ and $A \xrightarrow{t} A$ with corresponding diagrams, we define $f: \N to A$ recursively by $f(0)=a$ and $f(n+1) = tf(a)$.\\
+The coproduct diagram ensures that $f$ is injective.\\
+If it's not surjective, define $h:A \to \{0,1\}$ by $h(a) = 0$ if $a \in \im f$ and $h(a)=1$ otherwise. Then $h=ht$, contradicting the coequalizer diagram.\\
+So if $F:\mathbf{Set} \to \mathbf{Set}$ preserves finite limits and colimits, it preserves $\N$. Hence it preserves countable coproducts, since we have pullbacks
+
+\begin{tikzcd}
+    F(\coprod_{n \in \N} A_n) \arrow[d] & FA_n \arrow[l] \arrow[d] \\
+    F\N \arrow[d,no head,"\cong"] & F1 \arrow[l,"Fn"'] \arrow[d,no head,"\cong"]\\
+    \N & 1 \arrow[l,"n"']
+\end{tikzcd}
+
+(ii) Suppose $F:\mathbf{Set} \to \mathbf{Set}$ preserves finite limits and countable coproducts (Note that $F$ preserves all epimorphisms, and hence preserves images).\\
+$F$ preserves coequalizers of equivalence relations $R \subseteq A \times A$ by the hint in question 6.\\
+Given a parallel pair $A \stackrel[g]{f}{\rightrightarrows} B$, we construct the equivalence relation on $B$ generated by all pairs $(fx,gx)$ as follows:\\
+First form the image $I \rightarrowtail B \times B$ of $A \xrightarrow{(f,g)} B \times B$. Then form the image $S \rightarrowtail B \times B$ of $I \coprod B \coprod I^{op} \to B \times B$ to get a reflexive and symmetric relation. Now form the powers $S^n \rightarrowtail B \times B$ using finite limits and images, and then form $R = \im(\coprod_{n \in \N} S^n \to B \times B)$.\\
+All of these is preserved by $F$.
+
+(iii) Suppose $F:\mathbf{Set} \to \mathbf{Set}$ preserves finite limits and colimits. We have $\alpha:1_{\mathbf{Set}} \cong \mathbf{Set}(1,-) \to F$ corresponding to the unique element of $F1$.\\
+Note $F(1 \coprod 1) \cong 1 \coprod 1$, whence $\alpha_2$ is bijective, whence $\alpha_A$ is injective for all $A$.\\
+Suppose $\kappa$ is the least cardinal $(>\omega)$ s.t. $\alpha$ isn't surjective on (sets of cardinality) $\kappa$. Pick $x \in F(\kappa) \setminus \im \alpha_\kappa$; say $A \subseteq \kappa$ is \emph{large} if $x \in \im(FA \to F\kappa)$.\\
+We can say several things about those large sets: if $A$ is large, $A \subseteq A'$ then $A'$ is large; if $A,A'$ are large then $A \cap A'$ is large since $F$ preserves pullbacks.\\
+For every $A$, either $A$ or $\kappa \setminus A$ is large since $F$ preserves binary coproducts, but not both of them, since $F$ preserves $\phi$.\\
+This means that the collection $\mathcal{U}$ of large sets is an \href{https://en.wikipedia.org/wiki/Ultrafilter}{ultrafilter}.\\
+All finite sets are small; countable unions of small sets are small (since $F$ preserves countable coproducts), so countable intersections of large sets are large.\\
+Hence $\kappa$ is a \href{https://en.wikipedia.org/wiki/Measurable_cardinal}{measurable cardinal}: if we are working in a model where no measurable cardinals exist, then no such $F$ can exist.\\
+Given a countably complete non-principal ultrafilter $\mathcal{U}$ on $\kappa$, we can define $\pi_\mathcal{U}: \mathbf{Set} \to \mathbf{Set}$ by $\pi_\mathcal{U} (A) = A^\kappa / \sim_\mathcal{U}$, where $f,g: \kappa \rightrightarrows A$ are identified iff they agree on a set in $\mathcal{U}$.
+
 
 \end{document}
