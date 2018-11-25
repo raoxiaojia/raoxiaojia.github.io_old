@@ -878,4 +878,53 @@ General idea is to build up from smaller sizes. Try for a while and get $12,13,2
 Just treat picking negative numbers as not picking them and vice versa.\\
 Lecturer's answer: Instead prove that there are at most ${n \choose {\lfloor n/2 \rfloor}}$ sums equal.
 
+\newpage
+
+\section{Example Class 2}
+
+\subsection{Question 1}
+$\{A in X^{(\leq r)}:1 \in A\}$ is the best: it is best in every level.
+
+\subsection{Question 2}
+Up-set is trivial; If we have neither $A$ nor $A^c$ for some $A$ but we are still maximal then we're no longer intersecting.\\
+For the second part the answer is no. Lecturer's example: $\{12,34,123,124,134,234,1234,23\}$.
+
+\subsection{Question 3}
+For the first part, just take everything containing 1 and $\{234...n\}$ (one disjoint pair only).\\
+For the second part it's possible to achieve 2: take top half of $Q_n$ and take two intersecting sets at the highest level that has not been chosen.
+
+\subsection{Question 4}
+The method is trivial but the answer to the second part is a bit elusive.\\
+For the first part take first 26 of simplicial. The answer is 48.\\
+For the second part take first 26 of binary. Upwards there are 26 edge, and now we need to count the answer in $Q_5$, which has the same boundary for $6$ in $Q_5$, so is $6$+ boundary of $6$ points in $Q_4$; and continuing this way we get the answer to be 26+6+6+4=42.
+
+\subsection{Question 5}
+The problem is that the compressed set might have larger edge neighbourhood than the uncompressed.
+
+\subsection{Question 6}
+Just follow the same proof, with some care on how to express the shadow by $i$-sections.\\
+There is similarly a single case of exception if $n=2r$.
+
+\subsection{Question 7}
+Both are not: For the first part just take the first half. For the second part take the left half.
+
+\subsection{Question 8}
+Trivial. One good example is a 1-methyl-2-methylcyclobuta-benzene (and we need all pairwise C-C bonds to be present in the two rings so as to form complete graphs -- apparently there aren't that many valence electrons in carbon, but who cares).
+
+\subsection{Question 9}
+(Check Borsuk-Ulam Theorem). Take the set, say $\{x:f_1(x) \text{ within } \frac{n}{200} \text{ of mean } (f_1)\}$ -- this size is enourmous (size $1-e^{-n/200}$). But if we replace $x$ by $x^c$ in the condition, the resulting set has the same size.\\
+So $\{x:f_1(x) \text{ and } f_1(x^c) \text{ within } \frac{n}{200} \text{ of mean } (f_1)\} \geq 1-e^{-n/100}$.
+
+\subsection{Question 10}
+We know $b(A) \geq {n \choose {r+1}}$. We seek a matching $A \to A^c$ of deficieny at most $|X^{(r+1)}|$, so by Hall's theorem we need every $B\subset A$ to have neighbourhood at least of size $|B| - |X^{(\leq r-1)}|$ in $A^c$.\\
+Apparently we only need to check for $|B| \geq |X^{(r-1)}|$, and it's sufficient to prove $|N(B)| \geq |B| + {n \choose r}$.
+
+\subsection{Question 11}
+The lecturer does not want to go through this which is one of the only two harder questions.
+
+\subsection{Question 12}
+Take $12,134,1356,13578,...,23,245,2467,24689,...$.\\
+The lecturer does not want ot go through this which is the other of the two harder questions.
+
+
 \end{document}
