@@ -1529,11 +1529,11 @@ In fact, a Grothendieck topos is exactly a Lawvere-Tierneg topos which is (co)co
     \end{proof}
 \end{lemma}
 
-Given an object $A$ in a topos $\mathcal{E}$, we write $PA$ for the exponential $\Omega^A$, and $\ni_A \rightarrowtail PA \times A$ for the subobject corresponding to $PA \times A \xrightarrow{ev} \Omega$. This has the property that, for any $B$ and any $R \stackrel{m}{\rightarrowtail} B \times A$, there's a unique $\ddddot{m}: B \to PA$ (lecturer had a symbol like ${}^{\lceil}m^\rceil)$ for this, that's a bit long to type) s.t.
+Given an object $A$ in a topos $\mathcal{E}$, we write $PA$ for the exponential $\Omega^A$, and $\ni_A \rightarrowtail PA \times A$ for the subobject corresponding to $PA \times A \xrightarrow{ev} \Omega$. This has the property that, for any $B$ and any $R \stackrel{m}{\rightarrowtail} B \times A$, there's a unique ${}^{\lceil}m^\rceil): B \to PA$ s.t.
 
 \begin{tikzcd}
     R \arrow[r] \arrow[d,tail,"m"] & \ni_A \arrow[d,tail]\\
-    B \times A \arrow[r,"\ddddot{m} \times 1_A"] & PA \times A
+    B \times A \arrow[r,"{}^{\lceil}m^\rceil) \times 1_A"] & PA \times A
 \end{tikzcd}
 
 is a pullback.
@@ -1553,7 +1553,7 @@ is a pullback.
             PB \times A \arrow[r,"1\times f"] & PB \times B
         \end{tikzcd}
 
-        For any morphism $C \xrightarrow{\ddddot{m}} PB$, it's easy to see that $(Pf)\ddddot{m}$ correspond to $(1_C \times f)^*(m)$; hence $f \to Pf$ is functorial. For any $A$ and $B$, we have a bijection between subobjects of $A \times B$ and of $B \times A$, given by composition with $(\pi_2,\pi_1): A \times B \to B \times A$; this yields a (natural) bijection between morphisms $A \to PB$ and $B \to PA$.
+        For any morphism $C \xrightarrow{{}^{\lceil}m^\rceil)} PB$, it's easy to see that $(Pf){}^{\lceil}m^\rceil)$ correspond to $(1_C \times f)^*(m)$; hence $f \to Pf$ is functorial. For any $A$ and $B$, we have a bijection between subobjects of $A \times B$ and of $B \times A$, given by composition with $(\pi_2,\pi_1): A \times B \to B \times A$; this yields a (natural) bijection between morphisms $A \to PB$ and $B \to PA$.
     \end{proof}
 \end{lemma}
 
@@ -1582,7 +1582,7 @@ We write $\{\}_A$ (pronounced as \emph{singleton}) $:A \to PA$ for the morphism 
     \end{proof}
 \end{coro}
 
-Given monomorphism $A \stackrel{f}{\rightarrowtail} B$ in $\mathcal{E}$, we define $\exists f:PA \to PB$ to correspond to the composite $\ni_A \rightarrowtail PA \times A \stackrel{1\times f}{\rightarrowtail} PA \times B$. Then, for any $C \xrightarrow{\ddddot{m}} PA$, $(\exists f) \ddddot{m}$ corresponds to $R \stackrel{m}{\rightarrowtail} C \times A \rightarrowtail{1 \times f} C \times B$.\\
+Given monomorphism $A \stackrel{f}{\rightarrowtail} B$ in $\mathcal{E}$, we define $\exists f:PA \to PB$ to correspond to the composite $\ni_A \rightarrowtail PA \times A \stackrel{1\times f}{\rightarrowtail} PA \times B$. Then, for any $C \xrightarrow{{}^{\lceil}m^\rceil)} PA$, $(\exists f) {}^{\lceil}m^\rceil)$ corresponds to $R \stackrel{m}{\rightarrowtail} C \times A \rightarrowtail{1 \times f} C \times B$.\\
 So $f \to \exists f$ is a functor $Mono(\mathcal{E}) \to \mathcal{E}$.
 
 \begin{lemma} (7.8, Beck-Chevalley condition)\\
@@ -1662,6 +1662,176 @@ So $f \to \exists f$ is a functor $Mono(\mathcal{E}) \to \mathcal{E}$.
         commutes up to isomorphism. So this follows from (5.16).
     \end{proof}
 \end{coro}
+
+---Lecture 23---
+
+\begin{lemma} (7.11)\\
+    Let $\mathcal{E}$ be a category with finite limits, and suppose $A \in \ob\mathcal{E}$ has a power-object $PA$. Then, for any $B$, $B^*(PA)$ is a power-object for $B^*A$ in $\mathcal{E}/B$.
+    \begin{proof}
+        Given 
+        \begin{tikzcd}
+            C \arrow[d,"g"]\\
+            B
+        \end{tikzcd}
+        , we have a pullback square
+
+        \begin{tikzcd}
+            C \times A \arrow[r,"g \times 1"] \arrow[d,"\pi_1"] & B \times A \arrow[d,"\pi_1"]\\
+            C \arrow[r,"g"] & B
+        \end{tikzcd}
+
+        So $\sum_B(g \times B^* A) \cong C \times A$.\\
+        Hence $Sub_{\mathcal{E}/B}(g \times B^* A) \cong Sub_{\mathcal{E}}(C \times A)$, but if $C \xrightarrow{h} PA$ corresponds to 
+        \begin{tikzcd}
+            R \arrow[d,tail]\\
+            C \times A
+        \end{tikzcd}
+        , then 
+
+        \begin{tikzcd}
+            R \arrow[d,tail] \arrow[rr] & & B \times \ni_A \arrow[d,tail]\\
+            C \times A \arrow[rr,"{(g,h) \times 1_A}"] \arrow[rd,"g\pi_1"'] & & B \times PA \times A \arrow[ld,"\pi_1"]\\
+            & B &
+        \end{tikzcd}
+        
+        is a pullback. So 
+        \begin{tikzcd}
+            B \times PA \arrow[d,"\pi_1"]\\
+            B
+        \end{tikzcd}
+        equipped with $B^*(\ni_A) \rightarrowtail B^*(PA\times A)$ is a power object for $B^* A$.
+    \end{proof}
+\end{lemma} 
+
+\begin{thm} (7.12)\\
+    Suppose $\mathcal{E}$ is a weak topos. Then for any $B \in \ob\mathcal{E}$, $\mathcal{E}/B$ is a weak topos and $B^*:\mathcal{E} \to \mathcal{E}/B$ is weakly logical.
+    \begin{proof}
+        The second assertion follows from (7.11). For the first, we need to construct a power-object for an arbitrary 
+        \begin{tikzcd}
+            A \arrow[d,"f"]\\
+            B
+        \end{tikzcd}
+        in $\mathcal{E}/B$. Then the pullback
+
+        \begin{tikzcd}
+            \sum_B(g \times f) \arrow[r] \arrow[d] & A \arrow[d,"f"]\\
+            C \arrow[r,"g"] & B
+        \end{tikzcd}
+
+        is a subobject of $C \times A$, namely the equalizer of $C \times A \stackrel[g\pi_1]{f\pi_2}{\rightrightarrows} B$.\\
+        DEfine $\wedge: PA \times PA \to PA$ to correspond to the intersection of $\pi_{13}^* (\ni_A \rightarrowtail PA \times A)$ and $\pi_{23}^*(\ni_A \rightarrowtail PA \times A)$, and define $P_1A \rightarrowtail PA \times PA$ to be the equalizer of $PA \times PA \stackrel[\pi_1]{\wedge}{\rightrightarrows} PA$.\\
+        Then, for any $C$, $C \xrightarrow{({}^{\lceil}m^\rceil),{}^{\lceil}n^\rceil))} PA \times PA$ factors through $P_1 A$ iff $m \leq n$ in $Sub_{\mathcal{E}}(C \times A)$.\\
+        Now form the pullback
+
+        \begin{tikzcd}
+            Q \arrow[rr] \arrow[d,tail,"({h,k)}"] & & P_1 A \arrow[d,tail]\\
+            PA \times B \arrow[r,"1 \times \{\}"] & PA \times PB \arrow[r,"1 \times Pf"] & PA \times PA
+        \end{tikzcd}
+
+        Given any 
+        \begin{tikzcd}
+            C \arrow[d,"g"]\\
+            B
+        \end{tikzcd}
+        , the morphisms $g \xrightarrow{l} k$ in $\mathcal{E}/B$ correspond to morphisms $C \xrightarrow{hl} PA$ s.t. the subobject named by $hl$ is contained in that named by $(Pf)(\{\}) g$. But the latter is indeed $\sum_B(g \times f) \rightarrowtail C \times A$.\\
+        So $k$ is a power-object for $f$ in $\mathcal{E}/B$.
+    \end{proof}
+\end{thm}
+
+\begin{coro} (7.13)\\
+    A weak topos is locally cartesian closed (in particular, it's a topos).
+    \begin{proof}
+        For any $f:A \times B$ in $\mathcal{E}$, we can identify $(\mathcal{E}/B) / f$ with $\mathcal{E}/A$, and $f^*:\mathcal{E}/B \to \mathcal{E}/A$ with pullback along $f$. Hence all such functors are weakly logical.\\
+        But $f^*$ has a left adjoint $\sum_f$, so by 7.10(ii) it has a right adjoint $\pi_f$. Hence by (6.3) $\mathcal{E}/B$ is cartesian closed for any $B$.
+    \end{proof}
+\end{coro}
+
+\begin{rem}
+    It can be shown that a weakly logical functor is cartesian closed (and hence logical).
+\end{rem}
+
+\begin{coro} (7.14)\\
+    (i) Any epimorphism in a topos is regular.\\
+    (ii) Any $A \xrightarrow{f} B$ in a topos factors uniquely up to isomorphism as
+    \begin{tikzcd}
+        A \arrow[r,two heads,"q"] & I \arrow[r,tail,"m"] & B
+    \end{tikzcd}
+    \begin{proof}
+        $\mathcal{E}$ is locally cartesian closed by (7.13) and has coequalizers by 7.10(i), so by (6.7), every $f$ factors uniquely as regular epimorphism + monomorphism. If $f$ itself is epic, then the monic part of this factorization is so by (7.3), so $f$ is regular epic.
+    \end{proof}
+\end{coro}
+
+---end of examinable course material---
+
+Recall that $\mathbf{Sh}(x) \subseteq [\mathcal{O}(X)^{op},\mathbf{Set}]$ is a full subcategory closed under limits (pretty easy to verify); in fact it's reflective, and moreover, the reflector $L:[\mathcal{O}(X)^{op},\mathbf{Set}] \to \mathbf{Sh}(X)$ preserves finite limits.\\
+This suggests considering reflective subcategories $\mathcal{D} \subseteq \mathcal{E}$ for which the reflector preserves finite limits (equivalently, pullbacks).
+
+\begin{lemma} (7.15)\\
+    Given such a reflective subcategory and a monomorphism $A'\rightarrowtail A$ in $\mathcal{E}$, define $c(A') \rightarrowtail A$ by the pullback diagram
+
+    \begin{tikzcd}
+        c(A') \arrow[r] \arrow[d,tail] & LA' \arrow[d,tail]\\
+        A \arrow[r,"\eta_A"] & LA
+    \end{tikzcd}
+
+    Then $A' \rightarrow c(A')$ is a closure operation on $Sub_\mathcal{E}(A)$, and commutes with pullback along a fixed morphism of $\mathcal{E}$.
+    \begin{proof}
+        Since
+
+        \begin{tikzcd}
+            A' \arrow[r,"\eta_{A'}"] \arrow[d,tail] & LA' \arrow[d,tail]\\
+            A \arrow[r,"\eta_A"] & LA
+        \end{tikzcd}
+
+        commutes, we have $A' \leq c(A')$, and $A' \leq A''$ in $Sub(A)$ implies $LA' \leq LA''$ in $Sub(LA)$, and hence $c(A') \leq c(A'')$.\\
+        Since $L\eta$ is an isomorphism,
+
+        \begin{tikzcd}
+            LA' \arrow[r,"L\eta_{A'}"] \arrow[d,tail] & LLA' \arrow[d,tail]\\
+            LA \arrow[r,"L\eta_A"] & LLA
+        \end{tikzcd}
+
+        is a pullback, and since $L$ preserves pullbacks, we deduce $Lc(A') \cong LA'$ is $Sub(LA)$.\\
+        Hence $c(c(A')) \cong c(A')$.\\
+        For stability under pullback, suppose
+
+        \begin{tikzcd}
+            A' \arrow[r] \arrow[d,tail] & B' \arrow[d,tail]\\
+            A \arrow[r,"f"] & B
+        \end{tikzcd}
+
+        is a pullback. Then in the cube (!!??)
+
+        \begin{tikzcd}
+            c(A') \arrow[rr] \arrow[dd] \arrow[rd] & & LA'\arrow[dd] \arrow[rd]\\
+            & c(B') \arrow[rr, crossing over] \arrow[dd, crossing over] & & LB' \arrow[dd]\\
+            A \arrow[rr,"\eta_A"] \arrow[rd,"f"'] & & LA \arrow[rd,"Lf"]\\
+            & B \arrow[rr,"\eta_B"] & & LB
+        \end{tikzcd}
+
+        the front, back and right faces are pullbacks; whence the left face is too; the other two need not be (but just need to be commutative).
+    \end{proof}
+\end{lemma}
+
+\begin{defi} (7.16)\\
+    Let $\mathcal{E}$ be a topos. By a local operator on $\mathcal{E}$, we mean a morphism $j:\Omega \to \Omega$ satisfying the commutative diagrams
+
+    \begin{tikzcd}
+        1 \arrow[r,"T"] \arrow[rd,"T"'] & \Omega \arrow[d,"j"] & \Omega \arrow[l,"j"'] \arrow[ld,"j"]\\
+        & \Omega &
+    \end{tikzcd}
+    and 
+    \begin{tikzcd}
+        \Omega_1 \arrow[r] \arrow[d,tail] & \Omega_1 \arrow[d,tail]\\
+        \Omega \times \Omega \arrow[r,"j \times j"] & \Omega \times \Omega
+    \end{tikzcd}
+
+    where $\Omega_1$ is the order-relation on $\Omega$, defined as in (7.12).
+\end{defi}
+
+Given a closure opeartor on subobjects as in (7.15), define $J \rightarrowtail \Omega$ to be the closure of $1 \stackrel{T}{\rightarrowtail} \Omega$, and $j:\Omega \to \Omega$ to be the classifying map of $J \rightarrowtail \Omega$.\\
+Then, for any $A' \rightarrowtail A$ with classifying map $\chi_m: A \to \Omega$, the composite $j\chi_m$ classifies $c(A') \rightarrowtail A$.
+
 
 
 
