@@ -6,20 +6,21 @@
 \contentsline {section}{\numberline {6}Saturation}{26}{section.6}
 \contentsline {section}{\numberline {7}The Monster Model}{32}{section.7}
 \contentsline {section}{\numberline {8}Strongly minimal theories}{36}{section.8}
-\contentsline {section}{\numberline {9}Example class 1}{39}{section.9}
-\contentsline {subsection}{\numberline {9.1}Question 3}{39}{subsection.9.1}
-\contentsline {subsection}{\numberline {9.2}Question 4}{39}{subsection.9.2}
-\contentsline {subsection}{\numberline {9.3}Question 5}{39}{subsection.9.3}
-\contentsline {subsection}{\numberline {9.4}Question 6}{39}{subsection.9.4}
-\contentsline {subsection}{\numberline {9.5}Question 7}{39}{subsection.9.5}
-\contentsline {subsection}{\numberline {9.6}Question 8}{40}{subsection.9.6}
-\contentsline {section}{\numberline {10}Example Class 2}{41}{section.10}
-\contentsline {subsection}{\numberline {10.1}Question 1}{41}{subsection.10.1}
-\contentsline {subsection}{\numberline {10.2}Question 2}{41}{subsection.10.2}
-\contentsline {subsection}{\numberline {10.3}Question 3}{41}{subsection.10.3}
-\contentsline {subsection}{\numberline {10.4}Question 4}{41}{subsection.10.4}
-\contentsline {subsection}{\numberline {10.5}Question 5}{41}{subsection.10.5}
-\contentsline {subsection}{\numberline {10.6}Question 6}{42}{subsection.10.6}
-\contentsline {subsection}{\numberline {10.7}Question 7}{42}{subsection.10.7}
-\contentsline {subsection}{\numberline {10.8}Question 8}{42}{subsection.10.8}
-\contentsline {subsection}{\numberline {10.9}Question 9}{42}{subsection.10.9}
+\contentsline {subsection}{\numberline {8.1}Interlude: existence of saturated model (non-examinable)}{38}{subsection.8.1}
+\contentsline {section}{\numberline {9}Example class 1}{41}{section.9}
+\contentsline {subsection}{\numberline {9.1}Question 3}{41}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Question 4}{41}{subsection.9.2}
+\contentsline {subsection}{\numberline {9.3}Question 5}{41}{subsection.9.3}
+\contentsline {subsection}{\numberline {9.4}Question 6}{41}{subsection.9.4}
+\contentsline {subsection}{\numberline {9.5}Question 7}{41}{subsection.9.5}
+\contentsline {subsection}{\numberline {9.6}Question 8}{42}{subsection.9.6}
+\contentsline {section}{\numberline {10}Example Class 2}{43}{section.10}
+\contentsline {subsection}{\numberline {10.1}Question 1}{43}{subsection.10.1}
+\contentsline {subsection}{\numberline {10.2}Question 2}{43}{subsection.10.2}
+\contentsline {subsection}{\numberline {10.3}Question 3}{43}{subsection.10.3}
+\contentsline {subsection}{\numberline {10.4}Question 4}{43}{subsection.10.4}
+\contentsline {subsection}{\numberline {10.5}Question 5}{43}{subsection.10.5}
+\contentsline {subsection}{\numberline {10.6}Question 6}{44}{subsection.10.6}
+\contentsline {subsection}{\numberline {10.7}Question 7}{44}{subsection.10.7}
+\contentsline {subsection}{\numberline {10.8}Question 8}{44}{subsection.10.8}
+\contentsline {subsection}{\numberline {10.9}Question 9}{44}{subsection.10.9}

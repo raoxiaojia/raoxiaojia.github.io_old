@@ -1214,6 +1214,77 @@ Notation: we write $acl(a,B)$ for $acl(\{a\} \cup B)$, and $acl(B \setminus a)$ 
     \end{proof}
 \end{thm}
 
+\subsection{Interlude: existence of saturated model (non-examinable)}
+
+If $\mathcal{M}$ is saturated, then:
+$\bullet$ $\mathcal{M}$ is homogeneous;\\
+$\bullet$ $\mathcal{M}$ is universal.
+
+If $\mathcal{M}$ is $\lambda$-saturated, then:
+$\bullet$ $\mathcal{M}$ is \emph{weakly $\lambda$-homogeneous}, i.e. for all $f:\mathcal{M} \to \mathcal{M}$ (partial) elementary s.t. $|f| < \lambda$, for every $b \in \mathcal{M}$, we have $\exists \hat{f} \supseteq f$ elementary and s.t. $b \in \dom(f)$ (we can do one point extention).
+
+We can prove: $\lambda$-homogeneity is equivalent to homogeneity when $|\mathcal{M}| = \lambda$.
+
+\begin{defi}
+    If $\alpha$ is a limit cardinal $\geq \omega$, $cof(\alpha)$ (cofinality of $\alpha$) is the least $\lambda$ s.t. there is $f:\lambda \to \alpha$ s.t. the range of $f$ is unbounded in $\alpha$.
+\end{defi}
+
+We have $cof(\omega) = \aleph_0$; $cof(\omega_\omega) = \aleph_0$.\\
+A cardinal $\kappa$ is regular if $cof(\kappa) = \kappa$. So $\aleph_0$ is regular.\\
+Also, every successor cardinal is regular. Are there any limit cardinals that are regular, other than $\aleph_0$? This is still open.\\
+This turns out to be important, because we have saturated models assuming the existence of limit cardinals.
+
+If $\mathcal{M} \vDash T$, $A \subseteq \mathcal{M}$, then $S_1^\mathcal{M}(A) = \{p(x):p(x)$ is a complete type in a single variable with parameters in $A\}$.
+
+\begin{lemma}
+    If $\mathcal{M}$ is s.t. $|\mathcal{M}| \geq |L|+\omega$.\\
+    Let $\kappa > \aleph_0$. Then there is $\mathcal{M}' \succcurlyeq \mathcal{M}$ s.t. for all $A \subseteq \mathcal{M}$ with $|A| < \kappa$, if $p(x) \in S_1^\mathcal{M}(A)$, then $p(x)$ is realized in $\mathcal{M}'$, $|\mathcal{M}'| \leq |\mathcal{M}|^\kappa$.
+    \begin{proof}
+        First, note $|\{A \subseteq \mathcal{M}: |A| \leq \kappa\}| \leq |\mathcal{M}|^\kappa$.\\
+        Also, $|S_1^\mathcal{M}(A)| \leq 2^\kappa$ (types are infinite sets of formulas, and each formula is some finite string of symbols in $L(A)$?)\\
+        Enumerate $S_1^\mathcal{M}(A)$ as $\bra p_\alpha:\alpha<|\mathcal{M}|^\kappa\ket$.\\
+        Build $\bra \mathcal{M}_\alpha:\alpha<|\mathcal{M}|^\kappa\ket$ as follows:
+        $\bullet$ $\mathcal{M}_0 = \mathcal{M}$;\\
+        $\bullet$ $\mathcal{M}_\alpha =\cup_{\beta < \alpha} \mathcal{M}_\beta$ when $\alpha$ is a limit;\\
+        $\bullet$ $\mathcal{M}_\alpha \preccurlyeq \mathcal{M}_{\alpha+1}$ s.t. $\mathcal{M}_{\alpha+1}$ realizes $p_\alpha(x)$ and $|\mathcal{M}_{\alpha+1}| = |\mathcal{M}_\alpha|$ (We can use downward L-S theorem to keep the size constant in this step).\\
+        Then $\cup_{\alpha<|\mathcal{M}|^kappa}$ realizes all types in $S_1^\mathcal{M}(A)$ and $|\cup_{\alpha<|\mathcal{M}|^\kappa} \mathcal{M}_\alpha| \leq |\mathcal{M}|^\kappa$.
+    \end{proof}
+\end{lemma}
+
+\begin{thm}
+    Let $\kappa > \aleph_0$. Let $\mathcal{M} \vDash T$ (a complete theory without finite models). Then there is a $\kappa^+$-saturated $\mathcal{N} \succcurlyeq \mathcal{M}$ s.t. $|\mathcal{N}| \leq |\mathcal{M}|^\kappa$.
+    \begin{proof}
+        Build an elmentary chain $\bra \mathcal{N}_\alpha:\alpha<|\kappa^+\ket$ s.t.:\\
+        $\bullet$ $\mathcal{N}_0 = \mathcal{M}$;\\
+        $\bullet$ take unions at limit stages;\\
+        $\bullet$ Given $\mathcal{N}_\alpha$, find $\mathcal{N}_{\alpha+1} \succcurlyeq \mathcal{N}_\alpha$ s.t. all types in $S_1^{\mathcal{N}_\alpha}(A)$ with $|A| \leq \kappa$ are realized.\\
+        Moreover, $|\mathcal{N}_\alpha| \leq |\mathcal{M}|^\kappa$ (follows from previous lemma).\\
+        Now take the union, $\mathcal{N} = \cup_{\alpha < \kappa^+} \mathcal{N}_\alpha$. Since $\kappa^+ \leq |\mathcal{M}|^\kappa$, $\mathcal{N}$ is the union of at most $|\mathcal{M}|^\kappa$ sets, each of size at most $|\mathcal{M}|^\kappa$, hence $|\mathcal{N}| \leq |\mathcal{M}|^\kappa$.\\
+        To see that $\mathcal{N}$ is $\kappa^+$-saturated, pick $A \subseteq \mathcal{N}$ s.t. $|A|\leq \kappa$. Now we need regularity of $\kappa$: if $\kappa$ is regular, there is $\alpha$ s.t. $A \subseteq \mathcal{N}_\alpha$, hence all types over $A$ with one free-variable are realized in $\mathcal{N}$.
+    \end{proof}
+\end{thm}
+
+Recap: for arbitrarily large $\kappa$, there is a $\kappa^+$-saturated $\mathcal{N} \succcurlyeq \mathcal{N}$ with $|\mathcal{N}| \leq |\mathcal{M}|^\kappa$. If $\kappa, |\mathcal{M}|$ are s.t. $|\mathcal{M}| \leq 2^\kappa$, then $|\mathcal{M}|^\kappa = 2^\kappa$.\\
+So we get a $\kappa^+$ saturated extension $\mathcal{N} \succcurlyeq \mathcal{M}$ s.t. $|\mathcal{N}| = 2^\kappa$. So if we assume GCH, we see that saturated models exist.
+
+This is one way to deduce the existence of saturated models (by GCH). Alternatively, suppose there are arbitrarily large cardinals $\kappa$ s.t. $\kappa^{<\kappa} =\cup\{\kappa^\alpha:\alpha<\kappa\} = \kappa$ (strongly inaccessible cardinals).
+
+\begin{defi}
+    Suppose $T$ is a complete theory (in countable language $L$), $\kappa \geq \aleph_0$ a cadrinal. Then $T$ is $\kappa$-stable if for all $\mathcal{M} \vDash T$, $A \subseteq \mathcal{M}$, $|A| \leq \kappa$, $\forall n < \omega$ $|S_n^\mathcal{M}(A)| \leq \kappa$ (the set of complete types with $n$ variables and parameters in $A$).
+\end{defi}
+
+\begin{thm}
+    Let $\kappa$ be a regular cardinal, $T$ a $\kappa$-stable theory. Then there is $\mathcal{M} \vDash T$, $|\mathcal{M}| = \kappa$, $\mathcal{M}$ saturated.
+    \begin{proof}
+        We build an elementary chain $\bra \mathcal{M}_\alpha: \alpha < \kappa \ket$ where $|\mathcal{M}_\alpha| = \kappa$ as follows:\\
+        $\bullet$ $\mathcal{M}_0 \vDash T$ (of size $\kappa$);\\
+        $\bullet$ unions at limit stages;\\
+        $\bullet$ given $\mathcal{M}_\alpha$, $|\mathcal{M}_\alpha| \implies S_1^{\mathcal{M}_\alpha}(\mathcal{M}_\alpha) = \kappa$.\\
+        There is $\mathcal{M}_{\alpha+1} \succcurlyeq \mathcal{M}_\alpha$ that realizes all $\kappa$ types in $S_1^{\mathcal{M}_\alpha}(\mathcal{M}_\alpha)$, and $|\mathcal{M}_{\alpha+1}| = |\mathcal{M}_\alpha|$.\\
+        Let $\cup_{\alpha<\kappa} \mathcal{M}_\alpha$, then $|\cup \mathcal{M}_\alpha| = \kappa$, and $\cup \mathcal{M}_\alpha$ is $\kappa$-saturated by construction.
+    \end{proof}
+\end{thm}
+
 
 \newpage
 
