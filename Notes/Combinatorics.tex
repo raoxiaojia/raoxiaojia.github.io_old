@@ -882,17 +882,17 @@ A uniform cover $\mathcal{C}$ of $[n]$ is \emph{irreducible} if we cannot write 
         (We hope to find such $x_Y$ with $|S| = x_1...x_n$ and $x_{12} = x_1x_2$ etc, then our box is $[0,x_1] \times ... \times [0,x_n]$.)\\
         Note that (iii) therefore holds for \emph{all} uniform covers, as it holds for irreducible ones.\\
         Note that we have a solution to the above inequalities (e.g. set $x_Y = |S_Y| \forall Y$), and our solution set is compact, so there exists a solution $(x_Y)$ with $\sum_Y x_Y$ minimal.\\
-        We must have $x_Y > 0$ $\forall Y$ by (iii). Now claim that for each $1\leq i \leq n$, $x_i$ occurs on the RHS of an inequality in (iii) in which equality holds: we must have $x_i$ on RHS of \emph{some} inequalit in which equality holds ((i),(ii) or (iii)), otherwise we could \emph{decrease} $x_i$ (as set of inequalities is finite).\\
-        The equality cannot be in (i) as $x_i>0$; if the equality is in (iii) we're proved the claim; if equality is in (ii) we have $x_Y = \prod_{j \in Y} x_j$ for some $Y$ with $i \in Y$; but $x_Y$ must appear on RHS of an equality (else could decreas it), which can only be in (iii). So we have $k$-uniform cover $\mathcal{C}$ with $Y \in \mathcal{C}$ and $|S|^k = \prod_{z \in \mathcal{C}} x_Z$. But then equality also holds for the cover $\mathcal{C}' = \mathcal{C}-\{Y\} \cup \{\{j\}:j \in Y\}$. Now just take an irreducible $\mathcal{C}'' \subset \mathcal{C}'$ with $\{i\} \in \mathcal{C}''$.
+        We must have $x_Y > 0$ $\forall Y$ by (iii). Now claim that for each $1\leq i \leq n$, $x_i$ occurs on the RHS of an inequality in (iii) in which equality holds: we must have $x_i$ on RHS of \emph{some} inequality in which equality holds ((i),(ii) or (iii)), otherwise we could \emph{decrease} $x_i$ (as set of inequalities is finite).\\
+        The equality cannot be in (i) as $x_i>0$; if the equality is in (iii) we're proved the claim; if equality is in (ii) we have $x_Y = \prod_{j \in Y} x_j$ for some $Y$ with $i \in Y$; but $x_Y$ must appear on RHS of an equality (else we could decrease it), which can only be in (iii). So we have $k$-uniform cover $\mathcal{C}$ with $Y \in \mathcal{C}$ and $|S|^k = \prod_{z \in \mathcal{C}} x_Z$. But then equality also holds for the cover $\mathcal{C}' = \mathcal{C}-\{Y\} \cup \{\{j\}:j \in Y\}$. Now just take an irreducible $\mathcal{C}'' \subset \mathcal{C}'$ with $\{i\} \in \mathcal{C}''$.
 
         Now for each $i$, we have a cover $\mathcal{C}_i$ with $\{i\} \in \mathcal{C}_i$ and equality holding in (iii).\\
         But $\mathcal{C} = \mathcal{C}_1 \cup ... \mathcal{C}_n$. Then $\{i\} \in \mathcal{C}$ $\forall i$, and we have equality for $\mathcal{C}$ in (iii).\\
         But $\mathcal{C} = \mathcal{C}' \cup \mathcal{C}''$ for some $\mathcal{C}''$, where $\mathcal{C}' = \{\{i\}:1 \leq i \leq n\}$.\\
-        Hence we have equality in (iii) for $\mathcal{C}'$, i.e. $|S| = x_1...x_n$. Now for any $Y$ ($|Y| \geq 2$), we must have $x_Y = \prod_{i \in Y} x_i$, because $Y,Y^c$ is a uniformr cover, so that $|S| \leq x_Y x_{Y^c} \leq \prod_{i \in Y} x_i \prod_{i \not\in Y} x_i = x_1...x_n = |S|$.
+        Hence we have equality in (iii) for $\mathcal{C}'$, i.e. $|S| = x_1...x_n$. Now for any $Y$ ($|Y| \geq 2$), we must have $x_Y = \prod_{i \in Y} x_i$, because $Y,Y^c$ is a uniform cover, so that $|S| \leq x_Y x_{Y^c} \leq \prod_{i \in Y} x_i \prod_{i \not\in Y} x_i = x_1...x_n = |S|$.
     \end{proof}
 \end{thm}
 
-Remember that there is a lecture this Thursday!
+Remember there is a lecture this Thursday!
 
 
 
