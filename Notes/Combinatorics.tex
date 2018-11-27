@@ -841,6 +841,61 @@ Iteration: $\int f_1...f_k \leq (\int f_1^k)^{1/k} ... (\int f_k^k)^{1/k}$.
     \end{proof}
 \end{thm}
 
+---Lecture 15---
+
+\begin{coro} (4, Loomis-Whitney theorem)\\
+    Let $S$ be a body in $\R^n$. Then $|S|^{n-1} \leq \prod_{i=1}^n |S_{[n]-i}|$.
+    Note: $n=3$ is proposition 2.
+    \begin{proof}
+        The sets $[n]-i$, $1 \leq i \leq n$, form an $(n-1)$-uniform cover of $[n]$.
+    \end{proof}
+\end{coro}
+
+\begin{coro} (5)\\
+    Let $A \subset \P([n])$, and let $\mathcal{C}$ be a $k$-uniform cover of $[n]$, then $|A|^k \leq \prod_{Y \in \mathcal{C}} |A|Y|$. In particular, if $|A|Y| \leq (2^{|Y|})^c$ $\forall Y \in \mathcal{C}$, then $|A| \leq (2^n)^c$.
+    \begin{proof}
+        First part: identify $A$ with body $\hat{A} \subset \R^n$.\\
+        Second part: $|A|^k \leq \prod_{Y \in \mathcal{C}} |A|Y| \leq \prod_{Y \in \mathcal{C}} (2^{|Y|})^c = 2^{knc}$.
+    \end{proof}
+\end{coro}
+
+Our aim is to prove the Bollob\'as-thomason box theorem: for any $S \subset \R^n$, there exsits a box $B$ with $|B| = |S|$ and $|B_Y| \leq |S_Y|$ $\forall Y \subset [n]$. This looks way too strong to be true -- e.g. it tells us that, to verify \emph{any} proposed projection inequality, it suffices to check it on boxes.
+
+A uniform cover $\mathcal{C}$ of $[n]$ is \emph{irreducible} if we cannot write $\mathcal{C} = \mathcal{C}' \cup \mathcal{C}''$ where $\mathcal{C}'$ and $\mathcal{C}''$ are uniform covers.
+
+\begin{lemma} (6)\\
+    There are only finitely many irreducible covers of $[n]$.
+    \begin{proof}
+        Suppose not, let $\mathcal{C}_1,\mathcal{C}_2,...$ are irreducible covers. List $\P([n])$ as $E_1,...,E_{2^n}$. We have subsequence $\mathcal{C}_{i_1},\mathcal{C}_{i_2},...$ on which the number of occurrences of $E_1$ is non-decreasing. Find subsequence of this on which number of occurrences of $E_2$ is non-decreasing, ... Repeating, we get $\mathcal{C}_{j_1},\mathcal{C}_{j_2}$ on which $\forall E \subset [n]$, number of occurrences of $E$ is increasing. But then $\mathcal{C}_{j_2}$ contains $\mathcal{C}_{j_1}$. Contradiction.
+    \end{proof}
+\end{lemma}
+
+\begin{thm} (7, Bollob\'as-Thomason box theorem)\\
+    Let $S \subset \R^n$ be a (non-empty) body. Then there exists a box $B \subset \R^n$ with $|B| = |S|$, and $|B_Y| \leq |S_Y| \forall Y$.
+    \begin{proof}
+        WLOG let $|S| > 0$ and $n \geq 2$.\\
+        Take real variables $x_Y$ for each $Y \subset [n], Y \neq \phi,[n]$.\\
+        Consider the inequalities:\\
+        $\bullet$ (i) $0 \leq x_Y \leq |S_Y|$ $\forall Y$;\\
+        $\bullet$ (ii) $x_Y \leq \prod_{i \in Y} x_i$ for each $|Y| \geq 2$;\\
+        $\bullet$ (iii) $|S|^k \leq \prod_{Y \in \mathcal{C}} x_Y$ for each irreducible $k$-uniform cover $\mathcal{C}$ of $[n]$ (for any $k$), apart from $\mathcal{C}=\{[n]\}$.\\
+        (We hope to find such $x_Y$ with $|S| = x_1...x_n$ and $x_{12} = x_1x_2$ etc, then our box is $[0,x_1] \times ... \times [0,x_n]$.)\\
+        Note that (iii) therefore holds for \emph{all} uniform covers, as it holds for irreducible ones.\\
+        Note that we have a solution to the above inequalities (e.g. set $x_Y = |S_Y| \forall Y$), and our solution set is compact, so there exists a solution $(x_Y)$ with $\sum_Y x_Y$ minimal.\\
+        We must have $x_Y > 0$ $\forall Y$ by (iii). Now claim that for each $1\leq i \leq n$, $x_i$ occurs on the RHS of an inequality in (iii) in which equality holds: we must have $x_i$ on RHS of \emph{some} inequalit in which equality holds ((i),(ii) or (iii)), otherwise we could \emph{decrease} $x_i$ (as set of inequalities is finite).\\
+        The equality cannot be in (i) as $x_i>0$; if the equality is in (iii) we're proved the claim; if equality is in (ii) we have $x_Y = \prod_{j \in Y} x_j$ for some $Y$ with $i \in Y$; but $x_Y$ must appear on RHS of an equality (else could decreas it), which can only be in (iii). So we have $k$-uniform cover $\mathcal{C}$ with $Y \in \mathcal{C}$ and $|S|^k = \prod_{z \in \mathcal{C}} x_Z$. But then equality also holds for the cover $\mathcal{C}' = \mathcal{C}-\{Y\} \cup \{\{j\}:j \in Y\}$. Now just take an irreducible $\mathcal{C}'' \subset \mathcal{C}'$ with $\{i\} \in \mathcal{C}''$.
+
+        Now for each $i$, we have a cover $\mathcal{C}_i$ with $\{i\} \in \mathcal{C}_i$ and equality holding in (iii).\\
+        But $\mathcal{C} = \mathcal{C}_1 \cup ... \mathcal{C}_n$. Then $\{i\} \in \mathcal{C}$ $\forall i$, and we have equality for $\mathcal{C}$ in (iii).\\
+        But $\mathcal{C} = \mathcal{C}' \cup \mathcal{C}''$ for some $\mathcal{C}''$, where $\mathcal{C}' = \{\{i\}:1 \leq i \leq n\}$.\\
+        Hence we have equality in (iii) for $\mathcal{C}'$, i.e. $|S| = x_1...x_n$. Now for any $Y$ ($|Y| \geq 2$), we must have $x_Y = \prod_{i \in Y} x_i$, because $Y,Y^c$ is a uniformr cover, so that $|S| \leq x_Y x_{Y^c} \leq \prod_{i \in Y} x_i \prod_{i \not\in Y} x_i = x_1...x_n = |S|$.
+    \end{proof}
+\end{thm}
+
+Remember that there is a lecture this Thursday!
+
+
+
 
 \newpage
 

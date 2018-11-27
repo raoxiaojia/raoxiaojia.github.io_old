@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  25 NOV 2018 10:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  27 NOV 2018 09:57
 entering extended mode
 **./Combinatorics.tex
 (Combinatorics.tex
@@ -1568,17 +1568,17 @@ LaTeX Warning: No \author given.
 [1
 
 {C:/Users/raoxj/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(Combinatorics.toc)
+(Combinatorics.toc [2])
 \tf@toc=\write5
 \openout5 = `Combinatorics.toc'.
 
- [2] [3]
+ [3] [4]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 37.
 
-[4]
+[5]
 Overfull \hbox (39.23465pt too wide) in paragraph at lines 90--91
 []\OT1/cmr/m/n/10 (-20) For ex-am-ple, if $\OMS/cmsy/m/n/10 A \OT1/cmr/m/n/10 (
 -20) = \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (-20) 123\OML/cmm/m/it/10 ; \OT1/cmr/m
@@ -1592,7 +1592,7 @@ cmm/m/it/10 ; \OT1/cmr/m/n/10 (-20) 24\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (-20)
  (-20) 35\OMS/cmsy/m/n/10 g 
  []
 
-[5] [6]
+[6] [7]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 177.
@@ -1605,12 +1605,12 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 177.
 
-[7] [8]
+[8] [9]
 Underfull \hbox (badness 10000) in paragraph at lines 271--273
 
  []
 
-[9]
+[10]
 Underfull \hbox (badness 10000) in paragraph at lines 312--313
 
  []
@@ -1620,13 +1620,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 317--320
 
  []
 
-[10]
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 352--355
 
  []
 
-[11] [12]
-<image/Comb_01.png, id=213, 722.7pt x 406.51875pt>
+[12] [13]
+<image/Comb_01.png, id=296, 722.7pt x 406.51875pt>
 File: image/Comb_01.png Graphic file (type png)
 <use image/Comb_01.png>
 Package pdftex.def Info: image/Comb_01.png  used on input line 411.
@@ -1636,7 +1636,7 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 411--412
 [][] 
  []
 
-[13 <./image/Comb_01.png>]
+[14 <./image/Comb_01.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 447--449
 
  []
@@ -1646,8 +1646,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 471--478
 
  []
 
-[14]
-<image/Comb_02.png, id=228, 722.7pt x 406.51875pt>
+[15]
+<image/Comb_02.png, id=310, 722.7pt x 406.51875pt>
 File: image/Comb_02.png Graphic file (type png)
 <use image/Comb_02.png>
 Package pdftex.def Info: image/Comb_02.png  used on input line 489.
@@ -1657,17 +1657,17 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 489--490
 [][] 
  []
 
-[15 <./image/Comb_02.png>]
+[16 <./image/Comb_02.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 517--520
 
  []
 
-[16] [17]
+[17] [18]
 Underfull \hbox (badness 10000) in paragraph at lines 586--587
 
  []
 
-<image/Comb_03.png, id=241, 722.7pt x 406.51875pt>
+<image/Comb_03.png, id=323, 722.7pt x 406.51875pt>
 File: image/Comb_03.png Graphic file (type png)
 <use image/Comb_03.png>
 Package pdftex.def Info: image/Comb_03.png  used on input line 594.
@@ -1677,13 +1677,13 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 594--595
 [][] 
  []
 
-[18 <./image/Comb_03.png>] [19]
+[19 <./image/Comb_03.png>] [20]
 Underfull \hbox (badness 10000) in paragraph at lines 662--668
 
  []
 
-[20]
-<image/Comb_04.png, id=257, 722.7pt x 406.51875pt>
+[21]
+<image/Comb_04.png, id=339, 722.7pt x 406.51875pt>
 File: image/Comb_04.png Graphic file (type png)
 <use image/Comb_04.png>
 Package pdftex.def Info: image/Comb_04.png  used on input line 707.
@@ -1693,12 +1693,12 @@ Overfull \hbox (16.3491pt too wide) in paragraph at lines 707--708
 [][] 
  []
 
-[21 <./image/Comb_04.png>]
+[22 <./image/Comb_04.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 717--718
 
  []
 
-[22]
+[23]
 Underfull \hbox (badness 10000) in paragraph at lines 756--759
 
  []
@@ -1718,7 +1718,7 @@ Overfull \hbox (39.41653pt too wide) in paragraph at lines 767--767
 it/12 Non-examinable\OT1/cmr/bx/n/12 ) 
  []
 
-[23] [24]
+[24] [25]
 Overfull \hbox (11.7007pt too wide) in paragraph at lines 822--827
 \OT1/cmr/m/n/10 (-20) Here in the gen-eral case we'll be us-ing Holder's in-eq
 ual-ity: $[] \OML/cmm/m/it/10 fg \OMS/cmsy/m/n/10  \OT1/cmr/m/n/10 (-20) ([] \
@@ -1726,8 +1726,8 @@ OML/cmm/m/it/10 f[]\OT1/cmr/m/n/10 (-20) )[]([] \OML/cmm/m/it/10 g[]\OT1/cmr/m/
 n/10 (-20) )[]$,
  []
 
-[25] [26] [27] [28]
-Overfull \hbox (47.72719pt too wide) in paragraph at lines 889--891
+[26] [27] [28] [29] [30]
+Overfull \hbox (47.72719pt too wide) in paragraph at lines 944--946
 \OT1/cmr/m/n/10 (-20) For the sec-ond part the an-swer is no. Lec-turer's ex-am
 -ple: $\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (-20) 12\OML/cmm/m/it/10 ; \OT1/cmr/m/
 n/10 (-20) 34\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (-20) 123\OML/cmm/m/it/10 ; \OT
@@ -1737,37 +1737,30 @@ L/cmm/m/it/10 ; \OT1/cmr/m/n/10 (-20) 23\OMS/cmsy/m/n/10 g$\OT1/cmr/m/n/10 (-20
 ) . 
  []
 
-[29]
-Overfull \hbox (18.96686pt too wide) in paragraph at lines 915--917
+[31]
+Overfull \hbox (18.96686pt too wide) in paragraph at lines 970--972
 \OT1/cmr/m/n/10 (-20) (Check Borsuk-Ulam The-o-rem). Take the set, say $\OMS/cm
 sy/m/n/10 f\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 (-20) : \OML/cmm/m/it/10 f[]\OT1/
 cmr/m/n/10 (-20) (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 (-20) )[][][](\OML/cmm/m/it
 /10 f[]\OT1/cmr/m/n/10 (-20) )\OMS/cmsy/m/n/10 g$
  []
 
-[30]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 930.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 930.
+[32]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 985.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 985.
  (Combinatorics.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 930.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 930.
-
-
-Package rerunfilecheck Warning: File `Combinatorics.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Combinatorics.out':
-(rerunfilecheck)             Before: 9D6174375D866FB8ACCEC22FB80E1C1B;1506
-(rerunfilecheck)             After:  6F2E14A023D4EE0EBDDB5AAB77073D55;2296.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 930.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 985.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 985.
+Package rerunfilecheck Info: File `Combinatorics.out' has not changed.
+(rerunfilecheck)             Checksum: 6F2E14A023D4EE0EBDDB5AAB77073D55;2296.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 985.
  ) 
 Here is how much of TeX's memory you used:
- 39864 strings out of 492970
- 926252 string characters out of 3135854
+ 39884 strings out of 492970
+ 926514 string characters out of 3135854
  1180464 words of memory out of 3000000
- 43011 multiletter control sequences out of 15000+200000
- 550380 words of font info for 134 fonts, out of 3000000 for 9000
+ 43025 multiletter control sequences out of 15000+200000
+ 550596 words of font info for 136 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,15n,96p,751b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
@@ -1791,9 +1784,9 @@ ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Combinatorics.pdf (30 pages, 589884 bytes).
+Output written on Combinatorics.pdf (32 pages, 607466 bytes).
 PDF statistics:
- 408 PDF objects out of 1000 (max. 8388607)
- 72 named destinations out of 1000 (max. 500000)
- 19161 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 484 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
+ 19265 words of extra memory for PDF output out of 20736 (max. 10000000)
 
