@@ -1832,8 +1832,118 @@ This suggests considering reflective subcategories $\mathcal{D} \subseteq \mathc
 Given a closure opeartor on subobjects as in (7.15), define $J \rightarrowtail \Omega$ to be the closure of $1 \stackrel{T}{\rightarrowtail} \Omega$, and $j:\Omega \to \Omega$ to be the classifying map of $J \rightarrowtail \Omega$.\\
 Then, for any $A' \rightarrowtail A$ with classifying map $\chi_m: A \to \Omega$, the composite $j\chi_m$ classifies $c(A') \rightarrowtail A$.
 
+---Lecture 24---
 
+Given a pullback-stable closure operator $c$ on subobjects, we say $A' \rightarrowtail A$ is \emph{dense} if $c(A') \rightarrowtail A$ is an isomorphism, and \emph{closed} if $A' \rightarrowtail c(A')$ is an isomorphism.
 
+\begin{lemma} (7.17)\\
+    Suppose given a commutative square
+
+    \begin{tikzcd}
+        B' \arrow[r,"f'"] \arrow[d,tail,"n"] & A' \arrow[d,tail,"m"]\\
+        B \arrow[r,"f"] & A
+    \end{tikzcd}
+    
+    with $n$ dense and $m$ closed. Then there's a unique $B \xrightarrow{g} A'$ with $mg = f$ (and $gn = f'$).
+    \begin{proof}
+        We have $n \leq f^*(m)$ in $Sub(B)$, so $1_B \cong c(n) \leq f^*(c(m)) \cong f^*(m)$. So we define $g$ as $B \stackrel{\cong}{\rightarrow} f^*(A') \to A'$.
+    \end{proof}
+\end{lemma}
+
+Note that $c(A')$ may be characterized as the unique (up to isomorphism) subobject $A''$ s.t. $A' \rightarrowtail A''$ is dense and $A'' \rightarrowtail A$ is closed.
+
+\begin{lemma} (7.18)\\
+    Suppose $c$ is induced as in (7.15) by a reflector $L:\mathcal{E} \to \mathcal{D}$ preserving finite limits. Then an object $A$ of $\mathcal{E}$ belongs to $\mathcal{D}$ (up to isomorphism) iff, given any diagram
+
+    \begin{tikzcd}
+        B' \arrow[r,"f'"] \arrow[d,tail,"m"] & A\\
+        B &
+    \end{tikzcd}
+
+    with $m$ dense, there exists a unique $B \xrightarrow{f} A$ with $fm = f'$.
+    \begin{proof}
+        Note first that $m$ is dense $\iff$ $Lm$ is an isomorphism. $\Leftarrow$ follows from the definition; $\Rightarrow$ follows since by the proof of (7.15), we know $L(B')$ and $L(c(B'))$ are isomorphic in $Sub(B)$.\\
+        Given this, if $A$ is in $\mathcal{D}$, then the given diagram extends uniquely to
+
+        \begin{tikzcd}
+            B' \arrow[r,"\eta_{B'}"] \arrow[d,tail] & LB' \arrow[r] \arrow[d,"\cong"] & A\\
+            B \arrow[r,"\eta_B"] & LB \arrow[ur] &
+        \end{tikzcd}
+
+        Conversely, suppose $A$ satisfies the condition. Let $R \stackrel[b]{a}{\rightrightarrows} A$ be the kernel-pair of $A \xrightarrow{\eta_A} LA$, and $d:\rightarrowtail R$ the factorization of $(1_A,1_A)$ through $(a,b)$. Since $L\eta_A$ is an isomorphism and $L$ preserves pullbacks, $Ld$ is an isomorphism, so $d$ is dense.\\
+        This forces $a=b$, so $\eta_A$ is monic. And $\eta_A$ is dense, so we get a unique $r:LA \to A$ with $r \eta_A = 1_A$. Now $\eta_A r \eta_A = \eta_A$, and since $LA$ satisfies the condition we have $\eta_A r = 1_{LA}$.
+    \end{proof}
+\end{lemma}
+
+We say $A$ is a \emph{sheaf} (for $c$, or for $j$) if it satisfies the condition in (7.18). Given a local operator $j$ on $\mathcal{E}$, we write $sh_j(\mathcal{E})$ for the full subcategory of $j$-sheaves in $\mathcal{E}$.
+
+\begin{lemma} (7.19)\\
+    $sh_j(\mathcal{E})$ is closed under limits in $\mathcal{E}$, and an exponential ideal.
+    \begin{proof}
+        The first assertion follows since the definition involves only morphisms with codomain $A$.\\
+        For the second, note that if $B' \stackrel{m}{\rightarrowtail} B$ is dense, then so is $B'\times C \stackrel{m \times 1}{\rightarrowtail} B \times C$ for any $C$ (since it's $\pi_1^*(m)$), and so if $A$ is a sheaf then any morphism $B' \to A^C$ extends uniquely to a morphism $B \to A^C$.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma} (7.20)\\
+    If $A$ is a sheaf, then a subobject $A' \stackrel{m}{\rightarrowtail} A$ in $\mathcal{E}$ is a sheaf iff it's closed.
+    \begin{proof}
+        $\Leftarrow$ is immediate from (7.17).\\
+        $\Rightarrow$: Consider $A \stackrel{p}{\rightarrowtail} c(A') \stackrel{q}{\rightarrowtail} A$. $p$ is dense, so if $A$ is a sheaf we get unique $r:c(A') \to A'$ with $rp = 1_{A'}$. But $c(A')$ is a sheaf, so $prp = p$. We deduce $pr = 1_{c(A')}$ since $p$ is a monomorphism.
+    \end{proof}
+\end{lemma}
+
+We define $\Omega_j \rightarrowtail \Omega$ to be the equalizer of $\Omega \stackrel[1_\Omega]{j} \Omega$. Then, for any $A$, morphsims $A \to \Omega_j$ corresponds to closed subobjects of $A$.
+
+\begin{lemma} (7.21)\\
+    $\Omega_j$ is a $j$-sheaf.
+    \begin{proof}
+        We have to show that if $B \stackrel{m}{\rightarrowtail} A$ is a dense monomorphism, then pullback along $m$ yields a bijection from closed subobjects of $A$ to closed subobjects of $B$.\\
+        If $A' \stackrel{n}{\rightarrowtail} A$ is closed, then in the pullback
+
+        \begin{tikzcd}
+            B' \arrow[r,tail,"m'"] \arrow[d,tail,"n'"] & A' \arrow[d,tail,"n"]\\
+            B \arrow[r,tail,"m"] & A
+        \end{tikzcd}
+
+        $m'$i s dense, so $A' \rightarrowtail A$ is the closure of $B' \rightarrowtail B \rightarrowtail A$. It remains to show that if $B' \rightarrowtail B$ is closed, it is isomorphic to the pullback of its closure in $A$.\\
+        But (writing $A' \rightarrowtail A$ for the closure), we have a factorization $B' \to f^* A'$ which is dense since $B' \to A'$ is dense, and closed since $B' \to B$ is closed.
+    \end{proof}
+\end{lemma}
+
+\begin{thm} (7.22)\\
+    For any local operator $j$ on $\mathcal{E}$, $sh_j(\mathcal{E})$ is a topos.\\
+    Moreover, it's reflective in $\mathcal{E}$ and the reflector preserves finite limits.
+    \begin{proof}
+        $sh_j(\mathcal{E})$ is cartesian closed by (7.19), and has a subobject classifier $\Omega_j$ by (7.20) and (7.21). To construct the reflector, consider the composite
+        \begin{tikzcd}
+            A \arrow[r,tail,"\{\}"] & \Omega^A \arrow[r,"j^A"] & \Omega_j^A
+        \end{tikzcd}
+        , this corresponds to the closure $\bar{A} \rightarrowtail A \times A$ of the diagonal subobject $A \stackrel{(1_A,1_A)}{\rightarrowtail} A \times A$. I claim that $\bar{A} \stackrel[b]{a}{\rightrightarrows} A$ is the kernel-pair of $f$. Hence any morphism $g:A \to B$ where $B$ is a sheaf satisfies $ga = gb$.\\
+        So if we torm(?) the image 
+        \begin{tikzcd}
+            A \arrow[r,two heads,"q"] & I \arrow[r,tail,"m"] & \Omega_j^A
+        \end{tikzcd}
+        of $f$, any such $g$ factors uniquely through $q$.\\
+        Now $\Omega_j^A$ is a sheaf by (7.19) and (7.21), so if we form the closure $LA \rightarrowtail \Omega_j^A$ of $m$, we get a morphism $A \to LA$ through which any morphism from $A$ to a sheaf factors uniquely. Hence $L$ becomes a functor $\mathcal{E} \to sh_j(\mathcal{E})$, left adjoint ot the inclusion.\\
+        By (6.13), we know $L$ preserves finite products.\\
+        In fact it preserves equalizers as well (the proof is quite elementary, but we have no time for it).
+    \end{proof}
+\end{thm}
+
+There's a last thing I want to do, but I'll just state it since there's no time to prove it:
+\begin{thm} (7.23)\\
+    For a category $\mathcal{E}$, the following are equivalent:\\
+    (i) $\mathcal{E}$ is a topos, complete and locally small, and has a separating set of objects;\\
+    (ii) There exists a small category $\mathcal{C}$ and a local operator on $[\mathcal{C}^{op},\mathbf{Set}]$ s.t $\mathcal{E} \cong sh_j([\mathcal{C}^{op},\mathbf{Set}])$.
+    \begin{proof}
+        (ii) $\implies$ (i): since $sh_j([\mathcal{C}^{op},\mathbf{Set}])$ has given properties.\\
+        (i) $\implies$ (ii): take $\mathcal{C}$ to be the full subcategory of $\mathcal{E}$ on the separating set and consider
+        \begin{tikzcd}
+            \mathcal{C} \arrow[r,"Y"] & \left[\mathcal{E}^{op},\mathbf{Set}\right] \arrow[r] & \left[\mathcal{C}^{op},\mathbf{Set}\right]
+        \end{tikzcd}
+    \end{proof}
+\end{thm}
 
 \newpage
 
