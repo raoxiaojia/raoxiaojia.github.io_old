@@ -396,7 +396,7 @@ Lecture is happy to mark any question we hand in!
         \end{aligned}
     \end{equation*}
     The mappings are order-reversing (i.e. contravariant functors), and $T \subseteq S^r \iff S \times T \subseteq R \iff S \subseteq T^l$.\\
-    We say $()^r$ and $()^l$ are \emph{adjoint on the right}.\\
+    We say $()^r$ and $()^l$ are \emph{adjoint on the right}.(?)\\
     (h) Let's now consider, as a functor, $P^* : \mathbf{Set}^{op} \to \mathbf{Set}$ is self-adjoint on the right, since functions $A \to PB$ correspond bijectively to subsets of $A \times B$, and hence to functions $B \to PA$.
 \end{eg}
 
@@ -520,11 +520,11 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     Suppose given $\mathcal{C} \stackrel[G]{F}{\rightleftarrows} \mathcal{D}$ and natural isomorphisms $\alpha:1_{\mathcal{C}} \to GF$, $\beta: FG \to 1_{\mathcal{D}}$. Then there are isomorphisms $\alpha': 1_{\mathcal{C}} \to GF$, $\beta':FG \to 1_{\mathcal{D}}$ which satisfy the triangular identities. So $(F \dashv G)$ (and $(G \dashv F)$ ).
     \begin{proof}
         We define $\alpha'=\alpha$ and, in attempt to fix $\beta'$, define $\beta'$ to be the composite
-        $$FG \xrightarrow{(FGB)^{-1}} FGFG \xrightarrow{(F\alpha_G)^{-1}} FG \xrightarrow{\beta} 1_{\mathcal{D}}$$
-        Note that $FGB = \beta_{FG}$, since
+        $$FG \xrightarrow{(FG\beta)^{-1}} FGFG \xrightarrow{(F\alpha_G)^{-1}} FG \xrightarrow{\beta} 1_{\mathcal{D}}$$
+        Note that $FG\beta = \beta_{FG}$, since
 
         \begin{tikzcd}
-            FGFG \arrow[r,"FGB"] \arrow[d,"\beta_{FG}"] &FG \arrow[d,"B"]\\
+            FGFG \arrow[r,"FG\beta"] \arrow[d,"\beta_{FG}"] &FG \arrow[d,"\beta"]\\
             FG \arrow[r,"\beta"] & 1_{\mathcal{D}}
         \end{tikzcd}
 
@@ -693,7 +693,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     , we \emph{push $g$ along $f$} to get the RH side of the colimit square.
 
     (f) (not very important for this course, but might explain why the term \emph{limit} is used) Let $J$ be the poset of natural numbers. A diagram of shape $J$ is a \emph{direct system} $A_0 \xrightarrow{f_0} A_1 \xrightarrow{f_1} A_2 \xrightarrow{f_2} ...$\\
-    A colimit for this is called a \emph{direct limit}: it consists of $A_\infty$ equipped with morphisms $A_n \xrightarrow{g_n} A_\infty$ satisfying $g_n = g_{n+1}$ for all $n$, and universal among such.\\
+    A colimit for this is called a \emph{direct limit}: it consists of $A_\infty$ equipped with morphisms $A_n \xrightarrow{g_n} A_\infty$ satisfying $g_n = g_{n+1}f_n$ for all $n$, and universal among such.\\
     Dually, we have \emph{inverse system} and \emph{inverse limit}.
 \end{eg}
 
@@ -702,10 +702,10 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     (ii) Suppose $\mathcal{C}$ has pullbacks and a terminal object, then $\mathcal{C}$ has all finite limits.
     \begin{proof}
         (i) Suppose given $D:\mathcal{J} \to \mathcal{C}$. Form the products $P=\prod_{j \in \ob\mathcal{J}} D(j)$ and $Q = \prod_{\alpha \in \mor\mathcal{J}} D(\cod \alpha)$.\\
-        We have morphisms $P \stackrel[g]{f}{\rightrightarrows} Q$ defined by $\pi_\alpha f = \pi_{\cod(\alpha)}$, $\pi_\alpha g = D(\alpha) \pi_{\dom \alpha}$ for all $\alpha$.\\
+        We have morphisms $P \stackrel[g]{f}{\rightrightarrows} Q$ defined by $\pi_\alpha f = \pi_{\cod(\alpha)}$, $\pi_\alpha g = D(\alpha) \pi_{\dom \alpha}$ for all $\alpha$ since $Q$ is a product.\\
         Let $E \xrightarrow{e} P$ be an equalizer of $(f,g)$. The composites $\lambda_j = \pi_j e: E \to D(j)$ form a cone over $D$: given $\alpha: j \to j'$ in $\mathcal{J}$, 
         $$D(\alpha) \lambda_j = D(\alpha) \pi_j e = \pi_\alpha ge = \pi_\alpha fe = \pi_{j'} e = \lambda_{j'}$$
-        Given any cone $(A,(\mu_j | j \in \ob\mathcal{J}))$ over $D$, there's a unique $\mu:A \to P$ with $\pi_j \mu = \mu_j$ for each $j$, and $\pi_\alpha f \mu = \mu_{\cod \alpha} = D(\alpha) \mu_{\dom \alpha} = \pi_\alpha g\mu$ for all $\alpha$, and hence $f\mu = g\mu$. So there is a unique $\nu:A \to E$ with $e\nu = \nu$. So $(E,(\lambda_j | j \in \ob \mathcal{J}))$ is a limit cone.
+        Given any cone $(A,(\mu_j | j \in \ob\mathcal{J}))$ over $D$, there's a unique $\mu:A \to P$ with $\pi_j \mu = \mu_j$ for each $j$, and $\pi_\alpha f \mu = \mu_{\cod \alpha} = D(\alpha) \mu_{\dom \alpha} = \pi_\alpha g\mu$ for all $\alpha$, and hence $f\mu = g\mu$. So there is a unique $\nu:A \to E$ with $e\nu = \mu$. So $(E,(\lambda_j | j \in \ob \mathcal{J}))$ is a limit cone.
 
         (ii) It's enough to construct finite products and equalizers. But if $1$ is the terminal object, then a pullback for 
         \begin{tikzcd}
