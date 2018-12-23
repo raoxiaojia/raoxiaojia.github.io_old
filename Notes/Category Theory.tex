@@ -734,13 +734,14 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     Let $F: \mathcal{C} \to \mathcal{D}$ be a functor.\\
     (a) We say $F$ \emph{preserves limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a limit cone $(L,(\lambda_j|j \in \ob\mathcal{J}))$ in $\mathcal{C}$, $(FL, (F\lambda_j | j \in \ob \mathcal{J}))$ is a limit for $FD$.\\
     (b) We say $F$ \emph{reflects limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a cone $(L,(\lambda_j)_j)$ s.t. $(FL,(F\lambda_j)_j)$ is a limit for $FD$, then $(L,(\lambda_j)_j)$ is a limit for $D$.\\
-    (c) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$. (This is stronger than both of above and implies them. Note that a lot of textbooks get this wrong; the definitions given by them are usually not categorical)
+    (c) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$.\footnote{Note that all limits are isomorphic, so the first part of this basically says $F$ reflects the existence of limits.} (This is stronger than both of above and implies them. Note that a lot of textbooks get this wrong; the definitions given by them are usually not categorical)\\
+    From some later parts of the notes, the definitions of these three words (\emph{preserve, reflect, create} seem to apply to other things as well and not only restricted to limits).
 \end{defi}
 
 ---Lecture 11---
 
 \begin{rem} (4.5)\\
-    (a) If $\mathcal{C}$ has limits of shape $\mathcal{J}$, $F: \mathcal{C} \to \mathcal{D}$ preserves them and $F$ reflects isomorphisms, then $F$ reflects limits of shape $\mathcal{J}$ (???????).\\
+    (a) If $\mathcal{C}$ has limits of shape $\mathcal{J}$, $F: \mathcal{C} \to \mathcal{D}$ preserves them and $F$ reflects isomorphisms, then $F$ reflects limits of shape $\mathcal{J}$.\\
     (b) $F$ reflects limits of shape $1$ $\iff$ $F$ reflects isomorphisms.\\
     (c) If $\mathcal{D}$ has limits of shape $\mathcal{J}$ and $F:\mathcal{C} \to \mathcal{D}$ creates them, then $F$ both preserves and reflects them.\\
     (d) In any of the statements of (4.3), we may replace both instances of \emph{$\mathcal{C}$ has} by either \emph{$\mathcal{C}$ has and $F:\mathcal{C} \to \mathcal{D}$ preserves} or \emph{$\mathcal{D}$ has and $F:\mathcal{C} \to \mathcal{D}$ creates}.
