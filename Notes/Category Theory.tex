@@ -735,7 +735,7 @@ Dually, we have a natural transformation traditionally denoted $\varepsilon: FG 
     (a) We say $F$ \emph{preserves limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a limit cone $(L,(\lambda_j|j \in \ob\mathcal{J}))$ in $\mathcal{C}$, $(FL, (F\lambda_j | j \in \ob \mathcal{J}))$ is a limit for $FD$.\\
     (b) We say $F$ \emph{reflects limits} of shape $\mathcal{J}$ if, given $D:\mathcal{J} \to \mathcal{C}$ and a cone $(L,(\lambda_j)_j)$ s.t. $(FL,(F\lambda_j)_j)$ is a limit for $FD$, then $(L,(\lambda_j)_j)$ is a limit for $D$.\\
     (c) We say $F$ \emph{creates limits} of shape $\mathcal{J}$ if, given $D : \mathcal{J} \to \mathcal{C}$ and a limit $(M,(\mu_j)_j)$ for $FD$, there exists a cone $(L,(\lambda_j)_j)$ over $D$ whose image under $F$ is isomorphic to the limit cone, and any such cone is a limit in $\mathcal{C}$.\footnote{Note that all limits are isomorphic, so the first part of this basically says $F$ reflects the existence of limits.} (This is stronger than both of above and implies them. Note that a lot of textbooks get this wrong; the definitions given by them are usually not categorical)\\
-    From some later parts of the notes, the definitions of these three words (\emph{preserve, reflect, create} seem to apply to other things as well and not only restricted to limits).
+    From some later parts of the notes, the definitions of these three words (\emph{preserve, reflect, create}) seem to apply to other things as well but restricted to limits only.
 \end{defi}
 
 ---Lecture 11---
@@ -751,7 +751,7 @@ We shall have some examples, as usual.
 
 \begin{eg} (4.6)\\
     (a) $U : \mathbf{Gp} \to \mathbf{Set}$ creates all small limits: given a family $(G_i | i \in I)$ of groups, there's a unique group structure on $\prod_{i \in I} UG_i$ making the projections $\pi_i$ into homomorphisms, and this makes it into a product in $\mathbf{Gp}$.\\
-    Similarly for equalizers (check).\\
+    Similarly for equalizers.\\
     But $U$ doesn't preserve coproducts; $U(G * H) \not\cong UG \coprod UH$.\\
     (b) $U:\mathbf{Top} \to \mathbf{Set}$ preserves all small limits and colimits, but this times it doesn't reflect them: if $L$ is a limit for $D: \mathcal{J} \to \mathbf{Top}$, and $L$ is not discrete, there's another cone with apex $L_d$ (take the underlying set and \emph{retopologize} with discrete topology) mapping to the limit in $\mathbf{Set}$.\\
     (c) The inclusion functor $I:\mathbf{AbGp} \to \mathbf{Gp}$ reflects coproducts, but doesn't preserve them: the direct sum $A \oplus B$ (coproducts in $\mathbf{AbGp}$) is not normally isomorphic to the free product $A*B$; $A*B$ is not abelian unless either $A$ or $B$ is $\{e\}$.\\
@@ -828,7 +828,7 @@ Second example class: Friday 9 November, 14:00, MR3.
         Let $(L,(\lambda_j:L \to UD(j))_{j \in \ob\mathcal{J}}$ be a limit for $UD$; then $(GL,(G\lambda_j)_{j \in \ob\mathcal{J}})$ is a limit for $GUD$. Since the edges of $UD$ are morphisms in $(A \downarrow G)$, the $f_j$ form a cone over $GUD$.\\
         So there's a unique $h:A \to GL$ s.t. $(G\lambda_j)h = f_j$ for all $j$, i.e. there is a unique $h$ s.t. the $\lambda_j$ are all morphisms $(L,h) \to (UD(j),f_j)$ in $(A \downarrow G)$.\\
         We need to show that $((L,h),(\lambda_j)_{j \in \ob\mathcal{J}})$ is a limit cone in $(A \downarrow G)$.\\
-        If $((C,k),(\mu_j)_{j \in \ob\mathcal{J}})$ is any cone over $D$, then $(C,(\mu_j)_{j \in \ob\mathcal{J}})$ is a cone over $UD$. So there's a unnique $l:C \to L$ with $\lambda_j l = \mu_j$ for all $j$. We need to show $(Gl)k = h$: but $(G\lambda_j) (Gl)k = (G\mu_j)k = f_j = (G\lambda_j) h$ for all $j$. So $(Gl)k = h$ by uniqueness of factorizations through limits.
+        If $((C,k),(\mu_j)_{j \in \ob\mathcal{J}})$ is any cone over $D$, then $(C,(\mu_j)_{j \in \ob\mathcal{J}})$ is a cone over $UD$. So there's a unique $l:C \to L$ with $\lambda_j l = \mu_j$ for all $j$. We need to show $(Gl)k = h$: but $(G\lambda_j) (Gl)k = (G\mu_j)k = f_j = (G\lambda_j) h$ for all $j$. So $(Gl)k = h$ by uniqueness of factorizations through limits.
     \end{proof}
 \end{lemma}
 
@@ -837,7 +837,7 @@ Second example class: Friday 9 November, 14:00, MR3.
     \begin{proof}
         First, suppose $\mathcal{C}$ has an initial object $I$. Then the unique morphisms $(I \to A | A \in \ob\mathcal{C})$ form a cone over $1_{\mathcal{C}}$; and given any cone $(C \xrightarrow{\lambda_A} A |A \in \ob\mathcal{C})$, then for any $A$ the triangle 
         \begin{tikzcd}
-            C \arrow[rd,"\lambda_A"] \arrow[r,"\lambda_I"] & I \arrow[d]\\
+            C \arrow[rd,"\lambda_A"'] \arrow[r,"\lambda_I"] & I \arrow[d]\\
             & A
         \end{tikzcd}
         commutes, so $\lambda_I$ is the unique factorization of $(\lambda_A|A \in \ob\mathcal{C})$ through $(I \to A|A\in\ob\mathcal{C})$.\\
