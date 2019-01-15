@@ -139,7 +139,7 @@ First example class: Monday 29th Oct at 12.
 Info on course and notes on $http:\\users.mct.open.ac.uk/sb27627/MT.html$ (it seems that it only comes after lecture, and is hand-written, so this notes still continues), or google \emph{Silvia Barbina MCT} and follow link \emph{Part III Model Theory} on lecturer's homepage.
 
 \begin{rem}
-    (The lecture forgot about this last time) Any language $L$ includes an equality symbol $=$.
+    (The lecturer forgot about this last time) Any language $L$ includes an equality symbol $=$.
 \end{rem}
 
 Last time we assigned a function $t^m$. In $L_{gp}$, the term $x_2 \cdot x_3$ can be described as, say $t_1(x_1,x_2,x_3),t_2(x_1,x_2,x_3,x_4),...$.\\
@@ -156,7 +156,7 @@ Fact (2.3): Let $\mathcal{M}$ and $\mathcal{N}$ be $L$-structures, and let $\alp
 \begin{proof}
 Prove by induction on complexity of $t$.\\
 Let $\bar{a} = (a_1,...,a_k)$ and $\bar{x} = (x_1,...,x_l)$. Then:\\
-(i) if $t=x_i$a a variable, then $t^M(\bar{a}) = a_i$, and $t^N(\alpha(a_1),...,\alpha(a_k)) = \alpha(a_i)$, so the conclusion holds;\\
+(i) if $t=x_i$ is a variable, then $t^M(\bar{a}) = a_i$, and $t^N(\alpha(a_1),...,\alpha(a_k)) = \alpha(a_i)$, so the conclusion holds;\\
 (ii) if $t=c$ is a constant, then $t^M(\bar{a}) = c^M$, and $t^N(\alpha(\bar{a})) = c^N$ by definition of a term. The key here is that, since $\alpha$ is an embedding we have $\alpha(c^M) = c^N$;\\
 (iii) if $t = f(t_1(\bar{x},...,t_{n_f}(\bar{x})))$, then
 \begin{equation*}
@@ -171,7 +171,7 @@ Exercise (2.4): conclude the proof of the above fact.\\
 (Actually is it not done?)
 
 \begin{defi} (2.5)\\
-    The set of \emph{atmoic formulas} of $L$ is defined as follows:\\
+    The set of \emph{atomic formulas} of $L$ is defined as follows:\\
     (i) if $t_1,t_2$ are $L$-terms, then $t_1 = t_2$ is an atomic formula;\\
     (ii) if $R$ is a relation symbol, and $t_1,...,t_{n_R}$ are $L$-terms, then $R(t_1,...,t_{n_R})$ is an atomic formula;\\
     (iii) nothing else is an atomic formula.
@@ -327,7 +327,7 @@ Throughout this chapter, let $L$ be a language, $\mathcal{M},\mathcal{N}$ be $L$
         \end{aligned}
     \end{equation*}
     (ii) If $M \subseteq N$, and $id:\mathcal{M} \to \mathcal{N}$ is an embedding, then $\mathcal{M}$ is a \emph{substructure} of $\mathcal{N}$.\\
-    (iii) If $M \subseteq N$ and $id:\mathcal{M} \to \mathcal{N}$ is an \emph{elementary embedding} (just accept it without thinking of what it actually means in reality), then $\mathcal{M}$ is said to be an \emph{elementary substructure} of $\mathcal{N}$, written as $\mathcal{M} \preccurlyeq \mathcal{N}$.
+    (iii) If $M \subseteq N$ and $id:\mathcal{M} \to \mathcal{N}$ is an \emph{elementary embedding}, then $\mathcal{M}$ is said to be an \emph{elementary substructure} of $\mathcal{N}$, written as $\mathcal{M} \preccurlyeq \mathcal{N}$.
 \end{defi}
 
 \begin{eg} (3.5)\\
@@ -374,7 +374,7 @@ Reminder: we have a lecture next Monday (22nd Oct)!
         (a) For each constant $c$, $c^N \in A$;\\
         (b) For each function symbol $f$, $f^N(\bar{a}) \in A$ (for all $\bar{a} \in A^{n_R}$);\\
         For (a), use property (ii) with $\exists x (x=c)$.\\
-        For (b), use property (ii) with the formula $\exists x ((\bar{a}) = x)$.\\
+        For (b), use property (ii) with the formula $\exists x (f(\bar{a}) = x)$.\\
         So we now have $\mathcal{M} \subseteq \mathcal{N}$, and domain of $\mathcal{M}$ is $A$. But we actually want to prove that $\mathcal{M} \preccurlyeq \mathcal{N}$. Now let $\chi(\bar{x})$ be an $L$-formula.\\
         We want to show that for $\bar{a} \in A^{|\bar{x}|}$ $\mathcal{M} \vDash \chi(\bar{a}) \iff \mathcal{N} \vDash \chi(\bar{a})$ (*).\\
         By induction on the complexity of $\chi(\bar{x})$:\\
@@ -395,12 +395,12 @@ Reminder: we have a lecture next Monday (22nd Oct)!
 
 \begin{defi} (3.10)\\
     Let $\lambda$ be an ordinal. Then \emph{a chain of length} $\lambda$ of sets is a sequence $\bra M_i : i < \lambda \ket$, where $M_i \subseteq M_j$ for all $i \leq j < \lambda$.\\
-    A chain of $L$-structures is a seequence: $\bra \mathcal{M}_i: i < \lambda \ket$ s.t. $\mathcal{M}_i \subseteq \mathcal{M}_j$ (note that it's substructure here) for $i \leq j < \lambda$.\\
+    A chain of $L$-structures is a sequence: $\bra \mathcal{M}_i: i < \lambda \ket$ s.t. $\mathcal{M}_i \subseteq \mathcal{M}_j$ (note that it's substructure here) for $i \leq j < \lambda$.\\
     The \emph{union} of this chain is the $L$-structure $\mathcal{M}$ defined as follows:\\
     $\bullet$ the domain is $\bigcup_{i<\lambda} M_i$ (when you think of this, you can always start with the case $\lambda = \omega$);\\
     $\bullet$ for constants $c$, $c^M = c^{M_i}$ for any $i<\lambda$ (this is well defined, because of the substructure condition above);\\
     $\bullet$ if $f$ is a function symbol, $\bar{a} \in M^{|n_f|}$ (why the mod sign here), $f^M \bar{a} = f^{M_i} \bar{a}$ where $i$ is s.t. $\bar{a} \in M_i^{|n_f|}$;\\
-    $\bullet$ if $R$ is a relation synbol, then $R^M = \bigcup_{i < \lambda} R^{M_i}$.
+    $\bullet$ if $R$ is a relation symbol, then $R^M = \bigcup_{i < \lambda} R^{M_i}$.
 \end{defi}
 
 \begin{thm} (3.11, Downward L$\ddot{o}$wenheim-Skolem theorem)\\
@@ -412,7 +412,7 @@ Reminder: we have a lecture next Monday (22nd Oct)!
     \includegraphics[scale=0.5]{image/Model_01.png}
 
     (It helps to think about the case $|A| = \omega$ and $|N|$ is uncountable.)\\
-    A quick example how this could be useful (we'll go very sloppy here): think of $(\C,+,\cdot,-,\cdot^{-1},0,1)$ as a field. Consider $\Q \subseteq \C$ (both as subset and substructure). Note that algebraic closeness is a property of $\C$. By downward L$\ddot{o}$wenheim-Skolem, there is a substructure in $\mathcal{C}$ that contains $\Q$ that is also algebraically closed (apparently, the set of algebraic numbers).
+    A quick example how this could be useful (we'll go very sloppy here): think of $(\C,+,\cdot,-,\cdot^{-1},0,1)$ as a field. Consider $\Q \subseteq \C$ (both as subset and substructure). Note that algebraic closeness is a property of $\C$. By downward L$\ddot{o}$wenheim-Skolem, there is a substructure in $\C$ that contains $\Q$ that is als algebraically closed (apparently, the set of algebraic numbers).
     \begin{proof}
         We build a chain $\bra A_i : i < \lambda \ket$, with $A_i \subseteq N$, s.t. $|A_i| = \lambda$.\\
         (our goal: define an elementary substructure with domain $M=\bigcup_{i < \omega} A_i$).\\
@@ -497,8 +497,8 @@ Reminder: we have a lecture next Monday (22nd Oct)!
 
 \begin{defi} (4.5)\\
     An $L$-theory is \emph{consistent} if there is $L$-structure $\mathcal{M}$ s.t. $\mathcal{M} \vDash T$.\\
-    If $T$ is a theory in $L$ and $\phi$ is an $L$-sentence, then $T \vdash \phi$ (read as \emph{$T$ entails $\phi$}, note that this has nothing to do with syntactic implication) if for all $\mathcal{M}$ such that $\mathcal{M} \vDash T$, we have $\mathcal{M} \vDash \phi$.\\
-    Finally, an $L$-theory $T$ is \emph{complete} if for all $L$-sentences $\phi$, either $T \vdash \phi$ or $T \vdash \neg\phi$ (see part II Logic and Set Theory).\\
+    If $T$ is a theory in $L$ and $\phi$ is an $L$-sentence, then $T \vdash \phi$ (read as \emph{$T$ entails $\phi$}, note that this has nothing to do with syntactic implication) if for all $\mathcal{M}$ such that $\mathcal{M} \vDash T$, we have $\mathcal{M} \vDash \phi$; basically, $\phi$ holds in any model of $T$.\\
+    Finally, an $L$-theory $T$ is \emph{complete} if for all $L$-sentences $\phi$, either $T \vdash \phi$ or $T \vdash \neg\phi$ (see part II Logic and Set Theory); so no $L$-sentence is true in only some models of $T$ but false in the others.\\
     For example, $T_{dlo}$ is complete.
 \end{defi}
 
@@ -665,7 +665,7 @@ Reminder: we have a lecture next Monday (22nd Oct)!
         We have to check that $R^{\mathcal{M}}$ is well-defined: suppose $\bar{c},\bar{d} \in \mathcal{C}^{n_R}$ and suppose $c_i \sim d_i$ for each $i$, i.e. $c_i = d_i \in T$ for every $i=1,...,n_R$. However, now
         $$R(\bar{c}) \in T \iff R(\bar{d}) \in T$$
         by maximality of $T$ and the previous lemma. So that $R^{\mathcal{M}}$ is well defined.\\
-        $\bullet$ If $f \in \mathcal{F}$ is a function symbol, then $f\bar{c} = d \in T$ for some $d \in \mathcal{C}$: this is because $\exists x(f(\bar{c})=x) \in T$ by maximality and f.s..\\
+        $\bullet$ If $f \in \mathcal{F}$ is a function symbol, then $f(\bar{c}) = d \in T$ for some $d \in \mathcal{C}$: this is because $\exists x(f(\bar{c})=x) \in T$ by maximality and f.s..\\
         Then define $f^{\mathcal{M}}(\bar{c}^*) = \bar{d}^*$ (obvious notation).\\
         We also have to check this is well-defined. Lecturer decides to left this to us.\\
         Now we claim that the terms behave nicely as what the theory says, i.e. if $t(x_1,...,x_n)$ is an $L$-term and $c_1,...,c_n,d \in \mathcal{C}$, then $t(c_1,...,c_n) = d \in T \iff t^{\mathcal{M}} (c_1^*,...,c_n^*) = d^*$.\\
@@ -914,7 +914,7 @@ Question: can $\mathcal{M}$ be $\lambda$-saturated if $\lambda > |\mathcal{M}|$?
 \begin{defi} (6.8)\\
     An isomorphism $\alpha:\mathcal{N} \to \mathcal{N}$ is called an \emph{automorphism}.\\
     The automorphism of $\mathcal{N}$ form a group denoted by $\Aut(\mathcal{N})$.\\
-    If $A \subseteq N$, then $\Aut(\mathcal{N}/A)$ for the subgroup of $\Aut(\mathcal{N})$ that fixes $A$ pointwise, i.e. $\{\alpha \in \Aut(\mathcal{N}):\alpha|_A = id\}$.
+    If $A \subseteq N$, then we write $\Aut(\mathcal{N}/A)$ for the subgroup of $\Aut(\mathcal{N})$ that fixes $A$ pointwise, i.e. $\{\alpha \in \Aut(\mathcal{N}):\alpha|_A = id\}$.
 \end{defi}
 
 \begin{defi} (6.9\footnote{In some texts the definition of this is a bit different -- sometimes they use $\lambda^+$-universality for our $\lambda$-universality here. Homogeneity is sometimes called \emph{strong homogeneity}. \emph{Ultrahomogeneity} concerns partial embeddings instead of (partial) elementary maps.})\\
@@ -977,7 +977,7 @@ There are analogous notions of a type defining a set, and a set being type-defin
 
 \section{The Monster Model}
 
-Given a complete theory $T$ with an infinite model, we work in a saturated structure $U(\mathbb{M})$ that is a model of $T$ and it is sufficiently large that any other model of $T$ we might be interested in is an elementary substructure of $U$.\\
+Given a complete theory $T$ with an infinite model, we work in a saturated structure $U(\mathbb{M})$ that is a model of $T$ and is sufficiently large that any other model of $T$ we might be interested in is an elementary substructure of $U$.\\
 ($I$ is an expository device -- see Tent/Ziegler fo details -- also Marker(v?)).
 
 \begin{defi} (7.1, terminologies and conventions)\\
@@ -993,14 +993,14 @@ Given a complete theory $T$ with an infinite model, we work in a saturated struc
     $\bullet$ formulas have parameters in $U$;\\
     $\bullet$ types have parameters in small sets;\\
     $\bullet$ definable sets have the form $\phi(U)$ for some formula $\phi(\bar{x})$ in $L(U)$;\\
-    $\bullet$ type definable ests have form $p(U)$ for some type $p(\bar{x},A)$ where $|A| < \kappa$;\\
+    $\bullet$ type definable sets have form $p(U)$ for some type $p(\bar{x},A)$ where $|A| < \kappa$;\\
     $\bullet$ Orbits and types of tuples are within $U$, so $tp(\bar{a}/A)$ means $tp_U(\bar{a}/A)$; $O(a/A)$ means $O_U(a/A)$;\\
     $\bullet$ if $p(\bar{x}),q(\bar{x})$ are types, we write, for example, $p(x) \to q(x)$ to mean $p(\mathcal{N}) \subseteq q(\mathcal{N})$ (think of $p(x)$ as \emph{infinite conjunction of formulas}).
 \end{defi}
 
 \begin{fact} (7.2)\\
     Let $p(\bar{x})$ be a satisfiable $L(A)$-type, $q(\bar{x})$ be a satisfiable $L(B)$-type such that $p(\bar{x}) \to \neg q(\bar{x})$, that is, $p(\bar{x})$ and $q(\bar{x})$ have no realizations in common.\\
-    Then there are $\bigwedge_{i=1}^n \phi_i(\bar{x})$ wher $\phi_i(\bar{x}) \in p(\bar{x})$, and $\bigwedge_{i=1}^m \psi_i(\bar{x})$ where $\psi_i(\bar{x}) \in q(\bar{x})$ s.t.
+    Then there are $\bigwedge_{i=1}^n \phi_i(\bar{x})$ where $\phi_i(\bar{x}) \in p(\bar{x})$, and $\bigwedge_{i=1}^m \psi_i(\bar{x})$ where $\psi_i(\bar{x}) \in q(\bar{x})$ s.t.
     $$\bigwedge_{i=1}^n \phi_i(\bar{x}) \to \neg (\bigwedge_{i=1}^m \psi_i(\bar{x}))$$
     \begin{proof}
         We know $p(\bar{x}) \cup q(\bar{x})$ is not realized in $U$. By saturation of $U$, this cannot be finitely satisfiable, i.e. there are $\{\phi_i(\bar{x}),...,\phi_n(\bar{x})\} \subseteq p(\bar{x})$, $\{\psi_1(\bar{x}),...,\psi_m(\bar{x})\} \subseteq q(\bar{x})$ such that the union is not satisfiable. Then 
