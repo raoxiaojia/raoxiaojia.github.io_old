@@ -1009,7 +1009,7 @@ Given a complete theory $T$ with an infinite model, we work in a saturated struc
 \end{fact}
 
 \begin{rem} (7.3)\\
-    Let $\phi(U,\bar{b})$ be s.t. $\phi(\bar{x},\bar{z})$ is an $L$-formula, $\bar{b} \in U^{|\bar{z}|}$.\\
+    Let $\phi(U,\bar{b})$ (note that this notation defines a set, i.e. the set of $\bar{a}$ s.t. $\phi(\bar{a},\bar{b})$ holds, where $\bar{a}$ is of correct length with each component in $U$) be s.t. $\phi(\bar{x},\bar{z})$ is an $L$-formula, $\bar{b} \in U^{|\bar{z}|}$.\\
     If $\alpha \in \Aut(U)$, then
     \begin{equation*}
         \begin{aligned}
@@ -1044,6 +1044,16 @@ Given a complete theory $T$ with an infinite model, we work in a saturated struc
 \end{prop}
 
 ---Lecture 13 to be typesetted---
+
+\begin{defi} (7.6)\\
+    An injective map $\rho:A \subset \mathcal{M} \to \mathcal{N}$ is a \emph{partial embedding} if for all tuples in $A=\dom\rho$, $\rho$ satisfies conditions (i)-(iii) in definition (1.5) (i.e. $\rho$ is an embedding $\dom \rho \to \im \rho$).
+\end{defi}
+
+\begin{prop} (7.7)\\
+    Let $\phi(\bar{x})$ be an $L$-formula. The following are equivalent:\\
+    (i) $\exists \psi(\bar{x})$, a quantifier free $L$-formula, s.t. $U \vDash \forall \bar{x}(\phi(\bar{x}) \iff \psi(\bar{x}))$;\\
+    (ii) $\forall \rho$ a partial embedding $U \to U$, $\forall \bar{A} \in \dom \rho$, $\phi(\bar{a}) \iff \phi(\rho(\bar{a}))$.
+\end{prop}
 
 ---Lecture 14---
 
