@@ -1043,7 +1043,7 @@ Given a complete theory $T$ with an infinite model, we work in a saturated struc
     \end{proof}
 \end{prop}
 
----Lecture 13 to be typesetted---
+---Lecture 13---
 
 \begin{defi} (7.6)\\
     An injective map $\rho:A \subset \mathcal{M} \to \mathcal{N}$ is a \emph{partial embedding} if for all tuples in $A=\dom\rho$, $\rho$ satisfies conditions (i)-(iii) in definition (1.5) (i.e. $\rho$ is an embedding $\dom \rho \to \im \rho$).
@@ -1052,21 +1052,68 @@ Given a complete theory $T$ with an infinite model, we work in a saturated struc
 \begin{prop} (7.7)\\
     Let $\phi(\bar{x})$ be an $L$-formula. The following are equivalent:\\
     (i) $\exists \psi(\bar{x})$, a quantifier free $L$-formula, s.t. $U \vDash \forall \bar{x}(\phi(\bar{x}) \iff \psi(\bar{x}))$;\\
-    (ii) $\forall \rho$ a partial embedding $U \to U$, $\forall \bar{A} \in \dom \rho$, $\phi(\bar{a}) \iff \phi(\rho(\bar{a}))$.
+    (ii) $\forall \rho$ a partial embedding $U \to U$, $\forall \bar{a} \in \dom \rho$, $\phi(\bar{a}) \iff \phi(\rho(\bar{a}))$.
+    \begin{proof}
+        (i) $\implies$ (ii) because embeddings preserve quantifier free formulas.\\
+        (ii) $\implies$ (i): For $\bar{a} \in U$, write $qftp(\bar{a}) = \{\psi(\bar{x}):\psi(\bar{a})$, and $\psi(\bar{x}$ is q.f.$)\}$, called the quantifier-free type.\\
+        Let $D = \{q(\bar{x}): q(\bar{x}) = qftp(\bar{a})$ for some $\bar{a} \in \phi(U)\}$ (so $D$ is a collection of types).\\
+        We claim $\phi(U) = \cup_{q(x) \in D} q(U)$: LHS is a subset of RHS by construction of $D$. For the other direction, we need to prove for each $q(\bar{x}) \in D$ we have $q(U) \subseteq \phi(U)$. Let $q(\bar{x}) = qftp(\bar{a})$, and suppose $\bar{b} \in q(U)$. The map $\{\bra a_i,b_i \ket: i \leq |\bar{a}|\}$ is a partial embedding, so by (ii) we know $\phi(\bar{b})$ holds, so done.\\
+        Now by an argument similar to (7.2), there exists a finite conjunction of formulas $\psi_q(\bar{x})$ in $q(\bar{x})$ s.t. $\psi_q(\bar{x}) \implies \phi(\bar{x})$, i.e. $\phi(\bar{x}) \iff \vee_{q(\bar{x}) \in D} \{\psi_q(\bar{x})\}$. By (7.2), $\exists \psi_{q_1}(\bar{x}),... \psi_{q_m}(\bar{x})$ s.t. $\psi(\bar{x}) \iff \vee_{i=1}^n \psi_{q_i}(\bar{x})$, so RHS is the required quantified free formula.\\
+        (I think there might be something unnecessary here)
+    \end{proof}
 \end{prop}
 
----Lecture 14---
+\begin{defi} (7.8)\\
+    An $L$-theory $T$ ahs q.e. (quantifier elimination) if for every $L$-formula $\phi(\bar{x})$, there exists a quantifier free formula $\psi(\bar{x})$ s.t. $T \vdash \forall \bar{x} (\phi(\bar{x}) \iff \psi(\bar{x}))$.
+\end{defi}
 
-Possible erratum to theorem (7.9) (iii) $\implies$ (ii): 
-\begin{proof}
-    Let $p:U \to U$ be a partial embedding. Consider $p_0 \subseteq p$, $p_0$ finite or small. Use property (iii) and saturation to extend $p_0$ to $\alpha \in \Aut(U)$ by back and forth.
-\end{proof}
+\begin{thm} (7.9)\\
+    Let $T$ be a complete theory, with an infinite model. The following are equivalent:\\
+    (i) $T$ has quantifier elimination;\\
+    (ii) Every partial embedding $\rho:U \to U$  is elementary;\\
+    (iii) If $\rho:U \to U$ is partial embedding, $|\rho| < |U|$ and $b \in U$, then there exists partial embedding $\hat{\rho}\supseteq \rho$ s.t. $b \in \dom(\hat{\rho})$ (i.e. we can do one point extensions).
+    \begin{proof}
+        (i) $\iff$ (ii) is (7.7). We'll prove (ii) and (iii) are equivalent:\\
+        (ii) $\implies$ (iii): Suppose $\rho:U \to U$ is partial embedding. So it's elementary. By homogeneity of $U$, it extends to an automorphism $\alpha$ of $U$, and so $\rho \cup \{\bra b,\alpha(b)\ket\}$ is the required extension;\\
+        (iii) $\implies$ (ii): Suppose $\rho:U \to U$ is partial embedding. We'll prove that any finite restriction $\rho_0$ of $\rho$ is elementary: let $\mathcal{M} \supseteq \dom(\rho_0)$, $\mathcal{N} \supseteq \im(\rho_0)$ s.t. $|\mathcal{M}| = |\mathcal{N}|$. Extend $\rho_0$ to an isomorphism $\beta:\mathcal{M} \to \mathcal{N}$ by back-and-forth (using saturation of $U$).
+    \end{proof}
+\end{thm}
+
+\begin{rem}
+    (1) There's a fourth condition equivalent to the above:\\
+    (iv) For every \emph{finite} partial embedding $\rho:U \to U$, $b \in U$, there exists $\hat{\rho} \supseteq \rho$ a partial embedding s.t. $b \in \dom(\hat{\rho})$, i.e. we can do one point extension for finite partial embeddings.\\
+    (2) If $T$ has q.e. and $\mathcal{M} \vDash T$, then any substructure of $\mathcal{M}$ is an elementary substructure (we say $T$ is \emph{model-complete}).
+\end{rem}
+
+\begin{defi} (7.10)\\
+    An element $a \in U$ is \emph{definable over $A \subset U$} if $\exists \phi(x)$ an $L(A)$-formula s.t. $\phi(U) = \{a\}$.\\
+    In particular, any element of $A$ is definable over $A$.\\
+    An element $a \in U$ is \emph{algebraic over $A \subseteq U$} if $\exists \phi(x)$ an $L(A)$-formula s.t. $|\phi(U)| < \omega$, and $a \in \phi(U)$ (inspired by algebraic element in fields).\\
+    The \emph{definable closure} of $A$ is $dcl(A) = \{a \in U$ s.t. $a$ is definable over $A\}$. The algebraic closure of $A$, $acl(A)$, is defined similarly.
+\end{defi}
+
+\begin{prop} (7.11)\\
+    For $a \in U$, $A \subseteq U$, the following are equivalent:\\
+    (i) $a \in dcl(A)$;\\
+    (ii) $O(a/A) = \{a\}$.
+    \begin{proof}
+        $a \in dcl(A) \iff \exists \phi(x) \in L(A)$ s.t. $\phi(U) = \{a\}$. By (7.5), this is equivalent to invariance under $\Aut(U/A)$.
+    \end{proof}
+\end{prop}
 
 \begin{thm} (7.12)\\
     Let $A \subseteq U$, $a \in U$. The following are equivalent:\\
     (i) $a \in acl(A)$;\\
     (ii) $|O(a/A)| < \omega$ (orbit of $a$ under automorphisms of $A$ is finite);\\
     (iii) $a \in \mathcal{M}$ for any model $\mathcal{M}$ which contains $A$.
+
+---Lecture 14---
+
+    Possible erratum to theorem (7.9) (iii) $\implies$ (ii): 
+    \begin{proof}
+        Let $p:U \to U$ be a partial embedding. Consider $p_0 \subseteq p$, $p_0$ finite or small. Use property (iii) and saturation to extend $p_0$ to $\alpha \in \Aut(U)$ by back and forth.
+    \end{proof}
+
     \begin{proof}
         (i) $\implies$ (ii): If $a \in acl(A)$, then there is $L(A)$-formula $\phi(x)$ s.t. $\phi(a)$ and $|\phi(U)| < \omega$. But $\phi(U)$ is invariant over $A$, and so $O(a/A) \subseteq \phi(U)$, and so $|O(a/A)| < \omega$.\\
         (ii) $\implies$ (i): If $|O(a/A)| < \omega$, then $O(a/A)$ is definable, by $\vee_{i=1}^n x=a_i$ where $P(a/A) = \{a_1,...,a_n\}$. Also $O(a/A)$ is invariant over $A$. So by (7.5), there is an $L(A)$-formula $\phi(x)$ that defines $O(a/A)$.\\
