@@ -5,27 +5,27 @@
 \contentsline {section}{\numberline {4}Limits}{22}{section.4}
 \contentsline {section}{\numberline {5}Monads}{33}{section.5}
 \contentsline {section}{\numberline {6}Cartesian Closed Categories}{43}{section.6}
-\contentsline {section}{\numberline {7}Toposes}{45}{section.7}
-\contentsline {section}{\numberline {8}Example Class 1}{56}{section.8}
-\contentsline {subsection}{\numberline {8.1}Question 1}{56}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Question 2}{56}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Question 3}{57}{subsection.8.3}
-\contentsline {subsection}{\numberline {8.4}Question 4}{58}{subsection.8.4}
-\contentsline {subsection}{\numberline {8.5}Question 5}{58}{subsection.8.5}
-\contentsline {subsection}{\numberline {8.6}Question 6}{59}{subsection.8.6}
-\contentsline {subsection}{\numberline {8.7}Question 7}{60}{subsection.8.7}
-\contentsline {subsection}{\numberline {8.8}Question 8}{61}{subsection.8.8}
-\contentsline {section}{\numberline {9}Example Class 2}{62}{section.9}
-\contentsline {subsection}{\numberline {9.1}Question 1}{62}{subsection.9.1}
-\contentsline {subsection}{\numberline {9.2}Question 2}{62}{subsection.9.2}
-\contentsline {subsection}{\numberline {9.3}Question 3}{63}{subsection.9.3}
-\contentsline {subsection}{\numberline {9.4}Question 4}{64}{subsection.9.4}
-\contentsline {subsection}{\numberline {9.5}Question 5}{64}{subsection.9.5}
-\contentsline {section}{\numberline {10}Example Class 3}{67}{section.10}
-\contentsline {subsection}{\numberline {10.1}Question 1}{67}{subsection.10.1}
-\contentsline {subsection}{\numberline {10.2}Question 2}{67}{subsection.10.2}
-\contentsline {subsection}{\numberline {10.3}Question 3}{68}{subsection.10.3}
-\contentsline {subsection}{\numberline {10.4}Question 4}{68}{subsection.10.4}
-\contentsline {subsection}{\numberline {10.5}Question 5}{68}{subsection.10.5}
-\contentsline {subsection}{\numberline {10.6}Question 6}{69}{subsection.10.6}
-\contentsline {subsection}{\numberline {10.7}Question 7}{71}{subsection.10.7}
+\contentsline {section}{\numberline {7}Toposes}{46}{section.7}
+\contentsline {section}{\numberline {8}Example Class 1}{57}{section.8}
+\contentsline {subsection}{\numberline {8.1}Question 1}{57}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Question 2}{57}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Question 3}{58}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}Question 4}{59}{subsection.8.4}
+\contentsline {subsection}{\numberline {8.5}Question 5}{59}{subsection.8.5}
+\contentsline {subsection}{\numberline {8.6}Question 6}{60}{subsection.8.6}
+\contentsline {subsection}{\numberline {8.7}Question 7}{61}{subsection.8.7}
+\contentsline {subsection}{\numberline {8.8}Question 8}{62}{subsection.8.8}
+\contentsline {section}{\numberline {9}Example Class 2}{63}{section.9}
+\contentsline {subsection}{\numberline {9.1}Question 1}{63}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Question 2}{63}{subsection.9.2}
+\contentsline {subsection}{\numberline {9.3}Question 3}{64}{subsection.9.3}
+\contentsline {subsection}{\numberline {9.4}Question 4}{65}{subsection.9.4}
+\contentsline {subsection}{\numberline {9.5}Question 5}{65}{subsection.9.5}
+\contentsline {section}{\numberline {10}Example Class 3}{68}{section.10}
+\contentsline {subsection}{\numberline {10.1}Question 1}{68}{subsection.10.1}
+\contentsline {subsection}{\numberline {10.2}Question 2}{68}{subsection.10.2}
+\contentsline {subsection}{\numberline {10.3}Question 3}{69}{subsection.10.3}
+\contentsline {subsection}{\numberline {10.4}Question 4}{69}{subsection.10.4}
+\contentsline {subsection}{\numberline {10.5}Question 5}{69}{subsection.10.5}
+\contentsline {subsection}{\numberline {10.6}Question 6}{70}{subsection.10.6}
+\contentsline {subsection}{\numberline {10.7}Question 7}{72}{subsection.10.7}

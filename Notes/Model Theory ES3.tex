@@ -1,0 +1,26 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\begin{document}
+
+\title{Model Theory Example Sheet 3}
+
+\author{Xiaojia Rao}
+
+\maketitle
+
+\setcounter{secnumdepth}{0}
+
+\section{Question 4}
+
+Suppose $a \not\in acl(A)$. Then there exists a model $\mathcal{M} \preccurlyeq U$ which contains $A$ but not $a$. But $a \in acl(A,b)$ for any realization $b$ of $\phi(z)$, so $\mathcal{M}$ cannot contain any of those $b$, i.e. $\mathcal{M}$ does not contain any realization of $\phi(z)$. But it does contain $A$, so the sentence $\exists z \phi(z)$ should be true in $\mathcal{M}$ since it is true in $U$ and by elementarity. Contradiction.
+
+For types it's similar: similarly we have a model $\mathcal{M}$ containing $A$ that does not contain $a$ and  has no realization of $p(z)$. Note that by elementarity $p(z)$ is still finitely consistent in $\mathcal{M}$, so $p(z)$ must be an infinite type.
+
+\section{Question 7}
+
+Suppose $C \cap acl(A) = \phi$. Then for each $c \in C$, consider its type over $A$, $p_c(x):=tp(c/A)$: for $\phi(x) \in p_c(x)$, we have $|\phi(U)| \geq \omega$. So by the same argument from lecture we know $|p_c(U)| = |U|$.\\
+We continue mimicking the proof: let $\mathcal{M} \supset A$ be a model, then $p_c(U) \setminus \mathcal{M} \neq \phi$ for each $c \in C$. Pick $b_c \in p_c(U) \setminus \mathcal{M}$, then by homogeneity
+
+\end{document}

@@ -1466,6 +1466,66 @@ corresponds to morphisms $C = \sum_B g \xrightarrow{f} A$.
 
 ---two lectures (19,20) to be typesetted---
 
+--Lecture 19---
+
+\begin{lemma} (6.4)\\
+    Suppose $\mathcal{C}$ has all finite limits. If $A$ is exponentiable in $\mathcal{C}$, then $B^*A$ is exponentiable in $\mathcal{C}/B$ for any $B$.\\
+    Moreover, $B^*$ preserves exponentials.
+    \begin{proof}
+        Given an object $\begin{pmatrix}C\\\downarrow f\\B\end{pmatrix}$, form the pullback
+            \begin{tikzcd}
+                P \arrow[r] \arrow[d,"f^{(b^*A)}"] & C^A \arrow[d,"f^A"]\\
+                B \arrow[r,"\bar{\pi_1}"] & B^A
+            \end{tikzcd}
+            . Then for any 
+            \begin{tikzcd}
+                D \arrow[d,"g"]\\
+                B
+            \end{tikzcd}
+            , morphisms $g \to f^{B^*A}$ in $\mathcal{C}/B$ corresponds to morphisms $D \xrightarrow{\bar{h}} C^A$ making 
+            \begin{tikzcd}
+                D \arrow[r,"\bar{h}"] \arrow[d,"g"] & C^A \arrow[d,"f^A"]\\
+                B \arrow[r,"\bar{\pi}_1"] & B^A
+            \end{tikzcd}
+            commute, and hence to morphisms $D \times A \xrightarrow{h} C$ making
+            \begin{tikzcd}
+                D \times A \arrow[r,"h"] \arrow[rd,"g\pi_1"'] & C \arrow[d,"f"]\\
+                & B
+            \end{tikzcd}
+            commute. But
+            \begin{tikzcd}
+                D \times A \arrow[r,"g \times 1_A"] \arrow[d,"\pi_1"] & B \times A \arrow[d,"\pi_1"]\\
+                D \arrow[r,"g"] & B
+            \end{tikzcd}
+            is a pullback in $\mathcal{C}$, i.e. a product in $\mathcal{C}/B$.\\
+            For the second assertion, note that if 
+            \begin{tikzcd}
+                C \arrow[d,"f"]\\
+                B
+            \end{tikzcd}
+            is of the form
+            \begin{tikzcd}
+                B \times E \arrow[d,"\pi_1"]\\
+                B
+            \end{tikzcd}
+            , then the pullback defining $f^{B^*A}$ becomes
+            \begin{tikzcd}
+                B \times E^A \arrow[r,"\bar{\pi}_1 \times 1"] \arrow[d,"\pi_1"] & B^A \times E^A \arrow[d,"\pi_1"]\\
+                B \arrow[r,"\bar{\pi}_1"] & B^A
+            \end{tikzcd}
+            , so $f^{B^*A} \cong B^*(E^A)$.
+    \end{proof}
+\end{lemma}
+
+\begin{rem}
+    $\mathcal{C}/B$ is isomorphic to the category of coalgebras for the monad structure on $(-) \times B$ (5.2(c)); so the first part of (6.4) could have been proved using (5.16).
+\end{rem}
+
+\begin{defi} (6.5)\\
+    We say $\mathcal{C}$ is \emph{locally Cartesian closed} if it has all finite limits and each $\mathcal{C}/B$ is cartesian closed.\\
+    Note that this includes the fact that $\mathcal{C}/1 \cong \mathcal{C}$ is cartesian closed, so being \emph{locally} Cartesian closed is actually stronger than being cartesian closed!
+\end{defi}
+
 \newpage
 
 \section{Toposes}
