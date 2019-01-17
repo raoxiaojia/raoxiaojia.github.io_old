@@ -34,7 +34,7 @@ Throughout this course, by \emph{numbers} we'll mean natural numbers excluding 0
 
 We can also ask how many twin primes there are, i.e. how many $p$ such that $p,p+2$ are both prime. This is not known yet (not even the finiteness); but from 2014, Zhang, Maynard, Polymath showed that there are infinitely many primes at most 246 apart, which is not that far from 2. The current guess is that the number is around $\frac{x}{(\log x)^2}$.
 
-Another question we may ask: how many primes are there $\equiv a (\pmod q)$, $(a,q) = 1$. We know by Dirichlet's theorem that there are infinitely many.\\
+Another question we may ask: how many primes are there $\equiv a \pmod q$, $(a,q) = 1$. We know by Dirichlet's theorem that there are infinitely many.\\
 A natural guess of the count is $\frac{1}{\phi(q)} \frac{x}{\log x}$, where $\phi(x)$ is the Euler Totient function. This is known to hold for small $q$.
 
 In this course we'll talk about:\\
@@ -48,7 +48,7 @@ In this course we'll talk about:\\
 \section{Elementary techniques}
 Review of asymptotic notation:\\
 $\bullet$ $f(x) = O(g(x))$ if there is $c>0$ s.t. $|f(x)| \leq c|g(x)|$ for all large enough $x$;\\
-$\bullet$ $f \ll g$ is the same thing as $f=O(g)$. Naturally this also defines also $f \gg g$ means;\\
+$\bullet$ $f \ll g$ is the same thing as $f=O(g)$. This also defines what $f \gg g$ means in the natural way;\\
 $\bullet$ $f \sim g$ if $\lim_{x \to \infty} \frac{f(x)}{g(x)} = 1$ (i.e. $f=(1+o(1))g$);\\
 $\bullet$ $f=o(g)$ if $\lim_{x \to \infty} \frac{f(x)}{g(x)} = 0$.
 
@@ -58,7 +58,7 @@ An important operation for multiplicative number theory ($fg = f(n)g(n)$) is mul
 $$f*g(n) = \sum_{ab=n}f(a)g(b)$$
 
 Examples: $1(n) \equiv 1 \forall n$ (caution: $1$ is not the identity function, and $1*f \neq f$).\\
-M$\ddot{o}$bius function:
+M\"{o}bius function:
 \begin{equation*}
 \begin{aligned}
 \mu(n) = \left\{\begin{array}{ll}
@@ -68,7 +68,7 @@ M$\ddot{o}$bius function:
 \right.
 \end{aligned}
 \end{equation*}
-Liouville function: $\lambda(n) = (-1)^k$ if $n=p_1...p_k$ (not necessarily distinct),\\
+Liouville function: $\lambda(n) = (-1)^k$ if $n=p_1...p_k$ (primes not necessarily distinct),\\
 Divisor function: $\tau(n) = $ number of $d$ s.t. $d|n = \sum_{ab = n} 1 = 1*1$. This is sometimes also known as $d(n)$.
 
 An arithmetic function is multiplicative if $f(nm) = f(n)f(m)$ when $(n,m)=1$.\\
@@ -81,7 +81,7 @@ All the function we've seen so far ($\mu,\lambda,\tau,1$) are multiplicative.
 
 Non-example: $\log n$ is definitely not multiplicative.
 
-\begin{fact} (M$\ddot{o}$bius inversion)\\
+\begin{fact} (M\"{o}bius inversion)\\
 $1*f=g \iff \mu*g=f$. That is,
 $$\sum_{a|n} f(d) = g(n) \forall n \iff \sum_{d|n} g(d)\mu(n/d) = f(n) \forall n$$
 e.g.
@@ -97,7 +97,7 @@ e.g.
 is multiplicative: it's enough to check identity for primes powers.\\
 If $n=p^k$ then $\{d|n\} = \{1,p,...,p^k\}$. So LHS=$1-1+0+0+...=0$, unless $k=0$ when LHS = $\mu(1) = 1$.
 
-Our goal is to study primes. Guess might be to work with
+Our goal is to study primes. The first guess might be to work with
 \begin{equation*}
 \begin{aligned}
 1_p(n) = \left\{\begin{array}{ll}
@@ -121,14 +121,14 @@ Our goal is to study primes. Guess might be to work with
 \end{fact}
 
 \begin{lemma} (1)\\
-$1*\wedge = \log$, and by M$\ddot{o}$bius inversion, $\mu*\log = \wedge$.\\
+$1*\wedge = \log$, and by M\"{o}bius inversion, $\mu*\log = \wedge$.\\
 Note that it's easy to realize that $\wedge$ is not multiplicative, else $\log$ will be.
 \begin{proof}
 $1*\wedge(n) = \sum_{d | n} \wedge(d)$. So if $n=p_1^{k_1}...p_r^{k_r}$, then above
 \begin{equation*}
 \begin{aligned}
-&=\sum_{i=1}^r \sum_{j=1}^{n_i} \wedge(p_i^j)\\
-&=\sum_{i=1}^r \sum_{j=1}^{n_i} \log(p_i)\\
+&=\sum_{i=1}^r \sum_{j=1}^{k_i} \wedge(p_i^j)\\
+&=\sum_{i=1}^r \sum_{j=1}^{k_i} \log(p_i)\\
 &= \sum_{i=1}^r k_i \log (p_i)\\
 &= \log n
 \end{aligned}
@@ -144,16 +144,17 @@ Note that the above tells us
 &= -\sum_{d|n} \mu(d)\log d
 \end{aligned}
 \end{equation*}
-e.g. 
+by the famous fact that $\sum_{d|n}\mu(d)=0$ unless $n=1$; but when $n=1$, $\log n = 0$.\\
+Now we can try to evaluate
 \begin{equation*}
 \begin{aligned}
--\sum_{1 \leq n \leq x} \wedge(n) &= \sum_{1 \leq n \leq x} \sum_{d|n} \mu(d) \log d \ \text{ (reverse summation)}\\
-&= -\sum_{d \leq x} \mu(d) \log d (\sum_{1 \leq n \leq x, d|n} 1)
+-\sum_{1 \leq n \leq x} \wedge(n) &= \sum_{1 \leq n \leq x} \sum_{d|n} \mu(d) \log d \\
+&= -\sum_{d \leq x} \mu(d) \log d (\sum_{1 \leq n \leq x, d|n} 1)\ \text{ (reverse order of summation)}
 \end{aligned}
 \end{equation*}
-But the last summand is
-$$\sum_{1 \leq n \leq x, d|n} 1 = \lfloor x/d \rfloor = x/d + O(1)
-
-$-x\sum_{d \leq x} \mu(d) \frac{\log d}{d} + O(\sum_{d \leq x} \mu(d) \log d)$.
+But
+$$\sum_{1 \leq n \leq x, d|n} 1 = \lfloor x/d \rfloor = x/d + O(1)$$
+So we know the original sum is equal to
+$$-x\sum_{d \leq x} \mu(d) \frac{\log d}{d} + O(\sum_{d \leq x} \mu(d) \log d)$$
 
 \end{document}
