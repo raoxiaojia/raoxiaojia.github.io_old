@@ -43,12 +43,12 @@ When $G$ is abelian, we often switch to additive notion, for example $A+B, nA, -
 To say $A$ is \emph{closed} is to say $A^2 = A$.\\
 If $A$ is finite, one way to say that $A$ is \emph{approximately closed} is to say that $|A^2|$ is \emph{not much bigger} than $|A|$. This is the notion of approximate closure that arises when studying polynomial growth or expansion, for example.
 
-To get a feel for what this should mean, let's look at the possible values of $|A^2|$. Trivially we have $|A| \leq |A^2| \leq |A|^2$, and both bounds are attained. However, although the quadratic upper bound on $|A^2|$ in terms of $|A|$ is extremal in a strict sense, it should not be seen as atypical for the size of $A^2$.\footnote{We will see in sheet 1 that random sets have quadratic size: if $A$ is a set of size $n$ chosen uniformly at random from $\{1,...,n^{100}\}$ (we'd like to choose from all integers, but there's no uniform measure there), then $\E(|A+A|)$ is \emph{closed to} $\frac{1}{2} |A|^2$. Note that this is the largest we can get, since in an abelian group we have $a+b=b+a$.} Therefore, we can view sets $A$ satisfying
+To get a feel for what this should mean, let's look at the possible values of $|A^2|$. Trivially we have $|A| \leq |A^2| \leq |A|^2$, and both bounds are attained. However, although the quadratic upper bound on $|A^2|$ in terms of $|A|$ is extremal in a strict sense, it should not be seen as atypical for the size of $A^2$.\footnote{We will see in sheet 1 that random $A$ have quadratic size for $|A^2|$, in the sense of: if $A$ is a set of size $n$ chosen uniformly at random from $\{1,...,n^{100}\}$ (we'd like to choose from all integers, but there's no uniform measure there), then $\E(|A+A|)$ is \emph{closed to} $\frac{1}{2} |A|^2$. Note that this is the largest we can get, since in an abelian group we have $a+b=b+a$.} Therefore, we can view sets $A$ satisfying
 $$|A^2| = o(|A|^2)\ \ \ (1.1)$$
 as being \emph{exceptional}, and so condition (1.1) can already be seen as a form of \emph{approximate closure}. In this course, we will concentrate on the strongest form of (1.1), where $|A^2|$ is \emph{linear} in $|A|$, in the sense that
 $$|A^2| \leq K|A|\ \ \ (1.2)$$
 for some constant $K \geq 1$ fixed a priori.\\
-Obviously, such sets are very far from random, we can expect (1.2) to impose a significant restriction on $A$. The main aim of the course is to work out how significant the restriction is.
+Obviously, such sets are very far from random, and we can expect (1.2) to impose a significant restriction on $A$. The main aim of the course is to work out how significant the restriction is.
 
 \begin{defi} (Small doubling)\\
 Given $A \subset G$, the ratio $|A^2| / |A|$ is called the \emph{doubling constant}.\\
@@ -65,7 +65,7 @@ This last example is especially important as it shows that the theory does not j
 
 Our main aim will be to prove theorems along the lines of: if $A$ has small doubling, then $A$ has a certain structure. When $K$ is very small, this is quite easy, as follows.
 
-\begin{thm} (1.1, Freiman\footnote{The proof presented here is by Tao instead of the original version.})\\
+\begin{thm} (1.1, Freiman\footnote{The proof presented here is by Tao instead of the original version. Lecturer has no way to tell if the original proof is close to this, especially because the original proof is in Russian.})\\
 Let $K< \frac{3}{2}$. Suppose $A \subset G$ and $|A^2| \leq K|A|$ (by writing like this, we're obviously assuming $A$ is finite). Then there is a subgroup $H<G$ with $|H| = |A^2|$ ($\leq K|A|$) such that $A \subset aH = Ha \forall a \in A$.\\
 (i.e., $A$ is a large portion of a coset of a finite subgroup).
 \end{thm}
@@ -77,7 +77,7 @@ Converse: if $A \subset xH = Hx$ for $x \in G$, $H<G$, $|H| \leq K|A|$, then $|H
 \begin{lemma} (1.2, identify $H$)\\
 If $|A^2| < \frac{3}{2}|A|$, then $H=A^{-1}A$ is a subgroup. Moreover, $A^{-1}A = AA^{-1}$, and $|H| < 2|A|$.
 \begin{proof}
-Let $a,b \in A$. The hypothesis gives $|aA \cap bA| > \frac{1}{2} |A|$, so there are at least $\frac{1}{2}|A|$ pairs of $(x,y) \in A \times A$ s.t. $ax = by$, i.e. $a^{-1}b=xy^{-1}$. This immediately implies $A^{-1}A \subset AA^{-1}$, and replacing $A$ by $A^{-1}$ we get the other inclusion; so $A^{-1}A = AA^{-1}$ as required.
+Let $a,b \in A$. The hypothesis gives $|aA \cap bA| > \frac{1}{2} |A|$, so there are $> \frac{1}{2}|A|$ pairs of $(x,y) \in A \times A$ s.t. $ax = by$, i.e. $a^{-1}b=xy^{-1}$. This immediately implies $A^{-1}A \subset AA^{-1}$ (as we just needed one such pair $(x,y)$), and replacing $A$ by $A^{-1}$ we get the other inclusion; so $A^{-1}A = AA^{-1}$ as required.
 
 Since $|A \times A| = |A|^2$, it also implies that $|A^{-1}A| \leq \frac{|A|^2}{\frac{1}{2}|A|} = 2|A|$, as claimed. Note also that $A^{-1}A$ is symmetric, so it remains to show that $A^{-1}A$ is closed under products.\\
 Let $c,d \in A$. As above, there exist $>\frac{1}{2}|A|$ pairs $(u,v) \in A \times A$ s.t. $c^{-1} d = uv^{-1}$. This means for at least one pair $(x,y)$ and one pair $(u,v)$, we have $y=u$. In particular, $a^{-1}bc^{-1}d = xv^{-1} \in AA^{-1} = A^{-1}A$.
@@ -87,13 +87,13 @@ Let $c,d \in A$. As above, there exist $>\frac{1}{2}|A|$ pairs $(u,v) \in A \tim
 \begin{lemma} (1.3, size bound)\\
 If $|A^2| < \frac{3}{2} |A|$, then $A^2 = aHa$ $\forall a \in A$ ($H$ as before). In particlar, $|H| = |A^2|$.
 \begin{proof}
-First, note that $A \subset aH \cap Ha$ (label this 1.3) by definition of $H$, so certainly $A^2 \subset aHa$. For the reverse inclusion, let $z \in aHa$. Since $H$ is a subgroup, there exists $|H|$ pairs $(x,y) \in aH \times Ha$ s.t. $z=xy$. Moreover, by (1.3) and the bound $|H| < 2|A|$ from lemma (1.2), more than half of those $x$ and half of those $y$ belong to $A$. In particular, this means that for at least one pair $(x,y)$, both have to belong to $A$. Hence $z=xy \in A^2$ as required.
+First, note that $A \subset aH \cap Ha$ (label this 1.3) by definition of $H$ and $A^{-1}A = AA^{-1}$, so certainly $A^2 \subset aHa$. For the reverse inclusion, let $z \in aHa$. Since $H$ is a subgroup, there exists $|H|$ pairs $(x,y) \in aH \times Ha$ s.t. $z=xy$. Moreover, by (1.3) and the bound $|H| < 2|A|$ from lemma (1.2), more than half of those $x$ and half of those $y$ belong to $A$. In particular, this means that for at least one pair $(x,y)$, both have to belong to $A$. Hence $z=xy \in A^2$ as required.
 \end{proof}
 \end{lemma}
 
 Proof of theorem (1.1):
 \begin{proof}
-Given $a \in A$, we have $Aa^{-1} \subset aHa^{-1} \cap H$, so $|aHa^{-1} \cap H| \geq |A| \> \frac{1}{2}|H|$ by lemma (1.2). But the only subgroup of $H$ of size $>\frac{1}{2}|H|$ is $H$ itself. Hence $aHa^{-1} = H$, so indeed $A \subset aH = Ha$ by (1.3).
+Given $a \in A$, we have $Aa^{-1} \subset aHa^{-1} \cap H$, so $|aHa^{-1} \cap H| \geq |A| > \frac{1}{2}|H|$ by lemma (1.2). But the only subgroup of $H$ of size $>\frac{1}{2}|H|$ is $H$ itself. Hence $aHa^{-1} = H$, so indeed $A \subset aH = Ha$ by (1.3).
 \end{proof}
 
 Classifying the sets of small doubling is much harder than this in general, and uses a much wider range of techniques e.g. group theory, harmonic analysis, geometry of numbers, etc.
