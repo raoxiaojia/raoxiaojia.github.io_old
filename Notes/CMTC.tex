@@ -1,0 +1,73 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Connection between Model theory and Combinatorics}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+---Lecture 1---
+
+Several things we'll look into in this course:\\
+$\bullet$ Intro to stability;\\
+$\bullet$ stable Ramsey/Erd$\ddot{o}$s-Hajnal;\\
+$\bullet$ stable regularity lemma;\\
+$\bullet$ independence property;\\
+$\bullet$ dividing lines in unstable theories.
+
+\newpage
+
+\section{Introduction to stability}
+
+\subsection{History}
+$\bullet$ (definition of first-order language, some examples including $L_{gp},L_{agp},L_{lo}$ and $L_{gr}$)\\
+$\bullet$ (definition of $L$-structures, also some examples)\\
+$\bullet$ (definition of $L$-formulas, with some examples)\\
+$\bullet$ (definition of $L$-sentences)\\
+$\bullet$ (definition of $L$-theory)\\
+$\bullet$ (definition of models of an $L$-theory)
+
+We use the notation $I_T(\kappa)$ to mean the number of models of $T$ of size $\kappa$ up to isomorphism.
+
+Result by Morley: let $T$ be a conutable theory. If $I_T(\kappa) = 1$ for some uncountable $\kappa$, then $I_T(\kappa) = 1 \forall \kappa$. Examples include the theory of vector spaces over a fixed field, and the theory of algebraically closed fields (ACF).
+
+\subsection{The order property}
+
+\begin{defi}
+Let $T$ be a theory, $\mathcal{M} \vDash T$, $k \geq 1$ an integer. A formula $\phi(x,y)$ (for the time being, let it have two free variables) is said to have the $k$-order property ($k$-OP) if there are sequences $a_i,b_j,i,j=1,...,k$ s.t. $\mathcal{M} \vDash \phi(a_i,b_j)$ iff $i \leq j$.\\
+A formula $\phi(x,y)$ is said to be $k$-stable if it does not have $k$-OP.
+\end{defi}
+
+\begin{eg}
+$\bullet$ Consider $Th_{gr}$ and a model $G=\bra V,E\ket$. Then the formula $E(x,y)$ is $k$-stable if $G$ does not contain a half-graph of height $k$ (from the definition it's obvious what it means) as an induced bipartite subgraph. We'll sometimes say the graph $G$ is $k$-stable.\\
+$\bullet$ Consider $Th_{agp}$ and a model $\bra G,+,-,A\ket$, where $A$ is a unary relation (so basically specifies a subset of $G$). The formula $\phi(x,y)=A(x+y)$ (i.e. $x+y \in A$) is $k$-stable if $G$ does not contain sequences $a_i,b_j$ of length $k$ s.t. $a_i+b_j \in A$ iff $i \leq j$. We'll sometimes say the set $A$ is $k$-stable.\\
+\end{eg}
+
+\begin{lemma}
+Let $G$ be an abelian group. If $H \leq G$, then $H$ is $2$-stable.
+\begin{proof}
+We want to show that $H$ can't have $2$-OP. Suppose there are $a_1,a_2,b_1,b_2 \in G$ s.t. $a_i+b_j \in H$ for $1 \leq i \leq j \leq 2$, i.e. $a_1+b_1,a_1+b_2,a_2+b_2 \in H$, but $a_2+b_1$ not in $H$. But that is not possible because $a_2+b_1 = (a_1+b_1)-(a_1+b_2)+(a_2+b_2)$.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}
+Let $G$ be an abelian group, $H \leq G$, and $U$ a union of $k$ cosets of $H$. Then $U$ is $(k+1)$-stable.
+\begin{proof}
+Suppose we had $a_1,...,a_{k+1},b_1,...,b_{k+1} \in G$ witnessing $(k+1)$-OP. Then by pigeonhole principle, there exists $1 \leq i < j \leq k+1$ s.t. $a_1+b_i$ and $a_1+b_j$ lie in the same coset of $H$. Then $b_i+H = b_j+H$, and then $a_j+b_i =\underbrace{(a_j+b_j)}_{\in U} + \underbrace{(b_i-b_j)}_{\in H} \in U$.
+\end{proof}
+\end{lemma}
+
+Exercise. Let $A \subseteq G$ be a Sidon set, i.e. it contains no non-trivial solutions to $x+y=z+w$. Show that $A$ is 3-stable. Are all 3-stable sets Sidon sets?
+
+\end{document}

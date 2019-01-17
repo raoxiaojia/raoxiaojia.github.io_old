@@ -1526,6 +1526,24 @@ corresponds to morphisms $C = \sum_B g \xrightarrow{f} A$.
     Note that this includes the fact that $\mathcal{C}/1 \cong \mathcal{C}$ is cartesian closed, so being \emph{locally} Cartesian closed is actually stronger than being cartesian closed!
 \end{defi}
 
+\begin{eg} (6.6)\\
+	(a) $\mathbf{Set}$ is locally cartesian closed, since $\mathbf{Set}/B \cong \mathbf{Set}^B$ for any $B$.\\
+	(b) For any small category $\mathcal{C}$, $[\mathcal{C},\mathbf{Set}]$ is cartesian closed: by Yoneda, $G^F(A) \cong [\mathcal{C},\mathbf{Set}](\mathcal{C}(A,-),G^F) \cong  [\mathcal{C},\mathbf{Set}](\mathcal{C}(A,-) \times F,G)$.\\
+	So we take RHS as a definition of $GF(A)$, and define $G^F$ on morphisms $A \xrightarrow{f} B$ by composition with $\mathcal{C}(f,-) \times 1_F$.\\
+	Note that the class of functors $H$ for which we have $[\mathcal{C},\mathbf{Set}](H,G^F) \cong [\mathcal{C},\mathbf{Set}](H \times F,G)$ is closed under colimits; but every functor $\mathcal{C} \to \mathbf{Set}$ is a colimit of representables.\\
+	In fact, $[\mathcal{C},\mathbf{Set}]$ is locally cartesian closed, since all its slice categories $[\mathcal{C},\mathbf{Set}]/F$ are of the same form (see q6 on sheet 4).\\
+	(c) Any Heyting semilattice $H$ is locally cartesian closed, since $H/b\Z \downarrow (b)$, the poset of elements $\leq b$, and $b^* = (-) \wedge b$ is surjective.\\
+	(d) (non-example) $\mathbf{Cat}$ is not locally cartesian closed, since not all strong epimorphisms are regular (sheet 3 q6).\\
+\end{eg}
+
+Note that, given 
+\begin{tikzcd}
+A \arrow[d,"f"]\\
+B
+\end{tikzcd}
+in $\mathcal{C}/B$, the iterated slice $(\mathcal{C}/B)/f$ is isomorphic to $\mathcal{C}/A$, and this identifies $f^*:\mathcal{C}/B \to (\mathcal{C}/B)/f$ with the operation of pulling back morphisms along $f$. So by (6.3), $\mathcal{C}$ is lcc iff it has finite limits and $f^*:\mathcal{C}/B \to \mathcal{C}/A$ has a right adjoint $\Pi_f$ for every $A \xrightarrow{f} B$ in $\mathcal{C}$.
+
+
 \newpage
 
 \section{Toposes}
