@@ -157,4 +157,142 @@ $$\sum_{1 \leq n \leq x, d|n} 1 = \lfloor x/d \rfloor = x/d + O(1)$$
 So we know the original sum is equal to
 $$-x\sum_{d \leq x} \mu(d) \frac{\log d}{d} + O(\sum_{d \leq x} \mu(d) \log d)$$
 
+---Lecutre 2---
+
+Lecturer's favourite book: \emph{Multiplicative Number Theory}.
+
+Room for example classes: MR14 (Tues 330-5pm, week 357).
+
+\subsection{Summation}
+Given an arithmetic function $f$, we can ask for estimates of $\sum_{1 \leq n \leq x} f(n)$.\\
+We say that $f$ has \emph{average order $g$} if $\sum_{1 \leq n \leq x} f(n) \sim xg(x)$ (in some sense, the average size of $f$ is $g$).
+
+For example, if $f \equiv 1$, then $\sum_{1\ leq n \leq x} f(n) = \lfloor x \rfloor = x+O(1) \sim x$. So the average order of $1$ is $1$ (makes a lot of sense).\\
+A slightly less trivial example is the identity function $f(n) = n$: we have $\sum_{1 \leq n \leq x} n \sim \frac{x^2}{2}$, so the average order of $n$ is $n/2$.
+
+\begin{lemma} (1, Partial summation)\\
+If $(a_n)$ is a sequence of complex numbers, and $f$ is s.t. $f'$ is continuous. Then $\sum_{1 \leq n \leq x} f(n) = A(x) f(x) - \int_1^x A(t) f'(t) dt$, where $A(x) = \sum_{1 \leq n \leq x} a_n$.\\
+We can see that this is a discrete version of integration by parts.
+\begin{proof}
+Suppose $x=N$ is an integer. Note that $a_n = A(n) - A(n-1)$. So
+\begin{equation*}
+\begin{aligned}
+\sum_{1 \leq n \leq N} a_nf(n) &= \sum_{1 \leq n \leq N} f(n) (A(n)-A(n-1))\\
+&= A(N)f(N) - \sum_{n=1}^{N-1}A(n) (f(n+1)-f(n)) \text{ using } A(0)=0
+\end{aligned}
+\end{equation*}
+Now $f(n+1)-f(n) = \int_n^{n+1} f'(t)dt$. So
+\begin{equation*}
+\begin{aligned}
+\sum_{1 \leq n \leq N} a_n f(n) &= A(N)f(N) - \sum_{n=1}^{N-1} A(n) \int_n^{n+1} f'(t) dt\\
+&= A(N)f(N) - \int_1^N A(t) f'(t) dt
+\end{aligned}
+\end{equation*}
+To be complete, we should also consider the case where $x$ is not an integer. But if $N=\lfloor x \rfloor$,
+\begin{equation*}
+\begin{aligned}
+A(x) f(x) &= A(N)f(x)\\
+&=A(N)\left(f(N)+\int_N^x f'(t)dt\right)
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (2)\\
+$$\sum_{1 \leq n \leq x} \frac{1}{n} = \log x + \gamma + O\left(\frac{1}{x}\right)$$
+where $\gamma$ is some constant.
+\begin{proof}
+Apply partial summation with $f(x)=\frac{1}{x}$ and $a_n \equiv 1$, so $A(x) = \lfloor x \rfloor$. Then, writing $\lfloor t \rfloor = t - \{t\}$,
+\begin{equation*}
+\begin{aligned}
+\sum_{1 \leq n \leq x} \frac{1}{n} &= \frac{\lfloor x \rfloor}{x} + \int_1^x \frac{\lfloor t \rfloor}{t^2} dt\\
+&= 1 + O\left(\frac{1}{x}\right) + \int_1^x \frac{1}{t} dt - \int_1^x \frac{\{t\}}{t^2} dt\\
+&= 1+O\left(\frac{1}{x}\right) + \log x - \int_1^\infty \frac{\{t\}}{t^2} dt + \int_x^\infty \frac{\{t\}}{t^2} dt\\
+&=\gamma + O\left(\frac{1}{x}\right) + \log x + O\left(\frac{1}{x}\right)\\
+&= \log x + \gamma + O\left(\frac{1}{x}\right)
+\end{aligned}
+\end{equation*}
+where at the penultimate step we bound the error term by 
+\begin{equation*}
+\begin{aligned}
+\int_x^\infty \frac{\{t\}}{t^2} dt &\leq \int_x^\infty \frac{1}{t^2} dt\\
+&\leq \frac{1}{x}
+\end{aligned}
+\end{equation*}
+and we actually know $\gamma = 1 - \int_1^\infty \frac{\{t\}}{t^2} dt$.\\
+This $\gamma$ is called Euler's constant (Euler-Mascheroni).\\
+We know very little about this constant: we only know $\gamma=0.577...$, and we don't even know if $\gamma$ is irrational.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (3)\\
+$$\sum_{1 \leq n \leq x} \log n = x\log x - x + O(\log x)$$
+\begin{proof}
+Use partial summation again, with $f(x) = \log x$ and $a_n=1$, so $A(x) = \lfloor x \rfloor$:
+\begin{equation*}
+\begin{aligned}
+\sum_{1 \leq n \leq x} \log n &= \lfloor x \rfloor \log x - \int_1^x \frac{\lfloor t \rfloor}{t} dt\\
+&= x \log x + O(\log x) - \int_1^x 1 dt + O(\int_1^x \frac{1}{t} dt)\\
+&= x\log x - x + O(\log x)
+\end{aligned}
+\end{equation*}
+\end{proof}
+\end{lemma}
+
+\subsection{Dinsar function}
+Recall that $\tau(n) = 1*1(n) =\sum_{d|n} 1$.
+
+\begin{thm} (4)\\
+$$\sum_{1 \leq n \leq x} \tau(n) = x\log x + (2\gamma - 1) x + O(x^{1/2})$$
+So average order of $\tau$ is $\log x$.
+\begin{proof}
+Note that we won't apply partial summation here: PS allows to get $\sum a_n f(n)$ from knowledge of $\sum a_n$; but $\tau(n)$ here is not differentiable, so PS is not going to apply.
+\begin{equation*}
+\begin{aligned}
+\sum_{1 \leq n \leq x} \tau(n) &= \sum_{1 \leq n \leq x} \sum_{d|n} 1\\
+&= \sum_{1 \leq d \leq x} \sum_{1 \leq n \leq x, d|n} 1\\
+&= \sum_{1 \leq d \leq x} \lfloor \frac{x}{d} \rfloor\\
+&= \sum_{1 \leq d \leq x} \frac{x}{d} + O(x)\\
+&= x \sum_{1 \leq d \leq x} \frac{1}{d} + O(x)\\
+&= x\log x + \gamma x + O(x) 
+\end{aligned}
+\end{equation*}
+where we applied lemma 2 at the last step. This is all correct, but the error term is larger than what we wanted. However, we have indeed prove that the average order of $\tau(x)$ is $\log x$.\\
+To reduce error term, we use (Dirichlet's) hyperbola trick:
+\begin{equation*}
+\begin{aligned}
+\sum_{1 \leq n \leq x} \tau(n) &= \sum_{1 \leq n \leq x} \sum_{ab = n} 1\\
+&= \sum_{ab \leq x} 1\\
+&= \sum_{a \leq x} \sum_{b \leq \frac{x}{a}} 1
+\end{aligned}
+\end{equation*}
+Note that now we're just counting number of integer points below the hyperbola $xy=n$ (relabelling variables).\\
+When summing over $ab \leq x$, we can sum over $a,b \leq x^{1/2}$ separately, then subtract the repetition off. Then
+\begin{equation*}
+\begin{aligned}
+\sum_{1 \leq n \leq x} \tau (n) &= \sum_{a \leq x^{1/2}}\sum_{b \leq \frac{x}{a}} 1 + \sum_{b \leq x^{1/2}} \sum_{a \leq \frac{x}{b}} 1 - \sum_{a,b \leq x^{1/2}} 1\\
+&= 2 \sum_{a \leq x^{1/2}} \lfloor \frac{x}{a} \rfloor - \lfloor x^{1/2} \rfloor^2\\
+&= 2 \sum_{a \leq x^{1/2}} \frac{x}{a} + O(x^{1/2}) - x + O(x^{1/2})
+\end{aligned}
+\end{equation*}
+by noting that $\lfloor x^{1/2}\rfloor^2 = (x^{1/2} + O(1))^2$. Now the above equals
+\begin{equation*}
+\begin{aligned}
+&=2x\log x^{1/2} + 2\gamma x - x + O(x^{1/2})\\
+&= x\log x + (2\gamma-1) x + O(x^{1/2})
+\end{aligned}
+\end{equation*}
+\end{proof}
+
+Improving this $O(x^{1/2})$ error term is a famous and hard problem. We should probably get $O(x^{1/4+\varepsilon})$, but this is open. The best known result is $O(x^{0.3149...})$.
+\end{thm}
+
+Note that this does \emph{not} mean that $\tau(n) \ll \log n$. The average order is small doesn't say about the individual values being small.
+
+We'll state the theorem we're proving and prove it in the next lecture:
+\begin{thm} (5)\\
+$$\tau(n) \leq n^{O(\frac{1}{\log\log n})}$$
+In particular, $\tau(n) \ll_\varepsilon n^\varepsilon$ $\forall \varepsilon > 0$.
+\end{thm}
+
 \end{document}

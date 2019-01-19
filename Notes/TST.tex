@@ -18,10 +18,53 @@
 
 \section{Introduction}
 
-\newpage
-
-\section{1}
-
 ---Lecture 1---
 
+Example classes: 4th Feb, 18th Feb, 4th Mar 330-5pm MR5; fourth class undecided (probably on 15th).
+
+Although the name of this course is \emph{Topics} in Set theory, for all of its history only one topic is discussed. So maybe this course should be called \emph{One Topic in Set Theory}, or probably just \emph{the Continuum Hypothesis}: in this course we'll just solve one problem: the continuum problem, which we've known in the end that the problem is independent from ZFC.
+
+Let's have some background stories first. In the second ICM congress (1900, Paris), Hilbert posed the famous 23 Hilbert questions, with the first one being the Continuum Hypothesis (a hypothesis at that time). The original formulation of CH was:
+
+\emph{Any infinite subset of real numbers is either equinumerous to the set of natural numbers, or to the set of real numbers}.
+
+We could definite formulate it better, but that is less important. More modern version of CH would be a short equation
+$$2^{\aleph_0} = \aleph_1$$
+which seemingly has nothing to do with the previous problem. However, in ZFC these two statements are equivalent:\\
+$\bullet$ if $2^{\aleph_0} > \aleph_1$, in particular, $2^{\aleph_0} \geq \aleph_2$. Since $2^{\aleph_0} \sim \R$, we get an injection $i:\aleph_2 \to \R$. Consider $X:=i[\aleph_1] \subseteq \R$. Clearly, $i \uparrow \aleph_1$ ($i$ restricted to $\aleph_1$) is a bijection between $\aleph_1$ and $X$, so $X \sim \aleph_1$; but $\aleph_1$, being uncountable, is not in bijection with natural numbers, and is not in bijection with real numbers. Thus $X$ refutes CH.
+
+If $2^{\aleph_0} = \aleph_1$, let $X \subseteq \R$. Consider $b:2^{\aleph_0} \to \R$ a bijection. If $X$ is infinite, then $b^{-1}[X] \subseteq 2^{\aleph_0}$. Thus the cardinality of $X$ is either $\aleph_0$ or $\aleph_1$ (which $\sim \N$ and $\R$ respectively). So $2^{\aleph_0} = \aleph_1 \implies$ CH.
+
+In 1938, G\"{o}del proved that ZFC does not prove $\neg$CH, and in 1961 Cohen proved that ZFC does not prove CH, by methods of \emph{inner models} and \emph{forcing} (sometimes also called \emph{outer models}, which is not incorrect) respectively. The latter has become the most important method in Set theory since then.
+
+From logic (see Part II Logic and Set Theory) we have G\"{o}del's Completeness Theorem: a theory $T$ is consistent iff it has a model. So from the above two statements, it seems that we're going to prove that there are models for ZFC+CH and ZFC+$\neg$CH; but this is obviously not possible because of the incompleteness phenomenon: we know we can't prove the consistency of ZFC (as a result, we can't even prove there is a model of ZFC)! So instead we could only prove the following:
+$$Cons(ZFC) \to Cons(ZFC+CH)$$
+or equivalently, if $M \vDash ZFC$, then there is $N \vDash ZFC+CH$ (and similar for the other half).
+
+\newpage
+
+\section{Model theory of set theory}
+For a moment, we will assume that we have a model $(M,\in) \vDash ZFC$. Unfortunately this first assumption doesn't make much sense, because model theory is based on set theory and we don't have anything if ZFC is inconsistent. We refer to the canonical objects in $M$ by the usual symbols, e.g. $0,1,2,3,4,...,\omega,\omega+1,...$.
+
+What would an \emph{inner model} be? Take $A \subseteq M$, and consider $(A,\in)$. It is a substructure of $(M,\in)$, because there are no function symbols or constant symbols in the language of set theory. This might be counterintuitive, because we're using symbols like $\phi$ and $\{\cdot\}$ all the time! However, these are technically not part of language of set theory as they can all be defined without any use of function symbols, i.e. they are just abbreviations. For example, $X=\phi$ abbreviates $\forall w (\neg w \in X)$; $X=\{Y\}$ abbreviates $\forall w (w \in X \iff w = Y)$, and similarly for $\cup$ and $\mathcal{P}$; and also for relation symbols such as $\subseteq$, which abbreviates $\forall w (w \in X \to w \in Y)$. Note that $X=\phi$ is NOT the formula that it looks like; in particular, it is not quantifier free (because it abbreviates $\forall w (\neg w \in X)$)! So we need to take extra care when we do things in this course.
+
+\begin{defi}
+If $\varphi$ is a formula in $n$ free variables, we say $\varphi$ is \emph{upwards absolute} between $A$ and $M$ if for all $a_1,...,a_n \in A$,
+$$(A,\in) \vDash \varphi(a_1,...,a_n) \implies (M,\in) \vDash \varphi(a_1,...,a_n)$$
+and we say $\varphi$ is \emph{downwards absolute} between $A$ and $M$ if for all $a_1,...,a_n \in A$,
+$$(M,\in) \vDash \varphi(a_1,...,a_n) \implies (A,\in) \vDash \varphi(a_1,...,a_n)$$
+and $\varphi$ is \emph{absolute} between $A$ and $M$ if it is both upwards and downwards absolute.
+\end{defi}
+
+Observation:\\
+(a) If $\varphi$ is \emph{quantifier-free}, then $\varphi$ is absolute between $A$ and $M$. But this doesn't really help much, because almost nothing is quantifier-free: without quantifiers we can only say things like $A \in B$ and $A=B$, and conjunctions of those; that's pretty much all.\\
+(b) We say that a formula is $\Sigma_1$ if it is of the form
+$$\exists x_1 ... \exists x_n \varphi(x_1,...,x_n)$$
+where $\varphi$ is q.f.;\\
+we say a formula is $\Pi_1$ if it is of the form
+$$\forall x_1 ... \forall x_n \varphi(x_1,...,x_n)$$
+where $\varphi$ is q.f..\\
+(c) If $\varphi$ is $\Pi_1$, it is downward absolute; if it's $\Sigma_1$ then it is upwards absolute. So in particular, note that $X=\phi$ is downward absolute.
+
+ 
 \end{document}

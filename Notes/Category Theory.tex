@@ -2575,5 +2575,276 @@ All finite sets are small; countable unions of small sets are small (since $F$ p
 Hence $\kappa$ is a \href{https://en.wikipedia.org/wiki/Measurable_cardinal}{measurable cardinal}: if we are working in a model where no measurable cardinals exist, then no such $F$ can exist.\\
 Given a countably complete non-principal ultrafilter $\mathcal{U}$ on $\kappa$, we can define $\pi_\mathcal{U}: \mathbf{Set} \to \mathbf{Set}$ by $\pi_\mathcal{U} (A) = A^\kappa / \sim_\mathcal{U}$, where $f,g: \kappa \rightrightarrows A$ are identified iff they agree on a set in $\mathcal{U}$.
 
+\newpage
+
+\section{Example Class 4}
+
+\subsection{Question 1}
+Suppose $A$ is strict. Then $\pi_1:A \times B \to A$ is an isomorphism. So there exists $\pi_2\pi_1^{-1} : A \to A \times B \to B$.\\
+For uniqueness, if $f,g : A \rightrightarrows{B}$, then $\pi_1(1,f) = \pi_1(1,g):A \to A \times B \to A$, so $(1,f) = (1,g)$, so $f=g$.
+
+For the second part, $\mathcal{C}$ is Cartesian closed, so $A \times B$ is initial, so $A \times B \xrightarrow{\pi_1} A$ is an isomorphism. Given $B \xrightarrow{f} A$, $B \xrightarrow{(f,1)} A \times B \xrightarrow{\pi_2} B$ is the identity, and $A \times B \xrightarrow{\pi_2} B \xrightarrow{(f,1)} A \times B = 1_{A \times B}$ since $A \times B$ is initial. So $f=\pi_1(f,1)$ is an isomorphism.
+
+\subsection{Question 2}
+(i) If $f:X_1 \to X_2, g:Y_1 \to Y_2$ are distance decreasing, then $f \times g: X_1 \times Y_1 \to X_2 \times Y_2$ is also distance decreasing for all the three metrics.
+
+(ii) $\pi_1,\pi_2$ are distance decreasing for all of the metrics; but $X \xrightarrow{(1,1)} X \times X$ is only distance decreasing for the $d_\infty$ metric, so it's the only possible one. Then it's straight-forward to verify that it works: if $f:Z \to X$ and $g:Z \to Y$ are dd, then so is $f(f,g):Z \to X \times Y$ for $d_\infty$.
+
+(iii) If $(-) \times X$ has a right adjoint $(-)^X$, then points of $Y^X$ must correspond to dd maps $1 \times X \cong X \to Y$.\\
+We have a metric on this set given by $d(f,g)=\sup_{x \in X} d(f(x),g(x))$. Then, given a map $f:Z \times X \to Y$, $f$ is dd for $d_1$ iff $\bar{f}:Z \to Y^X$ is dd for this metric, since 
+\begin{equation*}
+\begin{aligned}
+d(f(z_1,x_1),f(z_2,x_2)) &\leq d(f(z_1,x_1),f(z_1,x_2)) + d(f(z_1,x_2),d(f(z_2,x_2)))\\
+&\leq d(x_1,x_2)+d(\bar{f}(z_2))\\
+&\leq d(x_1,x_2)+d(z_1,z_2)
+\end{aligned}
+\end{equation*}
+
+The other two do not have right adjoints, but lecturer forgot how to prove that (he vaguely rememebered that it was some fancy combinatorial argument on a finite metric space). The important point is that we know the result, and hence we don't get a Cartesian closed category.
+
+\subsection{Question 3}
+(i)
+
+\begin{tikzcd}
+A_1 \times A_2 \arrow[rdd, "f_1 \times f_2", shift left] \arrow[rdd, "g_1 \times g_2"', shift right] & A_1 \times B_2 \arrow[dd,"f_1 \times 1", shift right] \arrow[dd,"g_1 \times 1", shift left] \arrow[r, "1_{A_1} \times h_2"] & A_1 \times C_2 \arrow[dd, "f_1 \times 1", shift right] \arrow[dd, "g_1 \times 1", shift left] &\\
+& & &\\
+B_1 \times A_2 \arrow[uu,"r_1 \times 1_{A_2}"] \arrow[r,"1 \times f_2", shift left] \arrow[r,"1 \times g_2"', shift right] & B_1 \times B_2 \arrow[r,"1 \times h_2"] \arrow[rd, "h_1 \times h_2"'] \arrow[rrdd, green, bend right=40, "x"'] & B_1 \times C_2 \arrow[d,"h_1 \times 1_{C_2}"] \arrow[rdd, green, bend left=40, "y"] &\\
+& & C_1 \times C_2 \arrow[rd,green,"z"] &\\
+& & & \textcolor{green}{Z}
+\end{tikzcd}
+
+Given $x:B_1 \times B_2 \to Z$ with $x(f_1 \times f_2) = x(g_1 \times g_2)$, we have $x(1 \times f_2) = x(1 \times g_2)$.\\
+So we get $y:B_1 \times C_2 \to Z$ with $y(1 \times h_2) = x$.\\
+Similarly, $x(f_1\times 1_{B_2}) = x(g_1 \times 1_{B_2})$, so $y(f_1 \times 1_{C_2})(1_{A_1} \times h_2) = y(g_1 \times 1)(1 \times h_2)$.\\
+But $(1_{A_1} \times h_2)$ is epic, so $y$ factors as $z(h_1 \times 1_{C_2})$.
+
+Suppose given a reflexive pair of monoid homomorphisms $A \stackrel[g]{f}{\rightrightarrows} B$ in $\mathbf{Mon}(\mathcal{C})$, with coequalizer $B \xrightarrow{h} C$ in $\mathcal{C}$. Then we have 
+
+\begin{tikzcd}
+A \times A \arrow[r,"f \times f", shift left] \arrow[r, "g \times g"', shift right] \arrow[d, "m_A"] & B \times B \arrow[r,"h \times h"] \arrow[d,"m_B"] & C \times C \arrow[d,dashed, "m_C"]\\
+A \arrow[r,shift left, "f"] \arrow[r, shift right, "g"'] & B \arrow[r,"h"] & C
+\end{tikzcd}
+
+and we get a unique $m_C:C \times C \to C$ s.t. $m_C(h \times h) = hm_B$ and we define $e_C:1 \to C$ to be $he_B$.\\
+Associativity of $m$ asserts the equality of $C \times C \times C \stackrel[m(m \times 1)]{m(1 \times m)}{\rightrightarrows} C$, but these have equal composites $b^3 \stackrel{h^3}{\twoheadrightarrow} C^3$.\\
+Similarly for the unit laws.\\
+So $C$ is a monoid and $h$ is a monoid homomorphism, and it's a coequalizer in $\mathbf{Mon}(\mathcal{C})$.
+
+(ii) Let $MA = \sum_{n \in \N} A^n$ (where $A^0 = 1, A^{n+1} = (A \times A^n)$).\\
+Then $MA \times MA \cong \sum_{p,q \in \N} A^p \times A^q$ since $B \times (-)$ preserves coproducts.\\
+Define $m:MA \times MA \to MA$ by 
+
+\begin{tikzcd}
+A^p \times A^q \arrow[r,"\simeq"] \arrow[d,"\nu_{p,q}"] & A^{p+q} \arrow[d,"\nu_{p+q}"]\\
+MA \times MA \arrow[r,"m"] & MA
+\end{tikzcd}
+
+for all $p,q$. Set $e = \nu_0:1 \to MA$. $m$ is associative, since the two isomorphisms 
+
+\begin{tikzcd}
+A^p \times (A^q \times A^r) \arrow[r] \arrow[d,"\simeq"] & A^{p+q+r}\\
+(A^p \times A^q) \times A^r \arrow[ur] &
+\end{tikzcd}
+
+are equal.\\
+We take $\eta: A \to MA$ to be $A \cong A \times 1 \xrightarrow{\nu_1} MA$. If $B$ is the underlying object of a monoid, we get well-defined multiplications $B^p \to B$ for all $p$, and hence a map $MB \xrightarrow{\varepsilon_B} B$, ... (some more verifications)
+
+\subsection{Question 4}
+(i) It is sufficient to show that
+$$colim_{\mathcal{C}}(F \times \triangle A) \to colim_{\mathcal{C}} F \times A$$
+is iso. But $A \cong \sum_{a \in A} 1$, so $\triangle A \cong \sum_{a \in A} 1$ in $[\mathcal{C},\mathbf{Set}]$. So $F \times \triangle A \cong \sum_{a \in A} F$ since $[\mathcal{C},\mathbf{Set}]$ is cc.\\
+So $colim_{\mathcal{C}}(F \times \triangle A) \cong \sum_{a \in A} colim_{\mathcal{C}} (F) \cong colim_{\mathcal{C}} (F) \times A$.
+
+(ii) We have 
+\begin{equation*}
+\begin{aligned}
+\mathcal{C}(-,B)^{\mathcal{C}(-,A)} (C) &\cong [\mathcal{C}^{op}, \mathbf{Set}](\mathcal{C}(-,C) \times \mathcal{C}(-,A),\mathcal{C}(-,B))\\
+&\cong [\mathcal{C}^{op},\mathbf{Set}](\mathcal{C}(-,C \times A),\mathcal{C}(-,B))\\
+&\cong \mathcal{C}(C \times A,B) \text{ by Yoneda}\\
+&\cong \mathcal{C}(C,B^A)\\
+&=\mathcal{C}(-,B^A)(C)
+\end{aligned}
+\end{equation*}
+
+So $\mathcal{C}(-,B)^{\mathcal{C}(-,A)} \cong \mathcal{C}(-,B^A)$.
+
+\subsection{Question 5}
+(i) Suppose $(-) \times (A \times B) \cong (- \times A) \times B$, we have $(-)^{A \times} \cong ((-)^B)^A$. So $A,B$ tiny $\implies A \times B$ tiny, and $(-)^1 \cong 1_\mathcal{C}$, so $1$ is tiny.
+
+(ii) Given $F:\mathcal{C}^{op} \to \mathbf{Set}$
+\begin{equation*}
+\begin{aligned}
+F^{\mathcal{C}(-,A)}(B) &\cong [\mathcal{C}^{op},\mathbf{Set}](\mathcal{C}(-,B) \times \mathcal{C}(-,A),F)\\
+&\cong [\mathcal{C}^{op},\mathbf{Set}](\mathcal{C}(-,B \times A), F) \cong F(B \times A)
+\end{aligned}
+\end{equation*}
+So $F^{\mathcal{C}(-,A)} \cong F(- \times A)$, so $(-)^{\mathcal{C}(-,A)} \cong (- \times A)^*: [\mathcal{C}^{op},\mathbf{Set}] \to [\mathcal{C}^{op},\mathbf{Set}]$.\\
+By Sheet 2 q9(ii) we know it has a right adjoint.
+
+(iii) First show $f$ is irreducible projective iff $[\mathcal{C}^{op},\mathbf{Set}](F,-)$ preserves both coproducts and epimorphisms (in fact, all colimits, but those are enough).\\
+$[\mathcal{C}^{op},\mathbf{Set}](F,-)$ preserves coproducts iff every $F \to \sum_{i \in I} G$ factors through just one $G_j \xrightarrow{\nu_j} \sum_{i \in I} G_i$.\\
+If this holds and $f$ is projective, and we're given $\sum_{i \in I} G_i \stackrel{e}{\twoheadrightarrow} F$, we have a splitting which factors through some $\nu_j$, so $e\nu_j$ is epic.
+
+Conversely, if $f$ is irreducible, and we're given $F \xrightarrow{f} \sum_{i \in I} G_i$, form the pullbacks
+
+\begin{tikzcd}
+F_j \arrow[r] \arrow[d,tail] & G_j \arrow[d,tail,"\nu_j"]\\
+F \arrow[r,"f"] & \sum_{i \in I} G_i
+\end{tikzcd}
+
+Then $\sum_{j \in J} F_j \to F$ is iso, so some $F_j \to F$ is iso, so $f$ factors through some $\nu_j$.
+
+But $[\mathcal{C}^{op},\mathbf{Set}](F,-)$ is the composite
+
+\begin{tikzcd}
+{[\mathcal{C}^{op},\mathbf{Set}]} \arrow[r,"(-)^F"] & {[\mathcal{C}^{op},\mathbf{Set}]} \arrow[rr,"{[\mathcal{C}^{op},\mathbf{Set}](1,-)}"] & & \mathbf{Set}
+\end{tikzcd}
+
+and $F$ tiny, $1$ representable imply both factors preserve coproducts and epimorphisms.
+
+Now we know
+
+$F$ representable $\implies$($\mathcal{C}$ has products) $F$ tiny $\implies$ ($\mathcal{C}$ has terminal objects) $F$ irreducible projective $\implies$ ($\mathcal{C}$ Cauchy complete) $F$ representable.
+
+Hence if $\mathcal{C}$ has all the three properties, then $[\mathcal{C}^{op},\mathbf{Set}]_t \simeq \{$ representable functors $\mathcal{C}^{op} \to \mathbf{Set}\} \simeq \mathcal{C}$.
+
+Note that $A^{(-)}$ is a functor $\mathcal{E}^{op} \to \mathcal{E}$ in any ccc $\mathcal{E}$: given $B_1 \xrightarrow{g} B_2$, we get $A^{B_2} \to A^{B_1}$ as the transpose of $A^{B_2} \times B_1 \xrightarrow{1 \times g} A^{B_2} \times B_2 \xrightarrow{ev} A$.
+
+Similarly, if we write $(-)_B$ for the right adjoint of $(-)^B$, $A_{(-)}$ becomes a functor $\mathcal{E}_t \to \mathcal{E}$. So if $B$ is tiny and $e:B \to B$ is idempotent with splitting $B \to x \to B$, we get $(-)^C$ as the splitting of $(-)^B \to (-)^B$, and $(-)_C$ as the splitting of $(-)_B \to (-)_B$.
+
+\subsection{Question 6}
+ Suppose given 
+\begin{tikzcd}
+G \arrow[d,"\alpha"]\\
+F
+\end{tikzcd}
+in $[\mathcal{C},\mathbf{Set}]/F$. Define $\Phi(G):\mathcal{F} \to \mathbf{Set}$ by $\Phi(G)(A,x) = \alpha_A^{-1} (x) \subseteq GA$, and $\Phi(G)((A,x) \xrightarrow{f} (B,y)) = Gf|_{\alpha_A^{-1}(x)}$.
+
+$\Phi$ is functorial: given 
+
+\begin{tikzcd}
+G \arrow[rr, "\gamma"] \arrow[rd, "\alpha"'] & & H \arrow[ld, "\beta"]\\
+& F &
+\end{tikzcd}
+, $\Phi(r)_(A,x) = \gamma_A |_{\alpha_A^{-1}(x)}$.
+
+Given $H:\mathcal{F} \to \mathbf{Set}$, define $\Psi(H):\mathcal{C} \to \mathbf{Set}$ by $\Psi(H)(A) = \coprod_{x \in FA} H(A,x)$ equipped with $\pi:\coprod_{x \in FA} H(A,x) \to FA$.\\
+Similarly show $\Psi$ is a functor $[\mathcal{F},\mathbf{Set}] \to [\mathcal{C},\mathbf{Set}]/F$, and $\Phi\Psi,\Psi\Phi$ are both isomorphic to identity.
+
+\subsection{Question 7}
+(i) Suppose given $\Omega \stackrel{f}{\rightarrowtail} \Omega$ in a topos. Form the pullback
+\begin{tikzcd}
+U \arrow[r,tail] \arrow[d,tail,"g"] & 1 \arrow[d,tail,"\top"]\\
+\Omega \arrow[r,tail,"f"] & \Omega
+\end{tikzcd}
+and
+\begin{tikzcd}
+V \arrow[r] \arrow[d,tail] & 1 \arrow[d,"\top"]\\
+U \arrow[r,"g"] & \Omega
+\end{tikzcd}
+, and consider
+
+\begin{tikzcd}
+V \arrow[r,"1"] \arrow[d] & V \arrow[r] \arrow[d] & U \arrow[r,"u"] \arrow[d,"g"] & 1 \arrow[d,"\top"]\\
+U \arrow[r,"u"] & 1 \arrow[r,"\top"] &\Omega \arrow[r,"f"] & \Omega
+\end{tikzcd}
+
+This is a pullback, so $f\top u = g$ and hence $ff\top u = fg = \top u$.
+
+Now 
+\begin{tikzcd}
+U \arrow[r] \arrow[d,"g",tail] & U \arrow[r] \arrow[d,"g",tail] & 1 \arrow[d,"\top"]\\
+\Omega \arrow[r,"ff"] & \Omega \arrow[r,"f"] & \Omega
+\end{tikzcd}
+
+($ffg=f\top u = g$). The left square is a pullback since $ff$ is monic, so $fff=f$, so $ff=1_\Omega$.
+
+(ii) In $[\N, \mathbf{Set}]$, $\Omega$ looks like
+
+\begin{tikzcd}
+\Omega(0) \arrow[r] & \Omega(1) \arrow[r] & \Omega(2) \arrow[r] & ...\\
+0 \arrow[r] & 1 \arrow[r] & 2 & \\
+1 \arrow[ru] & 2 \arrow[ru] & 3 & \\
+2 \arrow[ru] & 3 \arrow[ru] & &\\
+3 \arrow[ru] & & &\\
+... & & &\\
+\phi \arrow[r] & \phi \arrow[r] & \phi \arrow[r] & ...
+\end{tikzcd}
+
+The map $n \to \max\{n-1,m\}$, $\phi \to \phi$, $\Omega(m) \to \Omega(m)$ defines an epimorphism $\Omega \twoheadrightarrow \Omega$ which isn't mono.
+
+\subsection{Question 8}
+
+Given a $G$-set $A$, consider $A_C = \{a \in A | stab_G (a)$ is open $\}$.
+
+This is a union of $G$-orbits, since $\exists$ is closed under conjugation, and so a continuous $G$-set.
+
+Given $f:B \to A$ in $[G,\mathbf{Set}]$, we have $stab_G(b) \subseteq stab_G(f(b))$ for any $b \in B$. So if $B$ is continuous then $f$ takes values in $A_C$.
+
+Given $A$ and $B$, $stab_G((a,b)) = stab_G(a) \cap stab_G(b)$, so $A,B$ continuous $\to$ $A \times B$ continuous; and any sub-$G$-set of a continuous $G$-set is continuous, so $\mathbf{Cont}(G)$ is closed under equalizers.
+
+Given continuous $G$-sets $A,B,C$, morphisms $C \times A \to B$ in $\mathbf{Cont}(G)$ corresponds to morphisms $C \to B^A$ in $[G,\mathbf{Set}]$, and hence to morphisms $C \to (B^A)_C$ in $\mathbf{Cont}(G)$.
+
+The $\Omega$ of $[t,\mathbf{Set}]$ has continuous $G$-action, and it is a subobject classifier in $\mathbf{Cont}(G)$.
+
+If $A,B$ are uniform continuous $G$-sets, then $A \times B$ and $B^A$ are both aced on trivially by $H \cap K$, where $H$ acts trivially on $A$ and $K$ on $B$.
+
+Also, arbitrary subobjects of uniform continuous $G$-sets are uniform continuous, and $\Omega$ is uniform continuous.
+
+$Unif(\Z)$ consists of $\Z$-sets acted on trivially by $n\Z$ for some $n$.\\
+Let $c_n$ be a single $\Z$-orbit of size $n$.\\
+For any $n$, there exists a family of morphisms $\{C_m \to C_n \sqcup 1 | m \in \N\}$ whose $n$th member is injective, so if $\sum_{m \in \N} C_m$ existed, each $\nu_n:C_n \to \sum C_n$ need to be injective. Hence $\sum_{m \in \N} C_m$ can't be uniform continuous.
+
+\subsection{Question 9}
+(i) $\implies$ (ii),(iii),(iv) since $\mathcal{E}/B \xrightarrow{\Sigma_B} \mathcal{E}$ is faithful and preserves connected limits (somewhere on sheet 2).\\
+(iv) $\implies$ (iii) by Sheet 2 q5(iii).\\
+(iii) $\implies$ (ii) We have bijections $Sub_{\mathcal{F}}(A) \cong \mathcal{F}(A,\Omega_F) \cong \mathcal{E}(LA,\Omega_\mathcal{E}) \cong Sub_\mathcal{E}(LA)$, since 
+
+\begin{tikzcd}
+LA' \arrow[r] \arrow[tail,d] & LF1 \arrow[r,"\varepsilon"] \arrow[d,"LF(T)"] & 1 \arrow[d,"\top"]\\
+LA \arrow[r] & LF\Omega \arrow[r,"\varepsilon"] & \Omega
+\end{tikzcd}
+
+commutes, $LA'$ is contained in the subobject corresponding to $A'$ under this bijection.\\
+So $A' \rightarrowtail A$ proper $\implies$ $LA' \rightarrowtail LA$ proper.
+
+Hence if $A \stackrel[g]{f}{\rightrightarrows} B$ satisfies $f \neq g$, we get $Lf \neq Lg$.
+
+(ii) $\implies$ (i) We can factor $L$ as $\mathcal{F} \xrightarrow{\hat{L}} \mathcal{E}/L1 \xrightarrow{\Sigma_{L1}} \mathcal{E}$.\\
+$\hat{L}$ has a right adjoint $\hat{F}$ sending 
+\begin{tikzcd}
+A \arrow[d,"g"]\\
+L1
+\end{tikzcd}
+to the pullback
+\begin{tikzcd}
+\hat{F}g \arrow[r] \arrow[d] & FA \arrow[d,"Fg"]\\
+1 \arrow[r,"\eta_1"] & FL1
+\end{tikzcd}
+
+$\hat{F}$ is the composite
+\begin{tikzcd}
+\mathcal{E}/L1 \arrow[r,"F/L1"] & \mathcal{F}/FL1 \arrow[r,"\eta_1^*"] \mathcal{F}
+\end{tikzcd}
+, so it's logical.\\
+$\hat{L}$ is faithful since $L$ is, and it preserves $1$.\\
+So by Frobenius reciprocity,
+
+\begin{tikzcd}
+\hat{L}(\hat{F}A \times 1) \arrow[r] \arrow[d,"\cong"] & A \times \hat{L} 1 \arrow[d,"\cong"]\\
+\hat{L}\hat{F} A \arrow[r,"\varepsilon_A"] & A
+\end{tikzcd}
+is iso, i.e. the counit of $(\hat{L}+\hat{F})$ is iso.\\
+$\hat{L}$ reflects isos since $\mathcal{F}$ is balanced, and 
+\begin{tikzcd}
+\hat{L} \arrow[r,"\hat{L}\eta"] \arrow[rd,"1"'] & \hat{L}\hat{F}\hat{L} \arrow[d,"\varepsilon_{\hat{L}}"]\\
+& L
+\end{tikzcd}
+commutes, so $\hat{L} \eta$ is iso, so $\eta$ is iso.
+
+\subsection{Question 10}
+Lecturer does not have time to go through this, but it's not that difficult, and it's quite an important result in sheaf theory.
+
+
 
 \end{document}
