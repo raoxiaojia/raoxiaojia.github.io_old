@@ -167,11 +167,11 @@ Room for example classes: MR14 (Tues 330-5pm, week 357).
 Given an arithmetic function $f$, we can ask for estimates of $\sum_{1 \leq n \leq x} f(n)$.\\
 We say that $f$ has \emph{average order $g$} if $\sum_{1 \leq n \leq x} f(n) \sim xg(x)$ (in some sense, the average size of $f$ is $g$).
 
-For example, if $f \equiv 1$, then $\sum_{1\ leq n \leq x} f(n) = \lfloor x \rfloor = x+O(1) \sim x$. So the average order of $1$ is $1$ (makes a lot of sense).\\
+For example, if $f \equiv 1$, then $\sum_{1 \leq n \leq x} f(n) = \lfloor x \rfloor = x+O(1) \sim x$. So the average order of $1$ is $1$ (makes a lot of sense).\\
 A slightly less trivial example is the identity function $f(n) = n$: we have $\sum_{1 \leq n \leq x} n \sim \frac{x^2}{2}$, so the average order of $n$ is $n/2$.
 
 \begin{lemma} (1, Partial summation)\\
-If $(a_n)$ is a sequence of complex numbers, and $f$ is s.t. $f'$ is continuous. Then $\sum_{1 \leq n \leq x} f(n) = A(x) f(x) - \int_1^x A(t) f'(t) dt$, where $A(x) = \sum_{1 \leq n \leq x} a_n$.\\
+If $(a_n)$ is a sequence of complex numbers, and $f$ is s.t. $f'$ is continuous. Then $\sum_{1 \leq n \leq x} a_n f(n) = A(x) f(x) - \int_1^x A(t) f'(t) dt$, where $A(x) = \sum_{1 \leq n \leq x} a_n$.\\
 We can see that this is a discrete version of integration by parts.
 \begin{proof}
 Suppose $x=N$ is an integer. Note that $a_n = A(n) - A(n-1)$. So
