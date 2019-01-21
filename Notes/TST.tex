@@ -66,5 +66,75 @@ $$\forall x_1 ... \forall x_n \varphi(x_1,...,x_n)$$
 where $\varphi$ is q.f..\\
 (c) If $\varphi$ is $\Pi_1$, it is downward absolute; if it's $\Sigma_1$ then it is upwards absolute. So in particular, note that $X=\phi$ is downward absolute.
 
- 
+---Lecture 2---
+
+As an example, write $0,1,2,3,...$ for the ordinals in $M$, and let $A:=M \setminus \{1\}$. In $A$, we have $0,2$, but no $1$; we also have $\{1\}$. If we use $\Phi_0(x)$ to denote the formula $\forall w (\neg w \in x) \iff x = \phi$. Clearly $(M,\in) \vDash \Phi_0(0)$, so by $\pi_1$-downwards absoluteness, $(A,\in) \vDash \Phi_0(0)$.\\
+Now, how many elements does $2=\{0,1\}$ have? In $M$ we obviously know $2$ has $2$ elements; but in $A$, $2$ only has one element $0$, and $\{1\}$ has no element: $(A,\in) \vDash \Phi_0(\{1\})$! Clearly $(M,\in) \not\vDash \Phi_0(\{1\})$, so $\Phi_0$ is not absolute between $A$ and $M$. As a corollary, we get $(A,\in) \not\vDash$ extensionality (we can uniquely specify sets by specifying their elements).
+
+\begin{rem}
+We could go on, defining formulas $\Phi_1(x),\Phi_2(x)$, etc to analyse which of the elements correspond to the natural numbers in $A$.
+\end{rem}
+
+Reminder (from Part II Logic and Set Theory): we say $A$ is \emph{transitive in $M$} if for all $a \in A$ and $x \in M$ s.t. $(M,\in) \vDash x \in a$, we have $x \in A$. The problem for the above $A$ is that it is not transitive. As long as that is fixed, we have the following:
+
+\begin{prop}
+If $A$ is transitive, then $\Phi_0$ is absolute between $A$ and $M$.
+\begin{proof}
+Since $\Phi_0$ is $\Pi_1$, we only need to show upwards absoluteness. Suppose $a \in A$ s.t. $(A,\in) \vDash \Phi_0(a)$, and suppose for contradiction that $a \neq 0$. Then there is some $x \in a$. By transitivity, $x \in A$. But then $\Phi_0(a): \forall w (w \not\in a)$ is not true in $(A,\in)$.
+\end{proof}
+\end{prop}
+
+Similarly, if $\Phi_n$ is the formula describing the natural number $n$, and there is $a \in A$ s.t. $(A,\in) \vDash \Phi_n(a)$, and $A$ is transitive, then $a=n$.
+
+\begin{prop}
+If $A$ is transitive in $M$, then $(A,\in) \vDash$ extensionality.
+\begin{proof}
+Take $a,b \in A$ with $a \neq b$. So by extensionality in $(M,\in)$, find, WLOG some $c \in a \setminus b$. Since $c \in a \in A$, by transitivity $c \in A$. Note that all of these quantifier-free formulas are absolute, so $(A,\in)$ also models them; in particular, $(A,\in) \vDash c \in a,c \not\in b$. So $a,b$ do not satisfy the assumptions of extensionality.
+\end{proof}
+\end{prop}
+
+Consider now $A=\omega+2 = \{0,1,2,...,\omega,\omega+1\} \subseteq M$. This is clearly transitive subset of $M$ because it's an ordinal. So $(A,\in) \vDash$ extensionality, but clearly it isn't anything like a model of set theory as it is too thin. Consider the formula $x=\mathcal{P}(y)$. Unfortunately, this is not a formula, as $\mathcal{P}$ is undefined. We have to expand it properly:
+\begin{equation*}
+\begin{aligned}
+&x = \mathcal{P}(y)\\
+&\iff x=\{z;z \subseteq y\}\\
+&\forall w (w \in x \leftrightarrow w \subseteq y)\\
+&\iff \forall w (w \in x \leftrightarrow(\forall v (v \in w \to v \in y)))
+\end{aligned}
+\end{equation*}
+
+In $A$, what is $\mathcal{P}(\omega)$? We have $(A,\in) \vDash \omega+1 = \mathcal{P}(\omega)$, which is obviously not what we want for $\mathcal{P}(\omega)$ to be.
+
+\begin{defi} (Bounded quantification)\\
+We first define the notations $\exists v \in w\ \varphi$ to be $\exists v (v \in w \wedge \phi)$, and $\forall v \in w\ \varphi$ to be $\forall v (v \in w \to \phi)$, and we call these quantifiers \emph{bounded}.\\
+Now we say a formula $\varphi$ is $\triangle_0$ if it is in the smallest set $S$ of formulas with the following properties:\\
+1. All q-f formulas are in $S$;\\
+2. If $\varphi,\psi \in S$, then so are:
+\begin{itemize}
+\item[] 2a. $\varphi \wedge \psi$, $\varphi \vee \psi$, $\varphi \to \psi$, $\varphi \leftrightarrow \psi$;\\
+2b. $\neg \varphi$;\\
+2c. $\exists x \in w\ \varphi$, $\forall v \in w\ \varphi$.
+\end{itemize}
+\end{defi}
+
+\begin{thm}
+If $\varphi$ is $\triangle_0$ and $A$ is transitive, then $\varphi$ is absolute between $A$ and $M$.
+\begin{proof}
+We already know that quantifier free formulas are absolute, and absoluteness is obviously preserved under propositional connectives. The only case left is (2c).\\
+Let's just do $\varphi \to \exists v \in w\ \varphi = \exists v (v \in w \wedge \varphi)$. So suppose $\varphi$ is absolute. We need to deal with downwards absoluteness: we have $(M,\in) \vDash \exists v \in a \varphi(v,a)$ for some $a \in A$, i.e. $(M,\in) \vDash \exists v (v \in a \wedge (\varphi(v,a))$.\\
+Let's find $m \in M$ s.t. $(M,\in) \vDash m \in a \wedge \varphi(m,a)$.\\
+Now $m\in a\in A$, so $m \in A$. By absoluteness of $\varphi$, we get $(A,\in) \vDash m \in a \wedge \varphi(m,a) \implies (A,\in) \vDash \exists v \in a \varphi(v,a)$.
+\end{proof}
+\end{thm}
+
+Let $T$ be any \emph{set theory}. Then we say that $\varphi$ is $\triangle_0^T$ if there is a $\triangle_0$ formula $\psi$ s.t. $T \vdash \varphi \leftrightarrow \psi$. So we get, as a corollary:
+
+\begin{coro}
+If $A$ is transitive in $M$, and both $(M,\in)$ and $(A,\in)$ are models of $T$, then $\triangle_0^T$ formulas are absolute between $A$ and $M$.\\
+We may also define $\Sigma_1^T$ formulas to be the formulas that are $T$-equivalent to $\exists v_1 ... \exists v_n \psi$ where $\psi$ is $\triangle_0$, and similarly for $\Pi_1^T$ formulas. So $\Sigma_1^T$($\Pi_1^T$) formulas are upwards(downwards) absolute between $A$ and $M$ respectively.
+\end{coro}
+
+On Wednesday we will look at what formulas are actually in these classes.
+
+
 \end{document}
