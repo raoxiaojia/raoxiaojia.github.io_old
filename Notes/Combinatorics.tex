@@ -691,7 +691,7 @@ Slogan: \emph{How small can the average out-degree be}?
     $i(Q_n) = 1$.
     \begin{proof}
         The set $A = \P([n-1])$ shows $i(Q_n) \leq 1$.\\
-        To show the other inequality, it's sufficient ot show (by theorem 8) that if $C$ is an initial segment of binary with $|C| \leq 2^{n-1}$, then $|\partial C| \geq |C|$.
+        To show the other inequality, it's sufficient to show (by theorem 8) that if $C$ is an initial segment of binary with $|C| \leq 2^{n-1}$, then $|\partial C| \geq |C|$.
             But this is clear because $C \subset \P([n-1])$.
     \end{proof}
 \end{coro}
@@ -699,7 +699,7 @@ Slogan: \emph{How small can the average out-degree be}?
 \subsection{Inequalities in the grid}
 
 The \emph{grid} is the graph on vertex-set $[k]^n = \{1,2,...,k\}^n$ in which $(x_1...x_n)$ is joind to $(y_1...y_n)$ if for some $i$, we have $|x_i - y_i| = 1$ and $x_j = y_j$ $\forall j \neq i$ (i.e. has $L_1$-distance 1).\\
-For $k=2$, this is the discrete cube $Q_n$. Do theorem 1 and theorem 8 have anlaogues in $[k]^n$?
+For $k=2$, this is the discrete cube $Q_n$. Do theorem 1 and theorem 8 have analogues in $[k]^n$?
 
 For best vertex-boundary? e.g. consider $[k]^2$. A natural choice is an $L_1$-ball, but where should we put it? Obviously it's better to put it at the corner instead of in the center of grid. If we use a $L_1$-ball centered at a corner of the grid with radius $d$, then size of the boundary of $A$, $|b(A)| \approx d \approx \sqrt{2|A|}$; if we instead consider a $L_\infty$ ball at the same location, we have $|b(A)| \approx 2d \approx 2\sqrt{|A|}$.\\
 This suggests that sets of the form $\{x: |x| \leq r\}$ are best. How about in between? Let's look at some (3d)-diagram:
@@ -774,7 +774,7 @@ However, let's consider what happens when the size of $A$ increases: when $|A|$ 
 So we realize that the extremal sets are not nested! So we can't use a similar argument, as all of the previous arguments require our extremal sets to be nested.
 
 In $[k]^3$: We similar ahve the transition from $[a]^3$ to $[a]^2 \times [k]$, and later to $[a] \times [k]^2$, then to the complement of a $[a]^2 \times [k]$, and so on (at some sizes that we could easily calculate).\\
-Obviously the same happens in higher dimensions. So we can't compression to solve this problem.\footnote{There is a result for this, but is much harder. (Searching on google reveals that the \href{https://link.springer.com/content/pdf/10.1007/BF01275667.pdf}{result} is actually by the lecturer in 1989!)}
+Obviously the same happens in higher dimensions. So we can't use compression to solve this problem.\footnote{There is a result for this, but is much harder. (Searching on google reveals that the \href{https://link.springer.com/content/pdf/10.1007/BF01275667.pdf}{result} is actually by the lecturer in 1989!)}
 
 Very few isoperimetric inequalities are known exactly or asymptotically. E.g. the level $X^{(r)}$: $A$ joined to $B$ if $|A \cap B| = r-1$ -- no one can prove anything sharp!
 
@@ -827,7 +827,7 @@ and set $D_i(A) = \{D_i(x):x \in A\} \cup \{x \in A: D_i(x) \in A\}$ (remove ele
 \end{thm}
 
 \begin{rem}
-    We used 1-dimensional compressions. We have: if all $k$-dimensional projections haev size $\leq 2^k-1$, then $A$ is small ($|A| \leq \sum_{i=0}^{k-1} {n \choose k}$). What about other bounds? For example, what if each $k$-dimensional projection is $\leq 1/2$-sized $(A|Y| \leq 2^{k-1}$)?
+    We used 1-dimensional compressions. We have: if all $k$-dimensional projections have size $\leq 2^k-1$, then $A$ is small ($|A| \leq \sum_{i=0}^{k-1} {n \choose k}$). What about other bounds? For example, what if each $k$-dimensional projection is $\leq 1/2$-sized $(A|Y| \leq 2^{k-1}$)?
 \end{rem}
 
 We say a \emph{box} or \emph{brick} in $\R^n$ is a set of the form $[a_1,b_1] \times [a_2,b_2] \times ... \times [a_n, b_n]$ where $a_i \subseteq b_i \forall i$.\\
@@ -849,7 +849,7 @@ Question: do bounds on some of the $|S_Y|$ give bounds on $|S|$?
 
 E.g. for $S \subset \R^3$: $|S| \leq |S_1| |S_2| |S_3|$ -- as $S \subset S_1 \times S_2 \times S_3$;\\
 $|S| \leq |S_{12}| |S_3|$ as $S \subset S_{12} \times S_3$.\\
-But $|S_{12}|,|S_{13}|$ does not boudn $|S|$ -- e.g. $S=[0,\frac{1}{N}] \times [0,N] \times [0,N]$.\\
+But $|S_{12}|,|S_{13}|$ does not bound $|S|$ -- e.g. $S=[0,\frac{1}{N}] \times [0,N] \times [0,N]$.\\
 How about $|S_{12}|,|S_{13}|,|S_{23}|$?
 
 \begin{prop} (2)
@@ -859,7 +859,7 @@ How about $|S_{12}|,|S_{13}|,|S_{23}|$?
     2. for $S \subset \R^n$, the \emph{sections} of $S$ are the sets $S(x) \subset \R^{n-1}$ ($x \in \R$) given by $S(x) = \{(x_1...x_{n-1}) \in \R^{n-1}:(x_1...x_{n-1}x) \in S\}$.
 
     \begin{proof}
-        Suppose first that every section of $S$ is a sqaure -- $S(x) =[0,f(x)] \times [0,f(x)]$ $\forall x$. Then $|S_{12}| = M^2$, where $M=\max f$. Also, $|S_{13}| = |S_{23}| = \int f(x) dx$.\\
+        Suppose first that every section of $S$ is a square -- $S(x) =[0,f(x)] \times [0,f(x)]$ $\forall x$. Then $|S_{12}| = M^2$, where $M=\max f$. Also, $|S_{13}| = |S_{23}| = \int f(x) dx$.\\
         So we want $(\int f^2)^2 \leq M^2 (\int f)^2$, i.e $\int f^2 \leq M \int f$, which is true because $f(x)^2 \leq M \cdot f(x)$ $\forall x$.\\
         For general $S$, define body $T \subset \R^3$ by giving its sections:
         $$T(x) = [0,\sqrt{|S(x)|}] \times [0,\sqrt{|S(x)|}]$$
@@ -1038,7 +1038,7 @@ The lecturer does not want to go through this which is one of the only two harde
 
 \subsection{Question 12}
 Take $12,134,1356,13578,...,23,245,2467,24689,...$.\\
-The lecturer does not want ot go through this which is the other of the two harder questions.
+The lecturer does not want to go through this which is the other of the two harder questions.
 
 
 \end{document}
