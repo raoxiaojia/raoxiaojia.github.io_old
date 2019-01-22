@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  22 JAN 2019 13:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  22 JAN 2019 13:06
 entering extended mode
-**./IAP.tex
-(IAP.tex
+**./TST.tex
+(TST.tex
 LaTeX2e <2018-04-01> patch level 5
 ("E:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
@@ -1511,8 +1511,8 @@ Package: array 2018/04/30 v2.4h Tabular extension package (FMi)
 \ar@cellbox=\box56
 ))
 Package hyperref Info: Option `colorlinks' set `true' on input line 42.
-) (IAP.aux)
-\openout1 = `IAP.aux'.
+) (TST.aux)
+\openout1 = `TST.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
@@ -1570,9 +1570,9 @@ LaTeX Info: Redefining \ref on input line 7.
 LaTeX Info: Redefining \pageref on input line 7.
 LaTeX Info: Redefining \nameref on input line 7.
 
-(IAP.out) (IAP.out)
+(TST.out) (TST.out)
 \@outlinefile=\write4
-\openout4 = `IAP.out'.
+\openout4 = `TST.out'.
 
 LaTeX Info: Redefining \microtypecontext on input line 7.
 Package microtype Info: Generating PDF output.
@@ -1616,59 +1616,45 @@ LaTeX Warning: No \author given.
 
 [1
 
-{C:/Users/raoxj/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (IAP.toc)
+{C:/Users/raoxj/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (TST.toc)
 \tf@toc=\write5
-\openout5 = `IAP.toc'.
+\openout5 = `TST.toc'.
 
-[2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 53--56
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 59--62
-
- []
-
-[4] [5] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 101.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 101.
- (IAP.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 101.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 101.
-Package rerunfilecheck Info: File `IAP.out' has not changed.
-(rerunfilecheck)             Checksum: 3E54B06E8B6EDEF972B241A20F51EB8C;84.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 101.
+[2] [3] [4] [5] [6] [7]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 140.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 140.
+ (TST.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 140.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 140.
+Package rerunfilecheck Info: File `TST.out' has not changed.
+(rerunfilecheck)             Checksum: F32864D3533E93B2A86BA57707EB3626;110.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 140.
  ) 
 Here is how much of TeX's memory you used:
- 39616 strings out of 492970
- 926814 string characters out of 3135855
+ 39630 strings out of 492970
+ 926895 string characters out of 3135855
  1176434 words of memory out of 3000000
- 42895 multiletter control sequences out of 15000+200000
- 547885 words of font info for 100 fonts, out of 3000000 for 9000
+ 42894 multiletter control sequences out of 15000+200000
+ 548095 words of font info for 108 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,8n,96p,824b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,7n,96p,991b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmmi7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmmi8.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr12.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.
-pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><E:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><E:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmsl10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmsy7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-msy8.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
-><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><E:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on IAP.pdf (6 pages, 224369 bytes).
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr12.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr17.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr5.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb
+><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><E:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><E:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/symbols/msam10.pfb><E:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on TST.pdf (7 pages, 190696 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 500000)
- 18461 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 116 PDF objects out of 1000 (max. 8388607)
+ 11 named destinations out of 1000 (max. 500000)
+ 16413 words of extra memory for PDF output out of 17280 (max. 10000000)
 
