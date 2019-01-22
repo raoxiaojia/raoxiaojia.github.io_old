@@ -782,9 +782,68 @@ Very few isoperimetric inequalities are known exactly or asymptotically. E.g. th
 
 \section{Projections}
 
----Lecture 13 to be typesetted---
+---Lecture 13---
 
 \emph{If a set has small projections, must it be small?}
+
+Let $A \subset \P(x)$ for $Y \subset X$, the \emph{projection} or \emph{trace} of $A$ on $Y$ is $A|Y = \{x \cap Y:x \in A\}$.\\
+For example, if $A=\{14,25,16,127,128\}$, then $A|\{1,2\} = \{1,2,12\}$. We see that $A|Y \subset \P(Y)$.
+
+We say $A$ \emph{covers} or \emph{shatters} $Y$ if $A|Y = \P(Y)$.\\
+The \emph{trace number}, or VC(Vapnik-Cervonekis)-dimension of $A$ is $\tr A = \max\{|Y|:A$ shatters $Y\}$.\\
+Given $|A|$, how small can $\tr A$ be? Equivalently, if $\tr A < k$, how large can $A$ be? ($A$ doesn not shatter any $k$-set).
+
+Trivially, we must have $|A| \leq (1-\frac{1}{2^k}) 2^n$, else $A$ shatters \emph{every} $k$-set.
+
+We could take $A=X^{(k)}$ -- no $k$-set $Y$ is shattered, as $Y \not\in A|Y$. Our aim is to prove that this is the best.
+
+\begin{rem}
+    This is very striking as from each $k$-projection having size $\leq (1-\frac{1}{2^k}) \cdot$ total, we are getting a very small (polynomial in $n$) bound on $|A|$.
+\end{rem}
+
+Idea: it's trivial that $|A| \leq |X^{(k)}|$ if $A$ is a \emph{down-set} (if $x \in A, y \subset x$, then $y \in A$). Indeed, we must have $A \subset X^{(<k)}$, since if $A$ contains a set $X$ with $|X| \geq k$ then $A|X = \P(X)$.\\
+So we'll try to make $A$ into a down-set.
+
+For $A \subset \P(X)$, and $1 \leq i \leq n$, the \emph{$i$-down-compression} of $A$ is defined as follows: for $x \in \P(X)$, set 
+\begin{equation*}
+    \begin{aligned}
+        D_i(x) = \left\{\begin{array}{ll}
+            x & i \not\in x\\
+            x-\{i\} & i \in x
+        \end{array}
+        \right.
+    \end{aligned}
+\end{equation*}
+and set $D_i(A) = \{D_i(x):x \in A\} \cup \{x \in A: D_i(x) \in A\}$ (remove element $i$ where possible).
+
+\begin{thm} (Sauer-Shelah lemma)\\
+    Let $A \subset \P(X)$ with $\tr A < k$. Then $|A| \leq |X^{(k)}|$.
+    \begin{proof}
+        Given $1 \leq i \leq n$, we claim $\tr(D_i(A)) \leq \tr A$: write $B=D_i(A)$. We'll show that if $B$ shatters $Y$ for some $Y$, then $A$ does as well.\\
+        If $i \not\in Y$, then $B|Y = A|Y$, so we may assume $i \in Y$.\\
+        Given $z \subset Y$ with $i \not\in z$, we'll show $z, z\cup\{i\} \in A|Y$. Since $z \cup \{i\} \in B|Y$, we have $z \cup \{i\} \cup x \in B$ for some $x \subset X|Y$. Hence $z \cup x$ and $z \cup \{y\} \cup x \in A$ (definition of $D_i$) whence $z,z\cup \{i\} \in A|Y$.\\
+        Now let $D=D_n(D_{n-1}(...(D_1(A))))$. Then $|D|=|A|$, $D$ is a down-set, and $\tr D \leq \tr A$.
+    \end{proof}
+\end{thm}
+
+\begin{rem}
+    We used 1-dimensional compressions. We have: if all $k$-dimensional projections haev size $\leq 2^k-1$, then $A$ is small ($|A| \leq \sum_{i=0}^{k-1} {n \choose k}$). What about other bounds? For example, what if each $k$-dimensional projection is $\leq 1/2$-sized $(A|Y| \leq 2^{k-1}$)?
+\end{rem}
+
+We say a \emph{box} or \emph{brick} in $\R^n$ is a set of the form $[a_1,b_1] \times [a_2,b_2] \times ... \times [a_n, b_n]$ where $a_i \subseteq b_i \forall i$.\\
+A \emph{body} $S \subset \R^n$ is a finite union of bricks.\\
+Write $|S|$ or $\mu(S)$ for the volume of $S$.
+
+\begin{rem}
+    1. Everything unchanged if we only assume $S$ compact (or just bounded and measurable).\\
+    2. For $A \subset \P(X) \leftrightarrow \{0,1\}^n$, we have corresponding body $\hat{A} \subset \R^n$ with $\mu(\hat{A}) = |A|$, namely
+    $$\hat{A} = \cup_{x \in A} [x_1,x_1+1] \times [x_2,x_2+1] \times ... \times [x_n,x_n+1]$$
+\end{rem}
+
+For body $S \subset \R^n$, and $Y \subset \{1,...,n\}$, write $S_Y$ for the projection of $S$ onto the subspace spanned by the basis vectors $e_i,i \in Y$.\\
+For example, for $S \subset \R^3$: $S_1$ is the projection of $S$ onto the $x$-axis, i.e. $S_1 = \{x_1:(x_1,x_2,x_3) \in S$ for some $x_2,x_3\}$, and $S_{12}$ is the projection of $S$ onto the xy-plane, i.e. $S_{12} = \{(x_1,x_2):(x_1,x_2,x_3) \in S$ for some $x_3\}$.
+
+Question: do bounds on some of the $|S_Y|$ give bounds on $|S|$?
 
 ---Lecture 14---
 
