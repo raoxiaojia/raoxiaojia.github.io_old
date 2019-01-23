@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  23 JAN 2019 19:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  23 JAN 2019 20:34
 entering extended mode
 **./ANT.tex
 (ANT.tex
@@ -1656,11 +1656,11 @@ Package rerunfilecheck Info: File `ANT.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 374.
  ) 
 Here is how much of TeX's memory you used:
- 39615 strings out of 492970
- 926832 string characters out of 3135855
+ 39613 strings out of 492970
+ 926818 string characters out of 3135855
  1179434 words of memory out of 3000000
  42898 multiletter control sequences out of 15000+200000
- 547096 words of font info for 94 fonts, out of 3000000 for 9000
+ 547045 words of font info for 93 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,15n,96p,741b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Pr
@@ -1678,7 +1678,7 @@ s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><E:/Program Files/MiKTeX
 ts/type1/public/amsfonts/cm/cmsy7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmti10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/a
 msfonts/symbols/msbm10.pfb>
-Output written on ANT.pdf (12 pages, 230384 bytes).
+Output written on ANT.pdf (12 pages, 230715 bytes).
 PDF statistics:
  166 PDF objects out of 1000 (max. 8388607)
  20 named destinations out of 1000 (max. 500000)
