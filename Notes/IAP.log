@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  22 JAN 2019 13:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  23 JAN 2019 18:03
 entering extended mode
 **./IAP.tex
 (IAP.tex
@@ -1630,45 +1630,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--62
 
  []
 
-[4] [5] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 101.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 101.
+[4] [5] [6] [7] [8]
+Overfull \hbox (15.32967pt too wide) in paragraph at lines 184--191
+\OML/cmm/m/it/10 K[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 A\OMS/cmsy/m/n/10 j[]$\O
+T1/cmr/m/n/10 (-20) , so $\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 S[]A\OMS/cmsy/m/n/
+10 j  \OML/cmm/m/it/10 K[]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 A\OMS/cmsy/m/n/10
+ j$\OT1/cmr/m/n/10 (-20) ; $\OMS/cmsy/m/n/10 $ \OT1/cmr/m/n/10 (-20) note that
+ $(\OML/cmm/m/it/10 A[]A\OT1/cmr/m/n/10 (-20) )[] = (\OML/cmm/m/it/10 A[]A[]\OT
+1/cmr/m/n/10 (-20) )$, so $\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 A[]A[]\OMS/cmsy/m
+/n/10 jj\OML/cmm/m/it/10 A[]A\OMS/cmsy/m/n/10 j 
+ []
+
+[9]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 195.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 195.
  (IAP.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 101.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 101.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 195.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 195.
 Package rerunfilecheck Info: File `IAP.out' has not changed.
-(rerunfilecheck)             Checksum: 3E54B06E8B6EDEF972B241A20F51EB8C;84.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 101.
+(rerunfilecheck)             Checksum: 0FADE7401F479C6C9C63B49D4FE955D9;174.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 195.
  ) 
 Here is how much of TeX's memory you used:
- 39616 strings out of 492970
- 926814 string characters out of 3135855
+ 39637 strings out of 492970
+ 926990 string characters out of 3135855
  1176434 words of memory out of 3000000
- 42895 multiletter control sequences out of 15000+200000
- 547885 words of font info for 100 fonts, out of 3000000 for 9000
+ 42897 multiletter control sequences out of 15000+200000
+ 548248 words of font info for 106 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,8n,96p,824b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,10n,96p,860b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/Program Files/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmmi7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmmi8.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr12.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.
-pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><E:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><E:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmsl10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmsy7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-msy8.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
-><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><E:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on IAP.pdf (6 pages, 224369 bytes).
+onts/type1/public/amsfonts/cm/cmmi5.pfb><E:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmmi7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmmi8.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmr10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.
+pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><E:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><E:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><E:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr8.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmsl10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+msy7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+<E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><E:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><E:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on IAP.pdf (9 pages, 263583 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 500000)
- 18461 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 165 PDF objects out of 1000 (max. 8388607)
+ 20 named destinations out of 1000 (max. 500000)
+ 18469 words of extra memory for PDF output out of 20736 (max. 10000000)
 
