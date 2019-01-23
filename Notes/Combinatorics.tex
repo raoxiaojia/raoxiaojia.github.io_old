@@ -691,7 +691,7 @@ Slogan: \emph{How small can the average out-degree be}?
     $i(Q_n) = 1$.
     \begin{proof}
         The set $A = \P([n-1])$ shows $i(Q_n) \leq 1$.\\
-        To show the other inequality, it's sufficient ot show (by theorem 8) that if $C$ is an initial segment of binary with $|C| \leq 2^{n-1}$, then $|\partial C| \geq |C|$.
+        To show the other inequality, it's sufficient to show (by theorem 8) that if $C$ is an initial segment of binary with $|C| \leq 2^{n-1}$, then $|\partial C| \geq |C|$.
             But this is clear because $C \subset \P([n-1])$.
     \end{proof}
 \end{coro}
@@ -699,7 +699,7 @@ Slogan: \emph{How small can the average out-degree be}?
 \subsection{Inequalities in the grid}
 
 The \emph{grid} is the graph on vertex-set $[k]^n = \{1,2,...,k\}^n$ in which $(x_1...x_n)$ is joind to $(y_1...y_n)$ if for some $i$, we have $|x_i - y_i| = 1$ and $x_j = y_j$ $\forall j \neq i$ (i.e. has $L_1$-distance 1).\\
-For $k=2$, this is the discrete cube $Q_n$. Do theorem 1 and theorem 8 have anlaogues in $[k]^n$?
+For $k=2$, this is the discrete cube $Q_n$. Do theorem 1 and theorem 8 have analogues in $[k]^n$?
 
 For best vertex-boundary? e.g. consider $[k]^2$. A natural choice is an $L_1$-ball, but where should we put it? Obviously it's better to put it at the corner instead of in the center of grid. If we use a $L_1$-ball centered at a corner of the grid with radius $d$, then size of the boundary of $A$, $|b(A)| \approx d \approx \sqrt{2|A|}$; if we instead consider a $L_\infty$ ball at the same location, we have $|b(A)| \approx 2d \approx 2\sqrt{|A|}$.\\
 This suggests that sets of the form $\{x: |x| \leq r\}$ are best. How about in between? Let's look at some (3d)-diagram:
@@ -774,7 +774,7 @@ However, let's consider what happens when the size of $A$ increases: when $|A|$ 
 So we realize that the extremal sets are not nested! So we can't use a similar argument, as all of the previous arguments require our extremal sets to be nested.
 
 In $[k]^3$: We similar ahve the transition from $[a]^3$ to $[a]^2 \times [k]$, and later to $[a] \times [k]^2$, then to the complement of a $[a]^2 \times [k]$, and so on (at some sizes that we could easily calculate).\\
-Obviously the same happens in higher dimensions. So we can't compression to solve this problem.\footnote{There is a result for this, but is much harder. (Searching on google reveals that the \href{https://link.springer.com/content/pdf/10.1007/BF01275667.pdf}{result} is actually by the lecturer in 1989!)}
+Obviously the same happens in higher dimensions. So we can't use compression to solve this problem.\footnote{There is a result for this, but is much harder. (Searching on google reveals that the \href{https://link.springer.com/content/pdf/10.1007/BF01275667.pdf}{result} is actually by the lecturer in 1989!)}
 
 Very few isoperimetric inequalities are known exactly or asymptotically. E.g. the level $X^{(r)}$: $A$ joined to $B$ if $|A \cap B| = r-1$ -- no one can prove anything sharp!
 
@@ -782,15 +782,74 @@ Very few isoperimetric inequalities are known exactly or asymptotically. E.g. th
 
 \section{Projections}
 
----Lecture 13 to be typesetted---
+---Lecture 13---
 
 \emph{If a set has small projections, must it be small?}
+
+Let $A \subset \P(x)$ for $Y \subset X$, the \emph{projection} or \emph{trace} of $A$ on $Y$ is $A|Y = \{x \cap Y:x \in A\}$.\\
+For example, if $A=\{14,25,16,127,128\}$, then $A|\{1,2\} = \{1,2,12\}$. We see that $A|Y \subset \P(Y)$.
+
+We say $A$ \emph{covers} or \emph{shatters} $Y$ if $A|Y = \P(Y)$.\\
+The \emph{trace number}, or VC(Vapnik-Cervonekis)-dimension of $A$ is $\tr A = \max\{|Y|:A$ shatters $Y\}$.\\
+Given $|A|$, how small can $\tr A$ be? Equivalently, if $\tr A < k$, how large can $A$ be? ($A$ doesn not shatter any $k$-set).
+
+Trivially, we must have $|A| \leq (1-\frac{1}{2^k}) 2^n$, else $A$ shatters \emph{every} $k$-set.
+
+We could take $A=X^{(k)}$ -- no $k$-set $Y$ is shattered, as $Y \not\in A|Y$. Our aim is to prove that this is the best.
+
+\begin{rem}
+    This is very striking as from each $k$-projection having size $\leq (1-\frac{1}{2^k}) \cdot$ total, we are getting a very small (polynomial in $n$) bound on $|A|$.
+\end{rem}
+
+Idea: it's trivial that $|A| \leq |X^{(k)}|$ if $A$ is a \emph{down-set} (if $x \in A, y \subset x$, then $y \in A$). Indeed, we must have $A \subset X^{(<k)}$, since if $A$ contains a set $X$ with $|X| \geq k$ then $A|X = \P(X)$.\\
+So we'll try to make $A$ into a down-set.
+
+For $A \subset \P(X)$, and $1 \leq i \leq n$, the \emph{$i$-down-compression} of $A$ is defined as follows: for $x \in \P(X)$, set 
+\begin{equation*}
+    \begin{aligned}
+        D_i(x) = \left\{\begin{array}{ll}
+            x & i \not\in x\\
+            x-\{i\} & i \in x
+        \end{array}
+        \right.
+    \end{aligned}
+\end{equation*}
+and set $D_i(A) = \{D_i(x):x \in A\} \cup \{x \in A: D_i(x) \in A\}$ (remove element $i$ where possible).
+
+\begin{thm} (Sauer-Shelah lemma)\\
+    Let $A \subset \P(X)$ with $\tr A < k$. Then $|A| \leq |X^{(k)}|$.
+    \begin{proof}
+        Given $1 \leq i \leq n$, we claim $\tr(D_i(A)) \leq \tr A$: write $B=D_i(A)$. We'll show that if $B$ shatters $Y$ for some $Y$, then $A$ does as well.\\
+        If $i \not\in Y$, then $B|Y = A|Y$, so we may assume $i \in Y$.\\
+        Given $z \subset Y$ with $i \not\in z$, we'll show $z, z\cup\{i\} \in A|Y$. Since $z \cup \{i\} \in B|Y$, we have $z \cup \{i\} \cup x \in B$ for some $x \subset X|Y$. Hence $z \cup x$ and $z \cup \{y\} \cup x \in A$ (definition of $D_i$) whence $z,z\cup \{i\} \in A|Y$.\\
+        Now let $D=D_n(D_{n-1}(...(D_1(A))))$. Then $|D|=|A|$, $D$ is a down-set, and $\tr D \leq \tr A$.
+    \end{proof}
+\end{thm}
+
+\begin{rem}
+    We used 1-dimensional compressions. We have: if all $k$-dimensional projections have size $\leq 2^k-1$, then $A$ is small ($|A| \leq \sum_{i=0}^{k-1} {n \choose k}$). What about other bounds? For example, what if each $k$-dimensional projection is $\leq 1/2$-sized $(A|Y| \leq 2^{k-1}$)?
+\end{rem}
+
+We say a \emph{box} or \emph{brick} in $\R^n$ is a set of the form $[a_1,b_1] \times [a_2,b_2] \times ... \times [a_n, b_n]$ where $a_i \subseteq b_i \forall i$.\\
+A \emph{body} $S \subset \R^n$ is a finite union of bricks.\\
+Write $|S|$ or $\mu(S)$ for the volume of $S$.
+
+\begin{rem}
+    1. Everything unchanged if we only assume $S$ compact (or just bounded and measurable).\\
+    2. For $A \subset \P(X) \leftrightarrow \{0,1\}^n$, we have corresponding body $\hat{A} \subset \R^n$ with $\mu(\hat{A}) = |A|$, namely
+    $$\hat{A} = \cup_{x \in A} [x_1,x_1+1] \times [x_2,x_2+1] \times ... \times [x_n,x_n+1]$$
+\end{rem}
+
+For body $S \subset \R^n$, and $Y \subset \{1,...,n\}$, write $S_Y$ for the projection of $S$ onto the subspace spanned by the basis vectors $e_i,i \in Y$.\\
+For example, for $S \subset \R^3$: $S_1$ is the projection of $S$ onto the $x$-axis, i.e. $S_1 = \{x_1:(x_1,x_2,x_3) \in S$ for some $x_2,x_3\}$, and $S_{12}$ is the projection of $S$ onto the xy-plane, i.e. $S_{12} = \{(x_1,x_2):(x_1,x_2,x_3) \in S$ for some $x_3\}$.
+
+Question: do bounds on some of the $|S_Y|$ give bounds on $|S|$?
 
 ---Lecture 14---
 
 E.g. for $S \subset \R^3$: $|S| \leq |S_1| |S_2| |S_3|$ -- as $S \subset S_1 \times S_2 \times S_3$;\\
 $|S| \leq |S_{12}| |S_3|$ as $S \subset S_{12} \times S_3$.\\
-But $|S_{12}|,|S_{13}|$ does not boudn $|S|$ -- e.g. $S=[0,\frac{1}{N}] \times [0,N] \times [0,N]$.\\
+But $|S_{12}|,|S_{13}|$ does not bound $|S|$ -- e.g. $S=[0,\frac{1}{N}] \times [0,N] \times [0,N]$.\\
 How about $|S_{12}|,|S_{13}|,|S_{23}|$?
 
 \begin{prop} (2)
@@ -800,7 +859,7 @@ How about $|S_{12}|,|S_{13}|,|S_{23}|$?
     2. for $S \subset \R^n$, the \emph{sections} of $S$ are the sets $S(x) \subset \R^{n-1}$ ($x \in \R$) given by $S(x) = \{(x_1...x_{n-1}) \in \R^{n-1}:(x_1...x_{n-1}x) \in S\}$.
 
     \begin{proof}
-        Suppose first that every section of $S$ is a sqaure -- $S(x) =[0,f(x)] \times [0,f(x)]$ $\forall x$. Then $|S_{12}| = M^2$, where $M=\max f$. Also, $|S_{13}| = |S_{23}| = \int f(x) dx$.\\
+        Suppose first that every section of $S$ is a square -- $S(x) =[0,f(x)] \times [0,f(x)]$ $\forall x$. Then $|S_{12}| = M^2$, where $M=\max f$. Also, $|S_{13}| = |S_{23}| = \int f(x) dx$.\\
         So we want $(\int f^2)^2 \leq M^2 (\int f)^2$, i.e $\int f^2 \leq M \int f$, which is true because $f(x)^2 \leq M \cdot f(x)$ $\forall x$.\\
         For general $S$, define body $T \subset \R^3$ by giving its sections:
         $$T(x) = [0,\sqrt{|S(x)|}] \times [0,\sqrt{|S(x)|}]$$
@@ -979,7 +1038,7 @@ The lecturer does not want to go through this which is one of the only two harde
 
 \subsection{Question 12}
 Take $12,134,1356,13578,...,23,245,2467,24689,...$.\\
-The lecturer does not want ot go through this which is the other of the two harder questions.
+The lecturer does not want to go through this which is the other of the two harder questions.
 
 
 \end{document}
