@@ -293,6 +293,82 @@ We'll state the theorem we're proving and prove it in the next lecture:
 \begin{thm} (5)\\
 $$\tau(n) \leq n^{O(\frac{1}{\log\log n})}$$
 In particular, $\tau(n) \ll_\varepsilon n^\varepsilon$ $\forall \varepsilon > 0$.
+
+---Lecture 3---
+\begin{proof}
+    $\tau$ is multiplicative, so it's enough to calculate at prime powers.\\
+    Now, $\tau(p^k) = k+1$. So if $n=p_1^{k_1}...p_r^{k_r}$, thjen $\tau(n) = \prod_{i=1}^r (k_i+1)$.\\
+    Let $\varepsilon$ be chosen later, and consider $\frac{\tau(n)}{n^\varepsilon} = \prod_{i=1}^r \frac{k_i+1}{p_i^{k_i\varepsilon}}$. Note as $p \to \infty$, $\frac{k+1}{p^{k\varepsilon}} \to 0$.\\
+    In particular, if $p \geq 2^{1/\varepsilon}$, then $\frac{k+1}{p^{k\varepsilon}} \leq \frac{k+1}{2^k} \leq 1$. What about for small $p$? We can't do better than $p \geq 2$(?).\\
+    In this case, $\frac{k+1}{p^{k\varepsilon}} \leq \frac{k+1}{2^{k\varepsilon}} \leq \frac{1}{\varepsilon}$ (as $x+\frac{1}{2} \leq 2^x \implies \varepsilon k + \varepsilon \leq 2^{k\varepsilon} \forall x \geq 0$), for $\varepsilon \leq 1/2$.\\
+    So
+    \[
+        \frac{\tau(n)}{n^\varepsilon} \leq \prod_{i=1,_i < 2^{1/\varepsilon}}^r \frac{k_i+1}{p^{k_i \varepsilon}} \leq (1/\varepsilon)2^{1/\varepsilon}
+    \]
+    Now choose optimal $\varepsilon$:\\
+    (trick!) if you want to choose $x$ to minimise $f(xx)+g(x)$, choose $x$ s.t. $f(x) = g(x)$.\\
+    So here, $\tau(n) \leq n^\varepsilon \varepsilon^{-2^{1\varepsilon}} = exp(\varepsilon \log n + 2^{1/\varepsilon} \log 1/\varepsilon)$.\\
+    Choose $\varepsilon$ s.t. $\log n \approx 2^{1/\varepsilon}$, i.e. $\varepsilon = \frac{1}{\log\log n}$. So
+    \[
+        \tau(n) &\leq n^{1/\log\log n} (\log\log n)^{2^{\log\log n}}\\
+        &= n^{1/\log\log n} e^{(\log n)^{\log 2} \log \log \log n}\\
+        &\leq n^{O(\frac{1}{\log \log n})} 
+    \]
+\end{proof}
 \end{thm}
+
+\subsection{Estimates for the Primes}
+
+Recall $\pi(x)$ is the number of primes $\leq x = \sum_{1 \leq n \leq x} 1_p(n)$, and $\psi(x) = \sum_{1 \leq n \leq x} \Lambda(n)$. The prime number theory states that $\pi(x) \sim \frac{x}{\log x}$, or equivalently $\psi(x) \sim x$ (justified later).\\
+It was 1850 before the correct magnitude of $\pi(x)$ was proved. Chebyshev showed that $\pi(x) \asymp x/\log x$, where $f \asymp g$ means $g \ll f \ll g$.
+
+\begin{thm} (6, Chebyshev)\\
+    $\psi(x) \asymp x$.\\
+    We'll show below that $(\log 2) x \leq \psi(x) \leq (\log 4) x$.
+    \begin{proof}
+        First we'll prove the lower bound. Recall $1 *\Lambda = \log$, i.e. $\sum_{ab = n} \Lambda(a) = \log n$. The (genuine) trick is to find a sum $\Sigma$ s.t. $\varepsilon \leq 1$. We'll use the identity $\lfloor x \rfloor \leq 2 \lfloor \frac{x}{2} \rfloor + 1 \forall x \geq 0$. Why? Say $\frac{x}{2} = n+\theta$, $\theta \in [0,1)$ Then $\lfloor \frac{x}{2} \rfloor = n$, and $x = 2n+2\theta$, and so $\lfloor x \rfloor = 2n$, or at most $2n+1$.\\
+        So
+        \[
+            \psi(x) &\geq \sum_{n \leq x} \Lambda(n) (\lfloor \frac{x}{n} \rfloor - 2\lfloor \frac{x}{2n} \rfloor)\\
+            &= \sum_{n \leq x} \Lambda(n) \sum_{m \leq x/n} 1 - 2 \sum_{n \leq x} \Lambda(n) \sum_{m \leq \frac{x}{2n}} 1\\
+            &= \sum_{nm \leq x} \Lambda(n) - 2\sum_{nm \leq x/2} \Lambda(n), \text{ write } d = nm,\\
+            &= \sum_{d \leq x} 1 *\Lambda(d) - 2 \sum_{d \leq x/2} 1 * \Lambda(d)\\
+            &= \sum_{d \leq x} \log d - 2 \sum_{d \leq x/2} \log d\\
+            &=x\log x - x + O(\log x) - 2(\frac{x}{2} \log \frac{x}{2} - \frac{x}{2} + O(\log x))\\
+            &= (\log 2) x + O(\log x) \gg x
+        \]
+        For the upper bound, note that $\lfloor x \rfloor = 2\lfloor x/2 \rfloor + 1$ for $x \in (1,2)$, so
+        $$\sum_{x/2 < n < x} \Lambda(n) = \sum_{x/2 < n < x} \Lambda(n) (\lfloor x/n \rfloor - 2 \lfloor x/2n \rfloor) \leq \sum_{1 \leq n \leq x} \Lambda(n) (\lfloor x/n \rfloor - 2\lfloor x/2n \rfloor)$$
+        so $\psi(x) - \psi(x/2) \leq (\log 2) x + O(\log x)$.\\
+        So $\psi(x) = (\psi(x) - \psi(x/2)) + (\psi(x/2)-\psi(x/4))+... \leq \log 2 (x+x/2+x/4+...) = (2\log 2) x$ (note only $\log x$ error terms at most).
+    \end{proof}
+\end{thm}
+
+\begin{lemma} (7)\\
+    \[
+        \sum_{p \leq x, p \text{ primes}} \frac{\log p}{p} = \log x + O(1)
+    \]
+    \begin{proof}
+        Recall that $\log = 1 * \Lambda$. So
+        \[
+            \sum_{n \leq x} \log n &= \sum_{ab \leq x} \Lambda(a)\\
+            &= \sum_{a \leq x} \Lambda(a) \sum_{b \leq x/a} 1\\
+            &= \sum_{a \leq x} \Lambda(a) \lfloor x/a \rfloor \\
+            &= x \sum_{a \leq x} \frac{\Lambda(a)}{a} + O(\psi(x))\\
+            &= x \sum_{a \leq x} \frac{\Lambda(a)}{a} + O(x)
+        \]
+        But $\sum_{n \leq x} \log n = x\log x - x + O(\log x)$. So
+        \[
+            \sum_{n \leq x} \frac{\Lambda(n)}{n} = \log x - 1 + O(\frac{\log x}{x}) + O(1) + \log x + O(1)
+        \]
+        It remains to note that 
+        \[
+            \sum_{p \leq x}\sum_{n=2}^\infty \frac{\log p}{p^n} &= \sum_{p \leq x} \log p \sum_{k=2}^\infty \frac{1}{p^k} \\
+            &= \sum_{p \leq x} \frac{\log p}{p^2-p}\\
+            &\leq \sum_{p=2}^\infty \frac{1}{p^{3/2}} = O(1)
+        \]
+        So $\sum_{n \;eq x} \frac{\Lambda(n)}{n} = \sum_{p \leq x} \frac{\log p}{p}+O(1)$.
+    \end{proof}
+\end{lemma}
 
 \end{document}
