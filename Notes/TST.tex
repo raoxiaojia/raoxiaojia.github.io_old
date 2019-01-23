@@ -136,5 +136,76 @@ We may also define $\Sigma_1^T$ formulas to be the formulas that are $T$-equival
 
 On Wednesday we will look at what formulas are actually in these classes.
 
+---Lecture 3---
+
+Last time we fixed some \emph{set theory} $T$, and defined formula classes $\triangle_0^T$, $\Sigma_0^T$ and $\Pi_1^T$. We showed that $\triangle_0^T$ formulas are absolute between $A,M$ if $A$ is transitive and $A,M \vDash T$, and also $\Sigma_1^T$ and $\Pi_1^T$ upwards and downwards respectively.
+
+Even if you haven't paid attention you would have realize that we have some 0 and some 1 as subscripts here. So what is $\Delta_1^T$?
+
+\begin{defi}
+A formula is $\Delta_1^T$ if it is both $\Sigma_1^T$ and $\Pi_1^T$.\\
+Note that this definition is only possible upon taking equivalence classes on $T$, else no formula could be both $\Sigma_1$ and $\Pi_1$.
+\end{defi}
+
+\begin{coro}
+If $A$ is transitive, $A,M \vDash T$, and $\phi$ is $\Delta_1^T$, then $\phi$ is absolute between $A$ and $M$.
+\end{coro}
+
+Now we have to think of what a \emph{set theory} is. We have to think of which axioms we're using. Preferably we would have extensionality, and then let's have pairing, union, power set, separation.\\
+We denote this by $FST_0$ (finite set theory), with the $0$ denoting that we don't have foundation yet. We use $FST$ to denote $FST_0$+foundation(regularity).\\
+Now if we add infinity in, we reach the original version of Zermelo set theory $Z_0$. However, nowadays we often call $Z=Z_0$+foundation the Zermelo set theory.\\
+For ordinary people these are enough (or far more than enough). But set-theorists realized later that they need replacement; we call this $ZF_0$ (of course $ZF$ for the version with foundation). And lastly if we add choice in we get $ZFC_0$ (with foundation we get $ZFC$).
+
+Now we find a long list of $\Delta_0^T$ formulas. We start with the more trivial ones:\\
+1. $x\in y$;\\
+2. $x=y$;\\
+These two are $\Delta_0$ without $T$ needed.\\
+3. $x \subseteq y$. Apparently this is not a formula: we think it means $\forall w (w \in x \to w \in y)$, which we might abbreviate it as $\forall w \in x (w \in y)$, which is exactly the (2c) in definition of $\Delta_0$. So this is $\Delta_0$ without $T$ as well.\\
+4. $\Phi_0(x): \forall w (w \not\in x) :\iff \forall w(\neg w \in x)$. If you took part II Logic and Set theory, you'll disagree that this is a formula, because $\neg$ is not a thing; but let's not be so parsimonious on the syntax, but write it as $\forall w (w \in x \to \neg x =x)$, so this is also $\Delta_0$ in predicate logic.
+
+We say that an operation $x_1,...,x_n \to F(x_1,...,x_n)$ is defined by a formula in class $\Gamma$ (where $\Gamma$ is any class of formulas) in the theory $T$ if there is a formula $\Psi \in \Gamma$ s.t. \\
+(1) $T \vdash \forall x_1...\forall x_n \exists y \Psi(x_1,...,x_n,y)$;\\
+(2) $T \vdash \forall x_1...\forall x_n \forall y,z$ $\Psi(x_1,...,x_n,y) \wedge \Psi(x_1,...,x_n,z) \to y=z$;\\
+(3) $\Psi(x_1,...,x_n,y)$ iff $y=F(x_1,...,x_n)$.\\
+Note that the first two are formal requirements, but the last one is an informal requirement as we haven't defined what $F$ is.
+
+Examples: $x \to \{x\}$, $x,y \to \{x,y\}$ (these are opeartions in $FST_0$). Note that these are informal because notations like $\{\cdot\}$ are undefined.
+
+Let's now continue our lists:\\
+5. $x \to \{x\}$. We need a formula $\Psi(x,z) \leftrightarrow$ '$z=\{x\}$' $\leftrightarrow \forall w(w \in z \leftrightarrow w=x)$.\\
+This is not $\Delta_0$ yet because we have a $\leftrightarrow$ here. We rewrite it as\\
+$\forall w ((w \in z \to w=x) \wedge (w=x \to w \in z))$, but the second part is not $\Delta_0$. So we again rewrite it as\\
+$\exists w \in z(w=w) \wedge \forall w \in z (w \in z \to w =x)$. So this is $\Delta_0$, with some very weak set theory being sufficient.\\
+Similar to 5, we also have\\
+6. $x,y \to \{x,y\}$;\\
+7. $x,y \to x \cup y$;\\
+8. $x,y \to x \cap y$;\\
+9. $x,y \to x \setminus y$;\\
+10. $x,y \to (x,y)$, the ordered pair, where we define it as $\{\{x\},\{x,y\}\}$. Note that we could apply 5 and 6 (twice) to get this one.\\
+The last one gives us the motivation that if two operations $f,g_1,...,g_k$ are defined by $\Delta_0^T$-formulas, then so is the operation\\
+$$x_1,...,x_n \to f(g_1(x_1,...,x_n),...,g_k(x_1,...,x_n))$$
+
+We then naturally have\\
+11. $x \to x \cup \{x\} := S(x)$ (by the previous fact from 5 and 7).\\
+12. $x \to \cup x$; (obvious if we write this fully out)\\
+13. the formula $\varphi$ describing "$x$ is transitive".\\
+14. the formula describing $x$ is an ordered pair. At first look it looks like this is unbounded	, but that's not the case: the quantifiers for the two components of $x$ are bounded by $\cup x$.\\
+15. $a,b \to a \times b$;\\
+16. the formula "$x$ is a binary relation";\\
+17. $x \to \dom(x) := \{y: \exists p \in x (p$ is an ordered pairs, $p=(v,w), y=v)\}$;\\
+18. $x \to range(x):= \{y: \exists p \in x(p$ is an ordered pair and $p=(v,y))\}$;\\
+19. the formula '$x$ is a function';\\
+20. the formula '$x$ is injective';\\
+21. the formula '$x$ is a function from $A$ to $B$';\\
+22. the formula '$x$ is a surjection from $A$ to $B$';\\
+23. the formula '$x$ is a bijection from $A$ to $B$'.\\
+Note that we've only used some very few axioms: union, pairing and some finite version of separation, and nothing more.\\
+
+Let's also agree on the definition of an ordinal: $\alpha$ is an ordinal if $\alpha$ is a transitive set well-ordered by $\in$. Of course we have to also agree on what being well-ordered means: it's totally ordered + well-founded, i.e. $\forall X (X \subseteq \alpha \to X$ has a $\in$-least element).
+
+Being totally ordered is $\Delta_0$ formula (check); however, the sentence $(X,R)$ being well-founded is not obviously absolute, since the bound for the $\forall Z (Z \subseteq X ...)$ quantifier is the power set. We'll talk about absoluteness of well-foundedness on Friday.
+
+However, we don't actually need the general well-foundedness; we only need well-foundedness by $\in$, but that is given by axiom of foundation! So in models with the axiom of foundation, $\alpha$ is an ordinal iff $\alpha$ is transitive and totally ordered by $\in$.	
+
 
 \end{document}
