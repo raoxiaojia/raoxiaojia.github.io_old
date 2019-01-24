@@ -367,8 +367,134 @@ It was 1850 before the correct magnitude of $\pi(x)$ was proved. Chebyshev showe
             &= \sum_{p \leq x} \frac{\log p}{p^2-p}\\
             &\leq \sum_{p=2}^\infty \frac{1}{p^{3/2}} = O(1)
         \]
-        So $\sum_{n \;eq x} \frac{\Lambda(n)}{n} = \sum_{p \leq x} \frac{\log p}{p}+O(1)$.
+        So $\sum_{n \leq x} \frac{\Lambda(n)}{n} = \sum_{p \leq x} \frac{\log p}{p}+O(1)$.
     \end{proof}
 \end{lemma}
+
+---Lecture 3---
+
+Drop-in: Tuesday 4pm-5pm.
+
+\begin{lemma} (8)\\
+$\pi(x) = \frac{\psi(x)}{\log x} + O(\frac{x}{(\log x)^2})$.\\
+In particular, $\pi(x) \asymp \frac{x}{\log x}$ and prime number theorem: $\pi(x) \sim \frac{x}{\log x}$ is equivalent to $\psi(x) \sim x$.\\
+So from now on, we'll call this the prime number theorem instead.
+\begin{proof}
+The idea is to use partial summation:
+\[
+\theta(x) := \sum_{p \leq x} \log p &= \pi(x) \log x - \int_1^x \frac{\pi(t)}{t} dt
+\]
+but this doesn't work immediately, since $\psi(x) = \sum_{n \leq x} \Lambda(n) = \sum_{p^k \leq x} \log p$. However, we have
+\[
+\psi(x)-\theta(x) &= \sum_{k=2}^\infty \sum_{p^k \leq x} \log p\\
+&= \sum_{k=2}^\infty \theta(x^{1/k})\\
+&\leq \sum_{k=2}^\infty \psi(x^{1/k})\\
+&= \sum_{k=2}^{\log x} \psi(x^{1/k})
+\]
+as the larger terms are all zero. Then the above
+\[
+\ll \sum_{k=2}^{\log x} x^{1/k}\\
+\ll x^{1/2} \log x
+\]
+(Obviously we could do better, but that's less important). Now $\psi(x) = \pi(x) \log x + O(x^{1/2} \log x) - \int_1^x \frac{\pi(t)}{t} dt$. Note that we have $\pi(t) \ll \frac{t}{\log t}$, so we can bound the above by 
+\[
+\psi(x) &= \pi(x)\log x + O(x^{1/2} \log x) + O(\int_1^x \frac{1}{\log t} dt)\\
+&= \pi(x) \log x+O(\frac{x}{\log x})
+\]
+(For $\pi(t) \ll \frac{t}{\log t}$, note that from $\pi(t) \leq t$, $\psi(x) = \pi(x)\log x + O(x^{1/2}\log x) + O(x)$. So $\pi(x) \log x = O(x)$).
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (9)\\
+$\sum_{p \leq x} \frac{1}{p} = \log\log x + b + O(\frac{1}{\log x})$, where $b$ is some constant.
+\begin{proof}
+We use partial summation. Let $A(x) = \sum_{p \leq x} \frac{\log p}{p} = \log x + R(x)$ (so $R(x) \ll 1$ (by lemma 7)). Then
+\[
+\sum_{2 \leq p \leq x} \frac{1}{p} &= \frac{A(x)}{\log x} - \int_2^x \frac{A(t)}{t(\log t)^2} dt\\
+&= 1 + O(\frac{1}{\log x}) + \int_2^x \frac{1}{t\log t} dt + \int_2^x \frac{R(t)}{t(\log t)^2} dt
+\]
+Note $\int_2^\infty \frac{R(t)}{t(\log t)^2} dt$ exists, say $=c$. Then
+\[
+\sum_{2 \leq p \leq x} \frac{1}{p} &= 1+c+O(\frac{1}{\log x}) + \log \log x - \log \log 2 + O(\int_x^\infty \frac{1}{t(\log t)^2} dt)\\
+&= \log \log x + b + O(\frac{1}{\log x})
+\]
+\end{proof}
+\end{lemma} 
+
+\begin{thm} (10, Chebyshev)\\
+If $\pi(x) \sim c \frac{x}{\log x}$, then $c=1$.\\
+Note that this is weaker than PNT itself: this only says that \emph{if} that relation exists, then we must have $c=1$.\\
+(Also, if $\pi(x) \sim \frac{x}{\log x - A(x)}$, then $A\sim 1$)
+\begin{proof}
+Use partial summation on $\sum_{p \leq x} \frac{1}{p}$:
+\[
+\sum_{p \leq x} \frac{1}{p} = \frac{\pi(x)}{x} - \int_1^x \frac{\pi(t)}{t^2} dt
+\]
+If $\pi(x) = (c+o(1)) \frac{x}{\log x}$, then
+\[
+&= \frac{c}{\log x} + o(\frac{1}{\log x}) + (c+o(1)) \int_1^x \frac{1}{t\log t} dt\\
+&= O(\frac{1}{\log x}) + (c+o(1)) \log \log x
+\]
+But $\sum_{p \leq x} \frac{1}{p} = (1+o(1))\log x$. Hence $c=1$.
+\end{proof}
+\end{thm}
+
+\begin{lemma} (11)\\
+$\prod_{p \leq x} (1-\frac{1}{p})^{-1} = c\log x + O(1)$, where $c$ is some constant.
+\begin{proof}
+\[
+\log (\prod_{p \leq x} (1-\frac{1}{p})^{-1}) &= -\sum_{p \leq x} (1-\frac{1}{p})\\
+&= \sum_{p \leq x} \sum_k \frac{1}{kp^k}\\
+&= \sum_{p \leq x} \frac{1}{p} + \sum_{k \geq 2} \sum_{p \leq x} \frac{1}{kp^k}\\
+&=\log \log x + c' + O(\frac{1}{\log x})
+\]
+where we used the expansion $\log(1-t) = -\sum_k \frac{t^k}{k}$.\\
+Now note that $e^x = 1 + O(x)$ for $|x| \leq 1$. So
+\[
+\prod_{p \leq x} (1-\frac{1}{p})^{-1} &= c\log x e^{O(\frac{1}{\log x})}\\
+&= c\log x(1+O(\frac{1}{\log x}))\\
+&= c\log x + O(1)
+\]
+\end{proof}
+\end{lemma}
+It turns out that $c=e^\gamma \approx 1.78...$, where $\gamma$ is the Euler constant that we've seen previously.
+
+So why is PNT hard, given that we've proved so many results? From probabilistic heuristic, we have the 'probability' that $p|n$ is $\frac{1}{p}$.\\
+What is the probability that $n$ is prime then? $n$ is prime iff $n$ has no prime divisors $\leq n^{1/2}$. Our guess is that the events 'divisible by $p$' are independent, so the probability that $n$ is prime should be something like $\prod_{p \leq n^{1/2}}(1-\frac{1}{p}) \approx \frac{1}{c \log n^{1/2}} = \frac{2}{c} \frac{1}{\log n}$. So
+\[
+\pi(x) = \sum_{n \leq x} 1_{n \ prime} \approx \frac{2}{c} \sum_{n \leq x} \frac{1}{\log n} \approx \frac{2}{c} \frac{x}{\log x} \approx 2 e^{-\gamma} \frac{x}{\log x}
+\]
+if the above guesses are correct; but from theorem 10 we know that the constant should be 1 instead of $2e^{-\gamma} \approx 1.122...$.\\
+What have gone wrong? It turns out that the error terms accumulated are too overwhelming that they've actually contributed to the main term. So PNT is not something like we find the main term and prove that the error terms are negligible.
+
+Recall that $1*\Lambda = \log$, so $\mu *\log = \Lambda$. So
+\[
+\psi(x) &= \sum_{n \leq x} \Lambda(n)\\
+&= \sum_{ab \leq x} \mu(a) \log b\\
+&= \sum_{a \leq x} \mu(a) (\sum_{b \leq \frac{x}{a}} \log b)
+\]
+
+Recall that
+\[
+\sum_{m \leq x} \log m &= x \log x - x + O(\log x),\\
+\sum_{m \leq x} \tau(m) &= x\log x + (2\gamma - 1) x + O(x^{1/2})
+\]
+so their main terms agree.\\
+So 
+\[
+\psi(x) &= \sum_{a \leq x} \mu(a) (\sum_{b \leq \frac{x}{a}} \tau(b) + 2\gamma \frac{x}{a} + O(\frac{x^{1/2}}{a^{1/2}})\\
+&= \sum_{ab \leq x} \mu(a) \tau(b)\\
+&= \sum_{abc \leq x} \mu(a)\\
+&= \sum_{b \leq x} \sum_{ac \leq x/b} \mu(a)\\
+&= \sum_{b \leq x} \sum_{d \leq x/b} \mu * 1(d)\\
+&= \lfloor x \rfloor = x+O(1)
+\]
+since we know the last term is $0$ unless $d$ is 1.
+
+The error term:
+\[
+-2\gamma \sum_{a \leq x} \mu(a) \frac{x}{a} = O(x \sum_{a \leq x} \frac{\mu(a)}{a})
+\]
+so we still need to show that $\sum_{a \leq x} \frac{\mu(a)}{a} = o(1)$. However, this is still the same as PNT, so we haven't gained anything.
 
 \end{document}
