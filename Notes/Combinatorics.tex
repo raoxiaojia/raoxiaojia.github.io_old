@@ -1040,5 +1040,52 @@ The lecturer does not want to go through this which is one of the only two harde
 Take $12,134,1356,13578,...,23,245,2467,24689,...$.\\
 The lecturer does not want to go through this which is the other of the two harder questions.
 
+\newpage
+
+\section{Example Class 3}
+
+\subsection{Question 1}
+
+Take the first 23 of simplicial. The answer is 14.
+
+\subsection{Question 2}
+
+$d(A,B) \geq t$ basically means $A_{(t-1)}$ misses $B$. Write $C,D$ for the first $|A|$ and last $|B|$ of simplicial, then $|C_{(t-1)}| \leq k^n - |B| = k^n-|D|$, but then $C_{(t-1)}$ misses $D$.
+
+\subsection{Question 3}
+
+We use the same trick: $d(x,y) \leq d$ says $d(x^c,y) \geq n-d$. So $A$ having diameter $d$ means $A_{(n-d-1)}$ misses $\bar{A}$, where $\bar{A}$ is the set of elements who are complements to those in $A$.\\
+Now if $|A| > |X^{(\leq d/2)}|$, we have $|A_{(n-d-1)}| \geq |X^{(\leq n-d/2+1)}|$, and $|\bar{A}| > |X^{(\geq n-d/2)}|$; but those two add up to more than $|Q_n|$, so they must meet.
+
+\subsection{Question 4}
+
+Note that this holds for the down-compressed-set $D(A)$ of the same size. But if $D(A)$ shatters $Y$ then $A$ also does so.
+
+
+\subsection{Question 5}
+
+The problem is that $T_{34} = S_1 \times S_3 \neq S_{31}$ in general.
+
+\subsection{Question 6}
+
+If $3|n$, $A \subset A_{123} \times A_{456} \times ... \times A_{(n-2)(n-1)n}$, but RHS has size at most $7^{n/3}$ as each projection has size at most $7$.
+
+The general case is equally easy because the given sets form a uniform cover.
+
+\subsection{Question 7}
+
+As an example (which is enough to motivates the proof), consider why knowledge of $|S_{12}||S_{13}||S_{234}||S_{24}|$ does not give bound on $|S|$. Take $S$ to be a box of size $a \times b \times c \times d$; we want to show that the knowledge of $a^2b^3c^2d^2$ does not give any bound on $abcd$; alternatively there's no function $f(x)$ s.t. $abcd \leq f(a^2b^3c^2d^2)$ $\forall a,b,c,d$. But we can always substitute $a$ by $ak^3$ and $b$ by $bk^{-2}$ without changing $a^2b^3c^2d^2$, while changing LHS arbitrarily. So the above is impossible.
+
+The full proof follows from the same argument and we won't write the details out.
+
+The motivation of the proof is that, by the box theorem we know for any body there exists a box of the same volume with size of every projection smaller. So if this statement is ever going to fail, it must fail for a box.
+
+\subsection{Question 8}
+
+In 2D, shrink the rectangle $T_1 \times T_2$ towards $S_1 \times S_2$ and go on after we reach that state; on the way we must have gotten the witnesses $C$ first and $B$ later. But then $B \subset C$.
+
+This doesn't hold in $\R^3$. Take $S=n \times n \times n$, and $T$ to be $S$ with an $n^2 \times \varepsilon \times \varepsilon$ attached to one face. We have $S_{12},S_{13},S_{23} = N^2$,
+
+\subsection{Question 9}
 
 \end{document}
