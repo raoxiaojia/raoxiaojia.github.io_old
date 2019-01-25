@@ -44,6 +44,9 @@ or equivalently, if $M \vDash ZFC$, then there is $N \vDash ZFC+CH$ (and similar
 \newpage
 
 \section{Model theory of set theory}
+
+\subsection{Absoluteness}
+
 For a moment, we will assume that we have a model $(M,\in) \vDash ZFC$. Unfortunately this first assumption doesn't make much sense, because model theory is based on set theory and we don't have anything if ZFC is inconsistent. We refer to the canonical objects in $M$ by the usual symbols, e.g. $0,1,2,3,4,...,\omega,\omega+1,...$.
 
 What would an \emph{inner model} be? Take $A \subseteq M$, and consider $(A,\in)$. It is a substructure of $(M,\in)$, because there are no function symbols or constant symbols in the language of set theory. This might be counterintuitive, because we're using symbols like $\phi$ and $\{\cdot\}$ all the time! However, these are technically not part of language of set theory as they can all be defined without any use of function symbols, i.e. they are just abbreviations. For example, $X=\phi$ abbreviates $\forall w (\neg w \in X)$; $X=\{Y\}$ abbreviates $\forall w (w \in X \iff w = Y)$, and similarly for $\cup$ and $\mathcal{P}$; and also for relation symbols such as $\subseteq$, which abbreviates $\forall w (w \in X \to w \in Y)$. Note that $X=\phi$ is NOT the formula that it looks like; in particular, it is not quantifier free (because it abbreviates $\forall w (\neg w \in X)$)! So we need to take extra care when we do things in this course.
@@ -156,6 +159,8 @@ We denote this by $FST_0$ (finite set theory), with the $0$ denoting that we don
 Now if we add infinity in, we reach the original version of Zermelo set theory $Z_0$. However, nowadays we often call $Z=Z_0$+foundation the Zermelo set theory.\\
 For ordinary people these are enough (or far more than enough). But set-theorists realized later that they need replacement; we call this $ZF_0$ (of course $ZF$ for the version with foundation). And lastly if we add choice in we get $ZFC_0$ (with foundation we get $ZFC$).
 
+\subsection{Long List of $\Delta_0^T$ formulas}
+
 Now we find a long list of $\Delta_0^T$ formulas. We start with the more trivial ones:\\
 1. $x\in y$;\\
 2. $x=y$;\\
@@ -207,5 +212,66 @@ Being totally ordered is $\Delta_0$ formula (check); however, the sentence $(X,R
 
 However, we don't actually need the general well-foundedness; we only need well-foundedness by $\in$, but that is given by axiom of foundation! So in models with the axiom of foundation, $\alpha$ is an ordinal iff $\alpha$ is transitive and totally ordered by $\in$.	
 
+---Lecture 4---
+
+We're still on our list of things that are absolute for transitive models. We ended with ordinals last time, where we defined that $x$ is an ordinal iff $x$ is transitive and $(x,\in)$ is a well-order. We went into an issue there, because that consists of $(x,\in)$ is a total order, which is fine; but then it also needs $\in$ is a well-founded relation on $x$, which is only $\Pi_1$. The good side is that if $T$ contains the axiom of foundation, then $\Phi_{ord}(x)$ is equivalent to $x$ is transitive and $(x,\in)$ is a total order (as the last part is guaranteed), which is $\Delta_0^T$. Therefore we can expand our list:
+
+24. '$x$ is an ordinal' is $\Delta_0^T$ (for the right choice of $T$);\\
+This is not as harmless as before, because we actually need $T$ to include the axiom of foundation.\\
+25. '$x$ is a successor ordinal', which is equivalent to '$x$ is an ordinal' and $\exists y \in x (y$ is the $\in$-largest element of $x$);\\
+26. '$x$ is a limit ordinal';\\
+27. $x=\omega$ (the smallest limit ordinal; similarly, $x=\omega+\omega$, $x=\omega+1$, $x=\omega+\omega+1$, $x=\omega^2$, $x=\omega^3$, $x=\omega^\omega$, ...)\\
+
+\subsection{Absoluteness of well-foundedness}
+
+If $(X,R)$ is well-founded, we can define a rank function $rk:X \to \alpha$, where $\alpha$ is some ordinal, s.t. $rk$ is order-preserving between $(X,R)$ and $(\alpha,\in)$. This theorem is proved using the right instances of Replacement. In particular, ZF proves:\\
+$(X,R)$ is well-founded $\iff \exists \alpha \exists f$ $\alpha$ is an ordinal, and $f$ is an order-preserving function from $(X,R)$ to $(\alpha,\in)$. RHS is $\Sigma_1^{ZF}$, and LHS is $\Pi_1^{ZF}$. Thus for sufficiently strong $T$, $(X,R)$ is well-founded is $\Delta_1^T$ and hence absolute for transitive models of $T$.
+
+We generalize this to concepts defined by transfinite recursion. But first let's recall what it is: let $(X,R)$ be well-founded, let $F$ be 'functional', so for every $x$ there is a unique $y$ s.t. $x=F(y)$. Then there is a unique $f$ with domain $X$ and for all $x \in X$, $f(x) = F(f|IS_R(x))$, where $IS_R(x) = \{z \in x: z R x\}$.
+
+\begin{prop}
+Let $T$ be a set theory that is strong enough to prove the transfinite recursion theorem for $F$. Let $F$ be absolute for transfinite models of $T$. Let $(X,R)$ be in $A$. Then $f$ defined by transfinite recursion is absolute between $A$ and $M$.
+\end{prop}
+
+\begin{eg}
+Let $L$ be any first-order language whose symbols are all in $A$. Then the set of $L$-formulas and the set of $L$-sentences are in $A$.\\
+The relation $S \vDash \varphi$ (note that this is not q-f, although it is bounded by $S$) is defined by recursion, and thus is absolute between $A$ and $M$.\\
+So: if $S$ is an $L$-structure, $S \in A$,\\
+$(A,\in) \vDash $'$S \vDash \varphi$'$ \iff (M,\in) \vDash $'$S \vDash \varphi$'.
+\end{eg}
+
+G\"{o}del's incompleteness theorem roughly says that, if $T$ is a theory whose set of axioms are recursive enumerable, and its axioms are strong enough to do some arithmetics, then $T \not\vdash Cons(T)$ (which is a sentence in $L$). Examples for $T$: PA, Z, ZF, ZFC, ZFC+$\varphi$ any one additional formula.\\
+In particular, $ZFC^* := ZFC + Cons(ZFC) \not\vdash Cons(ZFC+Cons(ZFC))$.
+
+By completeness theorem, $Cons(T) \iff \exists M (M \vDash T)$. Note that LHS is $\Pi_1$ and RHS is $\Sigma_1$, so completeness theorem tells us that this is a $\Delta_1$ concept. Note also that LHS is a bounded concept, since all quantifiers are bounded (LHS is $\Delta_0^Z$).
+
+Now write $\beta$ for 'there is a transitive set $A$ s.t. $(A,\in) \vDash ZFC$'. Note that this is stronger than the consistency of ZFC as it also specifies that there is a particular model for it. In particular, we can't prove it even in $ZFC^*$:
+
+\begin{thm}
+If $ZFC^*$ is consistent, then $ZFC^* \not\vdash \beta$.
+\begin{proof}
+Let $(M,\in) \vDash ZFC^*$. Suppose $ZFC^* \vdash \beta$. So $(M,\in) \vDash \beta$. So we found a transitive set $A$ in $M$ s.t. $(A,\in)$ is a model of $ZFC$. By assumption, $(M,\in) \vDash Cons(ZFC)$, so $(A,\in) \vDash Cons(ZFC)$ since $COns(ZFC)$ is absolute between transitive models. So $(A,\in) \vDash ZFC^*$. So we proved $Cons(ZFC^*)$, contradicting G\"{o}del's incompleteness theorem.
+\end{proof}
+\end{thm}
+
+That means that assuming $\beta$ is not an obvious assumption, so we need to study under which (natural) assumptions $\beta$ is true.
+
+So let's investigate transitive models $A$ inside $M$. The two most basic constructions: \\
+(1) von Neumann hierarchy (cumulative hierarchy);\\
+(2) hereditarily small sets.
+
+(1) is defined as follows by transfinite recursion: $V_0:=\phi$, $V_{\alpha+1} := \mathcal{P}(V_\alpha)$, $V_\lambda := \cup_{\alpha<\lambda} V_\alpha$ for $\lambda$ being limit ordinals.
+
+\begin{prop}
+$\forall \alpha V_\alpha$ is transitive (see Part II Logic and Set Theory). [Induction, with key lemma: if $X$ is transitive, then $\mathcal{P}(X)$ is transitive]
+\end{prop}
+
+If $\lambda$ is a limit ordinal, then $V_\lambda \vDash FST$.\\
+If $\lambda > \omega$ and a limit ordinal, then $V_\lambda \vDash Z$.
+
+For (2): let $\kappa$ be a cradinal. We say $X$ is hereditarily smaller than $\kappa$ if $|tcl(X)| < \kappa$ (transitive closure).\\
+Let $H_\kappa := \{X:X$ is 	~hereditarily smaller than $\kappa\}$. This is obviously transitive.
+
+We'll continue next Monday.
 
 \end{document}
