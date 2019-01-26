@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  23 JAN 2019 19:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  26 JAN 2019 15:13
 entering extended mode
 **./IAP.tex
 (IAP.tex
@@ -1641,22 +1641,22 @@ T1/cmr/m/n/10 (-20) , so $\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 S[]A\OMS/cmsy/m/n/
 /n/10 jj\OML/cmm/m/it/10 A[]A\OMS/cmsy/m/n/10 j 
  []
 
-[9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 195.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 195.
+[9] [10] [11] [12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 288.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
  (IAP.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 195.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 195.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 288.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 288.
 Package rerunfilecheck Info: File `IAP.out' has not changed.
-(rerunfilecheck)             Checksum: 0FADE7401F479C6C9C63B49D4FE955D9;174.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 195.
+(rerunfilecheck)             Checksum: 760B09B0416F5589F51F1DDBA145ECC0;228.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 288.
  ) 
 Here is how much of TeX's memory you used:
- 39634 strings out of 492970
- 926954 string characters out of 3135855
- 1176434 words of memory out of 3000000
- 42897 multiletter control sequences out of 15000+200000
- 548248 words of font info for 106 fonts, out of 3000000 for 9000
+ 39651 strings out of 492970
+ 927093 string characters out of 3135855
+ 1177434 words of memory out of 3000000
+ 42898 multiletter control sequences out of 15000+200000
+ 548668 words of font info for 112 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,10n,96p,860b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Pr
@@ -1678,9 +1678,9 @@ msy7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 <E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><E:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><E:/Program Files
 /MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on IAP.pdf (9 pages, 263136 bytes).
+Output written on IAP.pdf (12 pages, 281931 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 18469 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 21 named destinations out of 1000 (max. 500000)
+ 18477 words of extra memory for PDF output out of 20736 (max. 10000000)
 
