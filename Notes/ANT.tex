@@ -371,7 +371,7 @@ It was 1850 before the correct magnitude of $\pi(x)$ was proved. Chebyshev showe
     \end{proof}
 \end{lemma}
 
----Lecture 3---
+---Lecture 4---
 
 Drop-in: Tuesday 4pm-5pm.
 
@@ -482,7 +482,7 @@ Recall that
 so their main terms agree.\\
 So 
 \[
-\psi(x) &= \sum_{a \leq x} \mu(a) (\sum_{b \leq \frac{x}{a}} \tau(b) + 2\gamma \frac{x}{a} + O(\frac{x^{1/2}}{a^{1/2}})\\
+\psi(x) &= \sum_{a \leq x} \mu(a) \left(\sum_{b \leq \frac{x}{a}} \tau(b) + 2\gamma \frac{x}{a} + O\left(\frac{x^{1/2}}{a^{1/2}}\right)\right)\\
 &= \sum_{ab \leq x} \mu(a) \tau(b)\\
 &= \sum_{abc \leq x} \mu(a)\\
 &= \sum_{b \leq x} \sum_{ac \leq x/b} \mu(a)\\
@@ -495,6 +495,128 @@ The error term:
 \[
 -2\gamma \sum_{a \leq x} \mu(a) \frac{x}{a} = O(x \sum_{a \leq x} \frac{\mu(a)}{a})
 \]
-so we still need to show that $\sum_{a \leq x} \frac{\mu(a)}{a} = o(1)$. However, this is still the same as PNT, so we haven't gained anything.
+so we need to show that $\sum_{a \leq x} \frac{\mu(a)}{a} = o(1)$. However, this is still the same as PNT, so we haven't gained anything.
+
+---Lecture 5---
+
+\subsection{Selberg's identity, and an elementary proof of the PNT}
+
+Recall that PNT is 
+$$\psi(x) = \sum_{n \leq x} \Lambda(n) = x+o(x)$$
+
+Let (\emph{Selberg's function})
+$$\Lambda_2(n) = \mu*(\log^2)(n) = \sum_{ab = n} \mu(a) (\log b)^2$$
+(Recall $\Lambda = \mu*\log$).
+
+The idea is to prove a 'PNT for $\Lambda_2$' with elementary methods.
+
+\begin{lemma} (12)\\
+(1) $\Lambda_2(n) = \Lambda(n) \log n + \Lambda * \Lambda (n)$;\\
+(2) $0 \leq \Lambda_2(n) \leq (\log n)^2$;\\
+(3) If $\Lambda_2(n) \neq 0$, then $n$ has at most 2 distinct prime factors.
+\begin{proof}
+For (1), we use M\"{o}bius inverison, so it is enough to show that
+\[
+\sum_{d|n} (\Lambda(d) \log d + \Lambda * \Lambda(d)) &= (\log n)^2\\
+&= \sum_{d | n} \Lambda(d) \log d + \sum_{ab | n} \Lambda(a) \Lambda(b) \text{ as } 1*\Lambda = \log\\
+&= \sum_{d|n}\Lambda(d) \log d + \sum_{a|n} \Lambda(a)\underbrace{\left(\sum_{b|\frac{n}{a}} \Lambda(b))\right)}_{=\log(\frac{n}{d})}\\
+&=\sum_{d|n} \Lambda(d) \log d + \sum_{d|n} \Lambda(d) \log (\frac{n}{d})\\
+&= \log n \sum_{d|n} \Lambda(d) = (\log n)^2
+\]
+For (2), $\Lambda_2(n) \geq 0$ since both terms on RHS in (1) are $\geq 0$, and since $\sum_{d|n} \Lambda_2(d) = (\log n)^2$, $\Lambda_2(n) \leq (\log n)^2$.\\
+For (3), note that if $n$ is divisible by 3 distinct primes, then $\Lambda(n) = 0$, and $\Lambda *\Lambda(n) = \sum_{ab = n} \Lambda(a)\Lambda(b) = 0$ since at least one of $a$ or $b$ has $\geq 2$ distinct prime divisors.
+\end{proof}
+\end{lemma}
+
+\begin{thm} (13, Selberg)\\
+\[
+\sum_{n \leq x} \Lambda_2(n) = 2x\log x + O(x)
+\]
+\begin{proof}
+\[
+\sum_{n \leq x} \Lambda_2(n) &= \sum_{n \leq x} \mu*(\log)^2(n)\\
+&= \sum_{ab \leq x} \mu(a)(\log b)^2\\
+&= \sum_{a \leq x} \mu(a) \left(\sum_{b \leq \frac{x}{a}}(\log b)^2\right)
+\]
+By PS,
+\[
+\sum_{m \leq x} (\log m)^2 = x (\log x)^2 - 2x\log x + 2x + O((\log x)^2)
+\]
+By PS, (let $A(t) = \sum_{n \leq t} \tau(n) = t\log t + ct + O(t^{1/2})$)
+\[
+\sum_{m \leq x} \frac{\tau(m)}{m} &= \frac{A(x)}{x} + \int_1^x \frac{A(t)}{t^2} dt\\
+&=\log x + c + O(x^{-1/2}) + \int_1^x \frac{\log t}{t} dt + c\int_1^x\frac{1}{t} dt + O(\int_1^x \frac{1}{t^{3/2}} dt)\\
+&= \frac{(\log x)^2}{2} + c_1 \log x + c_2 + O(x^{-1/2})
+\]
+So
+\[
+\frac{x(\log x)^2}{2} = \sum_{m \leq x} \tau(m) \frac{x}{m} + c_1' \sum_{m \leq x} \tau(m) + c_2'x + O(x^{1/2})
+\]
+So
+\[
+\sum_{n \leq x} (\log m)^2 = 2\sum_{m \leq x} \tau(m) \frac{x}{m} + c_3 \sum_{m \leq x} \tau(m) + c_4 x + O(x^{1/2})
+\]
+So
+\[
+\sum_{n \leq x} \Lambda_2(n) = 2 \sum_{a \leq x} \mu(a) \sum_{b \leq \frac{x}{a}} \frac{\tau(b) x}{ab} + c_5 \sum_{a \leq x} \mu(a) \sum_{b \leq \frac{x}{a}} \tau(b) + c_6 \sum_{a \leq x} \mu(a) \frac{x}{a} + O(\sum_{a \leq x} \frac{x^{1/2}}{a^{1/2}})
+\]
+First, note that $x^{1/2} \sum_{a \leq x} \frac{1}{a^{1/2}} = O(x)$ (by PS or just comparing with the integral. Secondly,
+\[
+x \sum_{a \leq x} \frac{\mu(a)}{a} &= \sum_{a \leq x} \mu(a) \lfloor \frac{x}{a} \rfloor + O(x)\\
+&= \sum_{a \leq x} \mu(a) \sum_{b \leq \frac{x}{a}} 1 + O(x)\\
+&= \sum_{d \leq x} \mu*1 (d) + O(x)\\
+&= O(x)
+\]
+since the sum is either 1 (when $d=1$) or 0 (otherwise).\\
+Thirdly,\footnote{Jaspal noticed that this can be obtained much more easily by $\mu*\tau = 1$ from M\"{o}bius inversion.}
+\[
+\sum_{a \leq x} \mu(a) \sum_{b \leq x} \tau(b) &= \sum_{a\leq x} \mu(a) \sum_{b \leq \frac{x}{a}} \sum_{cd = b} 1\\
+&= \sum_{a \leq x} \mu(a) \sum_{cd \leq \frac{x}{a}}1\\
+&= \sum_{acd \leq x} \mu(a)\\
+&= \sum_{d \leq x} \sum_{ac \leq \frac{x}{d}} \mu(a)\\
+&= \sum_{d \leq x} \sum_{e \leq \frac{x}{d}} \mu* 1(e)\\
+&= \sum_{d \leq x} 1 = O(x)
+\]
+So
+\[
+\sum_{n \leq x} \Lambda_2(n) &= 2\sum_{a \leq x} \mu(a) \sum_{b \leq \frac{x}{a}} \frac{\tau(b)x}{ab} + O(x)\\
+&= 2x \sum_{d \leq x} \frac{1}{d} \mu * \tau(d) + O(x)
+\]
+Recall that $\tau = 1*1$, so $\mu *\tau = \mu*1*1=1$. So the above
+\[
+&= 2x \sum_{d \leq x} \frac{1}{d} + O(x)\\
+&= 2x \log x + O(x)
+\]
+\end{proof}
+\end{thm}
+
+(Non-examinable from now, but lecturer still recommends us to think about it)\\
+A 14-point plan to prove PNT from Selberg's identity:\\
+Let $r(x) = \frac{\psi(x)}{x} - 1$, so PNT is equivalent to $\lim_{x \to \infty} |r(x)| = 0$.\\
+1) Selberg's identity $\implies$
+\[
+r(x) \log x = -\sum_{n \leq x} \frac{\Lambda(n)}{n} r(\frac{x}{n}) + O(1)
+\]
+2) Considering 1) with $x$ replaced $\frac{x}{m}$, summing over $m$, show 
+\[
+|r(x)|(\log x)^2 \leq \sum_{n \leq x} \frac{\Lambda_2(n)}{n} |r(\frac{x}{n})| + O(\log x)
+\]
+3) 
+\[
+\sum_{n \leq x} \Lambda_2{(n) = 2\int_1^{\lfloor x \rfloor} \log t dt + O(x)
+\]
+4-6) (Let's skip some of the steps)
+\[
+\sum_{n \leq x} \frac{\Lambda_2(n)}{n} |r(\frac{x}{n})| = 2\int_1^x \frac{|r(x/t)#|}{t\log t} dt + O(\log x)
+\]
+7) Let $V(u) = r(e^u)$. Show that 
+\[
+u^2 |V(u)| \leq 2 \int_0^u \int_0^v |V(t)| dt dv + O(u)
+\]
+8) Show
+\[
+\limsup|r(x)| \leq \limsup \frac{1}{u} \int_0^u |V(t)| dt = \beta
+\]
+9-14) (!) If $\alpha>0$, then can show from 7) that $\beta < \alpha$, contradiction; so $\alpha=0$, and PNT.
 
 \end{document}
