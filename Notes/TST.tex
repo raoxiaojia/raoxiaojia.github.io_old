@@ -250,11 +250,13 @@ Now write $\beta$ for 'there is a transitive set $A$ s.t. $(A,\in) \vDash ZFC$'.
 \begin{thm}
 If $ZFC^*$ is consistent, then $ZFC^* \not\vdash \beta$.
 \begin{proof}
-Let $(M,\in) \vDash ZFC^*$. Suppose $ZFC^* \vdash \beta$. So $(M,\in) \vDash \beta$. So we found a transitive set $A$ in $M$ s.t. $(A,\in)$ is a model of $ZFC$. By assumption, $(M,\in) \vDash Cons(ZFC)$, so $(A,\in) \vDash Cons(ZFC)$ since $COns(ZFC)$ is absolute between transitive models. So $(A,\in) \vDash ZFC^*$. So we proved $Cons(ZFC^*)$, contradicting G\"{o}del's incompleteness theorem.
+Let $(M,\in) \vDash ZFC^*$. Suppose $ZFC^* \vdash \beta$. So $(M,\in) \vDash \beta$. So we found a transitive set $A$ in $M$ s.t. $(A,\in)$ is a model of $ZFC$. By assumption, $(M,\in) \vDash Cons(ZFC)$, so $(A,\in) \vDash Cons(ZFC)$ since $Cons(ZFC)$ is absolute between transitive models. So $(A,\in) \vDash ZFC^*$. So we proved $Cons(ZFC^*)$, contradicting G\"{o}del's incompleteness theorem.
 \end{proof}
 \end{thm}
 
 That means that assuming $\beta$ is not an obvious assumption, so we need to study under which (natural) assumptions $\beta$ is true.
+
+\subsection{Concrete transitive models of ZFC}
 
 So let's investigate transitive models $A$ inside $M$. The two most basic constructions: \\
 (1) von Neumann hierarchy (cumulative hierarchy);\\
@@ -273,5 +275,56 @@ For (2): let $\kappa$ be a cardinal. We say $X$ is hereditarily smaller than $\k
 Let $H_\kappa := \{X:X$ is hereditarily smaller than $\kappa\}$. This is obviously transitive.
 
 We'll continue next Monday.
+
+---Lecture 5---
+
+We'll start with $V_\alpha$ today.
+
+We know (if you don't know then I invite you to learn it): if $\lambda$ is a limit then $V_\lambda \vDash FST$; if further $\lambda > \omega$, then $V_\lambda \vDash Z$. (On example sheet 1. I haven't printed them today, so if you want to try them before Wednesday, find an envelope next to my office at C0.10 from this afternoon). 
+
+The critical axiom here is \emph{Replacement}. The test case is $\lambda = \omega + \omega$, which we expect replacement fails. Remember replacement says that if we have a function $F:V_{\omega + \omega} \to V_{\omega + \omega}$ that is definable in $V_{\omega + \omega}$, and $x \in V_{\omega+\omega}$, then $\{F(y):y \in x\} \in V_{\omega+\omega}$, i.e. image of elements of a set under a function is a set.
+
+The idea is to take $x=\omega$, and define $F$ to be the function that takes $n \to \omega+n$, and $y \to 0$ if $y \not\in \omega$. Remember that definable just means that we need a formula that uniques specify the image (see previous notes). Let $Y=\{F(n):n \in \omega\}$, which needs to be a set if replacement holds. Then $Y$ is a subset of $V_{\omega+\omega}$, so $Y \in V_{\omega+\omega+1}$; but it is not bounded, so it is not in $V_{\omega+\omega}$. This example shows concretely that $V_{\omega+\omega} \vDash \neg Replacement$.
+
+What we needed in this particular example is a function that takes a bounded sequence to an unbounded one. Similarly, if $\alpha$ is any ordinal s.t. there is a definable function $f:\omega \to \alpha$, s.t. the range of $f$ is unbounded in $\alpha$, then $V_\alpha \vDash \neg Replacement$.
+
+Even more general, if $\beta < \alpha$, and a definable function $f:\beta \to \alpha$ with unbounded range, then $V_\alpha \vDash \neg Replacement$.
+
+Reminder: we call a cardinal $\kappa$ \emph{regular} if there is no partition $\kappa = \cup_{i \in I} A_i$ s.t. $|I|,|A_i| < \kappa$ for all $i \in I$.\\
+Equivalently, for every $\alpha < \kappa$,there is no unbounded function $f:\alpha \to \kappa$.
+
+We know, for exmaple, that $\aleph_1$ is regular. Moreover, for any $\alpha$, $\aleph_{\alpha+1}$ is regular. So this gives us the next candidate, $\alpha=\aleph_1$, which replacement cannot fail in the above way. So how does it fail? Note that $\mathcal{P}(\omega) \in V_{\omega+2} \subseteq V_{\omega_1}$. Clearly, there is a surjection $s:\mathcal{P}(\omega) \to \omega_1$. But that means its range is unbounded in $\omega_1$. Thus $V_{\omega_1} \vDash \neg Replacement$ either.\\
+In general, if $\kappa$ is regular and there is $\lambda < \kappa$ with $|\mathcal{P}(\lambda)| \geq \kappa$, then the same argument shows $V_\kappa \vDash \neg Replacement$. 
+
+\begin{defi}
+A cardinal $\kappa$ is called \emph{inaccessible} if\\
+(a) $\kappa$ is regular;\\
+(b) $\forall \lambda < \kappa$, $|\mathcal{P}(\lambda)| < \kappa$.
+\end{defi}
+
+Side note: Related to the question, 'are there regular limit cardinals'? Under GCH: $\forall \kappa, 2^\kappa = \kappa^+$, we have that $\kappa$ is inaccessible iff $\kappa$ is regular limit. This suggests that the above question cannot be answered that easily (we usually call regular limit cardinals \emph{weakly inaccessible}).
+
+Let's assume that $\kappa>\omega$ is inaccessible (because $\omega$ is actually inaccessible, which kind of make sense, because \emph{infinity} is the ultimate thing that is not accessible from everything smaller than it).
+
+\begin{lemma}
+$\forall \lambda < \kappa$, $|V_\lambda| < \kappa$.
+\begin{proof}
+Clearly $|V_\omega| = \aleph_0$, so $|V_\omega| < \kappa$.\\
+By induction, suppose $|V_\lambda| < \kappa$. Then $V_{\lambda+1} = \mathcal{P}(V_\lambda)$. Therefore $|V_{\lambda+1}| = |\mathcal{P}(V_\lambda)| < \kappa$ by (b).\\
+Now let $\lambda < \kappa$ be a limit ordinal. Then $V_\lambda = \cup_{\alpha < \lambda} V_\alpha$. So suppose by contradiction that $|V_\lambda| = \kappa$. But $|V_\alpha| < \kappa$ for all $\alpha < \kappa$, so we can write $\kappa$ as a union of $\lambda$ many things of smaller cardinals, contradicting regularity.
+\end{proof}
+\end{lemma}
+
+\begin{thm}
+If $\kappa$ is inaccessible, then $V_\kappa \vDash Replacement$.
+\begin{proof}
+We're actually going to something slightly stronger: take any function $F:V_\kappa \to V_\kappa$ (without caring of its definability), and any $x \in V_\kappa$. Note that $V_\kappa = \cup_{\alpha < \kappa} V_\alpha$. So we can find $\alpha \in \kappa$ s.t. $x \in V_\alpha$. Since $V_\alpha$ is transitive, $x \subseteq V_\alpha$. But that means $|x| \leq |V_\alpha| < \kappa$ (by lemma). Note that this is exactly what went wrong in $V_{\omega_1}$.\\
+Now consider $X:=\{F(y):y \in x\}$. For each $y \in x$, consider $\rho(F(y)):=$ the least $\alpha$ s.t. $F(y) \in V_{\alpha+1} \setminus V_\alpha$. By assumption, $\rho(F(y)) < \kappa$. Consider $\{\rho(F(y)):y \in x\} := R$, then $|R| \leq |x| < \kappa$. By regularity, $\alpha := \cup R < \kappa$. But now $\forall y \in x F(y) \in V_{\alpha+1}$. So $X \subseteq V_{\alpha+1}$, so $X \in V_{\alpha+2}$, i.e. $V_\kappa \vDash Replacement$.
+\end{proof}
+\end{thm}
+
+Note that this proves that the existence of inaccessible cardinals cannot be proved from ZFC. 
+
+
 
 \end{document}
