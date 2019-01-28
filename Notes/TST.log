@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  26 JAN 2019 15:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  28 JAN 2019 09:38
 entering extended mode
 **./TST.tex
 (TST.tex
@@ -1662,22 +1662,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 277.
  (TST.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 277.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 277.
-
-
-Package rerunfilecheck Warning: File `TST.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `TST.out':
-(rerunfilecheck)             Before: F32864D3533E93B2A86BA57707EB3626;110
-(rerunfilecheck)             After:  8F2843E0F11B304A73788A2B4AE7A872;328.
+Package rerunfilecheck Info: File `TST.out' has not changed.
+(rerunfilecheck)             Checksum: 8F2843E0F11B304A73788A2B4AE7A872;328.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 277.
  ) 
 Here is how much of TeX's memory you used:
- 39663 strings out of 492970
- 927163 string characters out of 3135855
+ 39666 strings out of 492970
+ 927211 string characters out of 3135855
  1177434 words of memory out of 3000000
- 42894 multiletter control sequences out of 15000+200000
+ 42897 multiletter control sequences out of 15000+200000
  548815 words of font info for 121 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,7n,96p,991b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1697,9 +1690,9 @@ MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><E:/Program Files/MiKTeX 2
 blic/amsfonts/cm/cmti10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
 fonts/symbols/msam10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/symbols/msbm10.pfb>
-Output written on TST.pdf (11 pages, 236804 bytes).
+Output written on TST.pdf (11 pages, 238852 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
+ 159 PDF objects out of 1000 (max. 8388607)
  18 named destinations out of 1000 (max. 500000)
- 16413 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 16437 words of extra memory for PDF output out of 17280 (max. 10000000)
 
