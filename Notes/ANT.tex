@@ -603,11 +603,11 @@ r(x) \log x = -\sum_{n \leq x} \frac{\Lambda(n)}{n} r(\frac{x}{n}) + O(1)
 \]
 3) 
 \[
-\sum_{n \leq x} \Lambda_2{(n) = 2\int_1^{\lfloor x \rfloor} \log t dt + O(x)
+\sum_{n \leq x} \Lambda_2(n) = 2\int_1^{\lfloor x \rfloor} \log t dt + O(x)
 \]
 4-6) (Let's skip some of the steps)
 \[
-\sum_{n \leq x} \frac{\Lambda_2(n)}{n} |r(\frac{x}{n})| = 2\int_1^x \frac{|r(x/t)#|}{t\log t} dt + O(\log x)
+\sum_{n \leq x} \frac{\Lambda_2(n)}{n} |r(\frac{x}{n})| = 2\int_1^x \frac{|r(x/t)|}{t\log t} dt + O(\log x)
 \]
 7) Let $V(u) = r(e^u)$. Show that 
 \[
@@ -618,5 +618,91 @@ u^2 |V(u)| \leq 2 \int_0^u \int_0^v |V(t)| dt dv + O(u)
 \limsup|r(x)| \leq \limsup \frac{1}{u} \int_0^u |V(t)| dt = \beta
 \]
 9-14) (!) If $\alpha>0$, then can show from 7) that $\beta < \alpha$, contradiction; so $\alpha=0$, and PNT.
+
+\newpage
+
+\section{Sieve Methods}
+
+---Lecture 6---
+
+Hand in by Monday if you want some questions (q2 and q3) to be marked.
+
+Everyone knows how Sieve of Eratosthenes works (some demonstration by lecturer). Our interest is in using the sieve to \emph{count} things. If we apply Sieve of Eratosthenes to the interval $[1,20]$, then we get an equality between two ways of counting how many numbers are left:
+\[
+\pi(20)+1-\pi(\sqrt{20}) = 20-\lfloor 20/2\rfloor - \lfloor 20/3\rfloor + \lfloor 20/6\rfloor
+\]
+where both sides evaluate to 7.
+
+\subsection{Setup}
+We'll have the following:
+$\bullet$ Finite set $A \subset \N$ (the set to be sifted);\\
+$\bullet$ Set of primes $p$ (the set of primes we sift out by), usually all primes;\\
+$\bullet$ Sifting limit $z$ (sift all primes in $P$ less than $z$)\\
+$\bullet$ sifting function
+\[
+S(A,P;z) = \sum_{n \in A} 1_{(n,\prod_{p \in P, p < z}p) =1}
+\]
+
+Let $\prod_{p \in P, p < z} p = P(z)$. Our goal is to estimate $S(A,P;z)$.
+
+$\bullet$ For $d$, let
+\[
+A_d = \{n \in A:d | n\}
+\]
+$\bullet$ We write $|A_d| = \frac{f(d)}{d} X + R_d$ (most textbooks use $\omega$ in place of $f$ here, our use here is to avoid confusion), where $f$ is completely multiplicative ($f(mn) = f(m) f(n) \forall m,n$), and $0 \leq f(d) \forall d$.\\
+$\bullet$ Note that $|A| = \frac{f(1)}{1} X + R_1 = X+R_1$;\\
+$\bullet$ $R_d$ is an 'error' term;\\
+$\bullet$ We choose $f$ so that $f(p) = 0$ if $p \not\in P$ by convention (so in that case $R_p = |A_p|$).\\
+$\bullet$ Let $W_p(z) = \prod_{p < z, p \in P} (1-\frac{f(p)}{p})$.
+
+\begin{eg}
+1) Take $A=(x,x+y] \cap \N$, $P$ the set of all primes. So $|A_d| = \lfloor \frac{x+y}{d} \rfloor - \lfloor \frac{x}{d}\rfloor = \frac{y}{d} + O(1)$.\\
+Here $f(d) \equiv 1$, and $R_d = O(1)$.\\
+So $S(A,P;z)= |\{x < n \leq x+y: p | n \implies p \geq z\}|$.\\
+e.g. if $z \approx (x+y)^{1/2}$, then
+\[
+S(A,P;z) = \pi(x+y)-\pi(x) + O((x+y)^{1/2})
+\]
+\end{eg}
+
+2) $A = \{1 \leq n \leq y: n \equiv a \pmod q\}$, $A_d = \{1 \leq m \leq \frac{x}{d}: dm \equiv a \pmod q\}$. This congruence only has solutions if $(d,q) | a$. So \\
+$|A_d| = \frac{(d,q)}{dq} y + O((d,q))$ if $(d,q) | a$, and $=O((d,q))$ otherwise.\\
+So here $X=y/q$, and $f(d) = d(d,q)$ if $(d,q) | a$, and $0$ otherwise.
+
+3) How about twin primes, i.e. $p,p+2$ both primes? We have\\
+$A=\{n(n+2): 1 \leq n \leq x\}$ (so if $p|n(n+2) \iff n \equiv 0,-2 \pmod p$);\\
+$P$ is all primes except 2;\\
+$|A_p| = \frac{2x}{p} + O(1)$ (so $f(p) = 2$). So $f(d) = 2^{\omega(d)}$ for $f$ to be completely multiplicative, where $\omega(d)$ denote the number of primes divisors of $d$.\\
+$S(A,P;x^{1/2}) = |\{1 \leq p \leq x: p,p+2$ both prime$\} + O(x^{1/2})$. Denote the main term as $\pi_2(x)$, then as mentioned in the first lecture we expect $\pi_2(x) \approx \frac{x}{(\log x)^2}$. We will prove the upper bound using sieves.
+
+\begin{thm} (1, Sieve of Eratosthenes Legendre)\\
+$S(A,P;z) = X W_p(z) + O (\sum_{d | p(z)} R_d)$.
+\begin{proof}
+\[
+S(A,P;z) &= \sum_{n \in A} 1_{(n,p(z)) = 1}\\
+&= \sum_{n \in A} \sum_{d | (n,p(z))} \mu(d)\\
+&= \sum_{n \in A} \sum_{d | n,d|p(z)} \mu(d)\\
+&= \sum_{d | p(z)} \mu(d) \sum_{n \in A} 1_{d|n}\\
+&= \sum_{d | p(z)} \mu(d) |A_d|\\
+&= X \sum_{d | p(z)} \frac{\mu(d)f(d)}{d} + \sum_{d | p(z)} \mu(d) R_d\\
+&= X \prod_{p \in P, p < z} \left(1-\frac{f(p)}{p}\right) + O(\sum_{d | p(z)} |R_d|)
+\]
+\end{proof}
+\end{thm}
+
+\begin{coro}
+$\pi(x+y) - \pi(x) \ll \frac{y}{\log\log y}$.
+\begin{proof}
+In example 1, $f \equiv 1$, and $|R_d| \ll 1$, and $X=y$. So
+\[
+W_p(z) = \prod_{p \leq z} \left(1-\frac{1}{p}\right) \ll (\log z)^{-1}
+\]
+and 
+\[
+\sum_{d | p(z)} |R_d| \ll \sum_{d|p(z)} 1 \leq 2^z
+\]
+So $\pi(x+y) - \pi(x) \ll \frac{y}{\log z} + 2^z \ll \frac{y}{\log \log y}$ if we choose $z=\log y$.
+\end{proof]
+\end{coro}
 
 \end{document}

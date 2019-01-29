@@ -229,7 +229,7 @@ Let $A \subset G$ be finite. If $A$ is a $K$-approximate group then $|A^3| \leq 
 \begin{proof}
 First part is just lemma 3.1. For the converse, set $\hat{A} = A \cup \{1\} \cup A^{-1}$, and note that $A^2 = \{1\} \cup A \cup A^{-1} \cup A^2 \cup A^{-1}A \cup AA^{-1} \cup A^{-2}$. Each set in this union has size $\leq K^2|A|$, by prop 2.7, so $|B| \leq 7K^3|A|$, as claimed. Similarly,
 \[
-A^4 = \bigcup_{\varepsilon_i = \pm 1, 0 \leq m \leq 4} A^{\varepsilon_1}...A_{\varepsilon_m}
+A^4 = \bigcup_{\varepsilon_i = \pm 1, 0 \leq m \leq 4} A^{\varepsilon_1}...A^{\varepsilon_m}
 \]
 and the sets in this union have size $\leq K^6|A|$. It follows that $|\hat{A}^4| \leq O(K^6) |\hat{A}|$. Lemma 2.4 then tells us that $\exists X \subset G$, $|X| \leq O(K^6)$ s.t. $\hat{A}^n \subset X^{n-2} \hat{A}^2$ for every $n \geq 2$.\\
 In particular, $|X^2| \leq O(K^{12})$, and $\hat{A}^4 = (\hat{A}^2)^2 \subset X^2 \hat{A}^2$, so $\hat{A}^2$ is an $O(K^{12})$-approximate group, as claimed.
@@ -249,7 +249,7 @@ Tao proved a version of theorem 3.3 when he introduced the definition of approxi
 \begin{lemma} (3.4, Petridis)\\
 Suppose $A,B \subset G$ are finite, let $U \subset A$ be non-empty, chosen to minimise the ratio $|UB| / |U|$, and write $R=|UB|/|U|$. Then for every finite $C \subset G$, we have $|CUB| \leq R|CU|$.
 \begin{proof}
-It's trivial if $C=\phi$, so we may assume $\exists x \in C$. Defining $C' = C \{x\}$, we may also assume by inducion that $|C'UB| \leq R|C'U|$.\\
+It's trivial if $C=\phi$, so we may assume $\exists x \in C$. Defining $C' = C \{x\}$, we may also assume by induction that $|C'UB| \leq R|C'U|$.\\
 Set $W = \{u \in U: xu \in C'U\}$. Then $CU=C'U \cup (xU \setminus xW)$ is a disjoint union, so in particular 
 \[
 |CU| = |C'U| + |U|-|W| \ \text{ (3.1)}
@@ -284,5 +284,127 @@ After writing a few words, lecturer decided that there's not enough time, and we
 
 Check example sheets at $tointon.neocities.org$; they'll be up some time this afternoon.
 
+\newpage
+
+\section{Stability of approximate closure under basic operations}
+
+---Lecture 4---
+
+There's a misprint in sheet 1 q7, but it has been corrected last friday.
+
+Two familiar properties of genuine subgroups are that they behave well under quotients and intersections:\\
+$\bullet$ if $H<G$, and $\pi:G \to \Gamma$ is a homomorphism, then $\pi(H) < \Gamma$;\\
+$\bullet$ if $H_1,H_2 < G$, then $H_1 \cap H_2 < G$.
+
+In this lecture we'll see versions of these properties for approximate groups and sets of small tripling.
+
+It's trivial that if $A \subset G$ is a $K$=approximate group, then $\pi(A)$ is also a $K$-approximate group. The following is the corresponding result for sets of small tripling.
+
+\begin{prop} (4.1, stability of small tripling under homomorphisms)\\
+Let $A \subset G$ be finite, symmetric, containing the identity. Suppose $\pi:G \to \Gamma$ is a homomorphism. Then 
+\[
+\frac{|\pi(A)^m|}{|\pi(A)} \leq \frac{|A^{m+2}|}{|A|}
+\]
+for all $m \in \N$.\\
+In particular, if $|A^3| \leq K|A|$, then $|\pi(A)^3| \leq K^9|\pi(A)|$ by proposition 2.7.
+\end{prop}
+
+We'll prove this using an argument of Helfgolt. We'll start with a simple observation that we'll use repeatedly in the course.
+
+\begin{lemma} (4.2)\\
+Let $H < G$, let $A \subset G$ be finite, and let $x \in G$. Then $|A^{-1}A \cap H| > |A \cap xH|$.
+\begin{proof}
+We have $(A \cap xH)^{-1} (A \cap xH) \subset A^{-1} A \cap H$.
+\end{proof}
+\end{lemma}
+
+\begin{rem}
+Most of the lemmas and propositions in this lecture will have familiar/trivial analogues for genuine subgroups.
+\end{rem}
+
+\begin{lemma} (4.3)\\
+Let $H < G$, write $\pi:G \to G/H$ for the quotient map, let $A \subset G$ be finite.\\
+Then $|A^{-1}A \cap H| \geq |A|/|\pi(A)|$.\\
+Note that $H$ is not assumed normal, so $G/H$ is just the \emph{space} of left cosets of $xH$, not necessarily a group.
+\begin{proof}
+By pigeonhole principle there exists $x \in G$ s.t. $|A \cap xH| \geq |A|/|\pi(A)|$. Then apply lemma (4.2).
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (4.4)\\
+Let $H < G$, write $\pi:G \to G/H$ for the quotient map, and let $A \subset G$ be finite.\\
+Then $|\pi(A^m)||A^n \cap H| \leq |A^{m+n}| \forall m,n \geq 0$.
+\begin{proof}
+Define $\varphi:\pi(A^m) \to A^m$ by picking arbitrarily for each $x \in \pi(A^m)$, some $\varphi(x)$ s.t. $\pi(\varphi(x)) = x$. Then the cosets of $\varphi(x) H$ for $x \in \pi(A^m)$ are all distinct by definition, so in particular,
+\[
+|\varphi(\pi(A^m)) (A^n \cap H)| = |\pi(A^m)| |A^n \cap H|
+\]
+But also, $\varphi(\pi(A^m)) (A^n \cap H) \subset A^{m+n}$.
+\end{proof}
+\end{lemma}
+
+\begin{proof} (of 4.1)\\
+Write $H=\ker \pi$. Lemma (4.4) gives $|\pi(A^m)| \leq \frac{|A^{m+2}|}{|A^2 \cap H|}$. Lemma 4.3 gives $|A^2 \cap H| \geq |A| / |\pi(A)|$ (?). The proposition follows from combining these two inequalities.
+\end{proof}
+
+Now we'll look at intersections:
+
+\begin{prop} (4.5, stability of small tripling under intersections with subgroups)\\
+Let $A \subset G$ be finite, symmetric, containing 1. Let $H \leq G$. Then
+\[
+\frac{|A^m \cap H|}{|A^2 \cap H|} \leq \frac{|A^{m+1}|}{|A|}
+\]
+In particular, by prop 2.7, if $|A^3| \leq K|A|$, then 
+\[
+|(A^m \cap H)^3| \leq K^9 |A^m \cap H|
+\]
+$\forall m \geq 2$.
+\begin{rem}
+We'll see in example sheet 1 that even if $A$ has small tripling, $A \cap H$ need not. So $m \geq 2$ is really important for this last conclusion.
+\end{rem}
+\begin{proof}
+Lemma 4.4 gives $|A^m \cap H| \leq |A^{m+1}| / |\pi(A)|$, where $\pi:G \to G/H$ is the quotient map as before).\\
+Lemma 4.3 gives $|A^2 \cap H| \geq |A| / |\pi(A)|$.\\
+The proposition follows from combining these two inequalities.
+\end{proof}
+\end{prop}
+
+\begin{prop} (4.6, stability of approximate groups under intersections with subgroups)\\
+Let $H < G$, let $A \subset G$ be a $K$-approximate group. Then $A^m \cap H$ is covered by $\leq K^{m-1}$ left-translates of $A^2 \cap H$.\\
+In particular, $A^m \cap H$ is a $K^{2m-1}$-approximate group (since $A^2 \cap H \subset A^m \cap H$ and $(A^m \cap H)^2 \subset A^{2m} \cap H$).
+\begin{proof}
+By definition, $\exists X \subset G$ with $|X| = K^{m-1}$ s.t. $A^m \subset XA$. In particular, $A^m \cap H \subset \cup_{x \in X} (xA \cap H)$.\\
+For each $xA \cap H$ non-empty, $\exists h = xa \in H$ for some $a \in A$. this means that $xA \cap H \subset h(a^{-1} A \cap H) \subset h(A^2 \cap H)$.\\
+Hence each set $xA \cap H$ in this union is contained in a single left translate of $A^2 \cap H$.
+\end{proof}
+\end{prop}
+
+In intro to discrete analysis last term, you saw that when studying small doubling/tripling, there is a more general notion of homomorphism that comes into play -- the Freiman homomorphism. To motivate this, consider two sets $A=\{-n,...,n\} \subset \Z/p\Z$, and $B = \{-n,...,n\} \subset \Z/q\Z$ for $p,q$ two large primes $\geq 10n$, say. These two sets are intuitively \emph{isomorphic} from perspective of $A+A$, or $B+B$, but there is no way of encoding this with a group homomorphism $\Z/p\Z \to \Z/q\Z$.
+
+\begin{defi} (Freiman homomorphism)\\
+Let $m \in \N$, let $A,B$ be subsets of groups. Then a map $\varphi:A \to B$ is a \emph{Freiman $m$-homomorphism} if for $x_1,...,x_m,y_1,...,y_m \in A$ with $x_1...x_m = y_1...y_m$, we have $\varphi(x_1)...\varphi(x_m) = \varphi(y_1)...\varphi(y_m)$.\\
+If $1 \in A$ and $\varphi(1) = 1$, then we say that $\varphi$ is \emph{centred}. If $\varphi$ is injective, and its inverse $\varphi(A) \to A$ is also a Freiman $m$-homomorphism, then we say $\varphi:A \to \varphi(A)$ is a \emph{Freiman $m$-isomorphism}.
+\end{defi}
+
+\begin{rem}
+1) Every map is trivially a $1$-homomorphism, so we only care about $m \geq 2$.\\
+2) This notion gets stronger as $m$ increases: we may assume $A \neq \phi$, and then, picking $a \in A$ arbitrarily, if $x_1...x_k = y_1...y_k$ for $k \leq m$, then 
+\[
+x_1...x_k \underbrace{a...a}_{m-k} = y_1...y_k \underbrace{a...a}_{m-k}
+\]
+3) If $\varphi$ is centred and $a,a^{-1} \in A$, then exercise to check $\varphi(a^{-1}) = \varphi(a)^{-1}$ ($m \geq 2$). When we say $\varphi$ is a Freiman homomorphism, we mean it is a $2$-homomorphism.
+\end{rem}
+
+\begin{lemma} (4.7)\\
+Suppose $\varphi:A \to \Gamma$ is a Freiman $m$-homomorphism. Then $|\varphi(A)^m| \leq |A^m|$.\\
+In particular, if $\varphi$ is injective, then
+\[
+\frac{|\varphi(A)^m|}{|\varphi(A)|} \leq \frac{|A^m|}{|A|}
+\]
+and if $\varphi$ is a Freiman $m$-isomorphism, then equality holds.
+\end{lemma}
+\begin{proof}
+Exercise.
+\end{proof}
 
 \end{document}
