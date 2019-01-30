@@ -325,6 +325,42 @@ Now consider $X:=\{F(y):y \in x\}$. For each $y \in x$, consider $\rho(F(y)):=$ 
 
 Note that this proves that the existence of inaccessible cardinals cannot be proved from ZFC. 
 
+\subsection{Inaccessible cardinals}
 
+---Lecture 6---
+
+Course webpage: \\
+$https://www.math.uni-hamburg.de/home/loewe/Lent2019/TST\_L19.html$.\\
+Hand in work at the start of example class.
+
+On the example sheet we've seen(or will see) that we write IC for the axiom 'there is an inaccessible cardinal.\\
+We've seen that if $\kappa$ is inaccessible, then $V_\kappa \vDash ZFC$ (which is a transitive model). So ZFC+IC $\vdash$ 'there is a transitive set that is a model of ZFC', which we have called this $\beta$ at some point; we've also proved that $\beta$ is stronger than $Cons(ZFC)$, in the sense that $ZFC+Cons(ZFC) \not\vdash \beta$. Therefore $ZFC+Cons(ZFC) \not\vdash IC$.
+
+Two model-theoretic reminders (see Part II Logic and Set Theory for both):\\
+(1) L\"{o}wenheim-Skolem theorem. We want to formalize this: if $\mathcal{S}$ is any structure in some countable first-order language $L$, and $X \subseteq S$ is any subset, then there is a \emph{Skolem hull} of $X$ in $\mathcal{S}$, usually written as $\mathcal{H}^\mathcal{S}(X)$, with $X \subseteq \mathcal{H}^\mathcal{S}(X) \subseteq \mathcal{S}$, s.t. \\
+(a) $\mathcal{H}^\mathcal{S}(X) \prec \mathcal{S}$ (elementary subsucture of $\mathcal{S}$);\\
+(b) $|\mathcal{H}^\mathcal{S}(X)| \leq \max (\aleph_0,|X|)$.\\
+You probably have seen the proof of this theorem, but let's have a sketch again because it's important to see how theorems of this kind are proved.
+\begin{proof} (sketch)\\
+Key ingredient -- Tarski-Vaught criterion: $Z \subseteq S$ then $Z \prec S$ iff for every $\varphi$ and all $z_1,...,z_n$, if $S \vDash \exists \varphi(x,z_1,...,z_n)$, then $Z \vDash \exists x \varphi(x,z_1,...,z_n)$.\\
+In order to construct the Skolem hull, we define $Z_1 = Z_0 \cup$ witnesses for all tuples $\varphi_1 (z_1,...,z_n)$ where $z_1,...,z_n \in Z_0 = X$, and then $Z_{n+1}:= Z_n \cup ...$. By induction, each $Z_i$ has the same size. In the end we define $Z := \bigcup_{n \in \N} Z_n$, which will satisfy the Tarski-Vaught criterion.
+\end{proof}
+
+Consequence: work in $ZFC+IC$, $(M,\in) \vDash ZFC+IC$; inside $V_\kappa \subseteq M \vDash ZFC$. Apply L-S theorem to $V_\kappa$ with $X:=\phi$, we find a structure $H:=\mathcal{H}^{V_\kappa} (\phi) \prec V_\kappa$, which is countable (since it cannot be finite). So we've found a countable model of ZFC -- isn't this a contradiction? Not really, because this $H$ is, in general, not transitive -- and it probably shouldn't be -- consider the sentence '$\exists x$ s.t. $x$ is the least uncountable cardinal. This is certainly true in $V_\kappa$, so it needs to be also true in $H$; but its only witness in $V_\kappa$ is $\aleph_1$, so $\aleph_1 \in Z_1 \subseteq H$; so $H$ cannot be transitive since $\aleph_1$ has uncountably many elements.
+
+(2) Mostowski Collapse Theorem. If $X$ is any set, and $R \subseteq X \times X$ s.t. $R$ is well-founded and extensional, then there is a transitive set $T$ s.t. $(T,\in) \cong (X,R)$. Consider $(H,\in) \vDash ZFC$: $\in$ is extensional on $H$ by the axioms of ZFC;$\in$ is well-founded on $M$, so $\in$ is well-founded on $H$.\\
+So, let $T$ be the Mostowski collapse of $H$: $T$ is transitive, $(T,\in) \cong (H,\in)$. So $(T,\in) \vDash ZFC$, and now $T$ is transitive, and since this is a bijection, $|T| = |H| \leq \aleph_0$, so we get a countable transitive model of ZFC!
+
+(some diagrams, where we used $T$ to denote the countable transitive model of ZFC)\\
+
+Consider $\varphi(x):=x$ is countable: $\exists f(\underbrace{f: x \to \N}_{\Delta_0^{ZFC}}, \underbrace{f \text{ is injective}}_{\Delta_0^{ZFC}})$, which is $\Sigma_1^{ZFC}$, so is upwards absolute. But this formula is \emph{not} downwards absolute: if $\alpha$ is an ordinal, $\alpha \in T$, then $V_\kappa \vDash \alpha$ is countable. But since $(T,\in) \vDash ZFC$, there is some $\alpha \in T$ s.t. $(T,\in) \vDash \alpha$ is uncountable, so $V_\kappa$ and $T$ disagree about the truth value of $\varphi(\alpha)$.
+
+Now consider $\psi(x):$ $x$ is a cardinal$:= \forall \alpha (\alpha < x \to $there is no injection from $x$ to $\alpha)$, which is $\Pi_1^{ZFC}$, so downwards absolute. In $(T,\in)$, take $\alpha$ least s.t. $(T,\in) \vDash \neg \varphi(\alpha)$. Then $(T,\in) \vDash \alpha$ is a cardinal. Clearly $V_\kappa \vDash \alpha$ is not a cardinal. So $\psi$ is not upwards absolute.
+
+Note that if $\lambda$ is an uncountable cardinal in $V_\kappa$, then $\lambda \not\in T$, so the downwards absoluteness of $\psi$ is not very interesting because there aren't many cardinals.
+
+Instead of building $\mathcal{H}^{V_\kappa}(\phi)$, why not build $H^* := \mathcal{H}^{V_\kappa} (\omega_1+1)$? Clearly $\omega_1 \in H$ now, and $\omega_1 \subseteq H$ as well, so $\omega_1$ stays the same when we do Mostowski's Collapse; so $\omega_1 \subseteq T^*$ and $\omega_1 \in T^*$ where $T^*$ is the new model obtained after Mostowski's collapse.
+
+Now we have $V_\kappa \vDash \omega_1$ is a cardinal, so by downwards absoluteness, $T^* \vDash \omega_1$ is a cardinal. However, it might be the case that there are some other cardinals below $\omega_1$, so we can't say $\omega_1 = \aleph_1$.
 
 \end{document}
