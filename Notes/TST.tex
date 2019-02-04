@@ -363,4 +363,137 @@ Instead of building $\mathcal{H}^{V_\kappa}(\phi)$, why not build $H^* := \mathc
 
 Now we have $V_\kappa \vDash \omega_1$ is a cardinal, so by downwards absoluteness, $T^* \vDash \omega_1$ is a cardinal. However, it might be the case that there are some other cardinals below $\omega_1$, so we can't say $\omega_1 = \aleph_1$.
 
+---Lecture 7---
+
+Remember our goal is to deduce some results about CH. We've decided to go for transitive models of ZFC (as we don't want to be concerned about whether a function is still a function in a submodel). We've looked at 'inner models', and in particular, models of type $V_\alpha$. We also know that if $\alpha$ is inaccessible, then $V_\alpha \vDash ZFC$. We've also found countable transitive submodel in $V_\alpha$ of ZFC, called $T$, by Mostowski collapse and L-S theorem.
+
+One problem: this is \emph{not} going to change the truth value of CH: Suppose CH is true in $(M,\in)$, so there's a bijection between $\R$ and $\omega_1$. Similarly, if CH is false then there is no such bijection. An immediate problem is that we don't know what $\R$ is; we might as well replace it by $\P(\N)$, which is definitely in $V_{\omega+20}$ (safe enough), while $\omega_1 \in V_{\omega_1+1}$. But that means $V_\kappa$ knows exactly if there is a bijection (say we can define this in $V_{\omega_1+20} \subseteq V_k$) between $\R$ and $\omega_1$ because it has access to both of the levels, and it could just 'take a look' at it to determine the truth value. So $(M,\in) \vDash CH \iff (V_\kappa,\in) \vDash CH$.\\
+But remember by L-S theorem we got a countable $H \prec V_\kappa$, so $(H,\in) \vDash CH \iff (V_\kappa,\in) \vDash CH$; and Mostowski collapse gives $(T,\in) \cong (H,\in)$, so $(T,\in) \vDash CH \iff (H,\in) \vDash CH$.
+
+Summary: the method of finding countable transitive \emph{elementary} submodels of $V_\kappa$ is not going to change the value of CH. So let's look at different models.
+
+\subsection{The second construction: Models of hereditarily small sets}
+
+Let $\kappa$ be a regular cardinal (e.g. $\kappa = \omega, \kappa = \omega_1$). Then $x$ is called hereditarily of size $<\kappa$ if $|tcl(x)| < \kappa$, where $tcl(x)$ is the transitive closure of $x$ ($=\bigcup_{n \in \N} t_n(x)$, where $t_0(x):=x$, $t_{n+1}(x) = \bigcup t_n(x)$).\\
+The definition of $tcl(x)$ captures the intuition of '$x$ has size $<\kappa$, all elements of $x$ have size $<\kappa$, all elements of elements of $x$ have size $<\kappa$, etc.'.
+
+\begin{rem}
+It's important that $\kappa$ is regular for the intuition to work: suppose it's not, say let $\kappa = \aleph_\omega$. Now think of a tree that has branches of all finite lengths, where at level $n$ we attach something of cardinality $\aleph_n$ at the node. More formally, define
+\[
+&x_n^0 = \aleph_n\\
+&x_n^{k+1} = \{x_n^k\}\\
+&...\\
+&\mathbb{X} := \{x_0^0,x_1^1,x_2^2,...\}
+\]
+Note that $\mathbb{X}$ is countable, but in the 'tcl' notation above, the cardinality of $t_{n+1}(\mathbb{X})$ is $\aleph_n$, so $tcl(x)$, as the union of them, has cardinality $\aleph_\omega$! The problem is obviously because we could obtain $\aleph_\omega$ from fewer than $\aleph_\omega$ of smaller than $\aleph_\omega$ things, i.e. $\aleph_\omega$ is not regular.
+\end{rem}
+
+From now let's forget about those singular $\kappa$, but only consider $\kappa$ regular.
+
+We make a few observations:\\
+1. $H_\kappa$ is transitive;\\
+2. If $X \subseteq H_\kappa$ and $|X| < \kappa$, then $X \in H_\kappa$ (follows directly from regularity of $\kappa$ and the definitions).
+
+\begin{eg}
+Let $H_{\aleph_0} := HF$ (hereditarily finite).\\
+We claim that $HF = V_\omega$.
+\begin{proof}
+$V_\omega \subseteq HF$. We need to show $V_n \subseteq HF \forall n$. Clearly $V_0 = \phi \subseteq HF$; if $V_n \subseteq HF$, and $Z \subseteq V_n$, then by observation 2, $Z \in HF$, so $\mathcal{P}(V_n) = V_{n+1} \subseteq HF$.\\
+Now we show $HF \subseteq V_\omega$. Suppose not, so there is $x \in HF \setminus V_\omega$; take such $x$ with minimal rank $\alpha$, so $x \in V_{\alpha+1} \setminus V_\alpha$. By minimality, if $y \in HF$ with $\rho(y) < \alpha$, then there is $k \in \N$ s.t. $\rho(y) = k$. We know $x \in \mathcal{P}(V_\alpha)$, so $x \subseteq V_\alpha \subseteq HF$. So $x \in HF$, so $x$ is finite. Say $x = \{x_1,...,x_n\}$. By minimality, each of them is in $V_{k_i}$ for some $k_i$, so $x \subseteq V_{\max(k_1,...,k_n)+1} \subseteq V_\omega$.
+\end{proof}
+\end{eg}
+
+\begin{eg}
+$H_{\aleph_1} = HC$ (hereditarily countable).\\
+We know:\\
+$\bullet$ $Ord \cap HC = \omega_1$;\\
+$\bullet$ $V_{\omega+2} \setminus HC \neq \phi$;\\
+$\bullet$ $V_{\omega+1} \subseteq HC$.
+
+Which axioms are true in HC? Let's check Pair: say $x,y \in HC$. then $\{x,y\} \subseteq HC$. But $|\{x,y\}| < \aleph_1$, so $\{x,y\} \in HC$.\\
+Separation, foundation, extensionality, union all hold in HC as well quite easily.\\
+Replacement: let $F$ be a function $HC \to HC$, and $x \in HC$. Consider $R:=\{ F(y);y \in x\}$, which exists in the universe, and we need to check whether it's in $R$. We know $|R| \leq |x| < \aleph_1$, and $R \subseteq HC$. By observation 2 we immediately get $R \in HC$. So replacement is trivial!\\
+So we know Power Set must be false, or at least not provable in HC, else we've proved the existence of a model of ZFC!
+
+Note that Power Set is trivial in ZFC and it's replacement that is troublesome there, while here it's the other way round.
+
+We know that $\N \in HC$, and we also know that $\mathcal{P}(\N) \not\in HC$. But that is not enough to disprove Power Set in HC; we need to show that there is no object in HC such that HC \emph{thinks} that it is the power set of $\N$; more formally, we need to show that for all $A \in HC$, $HC \vDash $'$A$ is not a power set of $\N$, i.e. $\exists X (X \subseteq \N \wedge X \not\in A)$.
+
+Fix $A \in HC$, and presume that this might be the HC-powerset of $\N$.\\
+Thus, if $X \subseteq \N$ and $X \in HC$, then $X \in A$. But if $X \subseteq \N$, then $X \subseteq HC$, and $|X| < \aleph_1$, so $X \in HC$.\\
+So if $A$ is any set s.t. $\forall X, X \subseteq \N \wedge X \in HC \to X \in A)$, then $A$ is uncountable, so $A \not\in HC$. Contradiction. Thus $HC \vDash \neg Power Set$.\	
+\end{eg}
+
+---Lecture 8---
+
+We've not been doing very useful things so far since what we've done was basically proving that many things are not useful. Even worse, the thing that we're going to do now is the most pointless of all as it's almost identical to some problems in the example sheet.
+
+We knew $H_\kappa$ is a model of all of ZFC without power set if $\kappa$ is regular.
+
+\begin{prop}
+If $\kappa$ is a strong limit (cannot be reached by taking power set), then $H_\kappa \vDash PowerSet$.
+\begin{proof}
+We'll show: if $x \in H_\kappa$, then $\mathcal{P}(x) \in H_\kappa$. This is much stronger than the Power Set axiom.\\
+Certainly $tcl(\mathcal{P}(x)) = \mathcal{P}(x) \cup tcl(x)$. Now $|tcl(x)| < \kappa$ since $x \in H_\kappa$, and $|\mathcal{P}(x)| < \kappa$ as well since $\kappa$ is a strong limit. So together we know $|tcl(\mathcal{P}(x)) | < \kappa$, so $\mathcal{P}(x) \in H_\kappa$.
+\end{proof}
+\end{prop}
+
+General idea: build inner models using \emph{definability} properties. But the problem is: definability is not definable. This sounds like a typical joke from logicians, but it's actually a theorem.
+
+\begin{thm} (Tarski Undefinability of Truth)\\
+Let $(M,\in) \vDash ZFC$ (we'll just use this, but we'll see in the proof what set theory we actually need). We assume that the language of set theory $L_\in \subseteq M$ (so that sentences and formulas are actually elements of $M$). Consider the set $S$ of sentences of $L_\in$ and the set $U$ of unary predicates (i.e. $L_\in$-formulas in one free variable).\\
+A \emph{truth predicate} would be a formula $T(x)$ in $L\in$, so a unary predicate, i.e. $T \in U$, s.t. $(M,\in) \vDash \varphi \iff (M,\in) \vDash T(\varphi)$.\\
+Claim: there can be no such truth predicate.\\
+Before proving this, let's contrast this with the definition of truth we had before. Our previous result says if $M$ is a set, then the concept $(M,\in) \vDash \varphi$ is $\Delta_0$ (because we bound the quantifier by $M$, which is a set, so in some sense we had to use a parameter $M$ in our previous result, which is not available in our current settings.\\
+\begin{proof} (idea: diagonalisation)\\
+If $\varphi(x) \in U$, then we can ask whether $\varphi(\varphi)$ (which is a sentence, so $\in S$) is true.\\
+Let's assume that there is a truth predicate $T$, and define a unary formula $\delta(x) := \neg T(x(x))$ (the \emph{diagonal}), where $x(x)$ is $x$ applied to $x$ if $x \in U$, and is $\phi$ otherwise (remember formulas are elements in $M$). Now apply $\delta$ to $\delta$, so $\delta(\delta) \in S$. Now
+\[
+M \vDash \neg T(\delta(\delta)) \iff M \vDash \delta(\delta) &\iff M\vDash T(\delta(\delta)) \\
+\]
+by definition of $\delta$ and the fact that $T$ was a truth predicate respectively. Contradiction.
+\end{proof}
+\end{thm}
+
+Again, let $M \vDash ZFC$. We say that $x \in M$ is \emph{definable} if there is a formula $\varphi$ s.t. $\forall y \in M x=y \iff M \vDash \varphi(y)$.
+
+We say that a formula $D$ is called a \emph{definition of definability} if $\forall x \in M$, $x$ is definable $\iff M \vDash D(x)$. By now we all know what we should expect next:
+
+\begin{thm} (undefinability of definability)\\
+There is no formula $D$ that is a definition of definability.
+\begin{proof}
+Assume $D$ is a definition of definability. Consider (informally now)
+\[
+\alpha := \min\{ \beta: \beta \text{ is not definable, but} \forall \gamma < \beta \exists \gamma' \gamma < \gamma' < \beta \text{ and } \gamma' \text{ is definable}\}\\
+\]
+(I think this formulation is wrong) which is the supremum of the definable ordinals. This has to exist because there are only countably many formulas, and each formula only specifies at most one ordinal; this has to be uncountable since, say, $\aleph_1$ is definable. This is defined by the formula:\\
+$y = \alpha \leftrightarrow y$ is an ordinal and $\neg D(y)$ and
+\[
+\forall \gamma (\gamma < y \to \exists \gamma' (\gamma < \gamma' < y \wedge D(\gamma')))
+\]
+This proves that $\alpha$ is definable in the sense of the definition, so $M \vDash D(\alpha$; but one of the conjuncts in the definition implies $M \vDash \neg D(\alpha)$. Contradiction.
+\end{proof}
+\end{thm}
+
+We now learned that \emph{definability} is not going to work without keeping track of parameters. So we need to define definability with direct reference to what parameters are allowed.
+
+Fix $A$, and $n \in \N$. We're going to define by recursion what it means to be a definable subset of $A^n$:\\
+Define $Diag_\in(A,n,i,j) := \{s \in A^n: s_i \in s_j\}$ (read as \emph{diagrams}),\\
+$Diag_=(A,n,i,j) := \{s \in A^n: s_i = s_j\}$,\\
+$Proj(A,R,n) := \{s \in A^n: \exists t \in R (t|_n = s)\}$ (where the formula in the last bracket means $t$ restricted to $n$) (the intended meaning is for $R \subseteq A^{n+1}$). Now define\\
+$Def(0,A,n) := \{Diag_\in(A,n,i,j): i,j < n\} \cup \{Diag_=(A,n,i,j):i,j < n\}$,\\
+\[
+Def(k+1,A,n) := Def(k,A,n) &\cup \{R \cap S: R,S \in Def(k,A,n)\} \\
+&\cup \{A^n \setminus S: S \in Def(k,A,n)\} \\
+&\cup \{Proj(A,R,n): R \in Def(k,A,n+1)\}
+\] (corresponding to conjunctions, negations and existence quantifier). Lastly we define 
+\[
+Def(A,n) := \bigcup_{k \in \N} Def(k,A,n)
+\]
+Observe that the definition of $Def(k+1,A,n)$ and $Def(0,A,n)$ are $\Delta_0$ because all of the quantifiers are bounded by $A$. So the definition of $Def(A,n)$ is a recursive definition based on absolute notions, and thus absolute for transitive models (containing $A$, of course).
+
+The next thing we are going to do (a bit of preview) is to use $Def(A,n)$ to define the \emph{definable power set}. After that, define a \emph{definable von Neumann hierarchy}. That's what we are going to do on Wednesday.
+
+A reminder that we're going to have an example class this afternoon (330-5pm). I think it's in MR5?
+
 \end{document}
