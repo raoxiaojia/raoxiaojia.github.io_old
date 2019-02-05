@@ -496,4 +496,55 @@ The next thing we are going to do (a bit of preview) is to use $Def(A,n)$ to def
 
 A reminder that we're going to have an example class this afternoon (330-5pm). I think it's in MR5?
 
+\newpage
+
+\section{Example Class 1}
+
+\subsection{Question 1}
+
+The answer to this question really depends on how we formulate the axioms. For example, the pairing axiom
+\[
+    \forall x \forall y \exists p \forall z (z \in p \leftrightarrow z = x \vee z = y)
+\]
+is sometimes formulated with the $\leftrightarrow$ changed to $\to$, but of course they are equivalent with extensionality.
+
+So there is no definite answer to this question; the message I want to convey here is that the axioms really only make sense when you have a set of those.
+
+\subsection{Question 2}
+Note that (a) is not $\Delta_0$, although it is $\Delta_0$ under some first order logic.
+
+\subsection{Question 3}
+(d) if $z$ is a function then $\mathcal{P}(\bigcup\bigcup z)$ is enough to bound the range and domain of the function.
+
+\subsection{Question 6}
+Example given on lecture: $X=\{(x,y): x< \omega y \in \{0,1\}\}$;\\
+$R=\{(a,b) : a,b = X, a=(a_1,a_2), b=(b_1,b_2), (b_2=a_2 \wedge a_1<b_1) \vee (b_2 > a_2)\}$. Both of them are in $V_{\omega +1}$, and $(X,R) \in V_{\omega+4}$ or so.
+
+\subsection{Question 8}
+The general case is the fixed point theorem for normal functions. A normal function is a function $F:Ord \to Ord$ that is\\
+$\bullet$ increasing: $\forall \alpha$ $\alpha < F(\alpha)$;\\
+$\bullet$ continuous: $\forall \lambda$ limits, $F(\lambda) = \cup_{\alpha < \lambda} F(\alpha)$.
+
+Define $\gamma_0 := \gamma$, $\gamma_{n+1} := F(\gamma_n)$, $\gamma_\omega := \bigcup_{n \in \N} F(\gamma_n)$. We basically just need to check that the fixed point happens at the third case (so that the cofinality is $\omega$).
+
+\subsection{Question 9}
+(crude notes on board) $\kappa$ is uncountable and regular. So we know $H_\kappa \vDash ZFC-PowerSet$, $V_\kappa \vDash ZFC-Replacement$. Let $\lambda < \kappa$ be a cardinal. Then $\lambda \in H_\kappa$ and every subset of $\lambda$ is in $H_\kappa$. So $H_\kappa \vDash Powerset \implies P(\lambda) \in H_\kappa$, and $|P(\lambda)| \leq |tcl(P(\lambda))| < \kappa$. So $\kappa$ is a strong limit.•
+
+\subsection{Question 10}
+
+Remember Hartog's theorem: $\forall x \exists \alpha$ a ordinal s.t. there is no injection from $\alpha$ into $X$; remember that this is true in ZF.\\
+Let $\Omega := \{R: R$ is a binary relation on $X, (X,R)$ is a well-order$\}$,\\
+$\bar{\Omega} := \{\alpha: \exists R \in \Omega, (\alpha,\in)\cong (X,R)\}$.
+
+Note that this also tells us that, if we have two models of set theory which agree on real numbers, then they agree on the size of $\aleph_1$.
+
+\subsection{Question 11}
+It's worth notice that $\Phi$ is not absolute in general (because we need strong limit for inaccessible cardinals).\\
+For the last part just take $V_{\kappa_2}$. Also note that the statement holds for any finite number, or even countably many.
+
+We can consider other set theories like $ZFC+\infty IC$: $\forall \alpha \exists \kappa > \alpha$ s.t. $\kappa$ is inaccessible, or ZFC+ there is a cardinal $\kappa$ which is inaccessible and $\forall \lambda < \kappa \exists \lambda < \kappa' < \kappa$ s.t. $\kappa'$ is inaccessible (so $\kappa$ is an inaccessible limit of inaccessible cardinals).
+
+\subsection{Question 12}
+The idea is almost the same as the one we looked in class: build the Skolem Hull starting from quantifier-free formulas, adding witnesses of existential formulas at each step. By induction we get a countable elementary substructure. Now instead of that, for each step in building the skolem hull we take the $V_{\alpha_i}$ s.t. our structure is contained in $V_{\alpha_i}$. By regularity of $\kappa$ we know we won't reach $V_\kappa$ in the end, say our supremum is $\alpha_\omega$. Note that it's possible that we've hit an inaccessible cardinal en route. So we need to ensure that we go up by at least one level at each stage to ensure that we're actually moving. Then use similar argument as q8.
+
 \end{document}
