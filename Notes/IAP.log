@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  26 JAN 2019 15:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.8)  5 FEB 2019 20:29
 entering extended mode
 **./IAP.tex
 (IAP.tex
@@ -1642,23 +1642,64 @@ T1/cmr/m/n/10 (-20) , so $\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 S[]A\OMS/cmsy/m/n/
  []
 
 [9] [10] [11] [12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 288.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
+Overfull \hbox (22.35516pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 4 STABILITY OF APPROXIMATE CLOSURE UNDER BASIC OPERATIONS \OT1
+/cmr/m/n/10 13
+ []
+
+[13]
+Overfull \hbox (22.35516pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 4 STABILITY OF APPROXIMATE CLOSURE UNDER BASIC OPERATIONS \OT1
+/cmr/m/n/10 14
+ []
+
+[14]
+Overfull \hbox (22.35516pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 4 STABILITY OF APPROXIMATE CLOSURE UNDER BASIC OPERATIONS \OT1
+/cmr/m/n/10 15
+ []
+
+[15]
+Overfull \hbox (2.91936pt too wide) in paragraph at lines 423--423
+[]\OT1/cmr/bx/n/14.4 Coset pro-gres-sions, Bohr sets and the Freiman-
+ []
+
+
+Overfull \hbox (89.02193pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 5 COSET PROGRESSIONS, BOHR SETS AND THE FREIMAN-GREEN-RUZSA TH
+EOREM \OT1/cmr/m/n/10 16
+ []
+
+[16]
+Overfull \hbox (89.02193pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 5 COSET PROGRESSIONS, BOHR SETS AND THE FREIMAN-GREEN-RUZSA TH
+EOREM \OT1/cmr/m/n/10 17
+ []
+
+[17]
+Overfull \hbox (89.02193pt too wide) has occurred while \output is active
+\OT1/cmr/m/sl/10 5 COSET PROGRESSIONS, BOHR SETS AND THE FREIMAN-GREEN-RUZSA TH
+EOREM \OT1/cmr/m/n/10 18
+ []
+
+[18]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 519.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 519.
  (IAP.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 288.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 288.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 519.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 519.
 Package rerunfilecheck Info: File `IAP.out' has not changed.
-(rerunfilecheck)             Checksum: 760B09B0416F5589F51F1DDBA145ECC0;228.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 288.
+(rerunfilecheck)             Checksum: 507D98D020407CACE1918BE8632404DE;420.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 519.
  ) 
 Here is how much of TeX's memory you used:
- 39651 strings out of 492970
- 927093 string characters out of 3135855
+ 39688 strings out of 492970
+ 927380 string characters out of 3135855
  1177434 words of memory out of 3000000
- 42898 multiletter control sequences out of 15000+200000
- 548668 words of font info for 112 fonts, out of 3000000 for 9000
+ 42900 multiletter control sequences out of 15000+200000
+ 549445 words of font info for 125 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,10n,96p,860b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,15n,96p,860b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/Program Files/MiKT
@@ -1677,10 +1718,11 @@ nts/cm/cmsy10.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 msy7.pfb><E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 <E:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><E:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><E:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on IAP.pdf (12 pages, 281931 bytes).
+/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><E:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on IAP.pdf (18 pages, 326166 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 21 named destinations out of 1000 (max. 500000)
- 18477 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 225 PDF objects out of 1000 (max. 8388607)
+ 30 named destinations out of 1000 (max. 500000)
+ 18493 words of extra memory for PDF output out of 20736 (max. 10000000)
 
