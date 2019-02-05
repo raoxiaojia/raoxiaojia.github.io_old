@@ -795,5 +795,266 @@ Let $V = \sum_{d,e|P(z)} \lambda_d \lambda_e \frac{f([d,e])}{[d,e]}$. Write $[d,
 
 ---Lecture 8 to be typesetted (continuation of proof of Selberg's Sieve, and upper bound of number of twin primes)---
 
+---Lecture 9---
+
+Example class today, 330-5pm, mr14.
+
+To finish the proof that $\pi_2(x) \ll \frac{x}{(\log x)^2}$, we need to show $G(z,z) \gg (\log z)^2$, where $G(z,z) = \sum_{d| P(z), d<z} g(d)$ and $g(2) = 0$ and $g(p) = \frac{2}{p-2}$.\\
+First note that $g(p) \geq \frac{2}{p-1}$. So if $d$ is odd and square free, then $g(d) \geq \frac{2^{\omega(d)}}{\varphi(d)}$ (note that the numerator is equal to $\tau(d)$ for square-free integers).\\
+Now write
+\[
+G(z,z) &= \sum_{d < z, d \text{ odd, square free}} \frac{2^{\omega(d)}}{\varphi(d)}\\
+&\gg \sum_{d < z, d \text{ square free}} \frac{2^{\omega(d)}}{\varphi(d)}
+\]
+(the even  terms added in are only at most twice of the original sum, so it doesn't change the order). Now the above
+\[
+&=\sum_{d < z, d \text{square free}, d=p_1...p_r} 2^{\omega(d)} \prod_{i=1}^r (1/p_i+1/p_i^2+...)\\
+&= \sum_{d < z, d=em^2, e \text{ square free}} 2^{\omega(d)}/d\\
+&\geq \sum_{d < z} \frac{2^{\omega(d)}}{d}
+\]
+by partial summation, it's enough to show that $\sum_{d<z} 2^{\omega(d)} \gg z\log z$, because then above $\gg (\log z)^2$ as required (check).
+
+Recall that, to show $\sum_{d<z} \tau(d) \gg z\log z$, we used that $\tau = 1*1$. So similarly we want to write $2^{\omega(n)} = \sum_{d|n} \mu(d) f(n/d)$ where $f$ is multiplicative.\\
+Let's do some calculation: for $n=1$ we need $\mu(1)f(1)=1$, so $f(1) = 1$. For $n=p$ a prime, $2=f(p)-f(1) = f(p)-1$, so $f(p)=3$.\\
+For $n=p^2$ a prime, $2=f(p^2)-f(p)$, so $f(p^2) = 5$...
+
+Ok this probably doesn't work. Let's try something more general, say write it as $\sum_{d|n} f(d) g(n/d)$, where $f$ is multiplicative. Then\\
+$\bullet$ $n=1$: $f(1)=g(1)=1$;\\
+$\bullet$ $n=p$: $f(p)+g(p)=2$;\\
+$\bullet$ $n=p^2$: $g(p^2)+f(p^2)+f(p)g(p) = 2$.
+
+Say let's try $f=\tau$. So $g(p) = 0, g(p^2) = -1, g(p^k) = 0$ $\forall k \geq 3$.
+
+So therefore 
+\[
+g(n) = \left\{\begin{array}{ll}
+0 & n \text{ not a square}\\
+\mu(d) & n=d^2
+\end{array}
+\right.
+\]
+and $2^{\omega(n)} = \sum_{d|n} \tau(d) g(n/d)$.\\
+So (remember $\sum_{b \leq x} \tau(b) = x\log x + (2\gamma - 1) x + O(\sqrt{x})$)
+\[
+\sum_{d<z} 2^{\omega(d)} &= \sum_{a<z} g(a) \sum_{b \leq z/a} \tau(b)\\
+&= \sum_{a < z} g(a) z/a \log (z/a) + c\sum_{a<z} g(a) z/a + \underbrace{O(z^{1/2} \sum_{a<z} 1/a^{1/2})}_{\ll z}\\
+&= \sum_{d < z^{1/2}} \mu(d) z/d^2 \log z - \underbrace{2\sum_{d<z^{1/2}} \mu(d) z/d^2 \log d}_{\ll z\sum_{d<z^{1/2}} \log d/d^2 \ll z} + O(z)
+\]
+Note $\sum_{d<z^{1/2}} \frac{\mu(d)}{d^2} = c+O(\sum_{d>z^{1/2}} 1/d^2) = c+O(1/z^{1/2})$. So
+\[
+\sum_{d<z} 2^{\omega(d)} = cz\log z + O(z) \gg z\log z
+\]
+
+It remains to show that $c>0$. Either:\\
+(1) Note LHS can't be $O(z)$;\\
+(2) calculate the first couple of terms in the series;\\
+(3) Note that $c=6/\pi^2 (=\frac{1}{\zeta(2)}) > 0$.
+
+\subsection{Combinatorial Sieve}
+Selberg is just an upper bound sieve (where we considered
+\[
+(\sum_{d|n} \lambda_d)^2 \geq \left\{
+\begin{array}{ll}
+1 & n=1\\
+0 & else\\
+\end{array}
+\right.
+\]
+with $\lambda_i=1$). Now consider some inclusion-exclusion principle:
+\[
+S(A,P;z) = |A| - \sum_p |A_p| + \sum_{p,q} |A_{p,q}| - ...
+\]
+The idea of combinatorial sieve is to truncate the sieve process.
+
+\begin{lemma} (Buchstab Formula)\\
+$S(A,P;z) = |A| - \sum_{p | P(z)} S(A_p,P;p)$.
+\begin{proof}
+First notice that $|A| = S(A,P;z) + \sum_{p | P(z)} S(A_p,P;p)$: the first term is the number of $n \in A$ s.t. $p|n, p \in P \implies p \geq z$ by definition (denote this set by $S_1$); the summand of second term is the number of $n \in A$ s.t. $n=mp$, and $q | n, q \in P \implies q > p$ (denote this set by $S_p$ for each $p$).\\
+Now note that every element $n \in A$ is either in $S_1$, or has some prime divisors from $P(z)$. If $p$ is the least such prime divisor, then $n \in S_p$. So this is a partition of $A$.
+\end{proof}
+\end{lemma}
+
+Similarly we could prove 
+\[
+W(z) = 1-\sum_{p|P(z)} \frac{f(p)}{p} W(p)
+\]
+as $W(z) = \prod_{p | P(z)} (1-\frac{f(p)}{p})$.
+
+\begin{coro}
+For any $r \geq 1$, 
+\[
+S(A,P;z) = \sum_{d | P(z), \omega(d) < r} \mu(d) |A_d|+(-1)^r \sum_{d|P(z),\omega(d) = r} S(A_d,P;l(d))
+\]
+where $l(d)$ is the least prime divisor of $d$.
+\begin{proof}
+Induction on $r$. $r=1$ is just Buchstab formula. For the inductive step, use
+\[
+S(A_d,P;l(d)) = |A_d| - \sum_{p \in P, p < l(d)} S(A_{dp},P;p)
+\]
+and
+\[
+&(-1)^r \sum_{d|P(z), \omega(d)=r} (|A_d| - \sum_{p \in P, p < l(d)} S(A_{pd},P;p))\\
+=&\sum_{d|p(z), \omega(d)=r} \mu(d) |A_d| + (-1)^{r+1} \sum_{e|P(z),\omega(e) = r+1} S(A_e,P;l(e))
+\]
+In particular, note that if $r$ is even, then
+\[
+S(A,P;z) \geq \sum_{d | P(z), \omega(d) < r} \mu(d) |A_d|
+\]
+Similarly, if $r$ is odd we get a similar bound in the $\leq$ direction.
+\end{proof}
+\end{coro}
+
+\begin{thm} (Brun's Pure Sieve)\\
+For $r \geq 6\log \frac{1}{W(z)}$, then 
+\[
+S(A,P;z) = XW(z) + O(2^{-r} X + \sum_{d | P(z), d \leq z^r} |R_d|)
+\]
+\end{thm}
+
+\newpage
+
+\section{Example Class 1}
+
+We'll go through questions 2,3,5,1,4,6 (in that order).
+
+\subsection{Question 2}
+(a) 
+\[
+\sum_{n \leq x} \omega(n) &= \sum_{n \leq x} \sum_{p | n} 1\\
+&= \sum_{p \leq x} \sum_{p|n \leq x} 1\\
+&= \sum_{p \leq x} \lfloor \frac{x}{p} \rfloor\\
+&= x\log\log x + O(x)
+\]
+using $\sum_{p \leq x} \frac{1}{p} = \log\log x + O(1)$, and $[x] = x+O(1)$ and number of $p\leq x$ is $O(x)$.
+
+Try to avoid writing things like $O(1) \sum_{p\leq x} 1$. Sample replacement of it: $\sum_{p \leq x} O(1) = O(\sum_{p \leq x} 1)$.
+
+(b) In general whenever you seem a sum like this, the first instinct should be to expand it. So we have
+\[
+&\sum_{n \leq x} |\omega(n) - \log\log x|^2 \ll x\log\log x\\
+=&\sum_{n \leq x} \omega(n)^2 - 2\log\log x \sum_{n \leq x} \omega(n) + \lfloor x \rfloor (\log\log x)^2
+\]
+So it's enough to show that
+\[
+\sum_{n \leq x} \omega(n)^2 \leq x(\log\log x)^2 + O(x\log \log x)
+\]
+We write LHS as 
+\[
+\sum_{p,q \leq x} \sum_{n \leq x} 1_{p|n}1_{q|n} &= \sum_{p=q} \lfloor x/p \rfloor + \sum_{p \neq q} \lfloor \frac{x}{pq}\rfloor\\
+&= \sum_{p,q} \lfloor \frac{x}{pq} \rfloor + O(x\log\log x)\\
+&\leq x \sum_{p,q} \frac{1}{pq} + O(...)\\
+&\leq x (\sum_p \frac{1}{p})^2 + O(...)
+\]
+
+(c) It's enough to show that $\sum_{n \leq x} |\log\log x-\log\log n|^2 \ll x\log\log x$ by noting that the sum is actually a metric. We could certainly expand it, but it's more work than what we need. The reason we are expanding above is because we have a mixture of something arithmetic and something analytic, so we can't do anything to it without expanding the square.
+
+Note that if $x^{1/2} \leq n \leq x$, then $|\log\log x - \log\log n| = O(1)$. So the original sum
+\[
+&= \underbrace{\sum_{n \leq x^{1/2}}}_{O(x^{1/2} (\log\log x)^2} ... + \underbrace{\sum_{x^{1/2}\leq n \leq x}}_{O(x)} ...
+\]
+
+Now let $r(x)$ be the number of $n \leq x$ s.t. $|\omega(n) - \log\log n| > (\log \log x)^{3/4}$. Then 
+$r(x) (\log\log x)^{3/2} \ll x\log\log x$, so $r(x) \ll \frac{x}{(\log\log x)^{1/2}} = o(x)$. (??)
+
+For 'almost all' $n$, $\tau(n) \geq 2^{\omega(n)}$, and $\leq 2^{\Omega(n)}$ where $\Omega(n)$ counts all prime divisors rather than just the distinct ones.
+
+\subsection{Question 3}
+
+(a) Following lecture, we want something like
+\[
+\sum_{n \leq x} \frac{1}{n} &= \gamma + \log x - \frac{\{x\}}{x} + \int_x^\infty \frac{\{t\}}{t} dt\\
+&= 1 - \frac{\{x\}} + \log x - \int_1^x \frac{\{t\}}{t^2} dt\\
+&?= \gamma + \log x - \frac{\{x\}}{x} + \frac{1}{2x} + O(\frac{1}{x^2})
+\]
+
+So it's enough to show that 
+\[
+\left|\int_x^\infty \frac{\{t\}}{t^2} dt - \int_x^\infty \frac{1/2}{t^2} dt\right| \ll \frac{1}{x^2}
+\]
+Note that for $t \in [n,n+1)$,
+\[
+\left|\frac{1}{t^2} - \frac{1}{n^2}\right| \ll \frac{1}{n^3}
+\]
+So
+\[
+\int_n^{n+1} \frac{\{t\}}{t^2} dt &= \frac{1}{n^2} \int_n^{n+1} \{t\} dt + O(\frac{1}{n^3})\\
+&= \frac{1}{2n^2} + O(\frac{1}{n^3})\\
+&= \frac{1}{2} \int_n^{n+1} \frac{1}{t^2} dt + O(\frac{1}{n^3})\\
+&= \frac{1}{2} \int_n^{n+1} (\frac{1}{t^2} + O(1/t^3)) dt
+\]
+So
+\[
+\int_x^\infty \frac{\{t\}}{t^2} dt = \frac{1}{2} \int_x^\infty \frac{1}{t^2} dt + O(\frac{1}{x^2})
+\]
+
+(b) (1) Using part (a) we get 
+\[
+\Delta(x) = x^{1/2} - 2\sum_{a \leq x^{1/2}} \{x/a\} + O(1)
+\]
+(2) 
+\[
+\int_0^x \Delta(t) dt \ll x
+\]
+
+We get $\frac{2}{3}x^{3/2}$ from the first term after integration, so we want the second term to have a main tern that cancels this out.
+
+\subsection{Question 5}
+(a) 
+\[
+\gamma &= -\int_0^\infty e^{-t} \log t dt\\
+&= \lim_{N \to \infty} (\sum_{n=1}^N \frac{1}{n} - \log N)
+\]
+We write
+\[
+\frac{1}{n} = \int_I f_n(t) dt = \int_0^1 t^{n-1} dt
+\]
+Now
+\[
+\sum_{n=1}^N \frac{1}{n} &= \int_0^1 (1+t+...+t^{N-1}) dt\\
+&=\int_0^1 \frac{1-t^N}{1-t} dt\\
+&= \int_1^N \frac{1-(1-\frac{v}{N})^N}{v} dv
+\]
+So
+\[
+\gamma &= \lim_{n \to \infty} (-\int_1^N \frac{(1-v/N)^N}{v} dv)\\
+&= -\int_1^\infty \frac{e^{-v}}{v} dv + \int_0^1 \frac{1-e^{-t}}{t} dt\\
+&= \int_1^\infty e^{-t} \log t dt + \int_0^1 e^{-t} \log t dt
+\]
+
+(c) $\forall \delta>0$,
+\[
+\sum_p \frac{1}{p^{1+\delta}} + \log \delta - c + \gamma = \delta \int_2^\infty \frac{E(t)}{t^{1+\delta}} dt - \delta\int_1^2 \frac{\log\log t + c}{t^{1+\delta}}dt
+\]
+as $\delta \to 0$,
+\[
+\sum_p \frac{1}{p^{1+\delta}} + \log \delta \to c-\gamma
+\]
+We have $E(t) \ll \frac{1}{\log t}$, and $\delta \int_2^\infty \frac{1}{(\log t)t^{1+\delta}} dt \ll \delta^{1/2}$.
+
+(e) Note that this will show
+\[
+\prod_{p \leq x} (1-1/p) \sim e^\gamma \log x
+\]
+Let 
+\[
+F(\delta) = \sum_p (\log (1-\frac{1}{p^{1+\delta}})+\frac{1}{p^{1+\delta}})
+\]
+converges uniformly. So $F(0) = \lim_{\delta \to 0} F(\delta)$.\\
+Now 
+\[
+\sum_p \log (1-\frac{1}{p^{1+\delta}} = \log \zeta(1+\delta) \to -\log \delta
+\]
+as $\delta \to 0$ (we haven't done zeta function, but let's use it anyway) ($\log \zeta(1+\delta) + \log \delta) \to 0$ as $\delta \to 0$).
+
+\subsection{Question 1}
+We want to use induction and hyperbola method as well.\\
+Note that $\tau_n = 1*\tau_{n-1}$. Write
+\[
+\sum_{n\leq x} \tau_k(n) &= \sum_{ab \leq x} \tau_{k-1} (b)\\
+&= \sum_{a \leq x^{1/k}} \sum_{b \leq x/a} \tau_{k-1}(b) + \sum_{b \leq x^{1-1/k}} \tau_{k-1}(b) \lfloor x/b\rfloor - (\sum_{b \leq x^{1-1/k}} \tau_{k-1}(b))\lfloor x^{1/k} \rfloor\\
+&=...
+\]
+
+Unfortunately we have no time for more, but feel free to ask now or later.
 
 \end{document}

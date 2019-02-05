@@ -1,0 +1,499 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Topics in Set Theory}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+---Lecture 1---
+
+Example classes: 4th Feb, 18th Feb, 4th Mar 330-5pm MR5; fourth class undecided (probably on 15th).
+
+Although the name of this course is \emph{Topics} in Set theory, for all of its history only one topic is discussed. So maybe this course should be called \emph{One Topic in Set Theory}, or probably just \emph{the Continuum Hypothesis}: in this course we'll just solve one problem: the continuum problem, which we've known in the end that the problem is independent from ZFC.
+
+Let's have some background stories first. In the second ICM congress (1900, Paris), Hilbert posed the famous 23 Hilbert questions, with the first one being the Continuum Hypothesis (a hypothesis at that time). The original formulation of CH was:
+
+\emph{Any infinite subset of real numbers is either equinumerous to the set of natural numbers, or to the set of real numbers}.
+
+We could definitely formulate it better, but that is less important. More modern version of CH would be a short equation
+$$2^{\aleph_0} = \aleph_1$$
+which seemingly has nothing to do with the previous problem. However, in ZFC these two statements are equivalent:\\
+$\bullet$ if $2^{\aleph_0} > \aleph_1$, in particular, $2^{\aleph_0} \geq \aleph_2$. Since $2^{\aleph_0} \sim \R$, we get an injection $i:\aleph_2 \to \R$. Consider $X:=i[\aleph_1] \subseteq \R$. Clearly, $i \uparrow \aleph_1$ ($i$ restricted to $\aleph_1$) is a bijection between $\aleph_1$ and $X$, so $X \sim \aleph_1$; but $\aleph_1$, being uncountable, is not in bijection with natural numbers, and is not in bijection with real numbers. Thus $X$ refutes CH.
+
+If $2^{\aleph_0} = \aleph_1$, let $X \subseteq \R$. Consider $b:2^{\aleph_0} \to \R$ a bijection. If $X$ is infinite, then $b^{-1}[X] \subseteq 2^{\aleph_0}$. Thus the cardinality of $X$ is either $\aleph_0$ or $\aleph_1$ (which $\sim \N$ and $\R$ respectively). So $2^{\aleph_0} = \aleph_1 \implies$ CH.
+
+In 1938, G\"{o}del proved that ZFC does not prove $\neg$CH, and in 1961 Cohen proved that ZFC does not prove CH, by methods of \emph{inner models} and \emph{forcing} (sometimes also called \emph{outer models}, which is not incorrect) respectively. The latter has become the most important method in Set theory since then.
+
+From logic (see Part II Logic and Set Theory) we have G\"{o}del's Completeness Theorem: a theory $T$ is consistent iff it has a model. So from the above two statements, it seems that we're going to prove that there are models for ZFC+CH and ZFC+$\neg$CH; but this is obviously not possible because of the incompleteness phenomenon: we know we can't prove the consistency of ZFC (as a result, we can't even prove there is a model of ZFC)! So instead we could only prove the following:
+$$Cons(ZFC) \to Cons(ZFC+CH)$$
+or equivalently, if $M \vDash ZFC$, then there is $N \vDash ZFC+CH$ (and similar for the other half).
+
+\newpage
+
+\section{Model theory of set theory}
+
+\subsection{Absoluteness}
+
+For a moment, we will assume that we have a model $(M,\in) \vDash ZFC$. Unfortunately this first assumption doesn't make much sense, because model theory is based on set theory and we don't have anything if ZFC is inconsistent. We refer to the canonical objects in $M$ by the usual symbols, e.g. $0,1,2,3,4,...,\omega,\omega+1,...$.
+
+What would an \emph{inner model} be? Take $A \subseteq M$, and consider $(A,\in)$. It is a substructure of $(M,\in)$, because there are no function symbols or constant symbols in the language of set theory. This might be counterintuitive, because we're using symbols like $\phi$ and $\{\cdot\}$ all the time! However, these are technically not part of language of set theory as they can all be defined without any use of function symbols, i.e. they are just abbreviations. For example, $X=\phi$ abbreviates $\forall w (\neg w \in X)$; $X=\{Y\}$ abbreviates $\forall w (w \in X \iff w = Y)$, and similarly for $\cup$ and $\mathcal{P}$; and also for relation symbols such as $\subseteq$, which abbreviates $\forall w (w \in X \to w \in Y)$. Note that $X=\phi$ is NOT the formula that it looks like; in particular, it is not quantifier free (because it abbreviates $\forall w (\neg w \in X)$)! So we need to take extra care when we do things in this course.
+
+\begin{defi}
+If $\varphi$ is a formula in $n$ free variables, we say $\varphi$ is \emph{upwards absolute} between $A$ and $M$ if for all $a_1,...,a_n \in A$,
+$$(A,\in) \vDash \varphi(a_1,...,a_n) \implies (M,\in) \vDash \varphi(a_1,...,a_n)$$
+and we say $\varphi$ is \emph{downwards absolute} between $A$ and $M$ if for all $a_1,...,a_n \in A$,
+$$(M,\in) \vDash \varphi(a_1,...,a_n) \implies (A,\in) \vDash \varphi(a_1,...,a_n)$$
+and $\varphi$ is \emph{absolute} between $A$ and $M$ if it is both upwards and downwards absolute.
+\end{defi}
+
+Observation:\\
+(a) If $\varphi$ is \emph{quantifier-free}, then $\varphi$ is absolute between $A$ and $M$. But this doesn't really help much, because almost nothing is quantifier-free: without quantifiers we can only say things like $A \in B$ and $A=B$, and conjunctions of those; that's pretty much all.\\
+(b) We say that a formula is $\Sigma_1$ if it is of the form
+$$\exists x_1 ... \exists x_n \varphi(x_1,...,x_n)$$
+where $\varphi$ is q.f.;\\
+we say a formula is $\Pi_1$ if it is of the form
+$$\forall x_1 ... \forall x_n \varphi(x_1,...,x_n)$$
+where $\varphi$ is q.f..\\
+(c) If $\varphi$ is $\Pi_1$, it is downward absolute; if it's $\Sigma_1$ then it is upwards absolute. So in particular, note that $X=\phi$ is downward absolute.
+
+---Lecture 2---
+
+As an example, write $0,1,2,3,...$ for the ordinals in $M$, and let $A:=M \setminus \{1\}$. In $A$, we have $0,2$, but no $1$; we also have $\{1\}$. If we use $\Phi_0(x)$ to denote the formula $\forall w (\neg w \in x) \iff x = \phi$. Clearly $(M,\in) \vDash \Phi_0(0)$, so by $\pi_1$-downwards absoluteness, $(A,\in) \vDash \Phi_0(0)$.\\
+Now, how many elements does $2=\{0,1\}$ have? In $M$ we obviously know $2$ has $2$ elements; but in $A$, $2$ only has one element $0$, and $\{1\}$ has no element: $(A,\in) \vDash \Phi_0(\{1\})$! Clearly $(M,\in) \not\vDash \Phi_0(\{1\})$, so $\Phi_0$ is not absolute between $A$ and $M$. As a corollary, we get $(A,\in) \not\vDash$ extensionality (we can uniquely specify sets by specifying their elements).
+
+\begin{rem}
+We could go on, defining formulas $\Phi_1(x),\Phi_2(x)$, etc to analyse which of the elements correspond to the natural numbers in $A$.
+\end{rem}
+
+Reminder (from Part II Logic and Set Theory): we say $A$ is \emph{transitive in $M$} if for all $a \in A$ and $x \in M$ s.t. $(M,\in) \vDash x \in a$, we have $x \in A$. The problem for the above $A$ is that it is not transitive. As long as that is fixed, we have the following:
+
+\begin{prop}
+If $A$ is transitive, then $\Phi_0$ is absolute between $A$ and $M$.
+\begin{proof}
+Since $\Phi_0$ is $\Pi_1$, we only need to show upwards absoluteness. Suppose $a \in A$ s.t. $(A,\in) \vDash \Phi_0(a)$, and suppose for contradiction that $a \neq 0$. Then there is some $x \in a$. By transitivity, $x \in A$. But then $\Phi_0(a): \forall w (w \not\in a)$ is not true in $(A,\in)$.
+\end{proof}
+\end{prop}
+
+Similarly, if $\Phi_n$ is the formula describing the natural number $n$, and there is $a \in A$ s.t. $(A,\in) \vDash \Phi_n(a)$, and $A$ is transitive, then $a=n$.
+
+\begin{prop}
+If $A$ is transitive in $M$, then $(A,\in) \vDash$ extensionality.
+\begin{proof}
+Take $a,b \in A$ with $a \neq b$. So by extensionality in $(M,\in)$, find, WLOG some $c \in a \setminus b$. Since $c \in a \in A$, by transitivity $c \in A$. Note that all of these quantifier-free formulas are absolute, so $(A,\in)$ also models them; in particular, $(A,\in) \vDash c \in a,c \not\in b$. So $a,b$ do not satisfy the assumptions of extensionality.
+\end{proof}
+\end{prop}
+
+Consider now $A=\omega+2 = \{0,1,2,...,\omega,\omega+1\} \subseteq M$. This is clearly transitive subset of $M$ because it's an ordinal. So $(A,\in) \vDash$ extensionality, but clearly it isn't anything like a model of set theory as it is too thin. Consider the formula $x=\mathcal{P}(y)$. Unfortunately, this is not a formula, as $\mathcal{P}$ is undefined. We have to expand it properly:
+\begin{equation*}
+\begin{aligned}
+&x = \mathcal{P}(y)\\
+\iff &x=\{z;z \subseteq y\}\\
+\iff &\forall w (w \in x \leftrightarrow w \subseteq y)\\
+\iff &\forall w (w \in x \leftrightarrow(\forall v (v \in w \to v \in y)))
+\end{aligned}
+\end{equation*}
+
+In $A$, what is $\mathcal{P}(\omega)$? We have $(A,\in) \vDash \omega+1 = \mathcal{P}(\omega)$, which is obviously not what we want for $\mathcal{P}(\omega)$ to be.
+
+\begin{defi} (Bounded quantification)\\
+We first define the notations $\exists v \in w\ \varphi$ to be $\exists v (v \in w \wedge \phi)$, and $\forall v \in w\ \varphi$ to be $\forall v (v \in w \to \phi)$, and we call these quantifiers \emph{bounded}.\\
+Now we say a formula $\varphi$ is $\triangle_0$ if it is in the smallest set $S$ of formulas with the following properties:\\
+1. All q-f formulas are in $S$;\\
+2. If $\varphi,\psi \in S$, then so are:
+\begin{itemize}
+\item[] 2a. $\varphi \wedge \psi$, $\varphi \vee \psi$, $\varphi \to \psi$, $\varphi \leftrightarrow \psi$;\\
+2b. $\neg \varphi$;\\
+2c. $\exists x \in w\ \varphi$, $\forall v \in w\ \varphi$.
+\end{itemize}
+\end{defi}
+
+\begin{thm}
+If $\varphi$ is $\triangle_0$ and $A$ is transitive, then $\varphi$ is absolute between $A$ and $M$.
+\begin{proof}
+We already know that quantifier free formulas are absolute, and absoluteness is obviously preserved under propositional connectives. The only case left is (2c).\\
+Let's just do $\varphi \to \exists v \in w\ \varphi = \exists v (v \in w \wedge \varphi)$. So suppose $\varphi$ is absolute. We need to deal with downwards absoluteness: we have $(M,\in) \vDash \exists v \in a \varphi(v,a)$ for some $a \in A$, i.e. $(M,\in) \vDash \exists v (v \in a \wedge (\varphi(v,a))$.\\
+Let's find $m \in M$ s.t. $(M,\in) \vDash m \in a \wedge \varphi(m,a)$.\\
+Now $m\in a\in A$, so $m \in A$. By absoluteness of $\varphi$, we get $(A,\in) \vDash m \in a \wedge \varphi(m,a) \implies (A,\in) \vDash \exists v \in a \varphi(v,a)$.
+\end{proof}
+\end{thm}
+
+Let $T$ be any \emph{set theory}. Then we say that $\varphi$ is $\triangle_0^T$ if there is a $\triangle_0$ formula $\psi$ s.t. $T \vdash \varphi \leftrightarrow \psi$. So we get, as a corollary:
+
+\begin{coro}
+If $A$ is transitive in $M$, and both $(M,\in)$ and $(A,\in)$ are models of $T$, then $\triangle_0^T$ formulas are absolute between $A$ and $M$.\\
+We may also define $\Sigma_1^T$ formulas to be the formulas that are $T$-equivalent to $\exists v_1 ... \exists v_n \psi$ where $\psi$ is $\triangle_0$, and similarly for $\Pi_1^T$ formulas. So $\Sigma_1^T$($\Pi_1^T$) formulas are upwards(downwards) absolute between $A$ and $M$ respectively.
+\end{coro}
+
+On Wednesday we will look at what formulas are actually in these classes.
+
+---Lecture 3---
+
+Last time we fixed some \emph{set theory} $T$, and defined formula classes $\triangle_0^T$, $\Sigma_0^T$ and $\Pi_1^T$. We showed that $\triangle_0^T$ formulas are absolute between $A,M$ if $A$ is transitive and $A,M \vDash T$, and also $\Sigma_1^T$ and $\Pi_1^T$ upwards and downwards respectively.
+
+Even if you haven't paid attention you would have realize that we have some 0 and some 1 as subscripts here. So what is $\Delta_1^T$?
+
+\begin{defi}
+A formula is $\Delta_1^T$ if it is both $\Sigma_1^T$ and $\Pi_1^T$.\\
+Note that this definition is only possible upon taking equivalence classes on $T$, else no formula could be both $\Sigma_1$ and $\Pi_1$.
+\end{defi}
+
+\begin{coro}
+If $A$ is transitive, $A,M \vDash T$, and $\phi$ is $\Delta_1^T$, then $\phi$ is absolute between $A$ and $M$.
+\end{coro}
+
+Now we have to think of what a \emph{set theory} is. We have to think of which axioms we're using. Preferably we would have extensionality, and then let's have pairing, union, power set, separation.\\
+We denote this by $FST_0$ (finite set theory), with the $0$ denoting that we don't have foundation yet. We use $FST$ to denote $FST_0$+foundation(regularity).\\
+Now if we add infinity in, we reach the original version of Zermelo set theory $Z_0$. However, nowadays we often call $Z=Z_0$+foundation the Zermelo set theory.\\
+For ordinary people these are enough (or far more than enough). But set-theorists realized later that they need replacement; we call this $ZF_0$ (of course $ZF$ for the version with foundation). And lastly if we add choice in we get $ZFC_0$ (with foundation we get $ZFC$).
+
+\subsection{Long List of $\Delta_0^T$ formulas}
+
+Now we find a long list of $\Delta_0^T$ formulas. We start with the more trivial ones:\\
+1. $x\in y$;\\
+2. $x=y$;\\
+These two are $\Delta_0$ without $T$ needed.\\
+3. $x \subseteq y$. Apparently this is not a formula: we think it means $\forall w (w \in x \to w \in y)$, which we might abbreviate it as $\forall w \in x (w \in y)$, which is exactly the (2c) in definition of $\Delta_0$. So this is $\Delta_0$ without $T$ as well.\\
+4. $\Phi_0(x): \forall w (w \not\in x) :\iff \forall w(\neg w \in x)$. If you took part II Logic and Set theory, you'll disagree that this is a formula, because $\neg$ is not a thing; but let's not be so parsimonious on the syntax, but write it as $\forall w (w \in x \to \neg x =x)$, so this is also $\Delta_0$ in predicate logic.
+
+We say that an operation $x_1,...,x_n \to F(x_1,...,x_n)$ is defined by a formula in class $\Gamma$ (where $\Gamma$ is any class of formulas) in the theory $T$ if there is a formula $\Psi \in \Gamma$ s.t. \\
+(1) $T \vdash \forall x_1...\forall x_n \exists y \Psi(x_1,...,x_n,y)$;\\
+(2) $T \vdash \forall x_1...\forall x_n \forall y,z$ $\Psi(x_1,...,x_n,y) \wedge \Psi(x_1,...,x_n,z) \to y=z$;\\
+(3) $\Psi(x_1,...,x_n,y)$ iff $y=F(x_1,...,x_n)$.\\
+Note that the first two are formal requirements, but the last one is an informal requirement as we haven't defined what $F$ is.
+
+Examples: $x \to \{x\}$, $x,y \to \{x,y\}$ (these are opeartions in $FST_0$). Note that these are informal because notations like $\{\cdot\}$ are undefined.
+
+Let's now continue our lists:\\
+5. $x \to \{x\}$. We need a formula $\Psi(x,z) \leftrightarrow$ '$z=\{x\}$' $\leftrightarrow \forall w(w \in z \leftrightarrow w=x)$.\\
+This is not $\Delta_0$ yet because we have a $\leftrightarrow$ here. We rewrite it as\\
+$\forall w ((w \in z \to w=x) \wedge (w=x \to w \in z))$, but the second part is not $\Delta_0$. So we again rewrite it as\\
+$\exists w \in z(w=w) \wedge \forall w \in z (w \in z \to w =x)$. So this is $\Delta_0$, with some very weak set theory being sufficient.\\
+Similar to 5, we also have\\
+6. $x,y \to \{x,y\}$;\\
+7. $x,y \to x \cup y$;\\
+8. $x,y \to x \cap y$;\\
+9. $x,y \to x \setminus y$;\\
+10. $x,y \to (x,y)$, the ordered pair, where we define it as $\{\{x\},\{x,y\}\}$. Note that we could apply 5 and 6 (twice) to get this one.\\
+The last one gives us the motivation that if two operations $f,g_1,...,g_k$ are defined by $\Delta_0^T$-formulas, then so is the operation\\
+$$x_1,...,x_n \to f(g_1(x_1,...,x_n),...,g_k(x_1,...,x_n))$$
+
+We then naturally have\\
+11. $x \to x \cup \{x\} := S(x)$ (by the previous fact from 5 and 7).\\
+12. $x \to \cup x$; (obvious if we write this fully out)\\
+13. the formula $\varphi$ describing "$x$ is transitive".\\
+14. the formula describing $x$ is an ordered pair. At first look it looks like this is unbounded	, but that's not the case: the quantifiers for the two components of $x$ are bounded by $\cup x$.\\
+15. $a,b \to a \times b$;\\
+16. the formula "$x$ is a binary relation";\\
+17. $x \to \dom(x) := \{y: \exists p \in x (p$ is an ordered pairs, $p=(v,w), y=v)\}$;\\
+18. $x \to range(x):= \{y: \exists p \in x(p$ is an ordered pair and $p=(v,y))\}$;\\
+19. the formula '$x$ is a function';\\
+20. the formula '$x$ is injective';\\
+21. the formula '$x$ is a function from $A$ to $B$';\\
+22. the formula '$x$ is a surjection from $A$ to $B$';\\
+23. the formula '$x$ is a bijection from $A$ to $B$'.\\
+Note that we've only used some very few axioms: union, pairing and some finite version of separation, and nothing more.\\
+
+Let's also agree on the definition of an ordinal: $\alpha$ is an ordinal if $\alpha$ is a transitive set well-ordered by $\in$. Of course we have to also agree on what being well-ordered means: it's totally ordered + well-founded, i.e. $\forall X (X \subseteq \alpha \to X$ has a $\in$-least element).
+
+Being totally ordered is $\Delta_0$ formula (check); however, the sentence $(X,R)$ being well-founded is not obviously absolute, since the bound for the $\forall Z (Z \subseteq X ...)$ quantifier is the power set. We'll talk about absoluteness of well-foundedness on Friday.
+
+However, we don't actually need the general well-foundedness; we only need well-foundedness by $\in$, but that is given by axiom of foundation! So in models with the axiom of foundation, $\alpha$ is an ordinal iff $\alpha$ is transitive and totally ordered by $\in$.	
+
+---Lecture 4---
+
+We're still on our list of things that are absolute for transitive models. We ended with ordinals last time, where we defined that $x$ is an ordinal iff $x$ is transitive and $(x,\in)$ is a well-order. We went into an issue there, because that consists of $(x,\in)$ is a total order, which is fine; but then it also needs $\in$ is a well-founded relation on $x$, which is only $\Pi_1$. The good side is that if $T$ contains the axiom of foundation, then $\Phi_{ord}(x)$ is equivalent to $x$ is transitive and $(x,\in)$ is a total order (as the last part is guaranteed), which is $\Delta_0^T$. Therefore we can expand our list:
+
+24. '$x$ is an ordinal' is $\Delta_0^T$ (for the right choice of $T$);\\
+This is not as harmless as before, because we actually need $T$ to include the axiom of foundation.\\
+25. '$x$ is a successor ordinal', which is equivalent to '$x$ is an ordinal' and $\exists y \in x (y$ is the $\in$-largest element of $x$);\\
+26. '$x$ is a limit ordinal';\\
+27. $x=\omega$ (the smallest limit ordinal; similarly, $x=\omega+\omega$, $x=\omega+1$, $x=\omega+\omega+1$, $x=\omega^2$, $x=\omega^3$, $x=\omega^\omega$, ...)\\
+
+\subsection{Absoluteness of well-foundedness}
+
+If $(X,R)$ is well-founded, we can define a rank function $rk:X \to \alpha$, where $\alpha$ is some ordinal, s.t. $rk$ is order-preserving between $(X,R)$ and $(\alpha,\in)$. This theorem is proved using the right instances of Replacement. In particular, ZF proves:\\
+$(X,R)$ is well-founded $\iff \exists \alpha \exists f$ $\alpha$ is an ordinal, and $f$ is an order-preserving function from $(X,R)$ to $(\alpha,\in)$. RHS is $\Sigma_1^{ZF}$, and LHS is $\Pi_1^{ZF}$. Thus for sufficiently strong $T$, $(X,R)$ is well-founded is $\Delta_1^T$ and hence absolute for transitive models of $T$.
+
+We generalize this to concepts defined by transfinite recursion. But first let's recall what it is: let $(X,R)$ be well-founded, let $F$ be 'functional', so for every $x$ there is a unique $y$ s.t. $x=F(y)$. Then there is a unique $f$ with domain $X$ and for all $x \in X$, $f(x) = F(f|IS_R(x))$, where $IS_R(x) = \{z \in x: z R x\}$.
+
+\begin{prop}
+Let $T$ be a set theory that is strong enough to prove the transfinite recursion theorem for $F$. Let $F$ be absolute for transfinite models of $T$. Let $(X,R)$ be in $A$. Then $f$ defined by transfinite recursion is absolute between $A$ and $M$.
+\end{prop}
+
+\begin{eg}
+Let $L$ be any first-order language whose symbols are all in $A$. Then the set of $L$-formulas and the set of $L$-sentences are in $A$.\\
+The relation $S \vDash \varphi$ (note that this is not q-f, although it is bounded by $S$) is defined by recursion, and thus is absolute between $A$ and $M$.\\
+So: if $S$ is an $L$-structure, $S \in A$,\\
+$(A,\in) \vDash $'$S \vDash \varphi$'$ \iff (M,\in) \vDash $'$S \vDash \varphi$'.
+\end{eg}
+
+G\"{o}del's incompleteness theorem roughly says that, if $T$ is a theory whose set of axioms are recursive enumerable, and its axioms are strong enough to do some arithmetics, then $T \not\vdash Cons(T)$ (which is a sentence in $L$). Examples for $T$: PA, Z, ZF, ZFC, ZFC+$\varphi$ any one additional formula.\\
+In particular, $ZFC^* := ZFC + Cons(ZFC) \not\vdash Cons(ZFC+Cons(ZFC))$.
+
+By completeness theorem, $Cons(T) \iff \exists M (M \vDash T)$. Note that LHS is $\Pi_1$ and RHS is $\Sigma_1$, so completeness theorem tells us that this is a $\Delta_1$ concept. Note also that LHS is a bounded concept, since all quantifiers are bounded (LHS is $\Delta_0^Z$).
+
+Now write $\beta$ for 'there is a transitive set $A$ s.t. $(A,\in) \vDash ZFC$'. Note that this is stronger than the consistency of ZFC as it also specifies that there is a particular model for it. In particular, we can't prove it even in $ZFC^*$:
+
+\begin{thm}
+If $ZFC^*$ is consistent, then $ZFC^* \not\vdash \beta$.
+\begin{proof}
+Let $(M,\in) \vDash ZFC^*$. Suppose $ZFC^* \vdash \beta$. So $(M,\in) \vDash \beta$. So we found a transitive set $A$ in $M$ s.t. $(A,\in)$ is a model of $ZFC$. By assumption, $(M,\in) \vDash Cons(ZFC)$, so $(A,\in) \vDash Cons(ZFC)$ since $Cons(ZFC)$ is absolute between transitive models. So $(A,\in) \vDash ZFC^*$. So we proved $Cons(ZFC^*)$, contradicting G\"{o}del's incompleteness theorem.
+\end{proof}
+\end{thm}
+
+That means that assuming $\beta$ is not an obvious assumption, so we need to study under which (natural) assumptions $\beta$ is true.
+
+\subsection{Concrete transitive models of ZFC}
+
+So let's investigate transitive models $A$ inside $M$. The two most basic constructions: \\
+(1) von Neumann hierarchy (cumulative hierarchy);\\
+(2) hereditarily small sets.
+
+(1) is defined as follows by transfinite recursion: $V_0:=\phi$, $V_{\alpha+1} := \mathcal{P}(V_\alpha)$, $V_\lambda := \cup_{\alpha<\lambda} V_\alpha$ for $\lambda$ being limit ordinals.
+
+\begin{prop}
+$\forall \alpha V_\alpha$ is transitive (see Part II Logic and Set Theory). [Induction, with key lemma: if $X$ is transitive, then $\mathcal{P}(X)$ is transitive]
+\end{prop}
+
+If $\lambda$ is a limit ordinal, then $V_\lambda \vDash FST$.\\
+If $\lambda > \omega$ and a limit ordinal, then $V_\lambda \vDash Z$.
+
+For (2): let $\kappa$ be a cardinal. We say $X$ is hereditarily smaller than $\kappa$ if $|tcl(X)| < \kappa$ (transitive closure).\\
+Let $H_\kappa := \{X:X$ is hereditarily smaller than $\kappa\}$. This is obviously transitive.
+
+We'll continue next Monday.
+
+---Lecture 5---
+
+We'll start with $V_\alpha$ today.
+
+We know (if you don't know then I invite you to learn it): if $\lambda$ is a limit then $V_\lambda \vDash FST$; if further $\lambda > \omega$, then $V_\lambda \vDash Z$. (On example sheet 1. I haven't printed them today, so if you want to try them before Wednesday, find an envelope next to my office at C0.10 from this afternoon). 
+
+The critical axiom here is \emph{Replacement}. The test case is $\lambda = \omega + \omega$, which we expect replacement fails. Remember replacement says that if we have a function $F:V_{\omega + \omega} \to V_{\omega + \omega}$ that is definable in $V_{\omega + \omega}$, and $x \in V_{\omega+\omega}$, then $\{F(y):y \in x\} \in V_{\omega+\omega}$, i.e. image of elements of a set under a function is a set.
+
+The idea is to take $x=\omega$, and define $F$ to be the function that takes $n \to \omega+n$, and $y \to 0$ if $y \not\in \omega$. Remember that definable just means that we need a formula that uniques specify the image (see previous notes). Let $Y=\{F(n):n \in \omega\}$, which needs to be a set if replacement holds. Then $Y$ is a subset of $V_{\omega+\omega}$, so $Y \in V_{\omega+\omega+1}$; but it is not bounded, so it is not in $V_{\omega+\omega}$. This example shows concretely that $V_{\omega+\omega} \vDash \neg Replacement$.
+
+What we needed in this particular example is a function that takes a bounded sequence to an unbounded one. Similarly, if $\alpha$ is any ordinal s.t. there is a definable function $f:\omega \to \alpha$, s.t. the range of $f$ is unbounded in $\alpha$, then $V_\alpha \vDash \neg Replacement$.
+
+Even more general, if $\beta < \alpha$, and a definable function $f:\beta \to \alpha$ with unbounded range, then $V_\alpha \vDash \neg Replacement$.
+
+Reminder: we call a cardinal $\kappa$ \emph{regular} if there is no partition $\kappa = \cup_{i \in I} A_i$ s.t. $|I|,|A_i| < \kappa$ for all $i \in I$.\\
+Equivalently, for every $\alpha < \kappa$,there is no unbounded function $f:\alpha \to \kappa$.
+
+We know, for exmaple, that $\aleph_1$ is regular. Moreover, for any $\alpha$, $\aleph_{\alpha+1}$ is regular. So this gives us the next candidate, $\alpha=\aleph_1$, which replacement cannot fail in the above way. So how does it fail? Note that $\mathcal{P}(\omega) \in V_{\omega+2} \subseteq V_{\omega_1}$. Clearly, there is a surjection $s:\mathcal{P}(\omega) \to \omega_1$. But that means its range is unbounded in $\omega_1$. Thus $V_{\omega_1} \vDash \neg Replacement$ either.\\
+In general, if $\kappa$ is regular and there is $\lambda < \kappa$ with $|\mathcal{P}(\lambda)| \geq \kappa$, then the same argument shows $V_\kappa \vDash \neg Replacement$. 
+
+\begin{defi}
+A cardinal $\kappa$ is called \emph{inaccessible} if\\
+(a) $\kappa$ is regular;\\
+(b) $\forall \lambda < \kappa$, $|\mathcal{P}(\lambda)| < \kappa$.
+\end{defi}
+
+Side note: Related to the question, 'are there regular limit cardinals'? Under GCH: $\forall \kappa, 2^\kappa = \kappa^+$, we have that $\kappa$ is inaccessible iff $\kappa$ is regular limit. This suggests that the above question cannot be answered that easily (we usually call regular limit cardinals \emph{weakly inaccessible}).
+
+Let's assume that $\kappa>\omega$ is inaccessible (because $\omega$ is actually inaccessible, which kind of make sense, because \emph{infinity} is the ultimate thing that is not accessible from everything smaller than it).
+
+\begin{lemma}
+$\forall \lambda < \kappa$, $|V_\lambda| < \kappa$.
+\begin{proof}
+Clearly $|V_\omega| = \aleph_0$, so $|V_\omega| < \kappa$.\\
+By induction, suppose $|V_\lambda| < \kappa$. Then $V_{\lambda+1} = \mathcal{P}(V_\lambda)$. Therefore $|V_{\lambda+1}| = |\mathcal{P}(V_\lambda)| < \kappa$ by (b).\\
+Now let $\lambda < \kappa$ be a limit ordinal. Then $V_\lambda = \cup_{\alpha < \lambda} V_\alpha$. So suppose by contradiction that $|V_\lambda| = \kappa$. But $|V_\alpha| < \kappa$ for all $\alpha < \kappa$, so we can write $\kappa$ as a union of $\lambda$ many things of smaller cardinals, contradicting regularity.
+\end{proof}
+\end{lemma}
+
+\begin{thm}
+If $\kappa$ is inaccessible, then $V_\kappa \vDash Replacement$.
+\begin{proof}
+We're actually going to something slightly stronger: take any function $F:V_\kappa \to V_\kappa$ (without caring of its definability), and any $x \in V_\kappa$. Note that $V_\kappa = \cup_{\alpha < \kappa} V_\alpha$. So we can find $\alpha \in \kappa$ s.t. $x \in V_\alpha$. Since $V_\alpha$ is transitive, $x \subseteq V_\alpha$. But that means $|x| \leq |V_\alpha| < \kappa$ (by lemma). Note that this is exactly what went wrong in $V_{\omega_1}$.\\
+Now consider $X:=\{F(y):y \in x\}$. For each $y \in x$, consider $\rho(F(y)):=$ the least $\alpha$ s.t. $F(y) \in V_{\alpha+1} \setminus V_\alpha$. By assumption, $\rho(F(y)) < \kappa$. Consider $\{\rho(F(y)):y \in x\} := R$, then $|R| \leq |x| < \kappa$. By regularity, $\alpha := \cup R < \kappa$. But now $\forall y \in x F(y) \in V_{\alpha+1}$. So $X \subseteq V_{\alpha+1}$, so $X \in V_{\alpha+2}$, i.e. $V_\kappa \vDash Replacement$.
+\end{proof}
+\end{thm}
+
+Note that this proves that the existence of inaccessible cardinals cannot be proved from ZFC. 
+
+\subsection{Inaccessible cardinals}
+
+---Lecture 6---
+
+Course webpage: \\
+$https://www.math.uni-hamburg.de/home/loewe/Lent2019/TST\_L19.html$.\\
+Hand in work at the start of example class.
+
+On the example sheet we've seen(or will see) that we write IC for the axiom 'there is an inaccessible cardinal.\\
+We've seen that if $\kappa$ is inaccessible, then $V_\kappa \vDash ZFC$ (which is a transitive model). So ZFC+IC $\vdash$ 'there is a transitive set that is a model of ZFC', which we have called this $\beta$ at some point; we've also proved that $\beta$ is stronger than $Cons(ZFC)$, in the sense that $ZFC+Cons(ZFC) \not\vdash \beta$. Therefore $ZFC+Cons(ZFC) \not\vdash IC$.
+
+Two model-theoretic reminders (see Part II Logic and Set Theory for both):\\
+(1) L\"{o}wenheim-Skolem theorem. We want to formalize this: if $\mathcal{S}$ is any structure in some countable first-order language $L$, and $X \subseteq S$ is any subset, then there is a \emph{Skolem hull} of $X$ in $\mathcal{S}$, usually written as $\mathcal{H}^\mathcal{S}(X)$, with $X \subseteq \mathcal{H}^\mathcal{S}(X) \subseteq \mathcal{S}$, s.t. \\
+(a) $\mathcal{H}^\mathcal{S}(X) \prec \mathcal{S}$ (elementary subsucture of $\mathcal{S}$);\\
+(b) $|\mathcal{H}^\mathcal{S}(X)| \leq \max (\aleph_0,|X|)$.\\
+You probably have seen the proof of this theorem, but let's have a sketch again because it's important to see how theorems of this kind are proved.
+\begin{proof} (sketch)\\
+Key ingredient -- Tarski-Vaught criterion: $Z \subseteq S$ then $Z \prec S$ iff for every $\varphi$ and all $z_1,...,z_n$, if $S \vDash \exists \varphi(x,z_1,...,z_n)$, then $Z \vDash \exists x \varphi(x,z_1,...,z_n)$.\\
+In order to construct the Skolem hull, we define $Z_1 = Z_0 \cup$ witnesses for all tuples $\varphi_1 (z_1,...,z_n)$ where $z_1,...,z_n \in Z_0 = X$, and then $Z_{n+1}:= Z_n \cup ...$. By induction, each $Z_i$ has the same size. In the end we define $Z := \bigcup_{n \in \N} Z_n$, which will satisfy the Tarski-Vaught criterion.
+\end{proof}
+
+Consequence: work in $ZFC+IC$, $(M,\in) \vDash ZFC+IC$; inside $V_\kappa \subseteq M \vDash ZFC$. Apply L-S theorem to $V_\kappa$ with $X:=\phi$, we find a structure $H:=\mathcal{H}^{V_\kappa} (\phi) \prec V_\kappa$, which is countable (since it cannot be finite). So we've found a countable model of ZFC -- isn't this a contradiction? Not really, because this $H$ is, in general, not transitive -- and it probably shouldn't be -- consider the sentence '$\exists x$ s.t. $x$ is the least uncountable cardinal. This is certainly true in $V_\kappa$, so it needs to be also true in $H$; but its only witness in $V_\kappa$ is $\aleph_1$, so $\aleph_1 \in Z_1 \subseteq H$; so $H$ cannot be transitive since $\aleph_1$ has uncountably many elements.
+
+(2) Mostowski Collapse Theorem. If $X$ is any set, and $R \subseteq X \times X$ s.t. $R$ is well-founded and extensional, then there is a transitive set $T$ s.t. $(T,\in) \cong (X,R)$. Consider $(H,\in) \vDash ZFC$: $\in$ is extensional on $H$ by the axioms of ZFC;$\in$ is well-founded on $M$, so $\in$ is well-founded on $H$.\\
+So, let $T$ be the Mostowski collapse of $H$: $T$ is transitive, $(T,\in) \cong (H,\in)$. So $(T,\in) \vDash ZFC$, and now $T$ is transitive, and since this is a bijection, $|T| = |H| \leq \aleph_0$, so we get a countable transitive model of ZFC!
+
+(some diagrams, where we used $T$ to denote the countable transitive model of ZFC)\\
+
+Consider $\varphi(x):=x$ is countable: $\exists f(\underbrace{f: x \to \N}_{\Delta_0^{ZFC}}, \underbrace{f \text{ is injective}}_{\Delta_0^{ZFC}})$, which is $\Sigma_1^{ZFC}$, so is upwards absolute. But this formula is \emph{not} downwards absolute: if $\alpha$ is an ordinal, $\alpha \in T$, then $V_\kappa \vDash \alpha$ is countable. But since $(T,\in) \vDash ZFC$, there is some $\alpha \in T$ s.t. $(T,\in) \vDash \alpha$ is uncountable, so $V_\kappa$ and $T$ disagree about the truth value of $\varphi(\alpha)$.
+
+Now consider $\psi(x):$ $x$ is a cardinal$:= \forall \alpha (\alpha < x \to $there is no injection from $x$ to $\alpha)$, which is $\Pi_1^{ZFC}$, so downwards absolute. In $(T,\in)$, take $\alpha$ least s.t. $(T,\in) \vDash \neg \varphi(\alpha)$. Then $(T,\in) \vDash \alpha$ is a cardinal. Clearly $V_\kappa \vDash \alpha$ is not a cardinal. So $\psi$ is not upwards absolute.
+
+Note that if $\lambda$ is an uncountable cardinal in $V_\kappa$, then $\lambda \not\in T$, so the downwards absoluteness of $\psi$ is not very interesting because there aren't many cardinals.
+
+Instead of building $\mathcal{H}^{V_\kappa}(\phi)$, why not build $H^* := \mathcal{H}^{V_\kappa} (\omega_1+1)$? Clearly $\omega_1 \in H$ now, and $\omega_1 \subseteq H$ as well, so $\omega_1$ stays the same when we do Mostowski's Collapse; so $\omega_1 \subseteq T^*$ and $\omega_1 \in T^*$ where $T^*$ is the new model obtained after Mostowski's collapse.
+
+Now we have $V_\kappa \vDash \omega_1$ is a cardinal, so by downwards absoluteness, $T^* \vDash \omega_1$ is a cardinal. However, it might be the case that there are some other cardinals below $\omega_1$, so we can't say $\omega_1 = \aleph_1$.
+
+---Lecture 7---
+
+Remember our goal is to deduce some results about CH. We've decided to go for transitive models of ZFC (as we don't want to be concerned about whether a function is still a function in a submodel). We've looked at 'inner models', and in particular, models of type $V_\alpha$. We also know that if $\alpha$ is inaccessible, then $V_\alpha \vDash ZFC$. We've also found countable transitive submodel in $V_\alpha$ of ZFC, called $T$, by Mostowski collapse and L-S theorem.
+
+One problem: this is \emph{not} going to change the truth value of CH: Suppose CH is true in $(M,\in)$, so there's a bijection between $\R$ and $\omega_1$. Similarly, if CH is false then there is no such bijection. An immediate problem is that we don't know what $\R$ is; we might as well replace it by $\P(\N)$, which is definitely in $V_{\omega+20}$ (safe enough), while $\omega_1 \in V_{\omega_1+1}$. But that means $V_\kappa$ knows exactly if there is a bijection (say we can define this in $V_{\omega_1+20} \subseteq V_k$) between $\R$ and $\omega_1$ because it has access to both of the levels, and it could just 'take a look' at it to determine the truth value. So $(M,\in) \vDash CH \iff (V_\kappa,\in) \vDash CH$.\\
+But remember by L-S theorem we got a countable $H \prec V_\kappa$, so $(H,\in) \vDash CH \iff (V_\kappa,\in) \vDash CH$; and Mostowski collapse gives $(T,\in) \cong (H,\in)$, so $(T,\in) \vDash CH \iff (H,\in) \vDash CH$.
+
+Summary: the method of finding countable transitive \emph{elementary} submodels of $V_\kappa$ is not going to change the value of CH. So let's look at different models.
+
+\subsection{The second construction: Models of hereditarily small sets}
+
+Let $\kappa$ be a regular cardinal (e.g. $\kappa = \omega, \kappa = \omega_1$). Then $x$ is called hereditarily of size $<\kappa$ if $|tcl(x)| < \kappa$, where $tcl(x)$ is the transitive closure of $x$ ($=\bigcup_{n \in \N} t_n(x)$, where $t_0(x):=x$, $t_{n+1}(x) = \bigcup t_n(x)$).\\
+The definition of $tcl(x)$ captures the intuition of '$x$ has size $<\kappa$, all elements of $x$ have size $<\kappa$, all elements of elements of $x$ have size $<\kappa$, etc.'.
+
+\begin{rem}
+It's important that $\kappa$ is regular for the intuition to work: suppose it's not, say let $\kappa = \aleph_\omega$. Now think of a tree that has branches of all finite lengths, where at level $n$ we attach something of cardinality $\aleph_n$ at the node. More formally, define
+\[
+&x_n^0 = \aleph_n\\
+&x_n^{k+1} = \{x_n^k\}\\
+&...\\
+&\mathbb{X} := \{x_0^0,x_1^1,x_2^2,...\}
+\]
+Note that $\mathbb{X}$ is countable, but in the 'tcl' notation above, the cardinality of $t_{n+1}(\mathbb{X})$ is $\aleph_n$, so $tcl(x)$, as the union of them, has cardinality $\aleph_\omega$! The problem is obviously because we could obtain $\aleph_\omega$ from fewer than $\aleph_\omega$ of smaller than $\aleph_\omega$ things, i.e. $\aleph_\omega$ is not regular.
+\end{rem}
+
+From now let's forget about those singular $\kappa$, but only consider $\kappa$ regular.
+
+We make a few observations:\\
+1. $H_\kappa$ is transitive;\\
+2. If $X \subseteq H_\kappa$ and $|X| < \kappa$, then $X \in H_\kappa$ (follows directly from regularity of $\kappa$ and the definitions).
+
+\begin{eg}
+Let $H_{\aleph_0} := HF$ (hereditarily finite).\\
+We claim that $HF = V_\omega$.
+\begin{proof}
+$V_\omega \subseteq HF$. We need to show $V_n \subseteq HF \forall n$. Clearly $V_0 = \phi \subseteq HF$; if $V_n \subseteq HF$, and $Z \subseteq V_n$, then by observation 2, $Z \in HF$, so $\mathcal{P}(V_n) = V_{n+1} \subseteq HF$.\\
+Now we show $HF \subseteq V_\omega$. Suppose not, so there is $x \in HF \setminus V_\omega$; take such $x$ with minimal rank $\alpha$, so $x \in V_{\alpha+1} \setminus V_\alpha$. By minimality, if $y \in HF$ with $\rho(y) < \alpha$, then there is $k \in \N$ s.t. $\rho(y) = k$. We know $x \in \mathcal{P}(V_\alpha)$, so $x \subseteq V_\alpha \subseteq HF$. So $x \in HF$, so $x$ is finite. Say $x = \{x_1,...,x_n\}$. By minimality, each of them is in $V_{k_i}$ for some $k_i$, so $x \subseteq V_{\max(k_1,...,k_n)+1} \subseteq V_\omega$.
+\end{proof}
+\end{eg}
+
+\begin{eg}
+$H_{\aleph_1} = HC$ (hereditarily countable).\\
+We know:\\
+$\bullet$ $Ord \cap HC = \omega_1$;\\
+$\bullet$ $V_{\omega+2} \setminus HC \neq \phi$;\\
+$\bullet$ $V_{\omega+1} \subseteq HC$.
+
+Which axioms are true in HC? Let's check Pair: say $x,y \in HC$. then $\{x,y\} \subseteq HC$. But $|\{x,y\}| < \aleph_1$, so $\{x,y\} \in HC$.\\
+Separation, foundation, extensionality, union all hold in HC as well quite easily.\\
+Replacement: let $F$ be a function $HC \to HC$, and $x \in HC$. Consider $R:=\{ F(y);y \in x\}$, which exists in the universe, and we need to check whether it's in $R$. We know $|R| \leq |x| < \aleph_1$, and $R \subseteq HC$. By observation 2 we immediately get $R \in HC$. So replacement is trivial!\\
+So we know Power Set must be false, or at least not provable in HC, else we've proved the existence of a model of ZFC!
+
+Note that Power Set is trivial in ZFC and it's replacement that is troublesome there, while here it's the other way round.
+
+We know that $\N \in HC$, and we also know that $\mathcal{P}(\N) \not\in HC$. But that is not enough to disprove Power Set in HC; we need to show that there is no object in HC such that HC \emph{thinks} that it is the power set of $\N$; more formally, we need to show that for all $A \in HC$, $HC \vDash $'$A$ is not a power set of $\N$, i.e. $\exists X (X \subseteq \N \wedge X \not\in A)$.
+
+Fix $A \in HC$, and presume that this might be the HC-powerset of $\N$.\\
+Thus, if $X \subseteq \N$ and $X \in HC$, then $X \in A$. But if $X \subseteq \N$, then $X \subseteq HC$, and $|X| < \aleph_1$, so $X \in HC$.\\
+So if $A$ is any set s.t. $\forall X, X \subseteq \N \wedge X \in HC \to X \in A)$, then $A$ is uncountable, so $A \not\in HC$. Contradiction. Thus $HC \vDash \neg Power Set$.\	
+\end{eg}
+
+---Lecture 8---
+
+We've not been doing very useful things so far since what we've done was basically proving that many things are not useful. Even worse, the thing that we're going to do now is the most pointless of all as it's almost identical to some problems in the example sheet.
+
+We knew $H_\kappa$ is a model of all of ZFC without power set if $\kappa$ is regular.
+
+\begin{prop}
+If $\kappa$ is a strong limit (cannot be reached by taking power set), then $H_\kappa \vDash PowerSet$.
+\begin{proof}
+We'll show: if $x \in H_\kappa$, then $\mathcal{P}(x) \in H_\kappa$. This is much stronger than the Power Set axiom.\\
+Certainly $tcl(\mathcal{P}(x)) = \mathcal{P}(x) \cup tcl(x)$. Now $|tcl(x)| < \kappa$ since $x \in H_\kappa$, and $|\mathcal{P}(x)| < \kappa$ as well since $\kappa$ is a strong limit. So together we know $|tcl(\mathcal{P}(x)) | < \kappa$, so $\mathcal{P}(x) \in H_\kappa$.
+\end{proof}
+\end{prop}
+
+General idea: build inner models using \emph{definability} properties. But the problem is: definability is not definable. This sounds like a typical joke from logicians, but it's actually a theorem.
+
+\begin{thm} (Tarski Undefinability of Truth)\\
+Let $(M,\in) \vDash ZFC$ (we'll just use this, but we'll see in the proof what set theory we actually need). We assume that the language of set theory $L_\in \subseteq M$ (so that sentences and formulas are actually elements of $M$). Consider the set $S$ of sentences of $L_\in$ and the set $U$ of unary predicates (i.e. $L_\in$-formulas in one free variable).\\
+A \emph{truth predicate} would be a formula $T(x)$ in $L\in$, so a unary predicate, i.e. $T \in U$, s.t. $(M,\in) \vDash \varphi \iff (M,\in) \vDash T(\varphi)$.\\
+Claim: there can be no such truth predicate.\\
+Before proving this, let's contrast this with the definition of truth we had before. Our previous result says if $M$ is a set, then the concept $(M,\in) \vDash \varphi$ is $\Delta_0$ (because we bound the quantifier by $M$, which is a set, so in some sense we had to use a parameter $M$ in our previous result, which is not available in our current settings.\\
+\begin{proof} (idea: diagonalisation)\\
+If $\varphi(x) \in U$, then we can ask whether $\varphi(\varphi)$ (which is a sentence, so $\in S$) is true.\\
+Let's assume that there is a truth predicate $T$, and define a unary formula $\delta(x) := \neg T(x(x))$ (the \emph{diagonal}), where $x(x)$ is $x$ applied to $x$ if $x \in U$, and is $\phi$ otherwise (remember formulas are elements in $M$). Now apply $\delta$ to $\delta$, so $\delta(\delta) \in S$. Now
+\[
+M \vDash \neg T(\delta(\delta)) \iff M \vDash \delta(\delta) &\iff M\vDash T(\delta(\delta)) \\
+\]
+by definition of $\delta$ and the fact that $T$ was a truth predicate respectively. Contradiction.
+\end{proof}
+\end{thm}
+
+Again, let $M \vDash ZFC$. We say that $x \in M$ is \emph{definable} if there is a formula $\varphi$ s.t. $\forall y \in M x=y \iff M \vDash \varphi(y)$.
+
+We say that a formula $D$ is called a \emph{definition of definability} if $\forall x \in M$, $x$ is definable $\iff M \vDash D(x)$. By now we all know what we should expect next:
+
+\begin{thm} (undefinability of definability)\\
+There is no formula $D$ that is a definition of definability.
+\begin{proof}
+Assume $D$ is a definition of definability. Consider (informally now)
+\[
+\alpha := \min\{ \beta: \beta \text{ is not definable, but} \forall \gamma < \beta \exists \gamma' \gamma < \gamma' < \beta \text{ and } \gamma' \text{ is definable}\}\\
+\]
+(I think this formulation is wrong) which is the supremum of the definable ordinals. This has to exist because there are only countably many formulas, and each formula only specifies at most one ordinal; this has to be uncountable since, say, $\aleph_1$ is definable. This is defined by the formula:\\
+$y = \alpha \leftrightarrow y$ is an ordinal and $\neg D(y)$ and
+\[
+\forall \gamma (\gamma < y \to \exists \gamma' (\gamma < \gamma' < y \wedge D(\gamma')))
+\]
+This proves that $\alpha$ is definable in the sense of the definition, so $M \vDash D(\alpha$; but one of the conjuncts in the definition implies $M \vDash \neg D(\alpha)$. Contradiction.
+\end{proof}
+\end{thm}
+
+We now learned that \emph{definability} is not going to work without keeping track of parameters. So we need to define definability with direct reference to what parameters are allowed.
+
+Fix $A$, and $n \in \N$. We're going to define by recursion what it means to be a definable subset of $A^n$:\\
+Define $Diag_\in(A,n,i,j) := \{s \in A^n: s_i \in s_j\}$ (read as \emph{diagrams}),\\
+$Diag_=(A,n,i,j) := \{s \in A^n: s_i = s_j\}$,\\
+$Proj(A,R,n) := \{s \in A^n: \exists t \in R (t|_n = s)\}$ (where the formula in the last bracket means $t$ restricted to $n$) (the intended meaning is for $R \subseteq A^{n+1}$). Now define\\
+$Def(0,A,n) := \{Diag_\in(A,n,i,j): i,j < n\} \cup \{Diag_=(A,n,i,j):i,j < n\}$,\\
+\[
+Def(k+1,A,n) := Def(k,A,n) &\cup \{R \cap S: R,S \in Def(k,A,n)\} \\
+&\cup \{A^n \setminus S: S \in Def(k,A,n)\} \\
+&\cup \{Proj(A,R,n): R \in Def(k,A,n+1)\}
+\] (corresponding to conjunctions, negations and existence quantifier). Lastly we define 
+\[
+Def(A,n) := \bigcup_{k \in \N} Def(k,A,n)
+\]
+Observe that the definition of $Def(k+1,A,n)$ and $Def(0,A,n)$ are $\Delta_0$ because all of the quantifiers are bounded by $A$. So the definition of $Def(A,n)$ is a recursive definition based on absolute notions, and thus absolute for transitive models (containing $A$, of course).
+
+The next thing we are going to do (a bit of preview) is to use $Def(A,n)$ to define the \emph{definable power set}. After that, define a \emph{definable von Neumann hierarchy}. That's what we are going to do on Wednesday.
+
+A reminder that we're going to have an example class this afternoon (330-5pm). I think it's in MR5?
+
+\end{document}
