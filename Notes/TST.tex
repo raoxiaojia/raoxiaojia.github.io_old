@@ -496,11 +496,92 @@ The next thing we are going to do (a bit of preview) is to use $Def(A,n)$ to def
 
 A reminder that we're going to have an example class this afternoon (330-5pm). I think it's in MR5?
 
+---Lecture 9---
+
+\subsection{The constructible universe}
+
+Last time we discussed the construction of an inner model $L \subseteq M$ that is based on definability. Problems with definability are conncted to Tarski's Undefinability of Truth; the \emph{definable} fragment of truth is that where we fix the scope of existential quantifiers in advance.\\
+Recall that we defined recursively $Def(A,n)$, which are definable subsets of $A^n$, where \emph{definable} is interpreted in $A$.
+
+\begin{lemma}
+If $X \subseteq A^n$ s.t. there is a formula $\varphi$ and s.t. $(x_1,...,x_n) \in X \iff (A,\in) \vDash \varphi(x_1,...,x_n)$. Then $X \in Def(A,n)$.
+\begin{proof}
+Simple induction over complexity of $\varphi$.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}
+In $M$, we have that $Def(A,n)$ is countable.\\
+(We even have a concrete surjection $\N \to Def(A,n)$)
+\end{lemma}
+Observation: in the definition of $Def(k,A,n)$, we only used notions absolute for transitive models of ZF. So, since $Def(A,n)$ was defined by recursion over $Def(k,A,n)$, also $Def(A,n)$ is absolute between transitive models.
+
+Our goal is to find a definable power set. However, $Def(A,1)$ is not a good candidate as it is always countable, so if $A$ is uncountable, then there is $a \in A$ s.t. $\{a\} \not\in Def(A,1)$ by the above lemma.
+
+We define
+\[
+\mathcal{D}(A) := \{X \subseteq A: \exists n \exists s \in A^n \exists R \in Def(A,n+1) s.t. X = \{a \in A: (a,s_0,...,s_{n-1}) \in \R\}\}
+\]
+and we'll call this the \emph{definable power set}.
+
+Observation: If $X$ is informally definable with parameters from $A$, i.e. $X = \{ a \in A: (A,\in) \vDash \varphi(a,p_1,...,p_n) \}$ for some $p_1,...,p_n \in A$, then $X \in \mathcal{D}(A)$.
+
+Observation: As $Def(A,n)$ was absolute and the quantifiers in the definition of $\mathcal{D}(A)$ are all bounded, $\mathcal{D}(A)$ is absolute for transitive models.
+
+\begin{prop}
+If $A$ is transitive, then $\mathcal{D}(A)$ is transitive.
+\begin{proof}
+Suppose $x \in X \in \mathcal{D}(A)$. Then $x \in X \subseteq A$. So $x \subseteq A$ and $x \in A$ as $A$ is transitive. We can then define $x$ as a subset by the formula $v \in x = \varphi(v)$ (which selects exactly the elements of $x$, which form $x$): $x = \{z \in A: (A,\in) \vDash \varphi(z)\}$.
+\end{proof}
+\end{prop}
+
+Let $L_0:=\phi$,\\
+$L_{\alpha+1}:= \mathcal{D}(L_\alpha)$,\\
+$L_{\lambda} := \bigcup_{\alpha<\lambda} L_\alpha$.
+
+We refer to the class $\bigcup_{\alpha \in Ord} L_\alpha$ as '$L$', or \emph{the constructible universe}.
+
+Properties: \\
+(1) If $\alpha \leq \omega$, then $V_\alpha = L_\alpha$.\\
+(2) For every $\alpha$, $L_\alpha$ is transitive from proposition by induction.\\
+(3) $\alpha \leq \beta \to L_\alpha \subseteq L_\beta$;\\
+(4) $Ord \cap L_\alpha = \alpha$ (this and (3) are in sheet 2);\\
+(5) If $\alpha \geq \omega$, then $|L_\alpha| = |\alpha|$.
+\begin{proof}
+$\alpha=\omega$: $|L_\omega| = |V_\omega| = \aleph_0 = |\omega|$;\\
+Suppose for all $\beta < \alpha$ we have $|L_\beta| \leq |\beta|$. Show that $|L_\alpha| < |\alpha|^+$:\\
+(a) $\alpha$ is a successor, say $\alpha = \beta+1$. So $L_\alpha = L_{\beta+1} = \mathcal{D}(L_\beta)$; if we look carefully at the definition, we could get a surjection from $\aleph_0 \times \bigcup_{n \in \N} L_\beta^n$ onto $\mathcal{D}(L_\beta)$; but we assumed $\alpha$ is at least $\omega$, $\aleph_0 \times \bigcup_{n \in \N} L_\beta^n$ has cardinality $|L_\beta|$ as well.\\
+(b) $\alpha$ is a limit. Let $\pi_\beta: \alpha \to L_\beta$ be a surjection. Then we find surjection from $\alpha \times \alpha \twoheadrightarrow L_\alpha$ by $(\gamma,\gamma') \to \pi_\gamma(\gamma')$.
+\end{proof}
+Note that in the above we've only proved that the cardinality is at most what we wanted; but it is also at least that by property (4).\\
+
+Now look at $V_{\omega+1}$ and $L_{\omega+1}$. They can't be the same, as the first is uncountable but the second is uncountable. So $L_{\omega+1} \subseteq V_{\omega+1}$, and $V_{\omega+1} \setminus L_{\omega+1} \neq \phi$. However, it is entirely possible that the missing part is collected later when we reach $L_{\omega_1}$ or later.
+
+\begin{defi}
+If $x$ is constructible, $x \in L$, then $\rho_L(x) := \min\{\alpha: x \in L_{\alpha+1}\}$ (an analogue of the rank in $V$).
+\end{defi}
+
+\begin{defi}
+$V=L$ is the axiom of constructibility
+\[
+\forall x \exists \alpha (x \in L_\alpha)
+\]
+Note that this is a concrete sentence in $L_\in$, as $L_\alpha$ can be recursively defined.
+\end{defi}
+
+\begin{lemma}
+If $M$ is a transitive set model of ZFC+$V=L$, then there is a limit ordinal $\lambda$ s.t. $M=L_\lambda$.\\
+Note that we haven't shown that such $M$ would exist (as $\neg V=L$ might well be a theorem in ZFC), but we know what it will look like \emph{if} it exists.
+\begin{proof}
+Consider $\lambda:= Ord \cap M$. Clearly, $\lambda$ is a limit ordinal (both are transitive).\\
+We claim that $M=L_\lambda$: suppose $x \in M$, by $V=L$ find $\alpha \in M$ s.t. $(M,\in) \vDash x \in L_\alpha$. $L_\alpha$ was defined by recursion from absolute notions, so $x \in L_\alpha$ is absolute. So $x \in L_\alpha \subseteq L_\lambda$.\\
+Suppose $x \in L_\lambda$, so there is $\alpha < \lambda$ s.t. $x \in L_\alpha$ (this is absolute, so $(M,\in) \vDash x \in L_\alpha$), by choice of $\lambda$, $\alpha \in M$.
+\end{proof}
+\end{lemma}
+
 \newpage
 
 \section{Example Class 1}
-
-(unarranged)
 
 \subsection{Question 1}
 
