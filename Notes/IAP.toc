@@ -4,3 +4,4 @@
 \contentsline {section}{\numberline {3}Approximate groups}{10}{section.3}
 \contentsline {section}{\numberline {4}Stability of approximate closure under basic operations}{13}{section.4}
 \contentsline {section}{\numberline {5}Coset progressions, Bohr sets and the Freiman-Green-Ruzsa theorem}{16}{section.5}
+\contentsline {section}{\numberline {6}Geometry of Numbers}{19}{section.6}
