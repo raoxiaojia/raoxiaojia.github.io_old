@@ -469,7 +469,7 @@ In intro to DA you saw this in the special case of $G$ torsion-free. The general
 To pass from prop 5.2 to theorem 5.1, we use the following results:
 
 \begin{prop} (5.3)\\
-Suppose $Z$ is a finite abelian group, $\Gamma \subset \hat{Z}$ is of size $r$, $\rho<\frac{1}{10}$\footnote{Lecturer thinks he might also get away with a larger choice.}. Then there exists a coset progression $H+P \subset B(\Gamma,\rho)$ with rank $r$ and $|H+P| \geq (\rho/r)^r |Z|$.
+Suppose $G$ is a finite abelian group, $\Gamma \subset \hat{G}$ is of size $r$, $\rho<\frac{1}{10}$\footnote{Lecturer thinks he might also get away with a larger choice.}. Then there exists a coset progression $H+P \subset B(\Gamma,\rho)$ with rank $r$ and $|H+P| \geq (\rho/r)^r |G|$.
 \end{prop}
 
 We'll prove prop 5.3 in the next couple of lectures.
@@ -517,6 +517,103 @@ as claimed (subject to proving 5.3).
 
 Exercise: see what bounds you get if you apply Ruzsa's covering lemma directly, instead of Chang's argument.
 
----Lecture 6 lost due to technical failure---
+---Lecture 6---
+
+---Lecture 7---
+
+Example class Tuesday 1400-1530 MR14. Work to lecturer at pembroke plodge by midday monday.
+
+Some errata for last lecture (correct directly later):\\
+(1)When we had $\sigma_i$ and $B_1 \subset B_2 \subset ...$ last time, we assume $z$ is the centre of mass of $L \cap (z+V_i)$. To be on safe side, in statement of Minkowski's second theorem, let's assume that $B$ is a polytope (?).\\
+(2) the assumption $h_x \cap A^0 = \phi$ is not sufficient; we also need $A^0$ is contained in one of the two half spaces into which $h_x$ divides $\R^d$.
+
+\begin{proof} (of 5.3)\\
+Write $\gamma = (\gamma_1,...,\gamma_r) \in \hat{G}^r$. Define $\Lambda = \gamma(G) + \Z^r$, which is a lattice of determinant $|\ker \gamma| / |G|$ by lemma 6.1. Let $\lambda_1,...,\lambda_r$ be the successive minima $[-1,1]^r$ w.r.t. $\Lambda$, and $v_1,...,v_r$ a directional basis. Set $L_i = \lfloor\frac{\rho}{r \lambda_i} \rfloor$ for each $i$. Then $P(v_1,...,v_r;L_1,...,L_r) \subset [-\rho,\rho]^r$ (recall LHS is formula for a coset progression -- see start of chapter 5). Pick, for each $i$, $x_i \in G$ s.t. $\gamma(x_i) = v_i$, and set $H=\ker \gamma$, write $P=P(x_1,...,x_r;L_1,...,L_r)$. Then $H+P \subset B(\Gamma,\rho)$.\\
+Now we just need to justify the size constraint. We claim that if $l_1,...,l_r$ and $l'_1,...,l'_r$ satisfy $|l_i|,|l'_i| \leq L_i$, and $l_1x_1+...+l_rx_r \in l'_1x_1+...+l'_r x_r+H$ (call this (*)), then in fact $l_i = l'_i \forall i$. Indeed, (*) implies that $(l_1-l'_1)v_1+...+(l_r-l'_r)v_r \in \Z^r \in \Z^r \cap [-2\rho,2\rho]^r$. But $\rho < \frac{1}{2}$, this last intersection is just $\{0\}$. Also $v_i$ are linearly independent, so $l_i=l'_i$ for each $i$.\\
+Then
+\[
+|H+P| &\geq |H|(L_1+1)...(L_r+1)\\
+&\geq |H| ( \frac{\rho}{r})^r \frac{1}{\lambda_1...\lambda_r}\\
+&\geq |G| (\rho/r)^r
+\]
+by Minkowski's second theorem.
+\end{proof}
+
+\newpage
+
+\section{Progressions in the Heisenberg group}
+
+We know the Heisenberg group is
+\[
+H(\Z) = \begin{pmatrix}
+1 & \Z & \Z\\
+0 & 1 & \Z\\
+0 & 0 & 1
+\end{pmatrix}
+\]
+where $\Z$ denotes any integer.\\
+Set 
+\[
+u_1 = \begin{pmatrix}
+1&0&0\\
+&1&1\\
+&&1
+\end{pmatrix}
+u_2 = \begin{pmatrix}
+1&1&0\\
+&1&0\\
+&&1
+\end{pmatrix}
+u_3 = \begin{pmatrix}
+1&0&1\\
+&1&0\\
+&&1
+\end{pmatrix}
+\]
+and note that any element of $H(\Z)$ can be expressed in the form
+\[
+\begin{pmatrix}
+1&n_2&n_3\\
+&1&n_1\\
+&&1
+\end{pmatrix}
+= u_1^{n_1}u_2^{n_2}u_3^{n_3}
+\]
+and we have the following formula for multiplying elements in this form:
+\[
+(u_1^{n_1}u_2^{n_2}u_3^{n_3})(u_1^{n'_1}u_2^{n'_2}u_3^{n'_3}) = u_1^{n_1+n'_1}u_2^{n_2+n'_2}u_3^{n_3+n'_3+n_1'n_2} \ (7.1)
+\]
+(just by doing matrix multiplication). There is a more abstract reason for it. To see this, given $x,y \in G$, define the commutator $[x,y] = x^{-1}y^{-1}xy$. In light of the identity $xy = yx[x,y]$, we can view the commutator as being the 'error' or 'cost' incurred when interchanging two elements. For example, the fact that commutators are trivial in abelian group can be viewed as capturing the notion that elements can be interchanged freely in an abelian group. The $n_1'n_2$ term in (7.1) arises because we swap the order of $n_1'n_2$ pairs of elements of $u_1$ and $u_2$.
+
+Now let's see one possible generalisation of progression to non-abelian groups.
+
+\begin{defi} (ordered progression)\\
+Given $x_1,...,x_r \in G$, $L_1,...,L_r \geq 0$, we define the \emph{ordered progression of rank $r$} 
+\[
+P_{ord} (x,L) = P_{ord}(x_1,...,x_r;L_1,...,L_r) = \{x_1^{l_1}...x_r^{l_r}; |l_i| \leq L_i \forall i\}
+\]
+(almost the same as the abelian case, but now we care about the order).\\
+Now consider $P=P_{ord}(u_1,u_2;L_1,L_2)$ for $u_1,u_2 \in H(\Z)$ as before, and $L_1,L_2 \geq 0$. We have $(u_1^{l_1} u_2^{l_2}) (u_1^{l'_1}u_2^{l'_2}) = u_1^{l_1+l'_1} u_2^{l_2+l'_2} u_3^{l'_1l_2}$ (7.2), and it is then easy to check that $|P^2|/|P| \to \infty$ as $L_1,L_2 \to \infty$, essentially because we can change $l_1,l_2,l'_1,l'_2$ without changing $l_1+l'_1$ and $l_2+l'_2$ but changing $l'_1l_2$, so in some we have an extra degree of freedom in $P^2$ compared to in $P$.
+
+Coming back to commutators and recalling that $u_3 = [u_2,u_1]$, we see that this corresponds to the freedom to interchange the order of some of the $u_1,u_2$ in $P^2$, as seen in the LHS of (7.2). This is a freedom that the definition of ordered progression explicitly denies us.
+\end{defi}
+
+It turns out that if we introduce this freedom to $P$ as well, then this does force $P$ to have small tripling.
+
+\begin{defi} (nonabelian progression)\\
+Given $x_1,...,x_r \in G$, $L_1,...,L_r \geq 0$, the \emph{nonabelian progression} $P(x;L) = P(...)$ of rank $r$ is defined to consist of all those elements of $G$ expressible as products of $x_1^{\pm 1},...,x_r^{\pm r}$, in which each $x_i,x_i^{-1}$ appear at most $L_i$ times between them.
+
+It turns out that $P(u_1,u_2;L_1,L_2)$ \emph{does} have small tripling (sheet 2).
+
+A note of caution: nonabelian progressions don't always have small tripling: consider $P(x_1,x_2;L_1,L_2)$ for $x_1,x_2$ generators of a nonabelian free group. In the case of $H(\Z)$, the formula (7.1) is simplified by the fact that $u_3=[u_2,u_1]$ is central in $H(\Z)$. If this were not the case, we'd end up with elements of the form $[[u_2,u_1],u_1]$, for example. This is in fact a specific example of a property called \emph{nilpotence}.
+
+To define this, first define a \emph{normal series} for a group $G$ to be a sequence $G = G_1 > G_2 > ...$ of normal subgroups $G_i \triangleleft G$ and a \emph{central series} to be such a normal series in which each $G_i/G_{i+1}$ is central in $G/G_{i+1}$.
+\end{defi}
+
+\begin{defi} (nilpotent group)\\
+A group $G$ is nilpotent if $\exists$ finite central series $G=G_1 >...>G_{s+1} = \{1\}$. The smallest $s$ which such series exists is called the \emph{step} or \emph{nilpotency class} of $G$.
+\end{defi}
+
+Exercise: $H(\Z)$ is $2$-step nilpotent. 
 
 \end{document}

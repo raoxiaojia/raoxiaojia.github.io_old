@@ -2,7 +2,7 @@
 
 \input{temp}
 
-\setcounter{section}{-1}
+\setcounter{section}{0}
 
 \begin{document}
 
@@ -16,12 +16,21 @@
 
 \newpage
 
-\section{Introduction}
+\section{Example Class 1}
 
-\newpage
+q1 (b) $\implies$ (c): just consider total probability (as mentioned in lecture).
 
-\section{1}
+q2 (5): typical set isn't the smallest with high total probability. However, it's easy to check if an element is in the typical set, while in general it's hard for highest probability set.
 
----Lecture 1---
+q3 (1): Use Jensen's inequality on the definition of $I(X:Y)$, or express $I(X:Y) = D(\{p(x,y)\}_{x,y} || \{p(x)1(y)\}_{x,y})$.
+
+q8: consider instead a binary channel that outputs $x$ with probability $1-\varepsilon$ and $\neg x$ with probability $\varepsilon$. We decode $x$ as $1$ with probability 1 and as $a$ with probability $p(a)/\varepsilon$. Let the output be $Y$ and input be $B$. Then $H(X) = H(B,Y)$. Then consider $H(B,Y) = H(B) + H(Y|B) = h(\varepsilon) + \varepsilon H(Y|b=\neg x)$.
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     q11: channel capacity $c$ is calculated via
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \[
+c=\max_{p(x)} I(X:Y) = \max_{p(x)} H(Y)-H(Y|X)
+\]
+
+The answer is $2/3$, achieved by $X$ uniform.
 
 \end{document}

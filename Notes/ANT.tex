@@ -909,7 +909,111 @@ For $r \geq 6\log \frac{1}{W(z)}$, then
 \[
 S(A,P;z) = XW(z) + O(2^{-r} X + \sum_{d | P(z), d \leq z^r} |R_d|)
 \]
+(Compare this to Eratostehen's sieve:
+\[
+S(A,P;z) = XW(z)  +O(\sum_{d|P(z)} |R_d|)
+\]
+)
+
+---Lecture 10---
+
+\begin{proof}
+Recall that from the iterating Buchstab Formula, we have that, for any $r \geq 1$,
+\[
+S(A,P;x) &= \sum_{d | P(z), \omega(d) < r} \mu(d) |A_d| + (-1)^r \sum_{d|P(z), \omega(d) = r} S(A_d,P;l(d))\\
+&= X \sum_{d | P(z), \omega(d) < r} \mu(d) \frac{f(d)}{d} + \sum_{d | P(z), \omega(d) < r} \mu(d) R_d + (-1)^r \sum ...
+\]
+by trivial bound $0 \leq S(A_d,P;l(d)) \leq |A_d| = X\frac{f(d)}{d} + R_d$. So above
+\[
+S(A,P;z) &= X\sum_{d | P(z), \omega(d) < r} \mu(d) \frac{f(d)}{d} + O(\sum_{d | P(z),\omega(d)<r} |R_d| + \sum_{d | P(z), \omega(d) = r} |A_d|)
+\]
+
+By Buchstab again, applied to $W(z)$, we have
+
+\[
+W(z) = \sum_{d|P(z), \omega(d) < r} \mu(d) \frac{f(d)}{d} + (-1)^r \sum_{d | P(z), \omega(d) = r} \mu(d) \frac{f(d)}{d} W(l(d))
+\]
+So
+\[
+S(A,P;z) = XW(z) + O\left(\sum_{d|P(z), \omega(d) < r} |R_d| + \sum_{d|P(z), \omega(d) = r} |A_d| + X\sum_{d|P(z), \omega(d) = r} \frac{f(d)}{d}\right)
+\]
+where we just use a crude bound that $W(l(d)) < 1$.\\
+Error term:
+\[
+&= X \sum_{d | P(z), \omega(d) = r} \frac{f(d)}{d} + \sum_{d|P(z), \omega(d) \leq r} |R_d|\\
+&\leq \sum_{d|P(z), d \leq z'} |R_d|
+\]
+because $d|P(z) = \prod_{p \in P, p < z} P$. It remains to show that
+\[
+\sum_{d|P(z), \omega(d) = r} \frac{f(d)}{d} \ll 2^{-r}
+\]
+
+Note that
+\[
+\sum_{d|P(x),\omega(d) = r} \frac{f(d)}{d} &= \sum_{p_1...p_r, p \in P, p_i < z} \frac{f(p_1)...f(p_r)}{p_1...p_r} \leq \frac{(\sum_{p|P(z)} \frac{f(p)}{p})^r}{r!}
+\]
+and we use $r' \geq \frac{r^r}{e^r}$ to then get
+\[
+\leq (\frac{e\sum_{p|P(z)} \frac{f(p)}{p}}{r})^r \ (\dagger)
+\]
+Now
+\[
+\sum_{p|P(z)} \frac{f(p)}{p} \leq \sum_{p|P(z)}-\log(1-\frac{f(p)}{p}) = -\log W(z)
+\]
+So if $r \geq 2e|\log W(z)|$, then ($\dagger$) is at most 
+\[
+(\frac{e|\log W(z)|}{r})^r \leq 2^{-r}
+\]
+and we're done ($2e<6$).
+\end{proof}
 \end{thm}
+
+Note that we could easily improve this by being more careful at the constants, but those are less important; we just want to have the purest form of the combinatorial sieve.
+
+Recall Selberg's Sieve shows $\pi_2(x) \ll \frac{x}{(\log x)^2}$, and now combinatorial sieve gives both upper and lower bound, so we might think it would give a lower bound for $\pi_2(x)$. However, in the twin prime sieve setting, recall that $W(z) \asymp \frac{1}{(\log z)^2}$, so in Brun's sieve we need to take $r \gg 2 \log \log z$.\\
+If $r = C \log \log z$ for $C$ large enough, then $2^{-r} X \ll \frac{X}{(\log z)^{100}}$ (safe enough); the main term is $\gg \frac{x}{(\log z)^2}$; $|R_d| \ll 2^{\omega(d)} = d^{o(1)}$, so 
+\[
+\sum_{d|P(z),d \leq 2^r} |R_d| \ll 2^{r+o(1)} = z^{2 \log \log z} + o(1).
+\]
+
+For this to be $o(\frac{x}{(\log z)^2})$, we need to choose $z \approx \exp((\log x)^{1/4})$. We seem to have success, but in the end when we try to relate $S(A,P;z)$ and $\pi_2(x)$, we have LHS is $\{1 \leq n \leq x: p|n(n+2)$ then $p \gg (?) z = \exp((\log x)^{1/4})\}$ ($p \gg x^{1/2}$), but when we try to get a lower bound it is impossible to remove the extra stuff we have here.
+
+\begin{coro}
+For any $z \leq \exp(o((\frac{\log x}{\log \log x})^{1/2}))$,
+\[
+|\{1 \leq n \leq x: p|n \implies p \geq z\}| \sim e^{-\gamma} \frac{x}{\log z}
+\]
+\end{coro}
+
+\begin{rem}
+1) In particular: $z = (\log x)^A$ is allowed for any $A$, but $z=x^c$ for any $c >0$ is not allowed.\\
+2) In particular, we can't count primes like this ($z=x^{1/2})$. Recall heuristic from before says if this asymptotic were correct for primes, then $\pi(x) \sim 2e^{-r} \frac{x}{\log x}$ (contradicts PNT: $2e^{-\gamma} = 1.12...$).
+\end{rem}
+
+\begin{proof}
+Again, use $A=\{1 \leq n \leq x\}$, so $f(d) = 1$ and $|R_d| \ll 1$. Then $W(z) = \prod_{p < z} (1-\frac{1}{p}) \sim e^{-\gamma}{\log z}$. So
+\[
+S(A,P;z) &= |\{1 \leq n \leq x: p | n \implies p > z\}| \\
+&= e^{-\gamma} \frac{x}{\log z} + o(\frac{x}{\log z}) + O(2^{-r} x + \sum_{d | P(z), d < 2^r} |R_d|)
+\]
+If $r \geq 6 |\log W(z)|$, so $r \geq 100\log\log z$ is certainly fine: we have in that caes
+\[
+2^{-r} x \leq (\log z)^{-(\log 2) 100} x = o(\frac{x}{\log z})
+\]
+and, choosing $r=\lceil 100\log\log z\rceil$
+\[
+\sum_{d | P(z), d \leq 2^r} |R_d| \ll \sum_{d \leq z^r} 1 \ll z^r \leq 2^{500 (\log z) \log\log z}
+\]
+(this course is very forgiving on constants). It remains to note that if $\log z = o((\frac{\log x}{\log \log x})) = \frac{(\log x)}{(\log \log x)} F(x)$, then
+\[
+\log z \log\log z &= o(\frac{\log x}{\log\log x} \cdot \log \log x)\\
+&= o(\log x)
+\]
+So $2^{500 (\log\log z)\log z} \leq x^{1/10} = o(\frac{x}{\log z})$ if $x$ is large enough.
+\end{proof}
+
+
+
 
 \newpage
 
