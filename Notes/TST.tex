@@ -471,7 +471,7 @@ $y = \alpha \leftrightarrow y$ is an ordinal and $\neg D(y)$ and
 \[
 \forall \gamma (\gamma < y \to \exists \gamma' (\gamma < \gamma' < y \wedge D(\gamma')))
 \]
-This proves that $\alpha$ is definable in the sense of the definition, so $M \vDash D(\alpha$; but one of the conjuncts in the definition implies $M \vDash \neg D(\alpha)$. Contradiction.
+This proves that $\alpha$ is definable in the sense of the definition, so $M \vDash D(\alpha)$; but one of the conjuncts in the definition implies $M \vDash \neg D(\alpha)$. Contradiction.
 \end{proof}
 \end{thm}
 
@@ -504,7 +504,11 @@ Last time we discussed the construction of an inner model $L \subseteq M$ that i
 Recall that we defined recursively $Def(A,n)$, which are definable subsets of $A^n$, where \emph{definable} is interpreted in $A$.
 
 \begin{lemma}
-If $X \subseteq A^n$ s.t. there is a formula $\varphi$ and s.t. $(x_1,...,x_n) \in X \iff (A,\in) \vDash \varphi(x_1,...,x_n)$. Then $X \in Def(A,n)$.
+Let $X \subseteq A^n$. If there is a formula $\varphi$ s.t. 
+\[
+(x_1,...,x_n) \in X \iff (A,\in) \vDash \varphi(x_1,...,x_n)
+\]
+then $X \in Def(A,n)$.
 \begin{proof}
 Simple induction over complexity of $\varphi$.
 \end{proof}
@@ -512,7 +516,10 @@ Simple induction over complexity of $\varphi$.
 
 \begin{lemma}
 In $M$, we have that $Def(A,n)$ is countable.\\
-(We even have a concrete surjection $\N \to Def(A,n)$)
+(We even have a concrete surjection $\N \to Def(A,n)$.)
+\begin{proof}
+There are only countably many formulas.
+\end{proof}
 \end{lemma}
 Observation: in the definition of $Def(k,A,n)$, we only used notions absolute for transitive models of ZF. So, since $Def(A,n)$ was defined by recursion over $Def(k,A,n)$, also $Def(A,n)$ is absolute between transitive models.
 
@@ -520,7 +527,7 @@ Our goal is to find a definable power set. However, $Def(A,1)$ is not a good can
 
 We define
 \[
-\mathcal{D}(A) := \{X \subseteq A: \exists n \exists s \in A^n \exists R \in Def(A,n+1) s.t. X = \{a \in A: (a,s_0,...,s_{n-1}) \in \R\}\}
+\mathcal{D}(A) := \{X \subseteq A: \exists n \exists s \in A^n \exists R \in Def(A,n+1) s.t. X = \{a \in A: (a,s_0,...,s_{n-1}) \in R	\}\}
 \]
 and we'll call this the \emph{definable power set}.
 
@@ -570,14 +577,82 @@ Note that this is a concrete sentence in $L_\in$, as $L_\alpha$ can be recursive
 \end{defi}
 
 \begin{lemma}
-If $M$ is a transitive set model of ZFC+$V=L$, then there is a limit ordinal $\lambda$ s.t. $M=L_\lambda$.\\
-Note that we haven't shown that such $M$ would exist (as $\neg V=L$ might well be a theorem in ZFC), but we know what it will look like \emph{if} it exists.
+If $M$ is a transitive set model of $ZFC+(V=L)$, then there is a limit ordinal $\lambda$ s.t. $M=L_\lambda$.\\
+Note that we haven't shown that such $M$ would exist (as $\neg V=L$ might well be a theorem in ZFC), but we know what it will look like \emph{if} it exists.\\
+We don't really have much time, so we'll present a quick proof here; more details next lecture.
 \begin{proof}
-Consider $\lambda:= Ord \cap M$. Clearly, $\lambda$ is a limit ordinal (both are transitive).\\
+Consider $\lambda:= Ord \cap M$ (remember that $M$ is a set, so $\lambda$ is indeed a set, so an ordinal). Clearly, $\lambda$ is a limit ordinal (both are transitive).\\
 We claim that $M=L_\lambda$: suppose $x \in M$, by $V=L$ find $\alpha \in M$ s.t. $(M,\in) \vDash x \in L_\alpha$. $L_\alpha$ was defined by recursion from absolute notions, so $x \in L_\alpha$ is absolute. So $x \in L_\alpha \subseteq L_\lambda$.\\
 Suppose $x \in L_\lambda$, so there is $\alpha < \lambda$ s.t. $x \in L_\alpha$ (this is absolute, so $(M,\in) \vDash x \in L_\alpha$), by choice of $\lambda$, $\alpha \in M$.
 \end{proof}
 \end{lemma}
+
+---Lecture 10---
+
+What did we do so far? We defined the constructible universe, and we realized that our definitions were absolute for transitive models: if we write $\Phi(x,\alpha)$ the formula '$x \in L_\alpha$', $\Psi(x,\alpha)$ the formula '$x=L_\alpha$', then both $\Phi$ and $\Psi$ are absolute for transitive models of set theory.
+
+We also had the axiom '$V=L$', which is a short hand for $\forall x \exists \alpha x\in L_\alpha$.
+
+\begin{prop}
+If $A$ is a transitive set model of $ZFC+(V=L)$, then $A=L_\alpha$ where $\alpha = Ord \cap A$.
+\begin{proof}
+'$A \subseteq L_\alpha$': If $x \in A$, then by $(A,\in) \vDash V=L$, find $\beta$ s.t. $(A,\in) \vDash x \in L_\beta$; by absoluteness, $x \in L_\beta \subseteq L_\alpha$.\\
+'$L_\alpha \subseteq A$': If $x \in L_\alpha$, since $\alpha = Ord\cap A$ and $A \vDash ZFC$, $\alpha$ has to be a limit ordinal. So we can write $L_\alpha = \bigcup_{\beta < \alpha} L_\beta$. So find $\beta < \alpha$ and $x \in L_\beta$. Since $(A,\in) \vDash ZFC$, we know that $A$ thinks '$L_\beta$ exists', or slightly more formally, there is $X$ s.t. $(A,\in) \vDash \Psi(X,\beta)$. By absoluteness of $\Psi$, $\Psi(X,\beta)$ is actually true in the bigger universe $M$. So $X=L_\beta$. Therefore $L_\beta \in A$. But $x \in L_\beta$ and $A$ is transitive. So $x \in A$.
+\end{proof}
+\end{prop}
+
+However, as we said last time, we don't really know if there \emph{is} actually a model of $ZFC+(V=L)$, so what we just did seems a bit pointless. Our next major goal shall then be:
+
+\begin{thm} (G\"{o}del, 1938)\\
+If $\kappa$ is inaccessible, then $L_\kappa \vDash ZFC+(V=L)$.
+\end{thm}
+
+\begin{coro}
+IC $\implies$ there is a \emph{countable} $\alpha$ s.t. $L_\alpha \vDash ZFC+(V=L)$.
+\begin{proof}
+Take $H:=\mathcal{H}^{L_\kappa}(\phi) \prec L_\kappa$, the Skolem hull. $H$ is therefore countable. Then take $T \cong H$ the Mostowski collapse, then $(T,\in) \equiv (L_\kappa,\in)$ (all sentences have the same truth value). Therefore $(T,\in) \vDash ZFC+(V=L)$ is a countable transitive model; then apply our previous proposition we know $T=L_\alpha$ for some ordinal $\alpha$. But by a previous property $|L_\alpha| = |\alpha|$, so $\alpha$ has to be countable.
+\end{proof}
+\end{coro}
+
+Contrast this with: If $V_\alpha \vDash ZFC$, then $\alpha$ cannot be countable: if $\alpha$ is countable, then there is a code for a surjection $f:N \twoheadrightarrow \alpha$ in $V_{\omega+1} \subseteq V_\alpha$, so $V_\alpha \vDash$ '$\alpha$ is countable'; contradiction to $V_\alpha \vDash ZFC$. (some diagram)
+
+\begin{proof} (of theorem)\\
+Extensionality follows from transitivity;\\
+Pair: $x,y \in L_\kappa$, find $\alpha$ s.t. $x,y \in L_\alpha$ s.t. $\{x,y\} \subseteq L_\alpha$. Clearly the formula
+\[
+\varphi(z,x,y) := z=x \vee z=y
+\]
+defines the pair $\{x,y\}$. So by one of our previous lemmas, the pair lies in $\mathcal{D}(L_\alpha) = L_{\alpha+1} \subseteq L_\kappa$.\\
+However, note that our lemma only says that if we have a formula $\varphi$, and we interpret it in $L_\alpha$, then what we get will be in $D(L_\alpha)$. But luckily our $\varphi$ here is simple enough that it doesn't matter where we interpret it within: its truth value is the same in any model that contains $x$ and $y$.\\
+The same proof takes care of, say, Union. Let's get to something that's more interesting. How about Power Set? This can't work directly, since there are just not enough elements in $D(L_\alpha)$.\\
+Consider $x \in L_\kappa$. As before, $\alpha < \kappa$, so $x \in L_\alpha$, so $x \subseteq L_\alpha$ by transitivity, so $|x| \leq |L_\alpha| < \kappa$ because $\kappa$ is strongly inaccessible.\\
+Consider $\mathcal{P}(x)$ in $M$; we know $|\mathcal{P}(x)| = 2^{|x|} < \kappa$ because $\kappa$ is inaccessible, and $|L_\kappa \cap \mathcal{P}(x)| \leq |\mathcal{P}(x)| < \kappa$ (diagram).
+\begin{rem}
+Since $L_\kappa,\mathcal{P}(x)$ are sets in $M$, $L_\kappa \cap \mathcal{P}(x)$ is a set in $V_\kappa$, and it is \emph{definable} in $V_\kappa$ by the formula
+\[
+z \in L_\kappa \cap \mathcal{P}(x) \iff \Phi(z,\kappa) \wedge z \subseteq x
+\]
+But that's not good enough to prove that $L_\kappa \cap \mathcal{P}(x) \in L_\kappa$, as we actually need to find an $\alpha<\kappa$ in place of $\kappa$ in the formula.
+\end{rem}
+For each $z \in L_\kappa \cap \mathcal{P}(x)$, find the $L$-rank,
+\[
+\alpha_z:=\rho_L(z) < \kappa
+\]
+and consider the set
+\[
+\{\alpha_z: z \in L_\kappa \cap \mathcal{P}(x)\} \subseteq \kappa
+\]
+of size $<\kappa$. Then by regularity of $\kappa$ we know it must be bounded by some $\beta < \kappa$ s.t.
+\[
+\{\alpha_z: z \in L_\kappa \cap \mathcal{P}(x)\} \subseteq \beta
+\]
+So $L_\kappa \cap \mathcal{P}(x) \subset L_\beta$.\\
+Now define
+\[
+P:=\{z: (L_\beta,\in) \vDash z \subseteq x\}
+\]
+By our lemma, $P \in \mathcal{D}(L_\beta) = L_{\beta+1} \subseteq L_\kappa$; but $L_\kappa \vDash \forall z (z \in P \iff z \subseteq x)$, so $L_\kappa$ is a model of the power set axiom.
+\end{proof}
 
 \newpage
 
