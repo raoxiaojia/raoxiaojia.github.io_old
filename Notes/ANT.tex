@@ -1012,6 +1012,130 @@ and, choosing $r=\lceil 100\log\log z\rceil$
 So $2^{500 (\log\log z)\log z} \leq x^{1/10} = o(\frac{x}{\log z})$ if $x$ is large enough.
 \end{proof}
 
+---Lecture 11---
+
+\newpage
+
+\section{The Riemann $\zeta$ Function}
+
+Lecture notes is again up to date again!
+
+Let's start with some gentle introduction.
+
+In this chapter, and as a tradition in this area, write $s=\sigma+it$ for a complex number $s$ (instead of $z$).
+
+If $n \in \N$, $n^s = e^{\log n}$ by definition, which is entire. It's also equal to $n^\sigma \cdot e^{it \log n}$.
+
+The Riemann $\zeta$ function is defined for $\sigma>1$:
+\[
+\zeta(s) := \sum_{n=1}^\infty \frac{1}{n^s}
+\]
+
+\subsection{Dirichlet series}
+For any arithmetic $f:\N \to \C$, we have a Dirichlet series 
+\[
+L_{f} (s) = \sum_{n=1}^\infty \frac{f(n)}{n^s}
+\]
+We have to be careful here because there are certainly choices of $f$ that make $L_f(s)$ not converge anywhere (e.g. $f=n!$).
+
+\begin{lemma} (1)\\
+For any $f$, there is an abscissa of convergence $\sigma_c$ s.t.\\
+(1) $\sigma < \sigma_c \implies L_f(s)$ diverges;\\
+(2) $\sigma > \sigma_c \implies L_f(s)$ converges uniformly in some neighbourhood of $s$. In particular, $L_f(s)$ is holomorphic at $s$.
+\begin{proof}
+It is enough to show if $L_f(s)$ converges at $s_0$ and $\sigma > \sigma_0$, then there's a neighbourhood of $s$ on which $L_f$ converges uniformly (then we could take $\sigma_c = \inf\{ \sigma: L_f(s)$ converges$\}$). Note that it's entirely possible that $\sigma_c=\infty$ or $\sigma_c=0$.\\
+Let $R(u) = \sum_{n > u} f(n) n^{-s_0}$. By partial summation,
+\[
+\sum_{M < n \leq N} f(n) n^{-s} = R(M) M^{s_0-s} - R(N)N^{s_0-s} + (s_0-s) \int_M^N R(u) u^{s_0}-s-1 du
+\]
+If $|R(u)| \leq \varepsilon$ for all $u \geq M$, then 
+\[
+\left|\sum_{M \leq n \leq N} f(n) n^{-s} \right| &\leq 2\varepsilon + \varepsilon |s_0-s| \int_M^n u^{\sigma_0-\sigma-1} du\\
+&\leq (2+\frac{|s_0-s|}{|\sigma_0-\sigma|}) \varepsilon
+\]
+Note that there is a neighbourhood of $s$ in which $\frac{|s-\sigma_0|^M}{|\sigma-\sigma_0|} \ll 1$. So $\sum \frac{f(n)}{n^3}$ converges uniformly here.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (2, see Part IB complex analysis for the general case)\\
+If $\sum \frac{f(n)}{n^s} = \sum \frac{g(n)}{n^s}$ for all $s$ in some half-plane $\sigma > \sigma_0 \in \R$, then $f(n) = g(n) \forall n$.
+\begin{proof}
+It's enough to consider $\sum \frac{f(n)}{n^s} \equiv 0 \forall \sigma > \sigma_0$.\\
+Suppose $\exists n f(n) \neq 0$. Let $N$ be the least such $f(N) \neq 0$. Since $\sum_{n \geq N} \frac{f(n)}{n^\sigma} = 0$,
+\[
+f(N) = -N^\sigma \sum_{n \geq N} \frac{f(n)}{n^\sigma}
+\]
+So $|f(n)| \ll n^\sigma$; and so the series $\sum_{n >N} \frac{f(n)}{n^{\sigma+1+\varepsilon}}$ is absolutely convergent.\\
+So since $\frac{f(n)}{n^\sigma} \to 0$ as $\sigma \to \infty$, RHS also $\to 0$. So $f(N) = 0$.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (3)\\
+If $L_f(s)$ and $L_g(s)$ are absolutely convergent at $s$, then
+\[
+L_{f*g} (s) = \sum_{n=1}^\infty \frac{f*g(n)}{n^s}
+\]
+is also absolutely convergent at $s$, and is equal to $L_f(s) L_g(s)$.
+\begin{proof}
+\[
+\left(\sum_{n=1}^\infty \frac{f(n)}{n^s}\right)\left(\sum_{m=1}^\infty \frac{g(m)}{m^s}\right) &= \sum_{n,m=1}^\infty \frac{f(n)g(m)}{(nm)^s}\\
+&= \sum_{k=1}^\infty \frac{1}{k^s} \left(\sum_{n,m,nm=k} f(n) g(m)\right)
+\]
+(why is the last one abs. convergent?)
+\end{proof}
+\end{lemma}
+
+\begin{lemma} (4, Euler product)\\
+If $f$ is multiplicative, and $L_f(s)$ is absolutely convergent at $s$, then we have a very nice alternative form of the Dirichlet series:
+\[
+L_f(s) = \prod_p \left(1+\frac{f(p)}{p^s} + \frac{f(p^2)}{p^{2s}} + ... \right)
+\]
+\begin{proof}
+The informal proof is to just multiply out RHS, and by fundamental theorem of arithmetic we know every term in the product appears exactly once in LHS. But obviously we have to care about the issue of convergence here.\\
+Let $y$ be arbitrary, consider the truncated product
+\[
+\prod_{p<y} \left(1+\frac{f(p)}{p^s} + ... \right) = \sum_{n,p|n \implies p<y} \frac{f(n)}{n^s}
+\]
+So use the usual technique in analysis of bounding errors,
+\[
+\left|\prod_{p<y}\left(1+\frac{f(p)}{p^s} + ... \right) - \sum_{n=1}^\infty \frac{f(n)}{n^s} \right| & \leq \sum_{n, p|n \implies p<y} \frac{|f(n)|}{n^\sigma} \\
+&\leq \sum_{n, \exists p | n (p \geq y)} \frac{|f(n)|}{n^\sigma} \to 0
+\]
+as $y \to \infty$.
+\end{proof}
+\end{lemma}
+
+For $\sigma>1$, $\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}$ defines a holomorphic function and converges absolutely for $\sigma>1$. Note that it definitely can't converge for $\sigma=1$ as we get the harmonic series when $s=1$. So in this case we get a function that absolutely converges whenever it converges.\footnote{Never ever use this Dirichlet series when $s$ is not in that half plane -- else we'll discover that \emph{the sum of all natural numbers is $-\frac{1}{12}$}.}
+
+Note that $\zeta'(s) = \sum \frac{1}{n^s})' = -\sum \frac{\log n}{n^s}$. Since $1$ is completely multiplicative,
+\[
+1+\frac{1}{p^s} + \frac{1}{p^{2s}} + ... = (1-p^{-s})^{-1}
+\]
+So
+\[
+\zeta(s) = \prod_p \left(\frac{1}{1-p^{-s}}\right)
+\]
+So
+\[
+\frac{1}{\zeta(s)} &= \prod_p (1-\frac{1}{p^s})\\
+&= \sum_n \frac{\mu(n)}{n^s}
+\]
+\[
+\log \zeta(s) &= -\sum_p \log(1-\frac{1}{p^s})\\
+&= \sum_p \sum_k \frac{1}{kp^{ks}}\\
+&= \sum \frac{\Lambda(n)}{\log n} \frac{1}{n^s}
+\]
+Finally if we take the derivative, we'll get
+\[
+\frac{\zeta'(s)}{\zeta(s)} = -\sum \frac{\Lambda(n)}{n^s}
+\]
+We have some interesting results from this point: for example, consider
+\[
+\frac{\zeta'(s)}{\zeta(s)} \times \zeta(s) = \zeta'(s)
+\]
+which corresponds to $\Lambda * 1 = \log$.
+
+Similarly we have M\"{o}bius inversion: if $f*1 =g$, then $L_f \times \zeta = L_g$, so $L_f = \frac{1}{\zeta} \times L_g$, i.e. $f=\mu *g$.
 
 
 

@@ -651,8 +651,60 @@ Now define
 \[
 P:=\{z: (L_\beta,\in) \vDash z \subseteq x\}
 \]
-By our lemma, $P \in \mathcal{D}(L_\beta) = L_{\beta+1} \subseteq L_\kappa$; but $L_\kappa \vDash \forall z (z \in P \iff z \subseteq x)$, so $L_\kappa$ is a model of the power set axiom.
+By our lemma, $P \in \mathcal{D}(L_\beta) = L_{\beta+1} \subseteq L_\kappa$; but $L_\kappa \vDash \forall z (z \in P \iff z \subseteq x)$, so $L_\kappa$ is a model of the power set axiom. (see diagram)
+
+---Lecture 11---
+
+Example sheet 2 will be in an envelope next to C0.10 this afternoon.\\
+We saw pairing and power set last time. Some of the others will be in the example sheet.
+
+Let's consider separation, a more difficult one. Let $x \in L_\kappa$, $\varphi$ be a formula, $a_1,...,a_k \in L_\kappa$.\\
+Separation says that, informally, $\{z \in x:\varphi(z,a_1,...,a_n) \}$ exists.\\
+More formally, $\{z \in x: L_\kappa \vDash \varphi(z,a_1,...,a_n)\}$ exists. At first glance we can use the same argument for power set: just find all these $z$ are, and go to the next level and consider $\mathcal{D}$ of it. Let's see how that \emph{stops} working. For each $1 \leq i \leq n$, find $\alpha_i < \kappa$ s.t. $a_i  \in L_{\alpha_i}$, and find $\alpha <  \kappa$ s.t. $x \in L_\alpha$. Define $\beta:=\max\{\alpha,\alpha_1,...,\alpha_n\}$.\\
+So for any $z \in x$, we have $z,a_1,...,a_n \in L_\beta$ (by transitivity of $L_\beta$). So $\{z \in x: L_\beta \vDash \varphi(z,a_1,...,a_n)\} \in \mathcal{D}(L_\beta) = L_{\beta+1}$. Apparently this is not necessarily what we want: we have no idea if $\varphi$ is absolute between $L_\beta$ and $L_\kappa$; in fact we have \emph{some} idea, because this has to work for any $\varphi$, so there are definitely some formulas that are not absolute.\\
+So we see the problem is that, in general, $\{z \in x: L_\beta \vDash \varphi(z,a_1,...,a_n)\} \neq \{z \in x: L_\kappa \vDash \varphi(z,a_1,...,a_n)\}$.
+
+Note that our choice of $\beta$ might be a terrible one, as we have no idea what it is; it might even be a successor ordinal. So we have to choose it more carefully.
+
+Consider $\mathcal{H}^{L_\kappa}(L_\beta) \prec L_\kappa$, with cardinality the same as $|L_\beta| = |\beta| < \kappa$; and now consider its Mostowski collapse, $T \cong \mathcal{H}^{L_\kappa} (L_\beta)$, with Mostowski isomorphism $\pi:T \to \mathcal{H}^{L_\kappa} (L_\beta)$. $T$ is transitive, $|T| = |\beta| < \kappa$, and $T \prec L_\kappa$.
+
+[Some model theory recap: we have if $M \cong M'$, $M\vDash \varphi(x_1,...,x_n) \iff M' \vDash \varphi(\pi(x_1),...,\pi(x_n))$. $M \equiv M'$ means $M\vDash \varphi \iff M'(\varphi)$ for all sentences $\varphi$. Therefore isomorphism implies elementary equivalence. $M\prec M'$ means $M \vDash \varphi(x_1,...,x_\kappa) \iff M' \vDash \varphi(x_1,...,x_n)$.]
+
+We then have 
+
+\begin{tikzcd}
+T \arrow[r,"\pi"] & \mathcal{H}^{L_\kappa}(L_\beta) \arrow[r,"id"] & L_\kappa\\
+{\varphi(z,a_1,...,a_n)} & {\varphi(\pi(z),\pi(a_1),...,\pi(a_n))} & {\varphi(\pi(z),\pi(a_1),...,\pi(a_n))}
+\end{tikzcd}
+
+We know that the Mostowski collapse is the identity on transitive sets. So, if $X \subseteq L_\kappa$ is transitive, then $\pi|_X = id|_X$. Since $L_\beta$ \emph{is} transitive, and all $z,a_1,...,a_n$ are in $L_\beta$, we get that $T \vDash \varphi(z,a_1,...,a_n) \iff L_\kappa \vDash \varphi(z,a_1,...,a_n)$.
+
+Let's do the 'modified Skolem Hull construction' from sheet 1 q12: let\\
+$\alpha_0 := Ord \cap T, \alpha_{n+1}$ is the least $\gamma$ s.t. $L_\gamma$ contains $L_{\alpha_n}$ and a witness for each existential statement true with parameters in $L_{\alpha_n}$. Let $\bar{\alpha}:=\bigcup_{n \in \N} \alpha_n$. So $T \prec L_{\bar{\alpha}}$ with $\bar{\alpha} < \kappa$.
+
+Now define the set via $\varphi$ over $L_{\bar{\alpha}}$:
+\[
+L_{\bar{\alpha}+1} = \mathcal{D}(L_{\bar{\alpha}}) \ni &\{z \in x: L_{\bar{\alpha}} \vDash \varphi(z,a_1,...,a_n)\}\\
+=&\{z \in x: T \vDash \varphi(z,a_1,....,a_n)\} \ (T \prec L_{\bar{\alpha}})\\
+=&\{z \in x: \mathcal{H}^{L_\kappa}(L_\beta) \vDash \varphi(\pi(z),\pi(a_1),...,\pi(a_n))\}\\
+=& \{z \in x: \mathcal{H}^{L_\kappa}(L_\beta) \vDash \varphi(z,a_1,...,a_n)\}\\
+=& \{z \in x: L_\kappa \vDash \varphi(z,a_1,...,a_n)\}
+\]
+
+We only showed pairing, power set, and separation. The rest are similar.
 \end{proof}
+
+\begin{thm} (The Condensation Lemma)\\
+If $\kappa$ is inaccessible, $x,y \in L_\kappa$, and $y \subseteq x$, then there is $\alpha < \kappa$ with $|\alpha| \leq |tcl(x)|$ s.t. $y \in L_\alpha$.
+\begin{proof}
+Consider $y\subseteq x$ and $tcl(x \cup \{y\}) =: t$. Clearly $|t| = |tcl(x)|$. Now consider $T \xrightarrow{\pi} \mathcal{H}^{L_\kappa} (t) \prec L_\kappa$, clearly all these things have the same cardinality. Now we know $\pi$ is the identity on $t$, so in particular $\pi(y) = y$, $\forall z \in x \pi(z)=z$, and $\pi(x) = x$.\\
+By our lemma, find $\beta$ s.t. $T=L_\beta$ (we're now allowed to do this since $L_\kappa \vDash ZFC+(V=L)$, and therefore $L_\beta \equiv L_\kappa \vDash ZFC+(V=L)$).\\
+Now $y$ can be defined over $L_\beta$ with parameters in $L_\beta$, namely viz. $y$ (we know $y$ is in there so we don't actually need to define it).\\
+We just need to check $\beta$ has the right cardinality: $|\beta| = |L_\beta| = |T| = |tcl(x)|$.
+\end{proof}
+\end{thm}
+
+
 
 \newpage
 
