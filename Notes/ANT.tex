@@ -1137,7 +1137,109 @@ which corresponds to $\Lambda * 1 = \log$.
 
 Similarly we have M\"{o}bius inversion: if $f*1 =g$, then $L_f \times \zeta = L_g$, so $L_f = \frac{1}{\zeta} \times L_g$, i.e. $f=\mu *g$.
 
+---Lecture 12---
 
+2nd es in online, as well as typed solution to the first one!
+
+Before we start the lecture I want to properly answer a question last time. Last time we had
+\[
+\frac{1}{\zeta(s)} = \sum_{n=1}^{\infty} \frac{\mu(n)}{n^s}
+\]
+remember in chapter one we mentioned that PNT is equivalent to proving that $\sum \frac{\mu(n)}{n} = 0$. So it might be tempting to use the above and claim that LHS $\to 0$ as $s \to 1$, therefore RHS $\to 0$. The reason that this doesn't work is that it's not obvious that RHS converges at all; we only know that if RHS converges, then it converges to 0. But the hard part is to show that RHS does converge.
+
+For $\sigma>1$, $\zeta(s) = \sum_n \frac{1}{n^s}$.
+
+\begin{lemma}
+For $\sigma>1$,
+\[
+\zeta(s) = 1+\frac{1}{s-1} - s\int_1^\infty \frac{\{t\}}{t^{s+1}} dt
+\]
+\begin{proof}
+by partial summation,
+\[
+\sum_{1 \leq n \leq x} \frac{1}{n^s} &= \frac{\lfloor x\rfloor}{x^s} + s\int_1^x \frac{\lfloor t \rfloor}{t^{s+1}} dt\\
+&= \frac{\lfloor x\rfloor}{x^s} + s\int_1^x \frac{1}{t^s} dt - s\int_1^x \frac{\{t\}}{t^{s+1}}dt\\
+&= \frac{\lfloor x\rfloor}{x^s} + \frac{s}{s-1} \left[t^{-s+1}\right]_1^x - s\int_1^x \frac{\{t\}}{t^{s+1}} dt
+\]
+Limit as $x \to \infty$,
+\[
+&=0+\frac{s}{s-1} - s\int_1^\infty \frac{\{t\}}{t^{s+1}} dt
+\]
+\end{proof}
+\end{lemma}
+
+The integral converges absolutely for $\sigma > 0$, so this gives 
+\[
+\zeta(s) = \frac{1}{s-1} + F(s)
+\]
+where $F(s)$ is holomorphic in $\sigma>0$.\\
+We \emph{define}
+\[
+\zeta(s) = 1+\frac{1}{s-1} - s\int_1^\infty \frac{\{t\}}{t^{s+1}} dt
+\]
+(for $\sigma > 0$). Note that $\zeta(s)$ is meromorphic in $\sigma>0$, with only a simple pole at $s=1$.
+
+\begin{coro}
+For $0<\sigma<1$, 
+\[
+\frac{1}{\sigma-1} < \zeta(\sigma) < \frac{\sigma}{\sigma-1}
+\]
+In particular, $\zeta(\sigma) < 0$ for $0 < \sigma < 1$ (in particular, not zero).
+\begin{proof}
+\[
+\zeta(\sigma) = 1+\frac{1}{\sigma-1} - \sigma \int_1^\infty \frac{\{t\}}{t^{\sigma+1}} dt
+\]
+Now 
+\[
+0 < \int_1^\infty \frac{\{t\}}{t^{\sigma+1}} dt < \frac{1}{\sigma}
+\]
+so done.
+\end{proof}
+\end{coro}
+
+\begin{coro}
+For $0 < \delta \leq \sigma \leq 2$, $|t| \leq 1$, $\zeta(s) = \frac{1}{s-1} + O_\delta(1)$ uniformly.
+\begin{proof}
+\[
+\zeta(s) - \frac{1}{s-1} &= 1 - s \int_1^\infty \frac{\{t\}}{t^{s+1}} dt\\
+&= O(1) + O\left(\int_1^\infty \frac{1}{t^{\sigma+1}} dt\right)\\
+&= O(1)+O_\delta(1)
+\]
+\end{proof}
+\end{coro}
+
+\begin{lemma}
+$\zeta(s) \neq 0$ for $\sigma > 1$.
+\begin{proof}
+For $\sigma>1$, $\zeta(s) = \prod_p (1-\frac{1}{p^s})^{-1}$, and the infinite product converges, and no factors are zero. (so???)\\
+(lecturer has some careful definition of convergence of infinite product, by taking logarithm and converting it to an infinite sum first then take exponent, so the result can't be zero -- check).
+\end{proof}
+\end{lemma}
+
+It then becomes interesting if $\zeta(s)$ has any zeroes in $\sigma>0$. We have a famous conjecture:
+
+\begin{conj}
+If $\zeta(s) = 0$ and $\sigma > 0$, then $\sigma = \frac{1}{2}$.
+\end{conj}
+
+\subsection{Prime Number Theorem}
+
+Let $\alpha(s) = \sum \frac{a_n}{n^s}$. Partial summation lets us write $\alpha(s)$ in terms of $A(x) = \sum_{n \leq x} a_n$.\\
+If $\sigma > \max(0,\sigma_c)$(complex part of $\sigma$?) then $\alpha(s) = s \int_1^\infty \frac{A(t)}{t^{s+1}} dt$ (this is called the \emph{Mellin transform}).
+
+Note that if $\alpha(s) = \frac{\zeta'(s)}{\zeta(s)}$, then $a_n = \Lambda(n)$ so $A(x) = \sum_{n \leq x} \Lambda(n) = \psi(x)$.
+
+Converse -- Perran's formula:
+
+\[
+A(x) = \frac{1}{2\pi i} \int_{\sigma-i\infty}^{\sigma+i\infty} \alpha(s) \frac{x^s}{s} ds
+\]
+for $\sigma > \max(0,\sigma_c)$.
+
+\[
+\psi(x) = \frac{1}{2\pi i} \int_{\sigma-i\infty}^{\sigma+i\infty} -\frac{\zeta'(s)}{\zeta(s)} \frac{x^s}{s} ds
+\]
+for $\sigma > 1$.
 
 \newpage
 
