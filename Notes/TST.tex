@@ -704,7 +704,83 @@ We just need to check $\beta$ has the right cardinality: $|\beta| = |L_\beta| = 
 \end{proof}
 \end{thm}
 
+---Lecture 12---
 
+Today we're going to prove that there is a model of ZFC+CH. This is especially convenient as today we're in the middle of the entire course (the 12th lecture), so we spent exactly half of the course on proving one side of what we wanted.
+
+Recall that last time we had the condensation lemma: if $\kappa$ is inaccessible. $x,y \in L_\kappa$, $y \subseteq x$, then there is $\alpha$ s.t. $|\alpha| \leq |tcl(x)|$ s.t. $y \in L_\alpha$.
+
+\begin{coro}
+$x=\N$, $y \subseteq \N$, then there is $\alpha < \omega$ s.t. $y \in L_\alpha$.
+\end{coro}
+
+\begin{coro}
+(1) $\mathcal{P}(\N) \cap L_\kappa \subseteq L_{\omega_1}$.\\
+Observe that $\mathcal{P}(\N) \cap L_\kappa = \mathcal{P}^{L_\kappa}(\N)$, where $\mathcal{P}^{L_\kappa}(\N)$ referes to the unique $p \in L_\kappa$ s.t. $L_\kappa \vDash p=\mathcal{P}(\N)$.\\
+(2) $\mathcal{P}^{L_\kappa}(\N) \subseteq L_{\omega_1}$.\\
+(3) $|\mathcal{P}^{L_\kappa}(\N)| \leq |L_{\omega_1}| = |\omega_1| = \aleph_1$.\\
+Hence it seems that we're extremely close to having a model of ZFC+CH. However, this $\omega_1$ we're referring to here is, of course, in the model that we're building.\\
+(A 'one-line proof' of the Condensation Lemma:
+\[
+y \in L_\alpha = T \cong \mathcal{H}^{L_\kappa} (tcl(x)\cup\{y\}) \prec L_\kappa
+\]
+)
+\end{coro}
+
+Let's improve this to show $L_\kappa \vDash CH$. The key idea is that $L_\kappa \vDash ZFC$, the condensation lemma itself is a theorem of ZFC(?), so we can just apply condensation lemma inside $L_\kappa$.
+
+The problem is that our condensation lemma is a theorem of ZFC+IC instead of ZFC.
+
+\begin{rem}
+So if you assume ZFC+2IC in $M$, then this argument gets you that $L_\kappa$ (where $\kappa$ should be the second inaccessible cardinal now) is a model of CH, and you're actually done provided that you think 2IC is a reasonable thing to have.
+\end{rem}
+
+But this feels a bit odd. Let's try to do this without 2IC.
+
+Work in $L_\kappa$, we know that $\mathcal{P}^{L_\kappa}(\N) \subseteq L_{\omega_1}$, where $\omega_1$ is the $\omega_1$ in $M$.\\
+Note that $\omega_1 < \kappa$, so in particular $L_{\omega_1} \subseteq L_\kappa$.
+
+Now we could build $\mathcal{H}^{L_\kappa}(L_{\omega_1}) \prec L_\kappa$, and $\mathcal{P}^{L_\kappa}(\N) \subseteq L_\beta = T \cong \mathcal{H}^{L_\kappa}(L_{\omega_1})$. By the standard argument we know $\beta < \aleph_2 < \kappa$. But now $L_\beta \vDash ZFC+V=L$.
+
+Run the condensation lemma proof for $V_\kappa$ as $M$ and $L_\beta$ as $L_\kappa$, we then get
+\[
+y \in L_\alpha = T \cong \mathcal{H}^{L_\beta}(\N \cup \{y\}) \prec L_\beta
+\]
+
+Now the surrounding universe knows that $\alpha$ is countable, so $L_\kappa$ knows $\alpha$ is countable. So if $\omega_1^{L_\kappa}$ is the $\omega_1$ of $L_\kappa$, then $\mathcal{P}^{L_\kappa}(\N) \subseteq L_{\omega_1^{L_\kappa}}$.\\
+So $L_\kappa \vDash 2^{\aleph_0} \leq \aleph_1$, i.e. $L_\kappa \vDash CH$. So we've proved:
+
+\begin{thm}
+\[
+Cons(ZFC+IC) \implies Cons(ZFC+CH)
+\]
+\end{thm}
+
+\begin{rem}
+(1) The same argument with $x=\lambda$ for some $L_\kappa$-cardinal $\lambda$ gives us $L_\kappa \vDash 2^\lambda \leq \lambda^+$. So GCH holds: $\forall \lambda 2^\lambda = \lambda^+$.\\
+(2) What about the inaccessible cardinal?\\
+(a) If we have a transitive set model of ZFC, we can mimic this proof. Nevertheless we knew it was still stronger than $Cons(ZFC)$.\\
+(b) There is a way of getting around that assumption as well by L\'{e}vy Reflection Theorem (see sheet 2): fix in advance some finite list $\Phi$ of sentences you wish to preserve, and find sufficiently large $\alpha$ s.t. $\Phi$ is absolute for $V_\alpha$.\\
+Go through all needed absoluteness results and lemmas and theorems, and collect, for each of them, $\varphi$, the finite set $\Phi_\varphi$ of axioms of ZFC we needed to prove them. Form $\Phi:=\bigcup_{\varphi \text{ is relevant}} \Phi_\varphi$, which is a finite union of finitely many things. Apply L\'{e}vy to $\Phi$ and run the previous proof to get a model of $\Phi+CH$.\\
+Now consider all finite subsets $\Psi$ s.t. $\Phi \subseteq \Psi \subseteq ZFC$, and get models of $\Psi+CH$. Compactness then gives a model of $ZFC+CH$.\\
+(3) Consider 
+\[
+L=\bigcup_{\alpha \in Ord} L_\alpha \subseteq M
+\]
+Our proof does not say what axioms hold in $L$, but using the L\'{e}vy reflection theorem, we can prove that if $V \vDash ZFC$, then $L \vDash ZFC+V=L$.
+\end{rem}
+
+Now let's use this to solve one of the open problems in the 1910s, which follows as an almost trivial consequence of what we've done.
+
+Consider the question about regular limit cardinals. Remember we had notions of regular/singular, successor/limit. We realize that we can prove that every successor cardinal is regular, and we have a lot of singular limit cardinals. So can we get regular limit cardinals?
+
+If we strengthen 'limit'($\forall \lambda<\kappa(\lambda^+<\kappa)$) to 'strong limit'($\forall \lambda < \kappa(2^\lambda<\kappa)$), then we showed that ZFC cannot prove the existence of regular strong limits (i.e. inaccessible cardinals).
+
+Clearly, ZFC+GCH implies that every limit is a strong limit (because $\lambda^+ = 2^\lambda$). So ZFC+CH gives every regular limit is an inaccessible cardinal.
+\begin{proof}
+Assume that $M \vDash ZFC$ and that $ZFC\vdash$ there are regular limits. Towards a contradiction (with G\"{o}del's incompleteness theorem), prove $M \vDash Cons(ZFC)$.\\
+Consider $L \subset M$, by remark (3), $L \vDash ZFC+GCH$. By assumption, $ZFC \vdash \exists$ regular limit, so $L \vDash ZFC+GCH+(\exists \kappa$ $\kappa$ is a regular limit). But ZFC+GCH implies every regular limit is inaccessible, so $L \vDash ZFC+IC$. So $L \vDash \exists \kappa (L_\kappa \vDash ZFC)$, so $L \vDash Cons(ZFC)$; so $M \vDash Cons(ZFC)$ by absoluteness between transitive models.
+\end{proof}
 
 \newpage
 

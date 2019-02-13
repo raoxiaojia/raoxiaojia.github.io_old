@@ -1227,7 +1227,7 @@ If $\zeta(s) = 0$ and $\sigma > 0$, then $\sigma = \frac{1}{2}$.
 Let $\alpha(s) = \sum \frac{a_n}{n^s}$. Partial summation lets us write $\alpha(s)$ in terms of $A(x) = \sum_{n \leq x} a_n$.\\
 If $\sigma > \max(0,\sigma_c)$(complex part of $\sigma$?) then $\alpha(s) = s \int_1^\infty \frac{A(t)}{t^{s+1}} dt$ (this is called the \emph{Mellin transform}).
 
-Note that if $\alpha(s) = \frac{\zeta'(s)}{\zeta(s)}$, then $a_n = \Lambda(n)$ so $A(x) = \sum_{n \leq x} \Lambda(n) = \psi(x)$.
+What about the converse? Note that if $\alpha(s) = \frac{\zeta'(s)}{\zeta(s)}$, then $a_n = \Lambda(n)$ so $A(x) = \sum_{n \leq x} \Lambda(n) = \psi(x)$.
 
 Converse -- Perran's formula:
 
@@ -1236,10 +1236,25 @@ A(x) = \frac{1}{2\pi i} \int_{\sigma-i\infty}^{\sigma+i\infty} \alpha(s) \frac{x
 \]
 for $\sigma > \max(0,\sigma_c)$.
 
+Note that 
 \[
 \psi(x) = \frac{1}{2\pi i} \int_{\sigma-i\infty}^{\sigma+i\infty} -\frac{\zeta'(s)}{\zeta(s)} \frac{x^s}{s} ds
 \]
-for $\sigma > 1$.
+for $\sigma > 1$. We could try a contour to the left going past the line $\sigma=1$,and we know there's a pole at $s=1$ with residue $x$, so by residue theorem (see part IB Complex Method) it gives our main term for PNT (recall PNT is $\psi(x) = x+o(x)$), but the problem is that there might be other poles, which would be especially bad if they are on the line $\sigma=1$ as that cancels our main term. That's why we say \emph{PNT is equivalent to no zeros on $\sigma=1$}.
+
+\begin{lemma} ((Pre)-Perran's Formula)\\
+If $\sigma_0 > 0$, then 
+\[
+\frac{1}{2\pi i} \int_{\sigma_0-iT}^{\sigma_0_iT} \frac{y^s}{s} ds = 
+\left\{
+\begin{array}{ll}
+1 & y>1\\
+0 & y<1
+\end{array}
+\right. 
++ O\left(\frac{y^{\sigma_0}}{T|\log y|}\right)
+\]
+\end{lemma}
 
 \newpage
 
