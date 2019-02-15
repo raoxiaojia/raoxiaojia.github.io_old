@@ -686,6 +686,10 @@ A group $G$ is nilpotent if $\exists$ finite central series $G=G_1 >...>G_{s+1} 
 
 Exercise: $H(\Z)$ is $2$-step nilpotent. 
 
+\newpage
+
+\section{Nilpotent groups}
+
 ---Lecture 8---
 
 Example class 1400-1530 MR14 today!
@@ -807,5 +811,93 @@ These results say:\\
 $\bullet$ $G$ is nilpotent of step $\leq s$ $\iff G_{s+1} = \{1\} \iff Z_s(G) = G$;\\
 $\bullet$ If $G=\bra s \ket $, we can verify this just by checking that $[t_1,...,t_{s+1}] = 1$ $\forall t_i \in s$;\\
 $\bullet$ If $G$ is nilpotent of step $\leq s$, then any commutator like $[[[g_1,g_2],g_3],[g_t,g_s]]$ with more than $s$ variables is trivial.
+
+\newpage
+
+\section{Torsion-free approximate groups -- an overview}
+
+---Lecture 9---
+
+Recall form lecture 7 that if $x_1,...,x_n \in G$ and $L_1,...,L_r \geq 0$, then the \emph{nonabelian progression} $P(x;L)$ consists of those elements of $G$ expressible as products of $x_i^{\pm 1}$ in which each $x_i$ and $x_i^{-1}$ appear at most $l_i$ times between them.
+
+\begin{defi} (nilprogession)\\
+If $\bra x_1,...,x_r\ket$ is $s$-step nilpotent then $P(x;L)$ is called a \emph{nilprogerssion} of rank $r$ and step $s$. In this case, we'll write $P_{nil}(x;L)$ instead of $P(x;L)$.
+\end{defi}
+
+\begin{prop} (9.1) (non-examinable)\\
+Given $r,s \in \N, \exists \lambda = \lambda_{r,s}$ s.t. if $x_1,...,x_r$ generate an $s$-step nilpotent group and $L_1,...,L_r \geq \lambda_{r,s}$, then $P_{nil}(x;L)$ is an $O_{r,s}(1)$-approximate group (implied constant can depend on $r$ and $s$, but nothing else).\\
+We won't have time to prove this, but we'll do a special case on sheet 2, where we'll also see that it's necessary to have $L_i \geq \lambda_{r,s}$.
+\end{prop}
+
+As in the abelian setting, it turns out that these are essentially the only examples of finite nilpotent approximate groups, apart from genuine subgroups.
+
+\begin{thm} (9.2)\\
+Let $G$ be $s$-step nilpotent, $A \subset G$ a finite $K$-approximate group. Then there exists $H \triangleleft \bra A \ket$ and a nilprogression $P_{nil}$ of rank $\leq K^{O_s(1)}$ s.t.$A \subset HP_{nil} \subset A^{K^{O_s(1)}}$. In particular, $|HP_{nil}| \leq \exp(K^{O_s(1)})|A|$.
+\begin{rem}
+If $K<2$ then this theorem is trivial. For $K \geq 2$, we have $O(K^{O(1)}) \subseteq K^{O(1)}$, i.e. multiplicative constants can be absorbed into exponents.\\
+We won't have time to prove this in full, but in the next few lectures we'll prove some special cases that contain most of the main ideas. We'll start with the case where $G$ is torsion-free, where theorem 9.2 is originally due to Brenillard and Green, although we'll give a different proof.
+\end{rem}
+\end{thm}
+
+We start with the following weakened version:
+
+\begin{thm} (9.3)\\
+Let $G$ be torsion-free $s$-step nilpotent, $A \subset G$ a finite $K$-approximate group. Then there exists ordered progression $P_{ord}$ of rank $\leq K^{O_s(1)}$ s.t. $A \subset P_{ord} \subset A^{K^{O_s(1)}}$.\\
+The basic idea is to write $A$ as a product of approximate groups of step $<s$, and then apply induction to reduce to the step-1 case, aka the abelian case, where we can apply the Freiman-Green-Rusza theorem.
+\end{thm}
+
+\begin{prop} (9.4)\\
+Let $G$ be \emph{torsion-free} $s$-step nilpotent, $A \subset G$ a finite $K$-approximate group. Then $\exists k \leq K^{O(1)}$ and $K^{O(1)}$-approximate subgroups $A_1,...,A_k \subset A^{O(1)}$ s.t. $A \subset A_1...A_k$, and $\bra A_i \ket$ is of step $<s$ $\forall i$.
+\end{prop}
+
+\begin{proof} (of 9.3)\\
+An easy induction gives $K^{O_s(1)}$-approximate groups $B_1,...,B_m \subset A^{O_s(1)}$ with $m \leq K^{O_s(1)}$. FGR then gives abelian progressions, in particular, ordered progressions $P_1,...,P_m$, each of rank $\leq K^{O_s(1)}$, s.t. $B_i \subset P_i \subset B_i^{K^{O_s(1)}}$, and hence $A \subset P_1...P_m \subset A^{K^{O_s(1)}}$. $P_1...P_m$ is an ordered progression of rank $\leq mK^{O_s(1)} \leq K^{O_s(1)}$, so done.
+\end{proof}
+
+Recall that in proving $FGR$, we wanted \emph{$A \subset$ small progression}, but we first proved \emph{$A^c \supset$ large progression}. We then use Chang's covering argument to swap things around to get what we wanted. We'll use a similar result approach here, starting with the following.
+
+\begin{prop} (9.5)\\
+Let $G$ be torsion-free nilpotent, $A \subset G$ finite $K$-approximate group. Then $\exists r \leq K^{O(1)}$ and $K^{O(1)}$-approximate groups $A_0,A_1,...,A_r \subset A^{O(1)}$, each generating a group of step $<s$, s.t. $|A_0A_1...A_r| \geq \exp(-K^{O(1)})|A|$.
+\end{prop}
+
+Next time, we'll see that passing from prop 9.5 to prop 9.4 is very similar to the Chang covering part of the proof of FGR.
+
+In proving prop 9.5, we actually use the preliminary version of FGR in which $A$ which $A^c$ contains a large progression. As we noted in that proof, combining Props 5.2 and 5.3 and Lemma 5.4 gives the following result.
+
+\begin{thm} (9.6, Green-Rusza)\\
+Let $G$ be abelian, and $A \subset G$ be a finite $K$-approximate group. Then $\exists H < G$ and $x_1,...,x_r \in G$ with $r \leq K^{O(1)}$, and $l_1,...,l_r \in \N$ s.t.
+\[
+HP(x;L) \subset A^4
+\]
+and
+\[
+|HP(x;L)| \geq \exp(-K^{O(1)})|A|
+\]
+\end{thm}
+
+We'll apply this to prop 9.5 via the following result.
+
+\begin{prop} (9.7)\\
+Let $G$ be $s$-step nilpotent and $A \subset G$ a finite $K$-approximate group. Write $\pi:G \to G/[G,G]$ for the quotient homomorphism. Noting that $G/[G,G]$ us abelian and that $\pi(A)$ is a $K$-approximate group, let $H < G/[G,G]$ and $x_1,...,x_r \in G/[G,G]$ be as coming from applying theorem 9.6 to $\pi(A)$. Then
+\[
+\left|(A^{24} \cap \pi^{-1}(H)) \prod_{i =1}^r(A^{24} \cap \pi^{-1}(\bra x_i\ket))\right| \geq \exp(-K^{O(1)})|A|
+\]
+\end{prop}
+
+We'll prove prop 9.7 next time. For now, let's see how it implies prop 9.5. Prop 4.6 immediately tells us that $A^{24} \cap \pi^{-1}(H)$ and $A^{24} \cap \pi^{-1}(\bra x_i\ket)$ are $K^{O(1)}$-approximate groups.
+
+It turns out that they also generate subgroups of step $<s$, at least when $G$ is torsion-free.
+
+\begin{lemma} (9.8)\\
+Let $G$ be $s$-step nilpotent, and write $\pi:G \to G/[G,G]$ as before. Then\\
+(i) $\forall x \in G/[G,G]$, $\pi^{-1}(\bra x\ket)$ is of step $<s$;\\
+(ii) If $H \leq G/[G,G]$ is a finite subgroup and $G$ is torison-free, then $\pi^{-1}(H)$ is of step $<s$.
+\end{lemma}
+
+\begin{lemma} (9.9)\\
+Let $G$ be an arbitrary group. Then the simple commutator map $[,...,]:G^k \to G_k$ by $(x_1,...,x_k) \to [x_1,...,x_k]$ is a homomorphism in each variable modulo $G_{k+1}$2. Moreover, $[G,G]$ is contained in the kernel of each of thses homomorphisms.
+\end{lemma}
+
+Next time we'll prove that, use it to prove lemma 9.8 (which you may want to do yourselves in the mean time), and 
 
 \end{document}

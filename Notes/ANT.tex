@@ -1240,21 +1240,123 @@ Note that
 \[
 \psi(x) = \frac{1}{2\pi i} \int_{\sigma-i\infty}^{\sigma+i\infty} -\frac{\zeta'(s)}{\zeta(s)} \frac{x^s}{s} ds
 \]
-for $\sigma > 1$. We could try a contour to the left going past the line $\sigma=1$,and we know there's a pole at $s=1$ with residue $x$, so by residue theorem (see part IB Complex Method) it gives our main term for PNT (recall PNT is $\psi(x) = x+o(x)$), but the problem is that there might be other poles, which would be especially bad if they are on the line $\sigma=1$ as that cancels our main term. That's why we say \emph{PNT is equivalent to no zeros on $\sigma=1$}.
+for $\sigma > 1$. We could try a contour to the left going past the line $\sigma=1$,and we know there's a pole at $s=1$ with residue $x$, so by residue theorem (see part IB Complex Method) it gives our main term for PNT (recall PNT is $\psi(x) = x+o(x)$), but the problem is that there might be other poles, which would be especially bad if they are on the line $\sigma=1$ as that cancels our main term. That's why we say \emph{PNT is equivalent to no zeros of $\zeta(s)$ on $\sigma=1$}.
 
 \begin{lemma} ((Pre)-Perran's Formula)\\
-If $\sigma_0 > 0$, then 
+If $\sigma > 0, y\neq 1$, then 
 \[
-\frac{1}{2\pi i} \int_{\sigma_0-iT}^{\sigma_0_iT} \frac{y^s}{s} ds = 
+\frac{1}{2\pi i} \int_{\sigma-iT}^{\sigma+iT} \frac{y^s}{s} ds = 
 \left\{
 \begin{array}{ll}
 1 & y>1\\
 0 & y<1
 \end{array}
-\right. 
-+ O\left(\frac{y^{\sigma_0}}{T|\log y|}\right)
+\right.
++ O\left(\frac{y^{\sigma}}{T|\log y|}\right)
 \]
+
+---Lecture 13---
+
+\begin{proof}
+Use the contour $c$ (see diagram) for $y>1$.\\
+Since $y^s/s$ has a single pole at $s=0Z$ with residue $1$, so by the residue theorem, $\frac{1}{2\pi i} \int_c y^s/s ds = 1$.\\
+Now we bound
+\[
+\int_{P_1} \frac{y^s}{s} ds = \int_{-\infty}^\sigma \frac{y^{u+iT}}{u+iT} du \ll \frac{1}{T} \int_{-\infty}^\sigma y^u du = \frac{y^\sigma}{T\log y}
+\]
+Similarly, $\int_{P_2} \ll \frac{y^\sigma}{T\log y}$, sot $\int_c = \int_{\sigma-iT}^{\sigma+iT} + O(\frac{y^\sigma}{T\log y})$.\\
+For $y<1$, use the same argument with the contour being the rectangle going right. There are no poles inside this region, so the main term is 0, and the error term can be bounded similarly.
+\end{proof}
 \end{lemma}
+
+\begin{thm} (Perran's formula)\\
+Suppose $\alpha(s) = \sum \frac{a_n}{n^s}$ is absolutely convergent for all $\sigma > \sigma_a$.\\
+If $\sigma_0 > \max(0,\sigma_a)$, and $x$ is not an integer, then
+\[
+\sum_{n < x} a_n = \frac{1}{2\pi i} \int_{\sigma_0-iT}^{\sigma_0+iT} \alpha(s) \frac{x^s}{s} ds + O(\frac{2^{\sigma_0}x}{T} \sum_{\frac{x}{2} < n < 2x} \frac{|a_n|}{|x-n|} + \frac{x^{\sigma_0}}{T} \sum_{n=1}^\infty \frac{|a_n}{n^{\sigma_0}})
+\]
+\begin{proof}
+Since $\sigma_0>0$, we can write
+\[
+1_{n<x} = \frac{1}{2\pi i} \int_{\sigma_0-iT}^{\sigma_0+iT} \frac{(x/n)^s}{s} ds + O(\frac{(x/n)^{\sigma_0}}{T|\log (x/n)|})
+\]
+Now 
+\[
+\sum_{n < x} a_n &= \frac{1}{2\pi i} \sum_n \frac{a_n}{n^s} \int_{\sigma_0-iT}^{\sigma_0+iT} \frac{x^s}{s} ds + O(\frac{x^{\sigma_0}}{T} \sum_n \frac{|a_n|}{n^{\sigma_0}|\log(\frac{x}{n})|})\\
+&= \frac{1}{2\pi i} \int_{\sigma_0 - iT}^{\sigma_0+iT} \frac{x^s}{s} \sum_n \frac{a_n}{n^s} ds + O(...)\\
+&= \frac{1}{2\pi i} \int_{\sigma_0-iT}^{\sigma_0+iT} \alpha(s) \frac{x^s}{s} ds + O(...)
+\]
+For the error term:\\
+(1) Contribution from $n \leq \frac{x}{2}$ or $n \geq 2x$, where $|\log (\frac{x}{n})| \gg 1$ is $\ll \frac{x^{\sigma_0}}{T} \sum_n \frac{|a_n|}{n^{\sigma_0}}$.\\
+(2) Contribution from $\frac{x}{2}<n<2x$, we write
+\[
+|\log(\frac{x}{n})| = |\log (1+\frac{n-x}{x})|
+\]
+and $|\log (1+\delta)| \asymp |\delta|$ uniformly for $-\frac{1}{2} \leq \delta \leq 1$. So
+\[
+\frac{x^{\sigma_0}}{T} \sum_{\frac{x}{2} < n < 2x} \frac{|a_n|}{n^{\sigma_0} |\log (x/n)|} &\ll \frac{x^\sigma_0}{T} \sum_{\frac{x}{2} < n < 2x} \frac{|a_n|x}{n^{\sigma_0}|x-n|}\\
+&\ll \frac{2^{\sigma_0}}{T} \sum_{x/2<n<2x} \frac{|a_n|x}{|x-n|}
+\]
+\end{proof}
+\end{thm}
+
+We'll now prove a strong form of the PNT, assuming the following results which we'll prove in the future:\\
+(1) $\exists c > 0$ s.t. if $\sigma > 1-\frac{c}{\log(|t|+4)}$ and $|t| \geq \frac{7}{8}$, then $\zeta(s) \neq 0$, and $\frac{\zeta'}{\zeta}(s) \ll \log(|t|+4)$ (the $+4$ is just to make sure the denominator is not negative);\\
+(2) $\zeta(s) \neq 0$ for $\frac{8}{9} \leq \sigma \leq 1$ and $|t| \leq \frac{7}{8}$;\\
+(3) $\frac{\zeta'}{\zeta}(s) = \frac{-1}{s-1} + O(1)$ for $1-\frac{c}{\log(|t|+4)} < \sigma \leq 2$ and $|t| \leq \frac{7}{8}$.
+Let's draw a picture of what we're assuming here: (diagram)\\
+
+\begin{thm} (PNT)\\
+There exists $c > 0$ s.t.
+\[
+\psi(x) = x+O(\frac{x}{\exp(c\sqrt{\log x})})
+\]
+In particular, $\psi(x) \sim x$.
+\begin{proof}
+Assume that $x = N+\frac{1}{2}$ for some $N$ (for convenience). By Perran's formula, for any $1 < \sigma_0 \leq 2$,
+\[
+\psi(x) &= \sum_{n \leq x} \Lambda(n)\\
+&= \frac{1}{2\pi i} \int_{\sigma_0-iT}^{\sigma_0+iT} -\frac{\zeta'}{\zeta}(s) \frac{x^s}{s} ds + O(\underbrace{\frac{x}{T} \sum_{x/2 < n 2x} \frac{\Lambda(n)}{|x-n|}}_{=R_1} + \underbrace{\frac{x^{\sigma_0}}{T} \sum \frac{\Lambda(n)}{n^{\sigma_0}}}_{=R_2})
+\]
+In the error term,
+\[
+R_1 &\ll \log x \frac{x}{T} \sum_{\frac{x}{2} < n \leq 2x} \frac{1}{|x-n|}\\
+&\ll \log x \frac{x}{T} \sum_{1 \leq m \leq 4x} \frac{1}{m} \\
+&\ll \frac{x}{T} (\log x)^2
+\]
+and using point 3),
+\[
+R_2 &\ll \frac{x^{\sigma_0}}{T} \frac{1}{|\sigma_0-1|}\\
+&\ll \frac{x}{T} \log x
+\]
+if $\sigma_0 = 1+\frac{1}{\log x}$.\\
+Let $c$ be the contour (see diagram), where we used $\sigma_1 = 1-\frac{c}{\log T} < 1$. Then 
+\[
+\frac{1}{2\pi i} \int_c -\frac{\zeta'(s)}{\zeta(s)} \frac{x^s}{s} ds = x
+\]
+by residue theorem, (1) and (2) (ensuring that there are no other poles).\\
+Now we need to bound the error terms:
+\[
+\int_{\sigma_0+iT}^{\sigma_1+iT} -\frac{\zeta'(s)}{\zeta(s)} \frac{x^s}{s} ds &\ll \log T \int_{\sigma_0}^{\sigma_1} \frac{x^u}{T} du\\
+&\ll \frac{\log T}{T} x^{\sigma_1}(\sigma_1-\sigma_0)\\
+&\ll \frac{x}{T}
+\]
+For the left part,
+\[
+\int_{\sigma_1-iT}^{\sigma_1+iT} -\frac{\zeta'(s)}{\zeta(s)} \frac{x^s}{s} ds &\ll (\log T) |\int_{\sigma_1\pm iT}^{\sigma_1\pm i} \frac{x^u}{u} du| + (\int_{\sigma_1-i}^{\sigma_1+i} x^{\sigma_1} \frac{1}{|\sigma_1-1|})\\
+&\ll x^{\sigma_1} \log T + \frac{x^{\sigma_1}}{1-\sigma_1}\\
+&\ll x^{\sigma_1}(\log T)
+\]
+So
+\[
+\psi(x) &= x+O(\frac{x}{T}(\log x)^2 + x^{1-\frac{c}{\log T}} (\log T))\\
+&= x+O(\frac{x}{\exp(c\sqrt{\log x})})
+\]
+if we choose $T=\exp(c\sqrt{\log x})$.\\
+(some insight on why we choose this bound: we want $\frac{x}{T} \approx x^{1-\frac{c}{\log T}}$, i.e. $\log T \approx \frac{\log x}{\log T}$. Therefore $\log T \approx \sqrt{\log x}$).
+\end{proof}
+\end{thm}
+
 
 \newpage
 
