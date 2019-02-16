@@ -1357,6 +1357,132 @@ if we choose $T=\exp(c\sqrt{\log x})$.\\
 \end{proof}
 \end{thm}
 
+---Lecture 14---
+
+\subsection{Zero-free region}
+
+Firstly, near $s=1$, things are easy because of the pole.
+
+\begin{thm}
+If $\sigma > \frac{1+t^2}{2}$, then $\zeta(s) \neq 0$. (a region enclosed by a parabola opened to the right, see diagram) In particular, $\zeta(s) \neq 0$ if $\frac{8}{9} \leq \sigma \leq 1$, $|t| \leq \frac{7}{8}$.\\
+Also, $\zeta(S) = \frac{1}{s-1}+O(1)$, and $-\frac{\zeta'}{\zeta}(s) = \frac{1}{s-1} + O(1)$ uniformly in $8/9 \leq \sigma \leq 2$ and $|t| \leq 7/8$.
+\begin{proof}
+Recall that $\zeta(s) = \frac{s}{s-1} + s \int_1^\infty \frac{\{u\}}{u^{s+1}} du$, so 
+\[
+|\zeta(S)-\frac{s}{s-1}| & \leq |s| \int_1^\infty \frac{1}{u^{\sigma+1}} du\\
+&\leq \frac{|s|}{\sigma}
+\]
+so if $\sigma > |s-1|$, $\zeta(s) \neq 0$, i.e. if $\sigma < \frac{1+t^2}{2}$; and in particular $\frac{1+(7/8)^2}{2} < 8/9$.\\
+Also,
+\[
+|\zeta(s) - \frac{1}{s-1}| \leq 1+|s| \int_1^\infty \frac{1}{u^{\sigma+1}} du = O(1)
+\]
+So same holds for $-\frac{\zeta'}{\zeta}$.
+\end{proof}
+\end{thm}
+
+The main reason we could obtain the above is that the pole at $1$ is convenient: it dominates everything around it, so that's the only thing we care.
+
+For $|t|$ large, we need a different idea. How do we show that there aren't zeros on $\sigma=1$?\\
+Suppose there is a zero, of order $m$, at $1+it$. Then (by expanding it at $1+it$)
+\[
+\frac{\zeta'}{\zeta}(1+\delta+it) \sim \frac{m}{\delta}
+\]
+So
+\[
+\sum \frac{\Lambda(n)}{n^{1+\delta+it}} \sim -\frac{1}{\delta}
+\]
+But
+\[
+|LHS| \leq \sum \frac{\Lambda(n)}{n^{1+\delta}} = -\frac{\zeta'}{\zeta} (1+\delta) \sum \frac{1}{\delta}
+\]
+So
+\[
+\sum_p \frac{\log p}{p^{1+\delta}} e^{it\log p} \sim -\sum \frac{\log p}{p^{1+\delta}}
+\]
+So
+\[
+\cos(t\log p) \approx -1
+\]
+for almost all primes $p$. So $p^{it} \approx -1$ for almost every prime; so $p^{2it} \approx 1$. So there must be a pole at $1+2it$; contradiction.
+
+Let's now forget about number theory and look at some purely complex analytical results:
+\begin{lemma} (Borel-Caratheodery Lemma)\\
+Suppose $f$ is holomorphic on $|z| \leq R$ and $f(0) = 0$.\\
+If $\Re f(z) \leq M$ for all $|z| \leq R$ for any $r < R$,
+\[
+\sup_{|z| \leq r} (|f(z)|,|f'(z)|) \ll_{r,R} M
+\]
+\begin{proof}
+Let $g(z) = \frac{f(z)}{z(2M-f(z))}$. This is holomorphic in $|z| \leq R$ (note that $2M-f(z) \neq 0$, and the zero at $z=0$ is cancelled by our assumption $f(z) = 0$).\\
+If $|z| = R$, then $|2M-f(z)| \geq |f(z)$, and so 
+\[
+|g(z)| \leq \frac{|f(z)|}{R|f(z)|} \leq \frac{1}{R}
+\]
+So for all $|z| \leq r M R$, by maximum modulus,
+\[
+|g(z)| = \frac{|f(z)|}{|z||2M-f(z)|} \leq \frac{1}{R}
+\]
+So
+\[
+R|f(z)| \leq r|2M-f(z)| \leq 2Mr+r|f(z)|
+\]
+so
+\[
+|f(z)| \leq \frac{2Mr}{R-r} \ll M
+\]
+This proves the claim for $f$. For $f'(z)$, we use Cauchy's formula,
+\[
+f'(z) = \frac{1}{\pi i} \int_{|w|=r'} \frac{f(w)}{(z-w)^2} dw \ (r < r' < R)
+\]
+So $f'(z) \ll M$ as well.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}
+If $f$ is holomorphic on a domain including $|z| \leq 1$, $|f() \leq M$ in this disc, and $f(0) \neq 0$. If $0<r<R<1$, then for $|z| \leq r$,
+\[
+\frac{f'}{f}(z) = \sum_{k=1}^K \frac{1}{z-z_k} + O_{r,k}(\log \frac{M}{|f(0)|})
+\]
+where $z_k$ ranges over all zeros of $f$ in $|z| \leq R$.
+\begin{proof}
+Suppose that $f(0) = 1$ (WLOG). Say first there are no zeros; consider $h(z) = \log f(z)$. Now $\Re h(z) = \log |f(z)| \leq \log M$, so by Borel-Caratheodery lemma,
+\[
+|h'(z)| = |\frac{f'}{f}(z)| \ll \log M
+\]
+so done.\\
+In general, we define an auxiliary function $g$, with no zeros,
+\[
+g(z) = f(z) \prod_{k=1}^K \frac{R^2 - z\bar{z}_k}{(z-z_k)R}
+\]
+The $k^{th}$ factor has a pole at $z=z_k$, and on $|z|=R$, has modulus 1.\\
+So on $|z| \leq R$, $|g(z)| \leq M$, in particular, 
+\[
+|g(0)| = \prod_{k=1}^K \frac{R}{|z_k|} \leq M \ (*)
+\]
+Now let $h(z) = \log \frac{g(z)}{g(0)}$, which is well-defined now. We know $\Re h(z) = \log |g(z)| - \log |g(0)| \leq \log M$ for $|z| \leq R$. By B-C lemma,
+\[
+|h'(z)| = \left|\frac{f'}{f}(z) - \sum_{k=1}^K \frac{1}{z-z_k} + \sum_{k=1}^K \frac{1}{z-R^2/\bar{z}_k}\right|
+\]
+So
+\[
+\frac{f'}{f}(z) = \sum_{k=1}^K \frac{1}{z-z_k} - \sum_{k=1}^K \frac{1}{z-R^2/\bar{z}_k} + O(\log M)
+\]
+and if $|z| \leq r$,
+\[
+|z-R^2/\bar{z}_k| \geq \frac{|R^2|}{|z_k|} - |z| \geq R-r \gg 1
+\]
+and $K \ll \log M$ (coming from (*)?).
+\end{proof}
+\end{lemma}
+
+\begin{coro}
+If $|t| \geq 7/8$ and $5/6 \leq \sigma \leq 2$, then 
+\[
+\frac{\zeta'}{\zeta}(s) = \sum_\rho \frac{1}{s-\rho} + O(\log |t|)
+\]
+where $\rho$ is over all zeros in $|\rho - (3/2+it)| \leq 5/6$.
+\end{coro}
 
 \newpage
 
