@@ -442,7 +442,7 @@ General idea: build inner models using \emph{definability} properties. But the p
 
 \begin{thm} (Tarski Undefinability of Truth)\\
 Let $(M,\in) \vDash ZFC$ (we'll just use this, but we'll see in the proof what set theory we actually need). We assume that the language of set theory $L_\in \subseteq M$ (so that sentences and formulas are actually elements of $M$). Consider the set $S$ of sentences of $L_\in$ and the set $U$ of unary predicates (i.e. $L_\in$-formulas in one free variable).\\
-A \emph{truth predicate} would be a formula $T(x)$ in $L\in$, so a unary predicate, i.e. $T \in U$, s.t. $(M,\in) \vDash \varphi \iff (M,\in) \vDash T(\varphi)$.\\
+A \emph{truth predicate} would be a formula $T(x)$ in $L_\in$, so a unary predicate, i.e. $T \in U$, s.t. $(M,\in) \vDash \varphi \iff (M,\in) \vDash T(\varphi)$.\\
 Claim: there can be no such truth predicate.\\
 Before proving this, let's contrast this with the definition of truth we had before. Our previous result says if $M$ is a set, then the concept $(M,\in) \vDash \varphi$ is $\Delta_0$ (because we bound the quantifier by $M$, which is a set, so in some sense we had to use a parameter $M$ in our previous result, which is not available in our current settings.\\
 \begin{proof} (idea: diagonalisation)\\
@@ -464,9 +464,9 @@ There is no formula $D$ that is a definition of definability.
 \begin{proof}
 Assume $D$ is a definition of definability. Consider (informally now)
 \[
-\alpha := \min\{ \beta: \beta \text{ is not definable, but} \forall \gamma < \beta \exists \gamma' \gamma < \gamma' < \beta \text{ and } \gamma' \text{ is definable}\}\\
+\alpha := \max\{ \beta: \beta \text{ is not definable, but} \forall \gamma < \beta \exists \gamma' \gamma < \gamma' < \beta \text{ and } \gamma' \text{ is definable}\}\\
 \]
-(I think this formulation is wrong) which is the supremum of the definable ordinals. This has to exist because there are only countably many formulas, and each formula only specifies at most one ordinal; this has to be uncountable since, say, $\aleph_1$ is definable. This is defined by the formula:\\
+which is the supremum of the definable ordinals. This has to exist because there are only countably many formulas, and each formula only specifies at most one ordinal; this has to be uncountable since, say, $\aleph_1$ is definable. This is defined by the formula:\\
 $y = \alpha \leftrightarrow y$ is an ordinal and $\neg D(y)$ and
 \[
 \forall \gamma (\gamma < y \to \exists \gamma' (\gamma < \gamma' < y \wedge D(\gamma')))

@@ -6,13 +6,14 @@
 \contentsline {subsection}{\numberline {1.4}Concrete transitive models of ZFC}{11}{subsection.1.4}
 \contentsline {subsection}{\numberline {1.5}Inaccessible cardinals}{13}{subsection.1.5}
 \contentsline {subsection}{\numberline {1.6}The second construction: Models of hereditarily small sets}{15}{subsection.1.6}
-\contentsline {section}{\numberline {2}Example Class 1}{20}{section.2}
-\contentsline {subsection}{\numberline {2.1}Question 1}{20}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Question 2}{20}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Question 3}{20}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Question 6}{20}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Question 8}{20}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}Question 9}{21}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Question 10}{21}{subsection.2.7}
-\contentsline {subsection}{\numberline {2.8}Question 11}{21}{subsection.2.8}
-\contentsline {subsection}{\numberline {2.9}Question 12}{21}{subsection.2.9}
+\contentsline {subsection}{\numberline {1.7}The constructible universe}{19}{subsection.1.7}
+\contentsline {section}{\numberline {2}Example Class 1}{27}{section.2}
+\contentsline {subsection}{\numberline {2.1}Question 1}{27}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Question 2}{27}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Question 3}{27}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Question 6}{27}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Question 8}{27}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Question 9}{28}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Question 10}{28}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.8}Question 11}{28}{subsection.2.8}
+\contentsline {subsection}{\numberline {2.9}Question 12}{28}{subsection.2.9}
