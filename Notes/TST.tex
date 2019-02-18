@@ -906,4 +906,23 @@ We can consider other set theories like $ZFC+\infty IC$: $\forall \alpha \exists
 \subsection{Question 12}
 The idea is almost the same as the one we looked in class: build the Skolem Hull starting from quantifier-free formulas, adding witnesses of existential formulas at each step. By induction we get a countable elementary substructure. Now instead of that, for each step in building the skolem hull we take the $V_{\alpha_i}$ s.t. our structure is contained in $V_{\alpha_i}$. By regularity of $\kappa$ we know we won't reach $V_\kappa$ in the end, say our supremum is $\alpha_\omega$. Note that it's possible that we've hit an inaccessible cardinal en route. So we need to ensure that we go up by at least one level at each stage to ensure that we're actually moving. Then use similar argument as q8.
 
+\newpage
+
+\section{Example Class 2}
+
+\subsection{Question 15}
+
+One major problem is that we can't refer to truth of existential formulas to decide whether we want to add witnesses. This is one of the googlable things so lecturer decided not to spend half an hour on this. This is closely related to q16.
+
+\subsection{Question 20}
+Note that if $x$ is infinite, then $L_0(x) = |x|$, $L_1(x) = \mathcal{D}(x)$ still has cardinality $|x|$, and so on; and at $L_\omega(x)$ still has cardinality $|x| = \aleph_0$.\\
+What if $x$ is not countable? If $|x| = \aleph_1$, we then have $L_0(x) = ... = L_\omega(x)=\aleph_1$, and it keeps this cardinality at $L_{\omega_1}(x)$, and only changes to $\aleph_2$ at $L_{\omega_2}(x)$.
+
+This is instructive enough for question 21.
+
+\subsection{Question 22}
+
+The given statement is equivalent to $\forall X \in L_\kappa$ s.t. $V \vDash X$ is countable (regularity is downward absolute); $\P^{L_\kappa}(X)$ is also countable. Let $\alpha \in L_\kappa$ be countable (in $V$), and a  cardinal in $L_{\kappa}$. $x \subseteq \omega$ codes a well-ordering of $\omega$ of type $\alpha$. $L(x) \vDash \alpha$ is countable; using the form of condensation lemma we had in q21 we get $L(x) \vDash CH$. So $\aleph_1^{L(x)} = |\P(\omega)|^{L(x)} = |\P(\alpha)|^{L(x)} \geq 
+|\P^{L_\kappa}(\alpha)|^{L(x)}$. LHS is countable, so the last expression is also countable.
+
 \end{document}
