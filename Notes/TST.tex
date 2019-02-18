@@ -782,6 +782,79 @@ Assume that $M \vDash ZFC$ and that $ZFC\vdash$ there are regular limits. Toward
 Consider $L \subset M$, by remark (3), $L \vDash ZFC+GCH$. By assumption, $ZFC \vdash \exists$ regular limit, so $L \vDash ZFC+GCH+(\exists \kappa$ $\kappa$ is a regular limit). But ZFC+GCH implies every regular limit is inaccessible, so $L \vDash ZFC+IC$. So $L \vDash \exists \kappa (L_\kappa \vDash ZFC)$, so $L \vDash Cons(ZFC)$; so $M \vDash Cons(ZFC)$ by absoluteness between transitive models.
 \end{proof}
 
+---Lecture 13---
+
+Sorry for the forced break on Friday -- we'll see if we can manage with 23 lectures; if not we'll have to have an additional one at the end of term.
+
+Last time we gave the impression that we're at a breaking point between the first and the second part of the course ($CH$ and $\neg CH$); but that's not entirely true. Today we'll try to understand the difficulty and limitations of our previous method of inner models.
+
+\begin{defi}
+If $(M,\in) \vDash ZFC$, $N \subseteq M$, we say that \emph{$N$ is an inner model of $M$} if:\\
+(a) $(N,\in) \vDash ZFC$;\\
+(b) $Ord \cap N = Ord \cap M$ (not always needed, but this is usually the standard requirement in literature);\\
+(c) $N$ is transitive in $M$.
+\end{defi}
+
+Let's rephrase some things that we've learnt about $L$. We have the following theorem:
+
+\begin{thm} (Minimality theorem)\\
+If $M \vDash ZFC+(V=L)$, and $N$ is an inner model, of $M$, then $N=M$.\\
+In other words, $L$ has no non-trivial inner models.
+\begin{proof}
+We know that $M=\bigcup_{\alpha \in Ord \cap M} L_\alpha^M$ ($L_\alpha$ interpreted in $M$, which doesn't really matter because of absoluteness); this follows directly from $V=L$ in $M$. So in order to show $N=M$, it's enough to show $L_\alpha^M \subseteq N$ for all $\alpha \in Ord \cap M$. But $L_\alpha^N \subseteq N$ for $\alpha \in Ord \cap N$, but then by absoluteness $L_\alpha^N = L_\alpha^M$; then by requirement (b) we're done.
+\end{proof}
+\end{thm}
+
+\begin{rem}
+(1) If we drop (b), we still get that $N=L_\Omega^M$ where $\Omega = Ord \cap N$; so we get a smaller model not because it's \emph{narrower}, but only because it's \emph{shorter}.\\
+(2) We don't need full ZFC for this: similar results hold for considerably weaker theories.
+\end{rem}
+
+Now, what do we mean by the \emph{technique} of inner models? An application of the technique would mean: we want to show $Cons(ZFC+\varphi)$; start with $M \vDash ZFC+\neg \varphi$; go to an inner model $N \subseteq M$ where $N \vDash ZFC+\varphi$. A limitation would mean that this is not possible (while, not quite; it \emph{is} always possible in some way, say by going to a larger model where $\varphi$ fails and then going back).
+
+\begin{defi}
+A \emph{definable inner model} is an $L_\in$-formula $\varphi$ with one free variable, with the property: if $(M,\in) \vDash ZFC$, then define
+\[
+N:= \{ x \in M: M \vDash \Phi(x)\}
+\]
+Then we call $N$ an inner model of $M$.
+\end{defi}
+
+Of course we have an example, $L$, in the sense that we can use the formula $\Phi(x) \leftrightarrow \exists \alpha (x \in L_\alpha)$.
+
+Now we can define what we mean by \emph{the consistency of $\varphi$ can be shown by inner models.}
+
+This means we find an inner model $\varphi$ s.t. for all $M \vDash ZFC$, and $N := \{x \in M, M \vDash \Phi(x)\}$, then $N \vDash ZFC+\varphi$.
+
+\begin{coro}
+There is no inner model proof of the consistency proof of $\neg CH$.
+\begin{proof}
+Suppose otherwise, so let $\Phi$ be an inner model that proves $Cons(ZFC+\neg CH)$. Take an arbitrary $M \vDash ZFC$. Build $L^M$, and form $N^*:=\{x \in L^M: L^m \vDash \Phi(x)\}$. By minimality theorem, $N^* = L^M$. So $N^* \vDash \neg CH$ by assumption; but also $N^* \vDash CH$ because it's $L$. Contradiction.
+\end{proof}
+\end{coro}
+
+So instead we consider \emph{outer models}, nowadays more often known as \emph{forcing}.
+
+Let's do some illustration first: let $L$ be the language of arithmetic with symbols $+,\cdot,0,1$; let $Fld$ denote the axioms for fields; and let $\Phi_0$ denote the formula specifying a field have characteristic 0; and of course use $Fld_0 := Fld+\Phi_0$ (field of characteristic zero).\\
+From algebra we know each characteristic has a prime field (in this case, $\Q$). The method of inner model here would be (something like) subfields. $\Q$ is minimal in the sense that it has no proper subfields.
+
+Now let's consider something that is true in $\Q$ but might be false somewhere else. Maybe let's have the axiom
+\[
+NSRT := \forall x (x \cdot x \neq 1+1)
+\]
+(a great name for the axiom \emph{no square root of two}). Then $\Q \vDash NSRT$. In analogy to the discussion of inner models before, the technique of submodels cannot show $Cons(Fld_0+\neg NSRT)$. So we instead add some weird $X \not\in \Q$ (from the surrounding meta-universe), and \emph{assume} that $X^2=2$. Obviously we can't just take $\Q \cup \{X\}$ as that won't satisfy axioms of $Fld_0$. So we need $X+X,X+X+X,qX,X^3,...$. In algebra we had various techniques that allowed us to do constructions and obtain $\Q(X) \vDash Fld_0+\neg NSRT$.
+
+We've seen how the above illustration works to prove $Cons(Fld_0+\neg NSRT)$. Why not just do the same for $CH$? Assume $M \vDash ZFC+CH$, and further more assume $M$ is countable and transitive (by the usual L-S and then Mostowski collapse trick). So all of its elements are countable, i.e. $\R^M,\aleph_1^M,\aleph_2^M,...$ in $M$ are all countable (in $M$). So there are lots of (uncountably many) reals not in $M$. In particular (since $\aleph_2^M$ is countable (in $M$) as well, we could have an injection $i: \aleph_2^M \to \R$ s.t. the range of $i$ is completely outside $M$, i.e. $ran(i) \cap M = \phi$.
+
+Now form: $M(i)$, the smallest ZFC models containing $M$ as a subset, $i$ as an element (let's assume we have some way to do that). Then $M(i) \vDash ZFC+|\R| \geq |\aleph_2^M|$.\\
+This looks really like $\neg CH$; unfortunately, $\neg CH$ would require $|\R| \geq |\aleph_2^{M(i)}|$. Note that the property of being a cardinal is only downward absolute, so both $\aleph_1^M$ and $\aleph_2^M$ might lose the property of being a cardinal when we move to $M(i)$. So we definitely want both of them to be preserved as cardinals: if either of them is not a cardinal then at best we get an unimpressive result that $|\R| \geq |\aleph_1^{M(i)}|$. So we need $\aleph_1^M = \aleph_1^{M(i)}$ and $\aleph_2^M = \aleph_2^{M(i)}$ in order to prove $\neg CH$.
+
+Let's summarize our proof components:\\
+(1) Find a construction of $M(i) \vDash ZFC$;\\
+(2) Preservation theorems for cardinals;\\
+We've only seen one preservation theorem (in sheet 1): $\R^M = \R^N \implies \aleph_1^M = \aleph_1^N$. But this is pointless now, as the whole point of our attempt is to add new reals.\\
+Also, there's no chance that our general attempt above would work for any injection $i$: if $x$ codes a well-order on $\N$ of order type $\aleph_1^M$, and $i(j) = x$, then $M(i) \vDash \aleph_1^M$ is countable; so we really need to be more careful when specifying which $i$ we want.
+
 \newpage
 
 \section{Example Class 1}
