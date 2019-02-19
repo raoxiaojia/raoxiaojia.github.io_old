@@ -1481,8 +1481,134 @@ If $|t| \geq 7/8$ and $5/6 \leq \sigma \leq 2$, then
 \[
 \frac{\zeta'}{\zeta}(s) = \sum_\rho \frac{1}{s-\rho} + O(\log |t|)
 \]
-where $\rho$ is over all zeros in $|\rho - (3/2+it)| \leq 5/6$.
+where the sum of $\rho$ is over all zeros in $|\rho - (3/2+it)| \leq 5/6$.
 \end{coro}
+
+---Lecture 15---
+
+Example Class today at 330-5pm in MR14!
+
+(a diagram drawn for the corollary last time)
+
+\begin{thm}
+There is $c>0$ s.t. $\zeta(s) \neq 0$ if $\sigma \geq 1-\frac{c}{\log t}$.
+\begin{proof}
+Assume $\zeta(\rho) = 0$, $\rho=\sigma+it$. Let $\delta > 0$ be chosen later. Use the previous corollary,
+\[
+\frac{\zeta'}{\zeta}(1+\delta+it) &= \frac{1}{1+\delta+it-\rho}+\sum_{\rho' \neq \rho} \frac{1}{1+\delta+it-\rho'} + O(\log t) \footnote{unless $\sigma$ is really small. So let's assume $\sigma \geq \frac{99}{100}$}\\
+\Re \frac{\zeta'}{\zeta}(1+\delta+it) &= \Re \frac{1}{1+\delta+it-\rho} + \Re \sum_{\rho' \neq \rho} \frac{1}{1+\delta+it-\rho'} + O(\log t)\\
+&= \frac{1}{1+\delta-\sigma} + O(\log t) + ...
+\]
+Since $\Re \rho' \leq 1$, $\Re \frac{1}{1+\delta+it-\rho'} > 0$. So
+\[
+\Re \frac{\zeta'}{\zeta}(1+\delta+it) > \frac{1}{1+\delta-\sigma} + O(\log t)
+\]
+Similarly we know
+\[
+\Re \frac{\zeta'}{\zeta}(1+\delta+2it) > O(\log t)
+\]
+Also,
+\[
+\frac{\zeta'}{\zeta}(1+\delta) = \frac{-1}{\delta} + O(1)
+\]
+The next step is basically magic (that's why it took so many years for this zero-free region to be proven):
+\[
+&\Re\left(-3\frac{\zeta'}{\zeta}(1+\delta) - 4\frac{\zeta'}{\zeta}(1+\delta+it) - \frac{\zeta'}{\zeta} (1+\delta+2it)\right)\\
+<&\frac{3}{\delta}+O(1) - \frac{4}{1+\delta-\sigma}+O(\log t)
+\]
+So intuitively if we make $\sigma \to 1$ and $\delta \to 0$, the above is negative. However, above is also equal to a dirichlet series,
+\[
+&=\Re\left(3\sum_n \frac{\Lambda(n)}{n^{1+\delta}}+4\sum_n \frac{\Lambda(n)}{n^{1+\delta+it}}+\sum_n \frac{\Lambda(n)}{n^{1+\delta+2it}}\right)\\
+&=\sum_n \frac{\Lambda(n)}{n^{1+\delta}}\left(3+4\cos(t\log n) + \cos (2t\log n)\right)
+\]
+Note that $3+4\cos \theta + \cos(2\theta) = 2(1+\cos\theta)^2 \geq 0$. So each term in the above sum is non-negative. \\
+Now we only need to properly choose $\delta$ so that the above is really negative (to obtain a contradiction): we need 
+\[
+\frac{3}{\delta} > \frac{4}{1+\delta-\sigma}+O(\log t)
+\]
+so choose $\delta = c/\log t$ for large enough $c$, so 
+\[
+\frac{4}{1+\delta-\sigma} < \frac{10}{8} \implies \sigma \geq 1-\frac{c}{\log t}
+\]
+\end{proof}
+\end{thm}
+
+The best known to date is $\sigma \geq 1-\frac{c(\log \log t)^{1/3}}{(\log t)^{2/3}}$, but it's still going to $0$ as $t \to \infty$.
+
+\begin{lemma}
+If $\sigma > 1-\frac{c}{2\log t}$, and $|t| \geq \frac{7}{8}$, then
+\[
+\frac{\zeta'}{\zeta}(s)| \ll \log t
+\]
+\begin{proof}
+Let $s_1 = 1+\frac{1}{\log t} + it = \sigma_1+it$. Here
+\[
+\left|\frac{\zeta'}{\zeta}(s_1)\right| \ll \sum_{n=1}^{\infty} \frac{\Lambda(n)}{n^{\sigma_1}} \ll \frac{1}{\sigma_1-1} \ll \log t
+\]
+We have
+\[
+\frac{\zeta'}{\zeta}(s_1) = \sum_\rho \frac{1}{s_1-\rho} + O(\log t)
+\]
+therefore, if we take real part everywhere, then
+\[
+\Re \sum_\rho \frac{1}{s_1-\rho} \ll \log t
+\]
+Now if $s=\sigma+it$, where $\sigma > 1-\frac{c}{2\log t}$ (where $c$ is the same as in the zero-free region theorem above), then
+\[
+\frac{\zeta'}{\zeta}(s) - \frac{\zeta'}{\zeta}(s_1) = \sum_\rho (\frac{1}{s-\rho} - \frac{1}{s_1-\rho}) + O(\log t)
+\]
+Note that we're implicitly using the zero-free region, because otherwise $s$ might be one of the $\rho$ so our sum won't make sense.\\
+Also, $|s-\rho| \asymp |s_1-\rho|$, so
+\[
+\left|\frac{1}{s-\rho} - \frac{1}{s_1-\rho}\right| \ll \frac{1}{|s_1-\rho|^2 \log t} \ll \Re \frac{1}{s_1-\rho} \ (\text{as }\Re (\frac{1}{z}) = \frac{\Re z}{|z|^2})
+\]
+so
+\[
+\sum_\rho |\frac{1}{s-\rho} - \frac{1}{s_1-\rho}| \ll \Re \sum_\rho \frac{1}{s_1-\rho} \ll \log t
+\]
+\end{proof}
+\end{lemma}
+This concludes our components of proof of PNT.
+
+Assuming RH, we can show (using the same contour idea, but we now have a much larger zero-free region)
+\[
+\psi(x) = x+O(x^{1/2}(\log x)^2)
+\]
+This will be an exercise in sheet 3.
+
+Using partial summation, we can deduce that
+\[
+\pi(x) = Li(x) + O_\varepsilon(x^{1/2}+\varepsilon)
+\]
+where $Li(x)$ is the logarithmic integral function,
+\[
+Li(x) &= \int_2^x \frac{1}{\log t} dt\\
+&= \frac{x}{\log x} + O(\frac{x}{(\log x)^2})
+\]
+so
+\[
+\pi(x) = \frac{x}{\log x} + E(x)
+\]
+then $E(x) \gg \frac{x}{(\log x)^2}$.
+
+\subsection{Error terms}
+In this section, we'll show that, 'often',
+\[
+|\psi(x)-x| \gg x^{1/2}
+\]
+Actually we will show that
+\[
+\psi(x) = x+\Omega_\pm (x^{1/2})
+\]
+i.e. 
+\[
+\limsup_{x \to \infty} (\frac{\psi(x)-x}{x^{1/2}}) > 0
+\]
+and
+\[
+\liminf_{x \to \infty} (\frac{\psi(x)-x}{x^{1/2}}) < 0
+\]
+
 
 \newpage
 
