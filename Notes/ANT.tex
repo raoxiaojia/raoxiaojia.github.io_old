@@ -1273,7 +1273,7 @@ For $y<1$, use the same argument with the contour being the rectangle going righ
 Suppose $\alpha(s) = \sum \frac{a_n}{n^s}$ is absolutely convergent for all $\sigma > \sigma_a$.\\
 If $\sigma_0 > \max(0,\sigma_a)$, and $x$ is not an integer, then
 \[
-\sum_{n < x} a_n = \frac{1}{2\pi i} \int_{\sigma_0-iT}^{\sigma_0+iT} \alpha(s) \frac{x^s}{s} ds + O(\frac{2^{\sigma_0}x}{T} \sum_{\frac{x}{2} < n < 2x} \frac{|a_n|}{|x-n|} + \frac{x^{\sigma_0}}{T} \sum_{n=1}^\infty \frac{|a_n}{n^{\sigma_0}})
+\sum_{n < x} a_n = \frac{1}{2\pi i} \int_{\sigma_0-iT}^{\sigma_0+iT} \alpha(s) \frac{x^s}{s} ds + O(\frac{2^{\sigma_0}x}{T} \sum_{\frac{x}{2} < n < 2x} \frac{|a_n|}{|x-n|} + \frac{x^{\sigma_0}}{T} \sum_{n=1}^\infty \frac{|a_n|}{n^{\sigma_0}})
 \]
 \begin{proof}
 Since $\sigma_0>0$, we can write
@@ -1365,11 +1365,11 @@ Firstly, near $s=1$, things are easy because of the pole.
 
 \begin{thm}
 If $\sigma > \frac{1+t^2}{2}$, then $\zeta(s) \neq 0$. (a region enclosed by a parabola opened to the right, see diagram) In particular, $\zeta(s) \neq 0$ if $\frac{8}{9} \leq \sigma \leq 1$, $|t| \leq \frac{7}{8}$.\\
-Also, $\zeta(S) = \frac{1}{s-1}+O(1)$, and $-\frac{\zeta'}{\zeta}(s) = \frac{1}{s-1} + O(1)$ uniformly in $8/9 \leq \sigma \leq 2$ and $|t| \leq 7/8$.
+Also, $\zeta(s) = \frac{1}{s-1}+O(1)$, and $-\frac{\zeta'}{\zeta}(s) = \frac{1}{s-1} + O(1)$ uniformly in $8/9 \leq \sigma \leq 2$ and $|t| \leq 7/8$.
 \begin{proof}
 Recall that $\zeta(s) = \frac{s}{s-1} + s \int_1^\infty \frac{\{u\}}{u^{s+1}} du$, so 
 \[
-|\zeta(S)-\frac{s}{s-1}| & \leq |s| \int_1^\infty \frac{1}{u^{\sigma+1}} du\\
+|\zeta(s)-\frac{s}{s-1}| & \leq |s| \int_1^\infty \frac{1}{u^{\sigma+1}} du\\
 &\leq \frac{|s|}{\sigma}
 \]
 so if $\sigma > |s-1|$, $\zeta(s) \neq 0$, i.e. if $\sigma < \frac{1+t^2}{2}$; and in particular $\frac{1+(7/8)^2}{2} < 8/9$.\\
@@ -1440,7 +1440,7 @@ So $f'(z) \ll M$ as well.
 \end{lemma}
 
 \begin{lemma}
-If $f$ is holomorphic on a domain including $|z| \leq 1$, $|f() \leq M$ in this disc, and $f(0) \neq 0$. If $0<r<R<1$, then for $|z| \leq r$,
+If $f$ is holomorphic on a domain including $|z| \leq 1$, $|f(z)| \leq M$ in this disc, and $f(0) \neq 0$. If $0<r<R<1$, then for $|z| \leq r$,
 \[
 \frac{f'}{f}(z) = \sum_{k=1}^K \frac{1}{z-z_k} + O_{r,k}(\log \frac{M}{|f(0)|})
 \]

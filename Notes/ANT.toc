@@ -9,8 +9,12 @@
 \contentsline {subsection}{\numberline {2.1}Setup}{20}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Selberg's Sieve}{22}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Combinatorial Sieve}{25}{subsection.2.3}
-\contentsline {section}{\numberline {3}Example Class 1}{27}{section.3}
-\contentsline {subsection}{\numberline {3.1}Question 2}{27}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Question 3}{28}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Question 5}{29}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Question 1}{30}{subsection.3.4}
+\contentsline {section}{\numberline {3}The Riemann $\zeta $ Function}{30}{section.3}
+\contentsline {subsection}{\numberline {3.1}Dirichlet series}{30}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Prime Number Theorem}{35}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Zero-free region}{38}{subsection.3.3}
+\contentsline {section}{\numberline {4}Example Class 1}{42}{section.4}
+\contentsline {subsection}{\numberline {4.1}Question 2}{42}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Question 3}{43}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Question 5}{44}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Question 1}{45}{subsection.4.4}
