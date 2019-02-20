@@ -850,10 +850,50 @@ Now form: $M(i)$, the smallest ZFC models containing $M$ as a subset, $i$ as an 
 This looks really like $\neg CH$; unfortunately, $\neg CH$ would require $|\R| \geq |\aleph_2^{M(i)}|$. Note that the property of being a cardinal is only downward absolute, so both $\aleph_1^M$ and $\aleph_2^M$ might lose the property of being a cardinal when we move to $M(i)$. So we definitely want both of them to be preserved as cardinals: if either of them is not a cardinal then at best we get an unimpressive result that $|\R| \geq |\aleph_1^{M(i)}|$. So we need $\aleph_1^M = \aleph_1^{M(i)}$ and $\aleph_2^M = \aleph_2^{M(i)}$ in order to prove $\neg CH$.
 
 Let's summarize our proof components:\\
-(1) Find a construction of $M(i) \vDash ZFC$;\\
+(1) Find a construction of transitive $M(i) \vDash ZFC$;\\
 (2) Preservation theorems for cardinals;\\
 We've only seen one preservation theorem (in sheet 1): $\R^M = \R^N \implies \aleph_1^M = \aleph_1^N$. But this is pointless now, as the whole point of our attempt is to add new reals.\\
-Also, there's no chance that our general attempt above would work for any injection $i$: if $x$ codes a well-order on $\N$ of order type $\aleph_1^M$, and $i(j) = x$, then $M(i) \vDash \aleph_1^M$ is countable; so we really need to be more careful when specifying which $i$ we want.
+Also, there's no chance that our general attempt above would work for any injection $i$: if $x$ codes a well-order on $\N$ of order type $\aleph_1^M$, and $i(j) = x$, then $M(i) \vDash \aleph_1^M$ is countable; so we really need to be more careful when specifying which $i$ we want (on lecture 14, a different phrased version: if $x \in ran(i)$, then $X \in M[i]$; if $x$ is a code for the countability of $\aleph_1^M$, then $M[i] \not\vDash \aleph_2^{M[i]} = \aleph_2^M$).
+
+---Lecture 14---
+
+Even worse, if such an $x$ can be constructed in ZFC from $i$, then it will be in $M[i]$. So we need to guarantee that no such objects can be constructed.
+
+Let's introduce some vocabularies. As usual, we call $(\P,\leq,1)$ a \emph{partial order} (in the theory of forcing, this is sometimes also called a \emph{forcing}/\emph{forcing partial order}) if $\P$ is a set, $\leq$ is a reflexive, transitive, antisymmetric relation, and $1$ is the largest element. Elements of $\P$ are called \emph{conditions}; if $p \leq q$, we say \emph{$p$ is stronger than $q$}.\footnote{This is the standard convention; in Jerusalem there are attempts to revert the order of partial order, so we have a minimum element 0 and $\geq$ means stronger. Unfortunately, this hasn't helped literature: the group in Jerusalem has considerable size of population, so now there are two opposing set of conventions being used in literature. In particular, if you read a paper, you have to first find out which set of conventions is used before anything could make sense.}\\
+As usual, $C \subseteq \P$ is called a \emph{chain} if $(C,\leq)$ is a total order. If $p,q \in \P$, say that $p$ and $q$ are \emph{incompatible} $(p \perp q)$ if there is no $r \leq p, r \leq q$.\\
+$A \subseteq \P$ is called \emph{antichain} if $\forall p,q \in A, p \neq q \to p \perp q$.\\
+We say that $\P$ has the countable chain condition (ccc) if every \emph{antichain} in $\P$ is countable.\\
+If $D \subseteq \P$, we say $D$ is \emph{dense} if $\forall p \in \P$ $\exists q \in D q \leq p$.\\
+If $F \subseteq \P$, we say $F$ is a \emph{filter} if \\
+(a) $\forall p \in F \forall q (q \geq p \to q \in F)$;\\
+(b) $\forall p,q \in F \exists r \in F r \leq p,q$.\\
+We say $\P$ is \emph{splitting} if for all $p \in \P$, $\exists q_1,q_2 \in \P$, $q_1,q_2 \leq p$ and $q_1 \perp q_2$.\\
+If $\mathcal{D}$ is a set of dense sets and $G \subseteq \P$, we say $G$ is \emph{$\mathcal{D}$-generic} if $\forall D \in \mathcal{D}$, $(D \cap G \neq \phi)$.
+
+\begin{eg} (1, Cohen forcing)\\
+Let $\P := \{p: p$ is a partial function from $\N$ to $2$ with finite domain$\}$. Define $p \leq q \iff p \supseteq q$ (so domain of $p$ covers domain of $q$ and they agree on domain of $q$). Of course here $1$ is the empty function.\\
+If $p\perp q$, then there is $n \in dom(p) \cap dom(q)$ s.t. $p(n) \neq q(n)$.\\
+If $F$ is a filter in $\P$, then $\bigcup F$ is a partial function from $\N$ into $2$ (think very carefully).\\
+Consider $D_n:=\{p:n \in dom(p)\}$. This is a dense set for every $n$: given any $q$, if $q$ is defined on $n$ then it's already in $D_n$; else we could just define it in $n$ (by any value) and get an element in $D_n$ that is stronger than it. Now define $\mathcal{D}:=\{D_n: n \in \N\}$. If $F$ is $\mathcal{D}$-generic, then $\bigcup F: \N \to 2$ is a total function. Note that in this way we could have defined the real numbers.
+\end{eg}
+
+\begin{eg} (2)\\
+Let $\P_X := \{p:p$ is a partial function from $\N$ to $X$ with finite domain$\}$, where $X$ is any set.\\
+As before: if $F$ is a filter, $\bigcup F$ is a partial function; if $F$ is $\mathcal{D}$-generic, $\bigcup F:\N \to X$ is a total function.\\
+Let's add some more dense sets: consider $E_X:=\{p:x \in ran(p)\}$ for every $x \in X$ (in some sense the dual to $D_n$). Let $\mathcal{D}^* := \mathcal{D} \cup \{E_x: x \in X\}$.\\
+Suppose $G$ is $\mathcal{D}^*$-generic filter. So in particular $\bigcup G$ is a total function $\N \to X$. But now for every $x \in X$, $E_x \cap G \neq \phi$. So there's some $p \in G$ with $x \in ran(p)$. So $\bigcup G$ is a surjection $\N \to X$. Therefore $G$ cannot exist for uncountable $X$.
+\end{eg}
+
+If $M$ is a transitive model of ZFC, and $\P \in M$ is a partial order, we say that a filter $G$ (not necessarily an element of $M$) is \emph{generic over $M$}, if it is $\mathcal{D}$-generic for $\mathcal{D}:=\{D \in M: D$ is dense in $\P\}$.
+
+\begin{lemma}
+Suppose $\P$ is splitting, $\P \in M$ and $M$ is a transitive model of ZFC. Suppose $G$ is $\P$-generic filter over $M$. Then $G \not\in M$.\\
+This is exactly what we've seen in example 2 above.
+\begin{proof}
+Suppose $G \in M$. Then $D = \P\setminus G \in M$. We claim that $D$ is dens. Take $p \in \P$ arbitrary. By splitting, find $q_1,q_2 \leq p$, $q_1 \perp q_2$. So $q_1,q_2$ cannot be both in $G$ because $G$ is a filter. So by definition $G\cap D = G \cap \P \setminus G \neq \phi$, contradiction.
+\end{proof}
+\end{lemma}
+
 
 \newpage
 
