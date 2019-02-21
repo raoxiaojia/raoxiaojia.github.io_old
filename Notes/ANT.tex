@@ -1602,13 +1602,108 @@ Actually we will show that
 \]
 i.e. 
 \[
-\limsup_{x \to \infty} (\frac{\psi(x)-x}{x^{1/2}}) > 0
+\limsup_{x \to \infty} (\frac{\psi(x)-x}{x^{1/2}}) \geq c > 0
 \]
 and
 \[
-\liminf_{x \to \infty} (\frac{\psi(x)-x}{x^{1/2}}) < 0
+\liminf_{x \to \infty} (\frac{\psi(x)-x}{x^{1/2}}) \leq -c < 0
 \]
 
+---Lecture 16---
+
+Let's remind you that our goal is to show that $\psi(x) = x+\Omega_\pm (x^{1/2})$.
+
+For contradiction, suppose that $\psi(x)-x \leq cx^{1/2}$ for all large $x$. So $cx^{1/2} - \psi(x) + x \geq 0$ -- take Mellin transform of this.
+
+\begin{lemma} (Landau)\\
+Let $A(x)$ be integrable and bounded on any finite interval, and $A(x) \geq 0$ for all $x \geq X$. Let 
+\[
+\sigma_c = \inf\{\sigma:\int_x^\infty A(x) x^{-\sigma} dx < \infty\}
+\]
+Then if
+\[
+F(s) = \int_1^\infty A(x) x^{-s} dx
+\]
+then $F$ is analytic for $\Re s > \sigma_c$ but \emph{not} at $s=\sigma_c$.
+\begin{proof}
+Divide integral into $[1,X]$ and $(X,\infty)$, correspondingly partition of $F=F_1+F_2$. $F_1$ is entire (it's a finite integral of an integrable function). If $\Re s > \sigma_c$, the integral converges absolutely, so $F_2$ is analytic for $\Re s > \sigma_c$.\\
+By contradiction, suppose $F_2$ is analytic at $s=\sigma_c$.\\
+Write $F_2$ as a Taylor series around $\sigma_c+1$,
+\[
+F_2(s) = \sum_{k=0}^\infty c_k(s-\sigma_c-1)^k
+\]
+where 
+\[
+c_k = \frac{F_2^{(k)}(\sigma_c+1)}{k!} = \frac{1}{k!}\int_x^\infty A(x) (-\log x)^k x^{-\sigma_c-1}
+\]
+This power series has a radius of convergence, which must be $1+\delta$ for some $\delta>0$.\\
+Evaluate the series at $\delta=\sigma_c-\frac{\delta}{2}$,
+\[
+F_2(s) = \sum_{k=0}^\infty \frac{(1-\sigma_c-s)^k}{k!}\int_x^\infty A(x)(\log x)^k x^{-1-\sigma_c} dx
+\]
+At $s=\sigma_c-\frac{\delta}{2}$, we can interchange integral and summation, so
+\[
+F_2(\sigma_c-\frac{\delta}{2}) &= \int_x^\infty A(x) x^{-1-\sigma_c} \exp((1+\sigma_c-s)\log x) dx\\
+&= \int_x^\infty A(x) x^{-s} dx
+\]
+so $\int_x^\infty$ converges at $\sigma_c-\frac{\delta}{2}$, contradicting the definition of $\sigma_c$.
+\end{proof}
+\end{lemma}
+
+\begin{thm} (Landau)\\
+If $\sigma_0$ is the supremum of the real parts of $\{\rho: \zeta(\rho) = 0\}$, then\\
+(1) For any $\sigma < \sigma_0$, $\psi(x)-x = \Omega_\pm(x^{\sigma})$;\\
+(2) If there is a zero $\rho$ with $\sigma=\sigma_0$, then $\psi(x)-x = \Omega_\pm(x^{\sigma_0})$.
+\begin{coro}
+Assuming there's a zero with $\sigma=\frac{1}{2}$, $\psi(x) - x = \Omega_{\pm}(x^{1/2})$.
+\end{coro}
+\begin{coro}
+RH is \emph{equivalent} to $\psi(x) = x+O(x^{1/2+o(1)})$.
+\end{coro}
+\begin{proof}
+Let $c>0$ be chosen later, and suppose that $\psi(x) - x \leq cx^\sigma$ for all $x \geq X$ (for contradiction). Consider ($\sigma \leq \sigma_0$) 
+\[
+F(s) = \int_1^\infty (cx^\sigma - \psi(x)+x) x^{-s-1} dx
+\]
+Recall, by partial summation, that
+\[
+\frac{\zeta'}{\zeta}(s) = -s\int_1^\infty \psi(x) x^{-s-1} dx
+\]
+and
+\[
+\int_1^\infty x^{-s} dx = \frac{1}{s-1}
+\]
+both for $\Re s > 1$. So $F(s) = \frac{c}{s-\sigma}+\frac{\zeta'(s)}{s\zeta(s)}+\frac{1}{s-1}$ ($\Re s > 1$).\\
+This has a pole at $s=\sigma$; it doesn't have a pole at $s=1$ because the contribution from the second and last term cancel each other out, and is analytic for $\Re s > \sigma$.\\
+So by Landau's lemma, in fact this integral converges for all $s$ with $\Re s > \sigma$.\\
+This proves (1) because if $\sigma < \sigma_0$, then there is a zero of $\zeta$ with $\sigma < \Re \rho \leq \sigma_0$, and at $\rho$, $F$ has a singularity ($\rho \not\in \R)$.\\
+Suppose there is $\rho = \sigma_0+it_0$. Repeat the above argument with $\sigma=\sigma_0$, but consider instead
+\[
+G(s) = F(s) + \frac{e^{i\theta} F(s+it_0) + e^{-i\theta} F(s-it_0)}{2}
+\]
+where $\theta \in \R$ is chosen later; $G(s)$ is still analytic for $\Re s > \sigma$, and has a pole at $s=\sigma_0$. From $F(s)$, we have residue $c$; from $F(s+it_0)$, we have residue $\frac{m}{\rho}$ where $M$ is the order of $\rho$; from $F(s-it_0)$, we have residue $\frac{m}{\bar{\rho}}$.\\
+So $G(s)$ has a pole at $s=\sigma_)$ with residue
+\[
+c+\frac{e^{i\theta}m}{2\rho} + \frac{e^{-i\theta}m}{2\bar{\rho}} = c-\frac{m}{|\rho|}
+\]
+where we choose $\theta$ s.t. 
+\[
+\frac{e^{i\theta}}{\rho} = -\frac{1}{|\rho|}
+\]
+Now if we choose $c<\frac{m}{|\rho|}$, then this residue is negative.\\
+So as $s \to \sigma_0$ from the right, along $\R$, $G(s) \to -\infty$.\\
+But for $\Re s > \sigma_0$,
+\[
+\Re(s) = \int_1^\infty (cx^{\sigma_0}-\psi(x)+x)x^{-s-1}\left(\underbrace{1+\frac{e^{i\theta}x^{-it_0}}{2} + \frac{e^{i\theta}x^{it_0}}{2}}_{=1+\cos(\theta-t_0\log x) \geq 0}\right) dx
+\]
+So
+\[
+G(s) = \underbrace{G_1(s)}_{\int_1^x, \text{ entire}} + \underbrace{G_2(s)}_{\int_x^\infty (\geq 0), s \in \R, \Re s > \sigma_0}
+\]
+cannot go to $-\infty$. Contradiction.\\
+This proves $\psi(x)-x = \Omega_+(x^\sigma)$. $\Omega_-$ is the same (multiply by $-1$).
+\end{proof}
+\end{thm}
 
 \newpage
 
@@ -1757,18 +1852,6 @@ Note that $\tau_n = 1*\tau_{n-1}$. Write
 Unfortunately we have no time for more, but feel free to ask now or later.
 
 （typed solution is online)
-
-\newpage
-
-\section{Example Class 2}
-
-I'll attempt to go through the questions in the following order: 1,3,4,2,5.
-
-From heurestic argument, we expect the main term to be $\frac{\varphi(q)}{q} y$. This question basically says that it's correct, with the stated error term.
-
-\begin{proof}
-The proof is straightforward as we're in the wonderful case that we could use sieve of Eratosthenes: we have $A=\{x < n \leq x+y\}$, $P = \}
-\end{proof}
 
 
 \end{document}
