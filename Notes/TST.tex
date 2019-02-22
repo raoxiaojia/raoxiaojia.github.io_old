@@ -782,6 +782,12 @@ Assume that $M \vDash ZFC$ and that $ZFC\vdash$ there are regular limits. Toward
 Consider $L \subset M$, by remark (3), $L \vDash ZFC+GCH$. By assumption, $ZFC \vdash \exists$ regular limit, so $L \vDash ZFC+GCH+(\exists \kappa$ $\kappa$ is a regular limit). But ZFC+GCH implies every regular limit is inaccessible, so $L \vDash ZFC+IC$. So $L \vDash \exists \kappa (L_\kappa \vDash ZFC)$, so $L \vDash Cons(ZFC)$; so $M \vDash Cons(ZFC)$ by absoluteness between transitive models.
 \end{proof}
 
+\newpage
+
+\section{Construction of the generic model}
+
+\subsection{Limitation of methods of inner models}
+
 ---Lecture 13---
 
 Sorry for the forced break on Friday -- we'll see if we can manage with 23 lectures; if not we'll have to have an additional one at the end of term.
@@ -832,6 +838,8 @@ There is no inner model proof of the consistency proof of $\neg CH$.
 Suppose otherwise, so let $\Phi$ be an inner model that proves $Cons(ZFC+\neg CH)$. Take an arbitrary $M \vDash ZFC$. Build $L^M$, and form $N^*:=\{x \in L^M: L^m \vDash \Phi(x)\}$. By minimality theorem, $N^* = L^M$. So $N^* \vDash \neg CH$ by assumption; but also $N^* \vDash CH$ because it's $L$. Contradiction.
 \end{proof}
 \end{coro}
+
+\subsection{Basic terminologies of forcing}
 
 So instead we consider \emph{outer models}, nowadays more often known as \emph{forcing}.
 
@@ -893,6 +901,105 @@ This is exactly what we've seen in example 2 above.
 Suppose $G \in M$. Then $D = \P\setminus G \in M$. We claim that $D$ is dens. Take $p \in \P$ arbitrary. By splitting, find $q_1,q_2 \leq p$, $q_1 \perp q_2$. So $q_1,q_2$ cannot be both in $G$ because $G$ is a filter. So by definition $G\cap D = G \cap \P \setminus G \neq \phi$, contradiction.
 \end{proof}
 \end{lemma}
+
+---Lecture 15---
+
+Last time we had the notion of $\P$ being a filter, being $\mathcal{D}$-generic, being $\P$-generic over $M$, and being splitting. We also proved a lemma that if $M$ is a transitive model of ZFC, $\P \in M$, $G$ a $\P$-generic filter of $M$, $\P$ splitting, then $G \not\in M$. We looked at two examples (one of them is a special example of another).
+
+\begin{lemma}
+If $\mathcal{D}$ is countable set of dense sets, $p \in \P$, then there is a $\mathcal{D}$-generic filter $G$ over $\P$ s.t. $p \in G$.
+\begin{proof}
+Let $\mathcal{D} = \{D_n:n \in \N\}$. Define recursively:\\
+$\bullet$ $p_0:=p$;\\
+Suppose $p_0 \geq p_1 \geq ... \geq p_n$ are already defined. By definition, $D_n$ has an element $q$ s.t. $q \in D_n, q \leq p_n$, and set $p_{n+1}:=q$.\\
+Now consider $X := \{p_n:n \in \N\} \subseteq \P$. Note that if $p_n,p_k \in X$, then $p_{\max(n,k)} \leq p_n,p_k$. So this does generate a filter
+\[
+G:=\{p: \exists n p_n \leq p\}
+\]
+which clearly intersect $D_n$ non-trivially for each $n$.
+\end{proof}
+\end{lemma}
+
+\begin{coro}
+If $M$ is a countable transitive model of set theory, $p \in \P \in M$, then there is a $\P$-generic filter $G$ over $M$ with $p \in G$.
+\begin{proof}
+If $\P \in M$, then $\P$ is countable. Now look at
+\[
+\{D \subseteq \P: D \text{ is dense}, D \in M\} \subseteq \mathcal{P}^M(\P)
+\]
+the $n^{th}$ power set of $\P$. So this is countable as well.
+\end{proof}
+\end{coro}
+
+\subsection{Forcing language}
+
+Fix $M$ a transitive model of set theory, with a partial order $\P$. Define\\
+$\bullet$ $Name_0(M,\P) = \phi$;\\
+$\bullet$ for $\lambda >0$, set $Name_\lambda(M,\P)$ to be 
+\[
+\{\tau: \text{ each element of } \tau \text{ is an ordered pair } (\sigma,p), \sigma \in Name_\alpha(M,\P) \text{ for some } \alpha < \lambda, p \in \P\}
+\]
+The elements of 
+\[
+M^\P:=\bigcup_{\lambda \in Ord \cap M} Name_\lambda(M,\P)
+\]
+are called $\P$-names.
+
+\begin{eg}
+The most basic example is $\P=\{1\}$. We can see that $\phi$ is a name (at the first level), $\{(\phi,1)\}$ is a name (which in some sense represents $\{\phi\}$), etc. This results in (an isomorphic copy) of the von Neumann hierarchy inside $M$.
+\end{eg}
+
+\begin{eg}
+Another basic example is $\P=\{1,L,R\}$, where $L \leq 1$ and $R \leq 1$. The dense sets are $\{1,L,R\}$ and $\{L,R\}$.\\
+What are filters? Filters are closed upwards and do not contain anything incompatible. There are exactly one pair of incompatible things, namely $L,R$. So the filters are $\{1\}$, $\{1,L\}$ and $\{1,R\}$.\\
+What are generic filters? $\{1\}$ doesn't intersect $\{L,R\}$, so only the other two are generic filters.
+
+For names, $\phi$ is a name at the first level; at the next level we have $(\phi,1)$, $(\phi,L)$ and $(\phi,R)$; at the next level we have $\{(\phi,1)\}$, $\{(\phi,L)\}$, $\{(\phi,R)\}$, $\{(\phi,1),(\phi,L)\}$, $\{(\phi,1),(\phi,R)\}$, $\{(\phi,L),(\phi,R)\}$, $\{(\phi,1),(\phi,R),(\phi,L)\}$.
+\end{eg}
+
+Interpretation of names: let $\P,M$ be as before, and let $G$ be $\P$-generic over $M$ (the definition actually makes sense for any $G \subseteq P$).\\
+If $\tau \in Name(M,\P)$, we define the $G$-value of $\tau$
+\[
+val(\tau,G) := \{val(\sigma,G): \exists p \in G, (\sigma,p) \in \tau\}
+\]
+Using this, we can now define $M[G] := \{val(\tau,G): \tau \in Name(M,\P)\}$.
+
+Observation: if $N$ is a transitive model of ZFC s.t. $M \subseteq N$, and $G \in N$, then $M[G] \subseteq N$. Also note that if we can prove $M[G] \vDash ZFC$, this would then be a minimality theorem.
+
+Back to our previous example 2. We had 8 names there. Let's start with $\phi$. What is $val(\phi,G)$? There are no elements of $\tau$, so $val(\phi,G) = \phi$ and is completely independent of what $G$ is. So at least the empty set has the correct name.\\
+If $\tau$ is any of the other 7 names, and $(\sigma,p) \in \tau$, then $\sigma = \phi$ by our previous listing. So there are only two possibilities
+\[
+val(\tau,G) = \left\{\begin{array}{ll}
+\phi\\
+\{\phi\}=1
+\end{array}
+\right.
+\]
+Of course, this now depends on which filter we choose. For convenience we set $\tau_L = \{(\phi,L)\}$ and $\tau_R = \{(\phi,R)\}$. Consider $G_L = \{1,L\}$ and $G_R = \{1,R\}$. Not entirely surprisingly we get
+\[
+val(\tau_L,G_L) = \{\phi\}\\
+val(\tau_L,G_R) = \phi
+\]
+because $L \in G_L$ but $L \not\in G_R$. The case is similar for $val(\tau_R,\cdot)$.\\
+Note that even without specifying the filter, we know $val(\tau_L,G)$ is a subset of $\{\phi\}=1$. There are only two subsets of $1$, namely $0$ and $1$, and we need to specify the filter to know which one it is.\\
+We see from this example that the name is not unique: in the model built by $G_R$, both $\phi$ and $\tau_L$ name $\phi$. So in particular we cannot say something like 'take \emph{the} name of something'.
+
+\begin{defi}
+Let $x \in M$. We define the \emph{canonical name for $x$} by recursion:
+\[
+\check{x} := \{(\check{y},1):y \in x\}
+\]
+\end{defi}
+
+\begin{prop}
+For any $G$ s.t. $1 \in G$, we have $val(\check{x},G) = x$ (proof is by $\in$-induction).
+\end{prop}
+
+\begin{coro}
+$M \subseteq M[G]$.
+\end{coro}
+
+This should tell us what we want next: we want to show $G \in M[G]$. Note that all of the names are elements of $M$, so we can't do the same for $G$ as it's not an element of $M$.
 
 
 \newpage
