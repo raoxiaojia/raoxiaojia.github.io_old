@@ -1705,6 +1705,151 @@ This proves $\psi(x)-x = \Omega_+(x^\sigma)$. $\Omega_-$ is the same (multiply b
 \end{proof}
 \end{thm}
 
+\subsection{Functional equation}
+
+---Lecture 17---
+
+The lecture on next Tuesday and Thursday will be given by Jack Throne instead.
+
+Recall that for $\sigma > 0$, $\zeta(s) = 1+\frac{1}{s-1} - s\int_1^\infty \frac{\{t\}}{t^{s+1}} dt$.
+
+We'll try to extend it to other parts of the complex plane.
+
+Let $f(t) = \frac{1}{2}-\{t\}$. Then
+\[
+\zeta(s) = \frac{1}{s-1} + \frac{1}{2} + s\int_1^\infty \frac{f(t)}{t^{s+1}} dt
+\]
+But this integral now converges when $\sigma > -1$: let
+\[
+F(x) = \int_0^x f(t) dt
+\]
+So we know using integration by part,
+\[
+\int_X^Y \frac{f(t)}{t^{s+1}} dt = \left[\frac{F(t)}{t^{s+1}}\right]_X^Y + (s+1) \int_X^Y \frac{F(t)}{t^{s+2}} dt
+\]
+And note that $F(t)$ is \emph{bounded} (consider what $f(t)$ looks like). Therefore, $\int_1^\infty \frac{f(t)}{t^{s+1}} dt$ converges when $\sigma > -1$.
+
+We can now start calculating values of $\zeta$; for example,
+\[
+\zeta(0) = -\frac{1}{2} \stackrel{?}{=} 1+1+1+...
+\]
+
+We can surely continue doing integration by part in this way to define $\zeta$ for $\sigma>-2$, $\sigma>-3$, etc., but there's a better way.
+
+Note that for $-1<\sigma<0$,
+\[
+s\int_0^1 \frac{f(t)}{t^{s+1}} = \frac{s}{2} \int_0^1 \frac{1}{t^{s+1}} dt - s \int_0^1 \frac{1}{t^s} dt = \frac{1}{2} + \frac{1}{s-1}
+\]
+so for $-1 < \sigma < 0$, we actually know
+\[
+\zeta(s) = s\int_0^\infty \frac{f(t)}{t^{s+1}} dt
+\]
+as a nice single integral.
+
+By Fourier analysis (you can take this for granted if you haven't learnt anything on that; see part IB Methods), as $f$ is periodic, $f(t)$ has a Fourier series
+\[
+f(t) = \sum_{n=1}^\infty \frac{\sin(2n\pi t)}{n\pi}
+\]
+which converges for all $t \not\in \Z$. So where $-1<\sigma<0$,
+\[
+\zeta(s) &= s\int_0^\infty \frac{1}{t^{s+1}} \sum_{n=1}^\infty \frac{\sin(2n\pi t)}{n\pi} dt\\
+&=s \sum_{n=1}^\infty \frac{1}{n\pi} \int_0^\infty \frac{\sin(2n\pi t)}{t^{s+1}} dt \text{ (assume we can swap $\int$ and $\sum$ for now)}\\
+&= s\sum_{n=1}^\infty \frac{(2n\pi)^s}{n\pi} \int_0^\infty \frac{\sin y}{y^{s+1}} dy \text{ where }y = 2n\pi t
+\]
+The integral is now independent from $n$, so we can deal with it separately.\\
+Here the series 
+\[
+\sum_{n=1}^\infty \frac{(2n\pi)^s}{n\pi} = 2^s \pi^{s-1}\zeta(1-s)
+\]
+and 
+\[
+\int_0^\infty \frac{\sin(y)}{y^{s+1}} dy &= \frac{1}{2i}\left(\int_0^\infty \frac{e^{iy}}{y^{s+1}} dy - \int_0^\infty \frac{e^{-iy}}{y^{s+1}} dy\right)
+\]
+apply substitution $u=iy$ and $u=-iy$ separately in the two integrals,
+\[
+=-\sin(\frac{s\pi}{2})\Gamma(-s)
+\]
+where
+\[
+\Gamma(s) = \int_0^\infty t^{s-1} e^{-t} dt
+\]
+is the gamma function, which converges for $\sigma>0$.\\
+Let's study the gamma function for a while: use integration by part,
+\[
+\Gamma(s+1) &= \int_0^\infty t^s e^{-t} dt\\
+&= \left[-t^s e^{-t}\right]_0^\infty + s\int_0^\infty t^{s-1} e^{-t} dt\\
+&= s\Gamma(s)
+\]
+In particular, since $\Gamma(1) = \int_0^\infty e^{-t} dt =1$, we know $\Gamma(n) = (n-1)!$ for $n \in \Z$.
+
+So we see that gamma function is a very natural analytic extension to factorial.
+
+Also note that $\Gamma(s+1) = s\Gamma(s)$ allows us to extend $\Gamma(s)$ to the complex plane, with poles at $s=0,-1,-2,...$.
+
+For the zeta function, this means for $-1<\sigma<0$,
+\[
+\zeta(s) &= s 2^s \pi^{s-1} \zeta(1-s) (-\sin(\frac{s\pi}{2}) \Gamma(-s))\\
+&= 2^s \pi^{s-1} \sin(\frac{\pi s}{2}) \Gamma(1-s) \zeta(1-s)
+\]
+RHS is defined for all $\sigma<0$, so we just define $\zeta(s)$ by above for $\sigma<0$. This gives an analytic continuation of $\zeta(s)$ to $\C$.
+
+\begin{thm} (Functional equation)\\
+For \emph{all} $s \in \C$,
+\[
+\zeta(s) = 2^s \pi^{s-1} \sin(\frac{\pi s}{2}) \Gamma(1-s)\zeta(1-s)
+\]
+\end{thm}
+
+Note that we know there's pole at $s=1$. How does that fit into this equation? We can try to evaluate $\zeta(1)$ by the above formula:
+\[
+\zeta(1) = 2 \times 1 \times 1 \times \Gamma(0) \times \zeta(0)
+\]
+but apparently $\Gamma$ has a pole at $0$, so we haven't broken anything.
+
+Are there any other poles? We have
+\[
+\zeta(s) = \text{(entire)} \cdot \underbrace{\Gamma(1-s) \zeta(1-s)}_{\text{entire for }\sigma < 0}
+\]
+So $\zeta(s)$ has no pole for $\sigma<0$. This means that $\zeta(s)$ is analytic everywhere in $\C$ except for a simple pole at $s=1$.
+
+We can also try to evaluate things like
+\[
+\zeta(2) = 4 \times \pi \times 0 \times \Gamma(-1) \zeta(-1)
+\]
+We know $\zeta(2) = \frac{\pi^2}{6}$, while $\Gamma$ has a pole at $-1$; but that is cancelled by the $0$ in RHS.\\
+We can try the other way:
+\[
+\zeta(-1) &= \frac{1}{2} \times \frac{1}{\pi^2} \times 1 \times \Gamma(2) \zeta(2)\\
+&= \frac{-1}{2\pi^2} \times \frac{\pi^2}{6}\\
+&= -\frac{1}{12} \stackrel{?}{=} 1+2+3+4+...
+\]
+So if you really want to assign a value to this series like a physicists, then this is the value (but don't do it).
+
+What about zeros of $\zeta$? 
+\[
+0=\zeta(s) = (\neq 0) \cdot \sin(\frac{\pi s}{2}) \Gamma(1-s) \zeta(1-s)
+\]
+if $\sigma<0$, $\zeta(1-s) \neq 0$, and $\Gamma(1-s) \neq 0$. So the only possibility is that $\sin(\frac{\pi s}{2})$ vanishes, and we know it does at $s=-2n$ for $n \in \N$. So in $\sigma<0$, $\zeta(s)$ has zeros exactly at $-2,-4,-6,...$.
+
+In $\sigma\geq 1$, $\zeta(s)$ has no zeros. So we also know by the functional equation that it has no zeros at $\sigma=0$.
+
+So except for the trivial zeros, $\zeta(s)$ only has zeros in $0<\sigma<1$.
+
+If $0<\sigma<1$, apply the functional equation:
+\[
+0 = \zeta(s) = (\neq 0) \cdot \Gamma(1-s) \zeta(1-s)
+\]
+But $\Gamma$ never vanishes in that region. So the zeros of $\zeta$ are symmetric about the point $s=1$. But also $\zeta(\bar{s}) = \bar{\zeta(s)}$, so we get four zeros if $\sigma \neq \frac{1}{2}$, i.e. \emph{wild zeros have to come in fours}. In contrast, if there's a zero on $\sigma=\frac{1}{2}$ then there are only one counterpart (reflection against the real axis). So this is probably why Riemann orignally proposed his hypothesis.
+
+\begin{thm}
+RH is equivalent to $\psi(x) = x+O(x^{1/2+o(1)})$.
+\begin{proof}
+$\implies$ is just by contour integration.\\
+For $\Leftarrow$, $\sigma_0=\sup\{\Re \rho: \zeta(\rho) = 0\}$, then $\psi(x) = x+\Omega_\pm(x^\sigma) \forall \sigma<\sigma_0$.\\
+So if RH fails, there must be $0<\sigma<1$ s.t. $\sigma \neq \frac{1}{2}$. Therefore by our previous symmetry property, $\sigma_0 > \frac{1}{2}$. So $\psi(x) = x+\Omega_\pm(x^{\sigma'})$ where $\frac{1}{2} < \sigma' < \sigma$; contradiction.
+\end{proof}
+\end{thm}
+
 \newpage
 
 \section{Example Class 1}
