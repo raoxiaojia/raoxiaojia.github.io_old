@@ -987,7 +987,7 @@ We see from this example that the name is not unique: in the model built by $G_R
 \begin{defi}
 Let $x \in M$. We define the \emph{canonical name for $x$} by recursion:
 \[
-\check{x} := \{(\check{y},1):y \in x\}
+\check{x} := \{(\check{y},1):y \in x\} \in M
 \]
 \end{defi}
 
@@ -1001,6 +1001,106 @@ $M \subseteq M[G]$.
 
 This should tell us what we want next: we want to show $G \in M[G]$. Note that all of the names are elements of $M$, so we can't do the same for $G$ as it's not an element of $M$.
 
+---Lecture 16---
+
+Note: there is no canonical name for the generic filter $G$ in $M$. It would be something like
+\[
+'\check{G}' := \{(\check{p},1): p \in G\}
+\]
+Of course we can define this in the surrounding universe; but it is not a name in $M$. This 'name' has the property that $'\check{G}' \in N \iff G \in N$.\\
+Last time we proved that if $M$ is transitive, $G$ is $\P$-generic over $M$, then $val(\check{x},G) = x$. (For this, we do not need $G$ to be $\P$-generic, but only $1 \in G$.\\
+As a consequence, we know $M \subseteq M[G]$.
+
+\begin{defi}
+\[
+\Gamma := \{(\check{p},p): p \in \P\}
+\]
+\end{defi}
+
+\begin{lemma}
+$val(\Gamma,G) = G$.
+\begin{proof}
+Suppose $x \in val(\Gamma,G)$. By definition, $x=val(\check{p},G)$ for some $p \in \P$ with $p \in G$. Then in fact $x=p$. So $x \in G$.\\
+Suppose $x \in G$. Then $(\check{x},x) \in \Gamma$. But $x \in G$, $x = val(\check{x},G) \in val(\Gamma,G)$. So $x \in val(\Gamma,G)$.
+\end{proof}
+\end{lemma}
+
+\begin{coro}
+If $M$ is transitive, then $G \in M[G]$.
+\end{coro}
+
+Now both elements of $M$ and $G$ are in $M[G]$. But does $M[G]$ satisfy enough set theory?
+
+\begin{lemma}
+$M[G]$ is transitive.
+\begin{proof}
+To show: $x \in y \in M[G] \implies x \in M[G]$.\\
+$y \in M[G]$ means $\exists \tau \ y = val(\tau,G)$.\\
+$x \in y$ means $\exists \sigma,p$, $p \in G$, $(\sigma,p) \in \tau$ and $x = val(\sigma,G)$. Thus $x \in M[G]$.
+\end{proof}
+\end{lemma}
+
+\begin{coro}
+$M[G] \vDash$ Extensionality and Foundation.
+\end{coro}
+
+Let's look at pairing: suppose $x,y \in M[G]$, and $\tau,\sigma$ evaluates to $x,y$ respectively in $G$ ($x=val(\tau,G)$, etc). Construct
+\[
+\mu_{\sigma,\tau}:=\{(\sigma,1),(\tau,1)\}
+\]
+Now try to evaluate it: $1$ is always in the filter $G$, so
+\[
+val(\mu_{\sigma,\tau},G) &= \{val(\sigma,G),val(\tau,G)\}\\
+&= \{x,y\}
+\]
+
+So
+\begin{prop}
+$M[G] \vDash$ Pairing.
+\end{prop}
+We'll stress again that the above name is not unique. For example, we could add any $(\sigma,p)$ for $p \in G$, or any $(\mu,q)$ if $q \not\in G$; also the choice of $\tau$ and $\sigma$ is not unique.
+
+On Sheet 3, we'll see Union; so as a corollary, since $\check{\omega} \in M^\P$, $val(\check{\omega,G}) = \omega$ we get $M[G] \vDash$ infinity.
+
+\begin{lemma}
+If $\tau \in M^\P$, then 
+\[
+\rho(val(\tau,G)) \leq \rho(\tau)
+\]
+where $\rho$ is the rank function.
+\begin{proof}
+Simple induction.
+\end{proof}
+\end{lemma}
+In particular, there can't be any new ordinals, as any new ordinal cannot have an existing rank. So
+\begin{coro}
+$Ord \cap M = Ord \cap M[G]$.
+\end{coro}
+
+How about power set? Let $x \in M[G]$. Take a name $\tau \in M^\P$ for it. Why not just take all the first components of elements of $\tau$, and do it the same way as we did for pairing? The problem is that names are not unique; for example we could have $val(\sigma,G)=val(\bar{\sigma},G)$, where $\bar{\sigma}$ doesn't occur in $\tau$. Now $\{(\bar{\sigma},p)\}$ \emph{is} name of some subset of $x$, but we wouldn't know it from looking at $\tau$. It would be nice to be able to talk about whether a name $\sigma$ is a name for a subset if $val(\tau,G)$ without referring to the precise set-theoretic make-up of $\tau$ and $\sigma$.
+
+\subsection{Forcing Relation}
+
+We had \emph{Forcing Language} on the board previously without saying what it actually is, so let's talk about it now. The forcing language is just $L_\in$ augmented with one constant symbol for each $\tau \in M^\P$.\\
+If $G$ is $\P$-generic over $M$, there is a canonical interpretation of $L(M^\P)$ in $M[G]$
+\[
+M[G] \vDash \varphi(\tau_1,...,\tau_n) \iff M[G] \vDash \varphi(val(\tau_1,G),...,val(\tau_n,G))
+\]
+
+If $\varphi$ is a sentence of $L(M^\P)$, and $p \in \P$, then we say $p\Vdash \varphi$ ($p$ forces $\varphi$ in $M$): For every $\P$-generic filter $G$ over $M$ s.t. $p \in G$, $M[G] \vDash \varphi$.
+
+Note that this looks to be helpful, but if we look carefully at it, it's entirely not obvious that this relation is even definable in $M$: we had \emph{for every $\P$-generic filter $G$ over $M$}, but we knew no such $G$ is in $M$! However, we have:
+
+\begin{thm} (Forcing theorem)
+The following are equivalent:\\
+(1) $M[G] \vDash \varphi$;\\
+(2) $\exists p \in G (p \Vdash \varphi)$
+\end{thm}
+
+\begin{thm}
+The forcing relation is definable in $M$, in the sense that:\\
+There is a definable relation $p \Vdash^* \varphi$ s.t. $\forall p,\varphi$, $p \Vdash \varphi \iff p \Vdash^* \varphi$.
+\end{thm}
 
 \newpage
 
