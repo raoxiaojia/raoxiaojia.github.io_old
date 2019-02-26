@@ -1852,6 +1852,116 @@ So if RH fails, there must be $0<\sigma<1$ s.t. $\sigma \neq \frac{1}{2}$. There
 
 \newpage
 
+\section{Primes in arithmetic progressions}
+
+---Lecture 18---
+
+As you probably know, Thomas Bloom is away for a week, so I'll be lecturing this course for today and Thursday. I'll be starting a new chapter today on primes in arithmetic progressions, which in the end we'll prove the Dirichlet theorem (every arithmetic progression contains infinitely many primes), which you probably already know.
+
+\subsection{Dirichlet characters and $L$-functions}
+
+Fix $q \in \N$. A dirichlet character of modulus $q$ is a homomorphism $\chi: (\Z/q\Z)^* \to \C^*$. We know $(\Z/q\Z)^*$ is a finite abelian group of order $\phi(q)$, so the set of dirichlet characters modulus $q$ form a finite abelian group of the same order by the obvious definition of multiplication.
+
+We can also think of the dirichlet character $\chi$ as defining a function $\chi:\Z \to \C$, given by the formula
+\[
+\chi(a) = \left\{
+\begin{array}{ll}
+\chi(a\ mod\ q) & (a,q)=1\\
+0 & (a,q)>1
+\end{array}
+\right.
+\]
+Note this $\chi$ is periodic with period $q$, and is also \emph{totally} multiplicative.\\
+If $\chi$ is the trivial homomorphism on $(\Z/q\Z)^*$, we call it the principle (Dirichlet) character of modulus $q$, usually denoted as $\chi_0$.
+
+\begin{lemma}
+(1) Let $\chi$ be a Dirichlet character of modulus $q$. Then
+\[
+\sum_{a \in (\Z/q\Z)^*} \chi(a) = \sum_{1 \leq a \leq q} \chi(a) = \left\{
+\begin{array}{ll}
+\phi(q) & \chi=\chi_0\\
+0 & \chi \neq \chi_0
+\end{array}
+\right.
+\]
+(2) Let $a \in (\Z/q\Z)^*$. Then
+\[
+\sum_\chi \chi(a) = \left\{\begin{array}{ll}
+\phi(q) & a \equiv 1 \pmod q\\
+0 & a \not\equiv1 \pmod q
+\end{array}
+\right.
+\]
+(This justifies why it's called a \emph{character} -- see Part II Representation Theory).
+\begin{proof}
+We treat (2): If $a \equiv 1 \pmod q$, then $\chi(a) = 1$ for all $\chi$. So $\sum_\chi \chi(a) = \sum_\chi 1 = \phi(q)$.\\
+If $a \not\equiv 1 \pmod q$, then there exists $\psi:(\Z/q\Z)^* \to \C^*$ such that $\psi(a) \neq 1$. The map $\chi \to \chi \psi$ is a permutation of the set of Dirichlet characters mod $q$, hence
+\[
+\sum_\chi \chi(a) = \sum_\chi (\chi\psi)(a) = \psi(a) \sum_\chi \chi(a)
+\]
+$\psi(a) \neq 1$, so we must have $\sum_\chi \chi(a) = 0$.
+
+\end{proof}
+\end{lemma}
+
+Let $1_{x \equiv a \pmod q}:\Z \to \C$ be defined by 
+\[
+1(x) = \left\{\begin{array}{ll} 
+1 & (x,q) = 1, x \equiv a \pmod q\\
+0 & else
+\end{array}
+\right.
+\]
+where $a \in \Z, (a,q) = 1$.\\
+Then the above lemma (2) says 
+\[
+1_{x \equiv a \pmod q} (x) = \frac{1}{\phi(q)} \sum_\chi \chi(a)^{-1} \chi(x)
+\]
+It follows that 
+\[
+\sum_{p \leq x,p \equiv a \pmod q} 1 &= \sum_{p \leq x} 1_{x \equiv a \pmod q}(p)\\
+&= \frac{1}{\phi(q)} \sum_{p \leq x} \sum_\chi \chi(a)^{-1} \chi(p)
+\]
+Estimating this is closely related to estimating, for example, 
+\[
+\frac{1}{\phi(q)} \sum_{n \leq x} \sum_\chi \chi(a)^{-1} \chi(n) \Lambda(n) &= \sum_\chi \frac{\chi(a)^{-1}}{\phi(q)} \sum_{n \leq x} \chi(n) \Lambda(n)
+\]
+So the strategy to prove Dirichlet's theorem is to consider the contribution of each character $\chi$ separately.
+
+We'll do this using the Dirichlet $L$-functions 
+\[
+L(s,x) = \sum_{n \geq 1} \chi(n)n^{-s}
+\]
+This series converges absolutely in the region $\sigma>1$, and therefore defines an analytic function there.
+
+\begin{lemma}
+If $\chi \neq \chi_0$, then $\sum_{n \geq 1} \chi(n) n^{-s}$ converges in $\sigma>0$.
+\begin{proof}
+Use partial summation with the obvious choice $a_n = \chi(n)$, $A(x) = \sum_{n \leq x} \chi(n)$, $f(t) = t^{-s}$,
+\[
+\sum_{n \leq x} \chi(n) n^{-s} &= A(x) x^{-s} - \int_{t=1}^x A(t) f'(t) dt 
+\]
+Now lemma 20 says $\sum_{1 \leq n \leq q} \chi(n) = 0$, as $\chi \neq \chi_0$. Hence $A(n)$ is periodic, and $|A(x)| \leq \phi(q)$ for all $x$. So $|A(x)x^{-s}| \leq \phi(q) x^{-\sigma}$ and the integral is absolutely convergent.
+\end{proof}
+\end{lemma}
+
+Consequence: $L(s,x)$ is analytic in the same region $\sigma.0$, and in particular does not have a pole at $s=1$.\\
+Since $\chi(n)$ is multiplicative, we have an Euler product identity:
+\[
+L(s,\chi) = \prod_p (1-\chi(p) p^{-s})^{-1}
+\]
+which is valid in the region $\sigma>1$.\\
+Consequence 1: when $\chi = \chi_0$, $L(s,\chi_0) = \zeta(s) \prod_{p | q} (1-p^{-s})$. Hence $L(s,\chi_0)$ has a meromorphic continuation to all $s \in \C$ and a simple pole at $s=1$.\\
+Consequence 2: In the region $\sigma > 1$, and for any $\chi$, we have a formula for the logarithmic derivative of $L(s,\chi)$ in the same way as for $\zeta(s)$.
+
+This gives an identity 
+\[
+-\frac{L'}{L}(s,\chi) = \sum_{n \geq 1} \chi(n) \Lambda(n) n^{-s}
+\]
+
+
+\newpage
+
 \section{Example Class 1}
 
 We'll go through questions 2,3,5,1,4,6 (in that order).
