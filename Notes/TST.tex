@@ -1102,6 +1102,86 @@ The forcing relation is definable in $M$, in the sense that:\\
 There is a definable relation $p \Vdash^* \varphi$ s.t. $\forall p,\varphi$, $p \Vdash \varphi \iff p \Vdash^* \varphi$.
 \end{thm}
 
+---Lecture 17---
+
+Last time we defined what the forcing language $L(M^\P)$ is and we had a forcing theorem about $M[G] \vDash \varphi$ where $\varphi$ is a sentence in $L(M^\P)$. However, there is a small lie here because $\varphi$ uses $G$ as a parameter, because
+\[
+M[G] \vDash \varphi :\iff M[G] \vDash (val(\tau_1,G),...,val(\tau_n,G))
+\]
+
+Technically, the meaning of $M[G] \vDash \varphi$ does not just depend on $M[G]$ but on $G$ as well. So our better notation should be $M[G],G \vDash \varphi$, or $(M,G) \vDash \varphi$.
+
+We then used this to define the forcing relation $p \Vdash \varphi$. Again this is slightly inprecise as the meaning of this depends on the model: we should write $p \Vdash_M \varphi$, which means $\forall G\ p \in G \implies M[G] \vDash \varphi$.
+
+However, $\Vdash$ is a priori not definable in $M$, since $G$ is not; but we'll show that it is.
+
+We shall give a different definition of a relation $p \Vdash^* \varphi$, which is definable in $M$, and we'll show that $p \Vdash^*$ iff $p \Vdash \varphi$.\footnote{$\Vdash^*$ and $\Vdash$ are usually called the \emph{syntactic} forcing relation and the \emph{semantic} forcing relation.}
+
+So let's write down the version of forcing theorem that we're going to prove, which is currently meaningless (as we haven't defined what $\Vdash^*$ is):
+\begin{thm} (Forcing theorem)\\
+Let $M$ be a countable transitive model of set theory, and $\P \in M$. Let $\varphi$ be a sentence in the forcing language $L(M^\P)$. Let $G$ be $\P$-generic over $M$. Then the following are equivalent:\\
+(1) $M[G] \vDash \varphi$;\\
+(2) There is a $p \in G$ s.t. $M \vDash (p \Vdash^* \varphi)$. \footnote{Lecturer restated this theorem in different ways for several times and decided on this final version, saying: \emph{If you're wondering why I've been struggling with stating one of the most important theorems, the reason is that there are so many versions of it, and we need the right version for our induction to work later.}}\\
+Again note that we haven't defined $\Vdash^*$ yet.
+\end{thm}
+
+Let's prove the equivalence of $\Vdash^*$ and $\Vdash$ from the forcing theorem.
+
+\begin{prop}
+Let $M$ be countable transitive model, $\P \in M$, $p \in \P$, $\varphi$ a sentence of $L(M^\P)$. Then
+\[
+p \Vdash_M \varphi \iff M \vDash p \Vdash^* \varphi
+\]
+It's a bit weird we're trying to prove something about things we haven't even defined, but of course we had a powerful theorem above.
+\begin{proof}
+Suppose $p \Vdash_M \varphi$. So for every $G$ that is $\P$-generic over $M$ with $p \in G$, we have $M[G] \vDash \varphi$. But now by forcing theorem (1) $\implies$ (2), we can find $q \in G$ s.t. $M \vDash q \Vdash^* \varphi$.\\
+Let's consider the closure property of $\Vdash$:\\
+(1) if $p \Vdash \varphi$ and $q \leq p$, then $q \Vdash \varphi$ (by property of filter).\\
+(2) If $p \Vdash \varphi$ and $p \Vdash \psi$, then $p \Vdash \varphi \wedge \psi$ (just consider what $\Vdash$ means).\\
+We know that $p,q \in G$, and $G$ is a filter, so there is some $r \in G$ s.t. $r \leq p,q$. By property (1) we know that $r \Vdash \varphi$.\\
+(stuck for a while) Ok, I may have to postpone this until we have actually defined $\Vdash^*$. As you may have noticed I was quite surprised when I realized I could have proved this without defining $\Vdash^*$, but it's good to know now that I was wrong.
+\end{proof}
+\end{prop}
+
+Nevertheless, the above attempt gives us some hints on what properties $\Vdash^*$ need to have: in particular it must make (1) and (2) work.
+
+\begin{defi}
+We say that $D$ is \emph{dense below $p$} if $\forall q \leq p$ $\exists r \leq q, r \in D$.
+\end{defi}
+
+\begin{defi} (of $\Vdash^*$)\\
+This will be by simultaneous recursion on the rank of the names involved and the complexity of $\varphi$.\\
+Atomic formulas: (1) $\tau_1 \in \tau_2$; (2)$\tau_1 = \tau_2$ (remember these are constants in $L(M^\P)$, so they are sentences);\\
+(3) for $\varphi,\psi$ we need to define for $\varphi \wedge \psi$;\\
+(4) for $\varphi$ we need to define for $\neg \varphi$;\\
+(5) for $\varphi$ we need for $\exists x \varphi$.\\
+In this setting (1) and (2) are the hardest (after all, they are where the set theory lives in, as (3)-(5) are purely logic). We'll do the easy ones first:
+For (3) we have no choice due to property (1) in the above failed proof: $p \Vdash^* \varphi \wedge \psi$ iff $p \Vdash^* \varphi$ and $p \Vdash^* \psi$.\\
+(4) $p \Vdash^* \neg \varphi$ iff $\forall q \leq p$ $q \not\Vdash^* \varphi$. So instead of only requiring $p$ to not force $\varphi$, we also require that it's not possible to force $\varphi$ by anything stronger.\\
+(5) $p \Vdash^* \exists x \varphi(x,\tau_1,...,\tau_n)$ iff 
+\[
+\{r: \text{ there is a } \P \text{-name }\sigma s.t. r \Vdash^*\varphi(\sigma,\tau_1,...,\tau_n)\}
+\]
+is dense below $p$ -- so for any $q \leq p$, we can extend $q$ to some stronger $r$ s.t. there is a name $\sigma$ s.t. $r \Vdash^* \varphi(\sigma,\tau_1,...,\tau_n)$.\\
+These are the logical ones; let's now think about the set-theoretic ones.\\
+(1) $p \Vdash^* \tau_1 \in \tau_2$. Note that this needs to depend on (2) because $\tau_1$ and $\tau_2$ may look very different from set theoretic perspective, but $p$ may force some of the names to be equal. Now we have to be very careful because in defining (2) we may need (1) as well, and we can't do a cyclic definition. This is why we said we would use a simultaneous recursion on rank of names and complexity of $\varphi$: define $p \Vdash^* \tau_1 \in \tau_2$ iff 
+\[
+\{q:\text{ there is }(\pi,s) \in \tau_2 s.t. q \leq s,q \Vdash^* \pi = \tau_1\}
+\]
+is dense below $p$.\\
+(2) $p \Vdash^* \tau_1 =\tau_2$: now we've already defined (1), if we're going to obtain a model of extensionality then we need to define $=$ in the only possible way as required by (1): $p \Vdash^* \tau_1 = \tau_2$ iff for all $(\pi_1,s_1) \in \tau_1$,
+\[
+\{q: q \leq s_1 \to \exists (\pi_2,s_2) \in \tau_2 s.t. q \leq s_2 \text{ and } q \Vdash^* \pi_1 = \pi_2\}
+\]
+is dense below $p$; symmetrically, for all $(\pi_2,s_2) \in \tau_2$,
+\[
+\{q: q \leq s_2 \to \exists (\pi_1,s_1) \in \tau_1 s.t. q \leq s_1 \text{ and } q \Vdash^* \pi_1 = \pi_2\}
+\]
+is dense below $p$.\\
+Let's justify why this is a proper recursive definition. We start with (2). $\pi_1$ and $\pi_2$ have strictly lower ranks than $\tau_1$ and $\tau_2$, so (2) on itself is a recursive definition. And then there's no recursion involved in (1) as we've already defined (2), and (1) on itself doesn't depend on $\in$.\\
+You might wonder how absolute these conditions are, because if you look at (1) and (2), of course all of these are bounded by $p$. So the definition on the atomic formulas are absolute and does not depend on $M$ (?). Obviosuly (3) and (4) doesn't do anything; (5) is slightly trickier as it involves the use of $\P$-names; so if we have a bigger model, we might have more names that change the truth value of the forcing relation. So it's (5) that actually requires us to write things like $M \vDash p \Vdash^*\varphi$; in other words, (5) is the only source of non-absoluteness.
+\end{defi}
+
 \newpage
 
 \section{Example Class 1}
