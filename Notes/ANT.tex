@@ -1945,7 +1945,7 @@ Now lemma 20 says $\sum_{1 \leq n \leq q} \chi(n) = 0$, as $\chi \neq \chi_0$. H
 \end{proof}
 \end{lemma}
 
-Consequence: $L(s,x)$ is analytic in the same region $\sigma.0$, and in particular does not have a pole at $s=1$.\\
+Consequence: $L(s,x)$ is analytic in the same region $\sigma>0$, and in particular does not have a pole at $s=1$.\\
 Since $\chi(n)$ is multiplicative, we have an Euler product identity:
 \[
 L(s,\chi) = \prod_p (1-\chi(p) p^{-s})^{-1}
@@ -1958,6 +1958,111 @@ This gives an identity
 \[
 -\frac{L'}{L}(s,\chi) = \sum_{n \geq 1} \chi(n) \Lambda(n) n^{-s}
 \]
+
+---Lecture 19---
+
+Last time we fixed $q \in \N$ and introduced the Dirichlet $L$ function: for any Dirichlet character $\chi:(\Z/q\Z)^* \to \C^*$,
+\[
+L(s,\chi) = \sum_{n \leq 1} \chi(n) n^{-s}
+\]
+where we abuse the notation to extend $\chi$ to a function $\N \to \C$.\\
+We observed that this was absolutely convergent for $\sigma>1$. We also observed that when $\chi \neq \chi_0$ (the trivial character), $L(s,\chi)$ is convergent in $\sigma>0$.\\
+We also had a formula for the log derivative:
+\[
+\log L(s,\chi) = \sum_p \sum_{k \geq 1} \chi(p)^k p^{-ks}/k
+\]
+hence
+\[
+\frac{L'(s,\chi)}{L(s,\chi)} &= \sum_p \sum_{k \geq 1} \chi(p)^k (-\log p) p^{-ks}\\
+&= -\sum_{n \geq 1} \chi(n)\Lambda(n) n^{-s}
+\]
+which is valid in $\sigma>1$.
+
+Fix $a \in \N$, $(a,q) = 1$. We combine this with the identity valid for any natural number $n$:
+\[
+1_{n \equiv a \pmod q}(n) = \frac{1}{\phi(q)}\sum_\chi \chi(a)^{-1} \chi(n)
+\]
+We get
+\[
+\sum_{n \geq 1} 1_{n \equiv a \pmod q} (n) \Lambda(n)n^{-s} = -\frac{1}{\phi(q)} \sum_\chi \chi(a)^{-1} \frac{L'(s,\chi)}{L(s,\chi)}
+\]
+which is valid in $\sigma>1$.
+
+\subsection{Dirichlet's theorem}
+
+\begin{thm}
+Let $a \in \N$, $(a,q)=1$. There are infinitely many primes $p$ s.t. 
+\[
+p \equiv a \pmod q
+\]
+How are we going to prove it? We have $L(s,\chi_0) = \zeta(s) \prod_{p/q} (1-p^{-s})$, so as we saw last time, $L(s,\chi_0)$ has a simple pole at $s=1$. Hence
+\[
+\sum_{n \geq 1} 1_{n \equiv a \pmod q}(n)\Lambda(n) n^{-s} &= \frac{1}{\phi(q)} \frac{1}{s-1} + O(1) + \sum_{\chi \neq \chi_0} \chi(a)^{-1}\frac{L'(s,\chi)}{L(s,\chi)}
+\]
+Let's assume that we understand that the last term is bounded. Then RHS (and so LHS) is divergent at $s=1$. But if there are finitely many primes $p \equiv a \pmod q$, LHS would be bounded as $s \to 1$. So to show Dirichlet's theorem it's enough to show that $\forall \chi \neq \chi_0$, $\frac{L'(s,\chi)}{L(s,\chi)}$ is bounded, or analytic at $s=1$ since we know it's meromorphic.
+
+This is equivalent to showing that if $\chi \neq \chi_0$, then $L(1,\chi) \neq 0$.
+\end{thm}
+
+\begin{thm}
+If $\chi \neq \chi_0$, then $L(1,\chi) \neq 0$.
+\begin{proof}
+\[
+\prod_\chi L(s,\chi) &= \exp(\sum_\chi \log L(s,\chi))\\
+&= \exp(\sum_\chi \sum_p \sum_{k \geq 1} \chi(p)^k p^{-ks}/k)\\
+&= \exp(\sum_\chi \sum_{n \geq 1} \chi(n) \frac{n^{-s} \Lambda(n)}{\log n})\\
+&= \exp\left(\sum_{n \geq 1}\left[\frac{n^{-s} \Lambda(n)}{\log n} \sum_\chi \chi(n)\right]\right)
+\]
+We know by a previous lemma that
+\[
+\chi(n) = \left\{\begin{array}{ll}
+0 & (q,n)>1\ or\ (q,n)=1, n \not\equiv 1\pmod q\\
+\phi(q) & n \equiv 1 \pmod q
+\end{array}
+\right.
+\]
+Hence
+\[
+\prod_\chi L(s,\chi) = \exp\left(\sum_{n \geq 1, n \equiv 1 \pmod q} \frac{n^{-s}\Lambda(n)}{\log n} \phi(q)\right)
+\]
+valid in $\sigma>1$. The exponent is a non-negative real number for $s>1$ real.
+
+So for $s \in (1,\infty)$, $\prod_\chi L(s,\chi) \in [1,\infty)$.
+
+Note that $L(s,\chi_0)$ has a simple pole at $s=1$. If there are at least two dinstinct characters $\psi,\psi'$ of modulus $q$ such that $L(1,\psi) = L(1,\psi') = 0$, then $\prod_\chi L(s,\chi)$ would be analytic in a neighbourhood of $s=1$, and vanish at $s=1$; but this is impossible, so there's at most one character $\psi$ s.t. $L(1,\psi)=0$.\\
+Note: for any $\chi$, $L(1,\bar{\chi}) = \overline{L(1,\chi)}$. So if $L(1,\chi) = 0$, then $L(1,\bar{\chi}) = 0$.\\
+Hence if $L(1,\chi) = 0$, then $\chi = \bar{\chi}$. In other words (as $|\chi$ must have modulus 1), $\chi$ takes values in $\{\pm 1\}$ (we call such characters quadratic as then $\chi^2=1$).\\
+Suppose for contradiction that there exists a non-principal but quadratic character $\psi: (\Z/q\Z)^* \to \{\pm 1\}$ s.t. $L(1,\psi) = 0$.\\
+We consider the product $L(s,\psi)\zeta(s)$. This function is analytic in $\sigma>0$.\\
+In $\sigma>1$, we have the expression
+\[
+L(s,\psi) \zeta(s) = (\sum_{n \geq 1} \psi(n) n^{-s})(\sum_{n \geq 1} n^{-s}) = \sum_{n \geq 1} r(n) n^{-s}
+\]
+where $r(n) = \sum_{d | n} \psi(d)$. First of all, $r$ is multiplicative; also $r(n) \geq 0$: we need to only prove it for prime powers:
+\[
+r(p^k) = \psi(1)+\psi(p) + ... + \psi(p^k) = \left\{\begin{array}{ll}
+k+1 & \psi(p) = 1\\
+1 & \psi(p) = 0\ or \ \psi(p) = -1, k \text{ is even}\\
+0 & \psi(p) = -1, k \text{ is odd}
+\end{array}
+\right.
+\]
+We also know $r(n^2) \geq 1$ by the same argument.
+
+We now use Landau's lemma:
+\begin{lemma}
+Let $f(s) = \sum_{n \geq 1} a_n n^{-s}$ where $a_n$ are non-negative real numbers. Suppose given $\sigma_0$ s.t. $f(s)$ is convergent, therefore absolutely convergent in $\sigma > \sigma_0$. Suppose as well that $f(s)$ admits an analytic continuation to the disc $\{|s-\sigma_0| < \varepsilon\}$. Then $f(s)$ is convergent in the region $\sigma>\sigma_0-\varepsilon$.
+\end{lemma}
+
+Let $f(s) = L(\psi,s) \zeta(s) = \sum_{n \geq 1} r(n) n^{-s}$, valid in $\sigma>1$. Then we can use Landau's lemma, together with the fact that $f(s)$ is analytic in $\sigma>0$ to conclude that $f(s)$ is convergent in $\sigma>0$.\\
+But this can't be true: 
+\[
+f(1/2) = \sum_{n \geq 1} r(n) n^{-1/2} \geq \sum_{n \geq 1} r(n^2)/n \geq \sum_{n \geq 1} 1/n = \infty
+\]
+This is impossible. So $L(1,\psi) \neq 0$.
+\end{proof}
+\end{thm}`
+
 
 
 \newpage
