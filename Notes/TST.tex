@@ -1184,7 +1184,7 @@ You might wonder how absolute these conditions are, because if you look at (1) a
 
 ---Lecture 18---
 
-We're goin to start the proof of forcing theorem today, and hopefully finish by the end of next lecture.
+We're going to start the proof of forcing theorem today, and hopefully finish by the end of next lecture.
 
 On ES3 q23, we'll see that\\
 (1) If $D$ is dense below $p$ and $r \leq p$, then $D$ is dense below $r$;\\
@@ -1240,7 +1240,82 @@ Now let's look at the definition to see what we need to prove. But then we reali
 \{r: \exists \sigma \in M^\P (r \Vdash^* \varphi(\sigma,...)\}
 \]
 is not only dense below $p$, but is actually everything below $p$. So $p \Vdash^* \exists x \varphi$.\\
-This is a very nice point to stop as we've proved exactly half of FT: out of the five cases, we proved the first two and half of the third case. We'll continue next monday to finish the other half.
+This is a very nice point to stop as we've proved exactly half of FT: out of the five cases, we proved the first two and half of the third case. We'll continue next monday to finish the other half.*
+
+---Lecture 19---
+
+We were in the middle of the proof of FT: $M$ is countable transitive model, $\P \in M$, $G$ a $\P$-generic filter over $M$, $\varphi$ a $L(M^\P)$-sentence. The following are equivalent:\\
+(i) $M[G] \vDash \varphi$;\\
+(ii) $\exists p \in G$ $M \vDash p \Vdash^* \varphi$.
+
+We had five cases by induction, and we've proved (c),(d) and (e) $\implies$. Let's continue from there:
+
+(e) $\Leftarrow$: Assume that $p \in G$, $p \Vdash^* \exists x \varphi$ (as before, we're suppressing $M\vDash$, but actually this is the only one case that it matters as we've discussed before -- (e) is the only source of non-absoluteness. So maybe I should write $M\vDash$ here?).\\
+By definition, 
+\[
+D:= \{r: \text{ there is } \sigma \text{ s.t. } r \Vdash^* \varphi(\sigma/x)\}
+\]
+is dense below $p$.\\
+We should set IH as: FT holds for each $\varphi(\sigma/x)$ for arbitrary names $\sigma$, as we only defined $M[G] \vDash \varphi$ for $\varphi$ sentences.\\
+Find $r \in D\cap G$ which exists since $p \in G$ and $D$ is dense below $p$. Fix witness $\sigma$ to the fact that $r \in D$, i.e. $r \Vdash^* \varphi(\sigma/x)$. By IH, $M[G] \vDash \varphi(\sigma/x)$ (which should actually mean $M[G] \vDash \varphi(val(\sigma,G)/x)$ in the usual model theoretic sense). So $M[G] \vDash \exists x \varphi$.
+
+(b) $\Leftarrow$: Let $p \in G$ s.t. $p \Vdash^* \tau_1\in\tau_2$. Note that in this case our IH should be FT for $=$ if we look at definition of (b),
+\[
+D:=\{q:\exists (\pi,s) \tau_2(q \leq s \wedge q \Vdash^*\pi = \tau_1)\}
+\]
+is dense below $p$. By the same reason $D\cap G$ is non-empty, so pick $q \in D \cap G$. Fix $(\pi,s) \in \tau_2$ s.t. $q \leq s$ and $q \Vdash^*\pi=\tau_1$. Now
+\[
+q \leq s \implies s \in G \implies val(\pi,G) \in val(\tau_2,G)
+\]
+While
+\[
+q \Vdash^* \pi = \tau_1 \stackrel{IH}{\implies} M[G] \vDash \pi=\tau_1 \implies val(\pi,G) = val(\tau_1,G)
+\]
+So $val(\tau_1,G) \in val(\tau_2,G)$, i.e. $M[G] \vDash \tau_1 \in \tau_2$.
+
+(b) $\implies$: $M[G] \vDash \tau_1 \in \tau_2 \implies val(\tau_1,G) \in val(\tau_2,G)$. Be very careful because this doesn't mean that $\tau_1$ is the first component of some element of $\tau_2$; what we get from this is only that there is some $(\pi,s) \in \tau_2$ s.t. $s \in G$ and $val(\tau_1,G) = val(\pi,G)$. This gives $M[G] \vDash \tau_1 = \pi$. So by IH we find $r \in G$ s.t. $r \Vdash^* \pi=\tau_1$. Find $p \leq s,r, p \in G$ as it's a filter. Then
+\[
+\{q \leq p: \exists (\bar{\pi},\bar{s}) \in \tau_2 (q \leq \bar{s} \wedge q \Vdash^* \bar{\pi}=\tau_1)\}
+\]
+or even the smaller set
+\[
+\{q \leq p: q \leq s \wedge q \Vdash^* \pi=\tau_1\}
+\]
+is everything below $p$, so dense below $p$.
+
+(a) This is the hardest part.\\
+$\Leftarrow$: Fix $p \in G$ s.t. $p \Vdash^* \tau_1 = \tau_2$.\\
+Our IH should be: FT for $=$ with names of lower rank. The form of the definition of $p \Vdash^* \tau_1 = \tau_2$ is symmetric in the sense that if we're using ($\alpha$) to show that $val(\tau_1,G \subseteq val(\tau_2,G)$, then ($\beta$) shows $val(\tau_2,G) \subseteq val(\tau_1,G)$.\\
+So we'll show $val(\tau_1,G) \subseteq val(\tau_2,G)$.\\
+Fix $x \in val(\tau_1,G)$. Fix a $(\pi_1,s_1) \in \tau_1$ s.t. $s_1 \in G$ and $val(\pi_1,G) = x$.\\
+Now find $r \leq p,s_1$ with $r \in G$. By lemma, $r$ still forces $\tau_1=\tau_2$, so
+\[
+D:=\{q \leq r: q \leq s_1 \to \exists (\pi_2,s_2) \in \tau_2 (q \leq s_2 \wedge q \Vdash^* \pi_1=\pi_2)\}
+\]
+is dense below $r$.\\
+Find $q \in D \cap G$. $q \leq r$, $r \leq s_1$, so $q \leq s_1$. So the antecedent in the above set of $D$ is true. So we can actually find $(\pi_2,s_2) \in \tau_2$ with $q \leq s_2$ and $q \Vdash^* \pi_1 \in \pi_2$. Now
+\[
+q \leq s_2 \implies s_2 \in G \implies val(\pi_2,G) \in val(\tau_2,G)
+\]
+and
+\[
+q \Vdash^* \pi_1 = \pi_2 \stackrel{IH}{\implies} M[G] \vDash \pi_1=\pi_2 \implies val(\pi_1,G) = val(\pi_2,G)
+\]
+So in the same fashion we get $x=val(\pi_1,G) \in val(\tau_2,G)$. The other half is symmetric.
+
+(a) $\implies$: Assume $M[G] \vDash \tau_1=\tau_2$. So $val(\tau_1,G) = val(\tau_2,G)$.\\
+Consider the following set
+\[
+D:=\{r: &r \Vdash^* \tau_1 = \tau_2 \text{ (Case 1) or } \\
+&\exists (\pi_1,s_1) \in \tau_1 (r \leq s_1 \wedge \forall (\pi_2,s_2) \in \tau_2 \forall q (q_2 \leq s_2 \wedge q \Vdash^* \pi_1 = \pi_2) \to q \perp r) \text{ (Case 2) or}\\
+& \exists (\pi_2,s_2) \in \tau_2 (r \leq s_2 \wedge \forall (\pi_1,s_1) \in \tau_1 \forall q (q_1 \leq s_1 \wedge q \Vdash^* \pi_1 = \pi_2) \to q \perp r)\text{ (Case 3)}\}
+\]
+Observation: if $r \in G$, then neither case 2 nor case 3 can hold. By symmetry it's enough to deal with case 2 only: to prove this observation, suppose, towards a contradiction, that $r \in G$ and case 2 holds. Find $(\pi_1,s_1) \in \tau_1$ with the above desired (actually, undesired) properties. Since $r \leq s_1$, $s_1 \in G$. So $val(\pi_1,G) \in val(\tau_1,G) = val(\tau_2,G)$ by our assumption. But then there's some $(\pi_2,s_2) \in \tau_2$ with $s_2 \in G$ and $val(\pi_2,G) = val(\pi_1,G)$ by definition of $\in$.\\
+Now we can use IH on $=$: find $q' \in G$ s.t. $q' \Vdash^* \pi_1 = \pi_2$.\\
+Now find $q \leq r,s_1,s_2,q'$. But now case 2 says that if $q \leq s_2$ and $q \Vdash^* \pi_1 =\pi_2$, then $q$ has to be incompatible with $r$; but it isn't. Contradiction.\\
+So we're done if we show that $D$ is dense.\\
+Fix $p \in \P$. If $p \Vdash^* \tau_1 = \tau_2$ then we're done. So assume it doesn't, then we'll find $r \leq p$ for case 2 or 3. Again by symmetry we'll show that if the failure of ($\alpha$) is the reason for $p \not\Vdash^* \tau_1=\tau_2$, then we can find $r$ in case 2 in the definition of $D$.\\
+We'll do it on Wednesday because I think we need to do the detail of everything, although it's quite boring.
 \end{proof}
 
 \newpage

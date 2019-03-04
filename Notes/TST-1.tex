@@ -1,0 +1,63 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Topics in Set Theory Sheet 3}
+
+\author{Xiaojia Rao}
+
+\maketitle
+
+\newpage
+
+\section*{23.}
+(a) Suppose $q \leq r$. So $q \leq p$. So $\exists s \in D$ s.t. $s \leq q$. So $D$ is dense below $r$.\\
+(b) Suppose $q \leq p$. So $\exists r \leq q$ s.t. $D$ is dense below $r$. In particular, $\exists s \in D$ s.t. $s \leq r \leq q$. So $D$ is dense below $p$.
+
+\section*{24.}
+
+We first prove that every maximal $\P$-antichain $B$ is a $\P$-bar: suppose otherwise, if there is some $p \in \P$ s.t. no $b \in B$ is compatible with $p$, then we could add $p$ into $B$ to get a larger antichain; contradiction. So (iii) $\implies$ (ii).
+
+(i) $\implies$ (iii): Suppose $G$ is a $\P$-generic filter, and $B$ is a $\P$-bar. Now consider the set 
+\[
+B' = B \cup \bigcup_{p \in \P} f(p)
+\]
+where $f(p)$ is a witness of compatibility of $p$ with an element of $b \in B$. In particular $f(p) \leq p$, so $B'$ is dense. So $G \cap B' \neq \phi$. Take $b' \in B'$. If $b' \in B$ then we're done; if $b'$ is the witness of compatibility of some two elements where one is in $B$, then since $G$ is a filter we get an element of $B$ which is in $G$. So $G \cap B \neq \phi$.
+
+(ii) $\implies$ (i): We'll prove that each dense set contains a maximal antichain. Suppose $D$ is dense, and take an antichain $A$ that is maximal in $D$. For contradiction, suppose $A$ is not a maximal antichain in $\P$. So there is some $p \in \P$ s.t. $p \perp a$ for all $a \in A$. But now take a witness of density of $D$ for $p$, say $q \in D$ s.t. $q \leq p$. But $q$ is compatible with some elements in $A$ by assumption, therefore so is $q$. Contradiction.
+
+\section*{25.}
+(I'm less sure on this one) Just take $\P$ defining the entire subset relation on $M$, and let $H$ be the class of all ordinals in $M$ which is a filter. Then since $H \subset M[H]$, we have a set of all ordinals (from $M$) in $M[H]$, but $M[H]$ has the same ordinals as $M$, so in fact in $M[H]$ there exists a set of all ordinals $H$.
+
+\section*{26.}
+Suppose $x \in val(\sigma \cup \tau,D)$. So there's some $(\pi,s) \in \sigma \cup \tau$ s.t. $s \in D$ and $val(\pi,D) = x$. But then $(\pi,s)$ is either in $\sigma$ or $\tau$, so we know $x \in val(\sigma,D) \cup val(\tau,D)$. The other inclusion is trivial.
+
+\section*{27.}
+Prove by $\in$-recursion: $x=\phi$ is trivial since $can(x) = \phi$. \\
+Suppose $z \in val(can(x),D)$. Then there's some $(\pi,s) \in can(x)$ s.t. $s \in D$ and $val(\pi,D) = z$. But then $\pi = can(y)$ for some $y \in x$, and by induction hypothesis $val(can(y),D) = y$. So $z=y\in x$. So $val(can(x),D) \subseteq x$.\\
+Conversely, suppose $y \in x$. But then by induction hypothesis $val(can(y),D) = y$, and since $D$ is a filter, $1 \in D$; so $(can(y),1)$ witnesses that $y \in val(can(x),D)$.
+
+\section*{28.}
+Let $x \in \omega$. If $x \in val(\tau^*,G)$, then there's some $(\check{n},p) \in \tau^*$ s.t. $p \in G$ and $val(\check{n},G) = x$. But then $n=x$. Now we want to prove that $n \not\in val(\tau,G)$. Suppose otherwise, so we have some $(\check{n},q) \in \tau$ s.t. $q \in G$. But $p \in G$ as well and $p \perp q$, contradicting with the fact that $G$ is a filter.\\
+Conversely, suppose $n \in val(\tau,G)$. So there is some $q \in G$ s.t. $(\check{n},q) \in \tau$. We want to prove that $n \not\in val(\tau^*,G)$. Suppose otherwise, so we have some $(\check{n},q) \in \tau^*$ s.t. $p \in G$. But then for the same reason $p$ and $q$ cannot both be in $G$. Contradiction.
+
+\section*{30.}
+Prove by $\in$-recursion. The case $\tau=\phi$ is trivial as $\pi=\phi$ as well.\\
+Suppose $x \in val(\pi,D)$. So take $(\rho,p) \in \pi$ s.t. $val(\rho,D) = x$ and $p \in D$. Now by definition we know $\exists (\sigma,q) \in \tau$ and $r$ with $(\rho,r) \in \sigma$ and $p \leq r,q$. In particular, $r,q \in D$ since $D$ is a filter. So $val(\sigma,D) \in val(\tau,D)$ and $val(\rho,D) \in val(\sigma,D)$, i.e. $x \in val(\sigma,D) \in val(\tau,D)$, i.e. $x \in \bigcup val(\tau,D)$.\\
+Conversely, suppose $x \in \bigcup val(\tau,D)$. So $\exists y \in val(\tau,D)$ s.t. $x \in y$. So we have some $val(\sigma,q) \in \tau$ where $q \in D$ and $val(\sigma,D) = y$, and then some $(\rho,r) \in \sigma$ s.t. $val(\rho,D) = x$ and $r \in D$. But $D$ is a filter, so we can take $p \in D$ s.t. $p \leq r,q$. So we get a $(\rho,p)$ that satisfies all the necessary conditions to be in $\pi$. So $x \in val(\pi,D)$.
+
+Now for any set $x \in M[D]$, take its canonical name $\check{x}$ and use it as $\tau$ to get a $\pi$ which will evaluate to $\bigcup val(\tau,D) = \bigcup x$. So $\bigcup x \in M[D]$ since $M[D]$ contains all valuations of the names in $M^\P$.
+
+\section*{31.}
+There are only countably many finite cardinals, so if we have an uncountable family of finite sets then uncountably many of them have some identical cardinality, and we'll throw all others away and find a $\Delta$-system among sizes of this same cardinality.
+
+Now prove by induction of size $n$ of the uncountable family. The case $n=1$ is trivial as we just take all distinct sets (of course assuming that $\mathcal{D}$ does not contain multiple copies of the same set, but even if it does it's not a problem: if it only contains countably many copies of each set then we still have uncountably many different sets; otherwise we just take uncountably many copies of the same set. So in the following argument we'll assume that no two sets in $D$ are identical).
+
+Now suppose $n>1$. Consider the union of all sets in the family. If there's any element $x$ that is in uncountably many sets in the family, then we're done by induction (throw $x$ away from them and consider the remaining). \\
+Otherwise, suppose each element only appears in countably many sets in the family. In particular, that means for each combination of $n$ elements, there are only countably many sets in the family that have non-empty intersection with it. But then the union contains uncountably many elements, so we can pick uncountably many sets in the family (which is a combination of $n$ elements) that are disjoint from each other.
+
+\end{document}
