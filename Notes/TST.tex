@@ -1182,6 +1182,67 @@ Let's justify why this is a proper recursive definition. We start with (2). $\pi
 You might wonder how absolute these conditions are, because if you look at (1) and (2), of course all of these are bounded by $p$. So the definition on the atomic formulas are absolute and does not depend on $M$ (?). Obviosuly (3) and (4) doesn't do anything; (5) is slightly trickier as it involves the use of $\P$-names; so if we have a bigger model, we might have more names that change the truth value of the forcing relation. So it's (5) that actually requires us to write things like $M \vDash p \Vdash^*\varphi$; in other words, (5) is the only source of non-absoluteness.
 \end{defi}
 
+---Lecture 18---
+
+We're goin to start the proof of forcing theorem today, and hopefully finish by the end of next lecture.
+
+On ES3 q23, we'll see that\\
+(1) If $D$ is dense below $p$ and $r \leq p$, then $D$ is dense below $r$;\\
+(2) If $\{r:D$ is dense below $r\}$ is dense below $p$, then $D$ is dense below $p$.
+
+\begin{lemma}
+The following are equivalent:\\
+(i) $p \Vdash^* \varphi$;\\
+(ii) $\forall r \leq p (r \Vdash^* \varphi)$;\\
+(iii) $\{r: r \Vdash^* \varphi\}$ is dense below $p$.
+\begin{proof}
+Clearly (ii) $\implies$ (i) and (iii). So we need to show the other two directions.\\
+(i) $\implies$ (ii): Proof by induction on the definition of $\Vdash^*$.\\
+Remember that we had five parts of the recursion. Let's stick with the handout for notation, so we'll use the labelling: (a) $\tau_1=\tau_2$; (b) $\tau_1 \in \tau_2$; (c) $\wedge$; (d) $\neg$; (e) $\exists$.\\
+If we look at the five parts, we realize that (a),(b) and (e) are all defined by some sets being dense below $p$, in the sense that we defined $p \Vdash^* \varphi \iff X_\varphi$ is dense below $p$, where $X_\varphi$ is some set depending on $\varphi$ (note that although in defining $X_\varphi$ we had '$q \leq p$', but that's just for convenience, and the resulting set will still be dense below $p$ if we omit the $\leq p$ part). But by ES3 q23 we know if $r \leq p$ and $X_\varphi$ is dense below $p$, then $X_\varphi$ is dense below $r$. For (c) and (d) it's obvious that (i) $\implies$ (ii) by definition.\\
+Similarly, (iii) $\implies$ (ii) goes by recursion via (a) - (e) using item (2) of ex.(23) rather than item (1).
+\end{proof}
+\end{lemma}
+
+\begin{coro}
+$p \Vdash_M \varphi \iff M \vDash p \Vdash^* \varphi$.\\
+(Assuming FT and lemma)
+\begin{proof}
+Assume $p \Vdash_M \varphi$. So for any $G$ s.t. $p \in G$, $M[G] \vDash \varphi$.\\
+FT gives that $\exists q \in G$ $M \vDash q \Vdash^* \varphi$.\\
+We want to show that $p \Vdash^* \varphi$: by lemma, it suffices to show $D:=\{r:r \Vdash^* \varphi\}$ is dense below $p$.\\
+Fix any $q' \leq p$. Recall that we proved that for countable transitive model $M$, there is some $H$ with $q' \in H$ and $H$ is a $\P$-generic filter over $M$. Now $q' \leq p$, we know $p \in H$ as well. So by $p \Vdash_M \varphi$, we know $M[H] \vDash \varphi$.\\
+Apply FT again, we know there is $q'' \in H$ s.t. $M \vDash q'' \Vdash^* \varphi$. But now $q'' \in D \cap H$. Since $H$ is a filter, we find $r \leq q',q''$, $r \in H$. So $r$ witnesses that $D$ is dense below $p$.\\
+The other direction is easier: assume that $M \vDash p \Vdash^* \varphi$. We want to show that $p \Vdash_M \varphi$. So let $G$ be $\P$-generic over $M$ with $p \in G$. But forcing theorem directly gives that $M[G] \vDash \varphi$. So $p \Vdash_M \varphi$.
+\end{proof}
+\end{coro}
+
+\begin{proof} (of FT)\\
+Again there's only one way to prove it: $\Vdash^*$ is defined by recursion, so the only way FT could be proved is by doing induction on that recursion.\\
+We'll prove this by induction on\\
+(a) ranks of names,\\
+(b) assumption that $=$ is done,\\
+(c)-(e) complexity of formulas.
+
+We'll do these in the order (c),(d),(e),(b),(a) (increasing difficulty).\\
+Let's write down the induction hypothesis(IH): $M[G] \vDash \varphi \iff \exists p \in G$ $M \vDash p \Vdash^* \varphi$.\\
+(c) assume IH holds for $\varphi$ and $\psi$. Assume that $M[G] \vDash \varphi \wedge \psi$. So $M[G] \vDash \varphi$ and $M[G] \vDash \psi$. So by IH, there are $p,q \in G$ s.t. $p \Vdash^* \varphi$ and $q \Vdash^* \varphi$ (we're getting a bit lazy so we'll omit the $M\vDash$). But $G$ is a filter, so $\exists r \leq p,q$ $r \in G$. But by lemma (i) $\implies$ (ii), $r \Vdash^* \varphi$ and $r \Vdash^* \psi$. So $r \Vdash^* \varphi \wedge \psi$.\\
+Conversely, suppose we have a $p \in G$ s.t. $p \Vdash^* \varphi \wedge \psi$. So by definition, $p \Vdash^*\varphi$ and $p \Vdash^* \psi$. But by IH, any $G$ that is a $\P$-generic filter over $M$ will give $M[G] \vDash \varphi$ and $M[G] \vDash \psi$. So $M[G] \vDash \varphi \wedge \psi$.\\
+(d) Let's assume IH for $\varphi$. Suppose $M[G] \vDash \neg\varphi$. Consider
+\[
+D:=\{p:p \Vdash^* \varphi \text{ or } p \Vdash^* \neg\varphi\}
+\]
+We claim that $D$ is dense, which is quite obvious from definition of $p \Vdash^* \neg\varphi$. So we find some $p \in D \cap G$ (which is non-empty since $D$ is dense and $G$ is $\P$-generic filter). If $p \Vdash^* \neg \varphi$ we're done by FT. So suppose $p \Vdash^* \varphi$. So by IH, $M[G] \vDash \varphi$. But we assumed $M[G] \vDash \neg\varphi$. Contradiction.\\
+Conversely, suppose $p \Vdash^* \neg\varphi$. Suppose for contradiction that $M[G] \vDash \varphi$. So by IH we can find $q \in G$ that $q \Vdash^* \varphi$. But now we find $r \in G$ s.t. $r \leq p,q$. By lemma, $r \Vdash^* \varphi$ because $r \leq q$; but $p \Vdash^* \neg\varphi$, so by definition, $r \not\Vdash^* \varphi$. Contradiction.\\
+(e) Suppose IH for $\varphi(\sigma/x)$, i.e. for any $\sigma \in M^\P$, we assume IH hold for the sentence obtained by substituting $x$ with $\sigma$. Now suppose $M[G] \vDash \exists x \varphi(x)$. So there is $a \in M[G]$ s.t. $M[G] \vDash(\varphi(a/x))$. But elements of $M[G]$ are just names in $M^\P$, so there is $\sigma \in M^\P$ s.t. $M[G] \vDash(\sigma/x)$. So by IH, there is $p \in G$ s.t. $M \vDash p \Vdash^* \varphi(\sigma/x)$.\\
+Now let's look at the definition to see what we need to prove. But then we realized what we've proven is already stronger than definition: we've proved that the set
+\[
+\{r: \exists \sigma \in M^\P (r \Vdash^* \varphi(\sigma,...)\}
+\]
+is not only dense below $p$, but is actually everything below $p$. So $p \Vdash^* \exists x \varphi$.\\
+This is a very nice point to stop as we've proved exactly half of FT: out of the five cases, we proved the first two and half of the third case. We'll continue next monday to finish the other half.
+\end{proof}
+
 \newpage
 
 \section{Example Class 1}
