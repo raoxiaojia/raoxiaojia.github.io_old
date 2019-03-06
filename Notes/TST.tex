@@ -1285,7 +1285,7 @@ is everything below $p$, so dense below $p$.
 
 (a) This is the hardest part.\\
 $\Leftarrow$: Fix $p \in G$ s.t. $p \Vdash^* \tau_1 = \tau_2$.\\
-Our IH should be: FT for $=$ with names of lower rank. The form of the definition of $p \Vdash^* \tau_1 = \tau_2$ is symmetric in the sense that if we're using ($\alpha$) to show that $val(\tau_1,G \subseteq val(\tau_2,G)$, then ($\beta$) shows $val(\tau_2,G) \subseteq val(\tau_1,G)$.\\
+Our IH should be: FT for $=$ with names of lower rank. The form of the definition of $p \Vdash^* \tau_1 = \tau_2$ is symmetric in the sense that if we're using ($\alpha$) to show that $val(\tau_1,G) \subseteq val(\tau_2,G)$, then ($\beta$) shows $val(\tau_2,G) \subseteq val(\tau_1,G)$.\\
 So we'll show $val(\tau_1,G) \subseteq val(\tau_2,G)$.\\
 Fix $x \in val(\tau_1,G)$. Fix a $(\pi_1,s_1) \in \tau_1$ s.t. $s_1 \in G$ and $val(\pi_1,G) = x$.\\
 Now find $r \leq p,s_1$ with $r \in G$. By lemma, $r$ still forces $\tau_1=\tau_2$, so
@@ -1310,12 +1310,108 @@ D:=\{r: &r \Vdash^* \tau_1 = \tau_2 \text{ (Case 1) or } \\
 &\exists (\pi_1,s_1) \in \tau_1 (r \leq s_1 \wedge \forall (\pi_2,s_2) \in \tau_2 \forall q (q_2 \leq s_2 \wedge q \Vdash^* \pi_1 = \pi_2) \to q \perp r) \text{ (Case 2) or}\\
 & \exists (\pi_2,s_2) \in \tau_2 (r \leq s_2 \wedge \forall (\pi_1,s_1) \in \tau_1 \forall q (q_1 \leq s_1 \wedge q \Vdash^* \pi_1 = \pi_2) \to q \perp r)\text{ (Case 3)}\}
 \]
-Observation: if $r \in G$, then neither case 2 nor case 3 can hold. By symmetry it's enough to deal with case 2 only: to prove this observation, suppose, towards a contradiction, that $r \in G$ and case 2 holds. Find $(\pi_1,s_1) \in \tau_1$ with the above desired (actually, undesired) properties. Since $r \leq s_1$, $s_1 \in G$. So $val(\pi_1,G) \in val(\tau_1,G) = val(\tau_2,G)$ by our assumption. But then there's some $(\pi_2,s_2) \in \tau_2$ with $s_2 \in G$ and $val(\pi_2,G) = val(\pi_1,G)$ by definition of $\in$.\\
+Observation: if $r \in G$, then neither case 2 nor case 3 can hold: by symmetry it's enough to deal with case 2 only: to prove this observation, suppose, towards a contradiction, that $r \in G$ and case 2 holds. Find $(\pi_1,s_1) \in \tau_1$ with the above desired (actually, undesired) properties. Since $r \leq s_1$, $s_1 \in G$. So $val(\pi_1,G) \in val(\tau_1,G) = val(\tau_2,G)$ by our assumption. But then there's some $(\pi_2,s_2) \in \tau_2$ with $s_2 \in G$ and $val(\pi_2,G) = val(\pi_1,G)$ by definition of $\in$.\\
 Now we can use IH on $=$: find $q' \in G$ s.t. $q' \Vdash^* \pi_1 = \pi_2$.\\
 Now find $q \leq r,s_1,s_2,q'$. But now case 2 says that if $q \leq s_2$ and $q \Vdash^* \pi_1 =\pi_2$, then $q$ has to be incompatible with $r$; but it isn't. Contradiction.\\
 So we're done if we show that $D$ is dense.\\
 Fix $p \in \P$. If $p \Vdash^* \tau_1 = \tau_2$ then we're done. So assume it doesn't, then we'll find $r \leq p$ for case 2 or 3. Again by symmetry we'll show that if the failure of ($\alpha$) is the reason for $p \not\Vdash^* \tau_1=\tau_2$, then we can find $r$ in case 2 in the definition of $D$.\\
 We'll do it on Wednesday because I think we need to do the detail of everything, although it's quite boring.
+
+---Lecture 20---
+
+We're stuck at the end of the proof of FT because the clock is probably 3 minutes faster (so lecture thought he didn't have enough time on Monday). We showed that if $p \in G$, then neither case 2 or 3 can hold. Thus if $p \in G \cap D$, then $p \Vdash^* \tau_1=\tau_2$.\\
+So we're left to show that $D$ is dense.
+
+Let $p \in \P$ be arbitrary. If $p\Vdash^* \tau_1 = \tau_2$ then we're done. So assume otherwise. We'll show that if ($\alpha$) from definition of $\Vdash^* \tau_1 = \tau_2$ is violated, then we find $r\leq p$ s.t. Case (2) holds for $r$. As before the proof is symmetric, so failure of ($\beta$) can be done similarly.\\
+So what does it mean for ($\alpha$) to fail? ($\alpha$) fails if there is $(\pi_1,s_1) \in \tau_1$ s.t. the set
+\[
+D':=\{q \leq p: q \leq s_1 \to \exists (\pi_2,s_2) \in \tau_2 (q \leq s_2 \wedge q \Vdash^* \pi_1 = \pi_2)\}
+\]
+is \emph{not} dense below $p$.\\
+Let's fix this $(\pi_1,s_1) \in \tau_1$, and fix $r \leq p$ s.t. $D'$ has no element below $r$. So for every $q \leq r$, 
+\[
+q \leq s_1 \wedge \forall (\pi_2,s_2) \in \tau_2 (q \not\leq s_2 \vee q \not\Vdash^* \pi_1=\pi_2)\ (***)
+\]
+(just the negation of the implication).\\
+In particular, this holds for $r$. So we know $r \leq s_1$.\\
+Fix arbitrary $(\pi_2,s_2) \in \tau_2$ and $q$ s.t. (the condition in case 2) 
+\[
+q \leq s_2 \wedge q \Vdash^* \pi_1 = \pi_2\ (4*)
+\]
+Now if $q$ is compatible with $r$, find $q' \leq r$, $q$ satisfying (***) above. But now
+\[
+q' \not\Vdash^*\pi_1=\pi_2
+\]
+by (***) and $q \Vdash^* \pi_1=\pi_2$ by (4*) and $q' \leq q$. Contradiction.\\
+So $q \perp r$, which is exactly what we want to show for Case 2.
+\end{proof}
+
+We can now prove:
+\begin{thm} (The Generic Model Theorem)\\
+Let $M$ be a countable transitive model of ZFC, $P \in M$, $G$ is $\P$-generic over $M$, then $M[G] \vDash ZFC$.
+\end{thm}
+
+\begin{coro}
+This shows that $M[G]$ is the minimal transitive model of ZFC with $M \subseteq M[G]$ and $G \in M[G]$.
+\end{coro}
+
+Observe that if $M=L_\alpha$ for some countable $\alpha$, and $L_\alpha(G)$ is the relativised $L$-construction as before, then by minimality of $L$ (or $L(G)$ for models containing $G$), $M[G] = L_\alpha(G)$.
+
+\begin{proof} (of Generic Model Theorem)\\
+We've already proved extensionality and foundation because $M[G]$ is transitive. We've seen pairing by constructing the name explicitly and proved union also by constructing names in sheet 3.\\
+For infinity, by absoluteness of the formula '$x=\N$', we only need $\N \in M[G]$. But $\N = val(\check{\N},G)$.\\
+We have four axioms left: separation, replacement, power set, and choice. We'll do replacement and choice in sheet 4, so immediately we only have two left to do (how convenient).
+
+\emph{Separation}. fix a formula $\varphi$ and parameters $x_1,...,x_n \in M[G]$, and $x \in M[G]$ from which we separate. We want to give a name for the set 
+\[
+\{z \in x: M[G] \vDash \varphi(z,x_1,...,x_n)\}
+\]
+Fix names $\tau_1,...,\tau_n$ for $x_1,...,x_n$, and $\sigma$ for $x$. So we want a name for
+\[
+A:=\{z \in val(\sigma,G): M[G] \vDash \varphi(z,\tau_1,...,\tau_n)\}
+\]
+But of course we can't use FT directly because the formula to be forced above still contains a free variable $z$ while the forcing relation is only defined for sentences. We need to consider
+\[
+\rho:=\{(\pi,p):p \Vdash^* \pi \in \sigma \wedge \varphi(\pi,\tau_1,...,\tau_n)\}
+\]
+And we claim that $A = val(\rho,G)$.\\
+$\supseteq$: Suppose $z \in val(\rho,G)$. There is $(\pi,p) \in \rho$ with $p \in G$ and $val(\pi,G) = z$. So $p \Vdash^* \pi \in \sigma \wedge \varphi(\pi,\tau_1,...,\tau_n)$. By FT, we know
+\[
+M[G] \vDash \pi\in\sigma \wedge \varphi(\pi,\tau_1,...,\tau_n)
+\]
+which translates to
+\[
+M[G] \vDash z\in x \wedge \varphi(z,x_1,...,x_n)
+\]
+so $z \in A$.\\
+$\subseteq$: Suppose $z \in A$. So $z \in x$ and $M[G] \vDash \varphi(z,x_1,...,x_n)$(*).\\
+Fix $\pi$ a name for $z$, so $z = val(\pi,G)$. We know $z \in x$, so FT gives that there is $p \in G$ s.t. $p \Vdash^* \pi \in \sigma$ ($z \in x$ is absolute). FT+(*) gives that there is $q \in G$ s.t. $q \Vdash^* \varphi(\pi,\tau_1,...,\tau_n)$.\\
+Fix $r \leq p,q$, $r \in G$. Then
+\[
+r \Vdash^* \pi \in \sigma \wedge \varphi(\pi,\tau_1,...,\tau_n)
+\]
+So by definition $(\pi,r) \in \rho$. But $r \in G$, so $z=val(\pi,G) \in val(\rho,G)$.
+
+\emph{Power set}. Since we have separation, it's enough to show that 
+\[
+\forall x \exists y \forall z (z \subseteq x \to z \in y)
+\]
+because we can then separate the power set of $x$ as a subset of $y$.\\
+Fix a name $\sigma$ for $x$. Let's write for any name $\tau$:
+\[
+dom(\tau):=\{\tau': \exists p (\tau',p) \in \tau\}
+\]
+(i.e. just take all the first component, like for functions). We think of names for subsets of $x$ as names whose domain are subsets of $dom(\sigma)$. Now define
+\[
+\rho_\sigma:=\{(\tau,1): \dom(\tau) \subseteq \dom(\sigma)\}
+\]
+which collects every possible subset (plus some additional rubbish because some of the $p$ might not be in our generic filter $G$): to prove this, we're proving that $\forall z (z \subseteq x \to z \in val(\rho_\sigma,G)$. So assume $z \subseteq x$. Fix a name $\mu$ for $z$, so $val(\mu,G) = z$.\\
+Now define
+\[
+\mu^* := \{(\pi,p):\pi \in dom(\sigma) \text{ and } p \Vdash^* \pi \in \mu\}
+\]
+By definition, $dom(\mu^*) \subseteq dom(\sigma)$. So $(\mu^*,1) \in \rho_\sigma$. In particular, $val(\mu^*,G) \in val(\rho_\sigma,G)$. So need to show $val(\mu,G) = val(\mu^*,G)$: $w \in val(\mu,G) \implies$ we can find $(\pi,p) \in \sigma$ with $p \in G$ s.t. $val(\pi,G) = w$ (since $val(\mu,G) \subseteq val(\sigma,G)$). So $M[G] \vDash \pi \in \mu$. So by FT, we get some $q \in G$ s.t. $q \Vdash^* \pi \in \mu$. So $(\pi,q) \in \mu^*$. As $q \in G$, we get $val(\pi,G) \in val(\mu^*,G)$. So $val(\mu,G) \subseteq val(\mu^*,G)$.\\
+Conversely, suppose $w \in val(\mu^*,G)$. So find $(\pi,p) \in \mu^*$, $p \in G$ s.t. $w = val(\pi,G$). By definition, we get that $p \Vdash^* \pi \in \mu$. By FT, $M[G] \vDash \pi \in \mu$. So $w=val(\pi,G) \in val(\mu,G)$.
 \end{proof}
 
 \newpage

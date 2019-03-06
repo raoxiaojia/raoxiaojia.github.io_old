@@ -1963,7 +1963,7 @@ This gives an identity
 
 Last time we fixed $q \in \N$ and introduced the Dirichlet $L$ function: for any Dirichlet character $\chi:(\Z/q\Z)^* \to \C^*$,
 \[
-L(s,\chi) = \sum_{n \leq 1} \chi(n) n^{-s}
+L(s,\chi) = \sum_{n \geq 1} \chi(n) n^{-s}
 \]
 where we abuse the notation to extend $\chi$ to a function $\N \to \C$.\\
 We observed that this was absolutely convergent for $\sigma>1$. We also observed that when $\chi \neq \chi_0$ (the trivial character), $L(s,\chi)$ is convergent in $\sigma>0$.\\
@@ -2061,9 +2061,138 @@ f(1/2) = \sum_{n \geq 1} r(n) n^{-1/2} \geq \sum_{n \geq 1} r(n^2)/n \geq \sum_{
 \]
 This is impossible. So $L(1,\psi) \neq 0$.
 \end{proof}
-\end{thm}`
+\end{thm}
 
+\subsection{Zero-free region}
 
+---Lecture 20 missed, but lecturer wasn't able to make it anyway---
+
+---So still Lecture 20---
+
+Example class today at 330pm MR14!
+
+We've proved that there are infinitely many primes $\equiv a pmod q$ where $(a,q)=1$ (Dirichlet's theorem). We did this using
+\[
+-\frac{L'}{L}(s,\chi) = \sum_{n=1}^\infty \frac{\Lambda(n)\chi(n)}{n^s}
+\]
+
+We'd like to prove some sort of PNT for such primes. To do this, we'll use Perran's formula in a similar fashion that we did to $\zeta$ function. 
+
+We need information about the zeros of $L(s,\chi)$. We saw last week that $L(1,\chi) \neq 0$.
+
+Similarities to zero-free region for $\zeta(s)$, but important difference: $\zeta(s)$ has a pole at $s=1$, but $L(s,\chi)$ has no poles for $\sigma>0$ if $\chi \neq \chi_0$. For $zeta$ we had
+\[
+\zeta(s) = 1+\frac{1}{s-1} - s\int\frac{\{t\}}{t^{s+1}} dt
+\]
+so we can show $\zeta(\sigma) \neq 0$ when $0 < \zeta < 1$. But this is a problem for $L$-function.
+
+Let $\tau = |t|+4$ (basically for us to always be able to write $\log \tau$).
+
+Recall the following lemma:
+\begin{lemma}
+If $f(z)$ is analytic on a region containing $|z| \leq 1$ and $f(0) \neq 0$, and $|f(z)| \leq M$ (bounded) for $|z| \leq 1$. Then for $0 < r < R < 1$, for $|z| \leq r$, we have
+\[
+\frac{f'}{f}(z) = \sum \frac{1}{z-z_k} + O(\log \frac{M}{|f(0)|})
+\]
+where $z_k$ is the zeros of $f$ inside the disk $|z_k| \leq R$.
+\end{lemma}
+We can use this to get a nice formula for $L$-function:
+
+\begin{lemma}
+If $\chi \neq \chi_0$ and $\frac{5}{6} \leq \sigma \leq 2$, then
+\[
+\frac{L'}{L}(s,\chi) = \sum_\rho \frac{1}{s-\rho}+O(\log q \tau)
+\]
+over $\rho$ all the zeros with $|\rho-(3/2+it)| \leq 5/6$.
+\begin{proof}
+This basically follows from the previous lemma by setting $f(z) = L(z+3/2+it,\chi)$, $R=5/6$, $r=2/3$. Note that
+\[
+|f(0)| &= |L(3/2+it,\chi)|\\
+&= \prod_p |1-\frac{\chi(p)}{p^{3/2+it}}|\\
+&\geq \prod_p (1-\frac{1}{p^{3/2}})^{-1} \gg 1
+\]
+By partial summation, if $F(t) = \sum_{1 \leq n \leq t} \chi(n)$, for $\sigma>0$,
+\[
+L(s,\chi) = s\int_1^\infty \frac{F(t)}{t^{s+1}}dt
+\]
+so
+\[
+|L(s,\chi)| \ll |s|q \int_1^\infty \frac{1}{t^{\sigma+1}}dt \ll q\tau
+\]
+\end{proof}
+\end{lemma}
+
+\begin{thm}
+Let $\chi$ be a character. There is an absolute constant $c>0$ s.t.
+\[
+L(s,\chi) \neq 0
+\] 
+if $\sigma>1-\frac{c}{\log(q\tau)}$.\\
+It would be very nice if we could prove this, but unfortunately we couldn't do that for general characters. We can only prove this for $\chi$ a non-quadratic character ($\chi(n) \in \R$ $\forall n$ and $\chi \neq \chi_0$).
+\begin{proof}
+If $\chi=\chi_0$, since $L(s,\chi_0) = \zeta(s) \prod_{p | q} (1-p^{-s})$, in this region $\sigma>0$, zeros of $L(s,\chi_0)$ are the same as $\zeta(s)$, so done (in fact we proved a better result for $\zeta$).\\
+Let $\rho = \sigma+it$ s.t. $L(\rho,\chi) = 0$. The idea is to compare ($\delta \to 0^+$)
+\[
+\frac{L'}{L}(1+\delta+it,\chi),\frac{L'}{L}(1+\delta+2it,\chi^2), \frac{L'}{L}(1+\delta,\chi_0)
+\]
+Use the same trick as in $\zeta$ function, consider
+\[
+&\Re(-3\frac{L'}{L}(1+\delta,\chi_0) - 4\frac{L'}{L}(1+\delta+it,\chi)-\frac{L'}{L}(1+\delta+2it,\chi^2))\\
+=&\sum_{n=1,(n,q)=1}^\infty \frac{\Lambda(n)}{n^{1+\delta}} \Re(3+4\chi(n)n^{-it}+\chi(n)^2 n^{-2it})
+\]
+and we'll again use the fact that $\forall \theta$ $3+4\cos\theta+\cos(2\theta) \geq 0$, i.e. $\Re(3+4e^{i\theta}+e^{i2\theta})$.
+
+By the lemma,
+\[
+-\Re \frac{L'}{L}(1+\delta,\chi_0) &= \frac{1}{\delta} + O(\log q),\\
+-\Re \frac{L'}{L}(1+\delta+it,\chi) &\leq -\frac{1}{1+\delta-\sigma}+O(\log q\tau),\\
+-\Re \frac{L'}{L}(1+\delta+2it,\chi^2) &\ll \log(q\tau)
+\]
+(since $\chi^2 \neq \chi_0$ by assumption that it's not a quadratic character, so there's no pole at 1). Now we can combine this and get
+\[
+\frac{3}{\delta} - \frac{4}{1+\delta-\tau} + O(\log \tau) \geq 0
+\]
+contradiction if we choose $\delta \approx \frac{c'}{\log q\tau}$ and $\sigma \geq 1-\frac{c}{\log q\tau}$.
+\end{proof}
+\end{thm}
+
+\begin{thm}
+If $\chi$ is a quadratic character, $\exists c > 0$ s.t.
+\[
+L(s,\chi) \neq 0 \text{ if } \sigma>1-\frac{c}{\log q\tau} \text{ and } t \neq 0
+\]
+So we have a zero-free region provided that we're not on the real line.\\
+\end{thm}
+But we cannot rule out a zero $\rho$ of $L(s,\chi)$ with $\rho \in \R$ close to 1 (this is still open). We had a weaker result:
+\begin{thm}
+Let $\chi$ be a quadratic character. There is an absolute constant $c > 0$ s.t. $L(s,\chi)$ has at most \emph{one} zero $\rho \in (0,1)$ s.t. $\rho \geq 1-\frac{c}{\log q}$.\\
+These zeros are called the \emph{exceptional zeros}, if they exist (but hopefully they don't).
+\end{thm}
+
+To prove the above two theorems, first we need a lemma for $L(s,\chi_0)$.
+\begin{lemma}
+If $5/6 \leq \sigma \leq 2$, then
+\[
+-\frac{L'}{L}(s,\chi_0) = \frac{1}{s-1} - \sum_\rho \frac{1}{s-\rho} + O(\log q\tau)
+\]
+over zeros $\rho$ with $|\rho-(3/2+it)| \leq 5/6$.
+\begin{proof}
+This essentially follows from the same formula for $\zeta$ function:
+\[
+-\frac{\zeta'}{\zeta}(s) = -\sum_\rho \frac{1}{s-\rho}+O(\log \tau) + \frac{1}{s-1}
+\]
+since\\
+(a) for $\sigma>0$, zeros of $\zeta$ are zeros of $L(s,\chi_0$) (so we're summing up the same set of $\rho$);\\
+(b) by the Euler product,
+\[
+\frac{L'}{L}(s,\chi_0) = \frac{\chi'}{\chi}(s) + \sum_{p|q} \frac{\log p}{p^s-1} \ll \omega(q) \ll \log q
+\]
+There are only 3 minutes left, so I'll just quickly sketch a proof and do them properly next time.\\
+First theorem: for $t$ large, same as previous proof ($\chi^2=\chi_0$, but no pole).\\
+For $t$ small, $0 < |t| \ll \frac{1}{\log q\tau}$, instead of comparing $\chi_0$, $\chi$, $\chi^2$ we compare $\rho$ and $\bar{\rho}$.\\
+Second theorem: we can no longer do either of the above, but we allowed one zero, so if there are more than one then we'll compare two such real zeros (we'll explain what we mean by \emph{compare} exactly on the next lecture).
+\end{proof}
+\end{lemma}
 
 \newpage
 
