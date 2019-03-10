@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+
+\input{temp}
+
+\setcounter{section}{-1}
+
+\begin{document}
+
+\title{Topics in Set Theory Sheet 4}
+
+\author{Xiaojia Rao}
+
+\maketitle
+
+\newpage
+
+\section*{34.}
+Fix $A \in M[G]$, a formula $\varphi(x,y,x_1,...,x_n)$ which specifies the function that we want to use for replacement, and fix parameters $a_1,...,a_n \in M[G]$. We want a name for
+\[
+B:=\{y: M[G] \vDash \exists x \in A \varphi(x,y,a_1,...,a_n)\}
+\]
+Take a name $\sigma$ for $A$ and some names $\tau_1,...,\tau_n$ for $a_1,...,a_n$. Define a formula
+\[
+\psi(x,y,x_1,...,x_n,A) := x \in A \wedge \varphi(x,y,x_1,...,x_n)
+\]
+and now consider the name
+\[
+\rho := \{(\pi,p): p \Vdash^* \exists x \psi(x,\pi,\tau_1,...,\tau_n,\sigma)\}
+\]
+We claim that $val(\rho,G) = B$.\\
+$\subseteq$: suppose $y \in val(\rho,G)$. So there is $(\pi,p) \in \rho$ with $p \in G$ and $val(\pi,G) = y$. So $p \Vdash^* \pi \in \exists x \psi(x,\pi,\tau_1,...,\tau_n,\sigma)$. By definition, this means that the set
+\[
+D:=\{r:\exists \mu \in M^\P (r \Vdash^* \psi(\mu,\pi,\tau_1,...,\tau_n,\sigma))\}
+\]
+is dense below $p$. In particular $G \cap D \neq \phi$, so take some $q \in G \cap D$. $q \in D$ means there exists a name $\mu$ s.t.
+\[
+q\Vdash^* \psi(\mu,\pi,\tau_1,...,\tau_n,\sigma)
+\]
+But $q \in G$ as well, so by FT,
+\[
+M[G] \vDash \psi(\mu,\pi,\tau_1,...,\tau_n,\sigma)
+\]
+which translates to: there exists $x$ ($:=val(\mu,G)$) that
+\[
+&M[G] \vDash \psi(x,y,a_1,...,a_n,A)\\
+\iff &M[G] \vDash x \in A \wedge \varphi(x,y,x_1,...,x_n)
+\]
+we can rewrite this as
+\[
+M[G] \vDash \exists x (x \in A \wedge \varphi(x,y,x_1,...,x_n))
+\]
+i.e. $y \in B$.\\
+$\supseteq$: suppose $y \in B$. So $M[G] \vDash \exists x \psi(x,y,a_1,....a_n,A)$. Now take a name $\pi$ for $y$; so by FT, there exists $p \in G$ s.t. $p \Vdash^* \exists x \psi(x,\pi,\tau_1,...,\tau_n,\sigma)$. But this is exactly the requirement for $(\pi,p) \in \rho$. So $y \in val(\rho,G)$.
+
+\section*{35.}
+
+
+
+\end{document}

@@ -1060,7 +1060,7 @@ $M[G] \vDash$ Pairing.
 \end{prop}
 We'll stress again that the above name is not unique. For example, we could add any $(\sigma,p)$ for $p \in G$, or any $(\mu,q)$ if $q \not\in G$; also the choice of $\tau$ and $\sigma$ is not unique.
 
-On Sheet 3, we'll see Union; so as a corollary, since $\check{\omega} \in M^\P$, $val(\check{\omega,G}) = \omega$ we get $M[G] \vDash$ infinity.
+On Sheet 3, we'll see Union; so as a corollary, since $\check{\omega} \in M^\P$, $val(\check{\omega},G        ) = \omega$ we get $M[G] \vDash$ infinity.
 
 \begin{lemma}
 If $\tau \in M^\P$, then 
@@ -1091,7 +1091,7 @@ If $\varphi$ is a sentence of $L(M^\P)$, and $p \in \P$, then we say $p\Vdash \v
 
 Note that this looks to be helpful, but if we look carefully at it, it's entirely not obvious that this relation is even definable in $M$: we had \emph{for every $\P$-generic filter $G$ over $M$}, but we knew no such $G$ is in $M$! However, we have:
 
-\begin{thm} (Forcing theorem)
+\begin{thm} (Forcing theorem)\\
 The following are equivalent:\\
 (1) $M[G] \vDash \varphi$;\\
 (2) $\exists p \in G (p \Vdash \varphi)$
@@ -1160,22 +1160,24 @@ For (3) we have no choice due to property (1) in the above failed proof: $p \Vda
 (4) $p \Vdash^* \neg \varphi$ iff $\forall q \leq p$ $q \not\Vdash^* \varphi$. So instead of only requiring $p$ to not force $\varphi$, we also require that it's not possible to force $\varphi$ by anything stronger.\\
 (5) $p \Vdash^* \exists x \varphi(x,\tau_1,...,\tau_n)$ iff 
 \[
-\{r: \text{ there is a } \P \text{-name }\sigma s.t. r \Vdash^*\varphi(\sigma,\tau_1,...,\tau_n)\}
+\{r: \text{ there is a } \P \text{-name }\sigma \text{ s.t. } r \Vdash^*\varphi(\sigma,\tau_1,...,\tau_n)\}
 \]
 is dense below $p$ -- so for any $q \leq p$, we can extend $q$ to some stronger $r$ s.t. there is a name $\sigma$ s.t. $r \Vdash^* \varphi(\sigma,\tau_1,...,\tau_n)$.\\
 These are the logical ones; let's now think about the set-theoretic ones.\\
 (1) $p \Vdash^* \tau_1 \in \tau_2$. Note that this needs to depend on (2) because $\tau_1$ and $\tau_2$ may look very different from set theoretic perspective, but $p$ may force some of the names to be equal. Now we have to be very careful because in defining (2) we may need (1) as well, and we can't do a cyclic definition. This is why we said we would use a simultaneous recursion on rank of names and complexity of $\varphi$: define $p \Vdash^* \tau_1 \in \tau_2$ iff 
 \[
-\{q:\text{ there is }(\pi,s) \in \tau_2 s.t. q \leq s,q \Vdash^* \pi = \tau_1\}
+\{q:\text{ there is }(\pi,s) \in \tau_2 \text{ s.t. } q \leq s,q \Vdash^* \pi = \tau_1\}
 \]
 is dense below $p$.\\
-(2) $p \Vdash^* \tau_1 =\tau_2$: now we've already defined (1), if we're going to obtain a model of extensionality then we need to define $=$ in the only possible way as required by (1): $p \Vdash^* \tau_1 = \tau_2$ iff for all $(\pi_1,s_1) \in \tau_1$,
+(2) $p \Vdash^* \tau_1 =\tau_2$: now we've already defined (1), if we're going to obtain a model of extensionality then we need to define $=$ in the only possible way as required by (1): $p \Vdash^* \tau_1 = \tau_2$ iff:\\
+($\alpha$) for all $(\pi_1,s_1) \in \tau_1$,
 \[
-\{q: q \leq s_1 \to \exists (\pi_2,s_2) \in \tau_2 s.t. q \leq s_2 \text{ and } q \Vdash^* \pi_1 = \pi_2\}
+\{q: q \leq s_1 \to \exists (\pi_2,s_2) \in \tau_2 \text{ s.t. } q \leq s_2 \text{ and } q \Vdash^* \pi_1 = \pi_2\}
 \]
-is dense below $p$; symmetrically, for all $(\pi_2,s_2) \in \tau_2$,
+is dense below $p$; and symmetrically,\\
+($\beta$) for all $(\pi_2,s_2) \in \tau_2$,
 \[
-\{q: q \leq s_2 \to \exists (\pi_1,s_1) \in \tau_1 s.t. q \leq s_1 \text{ and } q \Vdash^* \pi_1 = \pi_2\}
+\{q: q \leq s_2 \to \exists (\pi_1,s_1) \in \tau_1 \text{ s.t. }q \leq s_1 \text{ and } q \Vdash^* \pi_1 = \pi_2\}
 \]
 is dense below $p$.\\
 Let's justify why this is a proper recursive definition. We start with (2). $\pi_1$ and $\pi_2$ have strictly lower ranks than $\tau_1$ and $\tau_2$, so (2) on itself is a recursive definition. And then there's no recursion involved in (1) as we've already defined (2), and (1) on itself doesn't depend on $\in$.\\
@@ -1413,6 +1415,96 @@ Now define
 By definition, $dom(\mu^*) \subseteq dom(\sigma)$. So $(\mu^*,1) \in \rho_\sigma$. In particular, $val(\mu^*,G) \in val(\rho_\sigma,G)$. So need to show $val(\mu,G) = val(\mu^*,G)$: $w \in val(\mu,G) \implies$ we can find $(\pi,p) \in \sigma$ with $p \in G$ s.t. $val(\pi,G) = w$ (since $val(\mu,G) \subseteq val(\sigma,G)$). So $M[G] \vDash \pi \in \mu$. So by FT, we get some $q \in G$ s.t. $q \Vdash^* \pi \in \mu$. So $(\pi,q) \in \mu^*$. As $q \in G$, we get $val(\pi,G) \in val(\mu^*,G)$. So $val(\mu,G) \subseteq val(\mu^*,G)$.\\
 Conversely, suppose $w \in val(\mu^*,G)$. So find $(\pi,p) \in \mu^*$, $p \in G$ s.t. $w = val(\pi,G$). By definition, we get that $p \Vdash^* \pi \in \mu$. By FT, $M[G] \vDash \pi \in \mu$. So $w=val(\pi,G) \in val(\mu,G)$.
 \end{proof}
+
+---Lecture 21---
+
+As usual the printer didn't print the example sheets, but they're online now (you can find them in the envelope at the usual place).
+
+As the first step of proving consistency of $\neg CH$, we'll show that $V \neq L$ is consistent.
+
+Suppose $M$ is a countable transitive model of $ZFC+V=L$. Bu our work on $L$, we know that there is $\alpha < \omega_1$ s.t. $M = L_\alpha$. Take any partial order $\P \in L_\alpha$ that is splitting. By countability, we get $\P$-generic over $M$ and $G \not\in M$ since $\P$ is splitting. In particular, $M[G] \neq M$.
+
+We claim that $M[G] \vDash V \neq L$: if it is, then by our previous theorem we know $M[G] = L_\beta$ for some $\beta$. But we proved that $M$ and $M[G]$ have the same ordinals. So $\beta = \alpha$, i.e. $M=M[G]$. Contradiction.
+
+Let's remind ourselves of the $\P$'s we had. Essentially we only had one so far: 
+\[
+\P = Fn(X,Y)
+\]
+the set of partial functions from $X$ to $Y$ with finite domain, where $X,Y \in M$. We proved that if $G$ is $\P$-generic over $M$, then $\bigcup G =: f_G : X \to Y$ is surjective. So if $X = \N$, then $M[G] \vDash Y$ is countable. In particular, if $Y = \aleph_1^M$, which is clearly uncountable in $M$, then forcing with $Fn(\N,\aleph_1^M)$ will \emph{collapse} $\aleph_1^M$: $M[G] \vDash \aleph_1^M$ is a countable ordinal.
+
+Excursion on forcing a model of $CH$: Suppose $M \vDash 2^{\aleph_0} = \aleph_2$ and $\P = Fn(\N,\aleph_1^M)$. (diagram)\\
+If $\aleph_1^M$ is no longer a cardinal in $M[G]$, then the original bijection $f:\R^M \to \aleph_2^M$ will be a bijection between $\R^M$ and an ordinal which can be \emph{at best} $\aleph_1^{M[G]}$.
+
+Since $\aleph_1^M < \aleph_1^{M[G]}$, we know $\R^{M[G]} \supsetneq \R^M$ (sheet 1 Q10).
+
+In order to make this into a proof of $M[G] \vDash CH$, we need two things:\\
+(1) $M[G] \vDash \aleph_2^M$ is a cardinal $\implies$ $M[G] \vDash \aleph_2^M = \aleph_1$;\\
+(2) $M[G] \vDash |\R| = |\R^M|$.
+
+But of course we've already proved there is a model for $CH$, so maybe we don't need to use forcing to force a model; but if we had the two above we get a consistency proof of $ZFC+CH+V \neq L$.
+
+Back to forcing $\neg CH$: instead, take $\P := Fn(\N\times\aleph_2^M, \N)$. It's also splitting, and if $G$ is a $\P$-generic filter then it gives a surjection $f_G:=\bigcup G: \N \times \aleph_2^M \to \N$. Define in $M[G]$ for $\alpha < \aleph_2^M$,
+\[
+f_\alpha(n) := f(n,\alpha)
+\]
+So $f_\alpha$ is a function $\N \to \N$. We'll show that if $\alpha \neq \beta$, then $f_\alpha \neq f_\beta$. In particular, the map
+\[
+\alpha \to f_\alpha
+\]
+gives an injection from $\aleph_2^M$ to $\N^\N$. In particular, $M[G] \vDash |\aleph_2^M| \leq 2^{\aleph_0}$.
+
+\emph{Proof of injection}. Fix $\alpha \neq \beta$, and define
+\[
+D_{\alpha,\beta}:=\{p\in \P:\exists n\in \N \ p(n,\alpha) \neq p(n,\beta)\}
+\]
+We claim that $D_{\alpha,\beta}$ is dense: fix $p \in \P$ arbitrarily. Then $dom(p)$ is finite, so we can find $n \in \N$ s.t. both $(n,\alpha)$ and $(n,\beta) \not\in dom(p)$. Now define
+\[
+q:=p \cup \{((n,\alpha),0),((n,\beta),1)\}
+\]
+So $q(n,\alpha) \neq q(n,\beta)$. So $q \leq p$ and $q \in D_{\alpha,\beta}$.\\
+So we can find $p \in G \cap D_{\alpha,\beta}$. Then $f_G = \bigcup G$ with $p \in G$, so there is $n$ s.t. $f_G(n,\alpha) \neq f_G(n,\beta)$. So $f_\alpha(n) \neq f_\beta(n)$, i.e. $f_\alpha \neq f_\beta$.
+
+To summarise, if $G$ is $Fn(\N \times \aleph_2^M,\N)$-generic over $M$, then $M[G] \vDash 2^{\aleph_0} \geq |\aleph_2^M|$.
+
+We need, therefore, that $\aleph_1^M = \aleph_1^{M[G]}$ and $\aleph_2^M = \aleph_2^{M[G]}$ in order to get $M[G] \vDash 2^\aleph \geq \aleph_2$. So if we could prove that this forcing preserves these two cardinals, then we have constructed a model of $\neg CH$.
+
+\begin{defi}
+Let $M$ countable transitive model, $\P \in M$. We say that $\P$ \emph{preserves cardinals} if for all $\alpha$ ordinals and all $P$-generic filters $G$ over $M$, we have
+\[
+M \vDash \alpha \text{ is a cardinal } \iff M[G] \vDash \alpha \text{ is a cardinal}
+\]
+Note that $\Leftarrow$ is always true since $M \subseteq M[G]$, and the property 'is a cardinal' is $\Pi_1$ so downward absolute.
+\end{defi}
+
+\begin{thm}
+If $M \vDash \P$ has the ccc, then $\P$ preserves cardinals.\\
+Remember from Sheet 3 we know if $Y$ is countable, then $\P = Fn(X,Y)$ has the ccc (in ZFC). Certainly $\N$ is countable in any model. So $Fn(\N \times \aleph_2^M,\N)$ has ccc in every model $M$ of ZFC.
+\end{thm}
+
+Putting these together, we get that $\aleph_1^M$ and $\aleph_2^M$ are cardinals in $M[G]$, and nothing else between them can be a cardinal since 'being a cardinal' is $\Pi_1$, so $\aleph_1^{M[G]} = \aleph_1^M$ and $\aleph_2^{M[G]} = \aleph_2^M$.
+
+\begin{coro}
+With $\P,G,M$ as above, $M[G] \vDash \neg CH$.
+\end{coro}
+
+\begin{coro}
+If $M$ is a countable transitive model of ZFC, then there is $M[G] \vDash ZFC+\neg CH$ countable transitive.
+\end{coro}
+
+So we now need to prove the theorem above. We'll need a technical lemma:
+\begin{lemma}
+Suppose $M \vDash \P$ has ccc, $A,B \in M$, $f:A \to B$, $f \in M[G]$. Then there is a function $F \in M$ with\\
+(a) $dom(F) = A$;\\
+(b) $\forall a \in A$ $F(a) \subseteq B$;\\
+(c) $\forall a \in A$ $M \vDash F(a)$ is countable;\\
+(d) $\forall a \in A$ $f(a) \in F(a)$.
+
+So in some sense we can \emph{approximate} $f$ by giving some $F$ above and say that $f(a)$ is one of those countably many values in $F(a)$.
+\end{lemma}
+
+\emph{Proof of theorem from lemma}. Suppose $M \vDash \lambda$ is a cardinal, $M[G] \vDash \lambda$ is not carinal. So $M[G] \vDash \exists \gamma < \lambda$ $\exists f$ bijection, $f:\gamma \to \lambda$. Now apply the lemma with $A = \gamma$, $B = \lambda$, $f=f$. We then get an $F \in M$ with those properties. Since $f$ is surjective, $\lambda = \bigcup_{\alpha < \gamma} F(\alpha)$. But $\gamma < \lambda$ and each of $F(\alpha)$ is countable, so $M \vDash |\lambda| \leq |\omega \times \gamma| < \lambda$, contradiction.
+
+So we only need to prove the lemma. We'll do it on Monday.
 
 \newpage
 

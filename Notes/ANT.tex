@@ -1856,13 +1856,13 @@ So if RH fails, there must be $0<\sigma<1$ s.t. $\sigma \neq \frac{1}{2}$. There
 
 ---Lecture 18---
 
-As you probably know, Thomas Bloom is away for a week, so I'll be lecturing this course for today and Thursday. I'll be starting a new chapter today on primes in arithmetic progressions, which in the end we'll prove the Dirichlet theorem (every arithmetic progression contains infinitely many primes), which you probably already know.
+As you probably know, Thomas Bloom is away for a week, so I'll be lecturing this course for today and Thursday. I'll be starting a new chapter today on primes in arithmetic progressions, where in the end we'll prove the Dirichlet theorem (every arithmetic progression contains infinitely many primes), which you probably already know.
 
 \subsection{Dirichlet characters and $L$-functions}
 
-Fix $q \in \N$. A dirichlet character of modulus $q$ is a homomorphism $\chi: (\Z/q\Z)^* \to \C^*$. We know $(\Z/q\Z)^*$ is a finite abelian group of order $\phi(q)$, so the set of dirichlet characters modulus $q$ form a finite abelian group of the same order by the obvious definition of multiplication.
+Fix $q \in \N$. A \emph{Dirichlet character of modulus $q$} is a homomorphism $\chi: (\Z/q\Z)^* \to \C^*$. We know $(\Z/q\Z)^*$ is a finite abelian group of order $\phi(q)$, so the set of Dirichlet characters modulus $q$ form a finite abelian group of the same order by the obvious definition of multiplication.
 
-We can also think of the dirichlet character $\chi$ as defining a function $\chi:\Z \to \C$, given by the formula
+We can also think of the Dirichlet character $\chi$ as defining a function $\chi:\Z \to \C$, given by the formula
 \[
 \chi(a) = \left\{
 \begin{array}{ll}
@@ -1872,8 +1872,9 @@ We can also think of the dirichlet character $\chi$ as defining a function $\chi
 \right.
 \]
 Note this $\chi$ is periodic with period $q$, and is also \emph{totally} multiplicative.\\
-If $\chi$ is the trivial homomorphism on $(\Z/q\Z)^*$, we call it the principle (Dirichlet) character of modulus $q$, usually denoted as $\chi_0$.
+If $\chi$ is the trivial homomorphism on $(\Z/q\Z)^*$, we call it the principal (Dirichlet) character of modulus $q$, usually denoted as $\chi_0$.
 
+We'll first justify why this function is called a \emph{character}: in fact, it is just a one dimensional character of the group $(\Z/q\Z)^*$ (see part II Representation Theory).
 \begin{lemma}
 (1) Let $\chi$ be a Dirichlet character of modulus $q$. Then
 \[
@@ -1892,7 +1893,6 @@ If $\chi$ is the trivial homomorphism on $(\Z/q\Z)^*$, we call it the principle 
 \end{array}
 \right.
 \]
-(This justifies why it's called a \emph{character} -- see Part II Representation Theory).
 \begin{proof}
 We treat (2): If $a \equiv 1 \pmod q$, then $\chi(a) = 1$ for all $\chi$. So $\sum_\chi \chi(a) = \sum_\chi 1 = \phi(q)$.\\
 If $a \not\equiv 1 \pmod q$, then there exists $\psi:(\Z/q\Z)^* \to \C^*$ such that $\psi(a) \neq 1$. The map $\chi \to \chi \psi$ is a permutation of the set of Dirichlet characters mod $q$, hence
@@ -1907,17 +1907,17 @@ $\psi(a) \neq 1$, so we must have $\sum_\chi \chi(a) = 0$.
 Let $1_{x \equiv a \pmod q}:\Z \to \C$ be defined by 
 \[
 1(x) = \left\{\begin{array}{ll} 
-1 & (x,q) = 1, x \equiv a \pmod q\\
+1 & x \equiv a \pmod q\\
 0 & else
 \end{array}
 \right.
 \]
 where $a \in \Z, (a,q) = 1$.\\
-Then the above lemma (2) says 
+Then the above lemma (2) says\footnote{The summand in RHS is $\chi(x/a)$ as $\chi$ is a homomorphism, then compare with the lemma above.}
 \[
 1_{x \equiv a \pmod q} (x) = \frac{1}{\phi(q)} \sum_\chi \chi(a)^{-1} \chi(x)
 \]
-It follows that 
+It follows that
 \[
 \sum_{p \leq x,p \equiv a \pmod q} 1 &= \sum_{p \leq x} 1_{x \equiv a \pmod q}(p)\\
 &= \frac{1}{\phi(q)} \sum_{p \leq x} \sum_\chi \chi(a)^{-1} \chi(p)
@@ -1930,9 +1930,9 @@ So the strategy to prove Dirichlet's theorem is to consider the contribution of 
 
 We'll do this using the Dirichlet $L$-functions 
 \[
-L(s,x) = \sum_{n \geq 1} \chi(n)n^{-s}
+L(s,\chi) = \sum_{n \geq 1} \chi(n)n^{-s}
 \]
-This series converges absolutely in the region $\sigma>1$, and therefore defines an analytic function there.
+This series converges absolutely in the region $\sigma>1$ (as $\chi(n)$ must be some roots of unity), and therefore defines an analytic function there.
 
 \begin{lemma}
 If $\chi \neq \chi_0$, then $\sum_{n \geq 1} \chi(n) n^{-s}$ converges in $\sigma>0$.
@@ -1941,11 +1941,11 @@ Use partial summation with the obvious choice $a_n = \chi(n)$, $A(x) = \sum_{n \
 \[
 \sum_{n \leq x} \chi(n) n^{-s} &= A(x) x^{-s} - \int_{t=1}^x A(t) f'(t) dt 
 \]
-Now lemma 20 says $\sum_{1 \leq n \leq q} \chi(n) = 0$, as $\chi \neq \chi_0$. Hence $A(n)$ is periodic, and $|A(x)| \leq \phi(q)$ for all $x$. So $|A(x)x^{-s}| \leq \phi(q) x^{-\sigma}$ and the integral is absolutely convergent.
+Now lemma says $\sum_{1 \leq n \leq q} \chi(n) = 0$, as $\chi \neq \chi_0$. Hence $A(n)$ is periodic, and $|A(x)| \leq \phi(q)$ for all $x$. So $|A(x)x^{-s}| \leq \phi(q) x^{-\sigma}$ and the integral is absolutely convergent.
 \end{proof}
 \end{lemma}
 
-Consequence: $L(s,x)$ is analytic in the same region $\sigma>0$, and in particular does not have a pole at $s=1$.\\
+Consequence: $L(s,\chi)$ is analytic in the same region $\sigma>0$, and in particular does not have a pole at $s=1$.\\
 Since $\chi(n)$ is multiplicative, we have an Euler product identity:
 \[
 L(s,\chi) = \prod_p (1-\chi(p) p^{-s})^{-1}
@@ -1995,7 +1995,7 @@ Let $a \in \N$, $(a,q)=1$. There are infinitely many primes $p$ s.t.
 \[
 p \equiv a \pmod q
 \]
-How are we going to prove it? We have $L(s,\chi_0) = \zeta(s) \prod_{p/q} (1-p^{-s})$, so as we saw last time, $L(s,\chi_0)$ has a simple pole at $s=1$. Hence
+How are we going to prove it? We have $L(s,\chi_0) = \zeta(s) \prod_{p|q} (1-p^{-s})$, so as we saw last time, $L(s,\chi_0)$ has a simple pole at $s=1$. Hence
 \[
 \sum_{n \geq 1} 1_{n \equiv a \pmod q}(n)\Lambda(n) n^{-s} &= \frac{1}{\phi(q)} \frac{1}{s-1} + O(1) + \sum_{\chi \neq \chi_0} \chi(a)^{-1}\frac{L'(s,\chi)}{L(s,\chi)}
 \]
@@ -2193,6 +2193,244 @@ For $t$ small, $0 < |t| \ll \frac{1}{\log q\tau}$, instead of comparing $\chi_0$
 Second theorem: we can no longer do either of the above, but we allowed one zero, so if there are more than one then we'll compare two such real zeros (we'll explain what we mean by \emph{compare} exactly on the next lecture).
 \end{proof}
 \end{lemma}
+
+---Lecture 21---
+
+Now we're going to prove properly the two theorems above quadratic characters we stated before:
+\begin{thm}
+Let $\chi$ be a quadratic character. Then there is an absolute constant $c>0$ s.t.
+\[
+L(s,\chi) \neq 0 \text{ if } \sigma>1 - \frac{c}{\log q\tau} \text{ and } t \neq 0
+\]
+\begin{proof}
+As before, let $\rho = \sigma+it$ be a zero of $L(s,\chi)$. Let $\delta > 0$ which we're going to choose later. By above lemma 1 (on page 56),
+\[
+&-\frac{L'}{L}(1+\delta+it,\chi) = -\sum_{\rho'} \frac{1}{1+\delta+it-\rho'} + O(\log q \tau)\\
+\implies &-\Re \frac{L'}{L}(1+\delta+it,\chi) \leq -\frac{1}{1+\delta+it-\rho} + O(\log q \tau) = -\frac{1}{1+\delta-\sigma} + O(\log q\tau)
+\]
+and
+\[
+-\Re\frac{L'}{L}(1+\delta,\chi_0) \leq \frac{1}{\delta} + O(\log q\tau)
+\]
+the problem now is that $\chi_0$ is the principal character, so we're in the case of lemma 2 (on page 58) instead. First suppose $\tau \geq C(1-\sigma)$:
+\[
+-\Re \frac{L'}{L}(1+\delta+2it,\chi^2) &= -\Re\frac{L'}{L}(1+\delta+2it,\chi_0)\\
+&\leq \Re\frac{1}{\delta+2it} + O(\log q\tau)\\
+&\leq \frac{\delta}{\delta^2+4t^2} + O(\log q\tau)
+\]
+As before,
+\[
+\Re(-3\frac{L'}{L}(1+\delta,\chi_0) - 4\frac{L'}{L}(1+\delta+it,\lambda) - \frac{L'}{L}(1+\delta+2it,\chi^2)) \geq 0
+\]
+But on the other hand, it also
+\[
+\leq \frac{3}{\delta} - \frac{4}{1+\delta-\sigma} + \frac{\delta}{\delta^2+4t^2} + O(\log q\tau)
+\]
+If $\sigma=1$, we get a contradiction as $\delta \to 0$ (we assumed $t \neq 0$). Otherwise, if we choose $\delta = c(1-\sigma)$, then the above gives
+\[
+0 \leq \frac{3}{c(1-\sigma)} - \frac{4}{(c+1)(1-\sigma)} + \frac{c'}{1-\sigma} + O(\log q\tau)
+\]
+We can choose $c, C$, hence $c'$, s.t. the above $\leq -\frac{c''}{1-\sigma}+O(\log q\tau)$ and so $\sigma \leq 1-\frac{c'''}{\log q\tau}$.\\
+For small $\tau$, we need a different argument. In particular we're not going to use this mysterious $3-4+...$ argument. In fact there's a simpler argument that will work: since $L(\rho,\chi) = 0$, also $L(\bar{\rho},\chi) = 0$ ($L(s,\chi) = s\int_1^\infty \frac{\sum_{1 \leq n \leq t}\chi(n)}{t^{s+1}} dt$). It follows that
+\[
+-\Re \frac{L'}{L}(1+\delta+it,\chi) \leq -\Re \frac{1}{1+\delta-\rho}-\Re\frac{1}{1+\delta-\bar{\rho}} + O(\log q\tau)
+\]
+(assuming that $|t| \leq c(1-\sigma)$, in particular $|t| \leq c'$ for some small constant).\\
+RHS is
+\[
+\frac{-2(1+\delta-\sigma)}{(1+\delta-\sigma)^2 + t^2} + O(\log q\tau)
+\]
+As before,
+\[
+-\frac{L'}{L}(1+\delta,\chi_0) \leq \frac{1}{\delta} + O(\log q\tau)
+\]
+Now
+\[
+&(-\Re\frac{L'}{L}(1+\delta,\chi_0) - \Re \frac{L'}{L} (1+\delta+it,\chi))\\
+&=\sum_{n=1,(n,q) = 1}^\infty \frac{\Lambda(n)}{n^{1+\delta}}(1+\Re( \underbrace{\chi(n)n^{it}}_{|z|=1})) \geq 0
+\]
+so
+\[
+\frac{1}{\delta} - \frac{2(1+\delta-\sigma)}{(1+\delta-\sigma)^2+t^2} + O(\log q\tau) \geq 0
+\]
+Now we're in good shape: if we choose $\delta = c(1-\sigma)$, then LHS is $\leq -\frac{c'}{(1-\sigma)}+O(\log q\tau)$. So $\sigma \leq 1-\frac{c''}{\log q\tau}$.
+\end{proof}
+\end{thm}
+
+\begin{thm}
+Let $\chi$ be a quadratic character. There is $c >0$ s.t. there is at most one real zero $\rho \in (0,1)$ of $L(s,\chi)$ s.t.
+\[
+\rho \geq 1-\frac{c}{\log q}
+\]
+\begin{proof}
+Suppose $\rho_0 < \rho_1 \leq 1$ are zeros of $L(s,\chi)$. Then for $\sigma \in (0,1)$, by the same argument
+\[
+-\Re \frac{L'}{L}(\sigma,\chi) &\leq -\Re\frac{1}{\sigma-\rho_0}-\Re\frac{1}{\sigma-\rho_1} + O(\log q)
+\]
+for $\sigma \geq 1-\frac{1}{1000000}$, say.\\
+So 
+\[
+\frac{1}{\sigma-1}-\frac{2}{\sigma-\rho_0} + O(\log q) \geq (-\Re\frac{L'}{L} (\sigma,\chi_0) - \Re \frac{L'}{L}(\sigma,\chi)) \geq 0
+\]
+Hence $\rho_0 \leq 1-\frac{c}{\log q}$.
+\end{proof}
+\end{thm}
+
+Now we have the zero-free region for $L$ function, with about the same strength as for $\zeta$ function, so we can prove an analogue of PNT (which we'll do in next lecture). We'll first introduce a lemma:
+\begin{lemma}
+If $\chi \neq \chi_0$, and $\sigma \geq 1-\frac{c}{\log q\tau}$ (for some absolute $c>0$, then if \emph{either} $\chi$ has no exceptional zero, \emph{or} $\chi$ has exceptional zero at $\beta$, but $|s-\beta| \geq \frac{1}{\log q}$, then
+\[
+\frac{L'}{L}(s,\chi) \ll \log q\tau
+\]
+\begin{proof}
+If $\sigma>1$, note
+\[
+|\frac{L'}{L}(s,\chi)| \leq \sum_{n=1,(n,q)=1}^\infty \frac{\Lambda(n)}{n^\sigma} \ll \frac{1}{\sigma-1}
+\]
+In particular, if $s=\sigma+it$ and $s_1 = 1+\frac{1}{\log q\tau} + it$, $|\frac{L'}{L}(s,\chi)| \ll \log q\tau$. By lemma 1,
+\[
+\frac{L'}{L}(s,\chi) = \sum_\rho \frac{1}{s-\rho} + O(\log q\tau)
+\]
+for all zeros $\rho$, $|s-\rho| \asymp |s_1\rho|$. So
+\[
+|\frac{L'}{L}(s,\chi) - \frac{L'}{L}(s_1,\chi)| &\ll |\sum_\rho \frac{1}{s-\rho} - \frac{1}{s_1-\rho}| + O(\log q\tau)\\
+&\ll \Re \sum_\rho \frac{1}{s_1-\rho} + O(\log q\tau) \ll \log q\tau
+\]
+\end{proof}
+\end{lemma}
+
+\subsection{Prime Number Theorem for Arithmetic Progressions}
+Recall that
+\[
+\sum_{1 \leq n \leq x, n \equiv a \pmod q} \Lambda(n) &= \frac{1}{\varphi(q)} \sum_\chi \overline{\chi(a)} \sum_{1 \leq n \leq x} \Lambda(n) \chi(n)\\
+&=\frac{1}{\varphi(q)} \sum_\chi \overline{\chi(a)} \psi(x,\chi)
+\]
+
+\begin{thm}
+If $q \leq \exp(O(\sqrt{\log x}))$, then
+(1)
+\[
+\psi(x,\chi_0) = x + O(x\exp (-c\sqrt{\log x}))
+\]
+(2)
+If $\chi \neq \chi_0$, $\chi$ has no exceptional zero, then $\psi(x,\chi) = O(x\exp (-c\sqrt{\log x}))$;\\
+(3) If $x \neq x_0$, and we have an exceptional zero at $\beta$, then $\psi(x,\chi) = -\frac{x^\beta}{\beta} + O(x \exp(-c \sqrt{\log x}))$.\\
+We'll prove this on Saturday.
+\end{thm}
+
+---Lecture 22---
+
+addition to section 4.3:
+
+\begin{thm}
+If $\chi_1,\chi_2$ are distinct quadratic characters modulo $q$, then $L(s,\chi_1) L(s,\chi_2)$ has at most one real zero $\beta$, $1-\frac{c}{\log q} < \beta < 1$ (sometimes called the exceptional character of $q$).
+\begin{proof}
+Say $\beta_i$ is a real zero of $L(s,\chi_i)$ ($i=1,2$). WLOG suppose $5/6 \leq \beta_1\leq\beta_2 < 1$ (if they are less than $5/6$ then we're good anyway. Fix $\delta>0$, we have the following:\\
+(1) $-\Re\frac{L'}{L} (1+\delta,\chi_i) \leq -\frac{1}{1=\delta-\beta_i}+O(\log q)$ ($i=1,2$);\\
+(2) $-\Re\frac{L'}{L}(1+\delta,\chi_1\chi_2) \leq O(\log q)$ (the product is not principal because $\chi_1 \neq \chi_2$;\\
+(3) $-\frac{\zeta'}{\zeta}(1+\delta) \leq \frac{1}{\delta} + O(1)$ ($-\frac{\zeta'}{\zeta}(s) = \frac{1}{s-1}+O(1)$) (we could also just stick with $-\Re\frac{L'}{L}(1+\delta,\chi_0)$).
+
+Therefore, consider the following Dirichlet series with non-negative coefficients,
+\[
+-\frac{\zeta'}{\zeta}(1+\delta) - \frac{L'}{L}(1+\delta,\chi_1)-\frac{L'}{L}(1+\delta,\chi_2) - \frac{L'}{L}(1+\delta,\chi_1\chi_2) \leq \frac{1}{\delta} - \frac{2}{1+\delta-\beta_1} + O(\log q)
+\]
+so choose $\delta = c(1-\beta_1)$, and therefore $\beta_1 \leq 1-\frac{c}{\log q}$.
+\end{proof}
+\end{thm}
+
+Back to section 4.4 where we stated a theorem last time:
+
+Let $\psi(x,\chi) = \sum_{n \leq x} \Lambda(n) \chi(n)$.
+\begin{thm}
+Let $q \leq \exp(O(\sqrt{\log x}))$. Then
+\[
+\psi(x,\chi_0) = x + O(x \exp(-c\sqrt{\log x}))
+\]
+If $\chi \neq \chi_0$, we get a cancellation $\psi(x,\chi) = O(x \exp(-c\sqrt{\log x}))$ unless $\chi$ has an exceptional zero.\\
+If $\chi$ has an exceptional zero at $\beta$, then in fact we get another main term:
+\[
+\psi(x,\chi) = -\frac{x^\beta}{\beta}+O(x\exp(-c\sqrt{\log x}))
+\]
+Recall that
+\[
+1_{n \equiv a \pmod q} = \frac{1}{\varphi(q)} \sum_\chi \overline{\chi(a)}\chi(n)
+\]
+we get an expression
+\[
+\psi(x;q,a) &= \sum_{n \leq x, n \equiv a \pmod q} \Lambda (n)\\
+&=\frac{1}{\varphi(q)}\sum_\chi \overline{\chi(a)} \psi(x,\chi)
+\]
+\begin{coro}
+If $(a,q) = 1$, then ($q \leq \exp(O(\sqrt{\log x}))$)
+\[
+\psi(x;q,a) = \frac{x}{\varphi(q)} + O(x \exp(-c\sqrt{\log x})) \text{ (no exceptional zero)}
+\]
+If $q$ has an exceptional zero at $\beta$ and $\chi_1$, then
+\[
+\psi(x;q,a) = \frac{x}{\varphi(q)} - \frac{\chi_1(a)}{\varphi(q)} \frac{x^\beta}{\beta}+O(x \exp(-c\sqrt{\log x}))
+\]
+\end{coro}
+\begin{proof} (of theorem)\\
+By Perran's formula ($\sigma_0 > 1, T \geq 1$), 
+\[
+\psi(x,\chi) = -\frac{1}{2\pi i} \int_{\sigma_0 - iT}^{\sigma_0+iT} \frac{L'}{L}(s,\chi) \frac{x^s}{s}ds + O\left(\frac{x}{T} \sum_{\frac{x}{2} < n < 2x} \frac{\Lambda(n)}{|x-n|} + \frac{x^{\sigma_0}}{T}\sum_{n=1}^\infty \frac{\Lambda(n)}{n^{\sigma_0}}\right)
+\]
+By the same argument as for $\zeta(s)$, error term is $\ll \frac{x(\log x)^2}{T}$ ($\sigma_0 = 1+\frac{1}{\log x}$).\\
+Take $C$ to be a rectangular contour with corners at $\sigma_0 \pm iT, \sigma_1 \pm iT$, we get (integrand omitted)
+\[
+\psi(x,\chi) = \frac{1}{2\pi i} \int_C +O(\int_{\sigma_1\pm iT} + \int_{\sigma_0+iT}^{\sigma_1+iT} + \int_{\sigma_0-iT}^{\sigma_1-iT} + \frac{x(\log x)^2}{T})
+\]
+\end{proof}
+\end{thm}
+Error terms we bound in the same way as for $\zeta(s)$, so in total,
+\[
+\psi(x,\chi) = -\frac{1}{2\pi i} \int_C \frac{L'}{L}(s,\chi) \frac{x^s}{s} ds + O\left(\underbrace{\frac{x(\log x)^2}{T} + x^{\sigma_1}}_{\ll \exp(-c \sqrt{\log x}),T=\exp(O(\sqrt{\log x}))}\right)
+\]
+and we choose $\sigma_1 = 1-\frac{c}{\log qT}$ so $x^{\sigma_1} \ll x \exp (-c\sqrt{\log x})$ if $q \ll T \approx \exp(O(\sqrt{\log x}))$.
+
+How about the main term? If $\chi = \chi_0$, take $\sigma_1$ as above, so no zeros of $L(s,\chi_0)$, so $\frac{L'}{L}$ has just a simple pole at $s=1$, so $\frac{1}{2\pi i} \int_C = x$;\\
+If $\chi \neq \chi_0$, there's no exceptional zero, no zeros of $L(s,\chi)$ with $\sigma \geq \sigma_1$, so no poles of $\frac{L'}{L}(s,\chi)$ so $\int_C = 0$.\\
+If $\chi$ has an exceptional zero at $\beta$, then inside $C$, $\frac{L'}{L}$ has a pole at $\beta$. So $\frac{L'}{L}(s,\chi) \frac{x^s}{s}$ has residue $\frac{x^\beta}{\beta}$ at this pole, so 
+\[
+\frac{1}{2\pi i} \int_C \frac{L'}{L}(s,\chi) \frac{x^s}{s} ds = \frac{x^\beta}{\beta}
+\]
+
+\subsection{Siegel-Walfisz Theorem}
+
+\begin{thm} (1, S-W)\\
+$\forall A > 0$, if $q \leq (\log x)^A$, and $(a,q) = 1$, then
+\[
+\psi(x;q,a) = \frac{x}{\varphi(q)} + O_A(x \exp(-c\sqrt{\log x}))
+\]
+Some people might call this the PNT for AP because this has not many if and then restrictions (comparing to what we've proved in the previous section) and it has the right main term and error term.
+\end{thm}
+This follows from
+\begin{thm} (2)\\
+If $q \leq (\log x)^A$ and $x$ is large enough (depending on $A$), then 
+\[
+\psi(x,\chi) = O_A(\exp (-c\sqrt{\log x}))
+\]
+$\forall \chi \neq \chi_0$.
+\end{thm}
+This in turn follows from the following theorem,
+\begin{thm} (3)\\
+$\forall \varepsilon > 0$, $\exists C(\varepsilon)$ s.t. if $\chi$ is a quadratic character modulo $q$, and $\beta$ is a real zero, then 
+\[
+\beta < 1 - c_\varepsilon q^{-\varepsilon}
+\]
+\begin{proof}
+Omitted.\footnote{It's originally intended to be included, but it uses no tool that we've not seen, and you can just sit down and read it if you want.}\\
+The constant $C_\varepsilon$ here is \emph{ineffective}: the proof gives no way to calculate $C_\varepsilon$ but just the existence of it (unlike most of the other proofs in this course, where if you really want to calculate the constant you can follow the proof and calculate each step).
+\end{proof}
+\end{thm}
+
+Proof that theorem 3 $\implies$ theorem 2: if there exists an exceptional zero, then 
+\[
+\psi(x,\chi) &= O(\frac{x^\beta}{\beta} + x \exp(-c\sqrt{\log x}))\\
+&= x O(\exp(-C_\varepsilon q^\varepsilon \log x) + \exp(-C\sqrt{\log x}))
+\]
+since $q \leq (\log x)^A$, this is $O(\exp -C_\varepsilon' \sqrt{\log x}))$ choosing $\varepsilon = \frac{1}{3A}$, say.
+
 
 \newpage
 
