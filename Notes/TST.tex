@@ -1422,9 +1422,9 @@ As usual the printer didn't print the example sheets, but they're online now (yo
 
 As the first step of proving consistency of $\neg CH$, we'll show that $V \neq L$ is consistent.
 
-Suppose $M$ is a countable transitive model of $ZFC+V=L$. Bu our work on $L$, we know that there is $\alpha < \omega_1$ s.t. $M = L_\alpha$. Take any partial order $\P \in L_\alpha$ that is splitting. By countability, we get $\P$-generic over $M$ and $G \not\in M$ since $\P$ is splitting. In particular, $M[G] \neq M$.
+Suppose $M$ is a countable transitive model of $ZFC+V=L$. By our work on $L$, we know that there is $\alpha < \omega_1$ s.t. $M = L_\alpha$. Take any partial order $\P \in L_\alpha$ that is splitting. By countability, we get $G$ $\P$-generic over $M$ and $G \not\in M$ since $\P$ is splitting. In particular, $M[G] \neq M$.
 
-We claim that $M[G] \vDash V \neq L$: if it is, then by our previous theorem we know $M[G] = L_\beta$ for some $\beta$. But we proved that $M$ and $M[G]$ have the same ordinals. So $\beta = \alpha$, i.e. $M=M[G]$. Contradiction.
+We claim that $M[G] \vDash V \neq L$: suppose otherwise, then by our previous theorem we know $M[G] = L_\beta$ for some $\beta$. But we proved that $M$ and $M[G]$ have the same ordinals. So $\beta = \alpha$, i.e. $M=M[G]$. Contradiction.
 
 Let's remind ourselves of the $\P$'s we had. Essentially we only had one so far: 
 \[
@@ -1505,6 +1505,84 @@ So in some sense we can \emph{approximate} $f$ by giving some $F$ above and say 
 \emph{Proof of theorem from lemma}. Suppose $M \vDash \lambda$ is a cardinal, $M[G] \vDash \lambda$ is not carinal. So $M[G] \vDash \exists \gamma < \lambda$ $\exists f$ bijection, $f:\gamma \to \lambda$. Now apply the lemma with $A = \gamma$, $B = \lambda$, $f=f$. We then get an $F \in M$ with those properties. Since $f$ is surjective, $\lambda = \bigcup_{\alpha < \gamma} F(\alpha)$. But $\gamma < \lambda$ and each of $F(\alpha)$ is countable, so $M \vDash |\lambda| \leq |\omega \times \gamma| < \lambda$, contradiction.
 
 So we only need to prove the lemma. We'll do it on Monday.
+
+---Lecture 22---
+
+Remember that our ultimate goal is to prove that CH is independent from ZFC. We had the partial order
+\[
+\P:=\{p: p\text{ is a partial function from }\aleph_2^M \times\N \to \N, |dom(p)| < \omega\}
+\]
+We've seen that if $G$ is $\P$-generic over $M$, then in $M[G]$ there is an injection from $\aleph_2^M$ into $\R$. If $\aleph_1^M = \aleph_1^{M[G]}$ and $\aleph_2^M = \aleph_2^{M[G]}$, then $M[G] \vDash 2^{\aleph_0} \geq \aleph_2$.
+
+We had a theorem that if $M \vDash \P$ has ccc, then $\P$ preserves cardinal. On sheet 3 we actually checked that $M \vDash\P$ has ccc, so we're done if we could prove the theorem. We've also reduced the theorem to the last lemma we stated in the previous lecture.
+
+\begin{proof} (of lemma.)\\
+Fix a name $\tau$ for $f$. Let $\tau: \check{A} \to \check{B}$ be the sentence in the forcing language that expresses '$\tau$ is a function from $\check{A}$ to $\check{B}$'. By FT, we can find $p \in G$ s.t. $p \Vdash \tau:\check{A} \to \check{B}$. We now define 
+\[
+F(a) := \{b \in B: \exists q \leq p(q \Vdash \tau(\check{a}) = \check{b}\}
+\]
+where by $\tau(\check{a}) = \check{b}$, we really mean the sentence in the forcing language that expresses 'the value of $\tau$ at $\check{a}$ is $\check{b}$.\\
+Let's now check the properties:\\
+(a) and (b) are trivial by our definition of $F$. For (d), let $\bar{b} := f(a) \in B$. Then $M[G] \vDash \bar{b} = f(a)$, i.e. $\tau(\check{a}) = \check{\bar{b}}$. By FT we find $q \in G$ s.t. $q \Vdash \tau(\check{a}) = \check{\bar{b}}$. Since $G$ is a filter, we find $q' \leq q,p$, $q' \in G$. But now $q'$ witnesses that $f(a) = \bar{b} \in F(a)$.\\
+For (c), if we pick, for each $b \in F(a)$, a $q_b$ witnessing that $b \in F(a)$, i.e. $q_b \Vdash \tau(\check{a}) = \check{b}$, then if $b \neq b'$ then $q_b \perp q_{b'}$. Thus the set
+\[
+\{q_b: b \in F(a)\}
+\]
+is an antichain in $\P$. So we know it's countable in $M$ by ccc. So $F(a)$ is countable in $M$.
+\end{proof}
+
+So in some sense we've achieved the goal of this course. Let's spend some time to spell this out because this is an important moment:
+\begin{coro}
+If there is a transitive set model of $ZFC$, then there is:\\
+(a) a transitive set model of $ZFC+CH$;\\
+(b) a transitive set model of $ZFC+\neg CH$.
+\end{coro}
+
+We're not yet finished because there are still 1.5 lectures to go. A natrual question is to ask: if we have a model of $ZFC+\neg CH$, then what is the size of $2^{\aleph_0}$ in that model (is it $\aleph_2$, or something else)? So far we only knew that $2^{\aleph_0} \geq \aleph_2$ but nothing else. But we will show that if $M \vDash CH$, then $M[G]$ for $G$ $\P$-generic over $M$ for $\P = Fn(\aleph_2^M \times \N,\N)$ is a model of $2^{\aleph_0} = \aleph_2$. For this, we need to \emph{count} the names for subsets of $\N$. We've already seen that there's a proper class of them, so we probably shouldn't really count them; but we'll restrict to a set of names that are particularly \emph{nice} and count those.
+
+\begin{defi}
+A name $\tau$ for a subset of $\N$ is called \emph{nice} if for any $n \in \N$ there is an antichain in $A_n \subseteq \P$ s.t.
+\[
+\tau = \{(\check{n},p):p \in A_n\}
+\]
+\end{defi}
+
+How many nice names are there? This is (sort of) related to the question of how many antichains there are. We know that any antichain is countable, so the number of antichains can be at most $|\P^{\aleph_0}|$, the number of all countable subsets of $\P$. Now $|\P| = \aleph_2$ (think), the above upper bound is actually $\aleph_2^{\aleph_0}$.\\
+What is $\aleph_2^{\aleph_0}$? We have Hausdroff's Formula:
+\[
+\aleph_{\alpha+1}^{\aleph_\beta} = \aleph_{\alpha+1} \cdot \aleph_\alpha^{\aleph_\beta}
+\]
+So
+\[
+\aleph_{2}^{\aleph_0} &= \aleph_2 \cdot \aleph_1^{\aleph_0}\\
+&= \aleph_2 \cdot \aleph_1 \cdot \aleph_0^{\aleph_0}\\
+&= \aleph_2 \cdot 2^{\aleph_0} \stackrel{\text{ in } M}{=} \aleph_2\cdot \aleph_1 = \aleph_2
+\]
+
+A nice name is essentially a countable collection of antichains, so (running the same argument again) we know there are at most $\aleph_2 = \aleph_2$ nice names.
+
+\begin{thm}
+If $x \subseteq \N$ in $M[G]$, then there is a nice name $\tau$ s.t.
+\[
+x = val(\tau,G)
+\]
+\begin{proof}
+Fix a name $\mu$ for $x$. For every $n \in \N$, construct an antichain $A_n$ with the properties\\
+(a) $\forall p \in A_n$ $p \Vdash \check{\mu} \in \mu$;\\
+(b) $A_n$ is an antichain;\\
+(c) $A_n$ is maximal w.r.t. (a) and (b).
+
+Now we write
+\[
+\tau:=\{(\check{n},p): p \in A_n\}
+\]
+which is a nice name. We claim that $M[G] \vDash \tau = \mu$.\\
+$\subseteq$: Let $y \in val(\tau,G)$. So there is some $n \in \N$ s.t. $y = n$. We find $p \in A_n \cap G$ that witnesses $y \in val(\tau,G)$. Since $p \in A_n$, $p \Vdash \check{n} \in \mu$. But $p$ was in $G$, so $M[G] \vDash n \in val(\mu,G)$.\\
+$\supseteq$:  Let $y \in val(\mu,G)$. Since $y = n \in \N$, $y = val(\check{n},G)$. We know that $(\check{n},p) \in \tau$ for every $p \in A_n$. If there's a $p \in A_n \cap G$, then $n \in val(\tau,G)$ and we're done.\\
+Otherwise, if $A_n \cap G = \phi$ (remember question 24 on sheet 3), there is $q \in G$ s.t. $\forall p \in A_n$ $p \perp q$, contradicting the maximality of $A_n$ (in the sense of (c)), as we can still add $q$ into it.
+\end{proof}
+\end{thm}
+So we've shown that $|2^{\aleph_0}|$ can be $\aleph_2$.
 
 \newpage
 
