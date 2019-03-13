@@ -53,7 +53,9 @@ i.e. $y \in B$.\\
 $\supseteq$: suppose $y \in B$. So $M[G] \vDash \exists x \psi(x,y,a_1,....a_n,A)$. Now take a name $\pi$ for $y$; so by FT, there exists $p \in G$ s.t. $p \Vdash^* \exists x \psi(x,\pi,\tau_1,...,\tau_n,\sigma)$. But this is exactly the requirement for $(\pi,p) \in \rho$. So $y \in val(\rho,G)$.
 
 \section*{35.}
+Fix $A \in M[G]$, and $\phi \not\in A$. We want to prove that there exists $f \in M[G]$ s.t. $f$ is a function from $A \to \cup A$, and $x \in A \implies f(x) \in x$.
 
+Take a name $\sigma$ of $A$. Now $dom(\sigma) \in M$, and $M \vDash AC$, so there exists a choice function $g$ for $dom(\sigma)$. In other words, for each $(\pi,p) \in \sigma$, we have $g(\pi) \in \pi$. 
 
 
 \end{document}

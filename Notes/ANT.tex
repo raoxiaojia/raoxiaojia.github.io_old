@@ -2431,6 +2431,118 @@ Proof that theorem 3 $\implies$ theorem 2: if there exists an exceptional zero, 
 \]
 since $q \leq (\log x)^A$, this is $O(\exp -C_\varepsilon' \sqrt{\log x}))$ choosing $\varepsilon = \frac{1}{3A}$, say.
 
+---Lecture 23---
+
+Drop-in session today at 4-5pm! There'll be one more drop-in session and one more example class next term, probably in week 1. The final sheet will probably be online today. The lecture notes will probably be updated by the end of the week.
+
+Recall that we've stated the Siegel-Walfisz theorem last lecture, and nearly proved it. We'll first state a corollary:
+
+\begin{coro}
+\[
+\pi(x,q,a) &= \# primes\ p \leq x, p \equiv a \pmod q\\
+&=\frac{li(x)}{\varphi(q)} + O(x\exp(-c\sqrt{\log x}))
+\]
+where $li(x) = \int_2^x \frac{1}{\log t} dt$, if $(a,q) = 1$ and if $q \leq (\log x)^A$ (unconditionally), or if $q \leq \exp(O(\sqrt{\log x}))$ (if $q$ has no exceptional zero).\\
+(we could achieve $q \leq x^{1/2-o(1)}$ assuming GRH -- i.e. the zeros of Dirichlet $L$ function also has real parts $1/2$).
+\begin{proof}
+Let $F(x) = \sum_{p \leq x, p \equiv a \pmod q} \log p = \psi(x;q,a)+O(x^{1/2})$, and so
+\[
+\pi(x;q,a) &= \sum_{p \leq x, p \equiv a \pmod q} 1\\
+&= \frac{F(x)}{\log x} + \int_2^x \frac{F(t)}{t (\log t)^2} dt\\
+&= \frac{1}{\varphi(q)}(\frac{x}{\log x}+\int_2^x \frac{1}{(\log t)^2} dt) + O(x\exp (-c\sqrt{\log x}))
+\]
+\end{proof}
+\end{coro}
+Note that this is a trick that we've used many times in the course: altering the weight in a weighted sum by doing partial summation.
+
+The final things I want to talk about in this course are two applications of Siegel-Walfisz theorem:\\
+(1) For fixed $(a,q) = 1$, how large is the smallest prime $\equiv a \pmod q$? We call this prime $p_{a,q}$.
+\begin{coro}
+$\forall \varepsilon>0$, $p_{a,q} \ll_\varepsilon \exp(q^\varepsilon)$.
+\begin{proof}
+Let $x < p_{a,q}$. Then $\psi(x;q,a) = 0$ (there're no primes at all for counting). So somehow the error term has to cancel out the main term. So if $q \leq (\log x)^A$, then
+\[
+\frac{x}{\varphi(q)} = O_A(x \exp(-c\sqrt{\log x}))
+\]
+so
+\[
+\exp(c\sqrt{\log x}) = O_A(q)
+\]
+so $\log x \leq (\log q)^2 + O_A(1)$. But this contradicts our previous assumption that $q \leq (\log x)^A$. i.e. for any $A$, if $q$ is large enough, $q \leq (\log p_{a,q})^A$.
+\end{proof}
+\end{coro}
+Similarly,
+\begin{coro}
+If $q$ has no exceptional zero, then $p_{a,q} \leq q^{O(\log q)}$. Proof is the same.
+\end{coro}
+We have a reasonable conjecture:
+
+\textbf{Conjecture.}
+\[
+p_{a,q} \leq q^{1+o(1)}
+\]
+
+If we assume GRH we can prove $p_{a,q} \leq q^{2+o(1)}$. So even GRH doesn't get us what we think is true.
+
+\begin{thm} (\href{https://en.m.wikipedia.org/wiki/Linnik%27s_theorem}{Linnik})\\
+There exists a constant $L$ s.t. $p_{a,q} \ll q^L$.\\
+The point that this is an unconditional result: it doesn't matter if RH fails, or if $q$ has any exceptional zeros.
+\end{thm}
+
+\begin{thm} (Walfisz)\\
+For any $n$, write $r(n)$ as the number of ways as $n$ as a prime and a square-free number. Then $r(n) \sim c_n li(n)$, where
+\[
+c_n = (\prod_{p | n} (1+\frac{1}{p^2-p-1}))(\prod_p (1-\frac{1}{p(p-1)}))
+\]
+The first product obviously depends on $n$. The second product evaluates to around $0.3739...$.\\
+Let's finish off by just proving this:
+\begin{proof}
+Note that the indication function of being square-free,
+\[
+1_{\square-free}(m) = \sum_{d^2|m} \mu(d)
+\]
+which is easily checked since both sides are multiplicative, so it's enough to check for prime powers. So
+\[
+r(n) &= \sum_{p < n} 1_{\square-free}(n-p)\\
+&= \sum_{p < n} \sum_{d^2|(n-p)} \mu(d)\\
+&= \sum_{d < \sqrt{n}} \mu(d) \sum_{p < n, p = n \pmod {d^2}} 1
+\]
+But this is exactly a prime counting sum. So use what we've proved before, the above is equal to
+\[
+\sum_{d < \sqrt{n}} \mu(d) \pi(n-1;d^2,n)
+\]
+Now there are several cases:\\
+if $(n,d) > 1$, then $\pi(n-1;d^2,n) = O(1)$. So in total this contributes $O(n^{1/2})$ to $r(n)$.\\
+if $(n,d) = 1$, and $d \leq (\log n)^A$, $\pi(n-1;d^2,n) = \frac{li(n)}{\varphi(d^2)}+O(n \exp(-c\sqrt{\log n}))$. So
+\[
+\sum_{d < (\log n)^A} \mu(d) \pi(n-1;d^2,n) = li(n) \sum_{d < (\log n)^A, (d,n) = 1} \frac{\mu(d)}{\varphi(d^2)} + O(n \exp (-c\sqrt{\log n}))
+\]
+Now note that $\varphi(d^2) = d \varphi(d)$. So
+\[
+\sum_{(d,n)=1} \frac{\mu(d)}{d\varphi(d)} = \prod_{p \nmid n} (1-\frac{1}{p(p-1)}) = c_n
+\]
+Since
+\[
+\sum_{d > (\log n)^A, (d,n) = 1} \frac{\mu(d)}{d\varphi(d)} &\leq \sum_{d > (\log n)^A} \frac{1}{d^{3/2}}\\
+&\ll \frac{1}{(\log n)^{A/2}} = o(1)
+\]
+as $n \to \infty$.\\
+For $d > (\log n)^A$, use $\pi(x;q,a) \ll 1 + \frac{x}{q}$ because there are at most that many integers there. So
+\[
+\sum_{n^{1/2}>d>(\log n)^A,(d,n)=1} \mu(d) \pi(n-1;d^2,n) &\ll \sum_{(\log n)^A < d < n^{1/2}} (1+\frac{n}{d^2})\\
+&\ll n^{1/2} + n \sum_{d > (\log n)^A} \frac{1}{d^2} \ll \frac{n}{(\log n)^A}
+\]
+That is,
+\[
+r(n) &= c_n li(n) + O(n^{1/2} + \frac{li(n)}{(\log n)^{A/2}}+\frac{n}{(\log n)^A} + n\exp (-c\sqrt{\log n}))\\
+&= (1+o(1)) c_n li(n)
+\]
+because $li(n) = (1+o(1) \frac{n}{\log n})$.
+\end{proof}
+\end{thm}
+
+That's the end of the official course. On Thursday we'll still have another lecture, where we'll introduce some aspect of analytic number theory that we didn't talk about.
+
 
 \newpage
 
