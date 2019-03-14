@@ -1584,6 +1584,74 @@ Otherwise, if $A_n \cap G = \phi$ (remember question 24 on sheet 3), there is $q
 \end{thm}
 So we've shown that $|2^{\aleph_0}|$ can be $\aleph_2$.
 
+---Lecture 23---
+
+We've reached the final lecture, and I'm trying to wrap up a number of topics that we have \emph{pointers to} in the course. There should be four things:
+
+$\bullet$ Possible size of $2^{\aleph_0}$. We've seen in the previous lecture that it can be $\aleph_2$. What else can it be?
+
+$\bullet$ $V=L$ and $CH$. We'll see that is it not a must to have $V=L$ to get a model of CH.
+
+$\bullet$ Forcing CH.
+
+$\bullet$ What about $2^\kappa$ for $\kappa > \aleph_0$?
+
+(1.) We've seen that if $M \vDash CH$, $G$ is $Fn(\aleph_2^M \times \N, \N)$-generic over $M$, then $M[G] \vDash 2^{\aleph_0} = \aleph_2$.\\
+The proof is via nice names: there are $\aleph_2^{\aleph_0}$ many nice names for $Fn(\aleph_2^M \times \N,\N)$.\\
+With CH, we can calculate $\aleph_2^{\aleph_0} = \aleph_2$ by Hausdorff's Formula.\\
+If you replace $\aleph_2^M$ by $\aleph_n^M$ ($n>0$) in the forcing, we get $\aleph_n^{\aleph_0}$ nice names: by CH + Hausdorff, this is $\aleph_n$. So the same proof with $\P=Fn(\aleph_n^M \times \N, \N)$ gives: if $M \vDash CH$, then $M[G] \vDash 2^{\aleph_0} = \aleph_n$.\\
+What about $\aleph_\omega$? It is not a successor cardinal so our previous argument doesn't work because we can't use Hausdorff's formula. The answer is no: there is a ZFC-theorem called K\"{o}nig's lemma: $\kappa^{cf(\kappa)} > \kappa$.\\
+Let's see how K\"{o}nig's lemma implies $2^{\aleph_0} \neq \aleph_\omega$. Suppoes they are equal. Then
+\[
+cf(2^{\aleph_0}) = cf(\aleph_\omega) = \aleph_0
+\]
+But then
+\[
+2^{\aleph_0} = 2^{\aleph_0 \aleph_0} = (2^{\aleph_0})^{\aleph_0} > 2^{\aleph_0}
+\]
+The proof of K\"{o}nig's lemma in this particular case: $\aleph_\omega^{\aleph_0} > \aleph_\omega$. Suppose $F:\aleph_\omega \to \aleph_\omega^{\aleph_0}$. We'll show (by a version of diagonlisatoin) that this is not a surjection.\\
+If $\alpha < \aleph_\omega = \bigcup_{n \in \N} \aleph_n$, then we find a unique $n$ s.t. $\aleph_n \leq \alpha < \aleph_{n+1}$. If we think of $F_n:\aleph_\omega \to \aleph_\omega$ which maps $\alpha \to F(\alpha,n)$ (thinking $\aleph_\omega^{\aleph_0}$ as set of functions from $\aleph_0 \to \aleph_\omega$). Now $R_n = \{F_n(\alpha),\aleph_n \leq \alpha < \aleph_{n+1}\} \neq \aleph_\omega$. So pick $b_n$ s.t. $b_n \not\in R_n$. We claim that $b:n \to b_n$, $b \in \aleph_\omega^{\aleph_0}$, but $b \not\in ran(F)$.\\
+Suppose it is. Find $\alpha < \aleph_\omega$ s.t. $b=F(\alpha)$. Find $m$ s.t. $\aleph_n \leq \alpha < \aleph_{n+1}$. Then $b_n = b(n) \not\in R_n$, so $b_n \neq F(\alpha,n)$.
+
+Now we know that $\aleph_\omega$ is impossible. Does that mean that we've hit an impossible obstacle (because our induction cannot go beyond limits)? How many nice names does $Fn(\aleph_\omega^M \times \N ,\N)$ have? It still has the ccc, so there are $\aleph_\omega^{\aleph_0}$ many. So this is really the heart of problem, because we don't know what the cardinality of this is. Obviously we'll need more assumptions for working further.
+
+What if we in addition assume GCH (which is true in $L$)? We then know
+\[
+\aleph_\omega^{\aleph_0} \leq (2^{\aleph_\omega})^{\aleph_0} = 2^{\aleph_\omega \aleph_0} = 2^{\aleph_\omega} = \aleph_{\omega+1}
+\]
+So we know exactly that
+\[
+\aleph_\omega^{\aleph_0} = \aleph_{\omega+1}
+\]
+\begin{coro}
+If $M \vDash 2^{\aleph_0} = \aleph_1 \wedge 2^{\aleph_\omega} = \aleph_{\omega+1}$, and $G$ is $Fn(\aleph_\omega^M \times \N, \N)$-generic over $M$, then $M[G] \vDash 2^{\aleph_0} = \aleph_{\omega+1}$.
+\end{coro}
+In general, if $\kappa > \aleph_0$ is regular and $M \vDash GCH$, then $\kappa^{\aleph_0} = \kappa$, and thus forcing with $Fn(\kappa \times \N, \N)$ gives a model of $2^{\aleph_0} = \kappa$. This has to be taken as a bit of salt: $\kappa$ is not really definable, unlike things like $\aleph_{\omega+1}$ which is the successor of the first limit cardinal, so $\kappa$ may not be absolute between models. The way we read this should be: we fix a model first, then we take an element and claim that we can make $2^{\aleph_0}$ to be the cardinality of that (if it's regular).
+
+(2.) We've seen that $V=L \implies CH$. What about the converse?\\
+We've also seen that forcing with \emph{any} splitting poset forces $V \neq L$. The only thing that we need to make sure is that we force with something that has very few nice names. Let's take the smallest forcing that we could imagine: consider $\P = Fn(\N,2)$ which has the ccc (we can't make it much smaller: if we reduce either of the component, then the po is no longer splitting). This has $\aleph_0^{\aleph_0}$ many nice names. So if we start from a model of CH, then this is $\aleph_1$, so forcing with $\P$ over $M \vDash CH$ will preserve CH. However $\P$ is splitting, so in particular $M[G]$ is not a model of $V\neq L$. Putting everything together, we get
+\[
+M[G] \vDash CH + V \neq L
+\]
+
+(3.) If you listened to my excursion on Friday then you know this is going to be expected: we looked at 
+\[
+\P:=Fn(\aleph_0,\aleph_1)
+\]
+which is rather different from what we've tried. This doesn't have ccc and quite obviously does not preserve cardinals: it introduces a surjection $\aleph_0 \to \aleph_1$.\\
+(Just for a sanity check, what is an antichain here? If $p_\alpha :=\{(0,\alpha)\}$, then $\{p_\alpha:\alpha \in \aleph_1\}$ is an antichain of size $\aleph_1$.)\\
+Let me remind you what the excursion was: assume $M \vDash 2^{\aleph_0} = \aleph_2$, $G$ is $\P$-generic over $M$. Try to prove that $M[G] \vDash CH$. The idea is that we collapsed $\aleph_1$ so that it's no longer a cardinal, so $\aleph_2$ becomes $\aleph_1$. But for this argument to work, we needed:\\
+(a) $\aleph_2$ stays a cardinal;\\
+(b) $|\R^{M[G]}| = |\R^M|$.\\
+(a) actually follows from what you've done (or will do) on sheet 4: show that $Fn(\aleph_0,\aleph_1)$ has the $\aleph_2$-cc (use $\kappa$-cc to mean every antichain has size less than $\kappa$. So ccc should really mean $\aleph_1$-cc); thus by sheet 4 it preserves cardinal $\geq \aleph_2$. That gives us (a).\\
+(b) Count nice names: how many nice names are there? $\aleph_1^{\aleph_1}$($=2^{\aleph_1}$) many.\\
+If $M \vDash 2^{\aleph_0} = \aleph_1 \wedge 2^{\aleph_1} = \aleph_3$, then this doesn't help us at all: it could be that we've added $\aleph_3$ many reals, and so (b) is broken, and we'll only get $M \vDash 2^{\aleph_0} \leq \aleph_3^M$.\\
+If we knew that $M \vDash 2^{\aleph_0} = 2^{\aleph_1} = \aleph_2$, then we'd be done. But is this even consistent? In non-set theorists' view this is obviously inconsistent, but of course we all know it \emph{is} possible. This leads to our last point:
+
+(4.) What about $2^\kappa$ in general for $\kappa > \aleph_0$? We would look at $Fn)\kappa \times \aleph-1,2)$, which is the canonical poset for adding $\kappa$ many subsets of $\aleph_1$ (for each element in $\kappa$, we get a characteristic function of $\aleph_1$). This still has ccc; analysis of nice names (assuming that $M \vDash GCH$) will still give $M[G] \vDash 2^{\aleph_1} = \kappa$.
+
+That all I want to say, I think we've done a lot. We'll see each other tomorrow, and on the revision class in Easter.
+
 \newpage
 
 \section{Example Class 1}

@@ -2,6 +2,8 @@
 
 \input{temp}
 
+\usetikzlibrary{positioning}
+
 \setcounter{section}{-1}
 
 \begin{document}
@@ -32,7 +34,7 @@ $\subseteq$: suppose $y \in val(\rho,G)$. So there is $(\pi,p) \in \rho$ with $p
 \[
 D:=\{r:\exists \mu \in M^\P (r \Vdash^* \psi(\mu,\pi,\tau_1,...,\tau_n,\sigma))\}
 \]
-is dense below $p$. In particular $G \cap D \neq \phi$, so take some $q \in G \cap D$. $q \in D$ means there exists a name $\mu$ s.t.
+is dense below $p$. \underline{Also $p \in G$, so $G \cap D \neq \phi$},\footnote{On lecture 19 this was just stated as a fact without proof, but I can't see why it's trivial. My proof of this claim: suppose otherwise, that $G \cap D = \phi$. Add all elements $q$ s.t. there's no $r \in D$ s.t. $r \leq q$ to $D$ to form a new set $D'$. Then $D'$ is dense, so $G \cap D' \neq \phi$, so pick $r \in G \cap D'$. Now if $r \not\in D$, then since $G$ is a filter, pick $q \in G$ s.t. $q \leq p,r$. Since $D$ is dense below $p$ and $q \leq p$, we can pick $s \in D$ s.t. $s \in q$. But then $s \leq q \leq r$, and $s \in D$, $r \in D'\setminus D$, contradicting our definition of $D'$.} so take some $q \in G \cap D$. $q \in D$ means there exists a name $\mu$ s.t.
 \[
 q\Vdash^* \psi(\mu,\pi,\tau_1,...,\tau_n,\sigma)
 \]
@@ -55,7 +57,34 @@ $\supseteq$: suppose $y \in B$. So $M[G] \vDash \exists x \psi(x,y,a_1,....a_n,A
 \section*{35.}
 Fix $A \in M[G]$, and $\phi \not\in A$. We want to prove that there exists $f \in M[G]$ s.t. $f$ is a function from $A \to \cup A$, and $x \in A \implies f(x) \in x$.
 
-Take a name $\sigma$ of $A$. Now $dom(\sigma) \in M$, and $M \vDash AC$, so there exists a choice function $g$ for $dom(\sigma)$. In other words, for each $(\pi,p) \in \sigma$, we have $g(\pi) \in \pi$. 
+Take a name $\sigma$ of $A$. We'd like a name $\pi$ that satisfies the following:\\
+(1) $val(\pi,G)$ is a function $A \to \cup A$;\\
+(2) if $(\tau_1,p_1),(\tau_2,p_2) \in \pi$, $p_1,p_2 \in G$, and
+
+\section*{36.}
+I'm assuming every instance of '$\P$-generic over $M$' actually means '$\P$-generic filter over $M$' (and similarly for later questions).
+
+$G$ is a $\P$-generic filter:\\
+$\bullet$ Let $p \in G$, and $p \leq p'$. Then $i(p) \leq i(p')$. But $H$ is a filter, and $i(p) \in H$, so $i(p') \in H$. So $p' \in G$.\\
+$\bullet$ Let $p,p' \in G$; we want to prove that $p,p'$ have a witness of compatibility in $G$. Suppose otherwise, so if $p'' \leq p,p'$ then $i(p'') \not\in H$. But $i(p)$ and $i(p')$ still need 
+to have a witness of compatibility in $H$, say $q \in H$; so this $q$ cannot be in the image $i(\P)$.\\
+$\bullet$ We've proved that $G$ is a filter; now we prove that $G$ is $\P$-generic over $M$. In fact we prove that it's $\P$-antichain generic over $M$. Let $A \subset \P$ be a maximal antichain, we want to prove that $\exists a \in A (i(a) \in H)$.\\
+Suppose otherwise. Write $i(A)$ for the set containing images of element of $A$ under $i$. Then $i(A)$ cannot be an maximal antichain (as $H$ is $\Q$-antichain generic, so every maximal antichain has non-empty intersection with $H$). Obviously by (b), $i(A)$ is still an antichain. So (as $M[H] \vDash AC$) we extend it to a maximal antichain $A'$. Now $A' \cap H \neq \phi$, so take $q \in A' \cap H$. By assumption, $q \not\in i(A)$. Now apply (c), we get a $p \in \P$ s.t. $p' \leq p \implies i(p')$ and $q$ are compatible. But $A$ is a maximal antichain in $\P$, so $p$ has to be compatible with some element of $A$, say $p_a$. So let $p_c \in \P$ witness that $p$ and $p_a$ are compatible; in particular, $p_c \leq p$. By (c), $i(p_c)$ and $q$ are compatible. But $p_c \leq p_a$ and hence $i(p_c) \leq i(p_a)$, so $i(p_a)$ and $q$ are compatible; but both $i(p_a)$ and $q$ are in the antichain $A'$ of $\Q$. Contradiction (see diagram below).
+
+\begin{tikzpicture}[node distance = 2cm]
+\node(pa)			{$p_a$};
+\node(p)	  [above right=0.5cm and 1.5cm of pa] {$p$};
+\node(pc)	  [below right of= pa] {$p_c$};
+
+\node(ipa)	[right=4cm of pa] {$i(p_a)$};
+\node(q) [right of =ipa] {$q$};
+\node(ipc) [below right of =ipa] {$i(p_c)$};
+
+\draw(pa) -- (pc);
+\draw(p)--(pc);
+\draw(ipa) -- (ipc) node [midway, fill=white] {$?$};
+\draw(q)--(ipc) node [midway, fill=white] {$?$};
+\end{tikzpicture}
 
 
 \end{document}
