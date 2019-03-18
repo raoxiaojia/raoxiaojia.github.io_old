@@ -34,7 +34,7 @@ $\subseteq$: suppose $y \in val(\rho,G)$. So there is $(\pi,p) \in \rho$ with $p
 \[
 D:=\{r:\exists \mu \in M^\P (r \Vdash^* \psi(\mu,\pi,\tau_1,...,\tau_n,\sigma))\}
 \]
-is dense below $p$. \underline{Also $p \in G$, so $G \cap D \neq \phi$},\footnote{On lecture 19 this was just stated as a fact without proof, but I can't see why it's trivial. My proof of this claim: suppose otherwise, that $G \cap D = \phi$. Add all elements $q$ s.t. there's no $r \in D$ s.t. $r \leq q$ to $D$ to form a new set $D'$. Then $D'$ is dense, so $G \cap D' \neq \phi$, so pick $r \in G \cap D'$. Now if $r \not\in D$, then since $G$ is a filter, pick $q \in G$ s.t. $q \leq p,r$. Since $D$ is dense below $p$ and $q \leq p$, we can pick $s \in D$ s.t. $s \in q$. But then $s \leq q \leq r$, and $s \in D$, $r \in D'\setminus D$, contradicting our definition of $D'$.} so take some $q \in G \cap D$. $q \in D$ means there exists a name $\mu$ s.t.
+is dense below $p$. \underline{Also $p \in G$, so $G \cap D \neq \phi$},\footnote{On lecture 19 this was just stated as a fact without proof, but I can't see why it's trivial. My proof of this claim: suppose otherwise, that $G \cap D = \phi$. Add all elements $q$ s.t. there's no $r \in D$ s.t. $r \leq q$ to $D$ to form a new set $D'$. Then $D'$ is dense, so $G \cap D' \neq \phi$, so pick $r \in G \cap D'$. Now if $r \not\in D$, then since $G$ is a filter, pick $q \in G$ s.t. $q \leq p,r$. Since $D$ is dense below $p$ and $q \leq p$, we can pick $s \in D$ s.t. $s \leq q$. But then $s \leq q \leq r$, and $s \in D$, $r \in D'\setminus D$, contradicting our definition of $D'$.} so take some $q \in G \cap D$. $q \in D$ means there exists a name $\mu$ s.t.
 \[
 q\Vdash^* \psi(\mu,\pi,\tau_1,...,\tau_n,\sigma)
 \]
@@ -54,21 +54,27 @@ M[G] \vDash \exists x (x \in A \wedge \varphi(x,y,x_1,...,x_n))
 i.e. $y \in B$.\\
 $\supseteq$: suppose $y \in B$. So $M[G] \vDash \exists x \psi(x,y,a_1,....a_n,A)$. Now take a name $\pi$ for $y$; so by FT, there exists $p \in G$ s.t. $p \Vdash^* \exists x \psi(x,\pi,\tau_1,...,\tau_n,\sigma)$. But this is exactly the requirement for $(\pi,p) \in \rho$. So $y \in val(\rho,G)$.
 
-\section*{35.}
-Fix $A \in M[G]$, and $\phi \not\in A$. We want to prove that there exists $f \in M[G]$ s.t. $f$ is a function from $A \to \cup A$, and $x \in A \implies f(x) \in x$.
-
-Take a name $\sigma$ of $A$. We'd like a name $\pi$ that satisfies the following:\\
-(1) $val(\pi,G)$ is a function $A \to \cup A$;\\
-(2) if $(\tau_1,p_1),(\tau_2,p_2) \in \pi$, $p_1,p_2 \in G$, and
-
 \section*{36.}
 I'm assuming every instance of '$\P$-generic over $M$' actually means '$\P$-generic filter over $M$' (and similarly for later questions).
 
+Also, in this proof we omit all suffixes on $\leq_\P,\leq_\Q$ because in all places it's quite obvious which $\leq$ we're referring to; we also just say \emph{$p$ and $p'$ are compatible} instead of saying \emph{$p$ and $p'$ are compatible w.r.t. $\P$} for the same reason.
+
 $G$ is a $\P$-generic filter:\\
-$\bullet$ Let $p \in G$, and $p \leq p'$. Then $i(p) \leq i(p')$. But $H$ is a filter, and $i(p) \in H$, so $i(p') \in H$. So $p' \in G$.\\
-$\bullet$ Let $p,p' \in G$; we want to prove that $p,p'$ have a witness of compatibility in $G$. Suppose otherwise, so if $p'' \leq p,p'$ then $i(p'') \not\in H$. But $i(p)$ and $i(p')$ still need 
-to have a witness of compatibility in $H$, say $q \in H$; so this $q$ cannot be in the image $i(\P)$.\\
-$\bullet$ We've proved that $G$ is a filter; now we prove that $G$ is $\P$-generic over $M$. In fact we prove that it's $\P$-antichain generic over $M$. Let $A \subset \P$ be a maximal antichain, we want to prove that $\exists a \in A (i(a) \in H)$.\\
+$\bullet$ Let $p \in G$, and $p \leq p'$. Then $i(p) \leq i(p')$. But $H$ is a filter, and $i(p) \in H$, so $i(p') \in H$. So $p' \in G$.
+
+$\bullet$ Let $p,p' \in G$; we want to prove that $p,p'$ have a witness of compatibility in $G$. Now $i(p),i(p') \in H$, so they have some witnesses of compatibility in $H$. By (b), $p$ and $p'$ are also compatible, but we don't know yet that there's a witness in $G$.\\
+Let $q \in H$ s.t. $q \leq i(p),i(p')$. We first claim that the set
+\[
+B:=\{i(p_c): p_c \leq p,p', p_c \in \P\}
+\]
+is $\Q$-bar below $q$ (obvious meaning): suppose $q' \leq q$. By (c), take some $p_{q'} \in \P$ s.t. it satisfies the condition in (c). Then $i(p_{q'
+})$ and $q'$ are compatible. But $q' \leq q$, so $q' \leq i(p),i(p')$. So $i(p_{q'})$ and $i(p),i(p')$ are both compatible. By (b), $p_{q'}$ and $p,p'$ are both compatible. So take some $p_1 \leq p_{q'},p$, $p_1 \in \P$; but now $p_1 \leq p_{q'}$, so by (c), $i(p_1)$ and $q'$ are still compatible, i.e. $i(p_1)$ and $i(p')$ are still compatible. So $p_1$ and $p'$ are compatible. So take come $p_c \leq p_1,p'$ in $\P$. Now $p_c \leq p,p',p_{q'}$, so $i(p_c) \in B$; and it is compatible with $q'$ by (c).
+
+Now we prove that $B\cap H \neq \phi$ (\emph{again, this might already be trivial, but I can't see why -- see footnote on the previous page}): we know $H$ is a $\Q$-generic filter, so it's a $\Q$-bar generic filter. Suppose $B \cap H = \phi$, so $B$ is not a $\Q$-bar. Add all elements $s \in \Q$ that witnesses this fact to form a new set $B'$, then $B'$ is a $\Q$-bar, so pick $r \in H \cap B'$. Now if $r \not\in B'$, then since $H$ is a filter, pick $s \in H$ s.t. $s \leq r,q$. Since $B$ is $\Q$-bar below $q$ and $s \leq q$, we can pick $t \in B$ s.t. $t$ and $s$ are compatible. But $s \leq r$, so $t$ and $r$ are compatible, contradicting our definition of $B'$.
+
+So $G$ is a filter.
+
+$\bullet$ Now we prove that $G$ is $\P$-generic over $M$. In fact we prove that it's $\P$-antichain generic over $M$. Let $A \subset \P$ be a maximal antichain, we want to prove that $\exists a \in A (i(a) \in H)$.\\
 Suppose otherwise. Write $i(A)$ for the set containing images of element of $A$ under $i$. Then $i(A)$ cannot be an maximal antichain (as $H$ is $\Q$-antichain generic, so every maximal antichain has non-empty intersection with $H$). Obviously by (b), $i(A)$ is still an antichain. So (as $M[H] \vDash AC$) we extend it to a maximal antichain $A'$. Now $A' \cap H \neq \phi$, so take $q \in A' \cap H$. By assumption, $q \not\in i(A)$. Now apply (c), we get a $p \in \P$ s.t. $p' \leq p \implies i(p')$ and $q$ are compatible. But $A$ is a maximal antichain in $\P$, so $p$ has to be compatible with some element of $A$, say $p_a$. So let $p_c \in \P$ witness that $p$ and $p_a$ are compatible; in particular, $p_c \leq p$. By (c), $i(p_c)$ and $q$ are compatible. But $p_c \leq p_a$ and hence $i(p_c) \leq i(p_a)$, so $i(p_a)$ and $q$ are compatible; but both $i(p_a)$ and $q$ are in the antichain $A'$ of $\Q$. Contradiction (see diagram below).
 
 \begin{tikzpicture}[node distance = 2cm]
@@ -86,5 +92,84 @@ Suppose otherwise. Write $i(A)$ for the set containing images of element of $A$ 
 \draw(q)--(ipc) node [midway, fill=white] {$?$};
 \end{tikzpicture}
 
+So $G$ is a $\P$-generic filter over $M$.
+
+Now suppose $x \in M[G]$. So pick a name $\sigma$ for it. For each $(\pi,p) \in \sigma$, we \emph{transform} $p$ to $i(p)$, and we do so recursively, i.e. not only for the elements $(\pi,p)$ of $\sigma$, but also for all $(\tau,p') \in \pi$ where $(\pi,p) \in \sigma$, and so on. After this recursive transformation we get a name in $M^\Q$, let's call it $\sigma_q$.
+
+We claim that $val(\sigma_q,H)=x(=val(\sigma,G))$. Prove this by induction on complexity of name $\sigma$: the case $\sigma=\phi$ is trivial. Now suppose $\sigma \neq \phi$. Note that because of our definition of $\sigma_q$, for each $(\pi_q,q) \in \sigma_q$ we can find a corresponding 'preimage' $(\pi,p) \in \sigma$ where $(\pi_q,q)$ is the result of our transformation from $(\pi,p)$. We know two things about them:\\
+$\bullet$ $i(p) = q$;\\
+$\bullet$ $val(\pi,G) = val(\pi_q,H)$ by induction hypothesis.
+
+So we only need to show that $p \in G$ iff $i(p) \in H$, but fortunately that's exactly how we defined $G$. So done.
+
+\section*{37.}
+36(a) is trivial. For 36(c), suppose $q \in \Q$. By 37(c) we have some $p \in \P$ s.t. $i(p) \leq q$. Now if $p' \leq p$ then $i(p') \leq i(p) \leq q$, so in particular $i(p')$ and $q$ are compatible.
+
+Now 37(b) gives that if $i(p)$ and $i(p')$ are compatible then $p$ and $p'$ are compatible (needs care here because \emph{compatible} and $\perp$ are opposite things). So the direction we need to prove in 36(b) is that if $p$ and $p'$ are compatible then so are $i(p)$ and $i(p')$. But this is trivial because $i$ preserves order, so if $p_c$ witnesses the compatibility of $p$ and $p'$ then $i(p_c)$ witnesses the compatibility of $i(p)$ and $i(p')$.
+
+\section*{38.}
+Note that in $\T$, $t$ and $t'$ being compatible necessarily means that $t\leq t'$ or $t' \leq t$, as otherwise $t$ and $t'$ must have already differed at some place in the sequence and there's no way to repair it (unlike the case of subsets of $\N$). So in graph theorical sense, if we only count edges between sequences of length that differ by 1, then $\T$ looks like a tree where the root is the empty sequence, and each node has $\N$ many offsprings.
+
+Enumerate all elements in $\Q$ as $(q_i)$ (we can write this since $\Q$ is countable). Now define the required map $i:\T \to \Q$ recursively:\\
+$\bullet$ the empty sequence is mapped to $1_\Q$;\\
+$\bullet$ suppose a sequence $(s_i)$ of length $n \geq 0$ is mapped to some $q \in \Q$. Now, temporarily, we restrict our enumeration of $(q_i)$ to only those elements that are $\leq q$, but preserving the original order of enumeration; i.e. we get a subsequence of the original enumeration. We call that subsequence $q_i$ temporarily for convenience.\\
+Now define recursively the image of $(s_1,...,s_n,j)$: for each $j$, let $k$ be the smallest number s.t. $q_k$ is incompatible with any of the images of $(s_1,...,s_n,i)$ where $i<j$ (we'll prove that this exists later). Now if $q_k$ is incompatible with some other elements that are not yet compatible with any of the images of $(s_1,...,s_n,i)$ where $i<j$ (let's call this condition(*)), then we let the image of $(s_1,...,s_n,j)$ be $q_k$; otherwise, since $\Q$ is splitting, take some $q_{k_1},q_{k_2} \leq q_k$ that are incompatible, then $q_{k_1}$ will have the above property that we desire to make it the image of $(s_1,...,s_n,j)$, and we do so. We see from the construction that our claim of existence above is justified, since when we choose the image of $(s_1,...,s_n,j)$, we always leave some elements that are not yet compatible with any of the previous images out.
+
+It's obvious that this construction will satisfy 37(a) and (b), so we'll just need to prove 37(c). Take any $q \in \Q$. It must be $q_i$ in the enumeration for some $i$. There are three cases:\\
+$\bullet$ we picked $q_i$ as the image of some sequence $(s_i)$ in the above construction. In this we already get an image of $\T$ below $q_i$ (which is itself);
+
+$\bullet$ $q_i$ is not chosen in the above construction of picking images for sequences, because doing so would violate our condition (*) in the construction above. But in that case, we have taken some $q_{i_1},q_{i_2} \leq q_i$ that are incompatible, and chosen one of them as an image of some sequence. Therefore we also have an image of some sequence below $q_i$;
+
+$\bullet$ $q_i$ is skipped in the process of picking images for sequence, because it is already compatible to some previous $q_j$ ($j<i$) that has been picked as an image of some sequence. Suppose $(s_n)$ is mapped to that $q_j$. Then when we recursively construct image of extensions of $(s_n)$ and restrict our vision to only those elements that are $\leq q_j$, $q_i$ will now have a lower index. For each time this case happens, the index (after restricted vision) of $q_i$ decreases by at least 1, so this case cannot take place infinitely many times, and we must get one of the above two cases after finitely many steps. So done.
+
+\section*{39.}
+We first prove that the composition of two dense embeddings is still a dense embedding. 37(a) and (b) are quite trivial. For 37(c), suppose $i:\P \to \Q$, $j:\Q \to \R$ are dense embeddings. Let $r \in \R$. Then there's some $q \in \Q$ s.t. $j(q) \leq r$. But then there's some $p \in \P$ s.t. $i(p) \leq j(q)$. So $j\circ i(p) \leq r$. So the image of $\P$ under $j \circ i$ is dense in $\R$.
+
+Now consider $\T_3$, the partial order of finite 0-1-2 sequences. We claim that there's no dense embedding from $\T_{bin} \to \T_3$: suppose $i$ is such a dense embedding, and WLOG let $i(\phi_{bin}) = \phi_3$ (meaning of notations should be clear). Now consider what the images of $(0)_{bin}$ and $(1)_{bin}$ under $i$ are. In particular, the first term of those two images can only take two values among $\{0,1,2\}$, so at least one of $(0)_3,(1)_3,(2)_3$ is not compatible with either of the two images; suppose $(2)_3$ is so. But we've argued in q38 that being dense in $\T$ (and similarly, $\T_{bin}$ and $\T_3$) is equivalent to one is $\leq$ than the other. That means there's no element in $\T_{bin}$ that has image below $(2)_3$, so the image of $\T_{bin}$ under $i$ is not dense in $\T_3$. Contradiction.
+
+However, $\T_3$ is still a countable splitting partial order, so by q38, there is a dense embedding $\T \to \T_3$. Combining our previous two results we see that there cannot be a dense embedding from $\T_{bin} \to \T$.
+
+\section*{41.}
+Following the same argument in lecture, we could get a similar version of lemma that gets us an approximation $F \in M$ for any function $f$ in $M[G]$ s.t. $|F(x)| < \kappa$ for any $x$. Now suppose $\P$ does not preserve some $\lambda \geq \kappa$. So $M[G] \vDash \exists \gamma < \lambda$ s.t. there's a bijection $f:\gamma \to \lambda$. Apply the lemma to get an $F$, and by surjectivity of $f$ we know $\lambda = \bigcup_{\alpha < \gamma} F(\alpha)$; then we get a similar contradiction that $M \vDash |\lambda| < |\gamma \times \kappa| \leq \lambda$ if $\lambda \geq \kappa$.
+
+\section*{42.}
+Consider instead $\P := Fn(\omega,2)$, and consider $f_G:=\bigcup G: \N \to 2$. We interpret this as characteristic function of a subset. Now let
+\[
+S_G :&= \{n \in \N: f_G(n) = 1\}\\
+&=\{n \in \N, \exists p \in G(p(n)=1)\}
+\]
+Is $S_G$ splitting over $M$?\\
+Consider
+\[
+D_{A,m}:=\{p: \text{ there are } a_1,...,a_m \in A s.t. p(a_1) = p(a_2)=...=p(a_m) = 1\}
+\]
+and let $\bar{D}_{A,m}$ be the same thing but with 1 replaced by 0. These are both dense (in $M$!).
+
+For $Fn(\omega,\omega)$, one way is to consider the mod 2 function, and use $\bar{f}(n) := f(n) \pmod 2$.
+
+\section*{43.}
+Note that $A$ has to play a role here, otherwise this forcing is just the one in the previous question; if $\Q = Fn(\omega,\omega)$ and $f_G$ $\Q$-generic, we say $f$ dominates $M$ if $\forall g \in M$ $\exists N \forall n \geq N g(n) < f(n)$. Obviously if $g$ dominates $M$ then $g$ bounds $M$; we claim that $f_G$ does not dominate $M$.\\
+Why is that? Fix $g \in M$. Then consider the set 
+\[
+D_{g,n}:= \{p: \text{ there are } m_1 < ... < m_n (p(m_i) \leq g(m_i))\}
+\]
+
+Let's talk about some nomenclature. The partial order $Fn(\omega,\omega)$ is usually called Cohen forcing, which doesn't actually do anything. The one we actually used was $Fn(\kappa \times \omega,\omega)$ was the forcing to add $\kappa$ many Cohen reals (generic object for Cohen forcing). We've also looked that $Fn(\omega,\kappa)$ which is called the collapse forcing.
+
+Most of the forcings (except one) are named by the person who named them. The forcing in this question is called the Mathias forcing.
+
+In this case, in a pair $(s,A)$, $s$ is the part that matters (defines what function we have), and $A$ is sometimes called the \emph{reservoir set}; it is the rule of how to extend the function when you want to get stronger (specifying the range).
+
+If $G$ is $\P$-generic over $M$, $f_G:\N \to \N$: $f_G(n) = k$ if there is $(s,A) \in G$ s.t. $s(n) = k$.
+
+So following the same convention, we call this Mathias reals (doesn't really matter).
+
+Claim that $f_G$ bounds $M$: consider the dense set
+\[
+D_{g,n}:=\{(s,A) : \text{ there are } \geq n \text{ points } s.t. s > g\}
+\]
+To prove this is dense, suppose given $s$. We copy $s_0,...,s_k$, then extend $a_1>g(k+1),...,a_n>g(k+n)$ and call this $s^*$. Then $(s^*,A) \leq (s,A)$ (note $A$ is infinite, so it contains arbitrarily large numbers).
+
+45 is actually hard. Let's get back to this at the end.
 
 \end{document}
