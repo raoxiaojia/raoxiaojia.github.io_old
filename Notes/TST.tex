@@ -49,7 +49,12 @@ or equivalently, if $M \vDash ZFC$, then there is $N \vDash ZFC+CH$ (and similar
 
 For a moment, we will assume that we have a model $(M,\in) \vDash ZFC$. Unfortunately this first assumption doesn't make much sense, because model theory is based on set theory and we don't have anything if ZFC is inconsistent. We refer to the canonical objects in $M$ by the usual symbols, e.g. $0,1,2,3,4,...,\omega,\omega+1,...$.
 
-What would an \emph{inner model} be? Take $A \subseteq M$, and consider $(A,\in)$. It is a substructure of $(M,\in)$, because there are no function symbols or constant symbols in the language of set theory. This might be counterintuitive, because we're using symbols like $\phi$ and $\{\cdot\}$ all the time! However, these are technically not part of language of set theory as they can all be defined without any use of function symbols, i.e. they are just abbreviations. For example, $X=\phi$ abbreviates $\forall w (\neg w \in X)$; $X=\{Y\}$ abbreviates $\forall w (w \in X \iff w = Y)$, and similarly for $\cup$ and $\mathcal{P}$; and also for relation symbols such as $\subseteq$, which abbreviates $\forall w (w \in X \to w \in Y)$. Note that $X=\phi$ is NOT the formula that it looks like; in particular, it is not quantifier free (because it abbreviates $\forall w (\neg w \in X)$)! So we need to take extra care when we do things in this course.
+What would an \emph{inner model} be? Take $A \subseteq M$, and consider $(A,\in)$. It is a substructure of $(M,\in)$, because there are no function symbols or constant symbols in the language of set theory. This might be counterintuitive, because we're using symbols like $\phi$ and $\{\cdot\}$ all the time! However, these are technically not part of language of set theory, as they can all be defined without any use of function symbols, i.e. they are just abbreviations. For example:\\
+$\bullet$ $X=\phi$ abbreviates $\forall w (\neg w \in X)$;\\
+$\bullet$ $X=\{Y\}$ abbreviates $\forall w (w \in X \iff w = Y)$, and similarly for $\cup$ and $\mathcal{P}$; and also,\\
+$\bullet$ relation symbols, such as $\subseteq$, abbreviates $\forall w (w \in X \to w \in Y)$. 
+
+Note that $X=\phi$ is NOT the formula that it looks like; in particular, it is \emph{not} quantifier free (because it abbreviates $\forall w (\neg w \in X)$)! So we need to take extra care when we do things in this course.
 
 \begin{defi}
 If $\varphi$ is a formula in $n$ free variables, we say $\varphi$ is \emph{upwards absolute} between $A$ and $M$ if for all $a_1,...,a_n \in A$,
@@ -71,7 +76,7 @@ where $\varphi$ is q.f..\\
 
 ---Lecture 2---
 
-As an example, write $0,1,2,3,...$ for the ordinals in $M$, and let $A:=M \setminus \{1\}$. In $A$, we have $0,2$, but no $1$; we also have $\{1\}$. If we use $\Phi_0(x)$ to denote the formula $\forall w (\neg w \in x) \iff x = \phi$. Clearly $(M,\in) \vDash \Phi_0(0)$, so by $\pi_1$-downwards absoluteness, $(A,\in) \vDash \Phi_0(0)$.\\
+As an example, write $0,1,2,3,...$ for the ordinals in $M$, and let $A:=M \setminus \{1\}$. In $A$, we have $0,2$, but no $1$; we also have $\{1\}$. Use $\Phi_0(x)$ to denote the formula $\forall w (\neg w \in x) \iff x = \phi$. Clearly $(M,\in) \vDash \Phi_0(0)$, so by $\Pi_1$-downwards absoluteness, $(A,\in) \vDash \Phi_0(0)$.\\
 Now, how many elements does $2=\{0,1\}$ have? In $M$ we obviously know $2$ has $2$ elements; but in $A$, $2$ only has one element $0$, and $\{1\}$ has no element: $(A,\in) \vDash \Phi_0(\{1\})$! Clearly $(M,\in) \not\vDash \Phi_0(\{1\})$, so $\Phi_0$ is not absolute between $A$ and $M$. As a corollary, we get $(A,\in) \not\vDash$ extensionality (we can uniquely specify sets by specifying their elements).
 
 \begin{rem}
@@ -96,7 +101,7 @@ Take $a,b \in A$ with $a \neq b$. So by extensionality in $(M,\in)$, find, WLOG 
 \end{proof}
 \end{prop}
 
-Consider now $A=\omega+2 = \{0,1,2,...,\omega,\omega+1\} \subseteq M$. This is clearly transitive subset of $M$ because it's an ordinal. So $(A,\in) \vDash$ extensionality, but clearly it isn't anything like a model of set theory as it is too thin. Consider the formula $x=\mathcal{P}(y)$. Unfortunately, this is not a formula, as $\mathcal{P}$ is undefined. We have to expand it properly:
+Consider now $A=\omega+2 = \{0,1,2,...,\omega,\omega+1\} \subseteq M$. This is clearly a transitive subset of $M$ because it's an ordinal. So $(A,\in) \vDash$ extensionality, but clearly it isn't anything like a model of set theory as it is too thin. Consider the formula $x=\mathcal{P}(y)$. Unfortunately, this is not a formula, as $\mathcal{P}$ is undefined. We have to expand it properly:
 \begin{equation*}
 \begin{aligned}
 &x = \mathcal{P}(y)\\
@@ -318,7 +323,7 @@ Now let $\lambda < \kappa$ be a limit ordinal. Then $V_\lambda = \cup_{\alpha < 
 \begin{thm}
 If $\kappa$ is inaccessible, then $V_\kappa \vDash Replacement$.
 \begin{proof}
-We're actually going to something slightly stronger: take any function $F:V_\kappa \to V_\kappa$ (without caring of its definability), and any $x \in V_\kappa$. Note that $V_\kappa = \cup_{\alpha < \kappa} V_\alpha$. So we can find $\alpha \in \kappa$ s.t. $x \in V_\alpha$. Since $V_\alpha$ is transitive, $x \subseteq V_\alpha$. But that means $|x| \leq |V_\alpha| < \kappa$ (by lemma). Note that this is exactly what went wrong in $V_{\omega_1}$.\\
+We're actually going to prove something slightly stronger: take any function $F:V_\kappa \to V_\kappa$ (without caring of its definability), and any $x \in V_\kappa$. Note that $V_\kappa = \cup_{\alpha < \kappa} V_\alpha$. So we can find $\alpha \in \kappa$ s.t. $x \in V_\alpha$. Since $V_\alpha$ is transitive, $x \subseteq V_\alpha$. But that means $|x| \leq |V_\alpha| < \kappa$ (by lemma). Note that this is exactly what went wrong in $V_{\omega_1}$.\\
 Now consider $X:=\{F(y):y \in x\}$. For each $y \in x$, consider $\rho(F(y)):=$ the least $\alpha$ s.t. $F(y) \in V_{\alpha+1} \setminus V_\alpha$. By assumption, $\rho(F(y)) < \kappa$. Consider $\{\rho(F(y)):y \in x\} := R$, then $|R| \leq |x| < \kappa$. By regularity, $\alpha := \cup R < \kappa$. But now $\forall y \in x F(y) \in V_{\alpha+1}$. So $X \subseteq V_{\alpha+1}$, so $X \in V_{\alpha+2}$, i.e. $V_\kappa \vDash Replacement$.
 \end{proof}
 \end{thm}
@@ -353,7 +358,7 @@ So, let $T$ be the Mostowski collapse of $H$: $T$ is transitive, $(T,\in) \cong 
 
 (some diagrams, where we used $T$ to denote the countable transitive model of ZFC)\\
 
-Consider $\varphi(x):=x$ is countable: $\exists f(\underbrace{f: x \to \N}_{\Delta_0^{ZFC}}, \underbrace{f \text{ is injective}}_{\Delta_0^{ZFC}})$, which is $\Sigma_1^{ZFC}$, so is upwards absolute. But this formula is \emph{not} downwards absolute: if $\alpha$ is an ordinal, $\alpha \in T$, then $V_\kappa \vDash \alpha$ is countable. But since $(T,\in) \vDash ZFC$, there is some $\alpha \in T$ s.t. $(T,\in) \vDash \alpha$ is uncountable, so $V_\kappa$ and $T$ disagree about the truth value of $\varphi(\alpha)$.
+The problem is that, being countable is not an absolute property. Consider $\varphi(x):=x$ is countable: $\exists f(\underbrace{f: x \to \N}_{\Delta_0^{ZFC}}, \underbrace{f \text{ is injective}}_{\Delta_0^{ZFC}})$, which is $\Sigma_1^{ZFC}$, so is upwards absolute. But this formula is \emph{not} downwards absolute: if $\alpha$ is an ordinal, $\alpha \in T$, then $V_\kappa \vDash \alpha$ is countable. But since $(T,\in) \vDash ZFC$, there is some $\alpha \in T$ s.t. $(T,\in) \vDash \alpha$ is uncountable, so $V_\kappa$ and $T$ disagree about the truth value of $\varphi(\alpha)$.
 
 Now consider $\psi(x):$ $x$ is a cardinal$:= \forall \alpha (\alpha < x \to $there is no injection from $x$ to $\alpha)$, which is $\Pi_1^{ZFC}$, so downwards absolute. In $(T,\in)$, take $\alpha$ least s.t. $(T,\in) \vDash \neg \varphi(\alpha)$. Then $(T,\in) \vDash \alpha$ is a cardinal. Clearly $V_\kappa \vDash \alpha$ is not a cardinal. So $\psi$ is not upwards absolute.
 
@@ -415,7 +420,7 @@ Separation, foundation, extensionality, union all hold in HC as well quite easil
 Replacement: let $F$ be a function $HC \to HC$, and $x \in HC$. Consider $R:=\{ F(y);y \in x\}$, which exists in the universe, and we need to check whether it's in $R$. We know $|R| \leq |x| < \aleph_1$, and $R \subseteq HC$. By observation 2 we immediately get $R \in HC$. So replacement is trivial!\\
 So we know Power Set must be false, or at least not provable in HC, else we've proved the existence of a model of ZFC!
 
-Note that Power Set is trivial in ZFC and it's replacement that is troublesome there, while here it's the other way round.
+Note that Power Set was trivial in the $V$ hierarchy while it's replacement that was troublesome there, whereas here it's the other way round.
 
 We know that $\N \in HC$, and we also know that $\mathcal{P}(\N) \not\in HC$. But that is not enough to disprove Power Set in HC; we need to show that there is no object in HC such that HC \emph{thinks} that it is the power set of $\N$; more formally, we need to show that for all $A \in HC$, $HC \vDash $'$A$ is not a power set of $\N$, i.e. $\exists X (X \subseteq \N \wedge X \not\in A)$.
 
@@ -444,7 +449,7 @@ General idea: build inner models using \emph{definability} properties. But the p
 Let $(M,\in) \vDash ZFC$ (we'll just use this, but we'll see in the proof what set theory we actually need). We assume that the language of set theory $L_\in \subseteq M$ (so that sentences and formulas are actually elements of $M$). Consider the set $S$ of sentences of $L_\in$ and the set $U$ of unary predicates (i.e. $L_\in$-formulas in one free variable).\\
 A \emph{truth predicate} would be a formula $T(x)$ in $L_\in$, so a unary predicate, i.e. $T \in U$, s.t. $(M,\in) \vDash \varphi \iff (M,\in) \vDash T(\varphi)$.\\
 Claim: there can be no such truth predicate.\\
-Before proving this, let's contrast this with the definition of truth we had before. Our previous result says if $M$ is a set, then the concept $(M,\in) \vDash \varphi$ is $\Delta_0$ (because we bound the quantifier by $M$, which is a set, so in some sense we had to use a parameter $M$ in our previous result, which is not available in our current settings.\\
+Before proving this, let's contrast this with the definition of truth we had before. Our previous result says if $M$ is a set, then the concept $(M,\in) \vDash \varphi$ is $\Delta_0$ (because we bound the quantifier by $M$, which is a set, so in some sense we had to use a parameter $M$ in our previous result, which is not available in our current settings.
 \begin{proof} (idea: diagonalisation)\\
 If $\varphi(x) \in U$, then we can ask whether $\varphi(\varphi)$ (which is a sentence, so $\in S$) is true.\\
 Let's assume that there is a truth predicate $T$, and define a unary formula $\delta(x) := \neg T(x(x))$ (the \emph{diagonal}), where $x(x)$ is $x$ applied to $x$ if $x \in U$, and is $\phi$ otherwise (remember formulas are elements in $M$). Now apply $\delta$ to $\delta$, so $\delta(\delta) \in S$. Now
@@ -816,7 +821,7 @@ We know that $M=\bigcup_{\alpha \in Ord \cap M} L_\alpha^M$ ($L_\alpha$ interpre
 (2) We don't need full ZFC for this: similar results hold for considerably weaker theories.
 \end{rem}
 
-Now, what do we mean by the \emph{technique} of inner models? An application of the technique would mean: we want to show $Cons(ZFC+\varphi)$; start with $M \vDash ZFC+\neg \varphi$; go to an inner model $N \subseteq M$ where $N \vDash ZFC+\varphi$. A limitation would mean that this is not possible (while, not quite; it \emph{is} always possible in some way, say by going to a larger model where $\varphi$ fails and then going back).
+Now, what do we mean by the \emph{technique} of inner models? An application of the technique would mean: we want to show $Cons(ZFC+\varphi)$; start with $M \vDash ZFC+\neg \varphi$; go to an inner model $N \subseteq M$ where $N \vDash ZFC+\varphi$. A limitation would mean that this is not possible (well, not quite; it \emph{is} always possible in some way, say by going to a larger model where $\varphi$ fails and then going back).
 
 \begin{defi}
 A \emph{definable inner model} is an $L_\in$-formula $\varphi$ with one free variable, with the property: if $(M,\in) \vDash ZFC$, then define
@@ -898,7 +903,7 @@ If $M$ is a transitive model of ZFC, and $\P \in M$ is a partial order, we say t
 Suppose $\P$ is splitting, $\P \in M$ and $M$ is a transitive model of ZFC. Suppose $G$ is $\P$-generic filter over $M$. Then $G \not\in M$.\\
 This is exactly what we've seen in example 2 above.
 \begin{proof}
-Suppose $G \in M$. Then $D = \P\setminus G \in M$. We claim that $D$ is dens. Take $p \in \P$ arbitrary. By splitting, find $q_1,q_2 \leq p$, $q_1 \perp q_2$. So $q_1,q_2$ cannot be both in $G$ because $G$ is a filter. So by definition $G\cap D = G \cap \P \setminus G \neq \phi$, contradiction.
+Suppose $G \in M$. Then $D = \P\setminus G \in M$. We claim that $D$ is dense. Take $p \in \P$ arbitrary. By splitting, find $q_1,q_2 \leq p$, $q_1 \perp q_2$. So $q_1,q_2$ cannot be both in $G$ because $G$ is a filter. So by definition $G\cap D = G \cap \P \setminus G \neq \phi$, contradiction.
 \end{proof}
 \end{lemma}
 
