@@ -788,7 +788,7 @@ Example class 2: 19th November, Monday.
 \end{eg}
 
 \begin{proof} (of 5.11)\\
-    Let $\bra a_i:i<\lambda \ket$ enumerate $\mathcal{M}$, and let $q(\bar{x}) := \{\phi(\bar{z}): \mathcal{M} \vDash \phi(\bar{a})\}$, where $|\bar{z}| = \lambda$ and the $z_i$ are new variables (so not among the $\bar{x}$).\\
+    Let $\bra a_i:i<\lambda \ket$ enumerate $\mathcal{M}$, and let $q(\bar{z}) := \{\phi(\bar{z}): \mathcal{M} \vDash \phi(\bar{a})\}$, where $|\bar{z}| = \lambda$ and the $z_i$ are new variables (so not among the $\bar{x}$).\\
     Write $p(\bar{x})$ as $p'(\bar{x},\bar{a})$ for some $p'(\bar{x},\bar{z})$ (an $L$-type).\\
     We claim that $p'(\bar{x},\bar{z}) \cup q(\bar{z})$ is finitely satisfiable in $\mathcal{M}$: this is because $p'(\bar{x},\bar{a})$ is finitely satisfiable by hypothesis and $q(\bar{z})$ is realized by $\bar{a}$.\\
     Then, by theorem (5.8) (compactness for types), $p'(\bar{x},\bar{z}) \cup q(\bar{z})$ is satifsiable.\\
@@ -1423,17 +1423,39 @@ By symmetry let's only do (ii) $\implies$ (i): there is an infinite descending s
 
 \newpage
 
-\section{Example Class 3}
+\section{Revision class}
 
-\subsection{Question 1}
+Question on exam info sheet: apply Sheet 3 Q6 repeatedly to get $V \preccurlyeq U$ s.t. $A \subseteq V$, $\bar{c} \cap V = \emptyset$.
 
-\subsection{Question 2}
+Let $\bar{b}$ enumerate $B$, $p(\bar{x}) = tp(\bar{b}/A)$, then there is $\bar{b}' \Vdash p(\bar{x})$ in $V$.
 
+So $tp(\bar{b}/A) = tp(\bar{b}'/A)$, hence there is a $\alpha \in Aut(U/A)$ s.t. $\alpha(\bar{b}) = \bar{b}'$.
 
-\subsection{Question 3}
+Let $B' = \{\bar{b}'\}$. Then $B' \subseteq V$, hence $B' \cap \bar{c} = \phi$, so $\alpha(b) \cap \bar{c} = \phi$, i.e. $B \cap \alpha^{-1}(\bar{c}) = \phi$.
 
-\subsection{Question 4}
+Look at sheet 3.
 
-\subsection{Question 5}
+When we say something without mentioning model, assume in a monster model $U$.
+
+Exercise 1: For forward, say $E$ has $n$ equivalence classes, then
+\[
+U \vDash \exists y_1...y_n [\bigwedge_{i<j} \neg \varphi(y_i,y_j)]
+\]
+and let $M$ be a model, then $M \vDash $ above as well, so $E$ has at least that many equivalence classes in $M$; but those are all.
+
+For backward, suppose $|E| \geq \omega$, then the type
+\[
+p(\bar{x}) = \{\neg \varphi(x_i,x_j): i,j < |U|\}
+\]
+is finitely consistent, hence realized in $U$ by some $\bar{b}$ ($U$ is saturated). So there are $|U|$ classes. But any model $M$ does not have that many elements.
+
+Exercise 2: Backward: suppose there are two non-isomorphic countable models of $T$, say $M$ and $N$. Then $M$ and $N$ has different dimensions. So say $dim(M) < \omega$. So a basis $B$ for $M$ is finite, but $acl(B) = M$ is infinite; contradiction.
+
+Forward: suppose there's a finite set $A$ whose acl is infinite. Then $acl(A)$ must be just countable since $L$ is a countable language. Sheet 3 Q9 says that any infinite set that is algebraically closed is a model. Then add any element in $U \setminus acl(A)$, say $b$, then $b$ is independent from $A$. Then $acl(A\cup\{b\})$ has different dimension than $A$, so the models generated are not isomorphic.
+
+Exercise 3: Let $N \vDash T$. Then it's required to prove that if $f:N \to N$ is a partial elementary map s.t. $|f| < |U|$, then $f$ extends to an automorphism of $U$.
+
+When trying to proof homogeneity, always try to see if one-point extension is enough. In this case it is (back and forth method). Idea: build chain $\bra f_i: i < |N| \ket$ of partial elementary maps s.t. every element of $N$ appears at some point in both the domain and range. This is because for any $a \in N$ there is $b \in N$ s.t. $f \cup \{(a,b)\}$ is elementary: pick $a \in N \setminus dom (f)$. If $a \in acl(dom (f))$, extend $f$ to an isomorphism $\alpha$ of $U$, then $\alpha(acl(dom (f))) = acl(\alpha(dom (f)))$. Then $\alpha(a) \in N$. So extend $f$ to $f \cup \{(a,\alpha(a))\}$. If $a$ is not algebraic over $dom (f)$, there is a single type for all of those non-algebraic elements. Idea: pick $b \in N \setminus acl(range(f))$ and extend. So we want to prove that $acl(range(f))$ is not the entire $N$. Let $B$ be a basis for $dom(f)$ (then $f(B)$ is a basis for range of $f$. If $|B| < \omega$, prove by dimension that $acl(range(f)) = N$ is impossible.
+
 
 \end{document}
